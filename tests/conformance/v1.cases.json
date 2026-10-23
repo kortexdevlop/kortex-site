@@ -1,0 +1,1191 @@
+{
+  "corpus_version": "1.0",
+  "manifest": {
+    "format_version": "1.0",
+    "id": "demo-calculator",
+    "version": "1.0.0",
+    "name": "Demo calculator",
+    "summary": "Addition demonstration",
+    "description": "Canonical schema fixture; no executable package is provided.",
+    "category": "calculation",
+    "tags": [
+      "math"
+    ],
+    "seo": {
+      "title": "Demo calculator",
+      "description": "Schema fixture for an addition tool."
+    },
+    "icon_path": "assets/icon.svg",
+    "abi_version": "1.0",
+    "ui_schema_version": "1.0",
+    "permissions": [],
+    "entrypoint": "module.wasm",
+    "min_runtime": "1.0.0"
+  },
+  "contract": {
+    "contract_version": "1.0",
+    "tool_id": "demo-calculator",
+    "actions": [
+      {
+        "id": "add",
+        "description": "Add two numbers",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "a": {
+              "type": "number"
+            },
+            "b": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "a",
+            "b"
+          ],
+          "additionalProperties": false
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "additionalProperties": false
+        },
+        "permissions": [],
+        "side_effect": "none",
+        "idempotent": true,
+        "timeout_ms": 1000
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "init render action invoke",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "render",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000003",
+            "kind": "action.invoke",
+            "payload": {
+              "action_id": "add",
+              "input": {
+                "a": 1,
+                "b": 2
+              }
+            }
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000003",
+            "ok": true,
+            "data": {
+              "result": 3
+            }
+          }
+        }
+      ],
+      "expected": "ACCEPT"
+    },
+    {
+      "name": "structured action error",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "action.invoke",
+            "payload": {
+              "action_id": "add",
+              "input": {
+                "a": 1,
+                "b": 2
+              }
+            }
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "ok": false,
+            "error": {
+              "code": "FAILED",
+              "message": "Calculation failed",
+              "retryable": false
+            }
+          }
+        }
+      ],
+      "expected": "ACCEPT"
+    },
+    {
+      "name": "render before init",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "render",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "expected": "INVALID_SEQUENCE"
+    },
+    {
+      "name": "repeated init",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "expected": "INVALID_SEQUENCE"
+    },
+    {
+      "name": "message after shutdown",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "shutdown",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000003",
+            "kind": "render",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000003",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "expected": "INVALID_SEQUENCE"
+    },
+    {
+      "name": "duplicate request id",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "render",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "expected": "DUPLICATE_REQUEST"
+    },
+    {
+      "name": "correlation mismatch",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "render",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000099",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "expected": "CORRELATION_ERROR"
+    },
+    {
+      "name": "unknown protocol version",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 2,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "expected": "INVALID_PROTOCOL"
+    },
+    {
+      "name": "unknown request kind",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "shell.execute",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "expected": "INVALID_PROTOCOL"
+    },
+    {
+      "name": "invalid action input",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "action.invoke",
+            "payload": {
+              "action_id": "add",
+              "input": {
+                "a": "bad",
+                "b": 2
+              }
+            }
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "ok": true,
+            "data": {
+              "result": 3
+            }
+          }
+        }
+      ],
+      "expected": "INVALID_INPUT"
+    },
+    {
+      "name": "invalid action output",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "action.invoke",
+            "payload": {
+              "action_id": "add",
+              "input": {
+                "a": 1,
+                "b": 2
+              }
+            }
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "ok": true,
+            "data": {
+              "result": "bad"
+            }
+          }
+        }
+      ],
+      "expected": "INVALID_OUTPUT"
+    },
+    {
+      "name": "unknown action",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "kind": "action.invoke",
+            "payload": {
+              "action_id": "missing",
+              "input": {}
+            }
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000002",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "expected": "UNKNOWN_ACTION"
+    },
+    {
+      "name": "unsupported ABI before instantiation",
+      "tool": {
+        "abi_version": "2.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [],
+      "expected": "UNSUPPORTED_ABI"
+    },
+    {
+      "name": "unsupported format",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "2.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [],
+      "expected": "UNSUPPORTED_FORMAT"
+    },
+    {
+      "name": "unsupported contract",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "2.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [],
+      "expected": "UNSUPPORTED_CONTRACT"
+    },
+    {
+      "name": "unsupported UI",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "2.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [],
+      "expected": "UNSUPPORTED_UI"
+    },
+    {
+      "name": "runtime below minimum",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.1.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [],
+      "expected": "RUNTIME_TOO_OLD"
+    },
+    {
+      "name": "prerelease runtime below stable",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0-rc.1",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [],
+      "expected": "RUNTIME_TOO_OLD"
+    },
+    {
+      "name": "denied undeclared capability",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "capability": {
+        "name": "file.read",
+        "declared": [],
+        "granted": [
+          "file.read"
+        ]
+      },
+      "expected": "PERMISSION_DENIED"
+    },
+    {
+      "name": "denied capability without consent",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "capability": {
+        "name": "file.read",
+        "declared": [
+          "file.read"
+        ],
+        "granted": []
+      },
+      "expected": "PERMISSION_DENIED"
+    },
+    {
+      "name": "permitted capability",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "capability": {
+        "name": "file.read",
+        "declared": [
+          "file.read"
+        ],
+        "granted": [
+          "file.read"
+        ]
+      },
+      "expected": "ACCEPT"
+    },
+    {
+      "name": "unknown capability never admitted",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "capability": {
+        "name": "gpu.direct",
+        "declared": [
+          "gpu.direct"
+        ],
+        "granted": [
+          "gpu.direct"
+        ]
+      },
+      "expected": "PERMISSION_DENIED"
+    },
+    {
+      "name": "invalid runtime version",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0-01",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        }
+      ],
+      "capability": {
+        "name": "file.read",
+        "declared": [
+          "file.read"
+        ],
+        "granted": [
+          "file.read"
+        ]
+      },
+      "expected": "INVALID_VERSION"
+    }
+  ]
+}

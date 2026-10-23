@@ -159,3 +159,11 @@ Le moteur MUST valider action_ref contre les contrats réels puis les entrées e
 protocol.schema.json décrit requêtes et réponses B.2. capability.result utilise payload {capability_request_id,ok,data?,error?} ; capability_request_id est l'UUID opaque de corrélation de la demande hôte, jamais une autorisation. ok=true interdit error ; ok=false exige error et interdit data. Les autres payloads restent des objets à spécialiser dans les étapes responsables ; aucune validation de payload métier complète n'est revendiquée ici. Les codecs Rust de 2.2 ne spécialisent pas encore les payloads : alignement partagé prévu en 2.4.
 
 Le runner applique les invariants d'arbre et de DAG en complément des schémas ; un validateur JSON Schema seul MUST NOT être présenté comme vérifiant ces invariants globaux.
+
+## KTX-CONFORMANCE-001 — owner : architecture / runtime
+
+La suite tests/conformance/v1.cases.json MUST rester indépendante du code des runtimes. Le runner valide les traces et la négociation sans instanciation ; les hôtes réels MUST ultérieurement fournir des traces et preuves comparables. UNSUPPORTED_ABI MUST être retourné avant instanciation pour une ABI non prise en charge. Les codes et priorités de négociation suivent adr/0006-versioning.md.
+
+Un échange MUST commencer par init réussi, puis permettre render/action.invoke et les autres messages admis ; un second init et tout message après shutdown sont refusés. Les request_id MUST être uniques dans la trace et les réponses MUST reprendre l'identifiant reçu. Les entrées et sorties d'action MUST correspondre au schéma déclaré, même si l'enveloppe JSON est valide. Une capacité MUST être connue, déclarée et accordée ; aucune chaîne fournie par le guest ne vaut consentement.
+
+Le gel de la portabilité et des hypothèses runtime MUST attendre les preuves P1–P5 prévues par le plan. Le corpus local ne prouve ni allocation, ni interruption, ni sécurité cross-host réelle. Toute mise à jour gelée MUST suivre la procédure exceptionnelle, les approbations tracées et la politique de signature des artefacts/clés ; aucune signature cryptographique du corpus initial n'est revendiquée.
