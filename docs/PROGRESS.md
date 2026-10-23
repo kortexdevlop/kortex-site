@@ -1,6 +1,6 @@
 # Progression
 
-Étape courante : 2.2. Aucun gel. Les étapes absentes sont pending.
+Étape courante : 2.3. Aucun gel. Les étapes absentes sont pending.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -121,18 +121,35 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "2.2",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "44b0780",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "29f5544",
     "report_path": "docs/reports/STEP-2.2.md",
     "tests_executed": "voir rapport",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "propriétaire : Oui continue",
+    "approved_at": "2026-10-23",
     "contract_changes": [
       "Codec et constantes ABI candidats ; aucun gel"
     ],
     "evidence": [
       "docs/reports/STEP-2.2.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "2.3",
+    "status": "awaiting_approval",
+    "source_commit": "29f5544",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-2.3.md",
+    "tests_executed": "voir rapport",
+    "approved_by": null,
+    "approved_at": null,
+    "contract_changes": [
+      "Props UI, workflow et capability.result candidats"
+    ],
+    "evidence": [
+      "docs/reports/STEP-2.3.md"
     ],
     "frozen": false
   }

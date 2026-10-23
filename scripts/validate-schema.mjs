@@ -44,3 +44,47 @@ check('excessive depth',()=>!validateContract(actionSchema(deep)));
 const reorder=x=>Array.isArray(x)?x.map(reorder):x&&typeof x==='object'?Object.fromEntries(Object.entries(x).reverse().map(([k,v])=>[k,reorder(v)])):x;
 check('key order independent',()=>validateManifest(reorder(m))&&validateContract(reorder(c)));
 console.log(`${checks.length} schema checks passed; AJV validators compiled from JSON Schema 2020-12`);
+
+// Structural schemas plus graph/tree invariants, shared-package extraction in 2.4.
+const uiShape=ajv.compile(read('shared/schemas/ui.schema.json'));
+const workflowShape=ajv.compile(read('shared/schemas/workflow.schema.json'));
+const protocolShape=ajv.compile(read('shared/schemas/protocol.schema.json'));
+export function validateUI(root) {
+  if(!uiShape(root))return false;
+  const keys=new Set();let count=0;
+  function visit(node,depth=0){
+    if(depth>32 || ++count>2000 || keys.has(node.key))return false;keys.add(node.key);
+    if(node.type==='svg-chart' && node.props.series.some(s=>s.values.length!==node.props.labels.length))return false;
+    return node.children.every(child=>visit(child,depth+1));
+  }
+  return visit(root);
+}
+export function validateWorkflow(value) {
+  if(!workflowShape(value))return false;
+  const ids=new Set(value.nodes.map(n=>n.id));if(ids.size!==value.nodes.length)return false;
+  const edges=new Set();const graph=new Map([...ids].map(id=>[id,[]]));
+  for(const e of value.edges){const key=JSON.stringify([e.from,e.to]);if(!ids.has(e.from)||!ids.has(e.to)||edges.has(key))return false;edges.add(key);graph.get(e.from).push(e.to)}
+  for(const node of value.nodes)for(const binding of Object.values(node.input_bindings))if(binding.from_node && !edges.has(JSON.stringify([binding.from_node,node.id])))return false;
+  const active=new Set(),done=new Set();
+  function visit(id){if(active.has(id))return false;if(done.has(id))return true;active.add(id);if(!graph.get(id).every(visit))return false;active.delete(id);done.add(id);return true}
+  return [...ids].every(visit);
+}
+const ui=read('shared/fixtures/ui.valid.json'),workflow=read('shared/fixtures/workflow.valid.json');
+check('rich UI valid',()=>validateUI(ui));check('workflow valid',()=>validateWorkflow(workflow));
+check('duplicate UI key',()=>!validateUI({...ui,children:[...ui.children,ui.children[0]]}));
+check('unknown node',()=>!validateUI({...ui,type:'script'}));
+check('CSS URL rejected',()=>!validateUI({...ui,props:{style:'background:url(https://example.com)'}}));
+check('raw HTML rejected',()=>!validateUI({...ui,props:{html:'<script />'}}));
+check('workflow cycle',()=>!validateWorkflow({...workflow,edges:[...workflow.edges,{from:'second',to:'first'}]}));
+check('duplicate workflow node',()=>!validateWorkflow({...workflow,nodes:[...workflow.nodes,workflow.nodes[0]]}));
+check('missing source node',()=>!validateWorkflow({...workflow,edges:[{from:'missing',to:'second'}]}));
+const actionOutput=ajv.compile(c.actions[0].output_schema);
+check('output outside action schema',()=>!actionOutput({result:'wrong'}));
+check('reply protocol',()=>protocolShape({v:1,request_id:'00000000-0000-4000-8000-000000000001',ok:false,error:{code:'FAILED',message:'Failed',retryable:false}}));
+console.log(`${checks.length} total schema checks passed (UI, workflow, protocol included)`);
+check('chart lengths',()=>!validateUI({type:'svg-chart',key:'badchart',props:{kind:'bar',labels:['A'],series:[{label:'x',values:[]}]},children:[]}));
+check('tree count',()=>!validateUI({...ui,children:Array.from({length:2000},(_,i)=>({type:'text',key:'n'+i,props:{text:'x'},children:[]}))}));
+const cap={v:1,request_id:'00000000-0000-4000-8000-000000000001',kind:'capability.result',payload:{capability_request_id:'00000000-0000-4000-8000-000000000002',ok:true,data:{}}};
+check('capability result',()=>protocolShape(cap));
+check('inconsistent capability result',()=>!protocolShape({...cap,payload:{...cap.payload,ok:false}}));
+console.log(`${checks.length} final schema checks passed`);

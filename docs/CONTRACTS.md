@@ -141,3 +141,21 @@ La crate portable kortex-abi expose RequestKind, Envelope, Reply et HostError. L
 Les constantes MAX_* reprennent les plafonds de B.2. pack/unpack conservent les 64 bits du résultat i64, y compris son bit de signe ; ptr et len sont des u32. checked_range refuse longueur nulle, message trop long, mémoire excédant 64 MiB, addition débordante et plage hors mémoire. L'offset zéro reste valide ; aucune conversion vers un pointeur natif n'est fournie. Cette vérification de plage porte sur les messages JSON, pas sur la sémantique d'un allocateur guest.
 
 EnqueueStatus accepte 0 comme mise en file acceptée et tout négatif comme rejet ; un code positif est inconnu et rejeté. Aucune attribution arbitraire de sous-codes négatifs. Aucun Wasmtime, WASI ou Dioxus dans cette crate. Les effets d'alloc/dealloc et le contrôle de réentrance restent à implémenter dans le SDK et les hôtes.
+
+## KTX-UI-002 — owner : UI hôte — candidat 2.3
+
+Les 18 types B.2 possèdent chacun un objet props fermé défini dans ui.schema.json. Tout nœud MUST contenir type, key, props et children. Les clés sont stables et uniques dans l'arbre, de 1 à 64 caractères ASCII selon [A-Za-z][A-Za-z0-9_-]*. Aucune propriété HTML, CSS, style ou URL n'est acceptée. L'hôte MUST traduire les props vers ses composants sûrs. Input, textarea, select, checkbox et progress exigent label ; les boutons exigent text ; aria_label permet une précision accessible. L'hôte MUST assurer navigation clavier et annonce des contrôles ; le schéma seul ne prouve pas leur accessibilité.
+
+Bornes candidates : 2000 nœuds au total, profondeur 32, écarts layout 0–32, grille 1–12 colonnes. svg-chart MUST avoir kind bar/line, labels (au plus 500), series (au plus 20) de label/values ; chaque série MUST avoir autant de valeurs que de labels. Chaque valeur numérique MUST être finie dans la plage sûre définie dans les schémas. Le renderer MUST construire les graphiques depuis ces données, sans SVG brut fourni par le guest. Les événements déclarés dans $defs/event sont node_key, event_type (click/input/change/select), value scalaire ; le runtime MUST vérifier la clé cible et l'événement autorisé par le contrôle.
+
+## KTX-WORKFLOW-001 — owner : orchestration locale — candidat 2.3
+
+Workflow 1.0 : id, name, nodes et edges. Chaque nœud MUST posséder id unique, action_ref sous forme tool-id.action_id, input_bindings et requires_confirmation booléen. Maximum 100 nœuds et 1000 arêtes ; aucune arête dupliquée, cyclique ou vers un nœud absent. Chaque input_binding associe un JSON Pointer cible soit à {value:...}, soit à {from_node,source_pointer}. Les pointeurs suivent l'échappement ~0/~1 ; le pointeur vide désigne la racine. Une source MUST être reliée au consommateur par une arête explicite. Les cycles sont interdits en V1.
+
+Le moteur MUST valider action_ref contre les contrats réels puis les entrées et sorties contre leurs schémas ; les pointeurs MUST se résoudre dans les données. Une sortie hors schéma MUST arrêter l'action selon la politique d'erreur. La validité structurelle d'un workflow ne prouve ni disponibilité d'un outil ni validité d'un résultat. requires_confirmation MUST NOT remplacer les permissions et consentements locaux.
+
+## KTX-PROTOCOL-002 — owner : runtime — candidat 2.3
+
+protocol.schema.json décrit requêtes et réponses B.2. capability.result utilise payload {capability_request_id,ok,data?,error?} ; capability_request_id est l'UUID opaque de corrélation de la demande hôte, jamais une autorisation. ok=true interdit error ; ok=false exige error et interdit data. Les autres payloads restent des objets à spécialiser dans les étapes responsables ; aucune validation de payload métier complète n'est revendiquée ici. Les codecs Rust de 2.2 ne spécialisent pas encore les payloads : alignement partagé prévu en 2.4.
+
+Le runner applique les invariants d'arbre et de DAG en complément des schémas ; un validateur JSON Schema seul MUST NOT être présenté comme vérifiant ces invariants globaux.

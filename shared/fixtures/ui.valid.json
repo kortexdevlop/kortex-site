@@ -1,0 +1,57 @@
+{
+  "type": "column",
+  "key": "root",
+  "props": {
+    "gap": 8
+  },
+  "children": [
+    {
+      "type": "heading",
+      "key": "title",
+      "props": {
+        "text": "Overview",
+        "level": 1
+      },
+      "children": []
+    },
+    {
+      "type": "input",
+      "key": "query",
+      "props": {
+        "label": "Search",
+        "value": ""
+      },
+      "children": []
+    },
+    {
+      "type": "svg-chart",
+      "key": "chart",
+      "props": {
+        "kind": "bar",
+        "labels": [
+          "A",
+          "B"
+        ],
+        "series": [
+          {
+            "label": "Values",
+            "values": [
+              2,
+              4
+            ]
+          }
+        ]
+      },
+      "children": []
+    },
+    {
+      "type": "button",
+      "key": "submit",
+      "props": {
+        "text": "Run",
+        "aria_label": "Run action"
+      },
+      "children": []
+    }
+  ]
+}

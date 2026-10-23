@@ -1,0 +1,40 @@
+{
+  "workflow_version": "1.0",
+  "id": "example",
+  "name": "Two actions",
+  "nodes": [
+    {
+      "id": "first",
+      "action_ref": "demo-calculator.add",
+      "input_bindings": {
+        "/a": {
+          "value": 1
+        },
+        "/b": {
+          "value": 2
+        }
+      },
+      "requires_confirmation": false
+    },
+    {
+      "id": "second",
+      "action_ref": "demo-calculator.add",
+      "input_bindings": {
+        "/a": {
+          "from_node": "first",
+          "source_pointer": "/result"
+        },
+        "/b": {
+          "value": 3
+        }
+      },
+      "requires_confirmation": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "first",
+      "to": "second"
+    }
+  ]
+}
