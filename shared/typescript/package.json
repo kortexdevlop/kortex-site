@@ -1,0 +1,14 @@
+{
+  "name": "@kortex/contracts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "test": "node --test ../../tests/contracts/cross-language.test.mjs",
+    "typecheck": "tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution Bundler --resolveJsonModule --allowImportingTsExtensions src/index.ts",
+    "lint": "pnpm run typecheck",
+    "build": "pnpm run typecheck"
+  },
+  "dependencies": { "ajv": "8.20.0", "ajv-formats": "3.0.1" }
+}
