@@ -30,3 +30,7 @@ Reprise : cargo build --locked -j 2 et cargo run --locked -j 2 réussis dans le 
 
 Playwright 1.64.1 : installation des navigateurs réussie. WebKit 27.2 (build 2370) : démarrage headless et instanciation du même probe.wasm, résultat 42, réussi. Firefox 157.0 (build 1555) : échec de lancement spawn UNKNOWN ; lancement direct --version confirme une erreur Windows de configuration côte-à-côte. Compatibilité Firefox non vérifiée.
 GitHub : aucun remote local ; list_repositories renvoie une liste vide. Aucun runner Linux/macOS accessible pour ce projet. Ces cases restent non vérifiées.
+
+## Dioxus Web/Desktop — preuve 3.2
+
+Dioxus 0.7.10 et dx 0.7.10 : builds Web/Desktop et interactions confirmés sous Windows. Le prototype active explicitement web-sys 0.3.106 avec feature Location côté WASM : sans ce feature, dioxus-web history.rs échoue sur Window.location. Cette dépendance de feature est verrouillée dans le lockfile du prototype ; à reprendre dans le futur hôte Web. WebView2 observée : Edge 155.0.4283.62. Chrome for Testing 156.0.8078.4. Captures et essais : docs/evidence/spike-3.2.md. Aucune preuve Linux/macOS/Firefox supplémentaire.
