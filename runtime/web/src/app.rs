@@ -81,7 +81,7 @@ pub fn App() -> Element {
         _ => ("Erreur", "L’outil n’a pas pu être exécuté."),
     };
     rsx! {
-    style {"{kortex_ui::SHELL_CSS}"}style {{include_str!("../assets/style.css")}}
+    document::Script {r#type:"module",src:"/adapter/host.js"} style {"{kortex_ui::SHELL_CSS}"}style {{include_str!("../assets/style.css")}}
     main {class:"runtime-shell","data-mode":"{mode}","data-status":status,
      header {class:"runtime-header",h1 {"Kortex"}label {"Affichage " select {aria_label:"Mode d’affichage",value:"{mode}",onchange:move |e|mode.set(e.value()),option {value:"standard","Standard"}option {value:"compact","Compact"}option {value:"contrast","Contraste élevé"}}}}
      section {class:"runtime-status",role:if status=="error"||status=="denied" {"alert"}else{"status"},h2 {"{title}"}p {"{message}"}}
