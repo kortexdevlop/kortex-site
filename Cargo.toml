@@ -1,8 +1,9 @@
 [workspace]
-members = ["crates/kortex-abi", "crates/kortex-sdk", "crates/kortex-core", "crates/kortex-capabilities", "crates/kortex-ui", "shared/rust"]
+members = ["crates/kortex-abi", "crates/kortex-sdk", "crates/kortex-core", "crates/kortex-capabilities", "crates/kortex-ui", "runtime/web", "shared/rust"]
 exclude = ["tests/spikes/*"]
 resolver = "3"
 
 [workspace.package]
 edition = "2024"
 rust-version = "1.99"
+

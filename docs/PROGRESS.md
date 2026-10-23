@@ -366,8 +366,25 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     "id": "4.5",
     "status": "validated",
     "source_commit": "56dd7c8",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "820a130",
     "report_path": "docs/reports/STEP-4.5.md",
+    "tests_executed": "voir rapport",
+    "approved_by": "propriétaire : accord explicite pour enchaîner les quatre étapes 4.5 à 5.2",
+    "approved_at": "2026-10-23",
+    "contract_changes": [
+      "Aucun contrat gelé modifié"
+    ],
+    "evidence": [
+      "docs/reports/PHASE4_GATE.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "5.0",
+    "status": "validated",
+    "source_commit": "820a130",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-5.0.md",
     "tests_executed": "voir rapport",
     "approved_by": "propriétaire : autorisation anticipée des quatre étapes 4.5 à 5.2",
     "approved_at": "2026-10-23",
@@ -375,7 +392,7 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
       "Aucun contrat gelé modifié"
     ],
     "evidence": [
-      "docs/reports/PHASE4_GATE.md"
+      "docs/evidence/web-5.0.md"
     ],
     "frozen": false
   }

@@ -14,3 +14,6 @@ build/
 *.db
 *.sqlite
 .dev.vars*
+
+test-results/
+playwright-report/
