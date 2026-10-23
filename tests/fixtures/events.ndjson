@@ -1,0 +1,6 @@
+{"kind":"init","payload":{},"data":{}}
+{"kind":"render","payload":{},"data":{"type":"text","key":"status","props":{"text":"Prêt"},"children":[]}}
+{"kind":"ui.event","payload":{"node_key":"run","event_type":"click","value":null},"data":{"accepted":true}}
+{"kind":"capability.result","payload":{"capability_request_id":"00000000-0000-4000-8000-000000000001","ok":true,"data":{}},"data":{"accepted":true}}
+{"kind":"action.invoke","payload":{"action_id":"add","input":{"a":2,"b":3}},"data":{"result":5}}
+{"kind":"shutdown","payload":{},"data":{}}
