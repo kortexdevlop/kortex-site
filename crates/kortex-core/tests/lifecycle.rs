@@ -388,3 +388,96 @@ fn cleanup_failure_is_visible_and_registry_is_empty() {
     assert_eq!(rt.instance_count(), 0);
     assert_eq!(c.unloads.get(), 1);
 }
+
+#[test]
+fn runtime_derives_identity_and_declarations_for_every_capability() {
+    use kortex_capabilities::{
+        AuthorizedCall, Capability, CapabilityCall, CapabilityError, CapabilityHost,
+        CapabilityResponse, Gateway, Resource, policy::Duration,
+    };
+    struct Sensitive(Rc<Cell<usize>>);
+    impl CapabilityHost for Sensitive {
+        async fn execute(
+            &mut self,
+            _: &AuthorizedCall<'_>,
+        ) -> Result<CapabilityResponse, CapabilityError> {
+            self.0.set(self.0.get() + 1);
+            Ok(CapabilityResponse::Bytes(vec![]))
+        }
+    }
+    let (mut rt, _, _) = runtime();
+    let (m, c, b, p, k) = material();
+    let mut manifest = m;
+    manifest["permissions"] = json!(["storage.read"]);
+    let tool = VerifiedTool::verify(&manifest, &c, b, &p, &k).unwrap();
+    let id = block_on(rt.load(tool)).unwrap();
+    block_on(rt.initialize(id)).unwrap();
+    let calls = Rc::new(Cell::new(0));
+    let mut gateway = Gateway::new(Sensitive(calls.clone()));
+    let context = rt.prepare_capabilities(id, &mut gateway).unwrap();
+    let resource = Resource::Storage {
+        key: "preferences".into(),
+    };
+    let make = |capability| CapabilityCall {
+        request_id: "00000000-0000-4000-8000-000000000001".into(),
+        capability,
+        resource: resource.clone(),
+        bytes: vec![],
+        max_output_bytes: 100,
+    };
+    assert!(matches!(
+        block_on(rt.execute_capability(id, &mut gateway, make(Capability::StorageRead), None)),
+        Err(CapabilityError::Denied)
+    ));
+    assert_eq!(calls.get(), 0);
+    gateway
+        .policy
+        .grant(
+            &context,
+            Capability::StorageRead,
+            &resource,
+            Duration::Session,
+            1000,
+        )
+        .unwrap();
+    assert!(
+        block_on(rt.execute_capability(id, &mut gateway, make(Capability::StorageRead), None))
+            .is_ok()
+    );
+    assert_eq!(calls.get(), 1);
+    assert!(
+        block_on(rt.execute_capability(id, &mut gateway, make(Capability::StorageWrite), None))
+            .is_err()
+    );
+    assert_eq!(calls.get(), 1);
+    block_on(rt.dispatch_capability_result(
+        id,
+        "00000000-0000-4000-8000-000000000001".into(),
+        Ok(Default::default()),
+    ))
+    .unwrap();
+    let large = serde_json::json!({"bytes":"x".repeat(kortex_abi::MAX_MESSAGE_BYTES)})
+        .as_object()
+        .unwrap()
+        .clone();
+    assert_eq!(
+        block_on(rt.dispatch_capability_result(
+            id,
+            "00000000-0000-4000-8000-000000000001".into(),
+            Ok(large)
+        )),
+        Err(RuntimeError::InvalidInput)
+    );
+    assert_eq!(rt.instance(id).unwrap().queued(), 0);
+    block_on(rt.shutdown_with_capabilities(id, &mut gateway)).unwrap();
+    assert!(
+        !gateway
+            .policy
+            .is_declared(&context, Capability::StorageRead)
+    );
+    assert!(
+        block_on(rt.execute_capability(id, &mut gateway, make(Capability::StorageRead), None))
+            .is_err()
+    );
+    assert_eq!(calls.get(), 1);
+}

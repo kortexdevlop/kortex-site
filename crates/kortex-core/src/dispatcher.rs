@@ -65,3 +65,21 @@ pub async fn bounded<T>(
     })
     .await
 }
+
+/// Every sensitive request from an engine adapter goes through this policy gateway.
+/// Identity and declarations must be supplied from the loaded instance, never guest JSON.
+pub async fn execute_sensitive<H: kortex_capabilities::CapabilityHost>(
+    gateway: &mut kortex_capabilities::Gateway<H>,
+    context: &kortex_capabilities::policy::Context,
+    declared: &[String],
+    request: kortex_capabilities::CapabilityCall,
+    gesture: Option<&kortex_capabilities::policy::GestureToken>,
+    time: &impl Fn() -> u64,
+) -> Result<kortex_capabilities::CapabilityResponse, kortex_capabilities::CapabilityError> {
+    let permissions = declared
+        .iter()
+        .map(|name| kortex_capabilities::Capability::try_from(name.as_str()))
+        .collect::<Result<Vec<_>, _>>()?;
+    gateway.policy.declare(context.clone(), permissions);
+    gateway.execute(context, request, gesture, time).await
+}

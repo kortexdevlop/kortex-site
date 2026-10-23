@@ -451,3 +451,129 @@ impl<E: GuestEngine, C: Clock> Runtime<E, C> {
         }
     }
 }
+
+impl<E: GuestEngine, C: Clock> Runtime<E, C> {
+    /// Host adapters call this after copying a guest enqueue request. Resource/gesture handles
+    /// come from trusted UI; the loaded instance supplies identity and signed declarations.
+    pub async fn execute_capability<H: kortex_capabilities::CapabilityHost>(
+        &mut self,
+        id: InstanceId,
+        gateway: &mut kortex_capabilities::Gateway<H>,
+        request: kortex_capabilities::CapabilityCall,
+        gesture: Option<&kortex_capabilities::policy::GestureToken>,
+    ) -> Result<kortex_capabilities::CapabilityResponse, kortex_capabilities::CapabilityError> {
+        let instance = self
+            .instances
+            .get(&id)
+            .ok_or(kortex_capabilities::CapabilityError::Denied)?;
+        if instance.state != State::Running {
+            return Err(kortex_capabilities::CapabilityError::Denied);
+        }
+        let context = kortex_capabilities::policy::Context {
+            tool_id: instance.tool.manifest.id.clone(),
+            version: instance.tool.manifest.version.clone(),
+            instance_id: id,
+        };
+        dispatcher::execute_sensitive(
+            gateway,
+            &context,
+            &instance.tool.manifest.permissions,
+            request,
+            gesture,
+            &|| self.clock.now_ms(),
+        )
+        .await
+    }
+    pub fn capability_context(
+        &self,
+        id: InstanceId,
+    ) -> Result<kortex_capabilities::policy::Context, RuntimeError> {
+        let instance = self
+            .instances
+            .get(&id)
+            .ok_or(RuntimeError::UnknownInstance)?;
+        Ok(kortex_capabilities::policy::Context {
+            tool_id: instance.tool.manifest.id.clone(),
+            version: instance.tool.manifest.version.clone(),
+            instance_id: id,
+        })
+    }
+    /// Trusted UI/adapter cleanup must revoke the capability session when the instance is closed.
+    pub async fn shutdown_with_capabilities<H: kortex_capabilities::CapabilityHost>(
+        &mut self,
+        id: InstanceId,
+        gateway: &mut kortex_capabilities::Gateway<H>,
+    ) -> Result<(), RuntimeError> {
+        let context = self.capability_context(id)?;
+        let result = self.shutdown(id).await;
+        gateway.revoke_instance(&context);
+        result
+    }
+}
+
+impl<E: GuestEngine, C: Clock> Runtime<E, C> {
+    /// Trusted consent UI preparation, using declarations from the loaded tool only.
+    pub fn prepare_capabilities<H: kortex_capabilities::CapabilityHost>(
+        &self,
+        id: InstanceId,
+        gateway: &mut kortex_capabilities::Gateway<H>,
+    ) -> Result<kortex_capabilities::policy::Context, RuntimeError> {
+        let instance = self
+            .instances
+            .get(&id)
+            .ok_or(RuntimeError::UnknownInstance)?;
+        let context = self.capability_context(id)?;
+        let declared = instance
+            .tool
+            .manifest
+            .permissions
+            .iter()
+            .map(|name| kortex_capabilities::Capability::try_from(name.as_str()))
+            .collect::<Result<Vec<_>, _>>()
+            .map_err(|_| RuntimeError::InvalidInput)?;
+        gateway.policy.declare(context.clone(), declared);
+        Ok(context)
+    }
+    pub async fn dispatch_capability_result(
+        &mut self,
+        id: InstanceId,
+        pending_id: String,
+        result: Result<Map<String, Value>, kortex_abi::HostError>,
+    ) -> Result<Reply, RuntimeError> {
+        let instance = self
+            .instances
+            .get(&id)
+            .ok_or(RuntimeError::UnknownInstance)?;
+        if instance.state != State::Running {
+            return Err(RuntimeError::InvalidState);
+        }
+        if !instance.dispatcher.is_empty() {
+            return Err(RuntimeError::QueueBusy);
+        }
+        let payload = match result {
+            Ok(data) => json!({"capability_request_id":pending_id,"ok":true,"data":data}),
+            Err(error) => {
+                json!({"capability_request_id":pending_id,"ok":false,"error":{"code":error.code,"message":error.message,"retryable":error.retryable}})
+            }
+        };
+        let request = self.request(
+            RequestKind::CapabilityResult,
+            payload
+                .as_object()
+                .cloned()
+                .ok_or(RuntimeError::InvalidInput)?,
+        )?;
+        self.instances
+            .get_mut(&id)
+            .ok_or(RuntimeError::UnknownInstance)?
+            .dispatcher
+            .push(Queued {
+                request,
+                timeout_ms: MAX_ACTION_MS,
+                action: None,
+            })?;
+        self.process_next(id)
+            .await?
+            .ok_or(RuntimeError::InvalidReply)
+    }
+}
