@@ -417,7 +417,7 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     "id": "5.2",
     "status": "validated",
     "source_commit": "2c17303",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "5ae8d6a",
     "report_path": "docs/reports/STEP-5.2.md",
     "tests_executed": "voir rapport",
     "approved_by": "propriétaire : autorisation anticipée des quatre étapes 4.5 à 5.2",
@@ -427,6 +427,24 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     ],
     "evidence": [
       "docs/evidence/web-5.2.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "5.3",
+    "status": "awaiting_approval",
+    "source_commit": "5ae8d6a",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-5.3.md",
+    "tests_executed": "26 tests adaptateur et 6 tests Web ; voir rapport",
+    "approved_by": null,
+    "approved_at": null,
+    "contract_changes": [
+      "Aucun contrat gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/web-5.3.md",
+      "web-adapter/tests/loader.spec.ts"
     ],
     "frozen": false
   }

@@ -21,6 +21,6 @@ export async function prepare(page:Page,permissions:string[]=[],wasmURL='/fixtur
    const signature=await (window as any).signTestArtifact(Array.from(text));
    return api.VerifiedTool.verifySignedModule(bytes,metadata,contracts,{tool_id:metadata.id,version:metadata.version,abi_version:'1.0',sha256,signing_key_id:'ephemeral-test',signature},{'ephemeral-test':pub});
   }
-  const tool=await admit(bytes);(window as any).adapterTest={api,bytes,tool,admit,manifest,contract,section};
+  const tool=await admit(bytes);(window as any).adapterTest={api,bytes,tool,admit,manifest,contract,section,publicKey:pub};
  },{manifest:{...manifest,permissions},contract,publicKey,wasmURL});
 }

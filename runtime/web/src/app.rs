@@ -67,6 +67,8 @@ pub fn App() -> Element {
     let current = snapshot.read().clone();
     let status = current["status"].as_str().unwrap_or("error");
     let (title, message) = match status {
+        "downloading" => ("Téléchargement", "Téléchargement du paquet signé…"),
+        "verifying" => ("Vérification", "Vérification du paquet avant exécution…"),
         "loading" => ("Chargement", "Préparation de l’hôte…"),
         "ready" => ("Prêt", "L’outil vérifié est prêt."),
         "denied" => (

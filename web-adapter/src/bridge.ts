@@ -1,3 +1,5 @@
+import {extractArchive} from './archive';
+import type {TrustStore} from './trust';
 import Ajv from 'ajv/dist/2020.js';
 import {ed25519} from '@noble/curves/ed25519.js';
 import {validateManifest,validateContract,type Manifest,type Contract} from '@kortex/contracts';
@@ -8,6 +10,10 @@ export class VerifiedTool {
  #bytes:Uint8Array;#manifest:Manifest;#contract:Contract;
  private constructor(bytes:Uint8Array,manifest:Manifest,contract:Contract){this.#bytes=bytes.slice();this.#manifest=structuredClone(manifest);this.#contract=structuredClone(contract);admitted.add(this);}
  get bytes(){return this.#bytes.slice()}get manifest(){return structuredClone(this.#manifest)}get contract(){return structuredClone(this.#contract)}
+ static async verifyArchive(bytes:Uint8Array,proof:Descriptor,trust:TrustStore):Promise<VerifiedTool>{
+  proof=structuredClone(proof);const copy=bytes.slice();await trust.verify(copy,proof);const files=await extractArchive(copy);const decode=(name:string)=>{const b=files.get(name)!;if(b.length>1048576)throw Error('INVALID_METADATA');return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(b))};
+  const m=decode('manifest.json'),c=decode('contract.json');if(!validateManifest(m).ok||!validateContract(c).ok||m.id!==proof.tool_id||m.version!==proof.version||c.tool_id!==m.id)throw Error('INTEGRITY_ERROR');if(m.abi_version!=='1.0')throw Error('UNSUPPORTED_ABI');return new VerifiedTool(files.get('module.wasm')!,m,c);
+ }
  /// Standalone signed WASM admission for this adapter stage. Metadata must be embedded in signed custom sections.
  /// The .tool ZIP loader is a separate next-stage boundary, never an unsigned development bypass.
  static async verifySignedModule(bytes:Uint8Array,manifest:unknown,contract:unknown,proof:Descriptor,keys:Readonly<Record<string,Uint8Array>>):Promise<VerifiedTool>{
