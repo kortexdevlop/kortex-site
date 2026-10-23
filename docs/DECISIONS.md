@@ -18,3 +18,9 @@ Mises à jour des cinq registres : citer étape et preuves ; conserver provenanc
 ## Dérogation de progression — 23 octobre 2026
 
 Instruction directe du propriétaire : « Ignore les essais Linux/MacOs et continue ». Les essais Linux/macOS de la baseline 1.2 sont omis sur décision du propriétaire ; aucune compatibilité de ces systèmes n'est déclarée. Le passage à 1.3 est autorisé par cette instruction malgré la matrice incomplète. Firefox conserve son échec de lancement documenté ; cette progression n'en vaut pas validation technique. Le plan source reste inchangé.
+
+## Transcription 2.0 — 23 octobre 2026
+
+ADR-001 : adr/0001-wasm-core.md ; ADR-002/006 : adr/0002-host-ui.md ; ADR-003/008/009 : adr/0003-service-catalog.md ; ADR-004/005/010 : adr/0004-local-execution.md ; ADR-007 : adr/0005-distribution-trust.md. Contrats : CONTRACTS.md. Statut candidat au gel, revue humaine des noms/types/limites attendue.
+
+Le propriétaire a autorisé la suite après 1.4 avec activation de la protection GitHub laissée en attente ; le workflow reste local, sans preuve de protection distante.
