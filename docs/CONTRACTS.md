@@ -175,3 +175,7 @@ Les plafonds B.2 restent inchangés : ZIP 25 MiB et module WASM 20 MiB. Le proto
 Le banc 3.3 accepte volontairement un sous-ensemble ZIP strict : méthodes stored/deflate, noms ASCII relatifs déclarés, entrées uniques, aucun chiffrement, descriptor de données, ZIP64 ou multidisque. Ce sous-ensemble expérimental ne définit pas encore tous les octets du ZIP canonique de l'étape 8. La preuve de signature est externe à l'archive et vérifiée avant décompression ; les clés éphémères des tests MUST NOT être réutilisées comme clés de confiance produit.
 
 Le runtime iframe MUST utiliser une origine distincte et vérifier event.origin, event.source et nonce de session. sandbox allow-scripts allow-same-origin n'est admis que sur cette origine distincte. Tout postMessage MUST cibler l'origine exacte ; aucune permission de navigation top n'est accordée. La CSP de prototype restreint les scripts inline par nonce, Worker/connect à self et frame-ancestors au parent attendu. La CSP de production sera construite aux étapes responsables.
+
+## État du gel à la revue 3.4 — 23 octobre 2026
+
+Tous les blocs restent candidats. Aucun statut FROZEN_V1 attribué. L'audit a reproduit trois divergences entre le codec Rust et protocol.schema.json ; voir evidence/ARCHITECTURE_GATE.md et CHANGE_REQUESTS/CR-2026-001.md. Toute décision GO et gel est suspendue jusqu'à correction, nouvelle preuve Web/native sur le binaire réidentifié, et approbation humaine du gate. Les autorisations antérieures de poursuivre ne sont pas une attestation de conformité des messages découverts ici.

@@ -1,6 +1,6 @@
 # Progression
 
-Étape courante : 3.3. Aucun gel. Les étapes absentes sont pending.
+Étape courante : 3.4. Aucun gel. Les étapes absentes sont pending.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -240,18 +240,36 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "3.3",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "e94e0c3",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "2a1b2f6",
     "report_path": "docs/reports/STEP-3.3.md",
     "tests_executed": "voir rapport",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "propriétaire : Oui continue",
+    "approved_at": "2026-10-23",
     "contract_changes": [
       "Politiques ZIP candidates et isolation iframe explicitées, plafonds B.2 inchangés"
     ],
     "evidence": [
       "docs/evidence/spike-3.3.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "3.4",
+    "status": "awaiting_approval",
+    "source_commit": "2a1b2f6",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-3.4.md",
+    "tests_executed": "voir rapport",
+    "approved_by": null,
+    "approved_at": null,
+    "contract_changes": [
+      "Aucun gel : CR-2026-001 proposée pour alignement codec"
+    ],
+    "evidence": [
+      "docs/evidence/ARCHITECTURE_GATE.md",
+      "docs/CHANGE_REQUESTS/CR-2026-001.md"
     ],
     "frozen": false
   }
