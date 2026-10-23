@@ -1,5 +1,5 @@
 [workspace]
-members = [] # Ajouter les crates lors de leur creation ; les globs vides sont refuses.
+members = ["crates/kortex-abi"]
 exclude = ["tests/spikes/*"]
 resolver = "3"
 

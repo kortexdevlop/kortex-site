@@ -133,3 +133,11 @@ Bornes proposées pour rendre les limites textuelles B.2 exécutables : name 100
 Le sous-ensemble input/output impose type et autorise properties, required, additionalProperties booléen, items, enum scalaire, minimum/maximum, minLength/maxLength et minItems/maxItems. Bornes numériques finies de magnitude au plus 9007199254740991 ; longueurs au plus 1048576 ; tableaux au plus 2000 ; 100 propriétés et 100 valeurs enum ; profondeur au plus 16. Les bornes inversées et required sans propriété correspondante sont rejetés. Ces limites supplémentaires sont proposées pour revue, sans gel.
 
 L'unicité des action.id et la profondeur sont vérifiées en complément d'AJV dans scripts/validate-schema.mjs : le JSON Schema seul ne les garantit pas. Le runner compile les validateurs JavaScript depuis les schémas, importables par les futurs consommateurs TypeScript ; aucun fichier TypeScript généré ni package partagé n'est livré avant l'étape 2.4.
+
+## KTX-ABI-003 — owner : runtime / SDK — implémentation candidate 2.2
+
+La crate portable kortex-abi expose RequestKind, Envelope, Reply et HostError. Les sept kinds B.2 sont sérialisés avec leurs noms exacts. Le codec vérifie v=1, UUID textuel 8-4-4-4-12 hexadécimal opaque, payload/data objets, réponse cohérente et taille UTF-8 JSON de 1 à 1048576 octets. Une erreur requiert code et message non vides ; les codes d'erreur guest restent extensibles. Les champs inconnus sont rejetés dans cette version candidate.
+
+Les constantes MAX_* reprennent les plafonds de B.2. pack/unpack conservent les 64 bits du résultat i64, y compris son bit de signe ; ptr et len sont des u32. checked_range refuse longueur nulle, message trop long, mémoire excédant 64 MiB, addition débordante et plage hors mémoire. L'offset zéro reste valide ; aucune conversion vers un pointeur natif n'est fournie. Cette vérification de plage porte sur les messages JSON, pas sur la sémantique d'un allocateur guest.
+
+EnqueueStatus accepte 0 comme mise en file acceptée et tout négatif comme rejet ; un code positif est inconnu et rejeté. Aucune attribution arbitraire de sous-codes négatifs. Aucun Wasmtime, WASI ou Dioxus dans cette crate. Les effets d'alloc/dealloc et le contrôle de réentrance restent à implémenter dans le SDK et les hôtes.
