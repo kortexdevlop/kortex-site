@@ -1,6 +1,6 @@
 # Progression
 
-Étape courante : 2.5. Aucun gel. Les étapes absentes sont pending.
+Étape courante : 3.0. Aucun gel. Les étapes absentes sont pending.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -172,18 +172,33 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "2.5",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "b046acc",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "d0f5e97",
     "report_path": "docs/reports/STEP-2.5.md",
     "tests_executed": "voir rapport",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "propriétaire : Oui continue",
+    "approved_at": "2026-10-23",
     "contract_changes": [
       "Corpus candidat de conformité, aucun gel de portabilité"
     ],
     "evidence": [
       "docs/reports/STEP-2.5.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "3.0",
+    "status": "active",
+    "source_commit": "d0f5e97",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-3.0.md",
+    "tests_executed": "voir rapport",
+    "approved_by": null,
+    "approved_at": null,
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/spike-3.0.md"
     ],
     "frozen": false
   }

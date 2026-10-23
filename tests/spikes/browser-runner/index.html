@@ -1,0 +1,6 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Kortex ABI browser spike</title><body><h1>Kortex ABI browser spike</h1><p>Experimental worker harness; no guest DOM access.</p><script type="module">
+let worker;let pending=new Map();let sequence=0;
+window.restart=()=>{if(worker)worker.terminate();for(const p of pending.values())p.reject(Error('Worker terminated'));pending.clear();worker=new Worker('./worker.ts',{type:'module'});worker.onmessage=({data})=>{const p=pending.get(data.id);if(!p)return;pending.delete(data.id);data.error?p.reject(Error(data.error)):p.resolve(data.result)};};
+window.call=payload=>new Promise((resolve,reject)=>{const id=++sequence;pending.set(id,{resolve,reject});worker.postMessage({id,...payload})});
+window.restart();
+</script></body></html>
