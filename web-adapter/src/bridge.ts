@@ -15,7 +15,7 @@ export class VerifiedTool {
   const m=manifest as Manifest,c=contract as Contract;if(m.abi_version!=='1.0'||proof.abi_version!=='1.0')throw Error('UNSUPPORTED_ABI');
   if(proof.tool_id!==m.id||proof.version!==m.version||c.tool_id!==m.id||!keys[proof.signing_key_id])throw Error('INTEGRITY_ERROR');
   const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes as BufferSource)),b=>b.toString(16).padStart(2,'0')).join('');if(digest!==proof.sha256)throw Error('INTEGRITY_ERROR');
-  
+
   const text=new TextEncoder().encode(`kortex-artifact-v1\n${m.id}\n${m.version}\n1.0\n${digest}\n`);
   let sig:Uint8Array;try{sig=Uint8Array.from(atob(proof.signature),v=>v.charCodeAt(0));}catch{throw Error('INTEGRITY_ERROR')}
   let valid=false;try{const key=await crypto.subtle.importKey('raw',keys[proof.signing_key_id] as BufferSource,{name:'Ed25519'},false,['verify']);valid=await crypto.subtle.verify('Ed25519',key,sig as BufferSource,text);}catch(e){if(!(e instanceof DOMException)||e.name!=='NotSupportedError')throw Error('INTEGRITY_ERROR');valid=ed25519.verify(sig,text,keys[proof.signing_key_id],{zip215:false});}if(!valid)throw Error('INTEGRITY_ERROR');
@@ -26,10 +26,11 @@ export class VerifiedTool {
 }
 export class WebBridge {
  private worker:Worker|undefined;private sequence=0;private stopped=false;private pending=new Map<number,{resolve:(v:any)=>void;reject:(e:Error)=>void;timer:ReturnType<typeof setTimeout>}>();private tail:Promise<unknown>=Promise.resolve();private queued=0;private schemas=new Ajv({strict:false,allowUnionTypes:true});
+ onCapabilitySettled:()=>Promise<void>=async()=>{};onFailure:(reason:string)=>void=()=>{};
  onCapability:(call:CapabilityRequest)=>Promise<Record<string,unknown>>=async()=>{throw Error('PERMISSION')};
  private constructor(private tool:VerifiedTool,private timeout:number){
   this.worker=new Worker(new URL('./worker.js',import.meta.url),{type:'module'});
-  this.worker.onmessage=({data})=>{
+  this.worker.onmessage=({data})=>{if(this.stopped)return;
    if(data?.capability){try{capability(data.capability);const call=data.capability;void this.onCapability(call).then(value=>this.capabilityResult(call.request_id,{ok:true,data:value}),e=>this.capabilityResult(call.request_id,{ok:false,error:error(e instanceof Error?e.message:'UNAVAILABLE')}));}catch{this.stop('INVALID_CAPABILITY')}return;}
    const item=this.pending.get(data?.id);if(!item){this.stop('CORRELATION_ERROR');return;}clearTimeout(item.timer);this.pending.delete(data.id);if(data.error){item.reject(Error(data.error));this.stop(data.error);}else item.resolve(data.result);
   };
@@ -51,7 +52,7 @@ export class WebBridge {
   const task=this.tail.then(async()=>{const result=await this.call({op:'dispatch',request:copy},action?Math.min(this.timeout,action.timeout_ms):this.timeout);reply(result);if(action&&result.ok&&!this.schemas.compile(action.output_schema)(result.data)){this.stop('INVALID_OUTPUT');throw Error('INVALID_OUTPUT')}if(result.request_id!==copy.request_id){this.stop('CORRELATION_ERROR');throw Error('CORRELATION_ERROR')}return result;});
   this.tail=task.catch(()=>{});return task.finally(()=>{this.queued--;});
  }
- private async capabilityResult(id:string,result:Record<string,unknown>){try{await this.dispatch({v:1,request_id:crypto.randomUUID(),kind:'capability.result',payload:{capability_request_id:id,...result}});}catch{/* shutdown/timeout already reported to callers */}}
- stop(reason='CANCELLED'){if(this.stopped)return;this.stopped=true;this.worker?.terminate();this.worker=undefined;for(const item of this.pending.values()){clearTimeout(item.timer);item.reject(Error(reason));}this.pending.clear();}
+ private async capabilityResult(id:string,result:Record<string,unknown>){try{await this.dispatch({v:1,request_id:crypto.randomUUID(),kind:'capability.result',payload:{capability_request_id:id,...result}});await this.onCapabilitySettled();}catch{/* shutdown/timeout already reported to callers */}}
+ stop(reason='CANCELLED'){if(this.stopped)return;this.stopped=true;this.worker?.terminate();this.worker=undefined;for(const item of this.pending.values()){clearTimeout(item.timer);item.reject(Error(reason));}this.pending.clear();if(reason!=='CANCELLED')this.onFailure(reason);}
 }
 export const startVerifiedTool=WebBridge.startVerifiedTool;

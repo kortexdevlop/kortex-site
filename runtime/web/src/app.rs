@@ -86,8 +86,9 @@ pub fn App() -> Element {
      header {class:"runtime-header",h1 {"Kortex"}label {"Affichage " select {aria_label:"Mode d’affichage",value:"{mode}",onchange:move |e|mode.set(e.value()),option {value:"standard","Standard"}option {value:"compact","Compact"}option {value:"contrast","Contraste élevé"}}}}
      section {class:"runtime-status",role:if status=="error"||status=="denied" {"alert"}else{"status"},h2 {"{title}"}p {"{message}"}}
      if let Some(ui)=current.get("ui"){UiBoundary {value:ui.clone(),on_event:move |event:kortex_ui::events::UiEvent|command(json!({"kind":"ui.event","payload":event.payload()}))}}
-     if current.get("result").is_some(){output {aria_label:"Résultat", {current["result"].to_string()}}}
-     div {class:"runtime-actions",button {r#type:"button",onclick:move |_|command(json!({"kind":"stop"})),"Fermer l’outil"}}
+     if let Some(prompts)=current["pending"].as_array(){for prompt in prompts {section {class:"runtime-status",aria_label:"Demande d’autorisation",h2 {"Autorisation demandée"}p {{prompt["tool_id"].as_str().unwrap_or("")} " — " {prompt["capability"].as_str().unwrap_or("")}}p {{prompt["scope"].as_str().unwrap_or("")}}p {"Accès local, limité à cette session. Aucun secret ne doit être enregistré."}div {class:"runtime-actions",for (decision,label) in [("once","Autoriser une fois"),("session","Autoriser pour la session"),("deny","Refuser")] {button {r#type:"button","data-host-approval":prompt["id"].as_str().unwrap_or(""),"data-host-decision":decision,"{label}"}}}}}}
+        if current.get("result").is_some(){output {aria_label:"Résultat", {current["result"].to_string()}}}
+     div {class:"runtime-actions",button {r#type:"button",onclick:move |_|command(json!({"kind":"stop"})),"Fermer l’outil"}button {r#type:"button",onclick:move |_|command(json!({"kind":"revoke"})),"Révoquer les autorisations"}}
     }
     }
 }

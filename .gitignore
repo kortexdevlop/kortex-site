@@ -17,3 +17,4 @@ build/
 
 test-results/
 playwright-report/
+runtime/web/public/adapter/

@@ -1,5 +1,6 @@
 [application]
 name="kortex-runtime-web"
 default_platform="web"
+public_dir="public"
 [web.app]
 title="Kortex — Outil"
