@@ -14,3 +14,7 @@ ADR déclarés approuvés dans le plan du 23 octobre 2026 ; signataire et dates 
 | ADR-010 | Un outil = un namespace d’état, des demandes hôte et une liste de capacités déclarées | Isolation entre outils, fichiers hors sandbox via handles et consentement | 4.2, 18.2 |
 
 Mises à jour des cinq registres : citer étape et preuves ; conserver provenance du MASTER_PLAN, responsabilités dans ARCHITECTURE, arbitrages dans DECISIONS, contrats dans CONTRACTS (création 2.0), états et approbations dans PROGRESS. Aucun statut validated sans approbation explicite.
+
+## Dérogation de progression — 23 octobre 2026
+
+Instruction directe du propriétaire : « Ignore les essais Linux/MacOs et continue ». Les essais Linux/macOS de la baseline 1.2 sont omis sur décision du propriétaire ; aucune compatibilité de ces systèmes n'est déclarée. Le passage à 1.3 est autorisé par cette instruction malgré la matrice incomplète. Firefox conserve son échec de lancement documenté ; cette progression n'en vaut pas validation technique. Le plan source reste inchangé.

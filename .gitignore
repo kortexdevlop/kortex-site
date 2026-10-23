@@ -13,3 +13,4 @@ build/
 *.pfx
 *.db
 *.sqlite
+.dev.vars*

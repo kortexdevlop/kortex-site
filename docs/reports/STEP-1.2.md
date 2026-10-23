@@ -39,3 +39,5 @@ Les échecs de disque précédents sont résolus. La baseline Windows locale pos
 - GitHub list_repositories : résultat vide ; git remote -v : vide. Dépôt demandé au propriétaire pour organiser les essais Linux/macOS, sans création distante effectuée.
 
 Critères non satisfaits : matrice complète multi-OS/navigateurs. Étape toujours active ; aucun statut validated attribué. Prochaine action dépendante : réparer le lancement Firefox et disposer du dépôt/runner pour Linux/macOS.
+
+Décision du propriétaire : « Ignore les essais Linux/MacOs et continue ». Passage à 1.3 autorisé avec dérogation documentée dans DECISIONS ; matrice multi-OS non vérifiée, Firefox toujours en échec de lancement. Aucun succès inventé.
