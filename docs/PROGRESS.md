@@ -1,6 +1,6 @@
 # Progression
 
-Étape courante : 4.0. Gel 3.4 approuvé le 23 octobre 2026. Les étapes absentes sont pending.
+Étape courante : 4.1. Gel 3.4 approuvé le 23 octobre 2026. Les étapes absentes sont pending.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -276,18 +276,35 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "4.0",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "8a57069",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "bb0a4f7",
     "report_path": "docs/reports/STEP-4.0.md",
     "tests_executed": "voir rapport",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "propriétaire : Oui continue",
+    "approved_at": "2026-10-23",
     "contract_changes": [
       "Clarification ownership des buffers, ABI inchangée"
     ],
     "evidence": [
       "docs/evidence/sdk-4.0.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "4.1",
+    "status": "awaiting_approval",
+    "source_commit": "bb0a4f7",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-4.1.md",
+    "tests_executed": "voir rapport",
+    "approved_by": null,
+    "approved_at": null,
+    "contract_changes": [
+      "Aucun contrat gelé modifié ; interface moteur et horloge injectées"
+    ],
+    "evidence": [
+      "docs/evidence/runtime-4.1.md"
     ],
     "frozen": false
   }
