@@ -2,10 +2,12 @@
 pub mod audit;
 pub mod handles;
 pub mod policy;
+pub mod storage;
 use audit::{AuditEvent, AuditLog};
 use handles::Handles;
 use policy::{Context, Decision, GestureToken, Policy};
 use std::net::{IpAddr, Ipv4Addr};
+pub use storage::StorageBackend;
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Capability {
     FilePick,

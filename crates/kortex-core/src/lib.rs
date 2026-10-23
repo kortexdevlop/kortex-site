@@ -3,6 +3,7 @@
 pub mod dispatcher;
 pub mod errors;
 pub mod lifecycle;
+pub mod state;
 use dispatcher::{Clock, Dispatcher, Queued, bounded};
 use ed25519_dalek::{Signature, VerifyingKey};
 pub use errors::RuntimeError;

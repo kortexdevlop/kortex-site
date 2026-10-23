@@ -310,18 +310,35 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "4.2",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "2696d7f",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "46a7528",
     "report_path": "docs/reports/STEP-4.2.md",
     "tests_executed": "voir rapport",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "propriétaire : Oui continue",
+    "approved_at": "2026-10-23",
     "contract_changes": [
       "Politique capabilities et services hôtes abstraits ; aucun schéma/ABI gelé modifié"
     ],
     "evidence": [
       "docs/evidence/capabilities-4.2.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "4.3",
+    "status": "awaiting_approval",
+    "source_commit": "46a7528",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-4.3.md",
+    "tests_executed": "voir rapport",
+    "approved_by": null,
+    "approved_at": null,
+    "contract_changes": [
+      "Stockage abstrait et snapshot local ; aucun contrat gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/storage-4.3.md"
     ],
     "frozen": false
   }
