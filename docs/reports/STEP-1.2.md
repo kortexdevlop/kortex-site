@@ -30,3 +30,12 @@ Espace initial constaté : 10 114 109 440 octets libres. Banc isolé déjà conf
 - Ajv + ajv-formats : acceptation d'une adresse valide et rejet d'une chaîne invalide, code 0 ; axe-core 4.14.0 chargé.
 
 Les échecs de disque précédents sont résolus. La baseline Windows locale possède désormais ses preuves de compilation principales. Linux/macOS et navigateurs restent non vérifiés ; étape active, aucune validation globale déclarée. Le banc isolé est conservé localement, sans ajout d'application au monorepo.
+
+## Contrôles navigateurs — poursuite du 23 octobre 2026
+
+- pnpm exec playwright install firefox webkit : code 0. Gestion par Playwright de son cache de navigateurs ; versions téléchargées Firefox 157.0/build1555, WebKit 27.2/build2370.
+- node .git/probe/browser-probe.cjs : code 1 global. WebKit réussi : WebAssembly.instantiate du même module probe.wasm, answer() = 42. Firefox échoue au démarrage : spawn UNKNOWN.
+- firefox.exe --version : code 1 ; Windows indique configuration côte-à-côte incorrecte. L'échec est antérieur au chargement du module.
+- GitHub list_repositories : résultat vide ; git remote -v : vide. Dépôt demandé au propriétaire pour organiser les essais Linux/macOS, sans création distante effectuée.
+
+Critères non satisfaits : matrice complète multi-OS/navigateurs. Étape toujours active ; aucun statut validated attribué. Prochaine action dépendante : réparer le lancement Firefox et disposer du dépôt/runner pour Linux/macOS.

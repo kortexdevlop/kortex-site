@@ -25,3 +25,8 @@ Sources : https://blog.rust-lang.org/ ; https://crates.io/crates/dioxus/0.7.10 ;
 Politique : mises à jour explicites avec résolution et contrôles ; aucun latest en CI. Les versions applicatives relevées restent candidates tant que leur compilation n'est pas prouvée. Cargo.lock est vide car aucune crate active. Ne pas présenter ce lock comme une résolution de Wasmtime/Dioxus.
 
 Reprise : cargo build --locked -j 2 et cargo run --locked -j 2 réussis dans le banc isolé .git/probe/rust, profil debug=0, incremental=false. Ajv et ajv-formats : acceptation/rejet du format email vérifiés ; axe-core chargé. Matrice multi-OS et interface graphique restent non vérifiées. Locks du banc isolé distincts du lock racine vide ; aucun verrouillage applicatif Rust revendiqué.
+
+## Navigateurs — essais Windows du 23 octobre 2026
+
+Playwright 1.64.1 : installation des navigateurs réussie. WebKit 27.2 (build 2370) : démarrage headless et instanciation du même probe.wasm, résultat 42, réussi. Firefox 157.0 (build 1555) : échec de lancement spawn UNKNOWN ; lancement direct --version confirme une erreur Windows de configuration côte-à-côte. Compatibilité Firefox non vérifiée.
+GitHub : aucun remote local ; list_repositories renvoie une liste vide. Aucun runner Linux/macOS accessible pour ce projet. Ces cases restent non vérifiées.
