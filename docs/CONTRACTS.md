@@ -179,3 +179,5 @@ Le runtime iframe MUST utiliser une origine distincte et vérifier event.origin,
 ## État du gel à la revue 3.4 — 23 octobre 2026
 
 Tous les blocs restent candidats. Aucun statut FROZEN_V1 attribué. L'audit a reproduit trois divergences entre le codec Rust et protocol.schema.json ; voir evidence/ARCHITECTURE_GATE.md et CHANGE_REQUESTS/CR-2026-001.md. Toute décision GO et gel est suspendue jusqu'à correction, nouvelle preuve Web/native sur le binaire réidentifié, et approbation humaine du gate. Les autorisations antérieures de poursuivre ne sont pas une attestation de conformité des messages découverts ici.
+
+Reprise CR-2026-001 du 23 octobre 2026 : le codec Rust refuse désormais data/error explicitement null et spécialise capability.result selon KTX-PROTOCOL-002. L’absence optionnelle des champs est préservée. La divergence initiale du gate 3.4 est résolue avec 46 cas croisés et nouveaux essais Web/native. Les contrats restent candidats ; décision humaine de gel toujours attendue.

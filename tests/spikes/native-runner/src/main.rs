@@ -3,7 +3,7 @@ use sha2::{Digest, Sha256};
 use std::{error::Error, path::PathBuf};
 use wasmtime::*;
 type Outcome<T> = Result<T, Box<dyn Error>>;
-const HASH: &str = "00591ffa2f5faa8398585cd5068058b46efe5409f8ae6011a361844b907793f8";
+const HASH: &str = "3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65";
 struct Host {
     limits: StoreLimits,
 }
@@ -154,4 +154,17 @@ fn run() -> Outcome<()> {
     Ok(())
 }
 
-fn main() { std::thread::Builder::new().name("wasmtime-spike".into()).stack_size(32*1024*1024).spawn(|| { if let Err(error)=run() { eprintln!("{error}"); std::process::exit(1); } }).expect("native test thread").join().expect("native test thread panicked"); }
+fn main() {
+    std::thread::Builder::new()
+        .name("wasmtime-spike".into())
+        .stack_size(32 * 1024 * 1024)
+        .spawn(|| {
+            if let Err(error) = run() {
+                eprintln!("{error}");
+                std::process::exit(1);
+            }
+        })
+        .expect("native test thread")
+        .join()
+        .expect("native test thread panicked");
+}

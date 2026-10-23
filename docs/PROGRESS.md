@@ -258,18 +258,19 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   {
     "id": "3.4",
     "status": "awaiting_approval",
-    "source_commit": "2a1b2f6",
+    "source_commit": "7ad8e02",
     "result_commit": "commit contenant ce registre",
     "report_path": "docs/reports/STEP-3.4.md",
     "tests_executed": "voir rapport",
     "approved_by": null,
     "approved_at": null,
     "contract_changes": [
-      "Aucun gel : CR-2026-001 proposée pour alignement codec"
+      "CR-2026-001 exécutée après accord propriétaire ; codec aligné, aucun gel automatique"
     ],
     "evidence": [
       "docs/evidence/ARCHITECTURE_GATE.md",
-      "docs/CHANGE_REQUESTS/CR-2026-001.md"
+      "docs/CHANGE_REQUESTS/CR-2026-001.md",
+      "docs/evidence/cr-2026-001.md"
     ],
     "frozen": false
   }

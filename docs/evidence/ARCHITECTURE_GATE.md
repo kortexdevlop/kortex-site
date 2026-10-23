@@ -1,6 +1,6 @@
 # Architecture gate 3.4 — 23 octobre 2026
 
-Décision technique proposée : **NO-GO pour gel et phase 4** tant que CR-2026-001 n'est pas corrigée et vérifiée. Aucun contrat FROZEN_V1. Ce constat ne révoque pas les validations humaines des livrables précédents : il ajoute le défaut découvert à la revue.
+Décision initiale avant correction : **NO-GO pour gel et phase 4** tant que CR-2026-001 n'est pas corrigée et vérifiée. Aucun contrat FROZEN_V1. Ce constat ne révoque pas les validations humaines des livrables précédents : il ajoute le défaut découvert à la revue.
 
 | Preuve | Résultat observé | Portée / décision |
 |---|---|---|
@@ -38,3 +38,9 @@ ADR-001/002 : faisabilité binaire et rendu hôte démontrés sur les plateforme
 Approbation de CR-2026-001, correction ciblée, parité des messages invalides et positifs, nouvelle empreinte guest identifiée, prototypes Web/native rejoués sur exactement les mêmes octets, régressions vertes. Ensuite seulement nouvelle décision GO et approbation humaine du périmètre de gel. Ne pas geler la médiation complète, les payloads métier non spécifiés ni les plateformes omises.
 
 Attestation : propriétaire a approuvé le livrable 3.3 par « Oui continue ». Approbation du gate 3.4, du correctif et du gel : non reçue. Responsables technique/architecture et sécurité : non attestés. Le gate est une proposition de revue, pas une signature de l'agent au nom d'un humain.
+
+## Revue après correction CR-2026-001 — 23 octobre 2026
+
+Correction d'exécution approuvée par le propriétaire, appliquée et vérifiée. L'audit identique retourne désormais Rust [false,false,false] et schéma [false,false,false]. Les 46 cas croisés incluent les cas de protocole négatifs et positifs ; neuf tests ABI réussis. Le nouveau guest 3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65 passe 33 cas complets identiques sous Chromium/WebKit et Wasmtime Windows, trois rejets de pointeur et interruption CPU effective. Régressions de schémas, conformité et sandbox rejouées.
+
+Recommandation technique révisée : **GO proposé sur le périmètre local démontré**, soumis à revue humaine du gate ; le défaut bloquant reproduit est corrigé. Les limites de plateforme et de parseur/browser restent celles de la matrice. Aucun FROZEN_V1 attribué automatiquement. La signature/attestation de gel propriétaire et technique n'est pas remplacée par l'autorisation d'exécuter la CR. Voir cr-2026-001.md pour preuve consolidée.

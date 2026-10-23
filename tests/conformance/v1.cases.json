@@ -1186,6 +1186,145 @@
         ]
       },
       "expected": "INVALID_VERSION"
+    },
+    {
+      "name": "CR001 reject explicit null data",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": null
+          }
+        }
+      ],
+      "expected": "INVALID_PROTOCOL"
+    },
+    {
+      "name": "CR001 reject explicit null error",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "error": null
+          }
+        }
+      ],
+      "expected": "INVALID_PROTOCOL"
+    },
+    {
+      "name": "CR001 reject incomplete capability result",
+      "tool": {
+        "abi_version": "1.0",
+        "format_version": "1.0",
+        "contract_version": "1.0",
+        "ui_schema_version": "1.0",
+        "min_runtime": "1.0.0"
+      },
+      "runtime": {
+        "version": "1.0.0",
+        "supported_abi": [
+          "1.0"
+        ],
+        "supported_format": [
+          "1.0"
+        ],
+        "supported_contract": [
+          "1.0"
+        ],
+        "supported_ui": [
+          "1.0"
+        ]
+      },
+      "messages": [
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "kind": "init",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000001",
+            "ok": true,
+            "data": {}
+          }
+        },
+        {
+          "request": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000099",
+            "kind": "capability.result",
+            "payload": {}
+          },
+          "response": {
+            "v": 1,
+            "request_id": "00000000-0000-4000-8000-000000000099",
+            "ok": true
+          }
+        }
+      ],
+      "expected": "INVALID_PROTOCOL"
     }
   ]
 }

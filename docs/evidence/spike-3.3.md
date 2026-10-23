@@ -21,3 +21,5 @@ Budget candidat : ZIP <=25 MiB ; total décompressé <=64 MiB ; entrée <=20 MiB
 Mesure Node finale observée (pas un pic exhaustif, inclut Playwright et les fixtures malveillantes allouées par le test) : RSS avant 137895936, après 185905152 octets ; heapUsed avant 69173976, après 87670064 ; arrayBuffers après 29833909. Les budgets d'archives ne garantissent donc pas un processus hôte <=64 MiB. Aucun pic mémoire navigateur ou preuve sous pression mémoire faible n'est revendiqué.
 
 P3 local : isolation et téléchargement prouvés dans deux moteurs ; vérification d'archives prouvée dans le banc Node. Le parseur final dans l'hôte navigateur, les seuils sous charge et les clés persistantes relèvent des étapes runtime/distribution. Aucun gel de portabilité globale.
+
+Reprise CR-2026-001 : les trois tests sandbox/archives ont été rejoués avec le nouveau guest ; la référence ZIP contient désormais 189627 octets (stored), 62735 (deflate). Les anciennes mesures ci-dessus restent l’historique du binaire précédent. Aucun seuil d’archive modifié. Résultats finaux consolidés dans cr-2026-001.md.

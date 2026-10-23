@@ -1,4 +1,5 @@
 import test from 'node:test';
+import Ajv from 'ajv/dist/2020.js';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -28,9 +29,26 @@ let deep={type:'string'};for(let i=0;i<18;i++)deep={type:'array',items:deep};con
 const reorder=x=>Array.isArray(x)?x.map(reorder):x&&typeof x==='object'?Object.fromEntries(Object.entries(x).reverse().map(([k,v])=>[k,reorder(v)])):x;
 add('manifest key order','manifest',reorder(m),true);add('contract key order','contract',reorder(c),true);
 
+const protocol = new Ajv({strict:true,allowUnionTypes:true}).compile(read('shared/schemas/protocol.schema.json'));
+const header={v:1,request_id:'00000000-0000-4000-8000-000000000001'};
+const cap={capability_request_id:'00000000-0000-4000-8000-000000000002',ok:true,data:{}};
+for(const [name,value,valid] of [
+ ['null data',{...header,ok:true,data:null},false],['null error',{...header,ok:true,error:null},false],
+ ['success absent data',{...header,ok:true},true],['success object data',{...header,ok:true,data:{}},true],
+ ['missing capability fields',{...header,kind:'capability.result',payload:{}},false],
+ ['valid capability',{...header,kind:'capability.result',payload:cap},true],
+ ['capability null data',{...header,kind:'capability.result',payload:{...cap,data:null}},false],
+ ['capability invalid id',{...header,kind:'capability.result',payload:{...cap,capability_request_id:'bad'}},false],
+ ['capability error missing',{...header,kind:'capability.result',payload:{...cap,ok:false}},false],
+ ['capability unknown field',{...header,kind:'capability.result',payload:{...cap,unknown:true}},false],
+ ['valid capability rejection',{...header,kind:'capability.result',payload:{capability_request_id:cap.capability_request_id,ok:false,error:{code:'DENIED',message:'Denied',retryable:false}}},true],
+ ['oversized error code',{...header,ok:false,error:{code:'x'.repeat(101),message:'failed',retryable:false}},false],
+ ['invalid capability encode shape',{...header,kind:'capability.result',payload:{...cap,error:null}},false]
+])add(name,'protocol',value,valid);
+
 test('TypeScript and Rust agree on the complete shared matrix',()=>{
  const expected=cases.map(x=>x.expected);
- const ts=cases.map(x=>(x.kind==='manifest'?validateManifest(x.value):validateContract(x.value)).ok);
+ const ts=cases.map(x=>x.kind==='protocol'?protocol(x.value):(x.kind==='manifest'?validateManifest(x.value):validateContract(x.value)).ok);
  assert.deepEqual(ts,expected,'TS expected outcomes');
  const file=resolve('target/contracts/cases.json');mkdirSync(dirname(file),{recursive:true});writeFileSync(file,JSON.stringify(cases));
  const stdout=execFileSync('cargo',['test','-p','kortex-shared','--locked','cross_language_matrix','--','--nocapture'],{cwd:root,env:{...process.env,KORTEX_CONTRACT_CASES:file},encoding:'utf8',maxBuffer:4*1024*1024});

@@ -371,7 +371,7 @@
     "code": "UNSUPPORTED_KIND"
   },
   {
-    "name": "unsupported capability.result",
+    "name": "malformed capability rejected after CR001",
     "request": {
       "v": 1,
       "request_id": "00000000-0000-4000-8000-000000000001",
@@ -379,7 +379,7 @@
       "payload": {}
     },
     "ok": false,
-    "code": "UNSUPPORTED_KIND"
+    "code": "INVALID_JSON"
   },
   {
     "name": "unsupported state.restore",
@@ -451,6 +451,24 @@
       "kind": "render",
       "payload": {}
     },
+    "ok": false,
+    "code": "INVALID_JSON"
+  },
+  {
+    "name": "CR001 null data reply as request",
+    "raw": "{\"v\":1,\"request_id\":\"00000000-0000-4000-8000-000000000001\",\"ok\":true,\"data\":null}",
+    "ok": false,
+    "code": "INVALID_JSON"
+  },
+  {
+    "name": "CR001 null error reply as request",
+    "raw": "{\"v\":1,\"request_id\":\"00000000-0000-4000-8000-000000000001\",\"ok\":true,\"error\":null}",
+    "ok": false,
+    "code": "INVALID_JSON"
+  },
+  {
+    "name": "CR001 missing capability payload",
+    "raw": "{\"v\":1,\"request_id\":\"00000000-0000-4000-8000-000000000001\",\"kind\":\"capability.result\",\"payload\":{}}",
     "ok": false,
     "code": "INVALID_JSON"
   }

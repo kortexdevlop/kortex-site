@@ -1,6 +1,6 @@
 # Architecture Kortex — état vérifié à la revue 3.4
 
-23 octobre 2026. Référence de conception complète : MASTER_PLAN.md parties A–D, conservée à l'identique. Cette page distingue les preuves locales de la cible à construire. Décision actuelle : NO-GO pour gel et phase 4 jusqu'à résolution de CR-2026-001 ; voir evidence/ARCHITECTURE_GATE.md et adr/0007-prototype-outcome.md.
+23 octobre 2026. Référence de conception complète : MASTER_PLAN.md parties A–D, conservée à l'identique. Cette page distingue les preuves locales de la cible à construire. Décision initiale : NO-GO pour gel et phase 4 jusqu'à résolution de CR-2026-001 ; voir evidence/ARCHITECTURE_GATE.md et adr/0007-prototype-outcome.md.
 
 ## Faits établis
 
@@ -8,7 +8,7 @@
 - L'ABI expérimentale expose memory, kortex_alloc, kortex_dealloc, kortex_dispatch et importe kortex_v1.host_enqueue. Aucun WASI, DOM ou accès natif libre. Appel host refusé dans les bancs sans permissions. Queue asynchrone avec résultats positifs non démontrée.
 - Le renderer Dioxus 0.7.10 interprète le sous-ensemble du fixture dans le Web et une WebView2 Desktop Windows. Label, saisie, clic, focus, graphique SVG et captures vérifiés. Table et carte hôtes supplémentaires ; renderer complet et dispatch d'événements vers guest à implémenter.
 - Iframe parent/runtime sur deux ports locaux : same-origin policy, origine/source/nonce, CSP et Worker testés dans Chromium/WebKit. Validation ZIP hostile sous Node, avec clé de test éphémère ; parseur produit dans le navigateur à construire.
-- Codec Rust et schéma protocolaire divergent sur trois messages invalides : blocage du gel, reproduction au gate 3.4. La réussite des prototypes ne prouve pas une conformité totale.
+- Les trois divergences codec/schéma découvertes au gate 3.4 sont corrigées par CR-2026-001 ; 46 cas croisés et nouveaux essais Web/native réussissent. La réussite des prototypes ne prouve pas une conformité totale.
 
 ## Cible restant à construire
 
@@ -21,3 +21,5 @@ Les limites candidates sont dans CONTRACTS.md et les schémas. Aucun contrat FRO
 ## Périmètre humain accepté et limites
 
 Linux/macOS omis sur instruction du propriétaire ; Firefox omis après échec de lancement et instruction explicite. Ces systèmes ne sont pas déclarés compatibles. Protection de branche GitHub distante non activée ; poursuite locale autorisée par le propriétaire. Aucune signature ou attestation technique/sécurité n'est inventée. Le gel exige une nouvelle approbation après correction et preuves.
+
+Reprise de revue 3.4 après CR-2026-001 : les trois divergences de codec sont corrigées et les preuves Web/native rejouées sur un nouveau hash identifié. La recommandation technique passe à GO proposé sur le périmètre local démontré, sous réserve de revue humaine du gate. Aucun gel automatique ni compatibilité supplémentaire déclarée. Le NO-GO décrit plus haut est le constat initial, conservé pour traçabilité.

@@ -29,3 +29,7 @@ Les deux moteurs qui démarrent passent init/render/action.invoke, 10000 appels 
 Firefox a été réinstallé avec playwright install firefox --force (code 0), mais reste en échec avant exécution du guest. Diagnostic Windows SideBySide : assembly mozglue introuvable. Aucun changement système ni contournement de protection effectué. WebKit est un essai supplémentaire, pas une substitution silencieuse à Firefox. Preuve Chromium/Firefox exigée par le plan non complète ; portabilité non gelée.
 
 SHA-256 du module testé : 00591FFA2F5FAA8398585CD5068058B46EFE5409F8AE6011A361844B907793F8. Les essais 3.1 devront utiliser exactement ces octets, ou réidentifier explicitement un nouveau build avant comparaison.
+
+## Reprise CR-2026-001 — 23 octobre 2026
+
+Historique ci-dessus conservé. Suite à correction autorisée du codec, nouveau guest SHA-256 3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65, remplaçant pour les nouveaux essais 00591ffa2f5faa8398585cd5068058b46efe5409f8ae6011a361844b907793f8. Le code du guest et ses signatures ABI ne changent pas ; la crate codec liée a été reconstruite. Chromium/WebKit : 33 cas wire communs et 10000 multiplications par moteur passent. Wasmtime : mêmes octets, 33 réponses complètes identiques, trois rejets de pointeur et interruption OutOfFuel confirmés. Firefox toujours omis sur décision propriétaire. Le nouveau corpus rejette capability.result incomplet avant dispatch métier. Voir cr-2026-001.md pour résultats consolidés.

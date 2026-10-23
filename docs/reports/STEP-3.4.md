@@ -12,3 +12,5 @@ Décision technique proposée : NO-GO pour gel et phase 4. CR concrète prépar�
 Commit résultat : commit contenant ce rapport.
 
 Contrôles du livrable de revue : node scripts/check-progress.mjs : seize étapes ordonnées, code 0 ; node tests/conformance/check.mjs : 23 cas historiques réussis, code 0 (ne couvre pas les trois nouveaux défauts) ; tests de secrets : six réussites ; git diff --cached --check : code 0.
+
+Reprise CR-2026-001 autorisée par le propriétaire : correction du codec appliquée, neuf tests ABI et 46 cas croisés réussis ; nouveau guest identifié et rejoué dans Chromium/WebKit/Wasmtime avec 33 cas identiques et interruption CPU effective. Le NO-GO initial est remplacé par une recommandation GO proposée au périmètre local, à revoir humainement. Pas de FROZEN_V1. Rapport consolidé : docs/evidence/cr-2026-001.md.

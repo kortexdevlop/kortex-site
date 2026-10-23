@@ -83,3 +83,31 @@ fn enqueue_codes() {
     );
     assert!(EnqueueStatus::try_from(1).is_err());
 }
+
+#[test]
+fn cr001_rejects_explicit_null_fields() {
+    for field in ["data", "error"] {
+        let mut value = serde_json::json!({"v":1,"request_id":"00000000-0000-4000-8000-000000000001","ok":true});
+        value[field] = serde_json::Value::Null;
+        assert!(Reply::decode(&serde_json::to_vec(&value).unwrap()).is_err());
+    }
+}
+#[test]
+fn cr001_capability_result_validation() {
+    let base = serde_json::json!({"v":1,"request_id":"00000000-0000-4000-8000-000000000001","kind":"capability.result","payload":{}});
+    assert!(Envelope::decode(&serde_json::to_vec(&base).unwrap()).is_err());
+    for payload in [
+        serde_json::json!({"capability_request_id":"00000000-0000-4000-8000-000000000002","ok":true,"data":{}}),
+        serde_json::json!({"capability_request_id":"00000000-0000-4000-8000-000000000002","ok":false,"error":{"code":"DENIED","message":"Denied","retryable":false}}),
+    ] {
+        let mut value = base.clone();
+        value["payload"] = payload;
+        let decoded = Envelope::decode(&serde_json::to_vec(&value).unwrap()).unwrap();
+        assert_eq!(
+            Envelope::decode(&decoded.encode().unwrap()).unwrap(),
+            decoded
+        );
+        value["payload"]["data"] = serde_json::Value::Null;
+        assert!(Envelope::decode(&serde_json::to_vec(&value).unwrap()).is_err());
+    }
+}

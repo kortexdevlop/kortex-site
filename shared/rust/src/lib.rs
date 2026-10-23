@@ -172,6 +172,13 @@ mod tests {
             .map(|c| {
                 if c["kind"] == "manifest" {
                     validate_manifest(&c["value"]).is_ok()
+                } else if c["kind"] == "protocol" {
+                    let bytes = serde_json::to_vec(&c["value"]).unwrap();
+                    if c["value"].get("kind").is_some() {
+                        kortex_abi::Envelope::decode(&bytes).is_ok()
+                    } else {
+                        kortex_abi::Reply::decode(&bytes).is_ok()
+                    }
                 } else {
                     validate_contract(&c["value"]).is_ok()
                 }

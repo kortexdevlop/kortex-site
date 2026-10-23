@@ -254,6 +254,7 @@ name = "kortex-shared"
 version = "1.0.0"
 dependencies = [
  "jsonschema",
+ "kortex-abi",
  "serde",
  "serde_json",
 ]

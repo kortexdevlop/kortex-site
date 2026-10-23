@@ -7,3 +7,5 @@ Build release code 0 ; Playwright deux tests réussis, un échoué avant lanceme
 Critères satisfaits : même binaire et ABI dans Chromium/WebKit, allocations reprises, erreurs et redémarrage vérifiés. Critère non satisfait : essai Firefox explicitement demandé, son exécutable ne démarre pas même après réinstallation. Aucun gel de portabilité, aucun succès Firefox revendiqué.
 Statut active : attente de résolution Firefox ou décision explicite sur ce navigateur. L'autorisation précédente d'omettre Linux/macOS ne s'étend pas automatiquement à Firefox. Étape 3.1 non commencée.
 Commit résultat : commit contenant ce rapport.
+
+Reprise autorisée CR-2026-001 : nouveau binaire 3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65, Chromium/WebKit et Wasmtime retestés avec 33 cas communs. Ancien hash conservé dans la preuve originale ; résultats consolidés dans docs/evidence/cr-2026-001.md.

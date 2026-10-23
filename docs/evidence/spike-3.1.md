@@ -33,3 +33,7 @@ Trace finale :
 ```
 
 Log local .git/probe/native-3.1.log, SHA-256 F1EE3B85AB881D29B1ED42A4B282C17B53EB6A8A142DC89545B67174DA7EAFF2. Firefox omis sur instruction du propriétaire ; Linux/macOS omis sur instruction antérieure. Preuve limitée à Wasmtime Windows et Chromium/WebKit.
+
+## Reprise CR-2026-001 — 23 octobre 2026
+
+Historique ci-dessus conservé. Suite à correction autorisée du codec, nouveau guest SHA-256 3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65, remplaçant pour les nouveaux essais 00591ffa2f5faa8398585cd5068058b46efe5409f8ae6011a361844b907793f8. Le code du guest et ses signatures ABI ne changent pas ; la crate codec liée a été reconstruite. Chromium/WebKit : 33 cas wire communs et 10000 multiplications par moteur passent. Wasmtime : mêmes octets, 33 réponses complètes identiques, trois rejets de pointeur et interruption OutOfFuel confirmés. Firefox toujours omis sur décision propriétaire. Le nouveau corpus rejette capability.result incomplet avant dispatch métier. Voir cr-2026-001.md pour résultats consolidés.

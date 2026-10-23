@@ -1,5 +1,5 @@
 use crate::{MAX_MESSAGE_BYTES, PROTOCOL_VERSION};
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
 use serde_json::{Map, Value};
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -40,10 +40,51 @@ pub struct Reply {
     pub v: u8,
     pub request_id: String,
     pub ok: bool,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(
+        default,
+        deserialize_with = "non_null_optional",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub data: Option<Map<String, Value>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(
+        default,
+        deserialize_with = "non_null_optional",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub error: Option<HostError>,
+}
+fn non_null_optional<'de, D, T>(deserializer: D) -> Result<Option<T>, D::Error>
+where
+    D: Deserializer<'de>,
+    T: Deserialize<'de>,
+{
+    T::deserialize(deserializer).map(Some)
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct CapabilityResult {
+    capability_request_id: String,
+    ok: bool,
+    #[serde(default, deserialize_with = "non_null_optional")]
+    data: Option<Map<String, Value>>,
+    #[serde(default, deserialize_with = "non_null_optional")]
+    error: Option<HostError>,
+}
+fn check_payload(kind: &RequestKind, payload: &Map<String, Value>) -> Result<(), CodecError> {
+    if *kind == RequestKind::CapabilityResult {
+        let result: CapabilityResult = serde_json::from_value(Value::Object(payload.clone()))
+            .map_err(CodecError::InvalidJson)?;
+        Reply {
+            v: PROTOCOL_VERSION,
+            request_id: result.capability_request_id,
+            ok: result.ok,
+            data: result.data,
+            error: result.error,
+        }
+        .validate()?;
+    }
+    Ok(())
 }
 #[derive(Debug)]
 pub enum CodecError {
@@ -86,10 +127,12 @@ impl Envelope {
         check_bytes(bytes)?;
         let result: Self = serde_json::from_slice(bytes).map_err(CodecError::InvalidJson)?;
         check_header(result.v, &result.request_id)?;
+        check_payload(&result.kind, &result.payload)?;
         Ok(result)
     }
     pub fn encode(&self) -> Result<Vec<u8>, CodecError> {
         check_header(self.v, &self.request_id)?;
+        check_payload(&self.kind, &self.payload)?;
         let bytes = serde_json::to_vec(self).map_err(CodecError::InvalidJson)?;
         check_bytes(&bytes)?;
         Ok(bytes)
@@ -104,7 +147,11 @@ impl Reply {
             return Err(CodecError::InvalidEnvelope("inconsistent reply outcome"));
         }
         if let Some(error) = &self.error {
-            if error.code.is_empty() || error.message.is_empty() {
+            if error.code.is_empty()
+                || error.message.is_empty()
+                || error.code.chars().count() > 100
+                || error.message.chars().count() > 2000
+            {
                 return Err(CodecError::InvalidEnvelope("empty error fields"));
             }
         }
