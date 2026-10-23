@@ -1,0 +1,15 @@
+target/
+node_modules/
+dist/
+build/
+.astro/
+.wrangler/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.db
+*.sqlite

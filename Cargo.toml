@@ -1,0 +1,4 @@
+[workspace]
+members = ["crates/*", "runtime/*", "tools/*"]
+exclude = ["tests/spikes/*"]
+resolver = "3"
