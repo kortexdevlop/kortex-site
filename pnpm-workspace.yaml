@@ -1,0 +1,5 @@
+packages:
+  - api
+  - website
+  - web-adapter
+  - shared/typescript

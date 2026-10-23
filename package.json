@@ -1,0 +1,11 @@
+{
+  "name": "kortex",
+  "private": true,
+  "scripts": {
+    "lint": "pnpm -r run lint",
+    "typecheck": "pnpm -r run typecheck",
+    "test": "pnpm -r run test",
+    "build": "pnpm -r run build",
+    "verify": "pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build"
+  }
+}
