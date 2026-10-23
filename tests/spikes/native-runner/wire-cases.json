@@ -1,0 +1,457 @@
+[
+  {
+    "name": "init",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "init",
+      "payload": {}
+    },
+    "ok": true
+  },
+  {
+    "name": "render",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "render",
+      "payload": {}
+    },
+    "ok": true
+  },
+  {
+    "name": "multiply 0",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -10,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -480
+  },
+  {
+    "name": "multiply 1",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -9,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -432
+  },
+  {
+    "name": "multiply 2",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -8,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -384
+  },
+  {
+    "name": "multiply 3",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -7,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -336
+  },
+  {
+    "name": "multiply 4",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -6,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -288
+  },
+  {
+    "name": "multiply 5",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -5,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -240
+  },
+  {
+    "name": "multiply 6",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -4,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -192
+  },
+  {
+    "name": "multiply 7",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -3,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -144
+  },
+  {
+    "name": "multiply 8",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -2,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -96
+  },
+  {
+    "name": "multiply 9",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": -1,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": -48
+  },
+  {
+    "name": "multiply 10",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 0,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 0
+  },
+  {
+    "name": "multiply 11",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 1,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 48
+  },
+  {
+    "name": "multiply 12",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 2,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 96
+  },
+  {
+    "name": "multiply 13",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 3,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 144
+  },
+  {
+    "name": "multiply 14",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 4,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 192
+  },
+  {
+    "name": "multiply 15",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 5,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 240
+  },
+  {
+    "name": "multiply 16",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 6,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 288
+  },
+  {
+    "name": "multiply 17",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 7,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 336
+  },
+  {
+    "name": "multiply 18",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 8,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 384
+  },
+  {
+    "name": "multiply 19",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": 9,
+          "b": 48
+        }
+      }
+    },
+    "ok": true,
+    "result": 432
+  },
+  {
+    "name": "unsupported ui.event",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "ui.event",
+      "payload": {}
+    },
+    "ok": false,
+    "code": "UNSUPPORTED_KIND"
+  },
+  {
+    "name": "unsupported capability.result",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "capability.result",
+      "payload": {}
+    },
+    "ok": false,
+    "code": "UNSUPPORTED_KIND"
+  },
+  {
+    "name": "unsupported state.restore",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "state.restore",
+      "payload": {}
+    },
+    "ok": false,
+    "code": "UNSUPPORTED_KIND"
+  },
+  {
+    "name": "unsupported shutdown",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "shutdown",
+      "payload": {}
+    },
+    "ok": false,
+    "code": "UNSUPPORTED_KIND"
+  },
+  {
+    "name": "unknown action",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "missing",
+        "input": {
+          "a": 1,
+          "b": 2
+        }
+      }
+    },
+    "ok": false,
+    "code": "UNKNOWN_ACTION"
+  },
+  {
+    "name": "wrong action input",
+    "request": {
+      "v": 1,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "action.invoke",
+      "payload": {
+        "action_id": "multiply",
+        "input": {
+          "a": "bad",
+          "b": 2
+        }
+      }
+    },
+    "ok": false,
+    "code": "INVALID_INPUT"
+  },
+  {
+    "name": "invalid JSON",
+    "raw": "{",
+    "ok": false,
+    "code": "INVALID_JSON"
+  },
+  {
+    "name": "invalid protocol version",
+    "request": {
+      "v": 2,
+      "request_id": "00000000-0000-4000-8000-000000000001",
+      "kind": "render",
+      "payload": {}
+    },
+    "ok": false,
+    "code": "INVALID_JSON"
+  }
+]

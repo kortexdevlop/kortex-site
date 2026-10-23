@@ -1,6 +1,6 @@
 import { test, expect, chromium, firefox, webkit } from 'playwright/test';
 import { createServer } from 'node:http';
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, extname, sep } from 'node:path';
 
 const root=resolve(__dirname,'../../..');
@@ -11,6 +11,7 @@ test.beforeAll(async()=>{
 });
 test.afterAll(async()=>{await new Promise(resolve=>server.close(resolve));});
 for(const [name,type] of Object.entries({chromium,firefox,webkit}))test(`${name}: real Core WASM ABI in worker`,async()=>{
+ test.skip(name==='firefox','Owner explicitly deferred Firefox on 2026-10-23');
  test.setTimeout(120000);const browser=await type.launch({headless:true});
  try{const page=await browser.newPage();await page.goto(origin+'/tests/spikes/browser-runner/index.html');
  const call=payload=>page.evaluate(p=>window.call(p),payload);
@@ -18,6 +19,7 @@ for(const [name,type] of Object.entries({chromium,firefox,webkit}))test(`${name}
  const req=(kind,payload={})=>({v:1,request_id:id,kind,payload});
  const info=await call({op:'load'});expect(info.imports).toEqual([{module:'kortex_v1',name:'host_enqueue',kind:'function'}]);
  expect(info.exports.map(x=>x.name)).toEqual(expect.arrayContaining(['memory','kortex_alloc','kortex_dealloc','kortex_dispatch']));
+ const cases=JSON.parse(readFileSync(resolve(root,'tests/spikes/native-runner/wire-cases.json'),'utf8'));const replies=[];for(const item of cases){const reply=await call(item.raw!==undefined?{raw:item.raw}:{request:item.request});expect(reply.ok,item.name).toBe(item.ok);if(item.code)expect(reply.error.code).toBe(item.code);if(item.result!==undefined)expect(reply.data.result).toBe(item.result);replies.push(reply);}mkdirSync(resolve(root,'target/spike-3.1'),{recursive:true});writeFileSync(resolve(root,`target/spike-3.1/${name}.json`),JSON.stringify(replies));
  const init=await call({request:req('init')});expect(init.ok).toBe(true);expect(init.data.enqueue_status).toBe(-1);
  const render=await call({request:req('render')});expect(render.data.type).toBe('text');
  const multiply=req('action.invoke',{action_id:'multiply',input:{a:25,b:48}});

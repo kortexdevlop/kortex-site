@@ -24,3 +24,7 @@ Instruction directe du propriétaire : « Ignore les essais Linux/MacOs et conti
 ADR-001 : adr/0001-wasm-core.md ; ADR-002/006 : adr/0002-host-ui.md ; ADR-003/008/009 : adr/0003-service-catalog.md ; ADR-004/005/010 : adr/0004-local-execution.md ; ADR-007 : adr/0005-distribution-trust.md. Contrats : CONTRACTS.md. Statut candidat au gel, revue humaine des noms/types/limites attendue.
 
 Le propriétaire a autorisé la suite après 1.4 avec activation de la protection GitHub laissée en attente ; le workflow reste local, sans preuve de protection distante.
+
+## Dérogation Firefox — 23 octobre 2026
+
+Instruction explicite du propriétaire : « Oui continue, laisse firefox de coté ». Poursuite après 3.0 autorisée avec Chromium/WebKit. Firefox est omis, non déclaré compatible ; son erreur de lancement reste documentée. Aucun gel de portabilité pour les plateformes non essayées.
