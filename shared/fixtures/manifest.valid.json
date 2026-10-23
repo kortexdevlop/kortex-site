@@ -1,0 +1,22 @@
+{
+  "format_version": "1.0",
+  "id": "demo-calculator",
+  "version": "1.0.0",
+  "name": "Demo calculator",
+  "summary": "Addition demonstration",
+  "description": "Canonical schema fixture; no executable package is provided.",
+  "category": "calculation",
+  "tags": [
+    "math"
+  ],
+  "seo": {
+    "title": "Demo calculator",
+    "description": "Schema fixture for an addition tool."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

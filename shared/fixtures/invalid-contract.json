@@ -1,0 +1,29 @@
+{
+  "contract_version": "1.0",
+  "tool_id": "demo-calculator",
+  "actions": [
+    {
+      "id": "add",
+      "description": "Add two numbers",
+      "input_schema": {
+        "$ref": "https://invalid.example/schema"
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 30001
+    }
+  ]
+}

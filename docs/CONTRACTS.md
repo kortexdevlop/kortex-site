@@ -123,3 +123,13 @@ Une modification incompatible gelée MUST arrêter la chaîne et ouvrir docs/CHA
 ## Journal des changements
 
 - 2026-10-23 : transcription candidate B.2 et ADR-001…010 ; règles de version, dépréciation, erreur et exception. Aucun gel ni approbation de revue humaine des noms/types/limites déclaré.
+
+## KTX-SCHEMA-001 — owner : SDK / schemas
+
+Précisions candidates 2.1 : les exemples canoniques sont shared/fixtures/manifest.valid.json et contract.valid.json. Les validateurs MUST préserver la distinction slug/SemVer et MUST NOT dépendre de l'ordre des clés. Ils MUST refuser les propriétés inconnues du manifeste, du contrat et du sous-ensemble de schéma d'action. Les références internes des deux schémas officiels sont locales ; un schéma input/output fourni par un outil MUST NOT contenir de $ref, externe ou récursif.
+
+Bornes proposées pour rendre les limites textuelles B.2 exécutables : name 100, summary 240, description 10000, category 64, tag 40 (20 tags uniques), seo.title 70, seo.description 160, icon_path 256 caractères. Chaînes obligatoires non vides. Version SemVer limitée à 128 caractères. Action : id 64 caractères, motif [a-z][a-z0-9_-]* ; description 1000 ; 1 à 100 actions ; timeout_ms entier 1 à 30000. Permissions uniques parmi les sept capacités B.2. Chemins ASCII relatifs : ni segment point/point-point, ni antislash, deux-points ou double barre oblique. Aucun trim ou changement de casse implicite.
+
+Le sous-ensemble input/output impose type et autorise properties, required, additionalProperties booléen, items, enum scalaire, minimum/maximum, minLength/maxLength et minItems/maxItems. Bornes numériques finies de magnitude au plus 9007199254740991 ; longueurs au plus 1048576 ; tableaux au plus 2000 ; 100 propriétés et 100 valeurs enum ; profondeur au plus 16. Les bornes inversées et required sans propriété correspondante sont rejetés. Ces limites supplémentaires sont proposées pour revue, sans gel.
+
+L'unicité des action.id et la profondeur sont vérifiées en complément d'AJV dans scripts/validate-schema.mjs : le JSON Schema seul ne les garantit pas. Le runner compile les validateurs JavaScript depuis les schémas, importables par les futurs consommateurs TypeScript ; aucun fichier TypeScript généré ni package partagé n'est livré avant l'étape 2.4.
