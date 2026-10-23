@@ -327,18 +327,38 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "4.3",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "46a7528",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "9d86c17",
     "report_path": "docs/reports/STEP-4.3.md",
     "tests_executed": "voir rapport",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "propriétaire : Oui continue",
+    "approved_at": "2026-10-23",
     "contract_changes": [
       "Stockage abstrait et snapshot local ; aucun contrat gelé modifié"
     ],
     "evidence": [
       "docs/evidence/storage-4.3.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "4.4",
+    "status": "awaiting_approval",
+    "source_commit": "9d86c17",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-4.4.md",
+    "tests_executed": "voir rapport",
+    "approved_by": null,
+    "approved_at": null,
+    "contract_changes": [
+      "Renderer couvrant les 17 types du schéma gelé (16 annoncés dans le texte du plan), aucun contrat gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/ui-4.4.md",
+      "docs/evidence/ui-4.4-browser.json",
+      "docs/evidence/ui-4.4-chromium.png",
+      "docs/evidence/ui-4.4-webkit.png"
     ],
     "frozen": false
   }
