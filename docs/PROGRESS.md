@@ -1,14 +1,89 @@
 # Progression
 
-| id | status | source_commit | result_commit | tests_executed | report_path | approved_by | approved_at | contract_changes | evidence |
-|---|---|---|---|---|---|---|---|---|---|
-| 1.0 | validated | aucun | 9c0d95f | voir rapport | docs/reports/STEP-1.0.md | propriétaire, « maintenant continue » | 2026-10-23 | aucun | rapport initial |
-| 1.1 | validated | 9c0d95f | commit contenant ce registre | voir rapport | docs/reports/STEP-1.1.md | — | — | aucun | contrôles locaux |
+Étape courante : 1.4. Aucun gel. Les étapes absentes sont pending.
+La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
+Schéma de rapport : docs/reports/TEMPLATE.md.
 
-Étape courante : 1.3 (awaiting_approval). Gels : aucun. Étapes suivantes : pending.
-
-1.1 approuvée le 23 octobre 2026 par le propriétaire : « Continue ». Résultat fe3d120.
-1.2 active, base fe3d120 ; rapport docs/reports/STEP-1.2.md ; baseline partielle, aucun gel.
-
-1.2 : progression autorisée avec dérogation propriétaire le 23 octobre 2026 ; essais Linux/macOS omis à sa demande, Firefox non vérifié. Voir DECISIONS et STEP-1.2. Aucune validation technique complète.
-1.3 : awaiting_approval ; base bdf2e3a ; tests dans docs/reports/STEP-1.3.md ; aucun changement de contrat gelé ; approbation non reçue.
+```json
+[
+  {
+    "id": "1.0",
+    "status": "validated",
+    "source_commit": null,
+    "result_commit": "9c0d95f",
+    "approved_by": "propriétaire : maintenant continue",
+    "approved_at": "2026-10-23",
+    "report_path": "docs/reports/STEP-1.0.md",
+    "tests_executed": "voir rapport",
+    "contract_changes": [],
+    "evidence": [
+      "docs/reports/STEP-1.0.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "1.1",
+    "status": "validated",
+    "source_commit": "9c0d95f",
+    "result_commit": "fe3d120",
+    "approved_by": "propriétaire : Continue",
+    "approved_at": "2026-10-23",
+    "report_path": "docs/reports/STEP-1.1.md",
+    "tests_executed": "voir rapport",
+    "contract_changes": [],
+    "evidence": [
+      "docs/reports/STEP-1.1.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "1.2",
+    "status": "awaiting_approval",
+    "source_commit": "fe3d120",
+    "result_commit": "bdf2e3a",
+    "approved_by": "propriétaire : Ignore les essais Linux/MacOs et continue",
+    "approved_at": "2026-10-23",
+    "waiver": {
+      "reason": "Poursuite autorisée sans essais Linux/macOS ; Firefox reste non vérifié, pas de validation technique globale.",
+      "evidence": "docs/DECISIONS.md"
+    },
+    "report_path": "docs/reports/STEP-1.2.md",
+    "tests_executed": "voir rapport",
+    "contract_changes": [],
+    "evidence": [
+      "docs/reports/STEP-1.2.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "1.3",
+    "status": "validated",
+    "source_commit": "bdf2e3a",
+    "result_commit": "f9f8dce",
+    "approved_by": "propriétaire : Oui continue",
+    "approved_at": "2026-10-23",
+    "report_path": "docs/reports/STEP-1.3.md",
+    "tests_executed": "voir rapport",
+    "contract_changes": [],
+    "evidence": [
+      "docs/reports/STEP-1.3.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "1.4",
+    "status": "awaiting_approval",
+    "source_commit": "f9f8dce",
+    "result_commit": "commit contenant ce registre",
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-1.4.md",
+    "tests_executed": "voir rapport",
+    "contract_changes": [],
+    "evidence": [
+      "docs/reports/STEP-1.4.md"
+    ],
+    "frozen": false
+  }
+]
+```
