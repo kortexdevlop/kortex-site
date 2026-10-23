@@ -250,6 +250,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "kortex-sdk"
+version = "1.0.0"
+dependencies = [
+ "kortex-abi",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "kortex-shared"
 version = "1.0.0"
 dependencies = [

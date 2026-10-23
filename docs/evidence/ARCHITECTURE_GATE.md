@@ -44,3 +44,7 @@ Attestation : propriétaire a approuvé le livrable 3.3 par « Oui continue ». 
 Correction d'exécution approuvée par le propriétaire, appliquée et vérifiée. L'audit identique retourne désormais Rust [false,false,false] et schéma [false,false,false]. Les 46 cas croisés incluent les cas de protocole négatifs et positifs ; neuf tests ABI réussis. Le nouveau guest 3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65 passe 33 cas complets identiques sous Chromium/WebKit et Wasmtime Windows, trois rejets de pointeur et interruption CPU effective. Régressions de schémas, conformité et sandbox rejouées.
 
 Recommandation technique révisée : **GO proposé sur le périmètre local démontré**, soumis à revue humaine du gate ; le défaut bloquant reproduit est corrigé. Les limites de plateforme et de parseur/browser restent celles de la matrice. Aucun FROZEN_V1 attribué automatiquement. La signature/attestation de gel propriétaire et technique n'est pas remplacée par l'autorisation d'exécuter la CR. Voir cr-2026-001.md pour preuve consolidée.
+
+## Approbation reçue et passage 4.0
+
+Le propriétaire a répondu « Oui continue » à la demande explicite de valider la revue 3.4 corrigée et le gel. Gel FROZEN_V1 consigné dans CONTRACTS et PROGRESS, avec empreintes des cinq schémas existants. Les dérogations et limites demeurent ; aucun signataire humain supplémentaire ni certificat inventé.

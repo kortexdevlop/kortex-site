@@ -181,3 +181,21 @@ Le runtime iframe MUST utiliser une origine distincte et vérifier event.origin,
 Tous les blocs restent candidats. Aucun statut FROZEN_V1 attribué. L'audit a reproduit trois divergences entre le codec Rust et protocol.schema.json ; voir evidence/ARCHITECTURE_GATE.md et CHANGE_REQUESTS/CR-2026-001.md. Toute décision GO et gel est suspendue jusqu'à correction, nouvelle preuve Web/native sur le binaire réidentifié, et approbation humaine du gate. Les autorisations antérieures de poursuivre ne sont pas une attestation de conformité des messages découverts ici.
 
 Reprise CR-2026-001 du 23 octobre 2026 : le codec Rust refuse désormais data/error explicitement null et spécialise capability.result selon KTX-PROTOCOL-002. L’absence optionnelle des champs est préservée. La divergence initiale du gate 3.4 est résolue avec 46 cas croisés et nouveaux essais Web/native. Les contrats restent candidats ; décision humaine de gel toujours attendue.
+
+## FROZEN_V1 — approbation explicite du 23 octobre 2026
+
+Le propriétaire a répondu « Oui continue » à la demande explicite de validation de la revue 3.4 corrigée et du gel avant SDK 4.0. Le gel couvre ABI 1.0 (signatures, module d'import et conventions B.2), enveloppes protocole et les cinq schémas existants ci-dessous. Aucun nouveau schéma futur ni comportement non spécifié n'est gelé par anticipation. Les plateformes omises et limites de prototype restent celles du gate. Les évolutions suivent SemVer et la procédure de changement déjà définie. Pas de signature cryptographique inventée.
+
+| Schéma gelé | SHA-256 source |
+|---|---|
+| shared/schemas/manifest.schema.json | c63ea6b9cfd1bfe07bd66e7ac8d3c6298868ffc3c2a06889c52edd00be6f9142 |
+| shared/schemas/contract.schema.json | e6b34131ecff08083ab7112db8d38ced5374822d9d69753e17c7b23e307b65b6 |
+| shared/schemas/ui.schema.json | 3ca83e92605639c261b97ab8694bc249c7c3e2999123be552060e8c58013b55b |
+| shared/schemas/protocol.schema.json | c1a289b65c13894ab8d8953c6ef6b4e1a5de884275923ad1b32e8b440dc637cf |
+| shared/schemas/workflow.schema.json | 28fdaa1b42a5d2fadc3b8d6fc81db7faacfeb208508c2da22b06eb3ab53dbb6d |
+
+### Clarification d'ownership 4.0 — aucune modification d'ABI
+
+L'hôte possède l'allocation de requête obtenue par kortex_alloc et MUST la libérer avec son ptr/len d'origine après copie et dispatch. Le SDK possède l'allocation de réponse jusqu'au retour ; l'hôte MUST copier les octets puis appeler kortex_dealloc une seule fois avec ptr/len retournés. Le SDK ne libère pas implicitement la requête. L'import host_enqueue MUST copier ses octets pendant l'appel ; son pointeur emprunté expire au retour et ne peut pas servir d'autorisation. La réponse de capacité arrive dans un futur dispatch, corrélée par capability_request_id ; le request_id de l'enveloppe de réponse reste celui du dispatch courant.
+
+Le SDK tient un registre exact des buffers ; il refuse lecture et libération sur pointeur inconnu ou longueur différente. Un dealloc invalide est ignoré sans dereference ni double libération. Un alloc invalide/refusé retourne 0, que l'hôte MUST vérifier. Si aucune allocation de réponse ne peut être produite, l'instance WASM termine en trap ; aucun pointeur forgé n'est rendu. Les erreurs Tool natives sont interceptées avant frontière FFI ; un panic du code guest compilé avec abort produit un trap WASM, sans unwind vers l'hôte. L'hôte devra abandonner l'instance interrompue, sans revendiquer de Reply disponible dans cette situation.

@@ -1,6 +1,6 @@
 # Progression
 
-Étape courante : 3.4. Aucun gel. Les étapes absentes sont pending.
+Étape courante : 4.0. Gel 3.4 approuvé le 23 octobre 2026. Les étapes absentes sont pending.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -257,20 +257,37 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "3.4",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "7ad8e02",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "8a57069",
     "report_path": "docs/reports/STEP-3.4.md",
     "tests_executed": "voir rapport",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "propriétaire : Oui continue, après demande explicite de revue 3.4 et gel",
+    "approved_at": "2026-10-23",
     "contract_changes": [
-      "CR-2026-001 exécutée après accord propriétaire ; codec aligné, aucun gel automatique"
+      "FROZEN_V1 approuvé par le propriétaire : ABI et cinq schémas existants, dérogations conservées"
     ],
     "evidence": [
       "docs/evidence/ARCHITECTURE_GATE.md",
       "docs/CHANGE_REQUESTS/CR-2026-001.md",
       "docs/evidence/cr-2026-001.md"
+    ],
+    "frozen": true
+  },
+  {
+    "id": "4.0",
+    "status": "awaiting_approval",
+    "source_commit": "8a57069",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-4.0.md",
+    "tests_executed": "voir rapport",
+    "approved_by": null,
+    "approved_at": null,
+    "contract_changes": [
+      "Clarification ownership des buffers, ABI inchangée"
+    ],
+    "evidence": [
+      "docs/evidence/sdk-4.0.md"
     ],
     "frozen": false
   }
