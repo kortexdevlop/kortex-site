@@ -3,3 +3,10 @@ packages:
   - website
   - web-adapter
   - shared/typescript
+minimumReleaseAgeExclude:
+  - miniflare@5.20261019.2-beta
+  - wrangler@4.152.0
+
+allowBuilds:
+  esbuild: true
+  workerd: true
