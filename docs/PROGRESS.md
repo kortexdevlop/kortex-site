@@ -1,6 +1,6 @@
 # Progression
 
-Étape courante : 3.2. Aucun gel. Les étapes absentes sont pending.
+Étape courante : 3.3. Aucun gel. Les étapes absentes sont pending.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -223,18 +223,35 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "3.2",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "989428d",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "e94e0c3",
     "report_path": "docs/reports/STEP-3.2.md",
     "tests_executed": "voir rapport",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "propriétaire : Oui continue",
+    "approved_at": "2026-10-23",
     "contract_changes": [],
     "evidence": [
       "docs/evidence/spike-3.2.md",
       "docs/evidence/spike-3.2-chrome.png",
       "docs/evidence/spike-3.2-desktop.png"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "3.3",
+    "status": "awaiting_approval",
+    "source_commit": "e94e0c3",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-3.3.md",
+    "tests_executed": "voir rapport",
+    "approved_by": null,
+    "approved_at": null,
+    "contract_changes": [
+      "Politiques ZIP candidates et isolation iframe explicitées, plafonds B.2 inchangés"
+    ],
+    "evidence": [
+      "docs/evidence/spike-3.3.md"
     ],
     "frozen": false
   }

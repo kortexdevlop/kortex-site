@@ -1,0 +1,7 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Sandbox runtime</title><body><h1>Runtime origin</h1><script>
+const query=new URLSearchParams(location.search);const parentOrigin=query.get('parent');const nonce=query.get('nonce');window.accepted=0;window.rejected=0;
+addEventListener('message',async event=>{if(event.origin!==parentOrigin||event.source!==parent||event.data?.nonce!==nonce){window.rejected++;return}window.accepted++;parent.postMessage({kind:'ack',nonce},parentOrigin)});
+parent.postMessage({kind:'ready',nonce},parentOrigin);
+window.download=async()=>{const response=await fetch('/reference.tool');const bytes=await response.arrayBuffer();const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');return {bytes:bytes.byteLength,sha256:hash}};
+window.workerProbe=()=>new Promise((resolve,reject)=>{const worker=new Worker('/worker.js');worker.onmessage=e=>{worker.terminate();resolve(e.data)};worker.onerror=e=>{worker.terminate();reject(Error(e.message))}});
+</script></body></html>

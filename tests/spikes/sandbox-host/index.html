@@ -1,0 +1,7 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><title>Sandbox parent</title><body><h1>Parent origin</h1><div id="mount"></div><script>
+const config=new URLSearchParams(location.search);const runtime=config.get('runtime');const nonce=crypto.randomUUID();
+const frame=document.createElement('iframe');frame.sandbox='allow-scripts allow-same-origin';frame.src=runtime+'/iframe.html?parent='+encodeURIComponent(location.origin)+'&nonce='+nonce;document.querySelector('#mount').append(frame);
+window.received=[];window.rejected=0;window.testConfig={runtime,nonce};
+addEventListener('message',event=>{if(event.origin!==runtime||event.source!==frame.contentWindow||event.data?.nonce!==nonce){window.rejected++;return}window.received.push(event.data)});
+window.sendProbe=()=>frame.contentWindow.postMessage({kind:'probe',nonce},runtime);
+</script></body></html>
