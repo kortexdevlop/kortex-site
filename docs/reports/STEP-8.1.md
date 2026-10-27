@@ -1,6 +1,6 @@
 # Étape 8.1 — CLI générique de construction
 
-Date : 2026-10-27. Base : d6a70d8. Résultat : commit contenant ce registre. Deuxième étape du lot autorisé.
+Date : 2026-10-27. Base : d6a70d8. Résultat : 5e99096. Deuxième étape du lot autorisé.
 
 kortex-xtask découvre tools/*/manifest.json, refuse identifiants dupliqués et liens, puis résout la crate et sa cible cdylib par Cargo metadata. Aucun match par tool_id ni script Python spécifique. Build compile le target release wasm32-unknown-unknown avec --locked et limite mémoire ; validate inspecte le module existant ; package reconstruit, valide puis écrit ZIP et rapport. --all, --out, --json et --help sont disponibles. Une sortie de paquet existante de bytes différents est refusée.
 

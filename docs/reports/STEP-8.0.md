@@ -1,6 +1,6 @@
 # Étape 8.0 — ZIP canonique et validation bornée
 
-Date : 2026-10-27. Base : d6a70d8. Résultat : commit contenant ce registre. Première des trois étapes demandées par le propriétaire après 7.3.
+Date : 2026-10-27. Base : d6a70d8. Résultat : 5e99096. Première des trois étapes demandées par le propriétaire après 7.3.
 
 kortex-pack produit des ZIP à noms lexicaux, timestamp DOS 1980-01-01, mode Unix 0644 et compression stored stable. Les deux documents JSON sont triés récursivement. Le lecteur inspecte tous les en-têtes avant décompression en mémoire : chemins relatifs ASCII sûrs, collisions de casse et doublons refusés, types spéciaux/liens/volumes refusés, longueur/CRC/local-central cohérents, aucun ZIP64/chiffrement/descriptor/extras/commentaire ou trou entre entrées. Les sorties réelles du décompresseur sont bornées à la taille annoncée plus un octet.
 

@@ -1,6 +1,6 @@
 # Étape 8.2 — SHA-256, Ed25519 et confiance publique
 
-Date : 2026-10-27. Base : d6a70d8. Résultat : commit contenant ce registre. Troisième et dernière étape du lot demandé.
+Date : 2026-10-27. Base : d6a70d8. Résultat : 5e99096. Troisième et dernière étape du lot demandé.
 
 kortex-verify expose verify_archive_hash et verify_descriptor sur le descripteur B.2. Le texte exact terminé par LF, les SHA minuscules et les signatures base64 canoniques sont communs à Rust et au Web. artifact.schema.json formalise les sept champs et refuse les inconnus ; le Web utilise sa version AJV précompilée, compatible CSP. Le chargeur sépare son URL de téléchargement de ce descripteur.
 
