@@ -3,6 +3,7 @@ import {failure,json,requestId} from './lib/http';
 import {health} from './routes/health';
 import {tools} from './routes/tools';
 import {downloads} from './routes/downloads';
+import {admin} from './routes/admin';
 export async function handle(request:Request,bindings:unknown):Promise<Response> {
  const id=requestId(request),head=request.method==='HEAD';
  try {
@@ -20,6 +21,7 @@ export async function handle(request:Request,bindings:unknown):Promise<Response>
    if(!['GET','HEAD'].includes(request.method))return failure('BAD_REQUEST','Method not allowed',405,id,origin,head,{Allow:'GET, HEAD, OPTIONS'});
    return health(request,id,origin);
   }
+  const administration=await admin(request,env,id,origin);if(administration)return administration;
   const catalog=await tools(request,env,id,origin);if(catalog)return catalog;
   const download=await downloads(request,env,id,origin);if(download)return download;
   return failure('NOT_FOUND','Route not found',404,id,origin,head);

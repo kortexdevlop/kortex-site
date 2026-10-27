@@ -32,3 +32,19 @@ pnpm --filter @kortex/api build
 ```
 
 La liste échoue volontairement en 503 sans clé valide, même vide ; la santé reste disponible. Une base migrée vide renvoie une liste vide, sans données artificielles de démarrage. Les 10 000 entrées et attestations synthétiques de tests n'entrent jamais dans la configuration déployée. Le build reste exclusivement un dry-run ; aucune ressource distante n'est provisionnée en 9.3. Le téléchargement R2 reste l'étape 9.4.
+
+## Téléchargement et administration (9.4–9.5)
+
+GET/HEAD `/api/v1/downloads/:id/:version` transmet l'objet privé publié et non révoqué. MIME `application/vnd.kortex.tool+zip`, headers digest/ETag et Link depuis le détail. Une version révoquée répond 410 même avec son ancien ETag. Les réponses exigent une revalidation D1, les erreurs sont no-store. SHA/signature restent vérifiés par l'hôte avant exécution.
+
+Les POST d'administration sont réservés aux machines, sans prérequête CORS de publication depuis un navigateur :
+
+- `/api/v1/admin/publications` : PublicationRequest existante, descripteur/manifest/contract/r2_key/request_id, ZIP déjà présent dans le bucket privé.
+- `/api/v1/admin/tools/:id/rollback` : `{request_id,version,expected_current_version}`.
+- `/api/v1/admin/artifacts/:sha256/revoke` : `{request_id,reason}`.
+
+Corps JSON fermé maximal 256 Kio, UUID idempotent. Réponse PublicationStatus ; pour un rejeu, la réponse initiale est renvoyée sans nouveau basculement. Auth manquante/invalide : 401, action interdite : 403, forme invalide : 400, trop gros : 413, échec d'intégrité : 422, conflit/UUID réutilisé différemment : 409. Pas de fuite SQL ni de clé dans les erreurs.
+
+`ADMIN_AUTH_POLICY` est une chaîne JSON serveur fermée : issuer, audience, subject, repository, repository_id, ref, workflow_ref et actions (`publish`, `revoke`, `rollback`). GitHub exige issuer `https://token.actions.githubusercontent.com` et RS256/JWKS officiel. `urn:kortex:staging-operator` accepte Ed25519 via jwks épinglé uniquement en local/staging. Aucun mode partagé par mot de passe ou jeton permanent ; les JWT exigent iat/exp/jti, durée maximale dix minutes. La politique absente rend l'administration indisponible. Les clés d'artefacts sont installées hors de cet endpoint depuis une configuration opérateur de confiance, jamais depuis le body de publication.
+
+Les migrations locales incluent maintenant 0003_admin_operations.sql. Les contrôles avant commit peuvent matérialiser un ZIP de publication borné à 25 Mio pour l'inspection ; cela ne concerne pas le streaming des téléchargements. La mise en staging 9.6 doit être observée séparément du succès de ces tests locaux.

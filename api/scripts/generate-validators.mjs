@@ -6,5 +6,5 @@ import {resolve} from 'node:path';
 const root=resolve(import.meta.dirname,'../..');
 const ajv=new Ajv({strict:false,code:{source:true,esm:true}});addFormats(ajv);
 for(const name of ['manifest','contract','artifact','api'])ajv.addSchema(JSON.parse(readFileSync(resolve(root,`shared/schemas/${name}.schema.json`))),`${name}.schema.json`);
-const exports=Object.fromEntries(['ToolSummary','ToolDetail','ToolActions'].map(name=>[name,`api.schema.json#/$defs/${name}`]));
+const exports=Object.fromEntries(['ToolSummary','ToolDetail','ToolActions','PublicationRequest'].map(name=>[name,`api.schema.json#/$defs/${name}`]));
 writeFileSync(resolve(root,'api/src/generated-validators.ts'),'// @ts-nocheck\n// Generated from the public schemas; never evaluates code in the Worker.\n'+standalone.default(ajv,exports));

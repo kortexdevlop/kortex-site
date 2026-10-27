@@ -7,7 +7,7 @@ export async function extractArchive(bytes:Uint8Array):Promise<Map<string,Uint8A
  for(let i=0;i<count;i++){
   if(at+46>end||u32(at)!==0x02014b50)fail();const flags=u16(at+8),method=u16(at+10),crc=u32(at+16),compressed=u32(at+20),length=u32(at+24),nl=u16(at+28),extra=u16(at+30),comment=u16(at+32),local=u32(at+42);
   if(at+46+nl+extra+comment>end||u16(at+6)>20||extra||comment||flags&~0x800||![0,8].includes(method)||u16(at+34)||! [0,0x8000].includes((u32(at+38)>>>16)&0xf000)||!!(u32(at+38)&0x18))fail();
-  const name=new TextDecoder('utf-8',{fatal:true}).decode(bytes.subarray(at+46,at+46+nl));
+  const name=new TextDecoder('utf-8',{fatal:true,ignoreBOM:false}).decode(bytes.subarray(at+46,at+46+nl));
   if(!name||name.length>256||!/^[A-Za-z0-9_./-]+$/.test(name)||name.startsWith('/')||name.split('/').some(p=>!p||p==='.'||p==='..')||name.split('/').some(p=>p.endsWith('.')||/^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)/i.test(p))||names.has(name.toLowerCase()))fail();names.add(name.toLowerCase());
   total+=length;if(total>25*1024*1024||length>20*1024*1024||length>Math.max(1,compressed)*20)throw Error('ARCHIVE_LIMIT');
   if(local+30>offset||u32(local)!==0x04034b50||u16(local+4)!==u16(at+6)||u16(local+28)!==0||u16(local+6)!==flags||u16(local+8)!==method||u32(local+14)!==crc||u32(local+18)!==compressed||u32(local+22)!==length||u16(local+26)!==nl)fail();
@@ -21,4 +21,5 @@ export async function extractArchive(bytes:Uint8Array):Promise<Map<string,Uint8A
  }
  for(const name of ['manifest.json','contract.json','module.wasm'])if(!result.has(name))fail();return result;
 }
-export function crc32(bytes:Uint8Array):number{let crc=0xffffffff;for(const b of bytes){crc^=b;for(let i=0;i<8;i++)crc=(crc>>>1)^((crc&1)?0xedb88320:0)}return (crc^0xffffffff)>>>0}
+const crcTable=Uint32Array.from({length:256},(_,n)=>{for(let i=0;i<8;i++)n=(n>>>1)^((n&1)?0xedb88320:0);return n>>>0});
+export function crc32(bytes:Uint8Array):number{let crc=0xffffffff;for(const b of bytes)crc=(crc>>>8)^crcTable[(crc^b)&255];return (crc^0xffffffff)>>>0}

@@ -3,7 +3,7 @@ export function inspectWasm(bytes:Uint8Array):void {
  const bad=():never=>{throw Error('INVALID_WASM_ABI')};if(bytes.length>20*1024*1024||[0,97,115,109,1,0,0,0].some((v,i)=>bytes[i]!==v))bad();
  let at=8,limit=bytes.length;const byte=()=>{if(at>=limit)bad();return bytes[at++]};
  const uint=()=>{let n=0;for(let i=0;i<5;i++){const b=byte();if(i===4&&(b&240))bad();n+=(b&127)*2**(7*i);if(!(b&128))return n}return bad()};
- const text=()=>{const n=uint();if(n>256||at+n>limit)bad();const s=new TextDecoder('utf-8',{fatal:true}).decode(bytes.subarray(at,at+n));at+=n;return s};
+ const text=()=>{const n=uint();if(n>256||at+n>limit)bad();const s=new TextDecoder('utf-8',{fatal:true,ignoreBOM:false}).decode(bytes.subarray(at,at+n));at+=n;return s};
  const values=()=>{const n=uint();if(n>100000||at+n>limit)bad();const a=[];for(let i=0;i<n;i++){const v=byte();if(![127,126,125,124,123,112,111].includes(v))bad();a.push(v)}return a};
  const types:{p:number[];r:number[]}[]=[],funcs:number[]=[],exports=new Map<string,{kind:number,index:number}>();let memories=0,imports=0;
  while(at<bytes.length){limit=bytes.length;const id=byte(),size=uint(),end=at+size;if(end>bytes.length)bad();limit=end;
