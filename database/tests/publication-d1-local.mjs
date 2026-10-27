@@ -28,6 +28,9 @@ sql("INSERT INTO revocations(request_id,tool_id,version,reason,created_at) VALUE
 sql("UPDATE tools SET status='archived',published_version=NULL WHERE id='calculatrice'; INSERT INTO revocations(request_id,tool_id,version,reason,created_at) VALUES('91000000-0000-4000-8000-000000000004','calculatrice','1.0.0','TEST revocation',150)");
 sql("UPDATE tools SET status='published',published_version='1.0.0' WHERE id='calculatrice'",'PUBLICATION_NOT_VERIFIED|CURRENT_VERSION_NOT_PUBLISHED');
 sql('DELETE FROM publication_job_events','AUDIT_APPEND_ONLY');
+sql("INSERT OR REPLACE INTO artifacts SELECT * FROM artifacts WHERE version='1.0.0'",'IMMUTABLE_ARTIFACT|UPLOAD_FIRST');
+sql('INSERT OR REPLACE INTO signing_keys SELECT * FROM signing_keys','IMMUTABLE_SIGNING_KEY');
+sql('INSERT OR REPLACE INTO publication_job_events SELECT * FROM publication_job_events','AUDIT_APPEND_ONLY');
 const final=JSON.parse(sql("SELECT count(*) AS migrations FROM d1_migrations; SELECT status FROM publication_jobs; SELECT count(*) AS events FROM publication_job_events; PRAGMA foreign_key_check;"));
 assert.equal(final[0].results[0].migrations,2);assert.equal(final[1].results[0].status,'revoked');assert.equal(final[2].results[0].events,4);assert.equal(final[3].results.length,0);
 const report={local_only:true,remote_writes:0,migrations:2,idempotent_job_count:1,refusals:calls.filter(c=>c.exit_code!==0).length,final_status:'revoked',audit_events:4,foreign_key_errors:0,calls};writeFileSync(resolve(root,'target/publication-d1-report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({...report,calls:undefined}));

@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-27",
+  "read_only": true,
+  "command": "wrangler whoami --json",
+  "exit_code": 0,
+  "authenticated": true,
+  "verification": "authenticated",
+  "auth_type": "OAuth Token",
+  "account_count": 1,
+  "token_permissions": [
+    "user:read",
+    "offline_access",
+    "account:read",
+    "pages:write",
+    "zone:read"
+  ],
+  "credential_environment_present": {
+    "CLOUDFLARE_API_TOKEN": false,
+    "CLOUDFLARE_API_KEY": false,
+    "CLOUDFLARE_EMAIL": false,
+    "CLOUDFLARE_ACCOUNT_ID": false
+  },
+  "remote_configuration": [
+    {
+      "environment": "staging",
+      "account_configured": false,
+      "d1_configured": false,
+      "r2_configured": false,
+      "web_origin_configured": false
+    },
+    {
+      "environment": "production",
+      "account_configured": false,
+      "d1_configured": false,
+      "r2_configured": false,
+      "web_origin_configured": false
+    }
+  ],
+  "login_started": false,
+  "remote_writes": 0,
+  "resource_checks": [
+    {
+      "command": "wrangler d1 list --json",
+      "exit_code": 1,
+      "status": "access_denied",
+      "error_codes": [
+        "10000"
+      ]
+    },
+    {
+      "command": "wrangler r2 bucket list",
+      "exit_code": 1,
+      "status": "access_denied",
+      "error_codes": [
+        "10000"
+      ]
+    },
+    {
+      "command": "wrangler deployments list --name kortex-api-staging --json",
+      "exit_code": 1,
+      "status": "verification_failed",
+      "error_codes": []
+    },
+    {
+      "command": "wrangler deployments list --name kortex-api-production --json",
+      "exit_code": 1,
+      "status": "verification_failed",
+      "error_codes": []
+    }
+  ],
+  "remote_ready": false,
+  "integration_search": {
+    "provider": "Cloudflare",
+    "results": 0
+  },
+  "stopped_by_owner_request": true,
+  "remote_resources_exist": "not verifiable with current authorization",
+  "next_action": "Owner reauthorizes selected Workers/D1 scopes and requests read-only verification again. No login/provision/deploy started."
+}

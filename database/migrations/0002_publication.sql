@@ -71,6 +71,23 @@ CREATE TABLE revocations (
  UNIQUE(signing_key_id)
 );
 CREATE INDEX idx_revocations_created ON revocations(created_at,request_id);
+-- REPLACE may omit DELETE triggers when recursive_triggers is off. Guard INSERT too.
+CREATE TRIGGER artifact_replacement_guard BEFORE INSERT ON artifacts
+WHEN EXISTS(SELECT 1 FROM artifacts WHERE tool_id=NEW.tool_id AND version=NEW.version) BEGIN
+ SELECT CASE WHEN EXISTS(SELECT 1 FROM artifacts WHERE tool_id=NEW.tool_id AND version=NEW.version AND sha256!=NEW.sha256) THEN RAISE(ABORT,'HASH_CONFLICT') ELSE RAISE(ABORT,'IMMUTABLE_ARTIFACT') END;
+END;
+CREATE TRIGGER signing_key_replacement_guard BEFORE INSERT ON signing_keys WHEN EXISTS(SELECT 1 FROM signing_keys WHERE id=NEW.id)
+BEGIN SELECT RAISE(ABORT,'IMMUTABLE_SIGNING_KEY'); END;
+CREATE TRIGGER version_replacement_guard BEFORE INSERT ON tool_versions WHEN EXISTS(SELECT 1 FROM tool_versions WHERE tool_id=NEW.tool_id AND version=NEW.version)
+BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TOOL_VERSION'); END;
+CREATE TRIGGER tool_replacement_guard BEFORE INSERT ON tools WHEN EXISTS(SELECT 1 FROM tools WHERE id=NEW.id)
+BEGIN SELECT RAISE(ABORT,'IMMUTABLE_TOOL_ID'); END;
+CREATE TRIGGER publication_event_replacement_guard BEFORE INSERT ON publication_events WHEN EXISTS(SELECT 1 FROM publication_events WHERE id=NEW.id OR request_id=NEW.request_id)
+BEGIN SELECT RAISE(ABORT,'AUDIT_APPEND_ONLY'); END;
+CREATE TRIGGER publication_job_event_replacement_guard BEFORE INSERT ON publication_job_events WHEN EXISTS(SELECT 1 FROM publication_job_events WHERE id=NEW.id OR (request_id=NEW.request_id AND status=NEW.status))
+BEGIN SELECT RAISE(ABORT,'AUDIT_APPEND_ONLY'); END;
+CREATE TRIGGER revocation_replacement_guard BEFORE INSERT ON revocations WHEN EXISTS(SELECT 1 FROM revocations WHERE request_id=NEW.request_id OR (tool_id=NEW.tool_id AND version=NEW.version) OR signing_key_id=NEW.signing_key_id)
+BEGIN SELECT RAISE(ABORT,'AUDIT_APPEND_ONLY'); END;
 CREATE TRIGGER artifact_insert_guard BEFORE INSERT ON artifacts BEGIN
  SELECT CASE WHEN NEW.r2_verified_at IS NOT NULL OR NEW.signature_verified_at IS NOT NULL THEN RAISE(ABORT,'UPLOAD_FIRST') END;
  SELECT CASE WHEN NOT EXISTS(SELECT 1 FROM tools WHERE id=NEW.tool_id) THEN RAISE(ABORT,'NOT_FOUND') END;

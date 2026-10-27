@@ -6,6 +6,7 @@ packages:
 minimumReleaseAgeExclude:
   - miniflare@5.20261019.2-beta
   - wrangler@4.152.0
+  - '@cloudflare/workers-types@5.20261027.1'
 
 allowBuilds:
   esbuild: true

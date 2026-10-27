@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-27",
+  "source_commit": "8237f5e",
+  "implementation_commit": "commit containing this evidence",
+  "step": "9.2",
+  "status": "local preparation complete; owner-requested stop at insufficient Cloudflare permissions",
+  "environment": {
+    "os": "Windows x64",
+    "node": "24.15.0",
+    "pnpm": "11.25.0",
+    "typescript": "7.0.2",
+    "wrangler": "4.152.0",
+    "vitest": "5.0.5",
+    "cloudflare_vitest_plugin": "1.4.7",
+    "miniflare": "5.20261019.2-beta",
+    "workers_types": "5.20261027.1",
+    "zod": "4.6.5",
+    "compatibility_date": "2026-10-26"
+  },
+  "test_results": {
+    "node_dto": 3,
+    "workerd": 6,
+    "regression": 9,
+    "failed": 0,
+    "live_local_d1": true,
+    "live_local_r2": true,
+    "d1_batch_rollback": true,
+    "secrets_not_returned": true
+  },
+  "smoke": {
+    "local_only": true,
+    "remote_writes": 0,
+    "port": 63233,
+    "health_status": 200,
+    "health": {
+      "status": "ok",
+      "api_version": "1"
+    },
+    "unknown_status": 404,
+    "error_code": "NOT_FOUND",
+    "headers": {
+      "csp": "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
+      "cache": "no-store"
+    }
+  },
+  "build": {
+    "dry_run": true,
+    "upload_performed": false,
+    "uncompressed_kib": 773.04,
+    "gzip_kib": 120.68
+  },
+  "candidate_api_schema": {
+    "path": "shared/schemas/api.schema.json",
+    "sha256": "95aa84a0332708ad9b212afab8b9788125d7b09a95e14a4f31192fe896b49c42",
+    "frozen": false,
+    "implemented_endpoints": [
+      "GET /api/v1/health",
+      "HEAD /api/v1/health"
+    ],
+    "catalog_and_publication_endpoints_implemented": false
+  },
+  "unchanged_frozen_schemas": 6,
+  "checks": [
+    {
+      "command": "pnpm --filter @kortex/api test",
+      "date": "2026-10-27",
+      "exit_code": 0,
+      "result": "3 DTO Node + 6 workerd tests passed",
+      "local_log": "target/tests-9.2-api-final.log",
+      "log_sha256": "90fc2696174d130296731a74883ecdbc5e98597bc107c65c11a3184ddcffcf14"
+    },
+    {
+      "command": "pnpm --filter @kortex/api typecheck",
+      "date": "2026-10-27",
+      "exit_code": 0,
+      "result": "strict source/test typecheck passed",
+      "local_log": "target/tests-9.2-typecheck.log",
+      "log_sha256": "19f696f2661e94dc27615631e68dcd8d158f3faaed38425fc49e6d12703f1796"
+    },
+    {
+      "command": "pnpm --filter @kortex/api build",
+      "date": "2026-10-27",
+      "exit_code": 0,
+      "result": "dry-run only, no remote upload",
+      "local_log": "target/tests-9.2-build.log",
+      "log_sha256": "5f7273033a9050836cdfe5eb0854beaafc73712816300491907ee6853e968015"
+    },
+    {
+      "command": "node api/scripts/smoke-local.mjs",
+      "date": "2026-10-27",
+      "exit_code": 0,
+      "result": "actual wrangler dev --local HTTP 200/404",
+      "local_log": "target/tests-9.2-local-smoke.log",
+      "log_sha256": "0aa98312bf0b62c09416b0e15b2f38423ffc184f05df12eb1891e9a7d80382cf"
+    },
+    {
+      "command": "pnpm --filter @kortex/api exec wrangler d1 migrations apply DB --local --persist-to ../target/api-d1-state-final",
+      "date": "2026-10-27",
+      "exit_code": 0,
+      "result": "0001 and 0002 applied locally",
+      "local_log": "target/tests-9.2-migrations.log",
+      "log_sha256": "b28a52ec04a3c5b9b980ac8a68d4ab89c66cc4784a5c4c0b1d73002f8f8ab47f"
+    },
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "date": "2026-10-27",
+      "exit_code": 0,
+      "result": "locked workspace install passed",
+      "local_log": "target/tests-9.2-frozen-install.log",
+      "log_sha256": "41aebc0501b076b0bb9051d319a103b8a590af6d73e79a3c895f3c620ff7dc1e"
+    },
+    {
+      "command": "node --test database/tests/catalog.test.mjs database/tests/publication.test.mjs tests/publication/golden.test.mjs tests/config/secrets.test.mjs",
+      "date": "2026-10-27",
+      "exit_code": 0,
+      "result": "9 regression/security/schema checks passed",
+      "local_log": "target/tests-9.1-9.2-regression.log",
+      "log_sha256": "1ea4fd3b80bc8c2ef76be93e485586543212d00a25bcdb7cec972368cc0c1aa9"
+    }
+  ],
+  "cloudflare_checkpoint": "docs/evidence/cloudflare-checkpoint-9.2.json",
+  "remote_status": {
+    "oauth_authenticated": true,
+    "account_count": 1,
+    "current_rights": "Pages/user/account/zone, no Workers/D1 scopes",
+    "d1_inventory": "access denied, code 10000",
+    "r2_inventory": "access denied, code 10000",
+    "workers_deployments": "read failed; existence not established",
+    "remote_resources_configured": false,
+    "remote_writes": 0,
+    "login_started": false,
+    "permissions_changed": false
+  },
+  "corrections": [
+    "Pinned runtime rejects compatibility date 2026-10-27: API uses supported 2026-10-26",
+    "Current worker types use Cloudflare.Env/GlobalProps instead of older ProvidedEnv augmentation",
+    "Explicit empty --env= in local build/dev avoids environment ambiguity"
+  ],
+  "continuation": "infra/cloudflare-setup.md",
+  "limits": [
+    "No remote inventory established with current rights; do not infer absent resources",
+    "No deployment/provisioning/login/permission change",
+    "9.3 not started",
+    "No AI binding or remote publication endpoints",
+    "Linux/macOS and Firefox remain excluded"
+  ],
+  "publication_migration_final_sha256": "d0e434813d9bf81678cdb496b4fe645ce813a424e72023b833a39bfd00ec83d9"
+}

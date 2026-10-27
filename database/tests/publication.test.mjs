@@ -27,6 +27,12 @@ test('publication state: idempotence, immutable content, verified promotion, rol
   assert.throws(()=>insert.run('calculatrice','1.0.0','f'.repeat(64),template.r2_key,123,'state-test-key',template.descriptor_json,100),/HASH_CONFLICT/);refusals++;
   verify('1.0.0');db.exec('BEGIN');promote('1.0.0');db.exec('COMMIT');
   assert.equal(db.prepare('SELECT published_version FROM tools').get().published_version,'1.0.0');
+  reject("INSERT OR REPLACE INTO artifacts SELECT * FROM artifacts WHERE version='1.0.0'",'IMMUTABLE_ARTIFACT|UPLOAD_FIRST');
+  reject('INSERT OR REPLACE INTO signing_keys SELECT * FROM signing_keys','IMMUTABLE_SIGNING_KEY');
+  reject("INSERT OR REPLACE INTO tool_versions SELECT * FROM tool_versions WHERE version='1.0.0'",'IMMUTABLE_TOOL_VERSION');
+  reject('INSERT OR REPLACE INTO tools SELECT * FROM tools','IMMUTABLE_TOOL_ID|CREATE_DRAFT_FIRST');
+  reject('INSERT OR REPLACE INTO publication_events SELECT * FROM publication_events','AUDIT_APPEND_ONLY');
+  reject('INSERT OR REPLACE INTO publication_job_events SELECT * FROM publication_job_events','AUDIT_APPEND_ONLY');
   reject(`UPDATE artifacts SET sha256=printf('%064x',2) WHERE version='1.0.0'`,'IMMUTABLE');
   reject(`UPDATE artifacts SET read_sha256=printf('%064x',2) WHERE version='1.0.0'`,'IMMUTABLE');
   reject(`UPDATE publication_jobs SET status='uploaded',updated_at=140 WHERE version='1.0.0'`,'INVALID_PUBLICATION_TRANSITION');
@@ -40,7 +46,7 @@ test('publication state: idempotence, immutable content, verified promotion, rol
   db.exec('BEGIN');db.exec("UPDATE tools SET published_version='1.1.0' WHERE id='calculatrice'");db.exec(revoke);db.exec('COMMIT');
   reject("UPDATE tools SET published_version='1.0.0' WHERE id='calculatrice'",'PUBLICATION_NOT_VERIFIED|CURRENT_VERSION_NOT_PUBLISHED');
   reject("UPDATE publication_jobs SET status='validated',updated_at=160 WHERE version='1.0.0'",'INVALID_PUBLICATION_TRANSITION|UNVERIFIED_OR_REVOKED_ARTIFACT');
-  reject('DELETE FROM revocations','AUDIT_APPEND_ONLY');reject('DELETE FROM publication_job_events','AUDIT_APPEND_ONLY');reject('DELETE FROM artifacts','IMMUTABLE_ARTIFACT');
+  reject('INSERT OR REPLACE INTO revocations SELECT * FROM revocations','AUDIT_APPEND_ONLY');reject('DELETE FROM revocations','AUDIT_APPEND_ONLY');reject('DELETE FROM publication_job_events','AUDIT_APPEND_ONLY');reject('DELETE FROM artifacts','IMMUTABLE_ARTIFACT');
   job('1.2.0');db.exec("UPDATE publication_jobs SET status='failed',error_code='READ_FAILED',updated_at=140 WHERE version='1.2.0'");reject("UPDATE publication_jobs SET status='uploaded',updated_at=150 WHERE version='1.2.0'",'INVALID_PUBLICATION_TRANSITION');
   db.exec("INSERT INTO publication_jobs(request_id,request_sha256,tool_id,version,created_at,updated_at) VALUES('91000000-0000-4000-8000-000000000006',printf('%064x',12),'calculatrice','1.2.0',160,160)");
   reject("UPDATE signing_keys SET revoked=1",'AUDITED_REVOCATION_REQUIRED');

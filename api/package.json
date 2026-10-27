@@ -1,0 +1,26 @@
+{
+  "name": "@kortex/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local --env= --ip 127.0.0.1 --port 8787",
+    "test": "node --test tests/contracts.test.mjs && vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "pnpm run typecheck",
+    "build": "wrangler deploy --dry-run --env= --outdir dist",
+    "check:cloudflare": "node scripts/check-cloudflare.mjs"
+  },
+  "dependencies": {
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "1.4.7",
+    "@cloudflare/workers-types": "5.20261027.1",
+    "typescript": "7.0.2",
+    "vitest": "5.0.5",
+    "wrangler": "4.152.0",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  }
+}

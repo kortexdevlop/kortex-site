@@ -52,3 +52,5 @@ node database/tests/publication-d1-local.mjs
 ```
 
 Le test SQLite exerce aussi un échec au milieu d'une transaction puis ROLLBACK : pointeur, job et journal retrouvent leur état précédent. Le banc D1 local applique les deux migrations et leur rejeu, vérifie idempotence, refus, progression et révocation. Le banc historique d1-local.mjs isole désormais 0001 afin de conserver son jeu synthétique de 10 000 outils, dont les publications précèdent l'existence des jobs. Politique de noms, écritures conditionnelles, cache et rétention : infra/r2-policy.md. Aucun compte Cloudflare n'est nécessaire pour ces essais locaux.
+
+Les identités et journaux de 0002 sont aussi protégés à l’insertion contre INSERT OR REPLACE ; l’immutabilité ne dépend pas de recursive_triggers ni des seuls triggers DELETE. Les tests explicites vérifient ce chemin dans SQLite et D1 local.

@@ -1,6 +1,6 @@
 # Progression
 
-Étape 9.1 terminée localement le 27 octobre 2026 : état de publication, idempotence, révocations et politique R2. Étape 9.2 : préparation locale autorisée, arrêt demandé au besoin de connexion Cloudflare. Linux/macOS et Firefox restent exclus ; aucun service cloud provisionné.
+Étape 9.1 terminée localement le 27 octobre 2026. Préparation locale 9.2 prête et testée ; arrêt demandé devant les droits Cloudflare insuffisants (OAuth existant pour Pages, accès D1/R2 refusés). Réautorisation et configuration distante à reprendre selon infra/cloudflare-setup.md. 9.3 non démarrée. Linux/macOS et Firefox exclus ; aucun provisionnement ou déploiement distant.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -753,9 +753,9 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     "id": "9.1",
     "status": "validated",
     "source_commit": "751a84f",
-    "result_commit": "commit contenant ce rapport",
+    "result_commit": "8237f5e",
     "report_path": "docs/reports/STEP-9.1.md",
-    "tests_executed": "2026-10-27 Windows, SQLite : 23 refus + transaction rollback ; D1 local : 2 migrations, 9 refus, idempotence/revocation ; régression 10k catalogue ; sorties 0",
+    "tests_executed": "2026-10-27 Windows, SQLite : 30 refus + transaction rollback ; D1 local : 2 migrations, 12 refus, idempotence/revocation ; régression 10k catalogue ; sorties 0",
     "approved_by": "propriétaire : terminer la première étape puis préparer la deuxième et arrêt au besoin de connexion Cloudflare",
     "approved_at": "2026-10-27",
     "contract_changes": [
@@ -764,6 +764,27 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     "evidence": [
       "docs/evidence/validation-9.1.json",
       "infra/r2-policy.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "9.2",
+    "status": "blocked",
+    "source_commit": "8237f5e",
+    "result_commit": "commit contenant ce rapport",
+    "report_path": "docs/reports/STEP-9.2.md",
+    "tests_executed": "2026-10-27 Windows : 3 tests DTO Node et 6 tests workerd, typecheck, dry-run, HTTP local 200/404 et 2 migrations locales réussis. Lecture OAuth : session existante ; inventaires D1/R2 refusés code 10000. Aucun déploiement.",
+    "approved_by": null,
+    "approved_at": null,
+    "authorization": "Propriétaire : préparer la deuxième étape, vérifier la connexion Cloudflare et arrêter au besoin de connexion avec état et procédure de reprise",
+    "blocked_reason": "Arrêt demandé : OAuth Pages présent, droits Workers/D1/R2 insuffisants et configuration distante non renseignée ; ressources distantes non vérifiables",
+    "contract_changes": [
+      "Nouveau schéma API candidat ; six schémas gelés inchangés"
+    ],
+    "evidence": [
+      "docs/evidence/validation-9.2-local.json",
+      "docs/evidence/cloudflare-checkpoint-9.2.json",
+      "infra/cloudflare-setup.md"
     ],
     "frozen": false
   }

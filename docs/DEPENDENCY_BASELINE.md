@@ -34,3 +34,9 @@ GitHub : aucun remote local ; list_repositories renvoie une liste vide. Aucun ru
 ## Dioxus Web/Desktop — preuve 3.2
 
 Dioxus 0.7.10 et dx 0.7.10 : builds Web/Desktop et interactions confirmés sous Windows. Le prototype active explicitement web-sys 0.3.106 avec feature Location côté WASM : sans ce feature, dioxus-web history.rs échoue sur Window.location. Cette dépendance de feature est verrouillée dans le lockfile du prototype ; à reprendre dans le futur hôte Web. WebView2 observée : Edge 155.0.4283.62. Chrome for Testing 156.0.8078.4. Captures et essais : docs/evidence/spike-3.2.md. Aucune preuve Linux/macOS/Firefox supplémentaire.
+
+## API locale — préparation 9.2, 27 octobre 2026
+
+Ajouts verrouillés : Zod 4.6.5, @cloudflare/vitest-plugin 1.4.7 et @cloudflare/workers-types 5.20261027.1. Le plugin actuel remplace le nom historique vitest-pool-workers du plan ; sa peer dependency accepte Vitest 5.0.5 et il réutilise exactement Wrangler 4.152.0 / Miniflare 5.20261019.2-beta déjà présents. TypeScript 7.0.2, Ajv 8.20.0 et ajv-formats 3.0.1 conservés. Le lock est installé puis contrôlé frozen. pnpm a inscrit l'exception ciblée d'âge du paquet de types publié ce jour ; aucune exception globale ni mise à jour des moteurs existants.
+
+La date de compatibilité API est 2026-10-26 : le runtime verrouillé refuse strictement 2026-10-27 dans Vitest. Ce premier échec de démarrage a été corrigé par une date supportée commune au build/dev/tests, sans mise à jour silencieuse de workerd. Les types actuels utilisent Cloudflare.Env / GlobalProps, vérifiés au typecheck. Tests : trois groupes DTO Node et six tests dans workerd, bindings D1/R2 réels locaux ; build dry-run et HTTP dev local 200/404. Sources : [intégration Vitest officielle](https://developers.cloudflare.com/workers/testing/vitest-integration/) et métadonnées npm des versions précises. Aucune preuve distante ni plateforme exclue ajoutée.

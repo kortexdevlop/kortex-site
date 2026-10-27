@@ -1,0 +1,275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Kortex API V1 DTO candidates — stage 9.2",
+  "description": "Health/error are implemented in 9.2. Catalog/publication DTOs are candidates for their owning stages; cross-field integrity and signatures require service validation.",
+  "$defs": {
+    "Health": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "const": "ok"
+        },
+        "api_version": {
+          "const": "1"
+        }
+      },
+      "required": [
+        "status",
+        "api_version"
+      ],
+      "additionalProperties": false
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "enum": [
+                "BAD_REQUEST",
+                "NOT_FOUND",
+                "CONFLICT",
+                "UNAUTHORIZED",
+                "FORBIDDEN",
+                "RATE_LIMITED",
+                "UNAVAILABLE",
+                "INTEGRITY_ERROR"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "request_id": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+            }
+          },
+          "required": [
+            "code",
+            "message",
+            "request_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "additionalProperties": false
+    },
+    "ToolSummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "manifest.schema.json#/properties/id"
+        },
+        "version": {
+          "$ref": "manifest.schema.json#/properties/version"
+        },
+        "name": {
+          "$ref": "manifest.schema.json#/properties/name"
+        },
+        "summary": {
+          "$ref": "manifest.schema.json#/properties/summary"
+        },
+        "category": {
+          "$ref": "manifest.schema.json#/properties/category"
+        },
+        "tags": {
+          "$ref": "manifest.schema.json#/properties/tags"
+        },
+        "icon_path": {
+          "$ref": "manifest.schema.json#/properties/icon_path"
+        },
+        "abi_version": {
+          "$ref": "manifest.schema.json#/properties/abi_version"
+        },
+        "sha256": {
+          "$ref": "artifact.schema.json#/properties/sha256"
+        },
+        "published_at": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "name",
+        "summary",
+        "category",
+        "tags",
+        "icon_path",
+        "abi_version",
+        "sha256",
+        "published_at"
+      ],
+      "additionalProperties": false
+    },
+    "ToolList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/ToolSummary"
+          }
+        },
+        "next_cursor": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            }
+          ]
+        }
+      },
+      "required": [
+        "items",
+        "next_cursor"
+      ],
+      "additionalProperties": false
+    },
+    "ToolDetail": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "$ref": "#/$defs/ToolSummary"
+        },
+        "manifest": {
+          "$ref": "manifest.schema.json"
+        },
+        "contract": {
+          "$ref": "contract.schema.json"
+        },
+        "descriptor": {
+          "$ref": "artifact.schema.json"
+        }
+      },
+      "required": [
+        "tool",
+        "manifest",
+        "contract",
+        "descriptor"
+      ],
+      "additionalProperties": false
+    },
+    "ToolActions": {
+      "type": "object",
+      "properties": {
+        "tool_id": {
+          "$ref": "manifest.schema.json#/properties/id"
+        },
+        "version": {
+          "$ref": "manifest.schema.json#/properties/version"
+        },
+        "actions": {
+          "$ref": "contract.schema.json#/properties/actions"
+        }
+      },
+      "required": [
+        "tool_id",
+        "version",
+        "actions"
+      ],
+      "additionalProperties": false
+    },
+    "PublicationRequest": {
+      "type": "object",
+      "properties": {
+        "descriptor": {
+          "$ref": "artifact.schema.json"
+        },
+        "manifest": {
+          "$ref": "manifest.schema.json"
+        },
+        "contract": {
+          "$ref": "contract.schema.json"
+        },
+        "r2_key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^tools/[a-z0-9-]+/[^/]+/[a-f0-9]{64}\\.tool$"
+        },
+        "request_id": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        }
+      },
+      "required": [
+        "descriptor",
+        "manifest",
+        "contract",
+        "r2_key",
+        "request_id"
+      ],
+      "additionalProperties": false
+    },
+    "PublicationStatus": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "tool_id": {
+          "$ref": "manifest.schema.json#/properties/id"
+        },
+        "version": {
+          "$ref": "manifest.schema.json#/properties/version"
+        },
+        "status": {
+          "enum": [
+            "uploaded",
+            "validated",
+            "published",
+            "failed",
+            "revoked"
+          ]
+        }
+      },
+      "required": [
+        "request_id",
+        "tool_id",
+        "version",
+        "status"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Health"
+    },
+    {
+      "$ref": "#/$defs/Error"
+    },
+    {
+      "$ref": "#/$defs/ToolSummary"
+    },
+    {
+      "$ref": "#/$defs/ToolList"
+    },
+    {
+      "$ref": "#/$defs/ToolDetail"
+    },
+    {
+      "$ref": "#/$defs/ToolActions"
+    },
+    {
+      "$ref": "#/$defs/PublicationRequest"
+    },
+    {
+      "$ref": "#/$defs/PublicationStatus"
+    }
+  ]
+}
