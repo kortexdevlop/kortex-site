@@ -1,6 +1,6 @@
 # Étape 9.6 — Gate staging réel
 
-Statut : réalisée et testée, résultat en attente de revue après exécution du lot autorisé. Date : 2026-10-27. Base API : 56947c7. Résultat : commit contenant ce rapport, à identifier dans PROGRESS.md.
+Statut : réalisée et testée, résultat en attente de revue après exécution du lot autorisé. Date : 2026-10-27. Base API : 56947c7. Résultat : commit 3fbaada.
 
 La création, le déploiement et la simulation CI opérateur utilisent des ressources de staging distinctes et des IDs réels, sans supposer une intégration OIDC Cloudflare/GitHub inexistante. Les jetons éphémères ne sont pas persistés. Le bucket est privé, les écritures conditionnelles testées réellement, les trois migrations appliquées à la base dédiée. Aucun DNS/messagerie ou élément de production touché. Le site web n'est pas déployé par anticipation.
 
