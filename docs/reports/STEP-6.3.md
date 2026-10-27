@@ -1,6 +1,6 @@
 # Étape 6.3 — Stabilité et portabilité native
 
-Date : 2026-10-27. Base : 9c3e2d3. Résultat : commit contenant ce rapport. Autorisation : lot de trois étapes, avec exclusions Linux/macOS et Firefox déjà explicites.
+Date : 2026-10-27. Base : 9c3e2d3. Résultat : 269d7a2 (implémentation du lot). Autorisation : lot de trois étapes, avec exclusions Linux/macOS et Firefox déjà explicites.
 
 Windows est vérifié avec l’exécutable réel. Les scénarios couvrent ouverture/fermeture, 1200 pour multiply(25,48), erreurs de JSON/archive/ABI visibles, consentement guest et reprise après échec sans redémarrer l’hôte. Le contexte défaillant est libéré. Les demandes d’une ancienne génération ne passent pas dans l’instance suivante. Les réponses Wasmtime utilisent des oneshot et le timer Desktop une attente asynchrone, sans boucle de réveil actif. Drop de dispatch interrompt le moteur ; les tâches IO observent leur signal d’annulation.
 

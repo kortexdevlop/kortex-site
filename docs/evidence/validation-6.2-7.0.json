@@ -81,5 +81,6 @@
     "tools/calculatrice/tests/action_cases.json": "9e2b4029c7fb354f08bd3c476793fc973060870fd0d09830b75e2c7a3b68cccf",
     "tests/spikes/core-guest/target/wasm32-unknown-unknown/release/kortex_core_guest_spike.wasm": "3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65",
     "target/web-test-guest/wasm32-unknown-unknown/release/kortex_browser_capability_test.wasm": "8ae1c6ca7742e9660601d8408a7f00a3eda212cae7e71507a5dd1d4ea22a6b71"
-  }
+  },
+  "implementation_commit": "269d7a2"
 }

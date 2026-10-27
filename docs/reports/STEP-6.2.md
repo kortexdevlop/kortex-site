@@ -1,6 +1,6 @@
 # Étape 6.2 — Capacités et stockage natifs
 
-Date : 2026-10-27. Base : 9c3e2d3. Résultat : commit contenant ce rapport. Lot 6.2, 6.3 et 7.0 explicitement autorisé par « Enchaîne les 3 prochaine étape ».
+Date : 2026-10-27. Base : 9c3e2d3. Résultat : 269d7a2 (implémentation du lot). Lot 6.2, 6.3 et 7.0 explicitement autorisé par « Enchaîne les 3 prochaine étape ».
 
 Le guest signé peut désormais émettre des CapabilityRequest SDK via host_enqueue. Le moteur valide UUID, taille, capacité déclarée, doublons, file totale de 128 demandes et génération active. Aucun champ de permission ou d’identité fourni par le guest ne crée de grant. Le Core fournit contexte et déclarations ; Gateway contrôle chaque effet. Le shell affiche capacité, portée et durée, propose refus/accord, et délivre capability.result avant de rafraîchir le rendu. Un accord de session est réutilisé ; un accès nécessitant un geste exige toujours un nouveau clic hôte. Fermer révoque contexte, handles et travaux non engagés.
 

@@ -1,6 +1,6 @@
 # Étape 7.0 — Déclaration de la calculatrice
 
-Date : 2026-10-27. Base : 9c3e2d3. Résultat : commit contenant ce rapport. Troisième étape du lot autorisé. Prérequis : backend 6.2 et vérification Windows 6.3, sous dérogation multi-OS consignée.
+Date : 2026-10-27. Base : 9c3e2d3. Résultat : 269d7a2 (implémentation du lot). Troisième étape du lot autorisé. Prérequis : backend 6.2 et vérification Windows 6.3, sous dérogation multi-OS consignée.
 
 La crate tool-calculatrice contient le manifeste calculatrice 1.0.0, le contrat des actions add/subtract/multiply/divide, une icône SVG, un design de clavier numérique accessible et seize cas de référence. Zéro permission sensible, side_effect=none, actions idempotentes. Les schémas bornent les nombres et résultats finis à l’intervalle sûr JSON/JavaScript. La division par ±0 produit DIVIDE_BY_ZERO ; les valeurs/résultats invalides produiront INVALID_INPUT. NaN, Infinity et mauvaises formes sont refusés avant le guest.
 
