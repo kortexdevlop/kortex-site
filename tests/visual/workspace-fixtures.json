@@ -1,0 +1,299 @@
+{
+  "demoOnly": true,
+  "tools": [
+    {
+      "tool": {
+        "id": "reference-workspace-1",
+        "version": "1.0.0",
+        "name": "Compresseur d'images",
+        "summary": "Réduit le poids des JPG, PNG et WebP sans perte visible.",
+        "category": "image",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "image",
+      "glyph": "CI",
+      "mode": "both",
+      "favorite": true,
+      "installed": true
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-2",
+        "version": "1.0.0",
+        "name": "Suppression de fond",
+        "summary": "Détoure automatiquement un sujet en quelques secondes.",
+        "category": "image",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "image",
+      "glyph": "SF",
+      "mode": "both",
+      "favorite": false,
+      "installed": true
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-3",
+        "version": "1.0.0",
+        "name": "Redimensionner",
+        "summary": "Recadre et redimensionne par lot avec préréglages.",
+        "category": "image",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "image",
+      "glyph": "RD",
+      "mode": "web",
+      "favorite": false,
+      "installed": false
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-4",
+        "version": "1.0.0",
+        "name": "Convertisseur PDF",
+        "summary": "PDF vers Word, Excel, images, et inversement.",
+        "category": "documents",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "documents",
+      "glyph": "PD",
+      "mode": "both",
+      "favorite": false,
+      "installed": true
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-5",
+        "version": "1.0.0",
+        "name": "Fusionner des PDF",
+        "summary": "Réunissez plusieurs documents en un seul PDF.",
+        "category": "documents",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "documents",
+      "glyph": "FP",
+      "mode": "web",
+      "favorite": false,
+      "installed": false
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-6",
+        "version": "1.0.0",
+        "name": "Formateur JSON",
+        "summary": "Rendez vos données JSON lisibles et structurées.",
+        "category": "developer",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "developer",
+      "glyph": "{}",
+      "mode": "web",
+      "favorite": true,
+      "installed": false
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-7",
+        "version": "1.0.0",
+        "name": "Encodeur Base64",
+        "summary": "Encodez et décodez vos textes en Base64.",
+        "category": "developer",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "developer",
+      "glyph": "B64",
+      "mode": "web",
+      "favorite": false,
+      "installed": true
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-8",
+        "version": "1.0.0",
+        "name": "Minificateur",
+        "summary": "Allégez vos fichiers de code.",
+        "category": "developer",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "developer",
+      "glyph": "MN",
+      "mode": "both",
+      "favorite": false,
+      "installed": true
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-9",
+        "version": "1.0.0",
+        "name": "Convertisseur vidéo",
+        "summary": "Changez le format de vos vidéos.",
+        "category": "media",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "media",
+      "glyph": "CV",
+      "mode": "both",
+      "favorite": false,
+      "installed": false
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-10",
+        "version": "1.0.0",
+        "name": "Découpeur audio",
+        "summary": "Gardez uniquement le passage qui vous intéresse.",
+        "category": "media",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "media",
+      "glyph": "DA",
+      "mode": "web",
+      "favorite": false,
+      "installed": true
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-11",
+        "version": "1.0.0",
+        "name": "Mots de passe",
+        "summary": "Créez un mot de passe robuste.",
+        "category": "security",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "security",
+      "glyph": "MP",
+      "mode": "both",
+      "favorite": false,
+      "installed": false
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-12",
+        "version": "1.0.0",
+        "name": "Vérificateur de hash",
+        "summary": "Vérifiez l’empreinte d’un fichier.",
+        "category": "security",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "security",
+      "glyph": "H#",
+      "mode": "web",
+      "favorite": false,
+      "installed": true
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-13",
+        "version": "1.0.0",
+        "name": "Palette de couleurs",
+        "summary": "Composez une palette pour votre projet.",
+        "category": "design",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "design",
+      "glyph": "PC",
+      "mode": "web",
+      "favorite": false,
+      "installed": false
+    },
+    {
+      "tool": {
+        "id": "reference-workspace-14",
+        "version": "1.0.0",
+        "name": "Créer un QR code",
+        "summary": "Transformez un texte en QR code.",
+        "category": "design",
+        "tags": [],
+        "icon_path": "assets/icon.svg",
+        "abi_version": "1.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "published_at": 1
+      },
+      "category": "design",
+      "glyph": "QR",
+      "mode": "web",
+      "favorite": false,
+      "installed": false
+    }
+  ],
+  "recent": [
+    {
+      "name": "photos-vacances.zip",
+      "subtitle": "Compresseur · il y a 2 h",
+      "glyph": "CI",
+      "category": "image"
+    },
+    {
+      "name": "contrat-2026.pdf",
+      "subtitle": "Convertisseur PDF · hier",
+      "glyph": "PD",
+      "category": "documents"
+    },
+    {
+      "name": "config.json",
+      "subtitle": "Formateur JSON · lundi",
+      "glyph": "{}",
+      "category": "developer"
+    }
+  ],
+  "connection": {
+    "connected": true,
+    "description": "Kortex Desktop 2.4 · 5 outils installés"
+  },
+  "account": {
+    "initials": "KS",
+    "subtitle": "Gratuit"
+  }
+}

@@ -1,6 +1,6 @@
 import {test,expect} from 'playwright/test';
 test('cards use a 3/2/1 grid, escaped metadata, clamped titles and host-owned icons',async({page})=>{
-  await page.goto('/__dev/design');
+  await page.goto('/__dev/components');
   const grid=page.locator('#demo-cards .tool-grid');
   await expect(grid.locator('.tool-card')).toHaveCount(9);
   for(const [width,height,columns] of [[1632,927,3],[768,1024,2],[390,844,1]]){
@@ -15,7 +15,7 @@ test('cards use a 3/2/1 grid, escaped metadata, clamped titles and host-owned ic
   await expect(link).toHaveAttribute('href','/tools/demo-visual-1');
 });
 test('loading/empty/error feedback and hydrated filtering work without demo publication',async({page})=>{
-  await page.goto('/__dev/design');
+  await page.goto('/__dev/components');
   await expect(page.locator('#demo-states [aria-busy=true]')).toBeVisible();
   await expect(page.locator('#demo-states .skeleton')).toHaveCount(3);
   await expect(page.locator('#demo-states .feedback-empty')).toContainText('Aucun outil');

@@ -1,0 +1,11 @@
+---
+import '../styles/global.css';
+import '../styles/workspace.css';
+interface Props {title?:string;preview?:boolean;}
+const {title='Kortex — Espace de travail',preview=false}=Astro.props;
+---
+<!doctype html>
+<html lang="fr" data-workspace data-theme="light">
+  <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex, nofollow"/><title>{title}</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"/></head>
+  <body class="workspace-body" data-preview={preview?'true':undefined}><a class="ws-skip" tabindex="0" href="#workspace-main">Aller au contenu</a><slot/></body>
+</html>

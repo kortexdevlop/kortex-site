@@ -1,8 +1,88 @@
 {
-  "source": {"status":"missing", "description":"Capture d’accueil du 23/10/2026 mentionnée dans le plan ; fichier original non retrouvé", "path":null, "sha256":null},
-  "referenceViewport": {"width":1632,"height":927},
-  "proposedThresholds": {"positionPx":16,"principalSizePercent":8,"colorCiede2000":12,"validated":false},
-  "mobile": {"status":"à concevoir","testViewports":[{"width":390,"height":844},{"width":320,"height":740}]},
-  "observations": [],
-  "candidateDesignOnly": true
+  "source": {
+    "status": "provided_by_user",
+    "path": "docs/reference/workspace-selection.png",
+    "originalPath": "C:/Users/µ/Desktop/Kortex Workspace-selection.png",
+    "sha256": "22b72dd91b43675643c8bf996074690916bec86b5ebd55d785aeff2fae603067",
+    "receivedAt": "2026-10-27",
+    "supersedes": "Missing 1632x927 reference from the initial plan"
+  },
+  "referenceViewport": {
+    "width": 2706,
+    "height": 1764,
+    "deviceScaleFactor": 1
+  },
+  "thresholds": {
+    "positionPx": 4,
+    "principalSizePercent": 8,
+    "colorCiede2000": 12,
+    "humanApproved": false
+  },
+  "regions": {
+    "sidebar": {
+      "x": 26,
+      "y": 26,
+      "width": 444,
+      "height": 1712
+    },
+    "main": {
+      "x": 498,
+      "y": 26,
+      "width": 2182,
+      "height": 1712
+    },
+    "header": {
+      "x": 498,
+      "y": 26,
+      "width": 2182,
+      "height": 126
+    },
+    "composer": {
+      "x": 815,
+      "y": 458,
+      "width": 1520,
+      "height": 280
+    },
+    "firstRecent": {
+      "x": 578,
+      "y": 1008,
+      "width": 479,
+      "height": 132
+    },
+    "firstTool": {
+      "x": 578,
+      "y": 1320,
+      "width": 479,
+      "height": 304
+    },
+    "connection": {
+      "x": 50,
+      "y": 1414,
+      "width": 396,
+      "height": 176
+    }
+  },
+  "mobile": {
+    "status": "conçu, aucune référence fournie",
+    "viewports": [
+      {
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 320,
+        "height": 740
+      }
+    ]
+  },
+  "font": {
+    "original": "unidentified",
+    "body": "Arial system fallback",
+    "heading": "locally hosted Roboto, optically adjusted"
+  },
+  "runtimeAssertions": "Snapshot counters, filenames and connected Desktop belong to isolated dev fixtures, never public catalog substitutes"
 }

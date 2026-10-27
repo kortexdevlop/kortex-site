@@ -1,0 +1,32 @@
+$ pnpm run typecheck && pnpm run test
+$ pnpm run generate && astro check
+$ node scripts/generate-validators.mjs
+21:11:39 [@astrojs/cloudflare] Enabling compile-time image optimization. Images will be pre-optimized at build time.
+21:11:39 [@astrojs/cloudflare] Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
+21:11:39 [types] Generated 205ms
+21:11:40 [check] Getting diagnostics for Astro files in C:\Users\µ\Desktop\KORTEX-\website...
+Result (33 files):
+- 0 errors
+- 0 warnings
+- 0 hints
+
+$ pnpm run generate && node --test ../tests/design/*.test.mjs tests/*.test.ts
+$ node scripts/generate-validators.mjs
+✔ normal text and muted text meet AA on every surface in both themes (4.6032ms)
+✔ generated CSS is reproducible and source values do not diverge (5.9542ms)
+✔ real schemas validate demo summaries, stable category colors and reject hostile metadata (4.2394ms)
+✔ SSR client sends only an absolute binding request and validates bounded API responses (41.4753ms)
+✔ same-origin read proxy strips spoofable auth headers, preserves cookies privately and streams bytes (2.8089ms)
+✔ detail and actions clients accept schema-valid API envelopes (7.2307ms)
+✔ a binding that never responds cannot hold SSR or the proxy open indefinitely (4004.099ms)
+✔ proxy rejects foreign origins, writes, admin paths, redirects and unsafe session cookies (3.4188ms)
+✔ canonical URLs remain on the configured HTTPS origin (0.6089ms)
+✔ proxy accepts numeric-leading IDs and encoded SemVer build metadata without losing integrity headers (2.0143ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4309.8929

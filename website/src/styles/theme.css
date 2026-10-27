@@ -26,6 +26,46 @@
   --layout-content: 1440px;
   --layout-control: 44px;
 }
+:root[data-workspace] {
+  --ws-outer: #eef0f3;
+  --ws-ink: #111214;
+  --ws-secondary: #696b6e;
+  --ws-muted: #909294;
+  --ws-placeholder: #a2a5a8;
+  --ws-line: #e7e9ec;
+  --ws-active: #e7e8ea;
+  --ws-cyan: #d8f4ff;
+  --ws-lilac: #f8eefe;
+  --ws-image-icon: #d4f0ff;
+  --ws-image-ink: #176c8d;
+  --ws-documents-icon: #ffe4da;
+  --ws-documents-ink: #95523a;
+  --ws-developer-icon: #daf3e1;
+  --ws-developer-ink: #267451;
+  --ws-media-icon: #f3deed;
+  --ws-media-ink: #96517e;
+  --ws-security-icon: #e6e2fc;
+  --ws-security-ink: #6658a2;
+  --ws-design-icon: #f2ebca;
+  --ws-design-ink: #8a7621;
+  --ws-image-dot: #32acd3;
+  --ws-documents-dot: #dd8364;
+  --ws-developer-dot: #59b47d;
+  --ws-media-dot: #d080b6;
+  --ws-security-dot: #9793e6;
+  --ws-design-dot: #b0a03c;
+  --ws-sidebar-color: #f8f9fb;
+  --ws-frame: calc(26 * var(--ws-unit));
+  --ws-gap: calc(28 * var(--ws-unit));
+  --ws-sidebar: calc(444 * var(--ws-unit));
+  --ws-radius: calc(48 * var(--ws-unit));
+  --ws-header: calc(126 * var(--ws-unit));
+  --ws-padding: calc(80 * var(--ws-unit));
+  --ws-composer-width: calc(1520 * var(--ws-unit));
+  --ws-composer-height: calc(280 * var(--ws-unit));
+  --ws-card-height: calc(304 * var(--ws-unit));
+  --ws-grid-gap: calc(26 * var(--ws-unit));
+}
 :root, :root[data-theme="light"] {
   color-scheme: light;
   --surface: #faf9f6;

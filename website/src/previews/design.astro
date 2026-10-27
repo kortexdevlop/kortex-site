@@ -1,33 +1,8 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import Button from '../components/ui/Button.astro';
-import Pill from '../components/ui/Pill.astro';
-import SearchField from '../components/ui/SearchField.astro';
-import ToolGrid from '../components/ui/ToolGrid.astro';
-import Feedback from '../components/ui/Feedback.astro';
-import Search from '../components/Search';
-import fixtures from '../../../tests/visual/design-fixtures.json';
-import {isToolSummary,type ToolSummary} from '../lib/tools';
-const demoTools=fixtures.tools as ToolSummary[];
-if(!demoTools.every(isToolSummary)) throw Error('Invalid visual fixtures');
-export const prerender = false;
-const query = Astro.url.searchParams.get('q');
+import WorkspaceLayout from '../layouts/WorkspaceLayout.astro';
+import Workspace from '../components/Workspace.astro';
+import fixtures from '../../../tests/visual/workspace-fixtures.json';
+import type {WorkspaceTool,RecentItem} from '../lib/workspace';
+export const prerender=false;
 ---
-<MainLayout title="Kortex — atelier visuel" preview>
-  <div class="preview-notice"><span class="status-dot" aria-hidden="true"></span> Atelier local · Styles provisoires · Référence visuelle à confirmer</div>
-  <section class="intro" aria-labelledby="intro-title">
-    <div><p class="eyebrow">FONDATIONS / 01</p><h1 id="intro-title">Un espace clair.<br /><span>À votre rythme.</span></h1><p class="lead">Les premiers éléments de Kortex prennent forme : une navigation simple et des préférences qui vous ressemblent.</p><a class="text-link" href="#primitives">Explorer les composants <span aria-hidden="true">↘</span></a></div>
-    <aside class="preview-aside"><span class="large-k" aria-hidden="true">K</span><p>Moins de bruit.<br /><strong>Plus de place pour vos idées.</strong></p><div class="swatches" role="img" aria-label="Palette candidate : pêche, lilas, menthe et bleu"><span class="swatch peach"></span><span class="swatch lilac"></span><span class="swatch mint"></span><span class="swatch blue"></span></div></aside>
-  </section>
-  <section class="primitives" id="primitives" aria-labelledby="primitives-title"><div class="section-heading"><div><p class="eyebrow">UNE BASE COMMUNE</p><h2 id="primitives-title">Les essentiels.</h2></div><Pill>Prévisualisation</Pill></div>
-    <div class="sample-row"><div><h3>Actions</h3><p>Des repères simples, au clavier comme au toucher.</p></div><div class="sample-controls"><Button id="sample-action">Essayer un bouton <span aria-hidden="true">↗</span></Button><Button variant="secondary" disabled>Indisponible</Button><Pill href="#search-demo">Une pastille avec lien</Pill></div><output id="action-result" aria-live="polite"></output></div>
-    <div class="sample-row" id="search-demo"><div><h3>Recherche</h3><p>Essai du champ uniquement, sans catalogue connecté.</p></div><div><SearchField id="demo-search" action="/__dev/design" />{query !== null && <p role="status">Texte saisi : <strong>{query || 'Aucun texte'}</strong>. Le catalogue sera raccordé dans une prochaine étape.</p>}</div></div>
-  </section>
-  <section class="route-notes" aria-label="Destinations de la navigation"><h2>Navigation en préparation</h2><p>Ces repères présentent les futures destinations. Cette page reste un atelier de composants ; aucune connexion au compte ou au catalogue n’est simulée.</p><div class="route-grid">{[['tools','Outils'],['apps','Applications'],['download','Télécharger'],['account','Compte']].map(([id,label]) => <div id={id}><h3>{label}</h3><p>Destination préparée pour la phase suivante.</p></div>)}</div></section>
-  <section class="library-section" id="demo-cards"><p class="eyebrow">DÉMONSTRATION UNIQUEMENT</p><h2>Neuf cartes, une base commune.</h2><p>Ces exemples servent à tester le design. Ils ne font pas partie du catalogue public.</p><ToolGrid tools={demoTools}/></section>
-  <section class="library-section" id="demo-filter"><h2>Rechercher dans la démonstration</h2><Search demoTools={demoTools} client:load /></section>
-  <section class="library-section" id="demo-states"><h2>États de la bibliothèque</h2><Feedback state="loading"/><Feedback state="empty"/><Feedback state="error"/></section>
-</MainLayout>
-<script>
-  document.querySelector('#sample-action')?.addEventListener('click', () => { document.querySelector('#action-result')!.textContent = 'Le bouton répond.'; });
-</script>
+<WorkspaceLayout title="Kortex — référence espace de travail" preview><Workspace tools={fixtures.tools as WorkspaceTool[]} recent={fixtures.recent as RecentItem[]} connection={fixtures.connection} account={fixtures.account} preview /></WorkspaceLayout>

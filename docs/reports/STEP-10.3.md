@@ -1,5 +1,7 @@
 # Rapport 10.3 — cartes, recherche et états
 
+> Actualisation : une nouvelle référence utilisateur 2706×1764 a été reçue puis reproduite le 27/10/2026. Les mentions de capture manquante et du concept initial ci-dessous sont historiques. État courant : docs/reports/DESIGN-WORKSPACE-2026-10-27.md et docs/evidence/workspace-validation.json. Aucune approbation de fidélité après résultat n’est inventée.
+
 Date : 2026-10-27. Base : d4e9225. Résultat : commit de ce lot référencé dans PROGRESS.md.
 
 Autorisation : « Enchaîne les 3 prochaines étapes » après signalement explicite de la capture manquante. Implémentation technique réalisée ; statut formel pending derrière la validation visuelle 10.0. Aucune dérogation ou approbation de fidélité inventée.

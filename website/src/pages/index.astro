@@ -1,16 +1,13 @@
 ---
 import {env} from 'cloudflare:workers';
-import MainLayout from '../layouts/MainLayout.astro';
-import Feedback from '../components/ui/Feedback.astro';
+import WorkspaceLayout from '../layouts/WorkspaceLayout.astro';
+import Workspace from '../components/Workspace.astro';
+import {workspaceTools} from '../lib/workspace';
 import {ApiClient} from '../lib/api-client';
 export const prerender=false;
-let available=false;
-try {await new ApiClient(env.API_WORKER).listTools(new URLSearchParams({limit:'1'}));available=true;}catch{}
+let available=false;let tools:ReturnType<typeof workspaceTools>=[];let hasMore=false;
+try {const list=await new ApiClient(env.API_WORKER).listTools(new URLSearchParams({limit:'100',...(Astro.url.searchParams.get('q')?{q:Astro.url.searchParams.get('q')!.slice(0,200)}:{})}));tools=workspaceTools(list.items);hasMore=Boolean(list.next_cursor);available=true;}catch{}
 Astro.response.status=available?200:503;
 Astro.response.headers.set('Cache-Control','private, no-store');
 ---
-<MainLayout title="Kortex — vos outils, à votre rythme">
-  <section class="route-notes"><p class="eyebrow">KORTEX</p><h1>Vos outils.<br /><span>À votre rythme.</span></h1>
-    {available ? <p>Le service Kortex est disponible. Le catalogue Web est en préparation.</p> : <Feedback state="error" />}
-  </section>
-</MainLayout>
+<WorkspaceLayout><Workspace tools={tools} unavailable={!available} hasMore={hasMore}/></WorkspaceLayout>

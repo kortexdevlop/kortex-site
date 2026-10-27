@@ -1,0 +1,87 @@
+{
+  "viewport": {
+    "width": 2706,
+    "height": 1764
+  },
+  "boxes": {
+    ".ws-sidebar": {
+      "x": 26,
+      "y": 26,
+      "width": 444,
+      "height": 1712
+    },
+    ".ws-main-panel": {
+      "x": 498,
+      "y": 26,
+      "width": 2182,
+      "height": 1712
+    },
+    ".ws-topbar": {
+      "x": 498,
+      "y": 26,
+      "width": 2182,
+      "height": 126
+    },
+    "#workspace-title": {
+      "x": 584.4805297851562,
+      "y": 248.8800048828125,
+      "width": 1981.0390014648438,
+      "height": 90.239990234375
+    },
+    ".ws-subtitle": {
+      "x": 578,
+      "y": 360,
+      "width": 1994,
+      "height": 42
+    },
+    ".ws-composer": {
+      "x": 815,
+      "y": 458,
+      "width": 1520,
+      "height": 280
+    },
+    ".ws-suggestions": {
+      "x": 578,
+      "y": 766,
+      "width": 1994,
+      "height": 60
+    },
+    ".ws-recent": {
+      "x": 578,
+      "y": 938,
+      "width": 1994,
+      "height": 202
+    },
+    ".ws-recent-card": {
+      "x": 578,
+      "y": 1008,
+      "width": 479,
+      "height": 132
+    },
+    ".ws-library": {
+      "x": 578,
+      "y": 1228,
+      "width": 1994,
+      "height": 1386
+    },
+    ".ws-tool-card": {
+      "x": 578,
+      "y": 1320,
+      "width": 479,
+      "height": 304
+    },
+    ".ws-connection": {
+      "x": 50,
+      "y": 1414,
+      "width": 396,
+      "height": 176
+    },
+    ".ws-account": {
+      "x": 50,
+      "y": 1610,
+      "width": 396,
+      "height": 100
+    }
+  },
+  "errors": []
+}

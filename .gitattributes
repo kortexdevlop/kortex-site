@@ -4,3 +4,8 @@
 /docs/evidence/design10-*.log text eol=lf
 /docs/evidence/design-library-*.json text eol=lf
 /docs/evidence/design-library-*.log text eol=lf
+/docs/evidence/workspace-*.json text eol=lf
+/docs/evidence/workspace-*.log text eol=lf
+/website/src/styles/workspace.source.css text eol=lf
+/website/src/styles/workspace.css text eol=lf
+/website/public/fonts/*.txt text eol=lf

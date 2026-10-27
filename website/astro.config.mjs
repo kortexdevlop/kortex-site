@@ -17,9 +17,9 @@ export default defineConfig({
     name: 'kortex-development-preview',
     hooks: {
       'astro:config:setup': ({ command, injectRoute }) => {
-        if (command === 'dev') injectRoute({
-          pattern: '/__dev/design',
-          entrypoint: new URL('./src/previews/design.astro', import.meta.url),
+        if (command === 'dev') for (const page of ['design','components']) injectRoute({
+          pattern: `/__dev/${page}`,
+          entrypoint: new URL(`./src/previews/${page}.astro`, import.meta.url),
           prerender: false,
         });
       },

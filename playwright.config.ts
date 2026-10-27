@@ -7,12 +7,12 @@ export default {
   testDir: '.',
   testMatch: visual ? ['tests/visual/**/*.spec.ts','tests/design/**/*.spec.ts'] : configuration.testMatch,
   use: {...configuration.use, ...(visual ? {baseURL:'http://127.0.0.1:4321',deviceScaleFactor:1} : {})},
-  projects: configuration.projects?.map(project => ({...project, use: {...project.use, ...(visual ? {baseURL:'http://127.0.0.1:4321'} : {})}})),
-  reporter: visual ? [['list'], ['json', {outputFile:'docs/evidence/design-library-playwright.json'}]] : configuration.reporter,
+  projects: configuration.projects?.map(project => ({...project, use: {...project.use, ...(visual ? {baseURL:'http://127.0.0.1:4321',...(project.name==='chromium'?{launchOptions:{ignoreDefaultArgs:['--hide-scrollbars']}}:{})} : {})}})),
+  reporter: visual ? [['list'], ['json', {outputFile:process.env.KORTEX_DESIGN_REPORT||'docs/evidence/design-library-playwright.json'}]] : configuration.reporter,
   ...(visual ? {webServer: {
     command: 'pnpm --filter @kortex/website dev',
     url: 'http://127.0.0.1:4321/__dev/design',
-    reuseExistingServer: false,
+    reuseExistingServer: process.env.KORTEX_DESIGN_REUSE==='1',
     timeout: 120000,
   }} : {}),
 };

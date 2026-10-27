@@ -1,0 +1,40 @@
+{
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "nodes": [
+        {
+          "target": [
+            ".ws-brand-site"
+          ],
+          "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 24.0pt (32px), font weight: normal). Expected contrast ratio of 3:1"
+        },
+        {
+          "target": [
+            ".ws-beta"
+          ],
+          "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 15.0pt (20px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "target": [
+            "span[data-count=\"all\"]"
+          ],
+          "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.26 (foreground color: #a6a8ab, background color: #f8f9fb, font size: 18.0pt (24px), font weight: normal). Expected contrast ratio of 3:1"
+        },
+        {
+          "target": [
+            ".ws-category-heading"
+          ],
+          "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 15.0pt (20px), font weight: normal). Expected contrast ratio of 4.5:1"
+        },
+        {
+          "target": [
+            ".ws-account > span:nth-child(2) > span"
+          ],
+          "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 18.0pt (24px), font weight: normal). Expected contrast ratio of 3:1"
+        }
+      ]
+    }
+  ]
+}

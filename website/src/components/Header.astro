@@ -11,7 +11,7 @@ const links = [ ['tools', 'Outils', '/outils'], ['apps', 'Applications', '/appli
     <nav aria-label="Navigation principale" data-i18n-label="nav">
       {links.map(([key, label, href]) => <a href={preview ? `#${key}` : href} tabindex="0" data-i18n={key} aria-current={active === key ? 'page' : undefined}>{label}</a>)}
     </nav>
-    <SearchField id="global-search" action={preview ? '/__dev/design' : '/outils'} />
+    <SearchField id="global-search" action={preview ? '/__dev/components' : '/outils'} />
     <div class="preferences" role="group" aria-label="Préférences d’affichage" data-i18n-label="preferences">
       <label class="density"><span class="sr-only" data-i18n="density">Densité</span><select id="density" aria-label="Densité" data-i18n-label="density"><option value="simple" data-i18n="simple">Simple</option><option value="medium" selected data-i18n="medium">Moyenne</option><option value="pro" data-i18n="pro">Compacte</option></select></label>
       <button type="button" class="icon-button" id="theme-toggle" aria-label="Thème sombre" aria-pressed="false" data-i18n-label="dark">◐</button>

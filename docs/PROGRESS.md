@@ -1,6 +1,6 @@
 # Progression
 
-Lot 10.3–11.0 implémenté techniquement le 27 octobre 2026 : cartes/recherche/états, démonstration responsive et site Astro SSR Cloudflare préparés et testés localement. Poursuite explicitement demandée après réserve sur la capture originale. 10.0 reste active et les validations formelles suivantes pending : aucune approbation de fidélité ou dérogation inventée. Bibliothèque 20 tests Chromium/WebKit ; 10 tests Node ; Worker compilé 8 contrôles HTTP ; API 3 DTO + 26 Worker. Aucun déploiement, domaine et messagerie conservés. Prochaine étape technique 11.1, non engagée. Linux/macOS et Firefox restent exclus.
+Nouvelle référence explicite reçue le 27 octobre 2026 : Kortex Workspace-selection.png (2706×1764). L’espace de travail remplace le premier concept : sidebar, dégradés doux, demande/fichier, récents et quatre colonnes blanches, dans l’aperçu et la racine SSR réelle. Source immuable, mesures natives et comparaison tracées. 10.0 est désormais en attente de revue visuelle, plus bloquée par une capture manquante ; les validations formelles suivantes restent pending sans approbation inventée. 14 tests workspace et 20 tests de compatibilité Chromium/WebKit, 10 tests Node et 10 HTTP Worker compilé ; aucune donnée de démonstration dans le catalogue public. Les faibles contrastes de la référence sont exposés dans les rapports, sans conformité AA globale revendiquée. Aucun déploiement ni changement de domaine/messagerie. 11.1 non engagée. Linux/macOS et Firefox restent exclus.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -858,91 +858,103 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "10.0",
-    "status": "active",
-    "source_commit": "9b0db4c",
-    "result_commit": "5c8f3b9",
+    "status": "awaiting_approval",
+    "source_commit": "b7ffda5",
+    "result_commit": null,
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-10.0.md",
-    "tests_executed": "Scaffold, typecheck/build ; référence originale manquante, aucune mesure revendiquée",
+    "tests_executed": "Nouvelle référence utilisateur 2706x1764 reçue et mesurée ; SHA tracé ; géométrie ±4 px, CIEDE2000 sur 11 points ; revue visuelle propriétaire attendue",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/validation-10.0-10.2.json"
+      "docs/evidence/validation-10.0-10.2.json",
+      "docs/evidence/workspace-validation.json",
+      "docs/reports/DESIGN-WORKSPACE-2026-10-27.md"
     ],
     "frozen": false
   },
   {
     "id": "10.1",
     "status": "pending",
-    "source_commit": "9b0db4c",
-    "result_commit": "5c8f3b9",
+    "source_commit": "b7ffda5",
+    "result_commit": null,
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-10.1.md",
-    "tests_executed": "Préparation réversible : 2 tests de contrastes/source unique réussis ; validation dépendante de 10.0",
+    "tests_executed": "Préparation réversible : 2 tests de contrastes/source unique réussis ; validation dépendante de 10.0 ; reprise selon nouvelle référence workspace : 14 tests, 20 compatibilité, 10 Node, build SSR et 10 HTTP ; contrastes du raster non déclarés AA",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/validation-10.0-10.2.json"
+      "docs/evidence/validation-10.0-10.2.json",
+      "docs/evidence/workspace-validation.json",
+      "docs/reports/DESIGN-WORKSPACE-2026-10-27.md"
     ],
     "frozen": false
   },
   {
     "id": "10.2",
     "status": "pending",
-    "source_commit": "9b0db4c",
-    "result_commit": "5c8f3b9",
+    "source_commit": "b7ffda5",
+    "result_commit": null,
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-10.2.md",
-    "tests_executed": "Préparation réversible : 8 tests Chromium/WebKit, axe, clavier/mobile et build réussis ; fidélité visuelle non vérifiée",
+    "tests_executed": "Préparation réversible : 8 tests Chromium/WebKit, axe, clavier/mobile et build réussis ; fidélité visuelle non vérifiée ; reprise selon nouvelle référence workspace : 14 tests, 20 compatibilité, 10 Node, build SSR et 10 HTTP ; contrastes du raster non déclarés AA",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/validation-10.0-10.2.json"
+      "docs/evidence/validation-10.0-10.2.json",
+      "docs/evidence/workspace-validation.json",
+      "docs/reports/DESIGN-WORKSPACE-2026-10-27.md"
     ],
     "frozen": false
   },
   {
     "id": "10.3",
     "status": "pending",
-    "source_commit": "d4e9225",
-    "result_commit": "f9976df",
+    "source_commit": "b7ffda5",
+    "result_commit": null,
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-10.3.md",
-    "tests_executed": "Implémentation préparée : cartes, états et recherche ; 20 tests navigateur consolidés",
+    "tests_executed": "Implémentation préparée : cartes, états et recherche ; 20 tests navigateur consolidés ; reprise selon nouvelle référence workspace : 14 tests, 20 compatibilité, 10 Node, build SSR et 10 HTTP ; contrastes du raster non déclarés AA",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/validation-10.3-11.0.json"
+      "docs/evidence/validation-10.3-11.0.json",
+      "docs/evidence/workspace-validation.json",
+      "docs/reports/DESIGN-WORKSPACE-2026-10-27.md"
     ],
     "frozen": false
   },
   {
     "id": "10.4",
     "status": "pending",
-    "source_commit": "d4e9225",
-    "result_commit": "f9976df",
+    "source_commit": "b7ffda5",
+    "result_commit": null,
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-10.4.md",
-    "tests_executed": "Captures desktop/tablette/mobile et axe ; comparaison à l’original non exécutée",
+    "tests_executed": "Captures desktop/tablette/mobile et axe ; comparaison à l’original non exécutée ; reprise selon nouvelle référence workspace : 14 tests, 20 compatibilité, 10 Node, build SSR et 10 HTTP ; contrastes du raster non déclarés AA",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/validation-10.3-11.0.json"
+      "docs/evidence/validation-10.3-11.0.json",
+      "docs/evidence/workspace-validation.json",
+      "docs/reports/DESIGN-WORKSPACE-2026-10-27.md"
     ],
     "frozen": false
   },
   {
     "id": "11.0",
     "status": "pending",
-    "source_commit": "d4e9225",
-    "result_commit": "f9976df",
+    "source_commit": "b7ffda5",
+    "result_commit": null,
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-11.0.md",
-    "tests_executed": "SSR compilé ; 10 tests Node, 8 HTTP sur Worker compilé ; API 3 DTO + 26 Worker",
+    "tests_executed": "SSR compilé ; 10 tests Node, 8 HTTP sur Worker compilé ; API 3 DTO + 26 Worker ; reprise selon nouvelle référence workspace : 14 tests, 20 compatibilité, 10 Node, build SSR et 10 HTTP ; contrastes du raster non déclarés AA",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/validation-10.3-11.0.json"
+      "docs/evidence/validation-10.3-11.0.json",
+      "docs/evidence/workspace-validation.json",
+      "docs/reports/DESIGN-WORKSPACE-2026-10-27.md"
     ],
     "frozen": false
   }

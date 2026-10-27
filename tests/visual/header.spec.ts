@@ -1,11 +1,12 @@
 import {test, expect} from 'playwright/test';
 import {readFileSync} from 'node:fs';
+const captureDirectory=process.env.KORTEX_DESIGN_CAPTURE_DIR||'docs/evidence';
 const axe = readFileSync('node_modules/axe-core/axe.min.js','utf8');
 
 test('desktop navigation, keyboard focus, preferences and persistent state', async ({page}, info) => {
   await page.setViewportSize({width:1632,height:927});
   await page.emulateMedia({colorScheme:'light'});
-  await page.goto('/__dev/design');
+  await page.goto('/__dev/components');
   await expect(page.getByRole('heading',{level:1})).toBeVisible();
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link',{name:'Aller au contenu'})).toBeFocused();
@@ -14,8 +15,8 @@ test('desktop navigation, keyboard focus, preferences and persistent state', asy
   await expect(page.locator('nav a')).toHaveCount(4);
   await expect(page.locator('#header-panel')).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await page.goto('/__dev/design');
-  await page.screenshot({path:`docs/evidence/navigation-${info.project.name}-desktop.png`,fullPage:true});
+  await page.goto('/__dev/components');
+  await page.screenshot({path:`${captureDirectory}/navigation-${info.project.name}-desktop.png`,fullPage:true});
   await page.getByRole('button',{name:'Thème sombre',exact:true}).click();
   await page.getByRole('button',{name:'Agrandir le texte'}).click();
   await page.getByLabel('Densité',{exact:true}).selectOption('pro');
@@ -29,12 +30,12 @@ test('desktop navigation, keyboard focus, preferences and persistent state', asy
   await expect(page.locator('html')).toHaveAttribute('data-density','pro');
   await expect(page.locator('#theme-toggle')).toHaveAttribute('aria-pressed','true');
   await expect(page.locator('#language-toggle')).toHaveText('EN');
-  await page.screenshot({path:`docs/evidence/navigation-${info.project.name}-dark.png`,fullPage:true});
+  await page.screenshot({path:`${captureDirectory}/navigation-${info.project.name}-dark.png`,fullPage:true});
 });
 
 test('mobile disclosure supports keyboard, Escape, resizing and 320px reflow', async ({page},info) => {
   await page.setViewportSize({width:390,height:844});
-  await page.goto('/__dev/design');
+  await page.goto('/__dev/components');
   const menu=page.locator('#menu-toggle');
   await expect(menu).toBeVisible();
   await expect(page.locator('#header-panel')).toBeHidden();
@@ -48,8 +49,8 @@ test('mobile disclosure supports keyboard, Escape, resizing and 320px reflow', a
   await menu.click();
   await page.getByRole('link',{name:'Applications',exact:true}).click();
   await expect(page.locator('#header-panel')).toBeHidden();
-  await page.goto('/__dev/design');
-  await page.screenshot({path:`docs/evidence/navigation-${info.project.name}-mobile.png`,fullPage:true});
+  await page.goto('/__dev/components');
+  await page.screenshot({path:`${captureDirectory}/navigation-${info.project.name}-mobile.png`,fullPage:true});
   await page.setViewportSize({width:320,height:740});
   await menu.click();
   await page.locator('#type-toggle').click();
@@ -61,7 +62,7 @@ test('mobile disclosure supports keyboard, Escape, resizing and 320px reflow', a
 
 test('light and dark accessible names, contrast and markup; real local search submission', async ({page}) => {
   await page.setViewportSize({width:1632,height:927});
-  await page.goto('/__dev/design');
+  await page.goto('/__dev/components');
   for (const theme of ['light','dark']) {
     await page.evaluate(theme=>{document.documentElement.dataset.theme=theme;},theme);
     await page.addScriptTag({content:axe});
@@ -78,13 +79,13 @@ test('light and dark accessible names, contrast and markup; real local search su
 
 test('storage failure, system theme and no JavaScript leave a usable document', async ({browser}) => {
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
-  const page=await context.newPage(); await page.goto('http://127.0.0.1:4321/__dev/design');
+  const page=await context.newPage(); await page.goto('http://127.0.0.1:4321/__dev/components');
   await expect(page.locator('nav a').first()).toBeVisible();
   await expect(page.locator('#global-search')).toBeVisible();
   await context.close();
   const blocked=await browser.newContext({colorScheme:'dark'});
   await blocked.addInitScript(()=>{Object.defineProperty(window,'localStorage',{get(){throw new Error('blocked');}});});
-  const p=await blocked.newPage(); await p.goto('http://127.0.0.1:4321/__dev/design');
+  const p=await blocked.newPage(); await p.goto('http://127.0.0.1:4321/__dev/components');
   await expect(p.locator('#theme-toggle')).toHaveAttribute('aria-pressed','true');
   await p.locator('#theme-toggle').click();
   await expect(p.locator('html')).toHaveAttribute('data-theme','light');

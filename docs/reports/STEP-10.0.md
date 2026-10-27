@@ -1,5 +1,7 @@
 # Rapport 10.0 — inventaire visuel et atelier Astro
 
+> Actualisation : une nouvelle référence utilisateur 2706×1764 a été reçue puis reproduite le 27/10/2026. Les mentions de capture manquante et du concept initial ci-dessous sont historiques. État courant : docs/reports/DESIGN-WORKSPACE-2026-10-27.md et docs/evidence/workspace-validation.json. Aucune approbation de fidélité après résultat n’est inventée.
+
 Date : 2026-10-27. Base : 9b0db4c. Résultat : commit contenant ce rapport, identifié dans PROGRESS.md après enregistrement.
 
 Statut : **active ; validation de référence en attente**. Le propriétaire autorise le lot 10.0–10.2 par « Enchaîne les 3 prochaines étapes » et accepte la poursuite après 9.6. Cette autorisation ne vaut pas approbation d’une image manquante ni dérogation inventée.

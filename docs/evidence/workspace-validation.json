@@ -1,0 +1,198 @@
+{
+  "date": "2026-10-27",
+  "sourceCommit": "b7ffda5",
+  "request": "Strict reproduction of the newly supplied Kortex Workspace-selection.png",
+  "source": {
+    "path": "docs/reference/workspace-selection.png",
+    "width": 2706,
+    "height": 1764,
+    "sha256": "22b72dd91b43675643c8bf996074690916bec86b5ebd55d785aeff2fae603067"
+  },
+  "checks": [
+    {
+      "command": "pnpm --filter @kortex/website check",
+      "exitCode": 0,
+      "diagnosticFiles": 33,
+      "typeErrors": 0,
+      "nodeTests": 10
+    },
+    {
+      "command": "pnpm --filter @kortex/website build",
+      "exitCode": 0,
+      "demoDataAbsent": true,
+      "devRoutesAbsent": true
+    },
+    {
+      "command": "pnpm exec playwright test tests/visual/workspace.spec.ts",
+      "environment": {
+        "KORTEX_DESIGN_REUSE": "1",
+        "KORTEX_DESIGN_REPORT": "docs/evidence/workspace-playwright.json"
+      },
+      "exitCode": 0,
+      "passed": 14,
+      "skipped": 0,
+      "browsers": [
+        "chromium",
+        "webkit"
+      ]
+    },
+    {
+      "command": "pnpm exec playwright test tests/design/cards.spec.ts tests/visual/design-system.spec.ts tests/visual/header.spec.ts",
+      "environment": {
+        "KORTEX_DESIGN_REUSE": "1",
+        "KORTEX_DESIGN_REPORT": "docs/evidence/workspace-compatibility-playwright.json",
+        "KORTEX_DESIGN_CAPTURE_DIR": "test-results/workspace-compatibility"
+      },
+      "exitCode": 0,
+      "passed": 20,
+      "skipped": 0
+    },
+    {
+      "command": "node website/scripts/smoke-ssr.mjs http://127.0.0.1:4330",
+      "exitCode": 0,
+      "compiledWorkerHttpChecks": 10
+    },
+    {
+      "command": "python scripts/compare-workspace.py",
+      "runtime": "bundled Python with Pillow/numpy",
+      "exitCode": 0,
+      "formulaKnownPairs": 3,
+      "flatColorSamples": 11
+    },
+    {
+      "command": "pnpm --filter @kortex/website lint",
+      "exitCode": 0
+    },
+    {
+      "command": "node --test tests/config/secrets.test.mjs",
+      "exitCode": 0,
+      "passed": 6
+    },
+    {
+      "command": "node scripts/check-progress.mjs",
+      "exitCode": 0,
+      "orderedSteps": 54
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "comparison": {
+    "geometryTolerancePx": 4,
+    "rgbMAE": 4.58912,
+    "maximumSampleCIEDE2000": 2.03276,
+    "perfectPixelIdentity": false,
+    "originalFontIdentified": false
+  },
+  "accessibility": {
+    "findings": {
+      "chromium": [
+        {
+          "rule": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "webkit": [
+        {
+          "rule": "color-contrast",
+          "nodes": 5
+        }
+      ]
+    },
+    "globalAAClaimed": false,
+    "contrastNote": "Low-contrast source greys retained for explicit strict visual request; non-contrast WCAG violations prohibited by tests."
+  },
+  "humanVisualReview": "awaiting owner review",
+  "deployed": false,
+  "domainModified": false,
+  "mailModified": false,
+  "contractsModified": false,
+  "excluded": [
+    "Linux",
+    "macOS",
+    "Firefox"
+  ],
+  "files": [
+    {
+      "path": "docs/evidence/workspace-build.log",
+      "sha256": "63dca8b56737df058f46df1113aadc164087999153b93e9aeec7dbe8f2ae0a2b"
+    },
+    {
+      "path": "docs/evidence/workspace-check.log",
+      "sha256": "73b41f76e34409aefe0f193a487c12874694fc2be49953e919ab5c9ff46fd97f"
+    },
+    {
+      "path": "docs/evidence/workspace-chromium-320.png",
+      "sha256": "09ab5383335a21d5481c02f9b50a0e76a45f1139332a1fa67b13ed3bc60b6297"
+    },
+    {
+      "path": "docs/evidence/workspace-chromium-390.png",
+      "sha256": "a729784054f3c29979d3eb74aaae3de759f3350fcca816cf054c52b8d27cb250"
+    },
+    {
+      "path": "docs/evidence/workspace-chromium-768.png",
+      "sha256": "6e2ff77250a283ed1820dc1058dbec18c24099b5eb9564f8754db31d99d398e7"
+    },
+    {
+      "path": "docs/evidence/workspace-chromium-accessibility.json",
+      "sha256": "16bc98564fffc360fe1750df201f7772319f3ac579fb3c428faad498f48cf95a"
+    },
+    {
+      "path": "docs/evidence/workspace-chromium-reference.png",
+      "sha256": "8205a514021ca98dbdc645d8be88b00ad4ff218dd370e35cf8387e54eacb75e3"
+    },
+    {
+      "path": "docs/evidence/workspace-comparison.json",
+      "sha256": "82754f1a99515c6e0e613f68289c52e88c808624e4d3f46c9e7f77a411a4441e"
+    },
+    {
+      "path": "docs/evidence/workspace-compatibility-playwright.json",
+      "sha256": "5eeb4c8e9c6e261f9bb0a7de73571899f1ecc27f35eeae4889f10bbdd6ef5dd0"
+    },
+    {
+      "path": "docs/evidence/workspace-geometry.json",
+      "sha256": "d1d843f66883009d4df1e95192b8936905051bff06530a72bd90ac957a26caee"
+    },
+    {
+      "path": "docs/evidence/workspace-playwright.json",
+      "sha256": "57bedc24a72af7664712994df63037941b189fac4916def33d46747779f2c701"
+    },
+    {
+      "path": "docs/evidence/workspace-ssr.json",
+      "sha256": "0c67e70c4868f3fe3de12d58f2f6aac02bcd4c8c2aa62b2c3082477f41f90b58"
+    },
+    {
+      "path": "docs/evidence/workspace-webkit-320.png",
+      "sha256": "05088ada1a6ee3939c173a5a72907304f10af64a00ba2f4a40db5d2e09e9d7e7"
+    },
+    {
+      "path": "docs/evidence/workspace-webkit-390.png",
+      "sha256": "1f8c84418a27f2364e6b52484db01cf0c56cc1c300d7200f788612f5a0ccb269"
+    },
+    {
+      "path": "docs/evidence/workspace-webkit-768.png",
+      "sha256": "e778284d0dc3a839f741ec8a43fde22ed1fd3a07076fd0becf96777d0f422418"
+    },
+    {
+      "path": "docs/evidence/workspace-webkit-accessibility.json",
+      "sha256": "16bc98564fffc360fe1750df201f7772319f3ac579fb3c428faad498f48cf95a"
+    },
+    {
+      "path": "docs/evidence/workspace-webkit-reference.png",
+      "sha256": "40dbdd3944b8d723ba88c9ad6c8e2ab37b5c74b13d2f01906ae4c801a77e1ad3"
+    },
+    {
+      "path": "docs/reference/workspace-selection.png",
+      "sha256": "22b72dd91b43675643c8bf996074690916bec86b5ebd55d785aeff2fae603067"
+    },
+    {
+      "path": "website/public/fonts/RobotoVariable.ttf",
+      "sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134"
+    },
+    {
+      "path": "website/public/fonts/Roboto-LICENSE.txt",
+      "sha256": "ee94f8704aa81e9a3bf4271e8320e99d975a3ee08ea45a088b494b918476ec12"
+    }
+  ]
+}
