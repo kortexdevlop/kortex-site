@@ -1,5 +1,7 @@
 # Architecture Kortex — état vérifié à la revue 3.4
 
+**Lot site 11.1–11.3 (27/10/2026) :** catalogue/fiches SSR réels, accueil workspace alimenté par l’API et shell /app avec pont HELLO/READY/OPEN existant. Vérifiés sur Worker compilé, D1 locale et véritable Runtime signé (1200), sans déploiement. État et limites : docs/reports/STEP-11.1.md à STEP-11.3.md. Les états anciens ci-dessous restent historiques.
+
 **Direction visuelle active (27/10/2026) :** la capture Kortex Workspace-selection.png fournie par le propriétaire remplace le concept initial. Utiliser WorkspaceLayout/Workspace pour les pages publiques ; l’ancien Header horizontal et les cartes pastel sont gardés uniquement dans l’atelier de compatibilité. Mesures, référence immuable et limites dans docs/DESIGN.md et docs/reports/DESIGN-WORKSPACE-2026-10-27.md. Les descriptions visuelles antérieures ci-dessous sont historiques. Aucun contrat runtime/API gelé n’est modifié.
 
 23 octobre 2026. Référence de conception complète : MASTER_PLAN.md parties A–D, conservée à l'identique. Cette page distingue les preuves locales de la cible à construire. Décision initiale : NO-GO pour gel et phase 4 jusqu'à résolution de CR-2026-001 ; voir evidence/ARCHITECTURE_GATE.md et adr/0007-prototype-outcome.md.

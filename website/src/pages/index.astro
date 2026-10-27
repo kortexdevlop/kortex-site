@@ -3,11 +3,12 @@ import {env} from 'cloudflare:workers';
 import WorkspaceLayout from '../layouts/WorkspaceLayout.astro';
 import Workspace from '../components/Workspace.astro';
 import {workspaceTools} from '../lib/workspace';
+import {canonical} from '../lib/urls';
 import {ApiClient} from '../lib/api-client';
 export const prerender=false;
 let available=false;let tools:ReturnType<typeof workspaceTools>=[];let hasMore=false;
-try {const list=await new ApiClient(env.API_WORKER).listTools(new URLSearchParams({limit:'100',...(Astro.url.searchParams.get('q')?{q:Astro.url.searchParams.get('q')!.slice(0,200)}:{})}));tools=workspaceTools(list.items);hasMore=Boolean(list.next_cursor);available=true;}catch{}
+try {const list=await new ApiClient(env.API_WORKER).listTools(new URLSearchParams({limit:'24',...(Astro.url.searchParams.get('q')?{q:Astro.url.searchParams.get('q')!.slice(0,100)}:{})}));tools=workspaceTools(list.items);hasMore=Boolean(list.next_cursor);available=true;}catch{}
 Astro.response.status=available?200:503;
 Astro.response.headers.set('Cache-Control','private, no-store');
 ---
-<WorkspaceLayout><Workspace tools={tools} unavailable={!available} hasMore={hasMore}/></WorkspaceLayout>
+<WorkspaceLayout indexable={available} canonicalUrl={available?canonical('/',env.WEB_ORIGIN||Astro.url.origin):undefined}><Workspace tools={tools} unavailable={!available} hasMore={hasMore}/></WorkspaceLayout>

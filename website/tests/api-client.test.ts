@@ -37,6 +37,13 @@ test('detail and actions clients accept schema-valid API envelopes',async()=>{
   assert.equal((await client.getTool(manifest.id)).tool.id,manifest.id);
   assert.equal((await client.getActions(manifest.id)).tool_id,manifest.id);
 });
+test('detail refuses a descriptor that does not match the requested identity, version or digest',async()=>{
+  const tool={id:manifest.id,version:manifest.version,name:manifest.name,summary:manifest.summary,category:manifest.category,tags:manifest.tags,icon_path:manifest.icon_path,abi_version:manifest.abi_version,sha256:descriptor.sha256,published_at:1};
+  for(const change of [{tool_id:'autre-outil'},{version:'2.0.0'},{sha256:'a'.repeat(64)}]){
+    const client=new ApiClient({async fetch(){return Response.json({tool,manifest,contract,descriptor:{...descriptor,...change}});}});
+    await assert.rejects(client.getTool(manifest.id),ApiUnavailable);
+  }
+});
 test('a binding that never responds cannot hold SSR or the proxy open indefinitely',async()=>{
   const hung={fetch:()=>new Promise<Response>(()=>{})};
   const results=await Promise.allSettled([new ApiClient(hung).listTools(),proxy(new Request('https://kortex.site/api/v1/tools'),hung,'https://kortex.site')]);

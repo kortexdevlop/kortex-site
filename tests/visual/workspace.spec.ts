@@ -1,6 +1,7 @@
 import {test,expect} from 'playwright/test';
-import {readFileSync,writeFileSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
+const evidence=process.env.KORTEX_WORKSPACE_EVIDENCE||'docs/evidence';mkdirSync(evidence,{recursive:true});
 const axe=readFileSync('node_modules/axe-core/axe.min.js','utf8');
 test('new reference identity and native desktop geometry',async({page},info)=>{
   const source=readFileSync('docs/reference/workspace-selection.png');
@@ -13,9 +14,9 @@ test('new reference identity and native desktop geometry',async({page},info)=>{
   await expect(page.locator('.ws-tool-card')).toHaveCount(14);await expect(page.locator('.ws-recent-card')).toHaveCount(3);
   await expect(page.locator('.ws-tool-grid')).toHaveCSS('grid-template-columns',/.* /);
   expect(await page.locator('.ws-tool-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length)).toBe(4);
-  await page.screenshot({path:`docs/evidence/workspace-${info.project.name}-reference.png`});
+  await page.screenshot({path:`${evidence}/workspace-${info.project.name}-reference.png`});
   await page.addScriptTag({content:axe});const results=await page.evaluate(async()=>await (window as any).axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}));
-  writeFileSync(`docs/evidence/workspace-${info.project.name}-accessibility.json`,JSON.stringify({violations:results.violations.map((v:any)=>({id:v.id,impact:v.impact,nodes:v.nodes.map((n:any)=>({target:n.target,summary:n.failureSummary}))}))},null,2)+'\n');
+  writeFileSync(`${evidence}/workspace-${info.project.name}-accessibility.json`,JSON.stringify({violations:results.violations.map((v:any)=>({id:v.id,impact:v.impact,nodes:v.nodes.map((n:any)=>({target:n.target,summary:n.failureSummary}))}))},null,2)+'\n');
   expect(results.violations.filter((v:any)=>v.id!=='color-contrast').map((v:any)=>({id:v.id,targets:v.nodes.map((n:any)=>n.target)}))).toEqual([]);
 });
 test('search, categories, modes, favorites and list are functional',async({page})=>{
@@ -44,7 +45,7 @@ for(const [width,height] of [[768,1024],[390,844],[320,740]])test(`workspace ref
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   const menu=page.getByRole('button',{name:'Ouvrir le menu'});await menu.click();await expect(page.locator('.ws-sidebar')).toBeVisible();await expect(menu).toHaveAttribute('aria-expanded','true');
   await page.keyboard.press('Escape');await expect(menu).toBeFocused();await expect(page.locator('.ws-sidebar')).toBeHidden();
-  await page.screenshot({path:`docs/evidence/workspace-${info.project.name}-${width}.png`});
+  await page.screenshot({path:`${evidence}/workspace-${info.project.name}-${width}.png`});
   await menu.click();await page.locator('[data-category=documents]').click();await expect(page.locator('.ws-sidebar')).toBeHidden();await expect(page.locator('.ws-tool-card:visible')).toHaveCount(2);
 });
 test('public workspace never substitutes the screenshot tools or a false desktop connection',async({page})=>{

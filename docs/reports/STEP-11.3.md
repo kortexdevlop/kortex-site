@@ -1,0 +1,15 @@
+# Rapport 11.3 — Ouverture dans le Runtime isolé
+
+27/10/2026, Windows. Base aa59e70. Commit résultat dans PROGRESS.md. Implémentation locale testée sur instruction d’enchaîner le lot ; statut formel pending, sans validation humaine inventée.
+
+`/app/[id]` charge une seule fiche API réelle et rend ToolViewer dans AppLayout, toujours noindex et private/no-store. Le Worker Astro n’exécute aucun outil. L’iframe cross-origin conserve le sandbox de 5.4 : allow-scripts allow-same-origin, sans navigation supérieure ni capacité sensible déléguée. État des permissions déclarées, connexion, vérification, prêt et erreur ; liens fiche et catalogue. Une configuration absente ou refusée ne crée aucune iframe.
+
+PUBLIC_RUN_ORIGIN est une configuration de déploiement : seuls https://run.kortex.site et https://run.staging.kortex.site sont acceptés, avec ports HTTP loopback exclusivement lorsque le parent est lui-même local. Même origine, chemin, identifiants et origines tierces rejetés ; aucun paramètre URL utilisateur ne choisit l’hôte. CSP frame-src précise, frame-ancestors none, scripts self, Referrer-Policy no-referrer, nosniff et Permissions-Policy fermée. Les petits scripts Astro sont externalisés avec assetsInlineLimit=0 afin de respecter la CSP, après détection du blocage initial en navigateur.
+
+Pont compatible avec EmbedSession existant : HELLO avec nonce aléatoire 256 bits et version 1.0 ; READY corrélé à l’origine/source/nonce/session ; OPEN ID/version ; RESULT corrélé à la même session et à l’identité/version attendues. HELLO répété pendant le démarrage WASM, délai maximal 20 s, écouteurs nettoyés à la sortie et messages tardifs ignorés. Tests unitaires : fausse origine/source, nonce, session, version et descripteur incohérent rejetés.
+
+Le Runtime existant garde ses clés de confiance et son registre de descripteurs signé de déploiement, ainsi que son cache d’archives borné et revérifié par SHA/signature à chaque lecture. Aucun transfert de clé ou descripteur arbitraire depuis un message parent. La préparation d’une future mise en ligne devra raccorder l’origine run et son registre d’artefacts/clefs de production ; aucune activation distante n’est revendiquée ici.
+
+Tests Chromium et WebKit sur Worker SSR compilé, API/D1 locale et véritable Runtime Dioxus/WASM : fiche Calculatrice → Ouvrir → iframe → 25 × 48 = 1200 ; isolation du stockage parent/enfant ; aucun pageerror ; headers contrôlés ; archive altérée refusée avec état d’erreur et aucun calculateur rendu. Le paquet calculatrice du banc est signé avec une clé éphémère de test, vérifié par le vrai loader. Les attestations D1 de test ne sont pas une publication R2 de production.
+
+Corrections pendant les essais : externalisation du script pour la CSP, regroupement API/site en Wrangler multi-worker pour fiabiliser les bindings locaux, garde du compteur de favoris absent dans les fiches. La dernière suite complète réussit sans ces erreurs. Preuves open-tool-chromium.png, open-tool-webkit.png, website-11.1-11.3-playwright.json et manifeste de validation. Linux/macOS et Firefox exclus ; domaine/messagerie inchangés.

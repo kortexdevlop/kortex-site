@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-27",
+  "source_commit": "aa59e70",
+  "steps": [
+    "11.1",
+    "11.2",
+    "11.3"
+  ],
+  "scope": "Local Windows only; compiled Cloudflare SSR, real API/D1 and Dioxus/WASM runtime. No deployment.",
+  "checks": {
+    "website_typecheck": {
+      "files": 42,
+      "errors": 0,
+      "warnings": 0,
+      "hints": 0
+    },
+    "node_tests": 14,
+    "integration_browser_tests": 10,
+    "workspace_browser_tests": 14,
+    "secret_configuration_tests": 6,
+    "progress_ordered_steps": 57,
+    "production_build": "passed; no dev routes or fixture data"
+  },
+  "commands": [
+    "pnpm --filter @kortex/website check",
+    "pnpm --filter @kortex/website build",
+    "pnpm exec playwright test --config tests/website.config.ts",
+    "pnpm exec playwright test tests/visual/workspace.spec.ts (isolated report/evidence directory)",
+    "node --test tests/config/secrets.test.mjs",
+    "node scripts/check-progress.mjs"
+  ],
+  "calculator": {
+    "result": 1200,
+    "sha256": "fac58c7af499a828516f7d5ab04d7d0541faa0e6af8ad3aad3f8727aebca35d4",
+    "trust": "ephemeral test key; real archive verification in the existing runtime",
+    "tampered_archive": "rejected in both browsers"
+  },
+  "limitations": [
+    "Formal visual approval remains pending; no human approval fabricated.",
+    "Reference low contrast retained; no global WCAG AA claim.",
+    "Catalog test publication attestations are TEST records, not a remote R2 publication.",
+    "Runtime production origin, trust keys and signed-artifact registry still require deployment configuration.",
+    "Sidebar categories and favorites describe loaded API cards, not an invented global inventory.",
+    "Linux, macOS and Firefox excluded by user."
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/website-11.1-11.3-playwright.json",
+      "sha256": "7aa313fac2cbbaaef8282886933da7cf55b11d313849753944bd3fd5534f7c35"
+    },
+    {
+      "path": "docs/evidence/home-real-chromium.png",
+      "sha256": "959b0b07569d2ae7a7f8663239e7ac3f5df492282a619b3b404cbeb84ec8d72e"
+    },
+    {
+      "path": "docs/evidence/home-real-webkit.png",
+      "sha256": "5ff0afcc5f3f3c6fbe0dcdf9c227ec1b6f324afdbf9d4df49c99e19e5242909b"
+    },
+    {
+      "path": "docs/evidence/open-tool-chromium.png",
+      "sha256": "bcbc649a592aab882c22bcc400bbf3489ae806abd95124e8860dba0452a4942b"
+    },
+    {
+      "path": "docs/evidence/open-tool-webkit.png",
+      "sha256": "d087be8db2f1ddbb4e79c87be37d1342fca02df0569ff0495fb8c2897e7ac534"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/playwright.json",
+      "sha256": "812043dacaf939403c6d05e9bfcc2a1ffa2dab31a124c16443b285f01196b619"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-chromium-320.png",
+      "sha256": "09ab5383335a21d5481c02f9b50a0e76a45f1139332a1fa67b13ed3bc60b6297"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-chromium-390.png",
+      "sha256": "a729784054f3c29979d3eb74aaae3de759f3350fcca816cf054c52b8d27cb250"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-chromium-768.png",
+      "sha256": "6e2ff77250a283ed1820dc1058dbec18c24099b5eb9564f8754db31d99d398e7"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-chromium-accessibility.json",
+      "sha256": "16bc98564fffc360fe1750df201f7772319f3ac579fb3c428faad498f48cf95a"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-chromium-reference.png",
+      "sha256": "8205a514021ca98dbdc645d8be88b00ad4ff218dd370e35cf8387e54eacb75e3"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-webkit-320.png",
+      "sha256": "05088ada1a6ee3939c173a5a72907304f10af64a00ba2f4a40db5d2e09e9d7e7"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-webkit-390.png",
+      "sha256": "1f8c84418a27f2364e6b52484db01cf0c56cc1c300d7200f788612f5a0ccb269"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-webkit-768.png",
+      "sha256": "e778284d0dc3a839f741ec8a43fde22ed1fd3a07076fd0becf96777d0f422418"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-webkit-accessibility.json",
+      "sha256": "16bc98564fffc360fe1750df201f7772319f3ac579fb3c428faad498f48cf95a"
+    },
+    {
+      "path": "docs/evidence/website-workspace-regression/workspace-webkit-reference.png",
+      "sha256": "40dbdd3944b8d723ba88c9ad6c8e2ab37b5c74b13d2f01906ae4c801a77e1ad3"
+    },
+    {
+      "path": "docs/reports/STEP-11.1.md",
+      "sha256": "2760096fc3a9c5a72b958d8c5403478a99e725a26ec4adb8bf9a40429eb4588c"
+    },
+    {
+      "path": "docs/reports/STEP-11.2.md",
+      "sha256": "4ea604ce6dff9943b0009242ad95bd8c7f160635b6815b907abe3d14143a6999"
+    },
+    {
+      "path": "docs/reports/STEP-11.3.md",
+      "sha256": "cce41f79f3408779e0f6d3c35169188af9094e20d3d5b0ef973c3200b2ada048"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+---
+interface Props {next:string|null;}
+const {next}=Astro.props;
+---
+{next&&<nav class="ws-pagination" aria-label="Pagination"><a href="/tools">Première page</a><a href={next} rel="next">Page suivante →</a></nav>}

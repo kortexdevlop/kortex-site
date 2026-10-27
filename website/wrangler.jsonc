@@ -8,17 +8,17 @@
   "preview_urls":false,
   "send_metrics":false,
   "assets":{"directory":"./dist/client", "binding":"ASSETS"},
-  "vars":{"WEB_ORIGIN":"http://127.0.0.1:4321"},
+  "vars":{"WEB_ORIGIN":"http://127.0.0.1:4321", "PUBLIC_RUN_ORIGIN":""},
   "services":[{"binding":"API_WORKER", "service":"kortex-api-local"}],
   "env":{
     "staging":{
       "name":"kortex-web-staging", "workers_dev":false,
-      "vars":{"WEB_ORIGIN":"https://staging.kortex.site"},
+      "vars":{"WEB_ORIGIN":"https://staging.kortex.site", "PUBLIC_RUN_ORIGIN":"https://run.staging.kortex.site"},
       "services":[{"binding":"API_WORKER", "service":"kortex-api-staging"}]
     },
     "production":{
       "name":"kortex-web-production", "workers_dev":false,
-      "vars":{"WEB_ORIGIN":"https://kortex.site"},
+      "vars":{"WEB_ORIGIN":"https://kortex.site", "PUBLIC_RUN_ORIGIN":"https://run.kortex.site"},
       "services":[{"binding":"API_WORKER", "service":"kortex-api-production"}]
     }
   }

@@ -1,0 +1,15 @@
+---
+import {env} from 'cloudflare:workers';
+import WorkspaceLayout from '../../layouts/WorkspaceLayout.astro';
+import Workspace from '../../components/Workspace.astro';
+import {ApiClient} from '../../lib/api-client';
+import {catalogue,nextPage} from '../../lib/catalog';
+import {workspaceTools} from '../../lib/workspace';
+import {canonical} from '../../lib/urls';
+export const prerender=false;
+let tools:ReturnType<typeof workspaceTools>=[],next:string|null=null,available=false;
+try{const list=await catalogue(new ApiClient(env.API_WORKER),Astro.url.searchParams);tools=workspaceTools(list.items);next=nextPage(list.query,list.next_cursor);available=true;}catch{}
+Astro.response.status=available?200:503;
+Astro.response.headers.set('Cache-Control',available?'public, max-age=60':'no-store');
+---
+<WorkspaceLayout title="Tous les outils — Kortex" canonicalUrl={canonical('/tools',env.WEB_ORIGIN||Astro.url.origin)} indexable={available}><Workspace tools={tools} unavailable={!available} pageKind="catalog" hasMore={Boolean(next)} next={next}/></WorkspaceLayout>

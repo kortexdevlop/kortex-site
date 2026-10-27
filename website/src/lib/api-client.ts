@@ -23,6 +23,6 @@ export class ApiClient {
     }catch(error){throw error instanceof ApiUnavailable?error:new ApiUnavailable();}finally{clearTimeout(timer!);void reader?.cancel().catch(()=>{});}
   }
   listTools(query:URLSearchParams=new URLSearchParams()):Promise<ToolList>{return this.get(`/api/v1/tools${query.size?'?'+query:''}`,isToolList);}
-  getTool(id:string):Promise<ToolDetail>{return this.get(`/api/v1/tools/${encodeURIComponent(id)}`,isToolDetail);}
+  async getTool(id:string):Promise<ToolDetail>{const detail=await this.get(`/api/v1/tools/${encodeURIComponent(id)}`,isToolDetail);const {tool,manifest,contract,descriptor}=detail;if(tool.id!==id||manifest.id!==id||contract.tool_id!==id||descriptor.tool_id!==id||manifest.version!==tool.version||descriptor.version!==tool.version||descriptor.sha256!==tool.sha256)throw new ApiUnavailable();return detail;}
   getActions(id:string):Promise<ToolActions>{return this.get(`/api/v1/tools/${encodeURIComponent(id)}/actions`,isToolActions);}
 }

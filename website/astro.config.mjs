@@ -8,6 +8,7 @@ export default defineConfig({
   adapter: cloudflare({imageService:'compile'}),
   devToolbar: { enabled: false },
   vite: {
+    build: { assetsInlineLimit: 0 },
     plugins: [tailwindcss()],
     server: { strictPort: true },
     resolve: { dedupe: ['preact'] },

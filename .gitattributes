@@ -9,3 +9,6 @@
 /website/src/styles/workspace.source.css text eol=lf
 /website/src/styles/workspace.css text eol=lf
 /website/public/fonts/*.txt text eol=lf
+
+/docs/evidence/website-*.json text eol=lf
+/docs/evidence/website-workspace-regression/*.json text eol=lf

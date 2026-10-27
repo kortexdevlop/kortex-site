@@ -1,8 +1,6 @@
 # Progression
 
-Nouvelle référence explicite reçue le 27 octobre 2026 : Kortex Workspace-selection.png (2706×1764). L’espace de travail remplace le premier concept : sidebar, dégradés doux, demande/fichier, récents et quatre colonnes blanches, dans l’aperçu et la racine SSR réelle. Source immuable, mesures natives et comparaison tracées. 10.0 est désormais en attente de revue visuelle, plus bloquée par une capture manquante ; les validations formelles suivantes restent pending sans approbation inventée. 14 tests workspace et 20 tests de compatibilité Chromium/WebKit, 10 tests Node et 10 HTTP Worker compilé ; aucune donnée de démonstration dans le catalogue public. Les faibles contrastes de la référence sont exposés dans les rapports, sans conformité AA globale revendiquée. Aucun déploiement ni changement de domaine/messagerie. 11.1 non engagée. Linux/macOS et Firefox restent exclus.
-La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
-Schéma de rapport : docs/reports/TEMPLATE.md.
+Lot 11.1–11.3 implémenté et testé localement sur instruction d’enchaîner les trois étapes : catalogue/fiches SSR, accueil réel selon la nouvelle référence Workspace-selection.png, ouverture iframe sécurisée. Ajout D1 visible sans reconstruction, cinq résultats réels donnent cinq cartes, calculatrice signée 25×48=1200 et archive altérée refusée. 24 essais Chromium/WebKit, 14 Node, typecheck sans diagnostic et build réussi. Régression géométrique native ±4 px ; les faibles contrastes de la référence restent exposés. Les statuts formels restent pending derrière la revue visuelle existante, sans validation humaine inventée. Aucun déploiement ni changement de domaine/messagerie. 11.4 non engagée. Linux/macOS et Firefox exclus.
 
 ```json
 [
@@ -955,6 +953,57 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
       "docs/evidence/validation-10.3-11.0.json",
       "docs/evidence/workspace-validation.json",
       "docs/reports/DESIGN-WORKSPACE-2026-10-27.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "11.1",
+    "status": "pending",
+    "source_commit": "aa59e70",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-11.1.md",
+    "tests_executed": "Implémentation locale du lot autorisé : 10 essais intégrés Worker SSR/D1/Runtime Chromium et WebKit, 14 régressions maquette, 14 Node ; zéro diagnostic strict, build réussi ; calcul signé 25×48=1200, archive altérée refusée. Statut formel pending derrière la revue visuelle, sans approbation inventée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/website-11.1-11.3-validation.json",
+      "docs/evidence/website-11.1-11.3-playwright.json",
+      "docs/evidence/website-workspace-regression/playwright.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "11.2",
+    "status": "pending",
+    "source_commit": "aa59e70",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-11.2.md",
+    "tests_executed": "Implémentation locale du lot autorisé : 10 essais intégrés Worker SSR/D1/Runtime Chromium et WebKit, 14 régressions maquette, 14 Node ; zéro diagnostic strict, build réussi ; calcul signé 25×48=1200, archive altérée refusée. Statut formel pending derrière la revue visuelle, sans approbation inventée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/website-11.1-11.3-validation.json",
+      "docs/evidence/website-11.1-11.3-playwright.json",
+      "docs/evidence/website-workspace-regression/playwright.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "11.3",
+    "status": "pending",
+    "source_commit": "aa59e70",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-11.3.md",
+    "tests_executed": "Implémentation locale du lot autorisé : 10 essais intégrés Worker SSR/D1/Runtime Chromium et WebKit, 14 régressions maquette, 14 Node ; zéro diagnostic strict, build réussi ; calcul signé 25×48=1200, archive altérée refusée. Statut formel pending derrière la revue visuelle, sans approbation inventée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/website-11.1-11.3-validation.json",
+      "docs/evidence/website-11.1-11.3-playwright.json",
+      "docs/evidence/website-workspace-regression/playwright.json"
     ],
     "frozen": false
   }

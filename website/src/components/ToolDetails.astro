@@ -1,8 +1,9 @@
 ---
 import {isToolDetail,type ToolDetail} from '../lib/tools';
+import {appUrl} from '../lib/urls';
 import Pill from './ui/Pill.astro';
 interface Props {detail:ToolDetail;}
 const {detail}=Astro.props;
 if(!isToolDetail(detail))throw new Error('Invalid ToolDetail');
 ---
-<section class="tool-details"><h2>{detail.tool.name}</h2><p>{detail.manifest.description}</p><p>Version {detail.tool.version}</p><div class="sample-controls">{detail.tool.tags.map(tag=><Pill>{tag}</Pill>)}</div><h3>Actions disponibles</h3><ul>{detail.contract.actions.map(action=><li>{action.description}</li>)}</ul></section>
+<section class="tool-details"><h1>{detail.tool.name}</h1><p>{detail.manifest.description}</p><p>Version {detail.tool.version}</p><div class="sample-controls">{detail.tool.tags.map(tag=><Pill>{tag}</Pill>)}</div><a class="ws-primary-link" href={appUrl(detail.tool.id)}>Ouvrir</a><h2>Actions disponibles</h2><ul>{detail.contract.actions.map(action=><li>{action.description}</li>)}</ul></section>

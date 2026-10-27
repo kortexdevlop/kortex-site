@@ -1,11 +1,11 @@
 ---
 import '../styles/global.css';
 import '../styles/workspace.css';
-interface Props {title?:string;preview?:boolean;}
-const {title='Kortex — Espace de travail',preview=false}=Astro.props;
+interface Props {title?:string;preview?:boolean;canonicalUrl?:string;description?:string;indexable?:boolean;}
+const {title='Kortex — Espace de travail',preview=false,canonicalUrl,description,indexable=false}=Astro.props;
 ---
 <!doctype html>
 <html lang="fr" data-workspace data-theme="light">
-  <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex, nofollow"/><title>{title}</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"/></head>
+  <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content={indexable?'index, follow':'noindex, nofollow'}/>{canonicalUrl&&<link rel="canonical" href={canonicalUrl}/ >}{description&&<meta name="description" content={description}/>}<title>{title}</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"/></head>
   <body class="workspace-body" data-preview={preview?'true':undefined}><a class="ws-skip" tabindex="0" href="#workspace-main">Aller au contenu</a><slot/></body>
 </html>

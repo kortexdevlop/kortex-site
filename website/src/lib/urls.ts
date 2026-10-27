@@ -5,3 +5,5 @@ export function canonical(path:string,origin:string):string {
   if(!path.startsWith('/')||path.startsWith('//')||path.includes('\\'))throw Error('Invalid canonical path');
   const url=new URL(path,base);if(url.origin!==base.origin)throw Error('Invalid canonical URL');url.hash='';return url.href;
 }
+
+export function appUrl(id:string):string {if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)||id.length>64||id.length<3)throw Error('Invalid tool ID');return '/app/'+encodeURIComponent(id);}

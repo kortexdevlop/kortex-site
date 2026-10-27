@@ -1,0 +1,17 @@
+---
+import {env} from 'cloudflare:workers';
+import AppLayout from '../../layouts/AppLayout.astro';
+import ToolViewer from '../../components/ToolViewer.astro';
+import {ApiClient,ApiUnavailable} from '../../lib/api-client';
+import {runtimeOrigin} from '../../lib/runtime-bridge';
+import type {ToolDetail} from '../../lib/tools';
+export const prerender=false;
+let detail:ToolDetail|undefined,status=200;
+try{detail=await new ApiClient(env.API_WORKER).getTool(Astro.params.id!);}catch(e){status=e instanceof ApiUnavailable?e.status:503;}
+const origin=runtimeOrigin(env.PUBLIC_RUN_ORIGIN,Astro.url.origin);
+Astro.response.status=status;Astro.response.headers.set('Cache-Control','private, no-store');
+Astro.response.headers.set('Content-Security-Policy',`default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src ${origin||"'none'"}; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'`);
+Astro.response.headers.set('Referrer-Policy','no-referrer');Astro.response.headers.set('X-Content-Type-Options','nosniff');
+Astro.response.headers.set('Permissions-Policy','camera=(), microphone=(), geolocation=()');
+---
+<AppLayout title={(detail?.tool.name||'Outil indisponible')+' — Kortex'}>{detail?<ToolViewer detail={detail} origin={origin}/>:<section class="ws-detail"><h1>{status===404?'Outil introuvable':'Service indisponible'}</h1><a href="/tools">Retour au catalogue</a></section>}</AppLayout>
