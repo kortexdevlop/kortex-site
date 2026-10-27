@@ -1,6 +1,6 @@
 # Étape 7.2 — Même paquet sur Web et Windows
 
-Date : 2026-10-27. Base : 17eb70a. Résultat : commit contenant ce registre. Deuxième étape du lot autorisé.
+Date : 2026-10-27. Base : 17eb70a. Résultat : 84b0633. Deuxième étape du lot autorisé.
 
 Un ZIP local signé par clé Ed25519 de test contient les vrais manifest/contract/module/icon de la calculatrice. Le générateur commun accepte les chemins de métadonnées ; seul le harness choisit l’outil. La clé privée reste en mémoire. Le même fichier et la même signature sont admis par les vérificateurs normaux Web et natif ; aucun mode unsigned, import sensible ni permission.
 

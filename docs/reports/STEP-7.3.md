@@ -1,6 +1,6 @@
 # Étape 7.3 — Référence de compatibilité outil 1
 
-Date : 2026-10-27. Base : 17eb70a. Résultat : commit contenant ce registre. Troisième et dernière étape du lot demandé.
+Date : 2026-10-27. Base : 17eb70a. Résultat : 84b0633. Troisième et dernière étape du lot demandé.
 
 Treize paires Request/Reply sous tests/golden sont figées avec les empreintes du guest, du ZIP de test et du corpus. Les tests les exécutent sur le vrai SDK, le Worker Web et Wasmtime. Le contrôle Node ajoute vérification des hashes et signature du paquet. Le guide TOOL_SDK.md décrit la création d’un outil par la chaîne standard et les limites de cette référence ; CONTRACTS.md référence les nouveaux tests sans modifier l’ABI.
 

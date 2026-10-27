@@ -1,6 +1,6 @@
 # Étape 7.1 — Calculatrice guest réelle
 
-Date : 2026-10-27. Base : 17eb70a. Résultat : commit contenant ce registre. Première étape du lot de trois explicitement demandé par le propriétaire.
+Date : 2026-10-27. Base : 17eb70a. Résultat : 84b0633. Première étape du lot de trois explicitement demandé par le propriétaire.
 
 Tool traite init, render, ui.event, action.invoke et shutdown. State possède les saisies, la destination du pavé, le résultat et l’erreur. Une seule fonction calculate exécute les quatre opérations depuis UI et actions. Les entrées et sorties finies restent dans la borne du contrat, la division par ±0 produit DIVIDE_BY_ZERO. Le module utilise les exports du SDK et ne possède aucun import. Une réouverture efface les calculs précédents.
 

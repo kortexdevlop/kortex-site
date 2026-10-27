@@ -1,7 +1,7 @@
 {
   "date": "2026-10-27",
   "source_commit": "17eb70a",
-  "implementation_commit": "commit contenant ce registre",
+  "implementation_commit": "84b0633",
   "scope": [
     "7.1",
     "7.2",

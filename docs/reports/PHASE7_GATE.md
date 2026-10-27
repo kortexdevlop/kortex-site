@@ -1,6 +1,6 @@
 # Gate phase 7 — Référence calculatrice v1
 
-Date : 2026-10-27. Base : 17eb70a. Résultat : commit contenant ce registre. Vérification technique et rédaction : Codex. Autorisation de réaliser les trois étapes : demande directe du propriétaire « Enchaîne les 3 prochaines étape ». Cette trace ne constitue pas une signature humaine indépendante ni une attestation de sécurité.
+Date : 2026-10-27. Base : 17eb70a. Résultat : 84b0633. Vérification technique et rédaction : Codex. Autorisation de réaliser les trois étapes : demande directe du propriétaire « Enchaîne les 3 prochaines étape ». Cette trace ne constitue pas une signature humaine indépendante ni une attestation de sécurité.
 
 **GO local : référence outil 1 figée pour poursuivre vers le packaging.** Périmètre démontré : Windows/Wasmtime/WebView2, Chromium et WebKit. Linux/macOS et Firefox restent exclus sur instruction du propriétaire, comme dans les gates précédents.
 
