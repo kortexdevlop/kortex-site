@@ -15,6 +15,11 @@
       "id": "timestamp-utc",
       "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
       "passed": true
+    },
+    {
+      "id": "explorateur-csv",
+      "sha256": "183f838f554846fe837650f6773cc5c935e02f86096c61a3dac7f5c5f111b662",
+      "passed": true
     }
   ]
 }

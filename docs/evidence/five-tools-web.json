@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-27T22:26:37.667Z",
+  "host": "web-chromium-local-signed-packages",
+  "tools": [
+    {
+      "tool_id": "calculatrice",
+      "version": "1.0.0",
+      "package_sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+      "guest_sha256": "f095744f63b9594af61c02a6a515f2ad7ddab0ca3d5e7ccbcc9120a78f850c50",
+      "permissions": [],
+      "actions": [
+        {
+          "action": "add",
+          "passed": true
+        },
+        {
+          "action": "divide",
+          "passed": true
+        }
+      ],
+      "started": true
+    },
+    {
+      "tool_id": "convertisseur-casse",
+      "version": "1.0.0",
+      "package_sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7",
+      "guest_sha256": "7c0345eb1d2efd5e28783ecffaffbfa2f6738b3b98dd4a6b85d30087ad2ac00c",
+      "permissions": [],
+      "actions": [
+        {
+          "action": "upper",
+          "passed": true
+        },
+        {
+          "action": "title",
+          "passed": true
+        }
+      ],
+      "started": true
+    },
+    {
+      "tool_id": "calculateur-hash",
+      "version": "1.0.0",
+      "package_sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5",
+      "guest_sha256": "701b38100ea30d2ca669fb79067868167ed772bff4d70a0aeebb6e2c693714e2",
+      "permissions": [
+        "file.pick",
+        "file.read"
+      ],
+      "actions": [
+        {
+          "action": "sha256_bytes",
+          "passed": true
+        }
+      ],
+      "started": true
+    },
+    {
+      "tool_id": "timestamp-utc",
+      "version": "1.0.0",
+      "package_sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
+      "guest_sha256": "dbd029d4ea263bf3cd7fc7bb513cfabca3c0aeb7eafbe090937bfd0336856c47",
+      "permissions": [],
+      "actions": [
+        {
+          "action": "from_unix",
+          "passed": true
+        },
+        {
+          "action": "to_unix",
+          "passed": true
+        }
+      ],
+      "started": true
+    },
+    {
+      "tool_id": "explorateur-csv",
+      "version": "1.0.0",
+      "package_sha256": "183f838f554846fe837650f6773cc5c935e02f86096c61a3dac7f5c5f111b662",
+      "guest_sha256": "0b8561e2b1da16c96a96a89b70e94c58acff7b25d8c7dee7c44c6b058d9a18fa",
+      "permissions": [
+        "file.pick",
+        "file.read",
+        "file.save",
+        "storage.read",
+        "storage.write"
+      ],
+      "actions": [
+        {
+          "action": "summarize_csv",
+          "passed": true
+        },
+        {
+          "action": "export_report",
+          "passed": true
+        }
+      ],
+      "started": true
+    }
+  ]
+}

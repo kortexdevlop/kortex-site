@@ -18,3 +18,9 @@ PublicationRequest contient exactement `descriptor`, `manifest`, `contract`, `r2
 Une publication future doit créer une nouvelle version pour changer le contenu. Le rollback doit déplacer transactionnellement le pointeur du catalogue vers une version antérieure encore autorisée, sans réécrire ses octets ni son descripteur. R2, transactions de publication et API sont les étapes suivantes de la phase 9 ; ce script ne les réalise pas. Après un staging incomplet, conserver les éléments pour diagnostic puis utiliser un nouveau --out.
 
 Le gate local admet le paquet par les chemins normaux Web et Windows, avec ancre et snapshot signés fournis à l'hôte. Référence immuable : tests/golden/calculatrice-artifact.json ; critères du format : CONTRACTS.md, PACKAGE_FORMAT_V1.
+
+## Cas des cinq outils
+
+Les cinq outils suivent la même chaîne `build → validate → package → sign → verify → publish` sans option propre à un outil. `scripts/prepare-phase12.mjs` prépare et signe les quatre outils de la phase 12 (graines en mémoire seulement) ; la calculatrice garde sa release `target/staging/calculatrice`, dont le SHA correspond à la version publiée. `scripts/publish-phase12-staging.mjs` accepte `KORTEX_PUBLISH_TOOLS` (liste séparée par des virgules) et `KORTEX_PUBLISH_PROOF` pour ne publier qu’une partie des outils et écrire une preuve distincte.
+
+Si la publication échoue avant écriture, le script restaure la politique d’administration temporaire et consigne l’erreur dans la preuve ; elle peut être relancée telle quelle, car les ressources existantes sont comparées par SHA et jamais écrasées. Une limite de quota Cloudflare (par exemple les lectures D1 quotidiennes du plan gratuit) est un blocage externe : attendre la réinitialisation ou changer de plan relève du propriétaire du compte.

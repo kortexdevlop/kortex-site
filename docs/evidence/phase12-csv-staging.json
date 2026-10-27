@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-27T22:23:51.705Z",
+  "staging_only": true,
+  "production_touched": false,
+  "mail_touched": false,
+  "api_origin": "https://kortex-api-staging.userpgl.workers.dev",
+  "web_origin": "https://kortex-web-staging.userpgl.workers.dev",
+  "run_origin": "https://kortex-run-staging.userpgl.workers.dev",
+  "tools": [],
+  "passed": false,
+  "ci": "local controlled operator; canonical builder/signature/verification; not GitHub OIDC",
+  "site_deployment_before": "f5912646-b1f6-4b46-b31d-aa9f30b0053c",
+  "error": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+  "operator_policy_restored": true
+}

@@ -4,7 +4,7 @@ import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {randomBytes,randomUUID,generateKeyPairSync,createPrivateKey,createPublicKey,sign} from 'node:crypto';
 const root=resolve(import.meta.dirname,'..'),dir=resolve(root,'target/phase12');mkdirSync(dir,{recursive:true});const releases=[];
-for(const tool of ['convertisseur-casse','calculateur-hash','timestamp-utc']){
+for(const tool of ['convertisseur-casse','calculateur-hash','timestamp-utc','explorateur-csv']){
  const out=resolve(dir,tool);mkdirSync(out,{recursive:true});
  if(existsSync(resolve(out,'publication-request.json'))){releases.push(prepareRelease({tool,out,dryRun:false}));continue;}
  const seed=randomBytes(32),privateKey=createPrivateKey({key:Buffer.concat([Buffer.from('302e020100300506032b657004220420','hex'),seed]),format:'der',type:'pkcs8'}),offline=generateKeyPairSync('ed25519'),now=Date.now(),id=tool+'-'+randomUUID().slice(0,8);

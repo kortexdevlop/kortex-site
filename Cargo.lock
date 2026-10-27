@@ -6144,6 +6144,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "tool-explorateur-csv"
+version = "1.0.0"
+dependencies = [
+ "base64 0.22.1",
+ "kortex-sdk",
+ "kortex-ui",
+ "serde_json",
+]
+
+[[package]]
 name = "tool-timestamp-utc"
 version = "1.0.0"
 dependencies = [

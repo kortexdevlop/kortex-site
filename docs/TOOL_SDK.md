@@ -46,3 +46,15 @@ Pour un nouvel outil, suivre la même chaîne manifeste/contrat → SDK → WASM
 ## Pipeline générique disponible depuis 8.2
 
 Les commandes de construction, validation et packaging ne nécessitent plus le helper de fixture propre à la calculatrice : `cargo run -p kortex-xtask --locked -- build --tool <id>`, puis validate/package. --all, --out, --json et --help sont documentés dans SIGNING.md, ainsi que sign/verify et la racine hors ligne. Le helper de phase 7 reste uniquement pour sa référence binaire immuable. Le packager canonique de publication possède une empreinte différente sans changer les échanges du guest ; son gel final relève de 8.5.
+
+## Exemples plus complets : les cinq outils
+
+Les cinq outils de la v1 couvrent les modèles à connaître. `tools/calculatrice` : actions pures et interface qui appellent la même fonction. `tools/convertisseur-casse` et `tools/timestamp-utc` : entrées réactives (`input`, `change`) qui recalculent un résultat partagé avec l’action. `tools/calculateur-hash` : cycle `Host::enqueue` + `on_result` pour `file.pick` puis `file.read`, génération qui invalide les résultats tardifs, annulation et refus affichés dans l’interface. `tools/explorateur-csv` : le même cycle avec `file.save` et `storage.*`, plus un traitement en flux.
+
+Règles apprises en les écrivant :
+- Un appel guest dispose de 100 millions d’instructions Wasm. Tout traitement proportionnel à un fichier doit être découpé par bloc de lecture et accumuler son état ; ne jamais conserver le fichier entier pour l’analyser au dernier bloc.
+- Éviter une allocation par élément (arène + offsets) et les hachages par cellule pour rester dans ce budget.
+- Les événements `select` d’un `tabs` portent la clé de l’onglet ; l’outil la mémorise pour le prochain rendu (`active_key`).
+- Un état d’erreur doit effacer les résultats précédents : un refus de permission ou un fichier invalide ne laisse aucune table affichée.
+- Les capacités sensibles ne se demandent que sur un clic. Un outil sans permission ne déclenche jamais de dialogue, ce que `tests/integration/five-tools.spec.ts` vérifie.
+- Écrire les vecteurs partagés dans `tests/integration/five-tools-vectors.json` : le test Web et le test Wasmtime Windows les exécutent à l’identique.

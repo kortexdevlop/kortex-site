@@ -1,0 +1,29 @@
+{
+  "format_version": "1.0",
+  "id": "explorateur-csv",
+  "version": "1.0.0",
+  "name": "Explorateur CSV",
+  "summary": "Explorez un fichier CSV local : aperçu, statistiques et graphique.",
+  "description": "Explorez un fichier CSV local : aperçu paginé, statistiques par colonne, graphique et export du rapport. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+  "category": "data",
+  "tags": [
+    "csv",
+    "statistiques"
+  ],
+  "seo": {
+    "title": "Explorateur CSV — Kortex",
+    "description": "Explorez un fichier CSV local : aperçu, statistiques par colonne et graphique."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [
+    "file.pick",
+    "file.read",
+    "file.save",
+    "storage.read",
+    "storage.write"
+  ],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

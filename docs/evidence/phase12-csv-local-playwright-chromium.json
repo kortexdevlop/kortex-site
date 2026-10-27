@@ -1,0 +1,265 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\µ\\Desktop\\KORTEX-\\node_modules\\playwright\\cli.js",
+      "test",
+      "--config",
+      "tests/tools/playwright.config.ts",
+      "--project=chromium"
+    ],
+    "configFile": "C:\\Users\\µ\\Desktop\\KORTEX-\\tests\\tools\\playwright.config.ts",
+    "rootDir": "C:/Users/µ/Desktop/KORTEX-/tests/tools",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/µ/Desktop/KORTEX-/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/µ/Desktop/KORTEX-/tests/tools",
+        "testIgnore": [],
+        "testMatch": [
+          "phase12.spec.ts"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/µ/Desktop/KORTEX-/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "C:/Users/µ/Desktop/KORTEX-/tests/tools",
+        "testIgnore": [],
+        "testMatch": [
+          "phase12.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\µ\\Desktop\\KORTEX-\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\µ\\Desktop\\KORTEX-\\tests\\tools",
+        "snapshotDir": "C:\\Users\\µ\\Desktop\\KORTEX-\\tests\\tools",
+        "testIgnore": [],
+        "testMatch": "phase12.spec.ts",
+        "timeout": 60000,
+        "use": {
+          "browserName": "chromium",
+          "channel": "chrome"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "C:\\Users\\µ\\Desktop\\KORTEX-/docs/evidence/phase12-local-playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "phase12.spec.ts",
+      "file": "phase12.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "casse Unicode : UI réactive, actions identiques et paquets signés",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1530,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T22:19:53.256Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "75881452727ae762f163-e855afbe8bc4c7f4ca1e",
+          "file": "phase12.spec.ts",
+          "line": 12,
+          "column": 5
+        },
+        {
+          "title": "UTC : dates négatives, unités explicites, erreurs et action autonome",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1142,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T22:19:55.191Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "75881452727ae762f163-32736455d29c06eadbde",
+          "file": "phase12.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "SHA : lecture réelle par blocs, refus et annulation sans fuite réseau",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2778,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T22:19:56.386Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "75881452727ae762f163-3fc70149119b179b7439",
+          "file": "phase12.spec.ts",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "title": "CSV : fichier réel, aperçu paginé, stats, graphique, action identique, export et stockage fermé hors origine dédiée",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3685,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T22:19:59.193Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "75881452727ae762f163-1adfb54520a6d567d14c",
+          "file": "phase12.spec.ts",
+          "line": 23,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-27T22:19:52.179Z",
+    "duration": 10978.681999999999,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "contract_version": "1.0",
+  "tool_id": "explorateur-csv",
+  "actions": [
+    {
+      "id": "summarize_csv",
+      "description": "Analyser un CSV UTF-8 borné et résumer chaque colonne",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "data_text": {
+            "type": "string",
+            "maxLength": 1000000
+          }
+        },
+        "required": [
+          "data_text"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "columns": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "stats": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "maxLength": 1000000
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "number",
+                    "text"
+                  ]
+                },
+                "count": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 5000
+                },
+                "nulls": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 5000
+                },
+                "min": {
+                  "type": "number"
+                },
+                "max": {
+                  "type": "number"
+                },
+                "mean": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "kind",
+                "count",
+                "nulls"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "rows",
+          "columns",
+          "stats"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 5000
+    },
+    {
+      "id": "export_report",
+      "description": "Produire le rapport statistique CSV d’un CSV borné",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "data_text": {
+            "type": "string",
+            "maxLength": 1000000
+          }
+        },
+        "required": [
+          "data_text"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "report_csv": {
+            "type": "string",
+            "maxLength": 1000000
+          }
+        },
+        "required": [
+          "report_csv"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 5000
+    }
+  ]
+}
