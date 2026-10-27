@@ -2,7 +2,6 @@
 use ed25519_dalek::{Signer, SigningKey};
 
 use kortex_core::{ArtifactDescriptor, VerifiedTool};
-use kortex_runtime_native::verify_package;
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
 use std::{
@@ -68,7 +67,11 @@ pub fn tool_with(module: &[u8], permissions: &[&str]) -> VerifiedTool {
         signing_key_id: "test-only".into(),
         signature,
     };
-    verify_package(
+    // Engine tests intentionally supply malformed low-level guests. Product admission
+    // uses verify_package; package_security.rs exercises that complete boundary.
+    VerifiedTool::verify(
+        &manifest,
+        &contract,
         bytes,
         &descriptor,
         &BTreeMap::from([("test-only".into(), key.verifying_key().to_bytes())]),

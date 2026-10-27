@@ -1,4 +1,5 @@
 import {bounded,request,reply,capability,LIMIT,QUEUE_LIMIT,type Request,type Reply,type CapabilityRequest} from './types';
+import {inspectWasm} from './wasm-check';
 import {range,unpack,inspectMemory} from './memory';
 type Guest={memory:WebAssembly.Memory;kortex_alloc:(n:number)=>number;kortex_dealloc:(p:number,n:number)=>void;kortex_dispatch:(p:number,n:number)=>bigint};
 const port=globalThis as unknown as {postMessage:(v:unknown)=>void;onmessage:(event:MessageEvent)=>void};
@@ -23,7 +24,7 @@ port.onmessage=async({data})=>{
   let result:unknown;
   if(data.op==='start'){
    if(guest||!(data.bytes instanceof Uint8Array)||data.bytes.length>20*1024*1024)throw Error('INVALID_MODULE');
-   inspectMemory(data.bytes);const module=await WebAssembly.compile(data.bytes);
+   inspectWasm(data.bytes);inspectMemory(data.bytes);const module=await WebAssembly.compile(data.bytes);
    if(WebAssembly.Module.imports(module).some(i=>i.module!=='kortex_v1'||i.name!=='host_enqueue'||i.kind!=='function'))throw Error('FORBIDDEN_IMPORT');
    const exports=WebAssembly.Module.exports(module);for(const [name,kind] of [['memory','memory'],['kortex_alloc','function'],['kortex_dealloc','function'],['kortex_dispatch','function']])if(!exports.some(e=>e.name===name&&e.kind===kind))throw Error('INVALID_EXPORTS');
    const instance=await WebAssembly.instantiate(module,{kortex_v1:{host_enqueue:(p:number,n:number)=>{

@@ -1,6 +1,6 @@
 # Progression
 
-Lot 8.0–8.2 terminé le 27 octobre 2026 : ZIP canonique, CLI générique et signatures Rust/Web vérifiés localement. Prochaine étape : 8.3, non démarrée. Le nouveau format reste candidat jusqu’au gate 8.5 ; les dérogations et exclusions précédentes sont maintenues.
+Lot 8.3–9.0 terminé le 27 octobre 2026 : corpus hostile, pipeline local signé, gate PACKAGE_FORMAT_V1 et catalogue D1 indexé validés localement. Prochaine étape : 9.1, non démarrée. Linux/macOS et Firefox restent exclus ; aucun service cloud provisionné.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -674,6 +674,78 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
       "docs/evidence/validation-8.0-8.2.json",
       "docs/SIGNING.md",
       "tests/fixtures/artifact-signed-test.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "8.3",
+    "status": "validated",
+    "source_commit": "02b0f6d",
+    "result_commit": "commit contenant ce rapport",
+    "report_path": "docs/reports/STEP-8.3.md",
+    "tests_executed": "98 tests Rust, 44 tests Web, Windows UI réel, 10k mutations ; sorties 0, 2026-10-27 Windows ; 1 HTTPS externe opt-in ignoré",
+    "approved_by": "propriétaire : Enchaîne les 4 prochaines étapes ; autorisation du lot et du gel local, sans attestation indépendante ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun contrat public gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-8.3-9.0.json",
+      "docs/evidence/pack-security.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "8.4",
+    "status": "validated",
+    "source_commit": "02b0f6d",
+    "result_commit": "commit contenant ce rapport",
+    "report_path": "docs/reports/STEP-8.4.md",
+    "tests_executed": "release-tool dry-run et 3 tests Node pipeline/golden/catalogue : sorties 0, 2026-10-27 Windows",
+    "approved_by": "propriétaire : Enchaîne les 4 prochaines étapes ; autorisation du lot et du gel local, sans attestation indépendante ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun contrat public gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-8.3-9.0.json",
+      "docs/TOOL_PUBLISHING.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "8.5",
+    "status": "validated",
+    "source_commit": "02b0f6d",
+    "result_commit": "commit contenant ce rapport",
+    "report_path": "docs/reports/STEP-8.5.md",
+    "tests_executed": "98 tests Rust, 44 tests Web, Windows UI réel, 10k mutations ; sorties 0, 2026-10-27 Windows ; 1 HTTPS externe opt-in ignoré",
+    "approved_by": "propriétaire : Enchaîne les 4 prochaines étapes ; autorisation du lot et du gel local, sans attestation indépendante ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Gel PACKAGE_FORMAT_V1, artifact.schema et immutabilité identité/version ; cinq contrats antérieurs inchangés"
+    ],
+    "evidence": [
+      "docs/evidence/validation-8.3-9.0.json",
+      "docs/reports/PHASE8_GATE.md"
+    ],
+    "frozen": true
+  },
+  {
+    "id": "9.0",
+    "status": "validated",
+    "source_commit": "02b0f6d",
+    "result_commit": "commit contenant ce rapport",
+    "report_path": "docs/reports/STEP-9.0.md",
+    "tests_executed": "SQLite 3.51.3 et Wrangler 4.152.0 D1 local : 10 000 outils, 4 plans indexés, 13/5 refus ; sorties 0, 2026-10-27 Windows",
+    "approved_by": "propriétaire : Enchaîne les 4 prochaines étapes ; autorisation du lot et du gel local, sans attestation indépendante ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun contrat public gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-8.3-9.0.json",
+      "docs/DATABASE.md"
     ],
     "frozen": false
   }

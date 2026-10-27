@@ -1,3 +1,4 @@
+import {inspectWasm} from './wasm-check';
 import {extractArchive} from './archive';
 import {artifactSigningText,type TrustStore} from './trust';
 import {matchesSchema} from './browser-contracts';
@@ -12,7 +13,7 @@ export class VerifiedTool {
  get bytes(){return this.#bytes.slice()}get manifest(){return structuredClone(this.#manifest)}get contract(){return structuredClone(this.#contract)}
  static async verifyArchive(bytes:Uint8Array,proof:Descriptor,trust:TrustStore):Promise<VerifiedTool>{
   proof=structuredClone(proof);const copy=bytes.slice();await trust.verify(copy,proof);const files=await extractArchive(copy);const decode=(name:string)=>{const b=files.get(name)!;if(b.length>1048576)throw Error('INVALID_METADATA');return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(b))};
-  const m=decode('manifest.json'),c=decode('contract.json');if(!validateManifest(m).ok||!validateContract(c).ok||m.id!==proof.tool_id||m.version!==proof.version||c.tool_id!==m.id)throw Error('INTEGRITY_ERROR');if(m.abi_version!=='1.0')throw Error('UNSUPPORTED_ABI');return new VerifiedTool(files.get('module.wasm')!,m,c);
+  const m=decode('manifest.json'),c=decode('contract.json');if(!validateManifest(m).ok||!validateContract(c).ok||m.id!==proof.tool_id||m.version!==proof.version||c.tool_id!==m.id)throw Error('INTEGRITY_ERROR');if(m.abi_version!=='1.0')throw Error('UNSUPPORTED_ABI');const allowed=new Set(['manifest.json','contract.json','module.wasm',m.icon_path]);if(!m.icon_path.startsWith('assets/')||!files.get(m.icon_path)?.length||[...files.keys()].some(k=>!allowed.has(k))||c.actions.some((a:any)=>a.permissions.some((p:string)=>!m.permissions.includes(p))))throw Error('INVALID_METADATA');const module=files.get('module.wasm')!;inspectWasm(module);await WebAssembly.compile(module as BufferSource);return new VerifiedTool(module,m,c);
  }
  /// Standalone signed WASM admission for this adapter stage. Metadata must be embedded in signed custom sections.
  /// The .tool ZIP loader is a separate next-stage boundary, never an unsigned development bypass.

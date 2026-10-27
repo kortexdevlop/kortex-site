@@ -42,6 +42,20 @@ pub fn open_verified(path: &str, trust_path: &str) -> Result<VerifiedTool, Strin
         &std::fs::read(trust_path).map_err(|_| "Clés publiques hôte manquantes")?,
     )
     .map_err(|_| "Clés invalides")?;
+    let checked = kortex_verify::Descriptor::parse(
+        &serde_json::to_vec(&proof).map_err(|_| "Descripteur invalide")?,
+    )
+    .map_err(|_| "Descripteur invalide")?;
+    if keys.get("root").is_some() {
+        let bundle = serde_json::from_value(keys).map_err(|_| "Confiance hôte invalide")?;
+        return kortex_runtime_native::verify_package_with_trust(
+            bytes,
+            &checked,
+            &bundle,
+            kortex_runtime_native::permissions::now_ms(),
+        )
+        .map_err(|e| format!("Paquet refusé : {e:?}"));
+    }
     let mut trusted = BTreeMap::new();
     for (id, value) in keys.as_object().ok_or("Clés invalides")? {
         let raw = base64::engine::general_purpose::STANDARD

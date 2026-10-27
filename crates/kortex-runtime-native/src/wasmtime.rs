@@ -45,6 +45,7 @@ fn machine(
     {
         return Err(RuntimeError::IntegrityError);
     }
+    kortex_pack::wasm_check::check(&bytes).map_err(|_| RuntimeError::UnsupportedAbi)?;
     let module = Module::new(engine, &bytes).map_err(failure)?;
     for import in module.imports() {
         if import.module() != "kortex_v1"

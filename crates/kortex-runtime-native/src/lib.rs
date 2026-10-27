@@ -7,10 +7,7 @@ pub mod storage;
 mod wasmtime;
 use kortex_core::{ArtifactDescriptor, RuntimeError, VerifiedTool};
 use serde_json::Value;
-use std::{
-    collections::{BTreeMap, BTreeSet},
-    io::{Cursor, Read},
-};
+use std::collections::BTreeMap;
 pub use wasmtime::{HostedNativeEngine, NativeGuestEngine, NativeInstance};
 /// Extract into bounded memory only; signatures are verified before any guest compilation.
 pub fn verify_package(
@@ -39,64 +36,81 @@ pub fn verify_package(
         &ed25519_dalek::Signature::from_bytes(&proof.signature),
     )
     .map_err(|_| RuntimeError::SignatureInvalid)?;
+    let files = kortex_pack::archive::read(&bytes).map_err(|_| RuntimeError::IntegrityError)?;
+    kortex_pack::validate::files(&files).map_err(|_| RuntimeError::UnsupportedAbi)?;
     let (m, c, _) = package_parts(&bytes)?;
     VerifiedTool::verify(&m, &c, bytes, proof, keys)
 }
 pub(crate) fn package_parts(bytes: &[u8]) -> Result<(Value, Value, Vec<u8>), RuntimeError> {
-    let bad = || RuntimeError::IntegrityError;
-    if bytes.len() > 25 * 1024 * 1024 {
-        return Err(bad());
-    }
-    let mut archive = zip::ZipArchive::new(Cursor::new(bytes)).map_err(|_| bad())?;
-    if archive.len() > 256 {
-        return Err(bad());
-    }
-    let mut names = BTreeSet::new();
-    let mut files = BTreeMap::new();
-    let mut total = 0u64;
-    for i in 0..archive.len() {
-        let mut f = archive.by_index(i).map_err(|_| bad())?;
-        let name = f.name().to_string();
-        if name.is_empty()
-            || name.len() > 256
-            || !name
-                .bytes()
-                .all(|b| b.is_ascii_alphanumeric() || b"_./-".contains(&b))
-            || name
-                .split('/')
-                .any(|p| p.is_empty() || p == "." || p == "..")
-            || !names.insert(name.to_lowercase())
-            || f.unix_mode()
-                .is_some_and(|m| m & 0xf000 != 0 && m & 0xf000 != 0x8000)
-        {
-            return Err(bad());
-        }
-        total = total.checked_add(f.size()).ok_or_else(bad)?;
-        if total > 50 * 1024 * 1024
-            || f.size() > 20 * 1024 * 1024
-            || f.size() > f.compressed_size().max(1) * 100
-        {
-            return Err(bad());
-        }
-        let mut data = Vec::new();
-        let size = f.size();
-        f.by_ref()
-            .take(size + 1)
-            .read_to_end(&mut data)
-            .map_err(|_| bad())?;
-        if data.len() as u64 != size {
-            return Err(bad());
-        }
-        files.insert(name, data);
-    }
-    let m = files.remove("manifest.json").ok_or_else(bad)?;
-    let c = files.remove("contract.json").ok_or_else(bad)?;
+    let mut files = kortex_pack::archive::read(bytes).map_err(|_| RuntimeError::IntegrityError)?;
+    let m = files
+        .remove("manifest.json")
+        .ok_or(RuntimeError::IntegrityError)?;
+    let c = files
+        .remove("contract.json")
+        .ok_or(RuntimeError::IntegrityError)?;
     if m.len() > 1048576 || c.len() > 1048576 {
-        return Err(bad());
+        return Err(RuntimeError::IntegrityError);
     }
     Ok((
-        serde_json::from_slice(&m).map_err(|_| bad())?,
-        serde_json::from_slice(&c).map_err(|_| bad())?,
-        files.remove("module.wasm").ok_or_else(bad)?,
+        serde_json::from_slice(&m).map_err(|_| RuntimeError::IntegrityError)?,
+        serde_json::from_slice(&c).map_err(|_| RuntimeError::IntegrityError)?,
+        files
+            .remove("module.wasm")
+            .ok_or(RuntimeError::IntegrityError)?,
     ))
+}
+#[derive(serde::Serialize, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct HostTrust {
+    pub root: kortex_verify::keys::RootKey,
+    pub document: kortex_verify::keys::SignedKeys,
+    pub minimum_version: u64,
+}
+pub fn verify_package_with_trust(
+    bytes: Vec<u8>,
+    proof: &kortex_verify::Descriptor,
+    bundle: &HostTrust,
+    now: u64,
+) -> Result<VerifiedTool, RuntimeError> {
+    use base64::{Engine as _, engine::general_purpose::STANDARD};
+    kortex_verify::verify_archive_hash(&bytes, proof).map_err(|_| RuntimeError::IntegrityError)?;
+    let trust = kortex_verify::keys::TrustStore::from_signed(
+        &bundle.document,
+        &bundle.root,
+        bundle.minimum_version,
+        now,
+    )
+    .map_err(|_| RuntimeError::UntrustedKey)?;
+    kortex_verify::verify_descriptor(&bytes, proof, &trust, now)
+        .map_err(|_| RuntimeError::SignatureInvalid)?;
+    let key = bundle
+        .document
+        .keys
+        .iter()
+        .find(|k| k.id == proof.signing_key_id)
+        .ok_or(RuntimeError::UntrustedKey)?;
+    let key: [u8; 32] = STANDARD
+        .decode(&key.public_key_base64)
+        .map_err(|_| RuntimeError::UntrustedKey)?
+        .try_into()
+        .map_err(|_| RuntimeError::UntrustedKey)?;
+    let descriptor = ArtifactDescriptor {
+        schema_version: proof.schema_version,
+        tool_id: proof.tool_id.clone(),
+        version: proof.version.clone(),
+        abi_version: proof.abi_version.clone(),
+        sha256: proof.sha256.clone(),
+        signing_key_id: proof.signing_key_id.clone(),
+        signature: STANDARD
+            .decode(&proof.signature)
+            .map_err(|_| RuntimeError::SignatureInvalid)?
+            .try_into()
+            .map_err(|_| RuntimeError::SignatureInvalid)?,
+    };
+    verify_package(
+        bytes,
+        &descriptor,
+        &BTreeMap::from([(proof.signing_key_id.clone(), key)]),
+    )
 }

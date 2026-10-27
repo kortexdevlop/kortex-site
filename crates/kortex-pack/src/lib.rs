@@ -1,6 +1,7 @@
 //! Canonical .tool construction and bounded, memory-only validation.
 pub mod archive;
 pub mod validate;
+pub mod wasm_check;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 pub type Files = BTreeMap<String, Vec<u8>>;

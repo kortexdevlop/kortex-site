@@ -1,0 +1,17 @@
+{
+  "corpus_sha256": "80a38a6e6d4985dbdab0e2e4b80d9287f0d53191dcab37f94188de0a2bd9cff1",
+  "instantiations": 0,
+  "mutations": 10000,
+  "panics": 0,
+  "rejected": [
+    4970,
+    4982
+  ],
+  "seed": "0x4b4f5254",
+  "structurally_valid_mutations": [
+    30,
+    18
+  ],
+  "wasm": 5000,
+  "zip": 5000
+}

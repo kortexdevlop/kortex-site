@@ -32,10 +32,11 @@ test('archive signée, ZIP hostile, cache corrompu et MIME refusés avant exécu
   async function proof(bytes:Uint8Array){const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');return {schema_version:1,tool_id:t.manifest.id,version:t.manifest.version,abi_version:'1.0',sha256,signing_key_id:'test',signature:await (window as any).signTestArtifact(Array.from(encoder.encode(`kortex-artifact-v1\n${t.manifest.id}\n${t.manifest.version}\n1.0\n${sha256}\n`)))};}
   const bytes=zip(entries),descriptor=await proof(bytes);const tool=await t.api.VerifiedTool.verifyArchive(bytes,descriptor,trust);const bridge=await t.api.startVerifiedTool(tool);const reply=await bridge.dispatch({v:1,request_id:crypto.randomUUID(),kind:'action.invoke',payload:{action_id:'multiply',input:{a:3,b:7}}});bridge.stop();
   const errors=[];const tampered=bytes.slice();tampered[40]^=1;try{await t.api.VerifiedTool.verifyArchive(tampered,descriptor,trust)}catch(e){errors.push((e as Error).message)}
-  for(const bad of [zip([['../escape',encoder.encode('x')],...entries]),zip(entries,true)]){try{await t.api.VerifiedTool.verifyArchive(bad,await proof(bad),trust)}catch(e){errors.push((e as Error).message)}}
+  const commented=new Uint8Array([...zip(entries),65]);new DataView(commented.buffer).setUint16(commented.length-3,1,true);
+  for(const bad of [zip([['../escape',encoder.encode('x')],...entries]),zip(entries,true),commented]){try{await t.api.VerifiedTool.verifyArchive(bad,await proof(bad),trust)}catch(e){errors.push((e as Error).message)}}
   (window as any).archiveTest={bytes,descriptor,trust};return {bytes:Array.from(bytes),descriptor,errors,result:reply.data.result};
  });
- expect(fixture.result).toBe(21);expect(fixture.errors).toEqual(['INTEGRITY_ERROR','INVALID_ARCHIVE','ARCHIVE_LIMIT']);
+ expect(fixture.result).toBe(21);expect(fixture.errors).toEqual(['INTEGRITY_ERROR','INVALID_ARCHIVE','ARCHIVE_LIMIT','INVALID_ARCHIVE']);
  await page.route(server.origin+'/tool',route=>route.fulfill({contentType:'application/zip',body:Buffer.from(fixture.bytes)}));
  const outcome=await page.evaluate(async(origin)=>{const a=(window as any).archiveTest;const {ToolLoader}=await import('/adapter/host.js' as string);const loader=new ToolLoader(a.trust,origin);const d={...a.descriptor,url:origin+'/tool'};await loader.loadTool(d);const cache=await caches.open('kortex-artifacts-v1');const keys=await cache.keys();await cache.put(keys[0],new Response(new Uint8Array([1,2,3])));let code='';try{await loader.loadTool(d)}catch(e){code=(e as Error).message}const remaining=(await cache.keys()).length;return {code,remaining}},server.origin);
  expect(outcome).toEqual({code:'INTEGRITY_ERROR',remaining:0});

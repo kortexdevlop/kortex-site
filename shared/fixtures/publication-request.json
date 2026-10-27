@@ -1,0 +1,210 @@
+{
+  "descriptor": {
+    "schema_version": 1,
+    "tool_id": "calculatrice",
+    "version": "1.0.0",
+    "abi_version": "1.0",
+    "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+    "signing_key_id": "test-release-key",
+    "signature": "102DJMeLPRf1fWBP6/8880pWn/NWwKRvEPd4yqtWSfie1bpPgST+DO8OQUR3MSrOhcMaNTHuqnsW//HsdROeDQ=="
+  },
+  "manifest": {
+    "abi_version": "1.0",
+    "category": "calculation",
+    "description": "Une calculatrice accessible avec clavier numérique. Les quatre opérations s’exécutent localement, sans accès aux fichiers, au réseau ou au presse-papiers.",
+    "entrypoint": "module.wasm",
+    "format_version": "1.0",
+    "icon_path": "assets/icon.svg",
+    "id": "calculatrice",
+    "min_runtime": "1.0.0",
+    "name": "Calculatrice",
+    "permissions": [],
+    "seo": {
+      "description": "Calculez avec quatre opérations et un clavier numérique, localement et sans permission sensible.",
+      "title": "Calculatrice accessible — Kortex"
+    },
+    "summary": "Addition, soustraction, multiplication et division en local.",
+    "tags": [
+      "math",
+      "calculator"
+    ],
+    "ui_schema_version": "1.0",
+    "version": "1.0.0"
+  },
+  "contract": {
+    "actions": [
+      {
+        "description": "Additionner deux nombres finis",
+        "id": "add",
+        "idempotent": true,
+        "input_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "a": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            },
+            "b": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            }
+          },
+          "required": [
+            "a",
+            "b"
+          ],
+          "type": "object"
+        },
+        "output_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "result": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object"
+        },
+        "permissions": [],
+        "side_effect": "none",
+        "timeout_ms": 1000
+      },
+      {
+        "description": "Soustraire deux nombres finis",
+        "id": "subtract",
+        "idempotent": true,
+        "input_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "a": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            },
+            "b": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            }
+          },
+          "required": [
+            "a",
+            "b"
+          ],
+          "type": "object"
+        },
+        "output_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "result": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object"
+        },
+        "permissions": [],
+        "side_effect": "none",
+        "timeout_ms": 1000
+      },
+      {
+        "description": "Multiplier deux nombres finis",
+        "id": "multiply",
+        "idempotent": true,
+        "input_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "a": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            },
+            "b": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            }
+          },
+          "required": [
+            "a",
+            "b"
+          ],
+          "type": "object"
+        },
+        "output_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "result": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object"
+        },
+        "permissions": [],
+        "side_effect": "none",
+        "timeout_ms": 1000
+      },
+      {
+        "description": "Diviser deux nombres finis ; DIVIDE_BY_ZERO si b vaut zéro",
+        "id": "divide",
+        "idempotent": true,
+        "input_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "a": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            },
+            "b": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            }
+          },
+          "required": [
+            "a",
+            "b"
+          ],
+          "type": "object"
+        },
+        "output_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "result": {
+              "maximum": 9007199254740991,
+              "minimum": -9007199254740991,
+              "type": "number"
+            }
+          },
+          "required": [
+            "result"
+          ],
+          "type": "object"
+        },
+        "permissions": [],
+        "side_effect": "none",
+        "timeout_ms": 1000
+      }
+    ],
+    "contract_version": "1.0",
+    "tool_id": "calculatrice"
+  },
+  "r2_key": "tools/calculatrice/1.0.0/1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787.tool",
+  "request_id": "85300000-0000-4000-8000-000000000001"
+}

@@ -1,5 +1,5 @@
 use kortex_xtask::{Result, read_bounded};
-use serde_json::json;
+use serde_json::{Value, json};
 use std::{
     collections::BTreeMap,
     path::{Path, PathBuf},
@@ -118,7 +118,13 @@ fn run() -> Result<()> {
                 }
                 "package" => {
                     let (path, report) = kortex_xtask::package::package(&root, &tool, &out)?;
-                    results.push(json!({"tool_id":tool.manifest.id,"archive":path,"sha256":kortex_verify::sha256(&read_bounded(&path,kortex_pack::MAX_ARCHIVE)?),"validation":report,"signature_verified":false}));
+                    let bytes = read_bounded(&path, kortex_pack::MAX_ARCHIVE)?;
+                    let files = kortex_pack::archive::read(&bytes).map_err(|e| e.code)?;
+                    let manifest: Value = serde_json::from_slice(&files["manifest.json"])
+                        .map_err(|e| e.to_string())?;
+                    let contract: Value = serde_json::from_slice(&files["contract.json"])
+                        .map_err(|e| e.to_string())?;
+                    results.push(json!({"tool_id":tool.manifest.id,"archive":path,"sha256":kortex_verify::sha256(&bytes),"validation":report,"manifest":manifest,"contract":contract,"signature_verified":false}));
                 }
                 _ => unreachable!(),
             }

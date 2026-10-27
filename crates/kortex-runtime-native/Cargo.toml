@@ -24,6 +24,8 @@ url="=2.5.8"
 futures-channel="=0.3.34"
 getrandom="=0.3.4"
 arboard={version="=3.6.1",default-features=false}
+kortex-pack={path="../kortex-pack"}
+kortex-verify={path="../kortex-verify"}
 [dev-dependencies]
 wat="=1.262.0"
 [[test]]

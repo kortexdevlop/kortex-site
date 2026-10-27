@@ -13,3 +13,7 @@ PUBLIC_* permits only the three origins in the configuration checker. OIDC_CLIEN
 KORTEX_SIGNING_PRIVATE_KEY is exclusively a protected CI secret for artifact signing. It must not appear in application environment files, browser bundles, logs or fixtures. CI uses narrowly scoped identities/OIDC where available. Cloudflare credentials belong in protected GitHub/Cloudflare settings, never PUBLIC_*. Signing public keys and key IDs are distributed separately from private keys.
 
 Copy .env.example to .env for local configuration. For staging/production inject values into the process or platform secrets. Run node scripts/check-env.mjs before startup/deployment. Required non-local metadata is checked without displaying values. This structural check does not verify remote resource existence or cryptographic key validity; those checks belong to provisioning and signing steps.
+
+## Catalog binding planned at step 9.0
+
+The API will expose D1 through binding `KORTEX_DB`, separately provisioned for staging and production. Real database names/IDs and the API Wrangler configuration remain pending at step 9.2. Do not substitute the all-zero local-test UUID for a remote resource. Step 9.0 runs migration 0001 and 10,000 synthetic tools through SQLite and isolated Wrangler D1 **local** state under target/ only; no account credentials or remote write are needed. Migrations live in database/migrations; Wrangler tracks applied scripts in d1_migrations. See docs/DATABASE.md. R2 integrity/publication state follows at 9.1; artifacts are never stored in D1.

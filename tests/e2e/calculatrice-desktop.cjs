@@ -1,7 +1,8 @@
 // Test-only CDP connection, enabled only by the companion harness.
 const {chromium,expect}=require('playwright/test');
 const fs=require('node:fs'),path=require('node:path');const root=path.resolve(__dirname,'../..');
-(async()=>{const browser=await chromium.connectOverCDP('http://127.0.0.1:9332');try{
+const gate=process.env.KORTEX_GATE_REPORT?JSON.parse(fs.readFileSync(process.env.KORTEX_GATE_REPORT)):null;
+(async()=>{let browser;for(let attempt=0;attempt<120;attempt++){try{browser=await chromium.connectOverCDP('http://127.0.0.1:9332');break}catch(error){if(attempt===119)throw error;await new Promise(resolve=>setTimeout(resolve,250))}}try{
  const page=browser.contexts()[0].pages()[0];
  await expect(page.getByRole('button',{name:'Ouvrir',exact:true})).toBeVisible();
  await page.getByRole('button',{name:'Ouvrir',exact:true}).click();await page.getByRole('button',{name:'Annuler',exact:true}).click();await expect(page.locator('[data-node=calculator]')).toHaveCount(0);
@@ -19,7 +20,7 @@ const fs=require('node:fs'),path=require('node:path');const root=path.resolve(__
  await page.getByRole('button',{name:'Diviser',exact:true}).click();await expect(page.locator('[data-node=result]')).toHaveText('DIVIDE_BY_ZERO');
  await page.getByLabel('Action',{exact:true}).fill('divide');await page.getByLabel('Paramètres JSON').fill('{"a":25,"b":0}');await page.getByRole('button',{name:'Exécuter l’action'}).click();await expect(page.getByLabel('Résultat',{exact:true})).toContainText('DIVIDE_BY_ZERO');
  expect(network).toEqual([]);expect(ipc).toBeGreaterThan(0);
- await page.screenshot({path:path.join(root,'docs/evidence/calculatrice-windows.png'),fullPage:true});
+ await page.screenshot({path:path.join(root,gate?'docs/evidence/package8-windows.png':'docs/evidence/calculatrice-windows.png'),fullPage:true});
  await page.getByRole('button',{name:'Fermer',exact:true}).click();await expect(page.locator('[data-node=calculator]')).toHaveCount(0);await open();await expect(page.getByLabel('Premier nombre',{exact:true})).toHaveValue('');
- const f=JSON.parse(fs.readFileSync(path.join(root,'target/calculatrice-fixture/fixture.json')));console.log('PASS Windows calculatrice: keypad/action=1200, identical DIVIDE_BY_ZERO, cancel/close/reopen; archive SHA256 '+f.descriptor.sha256);
+ const f=gate?{descriptor:{sha256:gate.sha256}}:JSON.parse(fs.readFileSync(path.join(root,'target/calculatrice-fixture/fixture.json')));console.log('PASS Windows calculatrice: keypad/action=1200, identical DIVIDE_BY_ZERO, cancel/close/reopen; archive SHA256 '+f.descriptor.sha256);
 }finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});

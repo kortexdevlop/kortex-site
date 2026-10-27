@@ -1,0 +1,15 @@
+{
+  "format": "PACKAGE_FORMAT_V1",
+  "tool_id": "calculatrice",
+  "version": "1.0.0",
+  "abi_version": "1.0",
+  "archive": "tests/fixtures/artifact-signed-test.tool",
+  "descriptor": "tests/fixtures/artifact-signed-test.json",
+  "archive_bytes": 264845,
+  "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+  "guest_sha256": "f095744f63b9594af61c02a6a515f2ad7ddab0ca3d5e7ccbcc9120a78f850c50",
+  "artifact_schema_sha256": "3712fe66d1ff069315b19e87fae71ffe7d523b9843ff1caed02632af84f7926c",
+  "root": "shared/fixtures/trust-test-root.json",
+  "keys": "shared/fixtures/trust-test-keys.json",
+  "legacy_reference": "tests/golden/calculatrice-reference.json"
+}

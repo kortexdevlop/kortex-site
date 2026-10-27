@@ -6,3 +6,7 @@ if(result.status!==0)process.exit(result.status??1);
 
 const calculator=spawnSync(process.execPath,[resolve(root,'tests/fixtures/prepare-calculatrice.mjs')],{cwd:root,stdio:'inherit',env:process.env});
 if(calculator.status!==0)process.exit(calculator.status??1);
+
+// Generate the same correctly signed hostile archives exercised by native admission.
+const security=spawnSync('cargo',['test','-p','kortex-runtime-native','--test','package_security','--locked'],{cwd:root,stdio:'inherit',env:process.env});
+if(security.status!==0)process.exit(security.status??1);

@@ -28,7 +28,14 @@ pub fn collect(tool: &Tool, module: &Path) -> Result<kortex_pack::Files> {
         }
     }
     files.insert(icon.clone(), read_bounded(&path, kortex_pack::MAX_FILE)?);
-    kortex_pack::validate::files(&files).map_err(|e| format!("{}:{}", e.code, e.path))?;
+    let (manifest, _) =
+        kortex_pack::validate::files(&files).map_err(|e| format!("{}:{}", e.code, e.path))?;
+    if manifest.id != tool.manifest.id
+        || manifest.version != tool.manifest.version
+        || manifest.abi_version != tool.manifest.abi_version
+    {
+        return Err("SOURCE_METADATA_CHANGED_DURING_BUILD".into());
+    }
     Ok(files)
 }
 pub fn package(

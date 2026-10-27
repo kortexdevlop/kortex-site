@@ -1,0 +1,501 @@
+{
+  "date": "2026-10-27",
+  "source_commit": "02b0f6d",
+  "implementation_commit": "commit containing this evidence",
+  "steps": [
+    "8.3",
+    "8.4",
+    "8.5",
+    "9.0"
+  ],
+  "status": "completed locally; PACKAGE_FORMAT_V1 frozen; next 9.1 not started",
+  "authorization": "Owner: Enchaîne les 4 prochaines étapes; local batch/freeze, not an independent security attestation",
+  "environment": {
+    "os": "Windows x64",
+    "rustc": "1.99.1 (58cf8f9c3 2026-10-13)",
+    "cargo": "1.99.1",
+    "node": "24.15.0",
+    "pnpm": "11.25.0",
+    "playwright": "1.64.1",
+    "wrangler": "4.152.0",
+    "sqlite": "3.51.3 (Node built-in)",
+    "cargo_target_dir": "D:/Kortex-build-cache",
+    "native_debug_info": 0,
+    "cargo_incremental": false
+  },
+  "canonical_archive": {
+    "format": "PACKAGE_FORMAT_V1",
+    "tool_id": "calculatrice",
+    "version": "1.0.0",
+    "abi_version": "1.0",
+    "archive": "tests/fixtures/artifact-signed-test.tool",
+    "descriptor": "tests/fixtures/artifact-signed-test.json",
+    "archive_bytes": 264845,
+    "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+    "guest_sha256": "f095744f63b9594af61c02a6a515f2ad7ddab0ca3d5e7ccbcc9120a78f850c50",
+    "artifact_schema_sha256": "3712fe66d1ff069315b19e87fae71ffe7d523b9843ff1caed02632af84f7926c",
+    "root": "shared/fixtures/trust-test-root.json",
+    "keys": "shared/fixtures/trust-test-keys.json",
+    "legacy_reference": "tests/golden/calculatrice-reference.json"
+  },
+  "corpus": {
+    "corpus_sha256": "80a38a6e6d4985dbdab0e2e4b80d9287f0d53191dcab37f94188de0a2bd9cff1",
+    "instantiations": 0,
+    "mutations": 10000,
+    "panics": 0,
+    "rejected": [
+      4970,
+      4982
+    ],
+    "seed": "0x4b4f5254",
+    "structurally_valid_mutations": [
+      30,
+      18
+    ],
+    "wasm": 5000,
+    "zip": 5000
+  },
+  "cross_host_hostile": {
+    "correctly_signed_cases": [
+      {
+        "name": "extra-file",
+        "sha256": "cc75622eb5b0fd19dd1f48a91dba09be86a0c96fc824b9ec54f5aadf68a7abe0"
+      },
+      {
+        "name": "identity-conflict",
+        "sha256": "7a03f59f85daac428bf5afcee7084ae28fc4dbdc42219ed1a39d52343d003bc9"
+      },
+      {
+        "name": "wasi",
+        "sha256": "f06037aa2408c46a1c5fde8b10175d0081605f8cb7f3b00348d3bda8a2f8a484"
+      },
+      {
+        "name": "shared-memory",
+        "sha256": "c363c9334e6ea75582f01c654ab1c251ce226b186129261dce6577a94c992414"
+      },
+      {
+        "name": "unbounded-memory",
+        "sha256": "cb686149823347ef397a60bb6cbacaadb4daa4cbde9f7f51d46013730d6a1c15"
+      },
+      {
+        "name": "wrong-export",
+        "sha256": "235c4c91a3a6cb3dac216deb84cf8358b2410e5b822dfeb54cfd7553727fdd5d"
+      }
+    ],
+    "native_rejected": 6,
+    "chromium_rejected": 6,
+    "webkit_rejected": 6,
+    "workers_created": 0,
+    "engine_instantiations_for_hostile_corpus": 0
+  },
+  "pipeline": {
+    "calls": [
+      "build",
+      "validate",
+      "package",
+      "hash",
+      "verify"
+    ],
+    "idempotent": true,
+    "cargo_offline": true,
+    "remote_writes": 0,
+    "independent_stagings_byte_equal": true,
+    "proof_reused_on_retry": true,
+    "immutable_output": true
+  },
+  "gate_public_test_material": {
+    "root": {
+      "id": "dry-run-root",
+      "public_key_base64": "xlUPeGUhhF5EtdooGuM4nQEcyx1kGijFzHY3FoUWzOM="
+    },
+    "document": {
+      "schema_version": 1,
+      "version": 1,
+      "issued_at": 1793114862262,
+      "expires": 1793201263262,
+      "root_key_id": "dry-run-root",
+      "keys": [
+        {
+          "id": "dry-run-release",
+          "public_key_base64": "Fv5pkg+STEU7Q64xpTy0yI/lUpyW9GVRvDdUAE8Uat4=",
+          "not_before": 1793114862262,
+          "expires": 1793201263262,
+          "revoked": false
+        }
+      ],
+      "signature": "hMfVmeJDsmODmSIpwj8Jp0OGgF1N6IICQUaxPhHX9eYpfUJ8B+hEhLuX9BDrrkRadix4Sgup1zmJY4r2XQoPAg=="
+    },
+    "minimum_version": 1,
+    "descriptor": {
+      "schema_version": 1,
+      "tool_id": "calculatrice",
+      "version": "1.0.0",
+      "abi_version": "1.0",
+      "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+      "signing_key_id": "dry-run-release",
+      "signature": "2GPWi8wfvWE8s1oLeTDAVbCK5YaizlsGZFVknZjFbXsJflUlCX6Vust1kl7F83/pbTK5LbhJpVa+7EmeCSd7DA=="
+    },
+    "private_material_persisted": false,
+    "note": "Ephemeral TEST trust supplied by host operator; valid for this dated run only. Reproduce with fresh staging after expiry."
+  },
+  "hosts": {
+    "web": [
+      "Chromium",
+      "WebKit"
+    ],
+    "windows": "WebView2 + Wasmtime 50.0.0",
+    "normal_admission": true,
+    "tool_specific_exception": false,
+    "keypad_result": 1200,
+    "action_result": 1200,
+    "divide_by_zero": "DIVIDE_BY_ZERO",
+    "cancel_close_reopen": true,
+    "screenshots": [
+      {
+        "path": "docs/evidence/package8-chromium.png",
+        "sha256": "47888e57b790c137f8bb2997b249cb3e9068f9181f239b3570f8686d8fc8078f",
+        "visually_inspected": true
+      },
+      {
+        "path": "docs/evidence/package8-webkit.png",
+        "sha256": "4f86c94c2eededd24487b4ca453afa48ec59a126999641eda156032e90647909",
+        "visually_inspected": true
+      },
+      {
+        "path": "docs/evidence/package8-windows.png",
+        "sha256": "0ab6300f2c96edb20a16ccc1d9587a4d69495736d1ae3258839ce8485f6c4493",
+        "visually_inspected": true
+      }
+    ]
+  },
+  "database": {
+    "sqlite": {
+      "engine": "3.51.3",
+      "tools": 10000,
+      "actions": 10000,
+      "refused": 13,
+      "foreign_key_errors": 0,
+      "plans": [
+        "SEARCH tools USING COVERING INDEX idx_tools_recent ((published_at,id)<(?,?))",
+        "SEARCH tools USING COVERING INDEX idx_tools_name ((name_norm,id)>(?,?))",
+        "SEARCH tools USING COVERING INDEX idx_tools_category_recent (category_id=? AND (published_at,id)<(?,?))",
+        "SEARCH tools USING COVERING INDEX idx_tools_category_name (category_id=? AND (name_norm,id)>(?,?))"
+      ]
+    },
+    "d1_local": {
+      "tools": 10000,
+      "actions": 10000,
+      "constraint_refusals": 5,
+      "plans": [
+        "SEARCH tools USING COVERING INDEX idx_tools_recent ((published_at,id)<(?,?))",
+        "SEARCH tools USING COVERING INDEX idx_tools_name ((name_norm,id)>(?,?))",
+        "SEARCH tools USING COVERING INDEX idx_tools_category_recent (category_id=? AND (published_at,id)<(?,?))",
+        "SEARCH tools USING COVERING INDEX idx_tools_category_name (category_id=? AND (name_norm,id)>(?,?))"
+      ],
+      "migration_replay": "no pending migration on second application",
+      "migrations_applied": 1,
+      "foreign_key_errors": 0,
+      "local_only": true,
+      "remote_writes": 0,
+      "calls": [
+        {
+          "arguments": [
+            "migrations",
+            "apply",
+            "kortex-catalog-local-test",
+            "--local"
+          ],
+          "exit_code": 0,
+          "output": "\n ⛅️ wrangler 4.152.0 (update available 4.153.0)\n───────────────────────────────────────────────\nResource location: local \n\nUse --remote if you want to access the remote instance.\n\nMigrations to be applied:\n┌──────────────────┐\n│ name             │\n├──────────────────┤\n│ 0001_catalog.sql │\n└──────────────────┘\n? About to apply 1 migration(s)\nYour database may not be available to serve requests during the migration, continue?\n🤖 Using fallback value in non-interactive context: yes\n🌀 Executing on local database kortex-catalog-local-test (00000000-0000-4000-8000-000000000009) from ./target\\d1-catalog-gYzrFn\\state\\v3\\d1:\n🌀 To execute on your remote database, add a --remote flag to your wrangler command.\n🚣 26 commands executed successfully.\n┌──────────────────┬────────┐\n│ name             │ status │\n├──────────────────┼────────┤\n│ 0001_catalog.sql │ ✅     │\n└──────────────────┴────────┘\n"
+        },
+        {
+          "arguments": [
+            "migrations",
+            "apply",
+            "kortex-catalog-local-test",
+            "--local"
+          ],
+          "exit_code": 0,
+          "output": "\n ⛅️ wrangler 4.152.0 (update available 4.153.0)\n───────────────────────────────────────────────\nResource location: local \n\nUse --remote if you want to access the remote instance.\n\n✅ No migrations to apply!\n"
+        },
+        {
+          "arguments": [
+            "execute",
+            "kortex-catalog-local-test",
+            "--local",
+            "--file",
+            "C:\\Users\\µ\\Desktop\\KORTEX-\\database\\tests\\catalog.test.sql",
+            "--json"
+          ],
+          "exit_code": 0,
+          "output": "[\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 51\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 118\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 113\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 85\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 98\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 58\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"tool_count\": 10000\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"action_count\": 10000\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 21\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"id\": 4,\n        \"parent\": 0,\n        \"notused\": 181,\n        \"detail\": \"SEARCH tools USING COVERING INDEX idx_tools_recent ((published_at,id)<(?,?))\"\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"id\": 4,\n        \"parent\": 0,\n        \"notused\": 182,\n        \"detail\": \"SEARCH tools USING COVERING INDEX idx_tools_name ((name_norm,id)>(?,?))\"\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"id\": 4,\n        \"parent\": 0,\n        \"notused\": 46,\n        \"detail\": \"SEARCH tools USING COVERING INDEX idx_tools_category_recent (category_id=? AND (published_at,id)<(?,?))\"\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"id\": 4,\n        \"parent\": 0,\n        \"notused\": 46,\n        \"detail\": \"SEARCH tools USING COVERING INDEX idx_tools_category_name (category_id=? AND (name_norm,id)>(?,?))\"\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  }\n]\n"
+        },
+        {
+          "arguments": [
+            "execute",
+            "kortex-catalog-local-test",
+            "--local",
+            "--command",
+            "INSERT INTO categories VALUES('calculation','duplicate')",
+            "--json"
+          ],
+          "exit_code": 3221226505,
+          "error": "Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\\win\\async.c, line 76\r\n"
+        },
+        {
+          "arguments": [
+            "execute",
+            "kortex-catalog-local-test",
+            "--local",
+            "--command",
+            "INSERT INTO tool_versions SELECT * FROM tool_versions LIMIT 1",
+            "--json"
+          ],
+          "exit_code": 1,
+          "error": ""
+        },
+        {
+          "arguments": [
+            "execute",
+            "kortex-catalog-local-test",
+            "--local",
+            "--command",
+            "UPDATE tools SET published_version='9.9.9' WHERE id='sample-00001'",
+            "--json"
+          ],
+          "exit_code": 3221226505,
+          "error": "Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\\win\\async.c, line 76\r\n"
+        },
+        {
+          "arguments": [
+            "execute",
+            "kortex-catalog-local-test",
+            "--local",
+            "--command",
+            "INSERT INTO actions VALUES('missing','1.0.0','add','bad','{}','{}','[]','none',1,1000)",
+            "--json"
+          ],
+          "exit_code": 1,
+          "error": ""
+        },
+        {
+          "arguments": [
+            "execute",
+            "kortex-catalog-local-test",
+            "--local",
+            "--command",
+            "UPDATE publication_events SET event_type='tampered' WHERE id=1",
+            "--json"
+          ],
+          "exit_code": 1,
+          "error": ""
+        },
+        {
+          "arguments": [
+            "execute",
+            "kortex-catalog-local-test",
+            "--local",
+            "--command",
+            "SELECT COUNT(*) AS migrations FROM d1_migrations; PRAGMA foreign_key_check;",
+            "--json"
+          ],
+          "exit_code": 0,
+          "output": "[\n  {\n    \"results\": [\n      {\n        \"migrations\": 1\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 35\n    }\n  }\n]\n"
+        }
+      ]
+    },
+    "migration_sha256": "23bb989e577d1793cc66a124510d349c74a6fe380f1b2000fd33c7f2b88f13cb",
+    "synthetic_metadata_only": true,
+    "binary_blobs_stored": false
+  },
+  "checks": [
+    {
+      "command": "cargo test --workspace --locked",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": {
+        "passed": 98,
+        "failed": 0,
+        "ignored": 1,
+        "ignored_reason": "external HTTPS opt-in smoke"
+      },
+      "local_log": "target/tests-8.3-9.0-rust-final.log",
+      "log_sha256": "2f252800ab9e19113195561c64436182ad6414854f21a9def2562f0fbfa0da70"
+    },
+    {
+      "command": "pnpm exec playwright test -c tests/web/playwright.config.ts",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": {
+        "passed": 44,
+        "failed": 0,
+        "browsers": [
+          "chromium",
+          "webkit"
+        ]
+      },
+      "local_log": "target/tests-8.3-9.0-web-final.log",
+      "log_sha256": "640fd6a329a340c204fc7c3241328a417d32c5d16e8c3dc24d8dba7d8809e594"
+    },
+    {
+      "command": "pnpm --filter @kortex/web-adapter test",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": {
+        "passed": 32,
+        "failed": 0
+      },
+      "local_log": "target/tests-8.3-9.0-web-adapter-final.log",
+      "log_sha256": "17cb71483cb461167e6de25fc170237b9e37a411a026e2e9cf4aa1f908780321"
+    },
+    {
+      "command": "powershell -NoProfile -File tests/e2e/package-desktop.ps1",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": "PASS Windows calculatrice; pipeline archive SHA matches canonical reference",
+      "local_log": "target/tests-8.5-windows.log",
+      "log_sha256": "25ff9c92ef7e848dc028f40b56a38a17b1d47223e85b8a36ecbf78112fb91f2e"
+    },
+    {
+      "command": "node scripts/release-tool.mjs --tool calculatrice --dry-run",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": "prepared; verified; zero remote writes",
+      "local_log": "target/tests-8.4-release-final.log",
+      "log_sha256": "c48a23fde5f6ee0b65d66988db4ee1e941f5d78c69f6e2ef884a88ba43bec012"
+    },
+    {
+      "command": "node --test tests/publication/*.test.mjs database/tests/catalog.test.mjs",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": {
+        "passed": 3,
+        "failed": 0
+      },
+      "local_log": "target/tests-8.4-9.0-node-final.log",
+      "log_sha256": "7c6ab7d6426010eb765272c049bd093b444349f704410af71cedbe48389a990a"
+    },
+    {
+      "command": "node database/tests/d1-local.mjs",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": "10k synthetic tools/actions; four indexed plans; migration replay and five expected refusals",
+      "local_log": "target/tests-9.0-d1.log",
+      "log_sha256": "cd116fb67fd39d4aa7b7ef7fde78fca2f1dd45f170b56d21d3f9bcaf8df7f1f2"
+    },
+    {
+      "command": "pnpm --filter @kortex/web-adapter typecheck",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": "passed",
+      "local_log": "target/tests-8.5-typecheck.log",
+      "log_sha256": "0c9768dd0490cd47ce89ed12689399b59adedde1438bd29643b607e6e2526c21"
+    },
+    {
+      "command": "cargo clippy -p kortex-pack -p kortex-verify -p kortex-xtask --all-targets --locked -- -D warnings",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": "passed",
+      "local_log": "target/tests-8.3-9.0-clippy-pack.log",
+      "log_sha256": "192efe8d0bd67a77d424e0499e197136c1228ba6a5caf029bdc14361b0511fa2"
+    },
+    {
+      "command": "cargo clippy -p kortex-runtime-native -p kortex-runtime-desktop --all-targets --locked --no-deps",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": "passed with eight pre-existing Desktop warnings",
+      "local_log": "target/tests-8.5-clippy-hosts.log",
+      "log_sha256": "2c03d86e4ae9b9e54c1d7702497589838de602dec4f15bf5afc4e52103e45334"
+    },
+    {
+      "command": "cargo clippy -p kortex-pack -p kortex-verify -p kortex-xtask -p kortex-runtime-native -p kortex-runtime-desktop --all-targets --locked -- -D warnings",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 101,
+      "result": "not green: pre-existing kortex-ui collapsible_if; no unrelated UI source change",
+      "local_log": "target/tests-8.3-9.0-clippy.log",
+      "log_sha256": "05abc4e9ffbeda9dc1880c6b727e3b031714504bbf3c58a226c5f964a6cf6483"
+    },
+    {
+      "command": "node --test tests/config/secrets.test.mjs",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": {
+        "passed": 6
+      },
+      "local_log": "target/tests-8.5-secrets.log",
+      "log_sha256": "3336aa8d3299e3453ab89fc6cf415c15aae51f5de8dda4a3ec6be8503430383e"
+    },
+    {
+      "command": "node scripts/check-env.mjs --example",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": "non-secret local example valid",
+      "local_log": "target/tests-8.5-env.log",
+      "log_sha256": "3e8645ac1c297f2546dcd487c7aae88bdee428a49972da7256b9b8e0b4cf0109"
+    },
+    {
+      "command": "node --test tests/fixtures/calculatrice.test.cjs",
+      "date": "2026-10-27",
+      "environment": "Windows x64",
+      "exit_code": 0,
+      "result": "legacy package/module/wire hashes unchanged",
+      "local_log": "target/tests-8.5-legacy-golden.log",
+      "log_sha256": "8e41da1199513b59b7e6f11d57355884888bda1935d0d0892596fe4d0d4d6e44"
+    }
+  ],
+  "corrections": [
+    "Windows CDP startup retry bounded to 120 attempts",
+    "PowerShell 5 report read explicitly as UTF-8 for user path µ",
+    "D1 local sqlite_version() denied; diagnostic removed, engine version not invented",
+    "Web EOCD comments rejected consistently with native reader; signed regression added",
+    "Version status cannot return to draft after publication/revocation"
+  ],
+  "limits": [
+    "Linux/macOS and Firefox excluded by owner",
+    "No remote provision, upload, deployment or production signing key",
+    "Minimum trust version remains host-supplied; no deployed durable counter or remote revocation service",
+    "10k mutations are a fixed deterministic corpus, not exhaustive fuzzing",
+    "No independent third-party security review",
+    "SQLite CLI absent: real Node SQLite prevalidation plus real Wrangler D1 local emulation",
+    "No cloud latency, concurrent load or remote database validation"
+  ],
+  "frozen_schemas": [
+    {
+      "path": "shared/schemas/manifest.schema.json",
+      "sha256": "c63ea6b9cfd1bfe07bd66e7ac8d3c6298868ffc3c2a06889c52edd00be6f9142"
+    },
+    {
+      "path": "shared/schemas/contract.schema.json",
+      "sha256": "e6b34131ecff08083ab7112db8d38ced5374822d9d69753e17c7b23e307b65b6"
+    },
+    {
+      "path": "shared/schemas/ui.schema.json",
+      "sha256": "3ca83e92605639c261b97ab8694bc249c7c3e2999123be552060e8c58013b55b"
+    },
+    {
+      "path": "shared/schemas/protocol.schema.json",
+      "sha256": "c1a289b65c13894ab8d8953c6ef6b4e1a5de884275923ad1b32e8b440dc637cf"
+    },
+    {
+      "path": "shared/schemas/workflow.schema.json",
+      "sha256": "28fdaa1b42a5d2fadc3b8d6fc81db7faacfeb208508c2da22b06eb3ab53dbb6d"
+    },
+    {
+      "path": "shared/schemas/artifact.schema.json",
+      "sha256": "3712fe66d1ff069315b19e87fae71ffe7d523b9843ff1caed02632af84f7926c"
+    }
+  ]
+}

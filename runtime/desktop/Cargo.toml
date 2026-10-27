@@ -5,6 +5,7 @@ edition.workspace=true
 rust-version.workspace=true
 publish=false
 [dependencies]
+kortex-verify={path="../../crates/kortex-verify"}
 dioxus={version="=0.7.10",default-features=false,features=["macro","html","signals","hooks","launch","desktop"]}
 kortex-ui={path="../../crates/kortex-ui"}
 kortex-core={path="../../crates/kortex-core"}
