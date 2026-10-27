@@ -35,3 +35,20 @@ node database/tests/d1-local.mjs
 La prévalidation utilise le vrai SQLite 3.51.3 intégré à Node 24.15, la CLI sqlite3 n'étant pas installée. Le second essai utilise Wrangler 4.152.0 et son vrai émulateur D1 local, avec état isolé sous target/, UUID factice et uniquement --local. Il applique la migration deux fois (deuxième fois sans migration en attente), insère 10 000 outils/versions/actions/événements, contrôle les FK et quatre plans indexés, puis exige cinq refus de contraintes. SQLite teste treize refus et une transaction d'archivage/révocation. D1 local interdit sqlite_version() : aucune version interne D1 n'est déduite ; celle de la prévalidation SQLite est mesurée séparément.
 
 Preuves : docs/evidence/validation-8.3-9.0.json. Ces essais établissent la migration et les plans locaux, sans mesure de latence cloud, charge concurrente ou catalogue distant provisionné.
+
+## Publication — migration 0002, étape 9.1
+
+La migration additive conserve 0001 et les schémas gelés. signing_keys contient les clés publiques et leur version de confiance/fenêtre ; artifacts lie une unique identité/version à SHA, clé R2, taille et descripteur détaché immuables. publication_jobs conserve UUID, empreinte de requête et état. publication_job_events trace chaque transition sans réutiliser des UUID dérivés qui pourraient entrer en collision. revocations consigne une révocation d'artefact ou de clé, jamais les deux à la fois. Les FK relient versions, artefacts, jobs et clés ; les index couvrent jobs actifs/état, clé d'artefact et révocations.
+
+La répétition exacte d'un UUID de job est ignorée sans remettre son état à zéro ni ajouter d'audit. Un autre contenu sous le même UUID déclenche IDEMPOTENCY_CONFLICT. Un artefact qui contredit le SHA de tool_versions déclenche HASH_CONFLICT ; un outil absent déclenche NOT_FOUND. La future API traduira ces résultats en 409/404 ; aucun endpoint HTTP de publication n'existe en 9.1.
+
+L'admission SQL exige des attestations R2 HEAD + relecture SHA/tailles, signature vérifiée et clé active avant validated/published. Les attestations sont écrites ensemble puis immuables. Le service de confiance devra réellement exécuter ces contrôles externes et valider artifact.schema : les contraintes SQL essentielles ne remplacent pas toute la validation JSON ni la crypto. Les fixtures publication.test.sql sont explicitement synthétiques et testent les états, sans prétendre avoir consulté R2.
+
+Ordre transactionnel : job validated→published, version draft→published, pointeur courant vers cette version. Les statuts ne reculent pas ; failed/revoked restent terminaux. Un échec reprend dans un nouveau job sur les mêmes octets. Un rollback du catalogue peut viser une version antérieure encore publiée ; une révocation est irréversible. Retirer/déplacer les pointeurs avant d'insérer la révocation ; les triggers mettent à jour les jobs/versions concernés et la clé, et écrivent les transitions dans le journal. Les anciennes lignes publiées avant 0002 ne sont pas artificiellement assorties de preuves : une nouvelle sélection de pointeur exige le job vérifié correspondant.
+
+```text
+node --test database/tests/catalog.test.mjs database/tests/publication.test.mjs
+node database/tests/publication-d1-local.mjs
+```
+
+Le test SQLite exerce aussi un échec au milieu d'une transaction puis ROLLBACK : pointeur, job et journal retrouvent leur état précédent. Le banc D1 local applique les deux migrations et leur rejeu, vérifie idempotence, refus, progression et révocation. Le banc historique d1-local.mjs isole désormais 0001 afin de conserver son jeu synthétique de 10 000 outils, dont les publications précèdent l'existence des jobs. Politique de noms, écritures conditionnelles, cache et rétention : infra/r2-policy.md. Aucun compte Cloudflare n'est nécessaire pour ces essais locaux.

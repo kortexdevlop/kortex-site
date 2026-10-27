@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-27",
+  "source_commit": "751a84f",
+  "implementation_commit": "commit containing this evidence",
+  "step": "9.1",
+  "status": "locally validated",
+  "authorization": "Owner requested completion of 9.1, preparation of 9.2 and stop at Cloudflare connection requirement",
+  "sqlite": {
+    "sqlite": "3.51.3",
+    "refusals": 23,
+    "idempotent_job_count": 1,
+    "idempotent_initial_audit_count": 1,
+    "job_events": 12,
+    "foreign_key_errors": 0,
+    "r2_network_checks": false,
+    "http_routes_implemented": false,
+    "contract_mapping": {
+      "NOT_FOUND": 404,
+      "HASH_CONFLICT": 409,
+      "IDEMPOTENCY_CONFLICT": 409
+    }
+  },
+  "d1": {
+    "local_only": true,
+    "remote_writes": 0,
+    "migrations": 2,
+    "idempotent_job_count": 1,
+    "refusals": 9,
+    "final_status": "revoked",
+    "audit_events": 4,
+    "foreign_key_errors": 0,
+    "calls": [
+      {
+        "args": [
+          "migrations",
+          "apply",
+          "kortex-publication-local-test",
+          "--local"
+        ],
+        "exit_code": 0,
+        "output": "\n ⛅️ wrangler 4.152.0 (update available 4.153.0)\n───────────────────────────────────────────────\nResource location: local \n\nUse --remote if you want to access the remote instance.\n\nMigrations to be applied:\n┌──────────────────────┐\n│ name                 │\n├──────────────────────┤\n│ 0001_catalog.sql     │\n├──────────────────────┤\n│ 0002_publication.sql │\n└──────────────────────┘\n? About to apply 2 migration(s)\nYour database may not be available to serve requests during the migration, continue?\n🤖 Using fallback value in non-interactive context: yes\n🌀 Executing on local database kortex-publication-local-test (00000000-0000-4000-8000-000000000091) from ./target\\d1-publication-qRhB0P\\state\\v3\\d1:\n🌀 To execute on your remote database, add a --remote flag to your wrangler command.\n🚣 26 commands executed successfully.\n┌──────────────────────┬────────┐\n│ name                 │ status │\n├──────────────────────┼────────┤\n│ 0001_catalog.sql     │ ✅     │\n├──────────────────────┼────────┤\n│ 0002_publication.sql │ 🕒️    │\n└──────────────────────┴────────┘\n🌀 Executing on local database kortex-publication-local-test (00000000-0000-4000-8000-000000000091) from ./target\\d1-publication-qRhB0P\\state\\v3\\d1:\n🌀 To execute on your remote database, add a --remote flag to your wrangler command.\n🚣 33 commands executed successfully.\n┌──────────────────────┬────────┐\n│ name                 │ status │\n├──────────────────────┼────────┤\n│ 0001_catalog.sql     │ ✅     │\n├──────────────────────┼────────┤\n│ 0002_publication.sql │ ✅     │\n└──────────────────────┴────────┘\n"
+      },
+      {
+        "args": [
+          "migrations",
+          "apply",
+          "kortex-publication-local-test",
+          "--local"
+        ],
+        "exit_code": 0,
+        "output": "\n ⛅️ wrangler 4.152.0 (update available 4.153.0)\n───────────────────────────────────────────────\nResource location: local \n\nUse --remote if you want to access the remote instance.\n\n✅ No migrations to apply!\n"
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--file",
+          "C:\\Users\\µ\\Desktop\\KORTEX-\\database\\tests\\publication.test.sql",
+          "--json"
+        ],
+        "exit_code": 0,
+        "output": "[\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 1\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"idempotent_job_count\": 1\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"idempotent_audit_count\": 1\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  }\n]\n"
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "UPDATE publication_jobs SET status='validated',updated_at=110",
+          "--json"
+        ],
+        "exit_code": 3221226505,
+        "output": "Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\\win\\async.c, line 76\r\n"
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "UPDATE tool_versions SET status='published' WHERE version='1.0.0'",
+          "--json"
+        ],
+        "exit_code": 1,
+        "output": ""
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "INSERT INTO publication_jobs(request_id,request_sha256,tool_id,version,created_at,updated_at) VALUES('91000000-0000-4000-8000-000000000001',printf('%064x',999),'calculatrice','1.0.0',100,100)",
+          "--json"
+        ],
+        "exit_code": 1,
+        "output": ""
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "INSERT INTO artifacts(tool_id,version,sha256,r2_key,byte_length,signing_key_id,descriptor_json,created_at) SELECT 'missing-tool',version,sha256,r2_key,byte_length,signing_key_id,descriptor_json,created_at FROM artifacts WHERE version='1.0.0'",
+          "--json"
+        ],
+        "exit_code": 1,
+        "output": ""
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "INSERT INTO artifacts(tool_id,version,sha256,r2_key,byte_length,signing_key_id,descriptor_json,created_at) SELECT tool_id,version,printf('%064x',999),r2_key,byte_length,signing_key_id,descriptor_json,created_at FROM artifacts WHERE version='1.0.0'",
+          "--json"
+        ],
+        "exit_code": 1,
+        "output": ""
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "UPDATE artifacts SET head_byte_length=byte_length,head_etag='test-etag',read_byte_length=byte_length,read_sha256=sha256,signature_verified_at=110,r2_verified_at=110 WHERE version='1.0.0'; UPDATE publication_jobs SET status='validated',updated_at=120 WHERE version='1.0.0'; UPDATE publication_jobs SET status='published',updated_at=130 WHERE version='1.0.0'; UPDATE tool_versions SET status='published' WHERE version='1.0.0'; UPDATE tools SET status='published',published_version='1.0.0',published_at=130 WHERE id='calculatrice'",
+          "--json"
+        ],
+        "exit_code": 0,
+        "output": "[\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  }\n]\n"
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "UPDATE publication_jobs SET status='uploaded',updated_at=140 WHERE version='1.0.0'",
+          "--json"
+        ],
+        "exit_code": 1,
+        "output": ""
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "INSERT INTO revocations(request_id,tool_id,version,reason,created_at) VALUES('91000000-0000-4000-8000-000000000004','calculatrice','1.0.0','TEST revocation',150)",
+          "--json"
+        ],
+        "exit_code": 1,
+        "output": ""
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "UPDATE tools SET status='archived',published_version=NULL WHERE id='calculatrice'; INSERT INTO revocations(request_id,tool_id,version,reason,created_at) VALUES('91000000-0000-4000-8000-000000000004','calculatrice','1.0.0','TEST revocation',150)",
+          "--json"
+        ],
+        "exit_code": 0,
+        "output": "[\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 1\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 1\n    }\n  }\n]\n"
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "UPDATE tools SET status='published',published_version='1.0.0' WHERE id='calculatrice'",
+          "--json"
+        ],
+        "exit_code": 1,
+        "output": ""
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "DELETE FROM publication_job_events",
+          "--json"
+        ],
+        "exit_code": 1,
+        "output": ""
+      },
+      {
+        "args": [
+          "execute",
+          "kortex-publication-local-test",
+          "--local",
+          "--command",
+          "SELECT count(*) AS migrations FROM d1_migrations; SELECT status FROM publication_jobs; SELECT count(*) AS events FROM publication_job_events; PRAGMA foreign_key_check;",
+          "--json"
+        ],
+        "exit_code": 0,
+        "output": "[\n  {\n    \"results\": [\n      {\n        \"migrations\": 2\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 1\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"status\": \"revoked\"\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [\n      {\n        \"events\": 4\n      }\n    ],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  },\n  {\n    \"results\": [],\n    \"success\": true,\n    \"meta\": {\n      \"duration\": 0\n    }\n  }\n]\n"
+      }
+    ]
+  },
+  "migration_sha256": "82befe58334aa7b8a6d0c70a12a8547345b6d70cf02c2ccf85f4eb7ea37235ec",
+  "logs": [
+    {
+      "path": "target/tests-9.1-sqlite-publication.log",
+      "sha256": "571ad0d0b9998b57a4dacb8c26413e5d967e36b42490415d427478d73acea0f8",
+      "exit_code": 0
+    },
+    {
+      "path": "target/tests-9.1-d1.log",
+      "sha256": "c9d31ed9707ceff14eaa48aa614ce34e5333186f0656b50514f9f739cd9af76a",
+      "exit_code": 0
+    }
+  ],
+  "limits": [
+    "SQL state attestations are synthetic; no actual R2 HEAD/GET or cryptographic verification by SQL",
+    "Publication HTTP endpoints not implemented; SQL errors map to planned 404/409",
+    "No remote provisioning, deployment or object write",
+    "Linux/macOS and Firefox excluded"
+  ]
+}

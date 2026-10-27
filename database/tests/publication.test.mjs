@@ -1,0 +1,53 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {DatabaseSync} from 'node:sqlite';
+import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+const root=resolve(import.meta.dirname,'../..');
+const read=p=>readFileSync(resolve(root,p),'utf8');
+const request='91000000-0000-4000-8000-000000000001';
+test('publication state: idempotence, immutable content, verified promotion, rollback and audited revocation',()=>{
+ const db=new DatabaseSync(':memory:');let refusals=0;
+ const reject=(sql,code)=>{assert.throws(()=>db.exec(sql),new RegExp(code));refusals++};
+ const verify=v=>db.exec(`UPDATE artifacts SET head_byte_length=byte_length,head_etag='test-etag',read_byte_length=byte_length,read_sha256=sha256,signature_verified_at=110,r2_verified_at=110 WHERE version='${v}'`);
+ const job=v=>db.exec(`INSERT INTO publication_jobs(request_id,request_sha256,tool_id,version,created_at,updated_at) VALUES('91000000-0000-4000-8000-00000000000${v==='1.1.0'?2:3}',printf('%064x',12),'calculatrice','${v}',110,110)`);
+ const promote=v=>db.exec(`UPDATE publication_jobs SET status='validated',updated_at=120 WHERE version='${v}'; UPDATE publication_jobs SET status='published',updated_at=130 WHERE version='${v}'; UPDATE tool_versions SET status='published' WHERE version='${v}'; UPDATE tools SET status='published',published_version='${v}',published_at=130 WHERE id='calculatrice'`);
+ try{
+  db.exec('PRAGMA foreign_keys=ON');for(const p of ['database/migrations/0001_catalog.sql','database/migrations/0002_publication.sql','database/tests/publication.test.sql'])db.exec(read(p));
+  assert.equal(db.prepare('SELECT count(*) AS n FROM publication_jobs').get().n,1);assert.equal(db.prepare('SELECT count(*) AS n FROM publication_job_events').get().n,1);
+  reject(`UPDATE publication_jobs SET status='published',updated_at=110`,'INVALID_PUBLICATION_TRANSITION|UNVERIFIED_OR_REVOKED_ARTIFACT');
+  reject(`UPDATE publication_jobs SET status='validated',updated_at=110`,'UNVERIFIED_OR_REVOKED_ARTIFACT');
+  reject(`UPDATE tool_versions SET status='published' WHERE version='1.0.0'`,'PUBLICATION_NOT_VERIFIED');
+  reject(`UPDATE artifacts SET r2_verified_at=110,signature_verified_at=110 WHERE version='1.0.0'`,'CHECK');
+  reject(`UPDATE artifacts SET head_byte_length=123,head_etag='x',read_byte_length=123,read_sha256=printf('%064x',999),r2_verified_at=110,signature_verified_at=110 WHERE version='1.0.0'`,'CHECK');
+  reject(`INSERT INTO publication_jobs(request_id,request_sha256,tool_id,version,created_at,updated_at) VALUES('${request}',printf('%064x',999),'calculatrice','1.0.0',100,100)`,'IDEMPOTENCY_CONFLICT');
+  const template=db.prepare("SELECT * FROM artifacts WHERE version='1.0.0'").get();
+  const insert=db.prepare('INSERT INTO artifacts(tool_id,version,sha256,r2_key,byte_length,signing_key_id,descriptor_json,created_at) VALUES(?,?,?,?,?,?,?,?)');
+  assert.throws(()=>insert.run('missing-tool','1.0.0',template.sha256,template.r2_key,123,'state-test-key',template.descriptor_json,100),/NOT_FOUND/);refusals++;
+  assert.throws(()=>insert.run('calculatrice','1.0.0','f'.repeat(64),template.r2_key,123,'state-test-key',template.descriptor_json,100),/HASH_CONFLICT/);refusals++;
+  verify('1.0.0');db.exec('BEGIN');promote('1.0.0');db.exec('COMMIT');
+  assert.equal(db.prepare('SELECT published_version FROM tools').get().published_version,'1.0.0');
+  reject(`UPDATE artifacts SET sha256=printf('%064x',2) WHERE version='1.0.0'`,'IMMUTABLE');
+  reject(`UPDATE artifacts SET read_sha256=printf('%064x',2) WHERE version='1.0.0'`,'IMMUTABLE');
+  reject(`UPDATE publication_jobs SET status='uploaded',updated_at=140 WHERE version='1.0.0'`,'INVALID_PUBLICATION_TRANSITION');
+  reject(`UPDATE publication_jobs SET updated_at=99 WHERE version='1.0.0'`,'TIMESTAMP_ROLLBACK');
+  job('1.1.0');verify('1.1.0');db.exec('BEGIN');promote('1.1.0');reject("INSERT INTO categories VALUES('calculation','duplicate')",'UNIQUE');db.exec('ROLLBACK');assert.equal(db.prepare('SELECT published_version FROM tools').get().published_version,'1.0.0');assert.equal(db.prepare("SELECT status FROM publication_jobs WHERE version='1.1.0'").get().status,'uploaded');db.exec('BEGIN');promote('1.1.0');db.exec('COMMIT');
+  // A legitimate catalog rollback points to prior verified bytes, without changing state history.
+  db.exec("UPDATE tools SET published_version='1.0.0' WHERE id='calculatrice'");
+  assert.equal(db.prepare('SELECT published_version FROM tools').get().published_version,'1.0.0');
+  const revoke="INSERT INTO revocations(request_id,tool_id,version,reason,created_at) VALUES('91000000-0000-4000-8000-000000000004','calculatrice','1.0.0','TEST revocation',150)";
+  reject(revoke,'UNPUBLISH_CURRENT_FIRST');
+  db.exec('BEGIN');db.exec("UPDATE tools SET published_version='1.1.0' WHERE id='calculatrice'");db.exec(revoke);db.exec('COMMIT');
+  reject("UPDATE tools SET published_version='1.0.0' WHERE id='calculatrice'",'PUBLICATION_NOT_VERIFIED|CURRENT_VERSION_NOT_PUBLISHED');
+  reject("UPDATE publication_jobs SET status='validated',updated_at=160 WHERE version='1.0.0'",'INVALID_PUBLICATION_TRANSITION|UNVERIFIED_OR_REVOKED_ARTIFACT');
+  reject('DELETE FROM revocations','AUDIT_APPEND_ONLY');reject('DELETE FROM publication_job_events','AUDIT_APPEND_ONLY');reject('DELETE FROM artifacts','IMMUTABLE_ARTIFACT');
+  job('1.2.0');db.exec("UPDATE publication_jobs SET status='failed',error_code='READ_FAILED',updated_at=140 WHERE version='1.2.0'");reject("UPDATE publication_jobs SET status='uploaded',updated_at=150 WHERE version='1.2.0'",'INVALID_PUBLICATION_TRANSITION');
+  db.exec("INSERT INTO publication_jobs(request_id,request_sha256,tool_id,version,created_at,updated_at) VALUES('91000000-0000-4000-8000-000000000006',printf('%064x',12),'calculatrice','1.2.0',160,160)");
+  reject("UPDATE signing_keys SET revoked=1",'AUDITED_REVOCATION_REQUIRED');
+  reject("INSERT INTO revocations(request_id,signing_key_id,reason,created_at) VALUES('91000000-0000-4000-8000-000000000005','state-test-key','TEST key revocation',170)",'UNPUBLISH_CURRENT_FIRST');
+  db.exec("BEGIN; UPDATE tools SET status='archived',published_version=NULL WHERE id='calculatrice'; INSERT INTO revocations(request_id,signing_key_id,reason,created_at) VALUES('91000000-0000-4000-8000-000000000005','state-test-key','TEST key revocation',170); COMMIT;");
+  assert.equal(db.prepare('SELECT revoked FROM signing_keys').get().revoked,1);reject('UPDATE signing_keys SET revoked=0','AUDITED_REVOCATION_REQUIRED');
+  assert.deepEqual(db.prepare('PRAGMA foreign_key_check').all(),[]);
+  mkdirSync(resolve(root,'target'),{recursive:true});writeFileSync(resolve(root,'target/publication-state-report.json'),JSON.stringify({sqlite:db.prepare('SELECT sqlite_version() AS v').get().v,refusals,idempotent_job_count:1,idempotent_initial_audit_count:1,job_events:db.prepare('SELECT count(*) AS n FROM publication_job_events').get().n,foreign_key_errors:0,r2_network_checks:false,http_routes_implemented:false,contract_mapping:{NOT_FOUND:404,HASH_CONFLICT:409,IDEMPOTENCY_CONFLICT:409}},null,2));
+ }finally{db.close()}
+});

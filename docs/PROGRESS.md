@@ -1,6 +1,6 @@
 # Progression
 
-Lot 8.3–9.0 terminé le 27 octobre 2026 : corpus hostile, pipeline local signé, gate PACKAGE_FORMAT_V1 et catalogue D1 indexé validés localement. Prochaine étape : 9.1, non démarrée. Linux/macOS et Firefox restent exclus ; aucun service cloud provisionné.
+Étape 9.1 terminée localement le 27 octobre 2026 : état de publication, idempotence, révocations et politique R2. Étape 9.2 : préparation locale autorisée, arrêt demandé au besoin de connexion Cloudflare. Linux/macOS et Firefox restent exclus ; aucun service cloud provisionné.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -746,6 +746,24 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     "evidence": [
       "docs/evidence/validation-8.3-9.0.json",
       "docs/DATABASE.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "9.1",
+    "status": "validated",
+    "source_commit": "751a84f",
+    "result_commit": "commit contenant ce rapport",
+    "report_path": "docs/reports/STEP-9.1.md",
+    "tests_executed": "2026-10-27 Windows, SQLite : 23 refus + transaction rollback ; D1 local : 2 migrations, 9 refus, idempotence/revocation ; régression 10k catalogue ; sorties 0",
+    "approved_by": "propriétaire : terminer la première étape puis préparer la deuxième et arrêt au besoin de connexion Cloudflare",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Migration additive publication ; aucun schéma gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-9.1.json",
+      "infra/r2-policy.md"
     ],
     "frozen": false
   }
