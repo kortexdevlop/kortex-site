@@ -5,6 +5,7 @@ import Workspace from '../../components/Workspace.astro';
 import ToolDetails from '../../components/ToolDetails.astro';
 import {ApiClient,ApiUnavailable} from '../../lib/api-client';
 import {canonical} from '../../lib/urls';
+import {software,jsonLd} from '../../lib/seo';
 import type {ToolDetail} from '../../lib/tools';
 export const prerender=false;
 let detail:ToolDetail|undefined,status=200;
@@ -12,4 +13,4 @@ try{detail=await new ApiClient(env.API_WORKER).getTool(Astro.params.id!);}catch(
 Astro.response.status=status;
 Astro.response.headers.set('Cache-Control',status===200?'public, max-age=60':'no-store');
 ---
-<WorkspaceLayout title={detail?.manifest.seo.title||'Outil indisponible — Kortex'} description={detail?.manifest.seo.description} canonicalUrl={status===200?canonical('/tools/'+encodeURIComponent(Astro.params.id!),env.WEB_ORIGIN||Astro.url.origin):undefined} indexable={status===200}><Workspace tools={[]} pageKind="detail"><section class="ws-detail">{detail?<ToolDetails detail={detail}/>:<><h1>{status===404?'Outil introuvable':'Service indisponible'}</h1><p>{status===404?'Cet outil n’est pas publié ou n’existe plus.':'Réessayez dans quelques instants.'}</p></>}<a href="/tools">← Tous les outils</a></section></Workspace></WorkspaceLayout>
+<WorkspaceLayout structuredData={detail?jsonLd(software(detail,env.WEB_ORIGIN||Astro.url.origin)):undefined} title={detail?.manifest.seo.title||'Outil indisponible — Kortex'} description={detail?.manifest.seo.description} canonicalUrl={status===200?canonical('/tools/'+encodeURIComponent(Astro.params.id!),env.WEB_ORIGIN||Astro.url.origin):undefined} indexable={status===200}><Workspace tools={[]} pageKind="detail"><section class="ws-detail">{detail?<ToolDetails detail={detail}/>:<><h1>{status===404?'Outil introuvable':'Service indisponible'}</h1><p>{status===404?'Cet outil n’est pas publié ou n’existe plus.':'Réessayez dans quelques instants.'}</p></>}<a href="/tools">← Tous les outils</a></section></Workspace></WorkspaceLayout>

@@ -1,3 +1,5 @@
+import {WorkerEntrypoint} from 'cloudflare:workers';
+import {sitemap} from './routes/sitemap';
 import {validateEnv,type Env} from './env';
 import {failure,json,requestId} from './lib/http';
 import {health} from './routes/health';
@@ -28,3 +30,5 @@ export async function handle(request:Request,bindings:unknown):Promise<Response>
  }catch{return failure('UNAVAILABLE','Service unavailable',503,id,undefined,head)}
 }
 export default {fetch(request:Request,env:Env){return handle(request,env)}} satisfies ExportedHandler<Env>;
+
+export class SitemapService extends WorkerEntrypoint<Env>{fetch(request:Request){return sitemap(request,this.env);}}

@@ -7,7 +7,7 @@ const {detail,origin}=Astro.props;
   <h1>{detail.tool.name}</h1><p>Version {detail.tool.version} · Exécution sur votre appareil</p>
   <details><summary>Permissions demandées</summary>{detail.manifest.permissions.length?<ul>{detail.manifest.permissions.map(permission=><li>{permission}</li>)}</ul>:<p>Aucune permission sensible demandée.</p>}<p>Les autorisations sont gérées dans l’outil.</p></details>
   <p role="status" data-runtime-status>{origin?'Connexion à l’espace sécurisé…':'L’espace d’exécution n’est pas configuré. Réessayez après son activation.'}</p>
-  {origin&&<iframe src={origin+'/frame.html'} sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer" title={`Outil : ${detail.tool.name}`} allow="camera 'none'; microphone 'none'; geolocation 'none'"/>}
+  {origin&&<iframe src={origin+'/frame.html?tool='+encodeURIComponent(detail.tool.id)+'&version='+encodeURIComponent(detail.tool.version)} sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer" title={`Outil : ${detail.tool.name}`} allow="camera 'none'; microphone 'none'; geolocation 'none'"/>}
   <p><a href={`/tools/${encodeURIComponent(detail.tool.id)}`}>← Fiche de l’outil</a> · <a href="/tools">Tous les outils</a></p>
 </section>
 <script>

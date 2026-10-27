@@ -5,6 +5,7 @@ import preact from '@astrojs/preact';
 
 export default defineConfig({
   output: 'server',
+  session: false,
   adapter: cloudflare({imageService:'compile'}),
   devToolbar: { enabled: false },
   vite: {

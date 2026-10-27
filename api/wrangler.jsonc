@@ -31,7 +31,7 @@
       "preview_urls": false,
       "vars": {
         "KORTEX_ENV": "staging",
-        "PUBLIC_WEB_ORIGIN": "https://staging.kortex.site",
+        "PUBLIC_WEB_ORIGIN": "https://kortex-web-staging.userpgl.workers.dev",
         "ADMIN_AUTH_POLICY": "{\"issuer\":\"urn:kortex:staging-operator\",\"audience\":\"https://kortex-api-staging.userpgl.workers.dev\",\"subject\":\"kortex-staging-operator\",\"repository\":\"local/kortex-staging\",\"repository_id\":\"0\",\"ref\":\"refs/heads/staging\",\"workflow_ref\":\"local/kortex-staging/staging-publication@refs/heads/staging\",\"actions\":[\"publish\",\"revoke\",\"rollback\"],\"jwks\":{\"keys\":[{\"crv\":\"Ed25519\",\"x\":\"-WC4ev1HQVWK_zOUuxSEyxo48UKKaWwwWD1-v1YV1wA\",\"kty\":\"OKP\",\"kid\":\"staging-operator-df76f6b8\",\"alg\":\"EdDSA\",\"use\":\"sig\"}]}}"
       },
       "d1_databases": [

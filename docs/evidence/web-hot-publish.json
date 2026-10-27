@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-27T21:00:10.894Z",
+  "staging_only": true,
+  "production_touched": false,
+  "mail_touched": false,
+  "ci": "controlled local staging operator; GitHub OIDC not claimed",
+  "phases": [
+    {
+      "name": "staging_api_and_sitemap_binding_deployed"
+    },
+    {
+      "name": "website_and_runtime_live",
+      "web": "https://kortex-web-staging.userpgl.workers.dev",
+      "run": "https://kortex-run-staging.userpgl.workers.dev"
+    },
+    {
+      "name": "hot_publication_visible",
+      "tool": "hot-publication-a0a126c1",
+      "visibility_ms": 81
+    },
+    {
+      "name": "signed_runtime_execution_verified"
+    },
+    {
+      "name": "revocation_and_unchanged_website_verified"
+    }
+  ],
+  "passed": true,
+  "web_origin": "https://kortex-web-staging.userpgl.workers.dev",
+  "run_origin": "https://kortex-run-staging.userpgl.workers.dev",
+  "api_origin": "https://kortex-api-staging.userpgl.workers.dev",
+  "site_build_before": "5387ddbcb813c97bf7547bf1b57cc6f7e7b0dd788f040a2370912814a59836f2",
+  "site_deployment_before": "f5912646-b1f6-4b46-b31d-aa9f30b0053c",
+  "visibility_ms": 381,
+  "browsers": [
+    {
+      "name": "chromium",
+      "result": 1200
+    },
+    {
+      "name": "webkit",
+      "result": 1200
+    }
+  ],
+  "revocation_ms": 517,
+  "site_build_after": "5387ddbcb813c97bf7547bf1b57cc6f7e7b0dd788f040a2370912814a59836f2",
+  "site_deployment_after": "f5912646-b1f6-4b46-b31d-aa9f30b0053c",
+  "tool_id": "hot-publication-a0a126c1",
+  "sha256": "fb615eec1a09268eb2a023c345a0893aba008595d47b4be21eb0fe4371abdadf",
+  "operator_policy_restored": true
+}

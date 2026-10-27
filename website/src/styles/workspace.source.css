@@ -61,3 +61,9 @@
 .workspace[data-page-kind=catalog] .ws-library { margin-top:0; }
 
 .ws-tool-open { text-decoration:none;color:inherit; }
+
+.ws-search-dialog { width:min(680px,94vw);max-height:88vh;overflow:auto;border:1px solid #d4d5d7;border-radius:24px;padding:28px;color:#17191b;background:#fff; }
+.ws-search-dialog::backdrop { background:#12151b55;backdrop-filter:blur(6px); }
+.ws-search-dialog form,.ws-search-dialog fieldset { display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;align-items:center; }
+.ws-search-dialog form label { width:100%; }.ws-search-dialog input { min-width:0;flex:1; }.ws-search-dialog :is(input,select,button) { font-size:16px;padding:10px;border:1px solid #aaa;border-radius:12px;min-height:44px; }.ws-search-dialog h2 { padding-right:36px; }.ws-search-dialog a { display:block;padding:12px; }.ws-search-dialog ul { list-style:none;padding:0; }.ws-search-dialog li { border-bottom:1px solid #eee; }
+.workspace[data-text-size=large] :is(p,h3,input,button,a) { font-size:max(16px,1.15em); }.workspace[data-text-size=large] .ws-nav-item { min-height:48px; }.workspace[data-text-size=large] .ws-content { overflow-wrap:anywhere; }

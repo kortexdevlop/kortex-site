@@ -3,4 +3,4 @@ import WorkspaceLayout from './WorkspaceLayout.astro';
 import Workspace from '../components/Workspace.astro';
 interface Props {title:string;}
 ---
-<WorkspaceLayout title={Astro.props.title}><Workspace tools={[]} pageKind="detail"><slot/></Workspace></WorkspaceLayout>
+<WorkspaceLayout title={Astro.props.title}><Workspace tools={[]} pageKind="detail" execution><slot/></Workspace></WorkspaceLayout>

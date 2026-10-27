@@ -1,14 +1,15 @@
 ---
 import {categories,type WorkspaceTool,type RecentItem} from '../lib/workspace';
+import SearchDialog from './ui/SearchDialog';
 import Pagination from './ui/Pagination.astro';
 import {isToolSummary} from '../lib/tools';
-interface Props {tools:WorkspaceTool[];pageKind?:'home'|'catalog'|'detail';next?:string|null;recent?:RecentItem[];preview?:boolean;unavailable?:boolean;hasMore?:boolean;connection?:{connected:boolean;description:string};account?:{initials:string;subtitle:string};}
-const {tools,pageKind='home',next=null,recent=[],preview=false,unavailable=false,hasMore=false,connection={connected:false,description:'Connectez Kortex Desktop pour retrouver vos outils locaux.'},account={initials:'K',subtitle:'Sans connexion'}}=Astro.props;
+interface Props {tools:WorkspaceTool[];execution?:boolean;pageKind?:'home'|'catalog'|'detail';next?:string|null;recent?:RecentItem[];preview?:boolean;unavailable?:boolean;hasMore?:boolean;connection?:{connected:boolean;description:string};account?:{initials:string;subtitle:string};}
+const {tools,execution=false,pageKind='home',next=null,recent=[],preview=false,unavailable=false,hasMore=false,connection={connected:false,description:'Connectez Kortex Desktop pour retrouver vos outils locaux.'},account={initials:'K',subtitle:'Sans connexion'}}=Astro.props;
 if(!tools.every(t=>isToolSummary(t.tool)))throw Error('Invalid workspace tools');
 const groups=preview?(tools.some(t=>t.category==='other')?[...categories,{id:'other',label:'Autres'}]:categories):[...new Set([...tools.map(t=>t.tool.category),...(Astro.url.searchParams.get('category')?[Astro.url.searchParams.get('category')!]:[])])].sort().map(id=>({id,label:categories.find(c=>c.id===id)?.label||id}));
 const nav=[{id:'home',label:'Accueil',count:null},{id:'all',label:'Tous les outils',count:pageKind==='detail'?null:tools.length},{id:'favorites',label:'Favoris',count:pageKind==='detail'?null:tools.filter(t=>t.favorite).length},{id:'installed',label:'Installés',count:pageKind==='detail'?null:tools.filter(t=>t.installed).length}];
 ---
-<div class="workspace" data-demo={preview?'true':'false'} data-page-kind={pageKind}>
+<div class="workspace" data-demo={preview?'true':'false'} data-page-kind={pageKind} data-execution={execution?'true':undefined}>
   <aside class="ws-sidebar" id="workspace-sidebar" aria-label="Navigation de l’espace de travail">
     <a class="ws-brand" href={preview?'/__dev/design':'/'} aria-label="Kortex.site — accueil"><span class="ws-brand-mark" aria-hidden="true"></span><span><strong>kortex</strong><span class="ws-brand-site">.site</span></span><span class="ws-beta">BETA</span></a>
     <button class="ws-new-task" type="button" data-new-task>Nouvelle tâche <kbd aria-hidden="true">⌘N</kbd></button>
@@ -35,6 +36,7 @@ const nav=[{id:'home',label:'Accueil',count:null},{id:'all',label:'Tous les outi
       </div>
     </main>
   </section>
+  {!preview&&!execution&&<SearchDialog client:load/>}
   <dialog class="ws-dialog" id="ws-dialog" aria-labelledby="ws-dialog-title"><form method="dialog"><button class="ws-dialog-close" aria-label="Fermer">×</button></form><h2 id="ws-dialog-title"></h2><p></p></dialog>
 </div>
 <script>import '../scripts/workspace';</script>

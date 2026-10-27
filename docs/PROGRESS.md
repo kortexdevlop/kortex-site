@@ -1,6 +1,6 @@
 # Progression
 
-Lot 11.1–11.3 implémenté et testé localement sur instruction d’enchaîner les trois étapes : catalogue/fiches SSR, accueil réel selon la nouvelle référence Workspace-selection.png, ouverture iframe sécurisée. Ajout D1 visible sans reconstruction, cinq résultats réels donnent cinq cartes, calculatrice signée 25×48=1200 et archive altérée refusée. 24 essais Chromium/WebKit, 14 Node, typecheck sans diagnostic et build réussi. Régression géométrique native ±4 px ; les faibles contrastes de la référence restent exposés. Les statuts formels restent pending derrière la revue visuelle existante, sans validation humaine inventée. Aucun déploiement ni changement de domaine/messagerie. 11.4 non engagée. Linux/macOS et Firefox exclus.
+Lot 11.4–11.6 réalisé sur instruction du propriétaire : référencement dynamique et Service Binding interne, recherche accessible FR/EN/Aa, publication à chaud réelle Cloudflare. Site et Runtime de staging en ligne sur workers.dev ; maquette workspace conservée, production/DNS/messagerie inchangés. 10 tests navigateur finaux, 16 Node, API 3 DTO + 28 Worker, 51 fichiers sans diagnostic ; sitemap 10000 IDs et benchmark Cloudflare 10000 entrées p95 430,69 ms, ressources de benchmark supprimées. Nouvel outil visible en 381 ms, calcul signé 1200 sur Chromium/WebKit puis révocation ; hash et identifiant de déploiement Web inchangés. Rapports/provenance consignés ; validations humaines formelles restent pending derrière la revue visuelle, sans approbation inventée. Phase 12 non engagée. Linux/macOS et Firefox exclus.
 
 ```json
 [
@@ -1004,6 +1004,63 @@ Lot 11.1–11.3 implémenté et testé localement sur instruction d’enchaîner
       "docs/evidence/website-11.1-11.3-validation.json",
       "docs/evidence/website-11.1-11.3-playwright.json",
       "docs/evidence/website-workspace-regression/playwright.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "11.4",
+    "status": "pending",
+    "source_commit": "524a6b0",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-11.4.md",
+    "tests_executed": "Lot expressément autorisé et réalisé : API 3 DTO + 28 Worker ; site 51 fichiers sans diagnostic et 16 Node ; 8 essais locaux + 2 distants Chromium/WebKit ; sitemap 10000 IDs ; recherche D1 Cloudflare 10000 entrées p95 430,69 ms, ressources temporaires supprimées ; publication signée, calcul 1200, révocation, hash et déploiement Web inchangés. Statut formel pending derrière la revue visuelle existante, sans approbation inventée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/website-11.4-11.6-validation.json",
+      "docs/evidence/website-11.4-11.6-playwright.json",
+      "docs/evidence/web-hot-publish.json",
+      "docs/evidence/hot-publish-playwright.json",
+      "docs/evidence/search-staging-benchmark.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "11.5",
+    "status": "pending",
+    "source_commit": "524a6b0",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-11.5.md",
+    "tests_executed": "Lot expressément autorisé et réalisé : API 3 DTO + 28 Worker ; site 51 fichiers sans diagnostic et 16 Node ; 8 essais locaux + 2 distants Chromium/WebKit ; sitemap 10000 IDs ; recherche D1 Cloudflare 10000 entrées p95 430,69 ms, ressources temporaires supprimées ; publication signée, calcul 1200, révocation, hash et déploiement Web inchangés. Statut formel pending derrière la revue visuelle existante, sans approbation inventée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/website-11.4-11.6-validation.json",
+      "docs/evidence/website-11.4-11.6-playwright.json",
+      "docs/evidence/web-hot-publish.json",
+      "docs/evidence/hot-publish-playwright.json",
+      "docs/evidence/search-staging-benchmark.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "11.6",
+    "status": "pending",
+    "source_commit": "524a6b0",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-11.6.md",
+    "tests_executed": "Lot expressément autorisé et réalisé : API 3 DTO + 28 Worker ; site 51 fichiers sans diagnostic et 16 Node ; 8 essais locaux + 2 distants Chromium/WebKit ; sitemap 10000 IDs ; recherche D1 Cloudflare 10000 entrées p95 430,69 ms, ressources temporaires supprimées ; publication signée, calcul 1200, révocation, hash et déploiement Web inchangés. Statut formel pending derrière la revue visuelle existante, sans approbation inventée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/website-11.4-11.6-validation.json",
+      "docs/evidence/website-11.4-11.6-playwright.json",
+      "docs/evidence/web-hot-publish.json",
+      "docs/evidence/hot-publish-playwright.json",
+      "docs/evidence/search-staging-benchmark.json"
     ],
     "frozen": false
   }

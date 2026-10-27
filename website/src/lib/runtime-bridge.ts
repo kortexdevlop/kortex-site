@@ -2,7 +2,7 @@
 export function runtimeOrigin(value:string|undefined,parent:string):string|null {
   if(!value)return null;
   try{const url=new URL(value),site=new URL(parent);if(url.origin!==value||url.origin===site.origin||url.username||url.password)return null;
-    if(url.protocol==='https:'&&['run.kortex.site','run.staging.kortex.site'].includes(url.hostname))return url.origin;
+    if(url.protocol==='https:'&&['run.kortex.site','run.staging.kortex.site','kortex-run-staging.userpgl.workers.dev'].includes(url.hostname))return url.origin;
     if(['127.0.0.1','localhost'].includes(site.hostname)&&['127.0.0.1','localhost'].includes(url.hostname)&&url.protocol==='http:')return url.origin;
   }catch{}return null;
 }

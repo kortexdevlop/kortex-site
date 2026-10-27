@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-27",
+  "source_commit": "524a6b0",
+  "steps": [
+    "11.4",
+    "11.5",
+    "11.6"
+  ],
+  "scope": "Windows Chromium/WebKit; local compiled Worker plus real Cloudflare staging",
+  "checks": {
+    "website_files": 51,
+    "typecheck_errors": 0,
+    "typecheck_warnings": 0,
+    "node_tests": 16,
+    "api_dto_tests": 3,
+    "api_worker_tests": 28,
+    "local_browser_tests": 8,
+    "remote_browser_tests": 2,
+    "remote_signed_runtime_execution": [
+      "chromium:1200",
+      "webkit:1200"
+    ],
+    "runtime_worker_strict_typecheck": "passed",
+    "secret_configuration_tests": 6,
+    "production_build": "passed; no dev routes or fixtures",
+    "sitemap_real_d1_rows": 10000,
+    "staging_search_rows": 10000,
+    "staging_search_p95_ms": 430.69,
+    "benchmark_resources_deleted": true,
+    "hot_publication_ms": 381,
+    "revocation_ms": 517,
+    "web_build_unchanged": true,
+    "web_deployment_unchanged": true,
+    "operator_policy_restored": true
+  },
+  "staging": {
+    "web": "https://kortex-web-staging.userpgl.workers.dev",
+    "runtime": "https://kortex-run-staging.userpgl.workers.dev",
+    "api": "https://kortex-api-staging.userpgl.workers.dev"
+  },
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false,
+  "limitations": [
+    "Human visual approval remains formally pending; no approval invented.",
+    "Original raster low contrast retained; no global WCAG AA claim.",
+    "Search p95 measures HTTPS API response plus parsing, excludes the fixed 250 ms typing delay.",
+    "Staging uses time-limited test trust keys; production trust configuration is separate.",
+    "Controlled local CI operator, not a GitHub OIDC job.",
+    "Revocation blocks new admission/download, does not erase user-held bytes or stop an offline calculation already started.",
+    "Linux, macOS and Firefox excluded by user."
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/website-11.4-11.6-playwright.json",
+      "sha256": "6eec3bc2b293dc92422347c704c18721235272d1de139623a25e441480d55923"
+    },
+    {
+      "path": "docs/evidence/hot-publish-playwright.json",
+      "sha256": "ec10ba5e0fedbb001012fd55e337c6ec11c19214d9401607c8ce48f0c6472695"
+    },
+    {
+      "path": "docs/evidence/web-hot-publish.json",
+      "sha256": "16481abf1014e4bcba27df636e6f40d6bf1db2e238227e2ade0740f949ac0674"
+    },
+    {
+      "path": "docs/evidence/web-hot-publish.md",
+      "sha256": "1a345ea74ece829534df3fe589dd81dfbca8032ff1e4d994211c2d83dc94a6fc"
+    },
+    {
+      "path": "docs/evidence/search-staging-benchmark.json",
+      "sha256": "bef627b26422f3a0031fab3bb99def22c7a9b7abbaa1554e63d3d110ce4b2a56"
+    },
+    {
+      "path": "docs/evidence/hot-publication-chromium.png",
+      "sha256": "257a229ba110a34846a897a465cdd18c77c9657cf08df96c9a9e7a79ba53e873"
+    },
+    {
+      "path": "docs/evidence/hot-publication-webkit.png",
+      "sha256": "a1f0817b962b12343ffb65d5a5b14eef77e3dc7cbe673e2f3b5dcf6154c84576"
+    },
+    {
+      "path": "docs/reports/STEP-11.4.md",
+      "sha256": "44c825868318896c1ca7792e22b4155d6ddee9abd72af6d50be27d762b7cee43"
+    },
+    {
+      "path": "docs/reports/STEP-11.5.md",
+      "sha256": "3a33f4429c130cc42de061c95550a4bb3c4e3780515ae2e2a9796e07bfabc5db"
+    },
+    {
+      "path": "docs/reports/STEP-11.6.md",
+      "sha256": "3c3153e00678546ae7bd467e48cfb7f7ab907f25a5ea14686f03ea24eaeed576"
+    },
+    {
+      "path": "docs/OPERATIONS.md",
+      "sha256": "aeb80fed89890c864a3b2efacc9825686b18e88a43cb49095ea384bf0b164b0a"
+    }
+  ]
+}

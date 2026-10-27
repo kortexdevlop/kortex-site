@@ -12,3 +12,7 @@
 
 /docs/evidence/website-*.json text eol=lf
 /docs/evidence/website-workspace-regression/*.json text eol=lf
+
+/docs/evidence/web-hot-publish.json text eol=lf
+/docs/evidence/hot-publish-playwright.json text eol=lf
+/docs/evidence/search-staging-benchmark.json text eol=lf

@@ -11,4 +11,4 @@ try {const list=await new ApiClient(env.API_WORKER).listTools(new URLSearchParam
 Astro.response.status=available?200:503;
 Astro.response.headers.set('Cache-Control','private, no-store');
 ---
-<WorkspaceLayout indexable={available} canonicalUrl={available?canonical('/',env.WEB_ORIGIN||Astro.url.origin):undefined}><Workspace tools={tools} unavailable={!available} hasMore={hasMore}/></WorkspaceLayout>
+<WorkspaceLayout description="Trouvez vos outils et exécutez-les sur votre appareil avec Kortex." indexable={available} canonicalUrl={available?canonical('/',env.WEB_ORIGIN||Astro.url.origin):undefined}><Workspace tools={tools} unavailable={!available} hasMore={hasMore}/></WorkspaceLayout>

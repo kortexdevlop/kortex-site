@@ -4,6 +4,7 @@ import {beforeAll,describe,it,expect} from 'vitest';
 import {handle} from '../src/index';
 import {cursorKey,signCursor} from '../src/lib/cursor';
 import {query} from '../src/services/catalog';
+import {sitemap} from '../src/routes/sitemap';
 declare global {namespace Cloudflare {interface Env {TEST_MIGRATIONS:D1Migration[];TEST_MANIFEST:Record<string,unknown>;TEST_CONTRACT:{actions:Record<string,unknown>[]};TEST_DESCRIPTOR:Record<string,unknown>}}}
 type Page={items:{id:string;name:string;category:string;tags:string[];published_at:number}[];next_cursor:string|null};
 const fetchApi=(path='',init?:RequestInit)=>exports.default.fetch(new Request('https://api.test/api/v1/tools'+path,init));
@@ -33,6 +34,15 @@ beforeAll(async()=>{
  SELECT tool_id,'2.0.0',printf('%064x',2),'1.0','1.0',json_set(manifest_json,'$.version','2.0.0'),json_set(contract_json,'$.actions',json_array()),5 FROM tool_versions WHERE tool_id=?`).bind(testId).run();
 });
 describe('catalogue API V1 in real D1/workerd',()=>{
+ it('sitemap binding walks 10,000 IDs with no gaps, duplicates or unpublished rows; public route stays closed',async()=>{
+  const ids:string[]=[];for(let page=0;page<20;page++){const r=await sitemap(new Request('https://internal/api/v1/internal/sitemap?page='+page),env);expect(r.status).toBe(200);const value=await r.json() as {pages:number;items:{id:string}[]};expect(value.pages).toBe(20);expect(value.items.length).toBe(500);ids.push(...value.items.map(t=>t.id));}
+  expect(ids).toEqual(Array.from({length:10000},(_,i)=>'tool-'+String(i+1).padStart(5,'0')));
+  expect((await exports.default.fetch(new Request('https://api.test/api/v1/internal/sitemap?page=0'))).status).toBe(404);
+  expect((await sitemap(new Request('https://internal/api/v1/internal/sitemap?page=-1'),env)).status).toBe(400);
+ });
+ it('measures search p95 on the real local 10,000-row D1 catalogue',async()=>{
+  const times:number[]=[];for(let i=0;i<25;i++){const start=performance.now();expect((await fetchApi('?q=tool&limit=8')).status).toBe(200);times.push(performance.now()-start);}times.sort((a,b)=>a-b);const p95=times[Math.ceil(times.length*.95)-1];console.log('LOCAL_10000_SEARCH_P95_MS='+p95.toFixed(2));expect(p95).toBeLessThan(500);
+ });
  for(const sort of ['recent','name'])it(`walks 10,000 published entries without holes or duplicates (${sort}, including ties)`,async()=>{
   const ids:string[]=[],keys:(number|string)[]=[];let cursor:string|null=null,pages=0;
   do {
