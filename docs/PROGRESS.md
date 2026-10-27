@@ -794,7 +794,7 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     "id": "9.3",
     "status": "awaiting_approval",
     "source_commit": "088bceec414e0dcd7f4282402604abff549cc278",
-    "result_commit": null,
+    "result_commit": "0a21749",
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-9.3.md",

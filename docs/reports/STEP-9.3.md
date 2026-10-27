@@ -1,6 +1,6 @@
 # Rapport d'étape 9.3
 
-Statut : implémentée et testée localement, awaiting_approval pour la revue du résultat. Date : 2026-10-27. Base : 088bceec414e0dcd7f4282402604abff549cc278. Résultat : commit contenant ce rapport, identifié dans PROGRESS.md après création. L'instruction du propriétaire autorise la réalisation de l'étape après nettoyage ; aucune revue indépendante ni approbation après résultat n'est inventée.
+Statut : implémentée et testée localement, awaiting_approval pour la revue du résultat. Date : 2026-10-27. Base : 088bceec414e0dcd7f4282402604abff549cc278. Résultat : commit 0a21749. L'instruction du propriétaire autorise la réalisation de l'étape après nettoyage ; aucune revue indépendante ni approbation après résultat n'est inventée.
 
 Prérequis : 9.2 validée localement, profil kortex actif. Retrait distant de l'ancien projet effectué séparément et documenté dans CLOUDFLARE-RESET-2026-10-27.md ; le propriétaire a demandé de conserver la messagerie. Aucune ressource du nouveau projet provisionnée.
 
