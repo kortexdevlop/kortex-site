@@ -2,6 +2,7 @@ import {validateEnv,type Env} from './env';
 import {failure,json,requestId} from './lib/http';
 import {health} from './routes/health';
 import {tools} from './routes/tools';
+import {downloads} from './routes/downloads';
 export async function handle(request:Request,bindings:unknown):Promise<Response> {
  const id=requestId(request),head=request.method==='HEAD';
  try {
@@ -20,6 +21,7 @@ export async function handle(request:Request,bindings:unknown):Promise<Response>
    return health(request,id,origin);
   }
   const catalog=await tools(request,env,id,origin);if(catalog)return catalog;
+  const download=await downloads(request,env,id,origin);if(download)return download;
   return failure('NOT_FOUND','Route not found',404,id,origin,head);
  }catch{return failure('UNAVAILABLE','Service unavailable',503,id,undefined,head)}
 }
