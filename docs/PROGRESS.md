@@ -777,14 +777,15 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     "approved_by": null,
     "approved_at": null,
     "authorization": "Propriétaire : préparer la deuxième étape, vérifier la connexion Cloudflare et arrêter au besoin de connexion avec état et procédure de reprise",
-    "blocked_reason": "Arrêt demandé : OAuth Pages présent, droits Workers/D1/R2 insuffisants et configuration distante non renseignée ; ressources distantes non vérifiables",
+    "blocked_reason": "Réautorisation utilisateur réussie et scopes Workers/D1 demandés, mais le contrôle suivant renouvelle un jeton limité à Pages ; D1/R2 refusés code 10000. Cause non établie. Profil kortex dédié proposé, sans login ni modification de droits par l’agent.",
     "contract_changes": [
       "Nouveau schéma API candidat ; six schémas gelés inchangés"
     ],
     "evidence": [
       "docs/evidence/validation-9.2-local.json",
       "docs/evidence/cloudflare-checkpoint-9.2.json",
-      "infra/cloudflare-setup.md"
+      "infra/cloudflare-setup.md",
+      "docs/evidence/cloudflare-reauthorization-9.2.json"
     ],
     "frozen": false
   }

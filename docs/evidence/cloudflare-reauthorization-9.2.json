@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-27",
+  "checked_at": "2026-10-27T18:12:04.094Z",
+  "read_only": true,
+  "command": "wrangler whoami --json",
+  "exit_code": 0,
+  "authenticated": true,
+  "verification": "authenticated",
+  "auth_type": "OAuth Token",
+  "account_count": 1,
+  "token_permissions": [
+    "user:read",
+    "offline_access",
+    "account:read",
+    "pages:write",
+    "zone:read"
+  ],
+  "credential_environment_present": {
+    "CLOUDFLARE_API_TOKEN": false,
+    "CLOUDFLARE_API_KEY": false,
+    "CLOUDFLARE_EMAIL": false,
+    "CLOUDFLARE_ACCOUNT_ID": false
+  },
+  "remote_configuration": [
+    {
+      "environment": "staging",
+      "account_configured": false,
+      "d1_configured": false,
+      "r2_configured": false,
+      "web_origin_configured": false
+    },
+    {
+      "environment": "production",
+      "account_configured": false,
+      "d1_configured": false,
+      "r2_configured": false,
+      "web_origin_configured": false
+    }
+  ],
+  "login_started": false,
+  "remote_writes": 0,
+  "resource_checks": [
+    {
+      "command": "wrangler d1 list --json",
+      "exit_code": 1,
+      "status": "access_denied",
+      "error_codes": [
+        "10000"
+      ]
+    },
+    {
+      "command": "wrangler r2 bucket list",
+      "exit_code": 1,
+      "status": "access_denied",
+      "error_codes": [
+        "10000"
+      ]
+    },
+    {
+      "command": "wrangler deployments list --name kortex-api-staging --json",
+      "exit_code": 1,
+      "status": "verification_failed",
+      "error_codes": []
+    },
+    {
+      "command": "wrangler deployments list --name kortex-api-production --json",
+      "exit_code": 1,
+      "status": "verification_failed",
+      "error_codes": []
+    }
+  ],
+  "remote_ready": false,
+  "owner_reauthorization": {
+    "login_success_confirmed": true,
+    "requested_scopes": [
+      "user:read",
+      "account:read",
+      "pages:write",
+      "zone:read",
+      "workers:write",
+      "workers_scripts:write",
+      "d1:write",
+      "offline_access"
+    ],
+    "following_identity_check_refreshed_token": true,
+    "current_scopes_include_workers_or_d1": false,
+    "root_cause": "not established; current shared/default session still has Pages-only scopes"
+  },
+  "next_action": "Owner creates and activates a dedicated kortex auth profile for this project, then agent repeats read-only checks. No remote write.",
+  "agent_started_login": false,
+  "agent_changed_credentials": false
+}

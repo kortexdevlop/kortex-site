@@ -1,5 +1,23 @@
 # Reprise Cloudflare — point d'arrêt demandé, 27 octobre 2026
 
+## Mise à jour après la réautorisation du propriétaire
+
+La connexion utilisateur a bien réussi et a demandé les scopes Workers/D1 prévus. Le contrôle agent suivant a néanmoins renouvelé un jeton dont les scopes ne couvrent toujours que Pages/user/account/zone ; D1/R2 restent refusés, code 10000. La cause n'est pas établie. Ni un échec de saisie utilisateur ni l'absence de ressources ne sont déduits. Preuve publique expurgée : docs/evidence/cloudflare-reauthorization-9.2.json.
+
+Pour séparer Kortex de la session globale Pages, utiliser désormais un profil dédié. Depuis PowerShell dans C:\Users\µ\Desktop\KORTEX-, lancer ces commandes une par une (pnpm n'est pas dans le PATH de ce terminal) :
+
+```powershell
+& "C:\Program Files\nodejs\node.exe" ".\node_modules\wrangler\bin\wrangler.js" auth create kortex --scopes user:read account:read workers:write workers_scripts:write d1:write
+```
+
+Valider l'autorisation dans le navigateur et attendre le succès, puis lier ce profil au seul dossier du projet :
+
+```powershell
+& "C:\Program Files\nodejs\node.exe" ".\node_modules\wrangler\bin\wrangler.js" auth activate kortex
+```
+
+Ces commandes ont été vérifiées dans l'aide de Wrangler 4.152.0. La fonctionnalité de profils y est marquée expérimentale. whoami ne prend pas --profile dans cette version : l'activation du profil sur le dossier est nécessaire. Ne pas supprimer la session Pages existante. L'agent n'a lancé ni création/activation de profil ni nouveau login. Après confirmation du propriétaire, reprendre le contrôle read-only normal dans ce dossier ; aucun déploiement autorisé par cette manipulation.
+
 ## État vérifié
 
 9.1 est terminée localement. La préparation locale de 9.2 fonctionne : API Workers, D1/R2 locaux, deux migrations, tests et build sans upload. Aucun Worker, base ou bucket distant n'a été créé/modifié par ces étapes. Aucun login n'a été lancé.
