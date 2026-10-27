@@ -1,6 +1,6 @@
 # Progression
 
-Lot 6.2, 6.3 (Windows sous dérogation multi-OS) et 7.0 terminé le 27 octobre 2026. Prochaine étape : 7.1, non démarrée. Les étapes absentes sont pending.
+Lot 7.1–7.3 terminé le 27 octobre 2026 : calculatrice réelle, parité signée Web/Windows et référence TOOL1_V1 figée localement. Prochaine étape : 8.0, non démarrée. Les étapes absentes sont pending. Les exclusions et dérogations précédentes restent en vigueur.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -559,6 +559,63 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
       "tools/calculatrice/design.md"
     ],
     "frozen": false
+  },
+  {
+    "id": "7.1",
+    "status": "validated",
+    "source_commit": "17eb70a",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-7.1.md",
+    "tests_executed": "3 tests guest, 16 cas, 13 goldens, WASM et zéro import",
+    "approved_by": "propriétaire : Enchaîne les 3 prochaines étape ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun schéma ou ABI gelé modifié ; correction générique du pont objet Web"
+    ],
+    "evidence": [
+      "docs/evidence/validation-7.1-7.3.json",
+      "docs/evidence/tool-1-parity.md",
+      "tests/golden/calculatrice-reference.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "7.2",
+    "status": "validated",
+    "source_commit": "17eb70a",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-7.2.md",
+    "tests_executed": "Parcours calculatrice réels Chromium/WebKit/Windows ; même archive signée",
+    "approved_by": "propriétaire : Enchaîne les 3 prochaines étape ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun schéma ou ABI gelé modifié ; correction générique du pont objet Web"
+    ],
+    "evidence": [
+      "docs/evidence/validation-7.1-7.3.json",
+      "docs/evidence/tool-1-parity.md",
+      "tests/golden/calculatrice-reference.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "7.3",
+    "status": "validated",
+    "source_commit": "17eb70a",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-7.3.md",
+    "tests_executed": "80 tests Rust, 28 adaptateur Web, 10 shell/E2E, 4 Node, 46 cas contrats ; voir rapport",
+    "approved_by": "propriétaire : Enchaîne les 3 prochaines étape ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun schéma ou ABI gelé modifié ; correction générique du pont objet Web"
+    ],
+    "evidence": [
+      "docs/evidence/validation-7.1-7.3.json",
+      "docs/evidence/tool-1-parity.md",
+      "tests/golden/calculatrice-reference.json"
+    ],
+    "frozen": true
   }
 ]
 ```

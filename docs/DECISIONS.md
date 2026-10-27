@@ -32,3 +32,11 @@ Instruction explicite du propriétaire : « Oui continue, laisse firefox de cot�
 ## Lot 6.2–7.0 — 27 octobre 2026
 
 Le propriétaire demande « Enchaîne les 3 prochaine étape ». Les étapes sont 6.2, 6.3 et 7.0. Ses exclusions antérieures Linux/macOS et Firefox restent applicables. La vérification native Windows est réalisée ; la matrice complète de 6.3 reste sous la dérogation déjà autorisée, sans statut validated global. La poursuite vers la déclaration 7.0 est autorisée dans ce périmètre. Le gate multi-OS de phase 20 reste non satisfait pour les plateformes exclues. Preuves : evidence/native-platforms.md et reports/STEP-6.3.md.
+
+## Lot 7.1–7.3 — 27 octobre 2026
+
+Le propriétaire demande « Enchaîne les 3 prochaines étape » : calculatrice réelle, parité Web/Windows et référence de compatibilité. Cette instruction autorise l’exécution du lot et son gel local documenté ; elle ne vaut ni revue de sécurité indépendante, ni preuve de compatibilité des plateformes exclues. Le plan source reste inchangé et 8.0 n’est pas démarrée.
+
+Les quatre calculs sont du code guest commun aux clics/actions. Les hôtes ignorent le nom de l’outil. La correction du pont Web objet/Map et la largeur minimale commune des boutons corrigent des défauts génériques mis en évidence par les interactions réelles ; elles n’étendent aucun contrat. Le gate décrit explicitement ces corrections, plutôt que prétendre qu’aucun fichier hôte n’a changé.
+
+Le design 7.0 envisageait Entrée globale et Échap/focus. Le schéma UI figé ne fournit ni keydown ni commande de focus guest ; ces raccourcis ne sont pas ajoutés silencieusement. Les contrôles natifs sont tabulables, Entrée/Espace sur bouton et Tout effacer restent disponibles. Les empreintes sont celles de la référence construite sur la chaîne Windows figée ; la reproductibilité générale et le packager de publication relèvent de la phase 8. Les signatures des fixtures utilisent une clé éphémère de test, sans bypass unsigned.

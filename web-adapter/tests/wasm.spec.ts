@@ -55,3 +55,16 @@ test('worker interrompu sur boucle CPU, buffers invalides et mauvaise corrélati
   return {errors,ticks};
  });expect(result.errors).toEqual(['TIMEOUT','INVALID_BUFFER','CORRELATION_ERROR']);expect(result.ticks).toBeGreaterThan(0);
 });
+
+test('calculatrice réelle : archive signée et goldens SDK inchangés dans le Worker',async({page})=>{
+ const f=JSON.parse(readFileSync(resolve(root,'target/calculatrice-fixture/fixture.json'),'utf8'));
+ const reference=JSON.parse(readFileSync(resolve(root,'tests/golden/calculatrice-reference.json'),'utf8'));expect(f.guest_sha256).toBe(reference.guest_sha256);expect(f.descriptor.sha256).toBe(reference.archive_sha256);
+ const cases=readFileSync(resolve(root,'tests/golden/calculatrice.ndjson'),'utf8').trim().split('\n').map(line=>JSON.parse(line));
+ const actual=await page.evaluate(async({f,cases})=>{
+  const api=await import('/adapter/interop.js' as string);
+  const tool=await new api.ToolLoader(new api.TrustStore(f.keys),location.origin).loadTool({...f.descriptor,url:location.origin+'/fixtures/calculatrice.tool'});
+  const bridge=await api.startVerifiedTool(tool);const replies=[];
+  try{for(const c of cases)replies.push(await bridge.dispatch(c.request));}finally{bridge.stop()}
+  return replies;
+ },{f,cases});expect(actual).toEqual(cases.map(c=>c.reply));
+});

@@ -31,3 +31,11 @@ Le manifeste et le contrat de tools/calculatrice déclarent quatre actions pure 
 ## Backend natif — 6.2 et 6.3
 
 Un import host_enqueue borné collecte les demandes SDK du guest signé. L’identité et les déclarations viennent du Core ; Gateway et les consentements hôtes précèdent les effets. Les fichiers sont conservés ouverts par handles opaques, le stockage non secret est résolu sous le répertoire local OS et le réseau HTTPS connecte exclusivement les IP publiques validées d’origines hôtes autorisées. Aucun WASI ni lancement de processus guest. Fermeture, changement de génération et annulation révoquent la session. Les résultats reviennent par capability.result puis render via le Core. La vue Desktop et les IO attendent sans réveil actif.
+
+## Calculatrice de référence — 7.1 à 7.3
+
+Le trait Tool et les exports SDK de tools/calculatrice exécutent maintenant les quatre actions. Les clics partagent State::calculate avec action.invoke ; l’état de saisie et les erreurs appartiennent au guest. Le même ZIP signé local est admis par ToolLoader/TrustStore côté Web et verify_package côté natif. Le guest a zéro import ; les deux hôtes rendent son arbre UI v1 et le ferment sans persistance des calculs.
+
+Un défaut transversal préexistant du pont Rust→JavaScript Web a été corrigé : les commandes doivent devenir des objets JavaScript ordinaires, pas des Map. Les clics réels du parcours calculatrice servent de régression. La CSS commune assure aussi une largeur minimale de bouton de 44 px, en complément de la hauteur existante. Aucun traitement du nom calculatrice, changement de moteur ou nouveau schéma n’a été nécessaire. Les goldens Request/Reply et les empreintes sont sous tests/golden ; voir TOOL_SDK.md et reports/PHASE7_GATE.md.
+
+Cette section remplace l’état « déclaration seule » de 7.0 ci-dessus, conservé comme historique. Entrée/Espace activent les boutons natifs focalisés ; le protocole figé ne transporte pas les raccourcis globaux Entrée/Échap envisagés dans le premier design. Ils ne sont pas revendiqués.

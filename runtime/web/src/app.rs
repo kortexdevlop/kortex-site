@@ -26,7 +26,9 @@ impl RuntimeWebConfig {
     }
 }
 fn command(message: Value) {
-    if let Ok(value) = serde_wasm_bindgen::to_value(&message) {
+    // The host protocol expects plain objects, including nested payloads and null.
+    // serde_wasm_bindgen defaults JSON objects to JS Map, which has no .kind.
+    if let Ok(value) = js_sys::JSON::parse(&message.to_string()) {
         crate::interop::command(value);
     }
 }

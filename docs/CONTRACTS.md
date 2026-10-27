@@ -203,3 +203,9 @@ Le SDK tient un registre exact des buffers ; il refuse lecture et libération su
 ## Mise en œuvre native et déclaration 7.0 — 27 octobre 2026
 
 Aucun schéma ou ABI gelé modifié. Le format de record natif version 1 est interne au backend ; il ne crée pas de capacité publique. Les droits restent ceux du manifeste et les CapabilityRequest SDK existantes. Les extensions Rust internes (rendu après callback, lecture de décision de consentement) ne modifient pas les enveloppes. Le contrat calculatrice est une instance valide du schéma gelé et non une exception ; son implémentation reste en 7.1.
+
+## Référence de compatibilité outil 1 — 7.3
+
+ABI 1.0, UI 1.0 et cinq schémas gelés restent inchangés. tests/golden/calculatrice.ndjson contient 13 échanges Request/Reply exécutés par le SDK, le Worker Web et Wasmtime sur le vrai guest. tests/golden/calculatrice-reference.json consigne les SHA-256 du module, du ZIP signé de test et du corpus. tests/fixtures/calculatrice.test.cjs vérifie empreintes et signature B.2 ; le test natif réadmet le ZIP et refuse son altération. Ces références sont à conserver dans la validation des futurs packagers/publications ; elles ne doivent pas être régénérées automatiquement pendant un test.
+
+Les erreurs d’action conservent INVALID_INPUT et DIVIDE_BY_ZERO. Un événement UI reconnu est acquitté même si le calcul échoue, puis render expose l’erreur dans un alert. Aucun nouveau message, événement clavier, propriété UI ou permission. La correction de sérialisation Rust→JavaScript Web porte sur la représentation des objets déjà prescrite, sans changement du wire JSON. Guide : TOOL_SDK.md ; gate : reports/PHASE7_GATE.md.

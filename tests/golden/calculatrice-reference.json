@@ -1,0 +1,13 @@
+{
+  "tool_id": "calculatrice",
+  "version": "1.0.0",
+  "abi_version": "1.0",
+  "guest_sha256": "f095744f63b9594af61c02a6a515f2ad7ddab0ca3d5e7ccbcc9120a78f850c50",
+  "archive_sha256": "fac58c7af499a828516f7d5ab04d7d0541faa0e6af8ad3aad3f8727aebca35d4",
+  "goldens_sha256": "5c73355801ae1d56c1ad589999b0bdce1682ab8f88122b962ec7c09472af3b22",
+  "rust": "1.99.1",
+  "target": "wasm32-unknown-unknown",
+  "profile": "release",
+  "rustflags": "-C link-arg=--max-memory=67108864",
+  "note": "Reference generated on Windows. Different toolchains/paths may change binary hashes; review the gate before updating this file."
+}

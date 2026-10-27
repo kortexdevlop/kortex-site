@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-27",
+  "source_commit": "17eb70a",
+  "implementation_commit": "commit contenant ce registre",
+  "scope": [
+    "7.1",
+    "7.2",
+    "7.3"
+  ],
+  "reference": {
+    "tool_id": "calculatrice",
+    "version": "1.0.0",
+    "abi_version": "1.0",
+    "guest_sha256": "f095744f63b9594af61c02a6a515f2ad7ddab0ca3d5e7ccbcc9120a78f850c50",
+    "archive_sha256": "fac58c7af499a828516f7d5ab04d7d0541faa0e6af8ad3aad3f8727aebca35d4",
+    "goldens_sha256": "5c73355801ae1d56c1ad589999b0bdce1682ab8f88122b962ec7c09472af3b22",
+    "rust": "1.99.1",
+    "target": "wasm32-unknown-unknown",
+    "profile": "release",
+    "rustflags": "-C link-arg=--max-memory=67108864",
+    "note": "Reference generated on Windows. Different toolchains/paths may change binary hashes; review the gate before updating this file."
+  },
+  "test_signature": "GyBgkI0UTn4C/6DN+I9+zF8hGEdta9ckRA2G5d9zSziEs65fSmMnCIcxePa0fKduZrHwot2yQ/aZG6TaKlzNAA==",
+  "test_signing_key_id": "ephemeral-fixture",
+  "test_public_keys": {
+    "ephemeral-fixture": "C0Q+GBPidYpbGKwl9+me6qT8schoE8KW6As3BqYYx3w="
+  },
+  "private_key_persisted": false,
+  "commands": [
+    {
+      "command": "cargo test --workspace --locked",
+      "exit_code": 0,
+      "passed": 80,
+      "failed": 0,
+      "ignored": 1,
+      "ignored_reason": "Opt-in external HTTPS smoke, unchanged from previous batch"
+    },
+    {
+      "command": "pnpm --filter @kortex/web-adapter test",
+      "exit_code": 0,
+      "passed": 28
+    },
+    {
+      "command": "pnpm exec playwright test tests/e2e/calculatrice-web.spec.ts tests/web",
+      "exit_code": 0,
+      "passed": 10
+    },
+    {
+      "command": "tests/e2e/calculatrice-desktop.ps1",
+      "exit_code": 0,
+      "result": "Real Windows WebView2 keypad and action=1200, DIVIDE_BY_ZERO, cancel/close/reopen, 44px buttons, zero external requests"
+    },
+    {
+      "command": "node --test tools/calculatrice/tests/declaration.test.mjs tests/fixtures/calculatrice.test.cjs",
+      "exit_code": 0,
+      "passed": 4
+    },
+    {
+      "command": "pnpm --filter @kortex/contracts test",
+      "exit_code": 0,
+      "passed": 3,
+      "cross_language_cases": 46
+    },
+    {
+      "command": "pnpm --filter @kortex/web-adapter typecheck",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo clippy -p tool-calculatrice -p kortex-runtime-native --all-targets --no-deps --locked -- -D warnings",
+      "exit_code": 0
+    }
+  ],
+  "frozen_schemas_changed": false,
+  "guest_import_count": 0,
+  "goldens_request_reply_pairs": 13,
+  "external_execution_requests": 0,
+  "windows_internal_ipc": "Observed separately: http://dioxus.index.html//__events; no claim to system-wide network monitoring",
+  "screenshots_visually_inspected": true,
+  "working_tree_sha256": {
+    "tools/calculatrice/src/lib.rs": "6a02387160f6fe92dc810fb2382c38fa2a58d2684994bfc0941fde2aa5e9d382",
+    "tools/calculatrice/src/state.rs": "d0c9e0302b034bbb16c2d88ace2308010a4658d4d35834cc31d01d2e4bcf0a86",
+    "tools/calculatrice/tests/tool.rs": "96be8697f8f196855c33f9dc005361700bb7ef32fcc69ed5abe1966ea3509cb5",
+    "crates/kortex-runtime-native/tests/guest.rs": "fc92ff07c423c0fd5fa9f32b7c741ad500b8728a0cd3991f8b979fc116fc2393",
+    "runtime/web/src/app.rs": "e921ee9bf54170f31baeff16eef14745b768a2509043ed6dd1b9f6fc2e18a9a9",
+    "runtime/assets/tool-shell.css": "7d7a0d677f5f73ebe4b0717459cea02af49733513aaf2e61aedaa43ef762cb0e",
+    "tests/fixtures/make-tool.cjs": "600dc45b69d996e4ef2f007e1e8fa5aeda0f82305e1e1551add6f198c72b38d7",
+    "tests/fixtures/calculatrice.cjs": "5ca8e8bf656cba9464ea93ac4364ad09fe4ad5b1d34887c55294f647747107a0",
+    "tests/fixtures/calculatrice.test.cjs": "7493ae855c2b497e31234f3710d0ac8b4e55adc92a78b4efff22385c42d4768c",
+    "tests/fixtures/prepare-calculatrice.mjs": "33b406edada897472d471e1d6be928c96379176c325846bcf0ab0dce3b469bbd",
+    "tests/e2e/calculatrice-web.spec.ts": "ddc308d0984bbc34f19bbc4933f590deebf89e09cb6e4056df6583e87e6f85c5",
+    "tests/e2e/calculatrice-desktop.cjs": "3b3665a89452752d338afe85d438dc62d320539239264d9dc26f3a57382f46ce",
+    "tests/e2e/calculatrice-desktop.ps1": "a6caabeed78b59ae589ea6131234a221eb2529156c5d566a212214050ad4deff",
+    "web-adapter/tests/wasm.spec.ts": "09d86fd821b181a7cac42d6663bfc84b3b82026a22a69981fe2b7599fd3e5295",
+    "tests/golden/calculatrice.ndjson": "5c73355801ae1d56c1ad589999b0bdce1682ab8f88122b962ec7c09472af3b22",
+    "tests/golden/calculatrice-reference.json": "118e2957a62e7f8e2019c406694b4fbd79f8932db049e17ac62f328bf67944d5",
+    "docs/evidence/calculatrice-chromium.png": "47888e57b790c137f8bb2997b249cb3e9068f9181f239b3570f8686d8fc8078f",
+    "docs/evidence/calculatrice-webkit.png": "4f86c94c2eededd24487b4ca453afa48ec59a126999641eda156032e90647909",
+    "docs/evidence/calculatrice-windows.png": "b5fb4130956daacc5076d686143674598e9dd40193d3e4226644408e2ab8cfbe"
+  },
+  "local_run_log_sha256": {
+    "target/phase7-cargo-tests.log": "65e63f117bf296d63c21b613b925e06fd9daf8da09ea8bfe86c9a48458065bb5",
+    "target/phase7-web-tests.log": "fcd7ee0f627836dd896e7b599793b3765fe05eb431b19c44f395d471868ca658",
+    "target/phase7-web-e2e.log": "4b9d18689f90a163b9dbae1c61f60c2dc5cf324b05e82aca01198cecea91c3df",
+    "target/phase7-windows-tests.log": "8e6ded75853c4704303c82db4d00da6bc66b0ed6c60a3dbcc1d958e176338cee"
+  },
+  "exclusions": [
+    "Linux",
+    "macOS",
+    "Firefox"
+  ],
+  "limitations": [
+    "No global Enter/Escape shortcuts in frozen UI schema",
+    "Test fixture only; production packager phase 8 not started",
+    "Reference binary hashes are not a general reproducible-build attestation",
+    "No independent human security sign-off or remote publication"
+  ]
+}

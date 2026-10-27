@@ -87,3 +87,79 @@ fn signed_text_module_is_not_a_portable_wasm_binary() {
         Err(RuntimeError::UnsupportedAbi)
     ));
 }
+
+#[test]
+fn real_calculatrice_signed_archive_and_goldens() {
+    use base64::{Engine as _, engine::general_purpose::STANDARD};
+    use kortex_core::ArtifactDescriptor;
+    use std::collections::BTreeMap;
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
+    let dir = root.join("target/calculatrice-fixture");
+    let proof: serde_json::Value = serde_json::from_slice(
+        &std::fs::read(dir.join("fixture.json"))
+            .expect("Run tests/fixtures/calculatrice.cjs after building the calculator WASM"),
+    )
+    .unwrap();
+    let reference: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../tests/golden/calculatrice-reference.json"
+    ))
+    .unwrap();
+    assert_eq!(proof["guest_sha256"], reference["guest_sha256"]);
+    assert_eq!(proof["descriptor"]["sha256"], reference["archive_sha256"]);
+    let d = &proof["descriptor"];
+    let descriptor = ArtifactDescriptor {
+        schema_version: 1,
+        tool_id: d["tool_id"].as_str().unwrap().into(),
+        version: d["version"].as_str().unwrap().into(),
+        abi_version: "1.0".into(),
+        sha256: d["sha256"].as_str().unwrap().into(),
+        signing_key_id: d["signing_key_id"].as_str().unwrap().into(),
+        signature: STANDARD
+            .decode(d["signature"].as_str().unwrap())
+            .unwrap()
+            .try_into()
+            .unwrap(),
+    };
+    let keys: BTreeMap<String, [u8; 32]> = proof["trust"]
+        .as_object()
+        .unwrap()
+        .iter()
+        .map(|(id, key)| {
+            (
+                id.clone(),
+                STANDARD
+                    .decode(key.as_str().unwrap())
+                    .unwrap()
+                    .try_into()
+                    .unwrap(),
+            )
+        })
+        .collect();
+    let bytes = std::fs::read(dir.join("calculatrice.tool")).unwrap();
+    let verified =
+        kortex_runtime_native::verify_package(bytes.clone(), &descriptor, &keys).unwrap();
+    assert_eq!(verified.manifest().id, "calculatrice");
+    let module = std::fs::read(dir.join("module.wasm")).unwrap();
+    let compiled = wasmtime::Module::new(&wasmtime::Engine::default(), &module).unwrap();
+    assert_eq!(
+        compiled.imports().count(),
+        0,
+        "pure guest must have no sensitive imports"
+    );
+    assert_eq!(
+        format!("{:x}", Sha256::digest(&module)),
+        proof["guest_sha256"].as_str().unwrap()
+    );
+    let mut engine = NativeGuestEngine;
+    let mut handle = run(engine.load(&verified)).unwrap();
+    for line in include_str!("../../../tests/golden/calculatrice.ndjson").lines() {
+        let case: serde_json::Value = serde_json::from_str(line).unwrap();
+        let request = Envelope::decode(&serde_json::to_vec(&case["request"]).unwrap()).unwrap();
+        let reply = run(engine.dispatch(&mut handle, &request, deadline())).unwrap();
+        assert_eq!(serde_json::to_value(reply).unwrap(), case["reply"]);
+    }
+    run(engine.unload(handle)).unwrap();
+    let mut bad = bytes;
+    bad[40] ^= 1;
+    assert!(kortex_runtime_native::verify_package(bad, &descriptor, &keys).is_err());
+}

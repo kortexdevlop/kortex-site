@@ -1,9 +1,9 @@
 # KORTEX
 
-Plateforme d'outils Rust Core WASM pour Web et Desktop, catalogue commun.
+Plateforme locale d’outils Rust Core WASM pour Web et Desktop. La calculatrice de référence fonctionne dans Chromium, WebKit et Windows/WebView2, avec le même paquet signé, un rendu partagé et quatre actions. Le catalogue et la publication cloud restent à construire.
 
-Initialisation 1.0 uniquement. Aucune application active ni infrastructure déployée. Plan : docs/MASTER_PLAN.md ; progression : docs/PROGRESS.md. Commandes Cargo et pnpm à activer aux étapes suivantes. Contrôles actuels : git status --short et git diff --check.
+Progression et preuves : [docs/PROGRESS.md](docs/PROGRESS.md). Plan source : [docs/MASTER_PLAN.md](docs/MASTER_PLAN.md). Création et vérification d’un outil : [docs/TOOL_SDK.md](docs/TOOL_SDK.md). Gate calculatrice : [docs/reports/PHASE7_GATE.md](docs/reports/PHASE7_GATE.md).
 
-Installation locale : Node.js et Corepack requis. Activer Corepack puis lancer pnpm install --lockfile-only. Les versions seront figées en 1.2. Les scripts lint, typecheck, test, build et verify délèguent aux paquets présents ; aucun paquet applicatif n'existe encore. Une absence de paquet ne constitue pas un test réussi. Chaque futur paquet doit fournir ses vrais scripts de contrôle.
+Le workspace utilise les versions figées de Rust, Node et pnpm. Installer les dépendances avec pnpm ; les suites Web exigent également la construction du shell Dioxus et les fixtures WASM indiquées dans les rapports. Les commandes de vérification de l’outil 1 et le scénario Windows sont dans le guide SDK. Linux/macOS et Firefox restent exclus sur instruction du propriétaire ; leur compatibilité n’est pas déclarée.
 
-Configuration : copier .env.example vers .env pour le local ; ne jamais versionner les valeurs réelles. Injecter les secrets staging/production dans les paramètres protégés GitHub/Cloudflare. La clé privée de signature reste exclusivement en CI. Vérifications : node scripts/check-env.mjs --example et node --test tests/config/secrets.test.mjs. Voir infra/environments.md.
+Configuration : copier .env.example vers .env pour le local ; ne jamais versionner les valeurs réelles. La signature des fixtures utilise une clé privée éphémère en mémoire, sans clé de production. Voir infra/environments.md pour les environnements prévus.
