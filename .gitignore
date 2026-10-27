@@ -18,3 +18,6 @@ build/
 test-results/
 playwright-report/
 runtime/web/public/adapter/
+runtime/web/public/tool-shell.css
+runtime/web/public/runtime-style.css
+web-adapter/src/generated-validators.ts

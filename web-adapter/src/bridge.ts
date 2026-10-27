@@ -1,6 +1,6 @@
 import {extractArchive} from './archive';
 import type {TrustStore} from './trust';
-import Ajv from 'ajv/dist/2020.js';
+import {matchesSchema} from './browser-contracts';
 import {ed25519} from '@noble/curves/ed25519.js';
 import {validateManifest,validateContract,type Manifest,type Contract} from '@kortex/contracts';
 import {request,reply,capability,error,QUEUE_LIMIT,type Request,type Reply,type CapabilityRequest} from './types';
@@ -31,7 +31,7 @@ export class VerifiedTool {
  }
 }
 export class WebBridge {
- private worker:Worker|undefined;private sequence=0;private stopped=false;private pending=new Map<number,{resolve:(v:any)=>void;reject:(e:Error)=>void;timer:ReturnType<typeof setTimeout>}>();private tail:Promise<unknown>=Promise.resolve();private queued=0;private schemas=new Ajv({strict:false,allowUnionTypes:true});
+ private worker:Worker|undefined;private sequence=0;private stopped=false;private pending=new Map<number,{resolve:(v:any)=>void;reject:(e:Error)=>void;timer:ReturnType<typeof setTimeout>}>();private tail:Promise<unknown>=Promise.resolve();private queued=0;
  onCapabilitySettled:()=>Promise<void>=async()=>{};onFailure:(reason:string)=>void=()=>{};
  onCapability:(call:CapabilityRequest)=>Promise<Record<string,unknown>>=async()=>{throw Error('PERMISSION')};
  private constructor(private tool:VerifiedTool,private timeout:number){
@@ -53,9 +53,9 @@ export class WebBridge {
  dispatch(value:Request):Promise<Reply>{
   request(value);const action=value.kind==='action.invoke'?this.tool.contract.actions.find(a=>a.id===value.payload.action_id):undefined;
   if(value.kind==='action.invoke'&&!action)return Promise.reject(Error('UNKNOWN_ACTION'));
-  if(action&&!this.schemas.compile(action.input_schema)(value.payload.input))return Promise.reject(Error('INVALID_INPUT'));
+  if(action&&!matchesSchema(action.input_schema,value.payload.input))return Promise.reject(Error('INVALID_INPUT'));
   if(this.queued>=QUEUE_LIMIT)return Promise.reject(Error("QUEUE_FULL"));this.queued++;const copy=structuredClone(value);
-  const task=this.tail.then(async()=>{const result=await this.call({op:'dispatch',request:copy},action?Math.min(this.timeout,action.timeout_ms):this.timeout);reply(result);if(action&&result.ok&&!this.schemas.compile(action.output_schema)(result.data)){this.stop('INVALID_OUTPUT');throw Error('INVALID_OUTPUT')}if(result.request_id!==copy.request_id){this.stop('CORRELATION_ERROR');throw Error('CORRELATION_ERROR')}return result;});
+  const task=this.tail.then(async()=>{const result=await this.call({op:'dispatch',request:copy},action?Math.min(this.timeout,action.timeout_ms):this.timeout);reply(result);if(action&&result.ok&&!matchesSchema(action.output_schema,result.data)){this.stop('INVALID_OUTPUT');throw Error('INVALID_OUTPUT')}if(result.request_id!==copy.request_id){this.stop('CORRELATION_ERROR');throw Error('CORRELATION_ERROR')}return result;});
   this.tail=task.catch(()=>{});return task.finally(()=>{this.queued--;});
  }
  private async capabilityResult(id:string,result:Record<string,unknown>){try{await this.dispatch({v:1,request_id:crypto.randomUUID(),kind:'capability.result',payload:{capability_request_id:id,...result}});await this.onCapabilitySettled();}catch{/* shutdown/timeout already reported to callers */}}

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "node generate-validators.mjs && tsc --noEmit -p tsconfig.json",
     "lint": "pnpm run typecheck",
     "test": "node prepare-tests.mjs && pnpm run build && playwright test -c ../tests/web/playwright.config.ts web-adapter/tests"
   },

@@ -9,7 +9,7 @@ export async function prepare(page:Page,permissions:string[]=[],wasmURL='/fixtur
  const pair=generateKeyPairSync('ed25519');const publicKey=Array.from(pair.publicKey.export({format:'der',type:'spki'}).subarray(-32));
  await page.exposeFunction('signTestArtifact',(message:number[])=>sign(null,Buffer.from(message),pair.privateKey).toString('base64'));
  await page.evaluate(async({manifest,contract,publicKey,wasmURL})=>{
-  const api=await import('/adapter/host.js' as string);
+  const api=await import('/adapter/interop.js' as string);
   const raw=new Uint8Array(await(await fetch(wasmURL)).arrayBuffer());
   const leb=(n:number)=>{const b=[];do{let v=n&127;n=Math.floor(n/128);if(n)v|=128;b.push(v);}while(n);return b;};
   const section=(name:string,value:unknown)=>{const n=new TextEncoder().encode(name),v=new TextEncoder().encode(JSON.stringify(value)),payload=[...leb(n.length),...n,...v];return [0,...leb(payload.length),...payload]};

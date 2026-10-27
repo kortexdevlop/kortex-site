@@ -26,43 +26,46 @@ impl RuntimeWebConfig {
     }
 }
 fn command(message: Value) {
-    spawn(async move {
-        let eval = document::eval(
-            "const message=await dioxus.recv(); if(window.kortexHost) await window.kortexHost.command(message);",
-        );
-        if eval.send(message).is_ok() {
-            let _ = eval.await;
-        }
-    });
+    if let Ok(value) = serde_wasm_bindgen::to_value(&message) {
+        crate::interop::command(value);
+    }
 }
 #[component]
 pub fn App() -> Element {
     let mut snapshot = use_signal(|| json!({"status":"loading"}));
     let mut mode = use_signal(|| "standard".to_string());
-    use_future(move || async move {
-        let mut stream = document::eval(
-            r#"
-   const send=()=>dioxus.send(window.kortexHost?.snapshot() ?? {status:navigator.onLine?'unavailable':'offline'});
-   window.addEventListener('kortex:host',send); window.addEventListener('online',send);window.addEventListener('offline',send);send();
-   await new Promise(()=>{});
-  "#,
-        );
-        while let Ok(value) = stream.recv::<Value>().await {
-            let invalid = value.get("config").is_some_and(|c| {
-                let config = RuntimeWebConfig {
-                    api_origin: c["api_origin"].as_str().unwrap_or("").into(),
-                    allowed_parent_origin: c["allowed_parent_origin"].as_str().unwrap_or("").into(),
-                    tool_id: c["tool_id"].as_str().unwrap_or("").into(),
-                    tool_version: c["tool_version"].as_str().unwrap_or("").into(),
-                };
-                !config.validate()
+    let subscription = use_hook(move || {
+        let runtime = dioxus::core::Runtime::current();
+        let callback =
+            wasm_bindgen::closure::Closure::<dyn FnMut(wasm_bindgen::JsValue)>::new(move |v| {
+                let _guard = dioxus::core::RuntimeGuard::new(runtime.clone());
+                if let Ok(value) = serde_wasm_bindgen::from_value::<Value>(v) {
+                    let valid = value.get("config").is_none_or(|config| {
+                        let text = |key: &str| config[key].as_str().unwrap_or("").to_string();
+                        let config = RuntimeWebConfig {
+                            api_origin: text("api_origin"),
+                            allowed_parent_origin: text("allowed_parent_origin"),
+                            tool_id: text("tool_id"),
+                            tool_version: text("tool_version"),
+                        };
+                        let embed = crate::embed::EmbedConfig {
+                            parent_origin: config.allowed_parent_origin.clone(),
+                            client_version: "1.0".into(),
+                        };
+                        config.validate() && web_sys::window().is_some_and(|window| {
+                            let embedded = window.parent().ok().flatten().is_some_and(|parent| parent != window);
+                            !embedded || window.location().origin().is_ok_and(|origin| embed.validate(&origin))
+                        })
+                    });
+                    snapshot.set(if valid {value} else {json!({"status":"error"})});
+                }
             });
-            snapshot.set(if invalid {
-                json!({"status":"error"})
-            } else {
-                value
-            });
-        }
+        use wasm_bindgen::JsCast;
+        let unsubscribe = crate::interop::subscribe(callback.as_ref().unchecked_ref());
+        std::rc::Rc::new((callback, unsubscribe))
+    });
+    use_drop(move || {
+        let _ = subscription.1.call0(&wasm_bindgen::JsValue::NULL);
     });
     let current = snapshot.read().clone();
     let status = current["status"].as_str().unwrap_or("error");
@@ -83,7 +86,7 @@ pub fn App() -> Element {
         _ => ("Erreur", "L’outil n’a pas pu être exécuté."),
     };
     rsx! {
-    document::Script {r#type:"module",src:"/adapter/host.js"} style {"{kortex_ui::SHELL_CSS}"}style {{include_str!("../assets/style.css")}}
+    document::Link {rel:"stylesheet",href:"/tool-shell.css"} document::Link {rel:"stylesheet",href:"/runtime-style.css"}
     main {class:"runtime-shell","data-mode":"{mode}","data-status":status,
      header {class:"runtime-header",h1 {"Kortex"}label {"Affichage " select {aria_label:"Mode d’affichage",value:"{mode}",onchange:move |e|mode.set(e.value()),option {value:"standard","Standard"}option {value:"compact","Compact"}option {value:"contrast","Contraste élevé"}}}}
      section {class:"runtime-status",role:if status=="error"||status=="denied" {"alert"}else{"status"},h2 {"{title}"}p {"{message}"}}

@@ -146,14 +146,13 @@ impl Reply {
         {
             return Err(CodecError::InvalidEnvelope("inconsistent reply outcome"));
         }
-        if let Some(error) = &self.error {
-            if error.code.is_empty()
+        if let Some(error) = &self.error
+            && (error.code.is_empty()
                 || error.message.is_empty()
                 || error.code.chars().count() > 100
-                || error.message.chars().count() > 2000
-            {
-                return Err(CodecError::InvalidEnvelope("empty error fields"));
-            }
+                || error.message.chars().count() > 2000)
+        {
+            return Err(CodecError::InvalidEnvelope("empty error fields"));
         }
         Ok(())
     }

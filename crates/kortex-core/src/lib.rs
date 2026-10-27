@@ -24,6 +24,7 @@ pub struct ArtifactDescriptor {
     pub signature: [u8; 64],
 }
 /// A verified, immutable signed archive. Does not claim ZIP parsing or guest validation.
+#[derive(Clone)]
 pub struct VerifiedTool {
     manifest: Manifest,
     contract: Contract,
@@ -324,22 +325,21 @@ impl<E: GuestEngine, C: Clock> Runtime<E, C> {
         let mut outcome = self
             .exchange(&mut instance, &queued.request, queued.timeout_ms)
             .await;
-        if let Ok(reply) = &outcome {
-            if reply.ok {
-                if let Some(name) = &queued.action {
-                    let schema = instance
-                        .tool
-                        .contract
-                        .actions
-                        .iter()
-                        .find(|a| &a.id == name)
-                        .and_then(|a| jsonschema::validator_for(&a.output_schema).ok());
-                    if schema.is_none_or(|s| {
-                        !s.is_valid(&Value::Object(reply.data.clone().unwrap_or_default()))
-                    }) {
-                        outcome = Err(RuntimeError::InvalidOutput)
-                    }
-                }
+        if let Ok(reply) = &outcome
+            && reply.ok
+            && let Some(name) = &queued.action
+        {
+            let schema = instance
+                .tool
+                .contract
+                .actions
+                .iter()
+                .find(|a| &a.id == name)
+                .and_then(|a| jsonschema::validator_for(&a.output_schema).ok());
+            if schema
+                .is_none_or(|s| !s.is_valid(&Value::Object(reply.data.clone().unwrap_or_default())))
+            {
+                outcome = Err(RuntimeError::InvalidOutput)
             }
         }
         match outcome {

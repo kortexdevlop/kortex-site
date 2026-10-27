@@ -201,21 +201,21 @@ impl Policy {
             _ => {}
         }
         let scope = resource.scope(capability)?;
-        if decision == Decision::AllowOnce {
-            if let Some(index) = self.grants.iter().position(|g| {
+        if decision == Decision::AllowOnce
+            && let Some(index) = self.grants.iter().position(|g| {
                 g.context == *context
                     && g.capability == capability
                     && g.scope == scope
                     && g.expires_ms > now
                     && g.duration == Duration::Once
-            }) {
-                self.grants.remove(index);
-            }
+            })
+        {
+            self.grants.remove(index);
         }
-        if capability.needs_gesture() {
-            if let Some(g) = gesture {
-                self.gestures.remove(&g.id);
-            }
+        if capability.needs_gesture()
+            && let Some(g) = gesture
+        {
+            self.gestures.remove(&g.id);
         }
         Ok(decision)
     }

@@ -1,6 +1,6 @@
 # Progression
 
-Étape courante : 4.2. Gel 3.4 approuvé le 23 octobre 2026. Les étapes absentes sont pending.
+Lot 5.4, 6.0 et 6.1 terminé le 27 octobre 2026. Prochaine étape : 6.2 (non démarrée). Les étapes absentes sont pending.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -432,19 +432,73 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "5.3",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "5ae8d6a",
-    "result_commit": "commit contenant ce registre",
+    "result_commit": "ceac36a",
     "report_path": "docs/reports/STEP-5.3.md",
     "tests_executed": "26 tests adaptateur et 6 tests Web ; voir rapport",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "propriétaire : Enchaîne les trois prochaines étapes",
+    "approved_at": "2026-10-23",
     "contract_changes": [
       "Aucun contrat gelé modifié"
     ],
     "evidence": [
       "docs/evidence/web-5.3.md",
       "web-adapter/tests/loader.spec.ts"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "5.4",
+    "status": "validated",
+    "source_commit": "ceac36a",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-5.4.md",
+    "tests_executed": "26 tests adaptateur ; 8 tests Web ; parité des contrats",
+    "approved_by": "propriétaire : Enchaîne les trois prochaines étapes ; Termine ; Reprend ou tu en était et termine l’étape",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun contrat gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-5.4-6.1.json",
+      "docs/evidence/web-host.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "6.0",
+    "status": "validated",
+    "source_commit": "ceac36a",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-6.0.md",
+    "tests_executed": "2 tests natifs, 9 ABI, 36 régressions ; Clippy complet",
+    "approved_by": "propriétaire : Enchaîne les trois prochaines étapes ; Termine ; Reprend ou tu en était et termine l’étape",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun contrat gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-5.4-6.1.json",
+      "docs/evidence/native-engine.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "6.1",
+    "status": "validated",
+    "source_commit": "ceac36a",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-6.1.md",
+    "tests_executed": "Parcours réel Windows WebView2 ; voir rapport",
+    "approved_by": "propriétaire : Enchaîne les trois prochaines étapes ; Termine ; Reprend ou tu en était et termine l’étape",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun contrat gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-5.4-6.1.json",
+      "docs/evidence/native-desktop.png"
     ],
     "frozen": false
   }

@@ -1,0 +1,80 @@
+{
+  "finalized": "2026-10-27",
+  "base": "ceac36a",
+  "environment": "Windows MSVC; Chromium/WebKit; WebView2",
+  "excluded_by_user": [
+    "Linux",
+    "macOS",
+    "Firefox"
+  ],
+  "observed_checks": [
+    {
+      "command": "pnpm --filter @kortex/web-adapter test",
+      "date": "2026-10-23",
+      "exit_code": 0,
+      "tests": 26
+    },
+    {
+      "command": "pnpm exec playwright test tests/web",
+      "date": "2026-10-27",
+      "exit_code": 0,
+      "tests": 8
+    },
+    {
+      "command": "cargo test -p kortex-runtime-native -p kortex-abi --locked",
+      "date": "2026-10-27",
+      "exit_code": 0,
+      "tests": 11
+    },
+    {
+      "command": "cargo clippy -p kortex-runtime-native -- -D warnings",
+      "date": "2026-10-27",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo test -p kortex-capabilities -p kortex-core -p kortex-shared --locked",
+      "date": "2026-10-23",
+      "exit_code": 0,
+      "tests": 36
+    },
+    {
+      "command": "node --test tests/contracts/cross-language.test.mjs",
+      "date": "2026-10-23",
+      "exit_code": 0,
+      "tests": 3,
+      "common_cases": 46
+    },
+    {
+      "command": "node tests/contracts/browser-csp.mjs",
+      "date": "2026-10-23",
+      "exit_code": 0,
+      "common_cases": 33
+    },
+    {
+      "command": "cargo build -p kortex-runtime-desktop --locked",
+      "date": "2026-10-23",
+      "exit_code": 0
+    },
+    {
+      "command": "node tests/native/desktop.cjs",
+      "date": "2026-10-23",
+      "exit_code": 0,
+      "observations": [
+        "consent/cancel",
+        "signed package",
+        "shared Ready UI",
+        "multiply=1200",
+        "close",
+        "invalid JSON visible",
+        "tampered archive refused"
+      ]
+    }
+  ],
+  "proofs": {
+    "docs/evidence/native-desktop.png": "4052b9d271a1c864c90629468c25dd9d22a7d25bd4b9319a9cef4eda917f30cd",
+    "tests/web/embed.spec.ts": "c638ed3d4bc74f0fb37998578be6deecd905ce958c835d8ffabc4d3965e77d9e",
+    "tests/native/desktop.cjs": "75d1b970d46fcec249640fdfb8b9a7c55c918eed95303a00140d1b0890cdc19a",
+    "crates/kortex-runtime-native/tests/guest.rs": "fc64b53b7c88f90f38a94f234e167ceede3a9ec8bade690b5bb01dd7442faec5",
+    "tests/spikes/core-guest/target/wasm32-unknown-unknown/release/kortex_core_guest_spike.wasm": "3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65"
+  }
+}

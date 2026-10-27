@@ -91,32 +91,31 @@ fn bounded(v: &Value, depth: usize) -> bool {
         ("minLength", "maxLength"),
         ("minItems", "maxItems"),
     ] {
-        if let (Some(a), Some(b)) = (v[min].as_f64(), v[max].as_f64()) {
-            if a > b {
-                return false;
-            }
-        }
-    }
-    if let Some(required) = v["required"].as_array() {
-        if required
-            .iter()
-            .any(|key| v["properties"].get(key.as_str().unwrap_or("")).is_none())
+        if let (Some(a), Some(b)) = (v[min].as_f64(), v[max].as_f64())
+            && a > b
         {
             return false;
         }
     }
-    if let Some(values) = v["enum"].as_array() {
-        if values.iter().any(|x| {
+    if let Some(required) = v["required"].as_array()
+        && required
+            .iter()
+            .any(|key| v["properties"].get(key.as_str().unwrap_or("")).is_none())
+    {
+        return false;
+    }
+    if let Some(values) = v["enum"].as_array()
+        && values.iter().any(|x| {
             x.as_f64()
                 .is_some_and(|n| !n.is_finite() || n.abs() > 9007199254740991.0)
-        }) {
-            return false;
-        }
+        })
+    {
+        return false;
     }
-    if let Some(properties) = v["properties"].as_object() {
-        if properties.values().any(|x| !bounded(x, depth + 1)) {
-            return false;
-        }
+    if let Some(properties) = v["properties"].as_object()
+        && properties.values().any(|x| !bounded(x, depth + 1))
+    {
+        return false;
     }
     v.get("items").is_none_or(|x| bounded(x, depth + 1))
 }
