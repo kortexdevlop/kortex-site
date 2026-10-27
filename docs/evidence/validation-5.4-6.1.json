@@ -72,9 +72,10 @@
   ],
   "proofs": {
     "docs/evidence/native-desktop.png": "4052b9d271a1c864c90629468c25dd9d22a7d25bd4b9319a9cef4eda917f30cd",
-    "tests/web/embed.spec.ts": "c638ed3d4bc74f0fb37998578be6deecd905ce958c835d8ffabc4d3965e77d9e",
+    "tests/web/embed.spec.ts": "f4cbb9b1a970e8ec914eaf2e541436dc1c7c112d3cf2929928a89686cbb3ee24",
     "tests/native/desktop.cjs": "75d1b970d46fcec249640fdfb8b9a7c55c918eed95303a00140d1b0890cdc19a",
     "crates/kortex-runtime-native/tests/guest.rs": "fc64b53b7c88f90f38a94f234e167ceede3a9ec8bade690b5bb01dd7442faec5",
     "tests/spikes/core-guest/target/wasm32-unknown-unknown/release/kortex_core_guest_spike.wasm": "3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65"
-  }
+  },
+  "implementation_commit": "02f6736"
 }

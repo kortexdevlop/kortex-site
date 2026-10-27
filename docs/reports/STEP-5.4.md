@@ -1,6 +1,6 @@
 # Étape 5.4 — Hôte Web isolé
 
-Finalisation : 2026-10-27. Base : ceac36a. Résultat : commit contenant ce rapport.
+Finalisation : 2026-10-27. Base : ceac36a. Résultat : 02f6736 (implémentation du lot).
 Lot 5.4, 6.0 et 6.1 explicitement demandé par le propriétaire (« Enchaîne les trois prochaines étapes », puis « Termine »). Aucun contrat gelé modifié.
 
 Le vrai shell Dioxus et un ZIP signé s’exécutent dans une iframe sur une seconde origine localhost. HELLO vérifie origine, fenêtre source, version et nonce ; READY crée une session ; OPEN exige session et nonce. Les réponses ciblent l’origine exacte. Le parent prototype ouvre l’outil et affiche RESULT. Aucun objet moteur n’est transmis au parent.

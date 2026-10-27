@@ -1,6 +1,6 @@
 # Étape 6.0 — Moteur natif Wasmtime
 
-Finalisation : 2026-10-27. Base : ceac36a ; résultat : commit contenant ce rapport. Étape comprise dans le lot explicitement demandé par le propriétaire. Prérequis : hôte Web signé et isolé 5.4.
+Finalisation : 2026-10-27. Base : ceac36a ; résultat : 02f6736 (implémentation du lot). Étape comprise dans le lot explicitement demandé par le propriétaire. Prérequis : hôte Web signé et isolé 5.4.
 
 `kortex-runtime-native` implémente GuestEngine avec un Engine/Store par outil, acteur séparé, mémoire limitée à 64 Mio, une mémoire, une table bornée à 65 536 éléments, fuel et interruption epoch. Seul import autorisé : kortex_v1.host_enqueue. Aucun WASI ni bibliothèque native d’outil. Exports et types mémoire contrôlés. Les demandes host_enqueue sont refusées ; les pilotes natifs relèvent de 6.2.
 

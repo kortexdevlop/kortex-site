@@ -1,6 +1,6 @@
 # Étape 6.1 — Shell Dioxus Desktop
 
-Finalisation : 2026-10-27. Base : ceac36a ; résultat : commit contenant ce rapport. Troisième étape du lot demandé par le propriétaire. Prérequis : moteur natif 6.0.
+Finalisation : 2026-10-27. Base : ceac36a ; résultat : 02f6736 (implémentation du lot). Troisième étape du lot demandé par le propriétaire. Prérequis : moteur natif 6.0.
 
 Le shell Windows ouvre un .tool signé et son descripteur B.2 adjacent, avec des clés publiques hôtes fournies séparément. Il utilise Core, Wasmtime et le même UiBoundary que Web. Aucun App Store ni binaire natif d’outil. Le dialogue hôte propose d’annuler ou de continuer sans accès sensibles. Aucun consentement n’active de pilote absent : réseau, fichiers et presse-papiers du guest restent refusés jusqu’à 6.2.
 

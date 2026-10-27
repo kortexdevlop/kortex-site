@@ -36,4 +36,3 @@ test('iframe Dioxus : paquet signé, CSP stricte, isolation, nonce et recovery',
   await page.reload();await expect(frame.getByRole('heading',{name:'Kortex',exact:true})).toBeVisible();await page.getByRole('button',{name:'Ouvrir l’outil'}).click();await expect(page.locator('#result')).toHaveText('ready');
  }finally{parent.close();host.close();parent.closeAllConnections();host.closeAllConnections();}
 });
-
