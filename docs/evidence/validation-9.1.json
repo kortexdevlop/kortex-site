@@ -1,7 +1,7 @@
 {
   "date": "2026-10-27",
   "source_commit": "751a84f",
-  "implementation_commit": "8237f5e",
+  "implementation_commit": "8975fd4",
   "step": "9.1",
   "status": "locally validated",
   "authorization": "Owner requested completion of 9.1, preparation of 9.2 and stop at Cloudflare connection requirement",
@@ -269,5 +269,6 @@
     "indexed_plans": 4,
     "local_only": true
   },
-  "final_hardening": "INSERT OR REPLACE guarded independently of DELETE triggers; 30 SQLite refusals and 12 D1 local refusals"
+  "final_hardening": "INSERT OR REPLACE guarded independently of DELETE triggers; 30 SQLite refusals and 12 D1 local refusals",
+  "initial_implementation_commit": "8237f5e"
 }

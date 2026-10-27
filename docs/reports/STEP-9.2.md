@@ -1,6 +1,6 @@
 # Étape 9.2 — API locale prête, arrêt au contrôle Cloudflare
 
-Date : 2026-10-27. Base : 8237f5e. Résultat : commit contenant ce rapport. Prérequis : 9.1 validée. Statut : préparation locale terminée ; étape laissée en attente à la demande du propriétaire, devant les autorisations Cloudflare insuffisantes. 9.3 non démarrée.
+Date : 2026-10-27. Base : 8237f5e. Résultat : 8975fd4. Prérequis : 9.1 validée. Statut : préparation locale terminée ; étape laissée en attente à la demande du propriétaire, devant les autorisations Cloudflare insuffisantes. 9.3 non démarrée.
 
 api/ contient le Worker TypeScript strict, Env contrôlé par Zod, routes /api/v1, erreurs JSON et liveness exacte `{status:"ok",api_version:"1"}`. HEAD, méthodes, CORS à origine exacte, prérequêtes, UUID de corrélation et headers CSP/no-store/nosniff sont contrôlés. Les configurations/secrets et erreurs internes ne sont jamais renvoyés en HTTP. Les bindings locaux DB/TOOLS_BUCKET sont réels, AI absent. Les environnements distants n'ont ni ID réel ni binding provisionné ; .invalid et absence de bindings font échouer la validation de configuration.
 

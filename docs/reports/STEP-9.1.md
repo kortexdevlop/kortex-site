@@ -1,6 +1,6 @@
 # Étape 9.1 — État de publication et intégrité R2
 
-Date : 2026-10-27. Base : 751a84f. Résultat : 8237f5e. Prérequis : 9.0 validée. Autorisation : propriétaire, terminer 9.1 puis préparer 9.2 et s'arrêter dès qu'une connexion Cloudflare est nécessaire. Linux/macOS et Firefox restent exclus.
+Date : 2026-10-27. Base : 751a84f. Résultat final : 8975fd4 (implémentation initiale 8237f5e). Prérequis : 9.0 validée. Autorisation : propriétaire, terminer 9.1 puis préparer 9.2 et s'arrêter dès qu'une connexion Cloudflare est nécessaire. Linux/macOS et Firefox restent exclus.
 
 0002_publication.sql ajoute artifacts, signing_keys, publication_jobs, publication_job_events et revocations. Les artefacts lient une identité/version à une clé R2 et un SHA immuables. Les promotions exigent des attestations HEAD/relecture/signature cohérentes et une clé active ; les états ne reculent pas. Une répétition d'UUID identique n'ajoute ni job ni événement ; une charge différente est refusée. Les révocations sont append-only, interdisent la sélection d'une version révoquée et exigent de retirer/déplacer d'abord les pointeurs actifs. Un rollback légitime peut sélectionner une ancienne version publiée sans modifier ses octets.
 
