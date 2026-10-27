@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-27",
+  "source_commit": "0547b00",
+  "steps": [
+    "12.0",
+    "12.1",
+    "12.2"
+  ],
+  "checks": {
+    "rust_guest_tests": 9,
+    "windows_native_wasmtime_tests": 2,
+    "local_browser_tests": 6,
+    "real_staging_browser_tests": 6,
+    "windows_webview2_ui_tests": 3,
+    "canonical_builder_tests": 4,
+    "secret_configuration_tests": 6,
+    "canonical_signed_packages": 3,
+    "package_abi_and_import_validation": "passed",
+    "windows_desktop_build": "passed",
+    "identical_local_cloud_windows_sha256": true,
+    "website_deployment_unchanged": true,
+    "temporary_operator_policy_restored": true,
+    "progress_steps": 63
+  },
+  "tools": [
+    {
+      "id": "convertisseur-casse",
+      "version": "1.0.0",
+      "sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7",
+      "byte_length": 258718,
+      "url": "https://kortex-web-staging.userpgl.workers.dev/tools/convertisseur-casse"
+    },
+    {
+      "id": "calculateur-hash",
+      "version": "1.0.0",
+      "sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5",
+      "byte_length": 299737,
+      "url": "https://kortex-web-staging.userpgl.workers.dev/tools/calculateur-hash"
+    },
+    {
+      "id": "timestamp-utc",
+      "version": "1.0.0",
+      "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
+      "byte_length": 274751,
+      "url": "https://kortex-web-staging.userpgl.workers.dev/tools/timestamp-utc"
+    }
+  ],
+  "publication": "real Cloudflare staging API + D1 + private R2, controlled local CI operator; not GitHub OIDC",
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false,
+  "limitations": [
+    "Formal human visual approval remains pending; no invented approval.",
+    "Windows positive picker selection controlled at the trusted boundary in backend tests; real disk/handles/permissions/WASM. Native positive picker dialogue itself not automated.",
+    "SHA action envelope stays <=1MiB: base64 <=1048000 chars, decoded <=786000 bytes; UI files <=10MiB via <=256KiB chunks.",
+    "Cancellation discards pending results and stops subsequent reads; cannot retroactively cancel an already-started bounded host operation.",
+    "Unicode title rule is explicitly French-style, no universal titlecase or implicit normalization.",
+    "UTC only, years 0001-9999, no submillisecond values, leap seconds or implicit system clock.",
+    "New staging trust keys expire after seven days; production trust setup remains separate.",
+    "Linux, macOS and Firefox excluded by user."
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/phase12-artifacts.json",
+      "sha256": "241eb071bdf9bf8bd240c944d8fb5d841685d159b899c165d9787c665c1a56ff"
+    },
+    {
+      "path": "docs/evidence/phase12-case-chromium.png",
+      "sha256": "60c3154a8618e7e24d1d9af4f2990c47af1690262cddcc833902ef5e113d51dc"
+    },
+    {
+      "path": "docs/evidence/phase12-case-webkit.png",
+      "sha256": "ef2f08f34868ffa24358e3ea98e51430f287ab7c4a61628854f922a1c4570f23"
+    },
+    {
+      "path": "docs/evidence/phase12-hash-chromium.png",
+      "sha256": "30722b204c38106cef5daefd0b15fd7765d8173fe4aad39a2f293eca394be051"
+    },
+    {
+      "path": "docs/evidence/phase12-hash-webkit.png",
+      "sha256": "6b0118f5edd611a34fa24f0329f5c191dd927b3f6cc40ab4d27136d4837debb0"
+    },
+    {
+      "path": "docs/evidence/phase12-local-playwright.json",
+      "sha256": "76899959e87e88a8f824c22f29552579c237ad8b1c125ed896451affe9518b10"
+    },
+    {
+      "path": "docs/evidence/phase12-staging-case-chromium.png",
+      "sha256": "0ee755fd89eeb6ba7506fb89c878ccd2f6256a4293e53417262dfe62167770d9"
+    },
+    {
+      "path": "docs/evidence/phase12-staging-case-webkit.png",
+      "sha256": "0ce8b5eaccdf57b2c2ad2833c6e6ed7a9a800002a67eb4cdde679b9e81064de2"
+    },
+    {
+      "path": "docs/evidence/phase12-staging-hash-chromium.png",
+      "sha256": "e9b25cfeb1746e8b852a328bc2707f80c97143fdcc0c96395f12a5067fa54fed"
+    },
+    {
+      "path": "docs/evidence/phase12-staging-hash-webkit.png",
+      "sha256": "9952bb8a54e5bafa197c365516ab7d6d41991764e95b47ad1047745cb1c5b372"
+    },
+    {
+      "path": "docs/evidence/phase12-staging-playwright.json",
+      "sha256": "decee24d612591222bf5f8f314c94eaef21225ca5f0862b4bba01b977505ab44"
+    },
+    {
+      "path": "docs/evidence/phase12-staging-utc-chromium.png",
+      "sha256": "96925374164928a0bc9de024e2c70d726e0170805c89c92aebc167eea71a5b49"
+    },
+    {
+      "path": "docs/evidence/phase12-staging-utc-webkit.png",
+      "sha256": "54018edb14d8b8a3d2ae4a18f90ec1dd09d7357fe5d81a1cdeea0b971c72b5d2"
+    },
+    {
+      "path": "docs/evidence/phase12-staging.json",
+      "sha256": "b354eb6eeb2d67f690a8f5d1d400700e10474a6dd19cb4093b8081b670c8bd71"
+    },
+    {
+      "path": "docs/evidence/phase12-utc-chromium.png",
+      "sha256": "9fd2b771e25008dace7f34d0911dca850ff21e5ac64fb16550d777fa21b9368f"
+    },
+    {
+      "path": "docs/evidence/phase12-utc-webkit.png",
+      "sha256": "5855328333ab2e2b47cd9e1c3fb0085654dccc6698ea6636abf045303e59fece"
+    },
+    {
+      "path": "docs/evidence/phase12-windows-calculateur-hash.png",
+      "sha256": "d8cde3a3ea730f62bb796402f89744491577f1d3d0b71ecc8b3a26c5fc9323b3"
+    },
+    {
+      "path": "docs/evidence/phase12-windows-convertisseur-casse.png",
+      "sha256": "9ef976f7ee3ca47346bf5091ebf164f2ab408e9dbe86d081937d9368010b97dd"
+    },
+    {
+      "path": "docs/evidence/phase12-windows-timestamp-utc.png",
+      "sha256": "1f9d3ba7d019456459bcc599e6ddba7a9a6487a19450cef7cb5a238d9406e4ff"
+    },
+    {
+      "path": "docs/evidence/phase12-windows.json",
+      "sha256": "a3d22e4b8afb090461249c148384d228ffc066ffa8afaa8a9bbb7ebb4862cbda"
+    },
+    {
+      "path": "docs/TOOLS-PHASE12.md",
+      "sha256": "ca8de0f28f2265df7e4987fd6fa5a881605fdb0c09c1c6946c73abbc8dc7afd7"
+    },
+    {
+      "path": "docs/reports/STEP-12.0.md",
+      "sha256": "285c53183582e98e446925d0f9aa4f24087481855312ffe7c3d53f53b99d5936"
+    },
+    {
+      "path": "docs/reports/STEP-12.1.md",
+      "sha256": "c5d778299dd5f89e8220b1a2e015a9df943adb2613d0174842e62ae8d87dae3e"
+    },
+    {
+      "path": "docs/reports/STEP-12.2.md",
+      "sha256": "7c65fc8e93f76ebc75280b4153fe6eadc376051a525d829e1552f3d8965eac2f"
+    }
+  ]
+}

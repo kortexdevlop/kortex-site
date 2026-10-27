@@ -1,0 +1,23 @@
+{
+  "format_version": "1.0",
+  "id": "convertisseur-casse",
+  "version": "1.0.0",
+  "name": "Convertisseur de casse",
+  "summary": "Majuscules, minuscules et initiales, sans envoyer votre texte.",
+  "description": "Majuscules, minuscules et initiales, sans envoyer votre texte. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+  "category": "developer",
+  "tags": [
+    "texte",
+    "unicode"
+  ],
+  "seo": {
+    "title": "Convertisseur de casse — Kortex",
+    "description": "Majuscules, minuscules et initiales, sans envoyer votre texte."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

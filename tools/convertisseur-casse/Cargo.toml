@@ -1,0 +1,13 @@
+[package]
+name="tool-convertisseur-casse"
+version="1.0.0"
+edition.workspace=true
+rust-version.workspace=true
+publish=false
+[lib]
+crate-type=["rlib","cdylib"]
+[dependencies]
+kortex-sdk={path="../../crates/kortex-sdk"}
+serde_json="=1.0.154"
+[dev-dependencies]
+kortex-ui={path="../../crates/kortex-ui"}

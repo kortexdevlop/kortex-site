@@ -1,5 +1,7 @@
 # Architecture Kortex — état vérifié à la revue 3.4
 
+**Lot outils 12.0–12.2 (27/10/2026) :** trois nouveaux guests SDK signés, casse Unicode/SHA-256 local/UTC-Unix, publiés sur staging sans rebuild Web. Véritable Runtime Web et Wasmtime/WebView2 Windows, sans bridge spécifique. Détails et limites : TOOLS-PHASE12.md et STEP-12.0 à STEP-12.2.
+
 **Lot 11.4–11.6 (27/10/2026) :** sitemap via WorkerEntrypoint interne, recherche accessible, site/Runtime réels de staging sur workers.dev. Publication signée et révocation sans rebuild ni changement de déploiement Web prouvées ; voir STEP-11.4 à STEP-11.6 et OPERATIONS.md. DNS, production et messagerie inchangés ; les états anciens ci-dessous sont historiques.
 
 **Lot site 11.1–11.3 (27/10/2026) :** catalogue/fiches SSR réels, accueil workspace alimenté par l’API et shell /app avec pont HELLO/READY/OPEN existant. Vérifiés sur Worker compilé, D1 locale et véritable Runtime signé (1200), sans déploiement. État et limites : docs/reports/STEP-11.1.md à STEP-11.3.md. Les états anciens ci-dessous restent historiques.

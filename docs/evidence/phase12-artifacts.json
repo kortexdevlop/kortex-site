@@ -1,0 +1,497 @@
+{
+  "date": "2026-10-27",
+  "private_keys_persisted": false,
+  "packages": [
+    {
+      "id": "convertisseur-casse",
+      "version": "1.0.0",
+      "sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7",
+      "byte_length": 258718,
+      "download_url": "https://kortex-api-staging.userpgl.workers.dev/api/v1/downloads/convertisseur-casse/1.0.0",
+      "descriptor": {
+        "schema_version": 1,
+        "tool_id": "convertisseur-casse",
+        "version": "1.0.0",
+        "abi_version": "1.0",
+        "sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7",
+        "signing_key_id": "convertisseur-casse-5b8c1111",
+        "signature": "c9Wk/grWiyXI8MSJoM7mZf+lNxFR/cpvTiNpw8I124Dmy8BzyATOf6VcNzdZQccBv4XIrtKOjbQDtDg9kKF2Dg=="
+      },
+      "trust": {
+        "root": {
+          "id": "phase12-root-ba8b36d3",
+          "public_key_base64": "bNKRe4ZwRbrJMi+mBsiDRZvCu4XvaAg1StB09SAAClY="
+        },
+        "document": {
+          "schema_version": 1,
+          "version": 1,
+          "issued_at": 1793135971566,
+          "expires": 1793740772566,
+          "root_key_id": "phase12-root-ba8b36d3",
+          "keys": [
+            {
+              "id": "convertisseur-casse-5b8c1111",
+              "public_key_base64": "Ry/zNTMlvR1FUYpXhWEV+euk6er5t7xDyZnA4qh1/7M=",
+              "not_before": 1793135912566,
+              "expires": 1793740772566,
+              "revoked": false
+            }
+          ],
+          "signature": "vZPUCvmcI/sq+GsGpmdxmMsrGqfd0xzVqviMaQPOO0dyLwccmIkaXweKbsUbFxOy1TIOz+hlz/lYliUSW6PgBg=="
+        },
+        "minimum_version": 1
+      },
+      "publication_request": {
+        "descriptor": {
+          "schema_version": 1,
+          "tool_id": "convertisseur-casse",
+          "version": "1.0.0",
+          "abi_version": "1.0",
+          "sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7",
+          "signing_key_id": "convertisseur-casse-5b8c1111",
+          "signature": "c9Wk/grWiyXI8MSJoM7mZf+lNxFR/cpvTiNpw8I124Dmy8BzyATOf6VcNzdZQccBv4XIrtKOjbQDtDg9kKF2Dg=="
+        },
+        "manifest": {
+          "abi_version": "1.0",
+          "category": "developer",
+          "description": "Majuscules, minuscules et initiales, sans envoyer votre texte. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+          "entrypoint": "module.wasm",
+          "format_version": "1.0",
+          "icon_path": "assets/icon.svg",
+          "id": "convertisseur-casse",
+          "min_runtime": "1.0.0",
+          "name": "Convertisseur de casse",
+          "permissions": [],
+          "seo": {
+            "description": "Majuscules, minuscules et initiales, sans envoyer votre texte.",
+            "title": "Convertisseur de casse — Kortex"
+          },
+          "summary": "Majuscules, minuscules et initiales, sans envoyer votre texte.",
+          "tags": [
+            "texte",
+            "unicode"
+          ],
+          "ui_schema_version": "1.0",
+          "version": "1.0.0"
+        },
+        "contract": {
+          "actions": [
+            {
+              "description": "Convertir en majuscules Unicode",
+              "id": "upper",
+              "idempotent": true,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "text": {
+                    "maxLength": 32768,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              },
+              "output_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "text": {
+                    "maxLength": 98304,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              },
+              "permissions": [],
+              "side_effect": "none",
+              "timeout_ms": 3000
+            },
+            {
+              "description": "Convertir en minuscules Unicode",
+              "id": "lower",
+              "idempotent": true,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "text": {
+                    "maxLength": 32768,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              },
+              "output_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "text": {
+                    "maxLength": 98304,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              },
+              "permissions": [],
+              "side_effect": "none",
+              "timeout_ms": 3000
+            },
+            {
+              "description": "Initiales selon la règle française documentée",
+              "id": "title",
+              "idempotent": true,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "text": {
+                    "maxLength": 32768,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              },
+              "output_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "text": {
+                    "maxLength": 98304,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              },
+              "permissions": [],
+              "side_effect": "none",
+              "timeout_ms": 3000
+            }
+          ],
+          "contract_version": "1.0",
+          "tool_id": "convertisseur-casse"
+        },
+        "r2_key": "tools/convertisseur-casse/1.0.0/d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7.tool",
+        "request_id": "d25c1316-de58-4366-aaff-fea3071b611d"
+      },
+      "canonical_pipeline_verified": true
+    },
+    {
+      "id": "calculateur-hash",
+      "version": "1.0.0",
+      "sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5",
+      "byte_length": 299737,
+      "download_url": "https://kortex-api-staging.userpgl.workers.dev/api/v1/downloads/calculateur-hash/1.0.0",
+      "descriptor": {
+        "schema_version": 1,
+        "tool_id": "calculateur-hash",
+        "version": "1.0.0",
+        "abi_version": "1.0",
+        "sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5",
+        "signing_key_id": "calculateur-hash-107bddff",
+        "signature": "rbKgkjhvWZjMaS97TPF0chTFPOpka94loc66yVpJILGKosrG0T1HL7MgKFQRtMOg+sqKneF7pVRhIM+pi5sEDg=="
+      },
+      "trust": {
+        "root": {
+          "id": "phase12-root-8be52644",
+          "public_key_base64": "A2svea94zJgM1azex/RqXbJQYSFCwQthHBv7UYJNwEQ="
+        },
+        "document": {
+          "schema_version": 1,
+          "version": 1,
+          "issued_at": 1793136052929,
+          "expires": 1793740853929,
+          "root_key_id": "phase12-root-8be52644",
+          "keys": [
+            {
+              "id": "calculateur-hash-107bddff",
+              "public_key_base64": "HFjKEs10W+OjdqDxTuSZTB0U3tR+Axjya8DFhaDmO1A=",
+              "not_before": 1793135993929,
+              "expires": 1793740853929,
+              "revoked": false
+            }
+          ],
+          "signature": "y0sTrd2ot/lT8TVNrmDKl56xodNbpAjJaaJEFejOF5AiETTXv1wMrsSv0WtowFnyNjrBzMRUTh4NCGmDKFVEDA=="
+        },
+        "minimum_version": 1
+      },
+      "publication_request": {
+        "descriptor": {
+          "schema_version": 1,
+          "tool_id": "calculateur-hash",
+          "version": "1.0.0",
+          "abi_version": "1.0",
+          "sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5",
+          "signing_key_id": "calculateur-hash-107bddff",
+          "signature": "rbKgkjhvWZjMaS97TPF0chTFPOpka94loc66yVpJILGKosrG0T1HL7MgKFQRtMOg+sqKneF7pVRhIM+pi5sEDg=="
+        },
+        "manifest": {
+          "abi_version": "1.0",
+          "category": "security",
+          "description": "Calculez localement l’empreinte SHA-256 d’un fichier. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+          "entrypoint": "module.wasm",
+          "format_version": "1.0",
+          "icon_path": "assets/icon.svg",
+          "id": "calculateur-hash",
+          "min_runtime": "1.0.0",
+          "name": "Calculateur SHA-256",
+          "permissions": [
+            "file.pick",
+            "file.read"
+          ],
+          "seo": {
+            "description": "Calculez localement l’empreinte SHA-256 d’un fichier.",
+            "title": "Calculateur SHA-256 — Kortex"
+          },
+          "summary": "Calculez localement l’empreinte SHA-256 d’un fichier.",
+          "tags": [
+            "sha256",
+            "checksum"
+          ],
+          "ui_schema_version": "1.0",
+          "version": "1.0.0"
+        },
+        "contract": {
+          "actions": [
+            {
+              "description": "Empreinte SHA-256 de données base64 bornées",
+              "id": "sha256_bytes",
+              "idempotent": true,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "data_base64": {
+                    "maxLength": 1048000,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "data_base64"
+                ],
+                "type": "object"
+              },
+              "output_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "hex": {
+                    "maxLength": 64,
+                    "minLength": 64,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "hex"
+                ],
+                "type": "object"
+              },
+              "permissions": [],
+              "side_effect": "none",
+              "timeout_ms": 3000
+            }
+          ],
+          "contract_version": "1.0",
+          "tool_id": "calculateur-hash"
+        },
+        "r2_key": "tools/calculateur-hash/1.0.0/aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5.tool",
+        "request_id": "796a51cc-7894-49ac-9716-5f6f2df208cf"
+      },
+      "canonical_pipeline_verified": true
+    },
+    {
+      "id": "timestamp-utc",
+      "version": "1.0.0",
+      "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
+      "byte_length": 274751,
+      "download_url": "https://kortex-api-staging.userpgl.workers.dev/api/v1/downloads/timestamp-utc/1.0.0",
+      "descriptor": {
+        "schema_version": 1,
+        "tool_id": "timestamp-utc",
+        "version": "1.0.0",
+        "abi_version": "1.0",
+        "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
+        "signing_key_id": "timestamp-utc-d5cee877",
+        "signature": "vKkR0OmchbEaXFGx6Uit5jk46yS3CUYQgzEgHbsXlSuja6Qte4B4HqLqQ95DxGn6bxj1lHYzDu4fpyactN6+DQ=="
+      },
+      "trust": {
+        "root": {
+          "id": "phase12-root-41a1f7df",
+          "public_key_base64": "Ku1KgIBl0bdMvii58qx1Usd8xyspd9L/XfGfhKU/RuY="
+        },
+        "document": {
+          "schema_version": 1,
+          "version": 1,
+          "issued_at": 1793136062393,
+          "expires": 1793740863393,
+          "root_key_id": "phase12-root-41a1f7df",
+          "keys": [
+            {
+              "id": "timestamp-utc-d5cee877",
+              "public_key_base64": "WLhNxjaF3TCsLyX1LgIo7yEx0A6/GzfPSAgUfG+ae6Y=",
+              "not_before": 1793136003393,
+              "expires": 1793740863393,
+              "revoked": false
+            }
+          ],
+          "signature": "KEMQCFllAgQep4JLRBXQa5b9/EhnTQiHZp1pZ5p1PeYImbIhFMSIbWYkABEJi9YJ/yD1q2aERjCX3w9cG7UdDw=="
+        },
+        "minimum_version": 1
+      },
+      "publication_request": {
+        "descriptor": {
+          "schema_version": 1,
+          "tool_id": "timestamp-utc",
+          "version": "1.0.0",
+          "abi_version": "1.0",
+          "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
+          "signing_key_id": "timestamp-utc-d5cee877",
+          "signature": "vKkR0OmchbEaXFGx6Uit5jk46yS3CUYQgzEgHbsXlSuja6Qte4B4HqLqQ95DxGn6bxj1lHYzDu4fpyactN6+DQ=="
+        },
+        "manifest": {
+          "abi_version": "1.0",
+          "category": "developer",
+          "description": "Convertissez les dates UTC et timestamps Unix, en secondes ou millisecondes. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+          "entrypoint": "module.wasm",
+          "format_version": "1.0",
+          "icon_path": "assets/icon.svg",
+          "id": "timestamp-utc",
+          "min_runtime": "1.0.0",
+          "name": "Dates UTC et Unix",
+          "permissions": [],
+          "seo": {
+            "description": "Convertissez les dates UTC et timestamps Unix, en secondes ou millisecondes.",
+            "title": "Dates UTC et Unix — Kortex"
+          },
+          "summary": "Convertissez les dates UTC et timestamps Unix, en secondes ou millisecondes.",
+          "tags": [
+            "date",
+            "utc",
+            "unix"
+          ],
+          "ui_schema_version": "1.0",
+          "version": "1.0.0"
+        },
+        "contract": {
+          "actions": [
+            {
+              "description": "Convertir une date UTC explicite en Unix",
+              "id": "to_unix",
+              "idempotent": true,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "iso_utc": {
+                    "maxLength": 32,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "iso_utc"
+                ],
+                "type": "object"
+              },
+              "output_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "iso_utc": {
+                    "maxLength": 32,
+                    "type": "string"
+                  },
+                  "unix_millis": {
+                    "maximum": 253402300799999,
+                    "minimum": -62135596800000,
+                    "type": "integer"
+                  },
+                  "unix_seconds": {
+                    "maximum": 253402300799,
+                    "minimum": -62135596800,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "iso_utc",
+                  "unix_seconds",
+                  "unix_millis"
+                ],
+                "type": "object"
+              },
+              "permissions": [],
+              "side_effect": "none",
+              "timeout_ms": 3000
+            },
+            {
+              "description": "Convertir un entier Unix avec unité explicite",
+              "id": "from_unix",
+              "idempotent": true,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "unit": {
+                    "enum": [
+                      "seconds",
+                      "milliseconds"
+                    ],
+                    "type": "string"
+                  },
+                  "value": {
+                    "maximum": 253402300799999,
+                    "minimum": -62135596800000,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "type": "object"
+              },
+              "output_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "iso_utc": {
+                    "maxLength": 32,
+                    "type": "string"
+                  },
+                  "unix_millis": {
+                    "maximum": 253402300799999,
+                    "minimum": -62135596800000,
+                    "type": "integer"
+                  },
+                  "unix_seconds": {
+                    "maximum": 253402300799,
+                    "minimum": -62135596800,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "iso_utc",
+                  "unix_seconds",
+                  "unix_millis"
+                ],
+                "type": "object"
+              },
+              "permissions": [],
+              "side_effect": "none",
+              "timeout_ms": 3000
+            }
+          ],
+          "contract_version": "1.0",
+          "tool_id": "timestamp-utc"
+        },
+        "r2_key": "tools/timestamp-utc/1.0.0/7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46.tool",
+        "request_id": "3cc92e46-07f6-4d88-8852-87d37c3b7126"
+      },
+      "canonical_pipeline_verified": true
+    }
+  ]
+}

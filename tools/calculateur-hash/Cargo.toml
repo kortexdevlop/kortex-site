@@ -1,0 +1,15 @@
+[package]
+name="tool-calculateur-hash"
+version="1.0.0"
+edition.workspace=true
+rust-version.workspace=true
+publish=false
+[lib]
+crate-type=["rlib","cdylib"]
+[dependencies]
+kortex-sdk={path="../../crates/kortex-sdk"}
+serde_json="=1.0.154"
+sha2="=0.10.9"
+base64="=0.22.1"
+[dev-dependencies]
+kortex-ui={path="../../crates/kortex-ui"}

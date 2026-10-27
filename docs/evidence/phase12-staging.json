@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-27T21:24:42.111Z",
+  "staging_only": true,
+  "production_touched": false,
+  "mail_touched": false,
+  "api_origin": "https://kortex-api-staging.userpgl.workers.dev",
+  "web_origin": "https://kortex-web-staging.userpgl.workers.dev",
+  "run_origin": "https://kortex-run-staging.userpgl.workers.dev",
+  "tools": [
+    {
+      "id": "convertisseur-casse",
+      "version": "1.0.0",
+      "sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7",
+      "r2_key": "tools/convertisseur-casse/1.0.0/d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7.tool",
+      "published": true
+    },
+    {
+      "id": "calculateur-hash",
+      "version": "1.0.0",
+      "sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5",
+      "r2_key": "tools/calculateur-hash/1.0.0/aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5.tool",
+      "published": true
+    },
+    {
+      "id": "timestamp-utc",
+      "version": "1.0.0",
+      "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
+      "r2_key": "tools/timestamp-utc/1.0.0/7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46.tool",
+      "published": true
+    }
+  ],
+  "passed": true,
+  "ci": "local controlled operator; canonical builder/signature/verification; not GitHub OIDC",
+  "site_deployment_before": "f5912646-b1f6-4b46-b31d-aa9f30b0053c",
+  "site_deployment_after": "f5912646-b1f6-4b46-b31d-aa9f30b0053c",
+  "operator_policy_restored": true
+}

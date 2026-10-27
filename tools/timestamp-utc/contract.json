@@ -1,0 +1,107 @@
+{
+  "contract_version": "1.0",
+  "tool_id": "timestamp-utc",
+  "actions": [
+    {
+      "id": "to_unix",
+      "description": "Convertir une date UTC explicite en Unix",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "iso_utc": {
+            "type": "string",
+            "maxLength": 32
+          }
+        },
+        "required": [
+          "iso_utc"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "iso_utc": {
+            "type": "string",
+            "maxLength": 32
+          },
+          "unix_seconds": {
+            "type": "integer",
+            "minimum": -62135596800,
+            "maximum": 253402300799
+          },
+          "unix_millis": {
+            "type": "integer",
+            "minimum": -62135596800000,
+            "maximum": 253402300799999
+          }
+        },
+        "required": [
+          "iso_utc",
+          "unix_seconds",
+          "unix_millis"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 3000
+    },
+    {
+      "id": "from_unix",
+      "description": "Convertir un entier Unix avec unité explicite",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer",
+            "minimum": -62135596800000,
+            "maximum": 253402300799999
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "seconds",
+              "milliseconds"
+            ]
+          }
+        },
+        "required": [
+          "value",
+          "unit"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "iso_utc": {
+            "type": "string",
+            "maxLength": 32
+          },
+          "unix_seconds": {
+            "type": "integer",
+            "minimum": -62135596800,
+            "maximum": 253402300799
+          },
+          "unix_millis": {
+            "type": "integer",
+            "minimum": -62135596800000,
+            "maximum": 253402300799999
+          }
+        },
+        "required": [
+          "iso_utc",
+          "unix_seconds",
+          "unix_millis"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 3000
+    }
+  ]
+}

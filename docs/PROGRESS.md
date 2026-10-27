@@ -1,6 +1,6 @@
 # Progression
 
-Lot 11.4–11.6 réalisé sur instruction du propriétaire : référencement dynamique et Service Binding interne, recherche accessible FR/EN/Aa, publication à chaud réelle Cloudflare. Site et Runtime de staging en ligne sur workers.dev ; maquette workspace conservée, production/DNS/messagerie inchangés. 10 tests navigateur finaux, 16 Node, API 3 DTO + 28 Worker, 51 fichiers sans diagnostic ; sitemap 10000 IDs et benchmark Cloudflare 10000 entrées p95 430,69 ms, ressources de benchmark supprimées. Nouvel outil visible en 381 ms, calcul signé 1200 sur Chromium/WebKit puis révocation ; hash et identifiant de déploiement Web inchangés. Rapports/provenance consignés ; validations humaines formelles restent pending derrière la revue visuelle, sans approbation inventée. Phase 12 non engagée. Linux/macOS et Firefox exclus.
+Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de casse Unicode, SHA-256 de fichier local et dates UTC/Unix. Trois paquets canoniques signés/vérifiés et publiés réellement sur le staging existant ; site non reconstruit, DNS/production/messagerie inchangés. 9 tests Rust, 2 tests Wasmtime Windows, 12 essais navigateur locaux/distants Chromium/WebKit et 3 interfaces Windows réussis. Vrais fichiers, handles/permissions, annulation, dates négatives/overflow et sorties UI/actions vérifiés ; clés privées en mémoire uniquement. Les mêmes SHA sont tracés localement, sur Cloudflare et dans WebView2. Le dialogue Windows de sélection positive n’est pas automatisé : sélection de fichier contrôlée à sa frontière, avec vraies lectures et permissions du backend. Statuts formels pending derrière la revue visuelle existante, sans validation humaine inventée. Phase 12.3 non engagée. Linux/macOS et Firefox exclus.
 
 ```json
 [
@@ -1061,6 +1061,63 @@ Lot 11.4–11.6 réalisé sur instruction du propriétaire : référencement dyn
       "docs/evidence/web-hot-publish.json",
       "docs/evidence/hot-publish-playwright.json",
       "docs/evidence/search-staging-benchmark.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "12.0",
+    "status": "pending",
+    "source_commit": "0547b00",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-12.0.md",
+    "tests_executed": "Lot autorisé réalisé : 9 tests Rust des trois guests, 2 tests Wasmtime Windows avec vrais fichiers/permissions, 6 essais Chromium/WebKit locaux et 6 Cloudflare, 3 interfaces Windows WebView2. Build/validate/package/sign/verify canoniques et publication réelle de trois paquets ; même SHA local/Web/Desktop ; site non reconstruit. Statut formel pending derrière la revue visuelle existante, sans approbation inventée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/phase12-validation.json",
+      "docs/evidence/phase12-local-playwright.json",
+      "docs/evidence/phase12-staging-playwright.json",
+      "docs/evidence/phase12-staging.json",
+      "docs/evidence/phase12-windows.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "12.1",
+    "status": "pending",
+    "source_commit": "0547b00",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-12.1.md",
+    "tests_executed": "Lot autorisé réalisé : 9 tests Rust des trois guests, 2 tests Wasmtime Windows avec vrais fichiers/permissions, 6 essais Chromium/WebKit locaux et 6 Cloudflare, 3 interfaces Windows WebView2. Build/validate/package/sign/verify canoniques et publication réelle de trois paquets ; même SHA local/Web/Desktop ; site non reconstruit. Statut formel pending derrière la revue visuelle existante, sans approbation inventée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/phase12-validation.json",
+      "docs/evidence/phase12-local-playwright.json",
+      "docs/evidence/phase12-staging-playwright.json",
+      "docs/evidence/phase12-staging.json",
+      "docs/evidence/phase12-windows.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "12.2",
+    "status": "pending",
+    "source_commit": "0547b00",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-12.2.md",
+    "tests_executed": "Lot autorisé réalisé : 9 tests Rust des trois guests, 2 tests Wasmtime Windows avec vrais fichiers/permissions, 6 essais Chromium/WebKit locaux et 6 Cloudflare, 3 interfaces Windows WebView2. Build/validate/package/sign/verify canoniques et publication réelle de trois paquets ; même SHA local/Web/Desktop ; site non reconstruit. Statut formel pending derrière la revue visuelle existante, sans approbation inventée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/phase12-validation.json",
+      "docs/evidence/phase12-local-playwright.json",
+      "docs/evidence/phase12-staging-playwright.json",
+      "docs/evidence/phase12-staging.json",
+      "docs/evidence/phase12-windows.json"
     ],
     "frozen": false
   }

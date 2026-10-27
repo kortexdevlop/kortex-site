@@ -1,0 +1,14 @@
+[package]
+name="tool-timestamp-utc"
+version="1.0.0"
+edition.workspace=true
+rust-version.workspace=true
+publish=false
+[lib]
+crate-type=["rlib","cdylib"]
+[dependencies]
+kortex-sdk={path="../../crates/kortex-sdk"}
+serde_json="=1.0.154"
+time={version="=0.3.55",features=["parsing","formatting"]}
+[dev-dependencies]
+kortex-ui={path="../../crates/kortex-ui"}

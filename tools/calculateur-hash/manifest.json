@@ -1,0 +1,26 @@
+{
+  "format_version": "1.0",
+  "id": "calculateur-hash",
+  "version": "1.0.0",
+  "name": "Calculateur SHA-256",
+  "summary": "Calculez localement l’empreinte SHA-256 d’un fichier.",
+  "description": "Calculez localement l’empreinte SHA-256 d’un fichier. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+  "category": "security",
+  "tags": [
+    "sha256",
+    "checksum"
+  ],
+  "seo": {
+    "title": "Calculateur SHA-256 — Kortex",
+    "description": "Calculez localement l’empreinte SHA-256 d’un fichier."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [
+    "file.pick",
+    "file.read"
+  ],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

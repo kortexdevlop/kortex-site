@@ -1,0 +1,41 @@
+{
+  "contract_version": "1.0",
+  "tool_id": "calculateur-hash",
+  "actions": [
+    {
+      "id": "sha256_bytes",
+      "description": "Empreinte SHA-256 de données base64 bornées",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "data_base64": {
+            "type": "string",
+            "maxLength": 1048000
+          }
+        },
+        "required": [
+          "data_base64"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "hex": {
+            "type": "string",
+            "minLength": 64,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "hex"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 3000
+    }
+  ]
+}

@@ -6116,11 +6116,41 @@ dependencies = [
 ]
 
 [[package]]
+name = "tool-calculateur-hash"
+version = "1.0.0"
+dependencies = [
+ "base64 0.22.1",
+ "kortex-sdk",
+ "kortex-ui",
+ "serde_json",
+ "sha2",
+]
+
+[[package]]
 name = "tool-calculatrice"
 version = "1.0.0"
 dependencies = [
  "kortex-sdk",
  "serde_json",
+]
+
+[[package]]
+name = "tool-convertisseur-casse"
+version = "1.0.0"
+dependencies = [
+ "kortex-sdk",
+ "kortex-ui",
+ "serde_json",
+]
+
+[[package]]
+name = "tool-timestamp-utc"
+version = "1.0.0"
+dependencies = [
+ "kortex-sdk",
+ "kortex-ui",
+ "serde_json",
+ "time",
 ]
 
 [[package]]
