@@ -1,6 +1,14 @@
 # Reprise Cloudflare — point d'arrêt demandé, 27 octobre 2026
 
-## Mise à jour après la réautorisation du propriétaire
+## État courant — profil kortex activé et contrôlé
+
+Le propriétaire a créé/activé le profil kortex. `wrangler auth list` confirme sa liaison au dossier du projet. Le contrôle whoami annonce désormais Workers, workers_scripts et D1, et les inventaires D1/R2 réussissent. Le blocage de droits est levé. La préparation locale 9.2 est validée ; 9.3 n'est pas démarrée.
+
+Deux bases D1 de comptes sont visibles : kortex-accounts et kortex-accounts-fresh-20261017. Elles n'ont pas été interrogées en SQL, modifiées ou choisies comme catalogue. La liste R2 par défaut réussit sans retourner de bucket ; aucune conclusion sur d'autres juridictions non interrogées. Les Workers nommés kortex-api-staging et kortex-api-production ne sont pas trouvés (10007). Les paramètres distants Kortex restent vides ; ils seront fixés au provisionnement prévu à 9.6, sans utiliser le UUID local comme véritable ID distant.
+
+Aucun login, changement de droit, création, upload ou déploiement par l'agent durant ce contrôle. Preuve expurgée : docs/evidence/cloudflare-kortex-profile-9.2.json. Les sections suivantes conservent l'historique du diagnostic ; une nouvelle réautorisation n'est pas demandée à ce stade.
+
+## Historique — réautorisation du profil global
 
 La connexion utilisateur a bien réussi et a demandé les scopes Workers/D1 prévus. Le contrôle agent suivant a néanmoins renouvelé un jeton dont les scopes ne couvrent toujours que Pages/user/account/zone ; D1/R2 restent refusés, code 10000. La cause n'est pas établie. Ni un échec de saisie utilisateur ni l'absence de ressources ne sont déduits. Preuve publique expurgée : docs/evidence/cloudflare-reauthorization-9.2.json.
 
@@ -18,7 +26,7 @@ Valider l'autorisation dans le navigateur et attendre le succès, puis lier ce p
 
 Ces commandes ont été vérifiées dans l'aide de Wrangler 4.152.0. La fonctionnalité de profils y est marquée expérimentale. whoami ne prend pas --profile dans cette version : l'activation du profil sur le dossier est nécessaire. Ne pas supprimer la session Pages existante. L'agent n'a lancé ni création/activation de profil ni nouveau login. Après confirmation du propriétaire, reprendre le contrôle read-only normal dans ce dossier ; aucun déploiement autorisé par cette manipulation.
 
-## État vérifié
+## État initial vérifié (historique)
 
 9.1 est terminée localement. La préparation locale de 9.2 fonctionne : API Workers, D1/R2 locaux, deux migrations, tests et build sans upload. Aucun Worker, base ou bucket distant n'a été créé/modifié par ces étapes. Aucun login n'a été lancé.
 

@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-27",
+  "checked_at": "2026-10-27T18:16:41.175Z",
+  "read_only": true,
+  "command": "wrangler whoami --json",
+  "exit_code": 0,
+  "authenticated": true,
+  "verification": "authenticated",
+  "auth_type": "OAuth Token",
+  "account_count": 1,
+  "token_permissions": [
+    "user:read",
+    "offline_access",
+    "account:read",
+    "workers:write",
+    "workers_scripts:write",
+    "d1:write"
+  ],
+  "credential_environment_present": {
+    "CLOUDFLARE_API_TOKEN": false,
+    "CLOUDFLARE_API_KEY": false,
+    "CLOUDFLARE_EMAIL": false,
+    "CLOUDFLARE_ACCOUNT_ID": false
+  },
+  "remote_configuration": [
+    {
+      "environment": "staging",
+      "account_configured": false,
+      "d1_configured": false,
+      "r2_configured": false,
+      "web_origin_configured": false
+    },
+    {
+      "environment": "production",
+      "account_configured": false,
+      "d1_configured": false,
+      "r2_configured": false,
+      "web_origin_configured": false
+    }
+  ],
+  "login_started": false,
+  "remote_writes": 0,
+  "resource_checks": [
+    {
+      "command": "wrangler d1 list --json",
+      "exit_code": 0,
+      "status": "read_succeeded",
+      "resource_count": 2,
+      "kortex_resources": [
+        "kortex-accounts-fresh-20261017",
+        "kortex-accounts"
+      ],
+      "error_codes": []
+    },
+    {
+      "command": "wrangler r2 bucket list",
+      "exit_code": 0,
+      "status": "read_succeeded",
+      "r2_kortex_name_lines": [],
+      "error_codes": []
+    },
+    {
+      "command": "wrangler deployments list --name kortex-api-staging --json",
+      "exit_code": 1,
+      "status": "not_found",
+      "error_codes": [
+        "10007"
+      ]
+    },
+    {
+      "command": "wrangler deployments list --name kortex-api-production --json",
+      "exit_code": 1,
+      "status": "not_found",
+      "error_codes": [
+        "10007"
+      ]
+    }
+  ],
+  "remote_ready": false,
+  "active_profile": {
+    "name": "kortex",
+    "bound_to_current_project": true,
+    "verified_with": "wrangler auth list"
+  },
+  "r2_inventory": {
+    "read_succeeded": true,
+    "buckets_returned": 0,
+    "jurisdiction": "default",
+    "verification": "CLI output ends at Listing buckets... with no rows; pinned formatter inspected"
+  },
+  "existing_d1_use": "Two account databases found; no catalog database selected or modified",
+  "local_step_9_2": "local scaffold tests/build previously passed; permission blocker resolved; remote provisioning remains step 9.6",
+  "agent_started_login": false
+}

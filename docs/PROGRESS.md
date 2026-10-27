@@ -1,6 +1,6 @@
 # Progression
 
-Étape 9.1 terminée localement le 27 octobre 2026. Préparation locale 9.2 prête et testée ; arrêt demandé devant les droits Cloudflare insuffisants (OAuth existant pour Pages, accès D1/R2 refusés). Réautorisation et configuration distante à reprendre selon infra/cloudflare-setup.md. 9.3 non démarrée. Linux/macOS et Firefox exclus ; aucun provisionnement ou déploiement distant.
+Étapes 9.1 et 9.2 validées localement le 27 octobre 2026. Le profil kortex est actif et les accès D1/R2 sont rétablis. Les ressources distantes de catalogue/staging/production restent à configurer lors du provisionnement prévu en 9.6 ; aucune création ou livraison distante effectuée. Prochaine étape : 9.3, non démarrée. Linux/macOS et Firefox restent exclus.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -769,15 +769,14 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "9.2",
-    "status": "blocked",
+    "status": "validated",
     "source_commit": "8237f5e",
     "result_commit": "8975fd4",
     "report_path": "docs/reports/STEP-9.2.md",
-    "tests_executed": "2026-10-27 Windows : 3 tests DTO Node et 6 tests workerd, typecheck, dry-run, HTTP local 200/404 et 2 migrations locales réussis. Lecture OAuth : session existante ; inventaires D1/R2 refusés code 10000. Aucun déploiement.",
-    "approved_by": null,
-    "approved_at": null,
+    "tests_executed": "2026-10-27 Windows : 3 tests DTO Node et 6 tests workerd, typecheck, dry-run, HTTP local 200/404 et 2 migrations locales réussis. Lecture OAuth : session existante ; inventaires D1/R2 refusés code 10000. Aucun déploiement. Reprise : profil kortex confirmé, D1/R2 list autorisés, 2 bases de comptes existantes, aucun bucket retourné dans la juridiction par défaut ; Workers staging/production non trouvés code 10007. Provisionnement distant reporté à 9.6.",
+    "approved_by": "propriétaire : préparation 9.2 et reprise du contrôle après Profil kortex activé ; aucune autorisation de création ou déploiement",
+    "approved_at": "2026-10-27",
     "authorization": "Propriétaire : préparer la deuxième étape, vérifier la connexion Cloudflare et arrêter au besoin de connexion avec état et procédure de reprise",
-    "blocked_reason": "Réautorisation utilisateur réussie et scopes Workers/D1 demandés, mais le contrôle suivant renouvelle un jeton limité à Pages ; D1/R2 refusés code 10000. Cause non établie. Profil kortex dédié proposé, sans login ni modification de droits par l’agent.",
     "contract_changes": [
       "Nouveau schéma API candidat ; six schémas gelés inchangés"
     ],
@@ -785,9 +784,11 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
       "docs/evidence/validation-9.2-local.json",
       "docs/evidence/cloudflare-checkpoint-9.2.json",
       "infra/cloudflare-setup.md",
-      "docs/evidence/cloudflare-reauthorization-9.2.json"
+      "docs/evidence/cloudflare-reauthorization-9.2.json",
+      "docs/evidence/cloudflare-kortex-profile-9.2.json"
     ],
-    "frozen": false
+    "frozen": false,
+    "previous_block_reason": "Réautorisation utilisateur réussie et scopes Workers/D1 demandés, mais le contrôle suivant renouvelle un jeton limité à Pages ; D1/R2 refusés code 10000. Cause non établie. Profil kortex dédié proposé, sans login ni modification de droits par l’agent."
   }
 ]
 ```
