@@ -1,6 +1,6 @@
 # Gate phase 8 — PACKAGE_FORMAT_V1
 
-Revue locale du 27 octobre 2026, Windows, base 02b0f6d. Autorisation du lot : propriétaire, « Enchaîne les 4 prochaines étapes ». Résultat : commit d'implémentation identifié dans PROGRESS.md. Décision : critères locaux satisfaits, gel PACKAGE_FORMAT_V1 et poursuite vers 9.0 dans le même lot. Ce registre ne prétend pas être une signature humaine de sécurité indépendante.
+Revue locale du 27 octobre 2026, Windows, base 02b0f6d. Autorisation du lot : propriétaire, « Enchaîne les 4 prochaines étapes ». Résultat : 8ffb37d. Décision : critères locaux satisfaits, gel PACKAGE_FORMAT_V1 et poursuite vers 9.0 dans le même lot. Ce registre ne prétend pas être une signature humaine de sécurité indépendante.
 
 | Élément de référence | Valeur |
 |---|---|

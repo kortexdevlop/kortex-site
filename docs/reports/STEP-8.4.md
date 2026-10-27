@@ -1,6 +1,6 @@
 # Étape 8.4 — Préparation locale de publication
 
-Date : 2026-10-27. Base du lot : 02b0f6d. Résultat : commit contenant ce rapport, identifié dans PROGRESS.md. Prérequis 8.3 satisfait dans ce lot. Autorisation : propriétaire, « Enchaîne les 4 prochaines étapes ».
+Date : 2026-10-27. Base du lot : 02b0f6d. Résultat : 8ffb37d. Prérequis 8.3 satisfait dans ce lot. Autorisation : propriétaire, « Enchaîne les 4 prochaines étapes ».
 
 release-tool.mjs orchestre le CLI générique build→validate→package→hash→sign→verify et crée PublicationRequest, ancre/snapshot publics et rapport dans un staging sous target/. La sortie machine du CLI fournit le manifeste et le contrat effectivement contenus dans le ZIP. La requête est validée par les schémas manifest, contract et artifact puis par cohérence croisée. La clé R2 est une chaîne de destination, sans upload. Le dry-run utilise de vraies signatures avec clés TEST en mémoire et documents publics expirant après 24 h. Aucun secret privé n'est conservé en fichier ou log.
 

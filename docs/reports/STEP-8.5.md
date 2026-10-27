@@ -1,6 +1,6 @@
 # Étape 8.5 — Gate et gel PACKAGE_FORMAT_V1
 
-Date : 2026-10-27. Base du lot : 02b0f6d. Résultat : commit contenant ce rapport, identifié dans PROGRESS.md. Prérequis : 8.4 satisfait. Autorisation du propriétaire : « Enchaîne les 4 prochaines étapes », couvrant le gate et sa poursuite locale ; aucune signature de revue indépendante inventée.
+Date : 2026-10-27. Base du lot : 02b0f6d. Résultat : 8ffb37d. Prérequis : 8.4 satisfait. Autorisation du propriétaire : « Enchaîne les 4 prochaines étapes », couvrant le gate et sa poursuite locale ; aucune signature de revue indépendante inventée.
 
 Le paquet construit par le pipeline est admis par les deux hôtes normaux avec hash SHA-256, preuve B.2, racine hôte et snapshot signé. Les règles ZIP, métadonnées et ABI statique sont alignées ; aucune exception calculatrice. L'application Windows reçoit la confiance en configuration hôte. Les tests du moteur bas niveau peuvent fabriquer des guests invalides via Core ; l'application et ce gate passent par la validation complète.
 

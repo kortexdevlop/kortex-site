@@ -1,7 +1,7 @@
 {
   "date": "2026-10-27",
   "source_commit": "02b0f6d",
-  "implementation_commit": "commit containing this evidence",
+  "implementation_commit": "8ffb37d",
   "steps": [
     "8.3",
     "8.4",

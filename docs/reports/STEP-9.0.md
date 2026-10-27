@@ -1,6 +1,6 @@
 # Étape 9.0 — Catalogue D1 indexé
 
-Date : 2026-10-27. Base du lot : 02b0f6d. Résultat : commit contenant ce rapport, identifié dans PROGRESS.md. Prérequis : gate 8.5 du même lot passé. Autorisation : propriétaire, « Enchaîne les 4 prochaines étapes ». Dernière étape du lot ; 9.1 non démarrée.
+Date : 2026-10-27. Base du lot : 02b0f6d. Résultat : 8ffb37d. Prérequis : gate 8.5 du même lot passé. Autorisation : propriétaire, « Enchaîne les 4 prochaines étapes ». Dernière étape du lot ; 9.1 non démarrée.
 
 0001_catalog.sql crée catégories, outils, versions, actions et événements. Les clés composites empêchent les versions/actions dupliquées ; le pointeur courant référence une version publiée du même outil. ID et contenus de versions sont immuables, journal append-only, actions verrouillées après publication et transitions de versions sans retour en draft. Les quatre index partiels couvrent les deux tris stables et le filtre catégorie. Aucun binaire en base. DATABASE.md décrit colonnes, diagramme, transactions, migration et limites ; infra/environments.md prévoit KORTEX_DB sans inventer d'ID cloud.
 

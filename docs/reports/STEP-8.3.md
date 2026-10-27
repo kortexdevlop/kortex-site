@@ -1,6 +1,6 @@
 # Étape 8.3 — Refus des paquets hostiles
 
-Date : 2026-10-27. Base : 02b0f6d. Résultat : commit contenant ce rapport, identifié dans PROGRESS.md. Prérequis : 8.2 validée. Autorisation du lot : propriétaire, « Enchaîne les 4 prochaines étapes » ; exclusions Linux/macOS et Firefox maintenues.
+Date : 2026-10-27. Base : 02b0f6d. Résultat : 8ffb37d. Prérequis : 8.2 validée. Autorisation du lot : propriétaire, « Enchaîne les 4 prochaines étapes » ; exclusions Linux/macOS et Firefox maintenues.
 
 L'inspection WASM est isolée dans wasm_check.rs et intégrée au validateur. Elle refuse imports/exports non autorisés, WASI/start, mémoire partagée/non bornée et signatures ABI incorrectes avant instanciation. Le packageur contrôle aussi la stabilité de l'identité entre discovery/build/collect. Corpus, recettes et empreintes : tests/fixtures/malformed. Les dépendances ajoutées sont locales ou déjà verrouillées ; Cargo.lock ne change que leurs arêtes.
 
