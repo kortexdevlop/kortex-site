@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-27",
+  "sourceCommit": "9b0db4c",
+  "scope": [
+    "10.0",
+    "10.1",
+    "10.2"
+  ],
+  "reference": {
+    "available": false,
+    "measured": false,
+    "visualFidelityValidated": false
+  },
+  "checks": [
+    {
+      "command": "pnpm exec playwright test tests/visual/header.spec.ts",
+      "exitCode": 0,
+      "passed": 8,
+      "browsers": [
+        "chromium",
+        "webkit"
+      ],
+      "report": "docs/evidence/design10-playwright.json"
+    },
+    {
+      "command": "node --test tests/design/tokens.test.mjs",
+      "exitCode": 0,
+      "passed": 2
+    },
+    {
+      "command": "pnpm --filter @kortex/website typecheck",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "command": "pnpm --filter @kortex/website build",
+      "exitCode": 0,
+      "developmentRouteAbsent": true
+    },
+    {
+      "command": "pnpm --filter @kortex/website lint",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm --filter @kortex/api test",
+      "exitCode": 0,
+      "dto": 3,
+      "worker": 26
+    },
+    {
+      "command": "node --test tests/config/secrets.test.mjs",
+      "exitCode": 0,
+      "passed": 6
+    },
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "exitCode": 0
+    },
+    {
+      "command": "node scripts/check-progress.mjs",
+      "exitCode": 0,
+      "orderedSteps": 51
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/evidence/design10-build.log",
+      "sha256": "393f938025fd7cd528907d72e15557f8f6c2d36f402e42cd86228e28fa4bca55"
+    },
+    {
+      "path": "docs/evidence/design10-chromium-dark.png",
+      "sha256": "4fc443704bd46f3c741508918de89436562cc82979fc429af99aea9e495df800"
+    },
+    {
+      "path": "docs/evidence/design10-chromium-desktop.png",
+      "sha256": "0a90cdc2f5448f92b01fa30591e9c41d3b4bc23b278c30f9254987463b2a8267"
+    },
+    {
+      "path": "docs/evidence/design10-chromium-mobile.png",
+      "sha256": "b0a84d15f6ab44d1a85b59f6a476ad47ff3fe8c0b03518280f1c8af8ab56c517"
+    },
+    {
+      "path": "docs/evidence/design10-playwright.json",
+      "sha256": "2c17b408c6fca14e1dc15417c6ae5aa9c3756315d048c04ed5c5fc2695f638cd"
+    },
+    {
+      "path": "docs/evidence/design10-typecheck.log",
+      "sha256": "093800593563671f603b5575e3a3e935d1caadfdea63877b88c1075a2be3b7ea"
+    },
+    {
+      "path": "docs/evidence/design10-webkit-dark.png",
+      "sha256": "75774945b6cd7589e3412447103eb7c8c34cac768c5207a62aaac96fc3585b40"
+    },
+    {
+      "path": "docs/evidence/design10-webkit-desktop.png",
+      "sha256": "8cc6a37a26b07a83f7842ef6911c3f42bf6b2d1fefb05697f48975dfa8165aae"
+    },
+    {
+      "path": "docs/evidence/design10-webkit-mobile.png",
+      "sha256": "05f81646deedd2d121eb67bf42c33f9f39bf5f226a57d8b09d7b2c326c9de54b"
+    }
+  ],
+  "excluded": [
+    "Linux",
+    "macOS",
+    "Firefox"
+  ],
+  "deployed": false,
+  "mailModified": false,
+  "logFormat": "UTF-8, LF, trailing whitespace removed from console logs"
+}

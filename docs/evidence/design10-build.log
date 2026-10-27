@@ -1,0 +1,22 @@
+$ pnpm run tokens && astro build && node ../scripts/check-design-build.mjs
+$ node ../scripts/build-design-tokens.mjs
+Design tokens: synchronized
+20:18:25 [types] Generated 135ms
+20:18:25 [build] output: "static"
+20:18:25 [build] mode: "static"
+20:18:25 [build] directory: C:\Users\µ\Desktop\KORTEX-\website\dist\
+20:18:25 [build] Collecting build info...
+20:18:25 [build] ✓ Completed in 171ms.
+20:18:25 [build] Building static entrypoints...
+20:18:25 [vite] ✓ built in 485ms
+20:18:25 [vite] ✓ built in 40ms
+20:18:25 [build] Rearranging server assets...
+
+ generating static routes
+20:18:25   ├─ /404.html (+23ms)
+20:18:25 ✓ Completed in 53ms.
+
+20:18:25 [build] ✓ Completed in 669ms.
+20:18:25 [build] 1 page(s) built in 845ms
+20:18:25 [build] Complete!
+Static output: development preview absent

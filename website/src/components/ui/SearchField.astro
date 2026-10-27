@@ -1,0 +1,10 @@
+---
+interface Props { id: string; label?: string; action?: string; }
+const { id, label = 'Rechercher un outil', action = '/outils' } = Astro.props;
+---
+<form class="search" role="search" action={action} method="get">
+  <label class="sr-only" for={id} data-i18n="search">{label}</label>
+  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+  <input id={id} type="search" name="q" placeholder={label} data-i18n-placeholder="search" maxlength="200" />
+  <button type="submit" class="search-submit" aria-label="Rechercher" data-i18n-label="submit">↵</button>
+</form>

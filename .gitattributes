@@ -1,2 +1,4 @@
 /tests/golden/*.ndjson text eol=lf
 /tests/fixtures/*.tool binary
+/docs/evidence/design10-*.json text eol=lf
+/docs/evidence/design10-*.log text eol=lf

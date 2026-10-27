@@ -1,0 +1,8 @@
+{
+  "source": {"status":"missing", "description":"Capture d’accueil du 23/10/2026 mentionnée dans le plan ; fichier original non retrouvé", "path":null, "sha256":null},
+  "referenceViewport": {"width":1632,"height":927},
+  "proposedThresholds": {"positionPx":16,"principalSizePercent":8,"colorCiede2000":12,"validated":false},
+  "mobile": {"status":"à concevoir","testViewports":[{"width":390,"height":844},{"width":320,"height":740}]},
+  "observations": [],
+  "candidateDesignOnly": true
+}

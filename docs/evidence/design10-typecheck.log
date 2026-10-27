@@ -1,0 +1,7 @@
+$ astro check
+20:18:15 [types] Generated 154ms
+20:18:15 [check] Getting diagnostics for Astro files in C:\Users\µ\Desktop\KORTEX-\website...
+Result (11 files):
+- 0 errors
+- 0 warnings
+- 0 hints

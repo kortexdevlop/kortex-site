@@ -1,0 +1,25 @@
+---
+import SearchField from './ui/SearchField.astro';
+interface Props { active?: 'tools' | 'apps' | 'download' | 'account'; preview?: boolean; }
+const { active, preview = false } = Astro.props;
+const links = [ ['tools', 'Outils', '/outils'], ['apps', 'Applications', '/applications'], ['download', 'Télécharger', '/telecharger'], ['account', 'Compte', '/compte'] ];
+---
+<header class="site-header shell">
+  <a class="brand" href={preview ? '#main' : '/'} aria-label="Kortex — accueil"><span class="brand-mark" aria-hidden="true">K</span><span>kortex<span class="brand-dot">.</span></span></a>
+  <button id="menu-toggle" class="button button-secondary menu-toggle" type="button" aria-expanded="false" aria-controls="header-panel" data-i18n="menu" hidden>Menu</button>
+  <div class="header-panel" id="header-panel">
+    <nav aria-label="Navigation principale" data-i18n-label="nav">
+      {links.map(([key, label, href]) => <a href={preview ? `#${key}` : href} tabindex="0" data-i18n={key} aria-current={active === key ? 'page' : undefined}>{label}</a>)}
+    </nav>
+    <SearchField id="global-search" action={preview ? '/__dev/design' : '/outils'} />
+    <div class="preferences" role="group" aria-label="Préférences d’affichage" data-i18n-label="preferences">
+      <label class="density"><span class="sr-only" data-i18n="density">Densité</span><select id="density" aria-label="Densité" data-i18n-label="density"><option value="simple" data-i18n="simple">Simple</option><option value="medium" selected data-i18n="medium">Moyenne</option><option value="pro" data-i18n="pro">Compacte</option></select></label>
+      <button type="button" class="icon-button" id="theme-toggle" aria-label="Thème sombre" aria-pressed="false" data-i18n-label="dark">◐</button>
+      <button type="button" class="icon-button" id="type-toggle" aria-label="Agrandir le texte" aria-pressed="false" data-i18n-label="type">Aa</button>
+      <button type="button" class="icon-button" id="language-toggle" aria-label="Passer en anglais" data-i18n-label="language">FR</button>
+    </div>
+  </div>
+</header>
+<script>
+  import '../scripts/preferences';
+</script>

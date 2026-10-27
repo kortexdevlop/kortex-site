@@ -1,6 +1,6 @@
 # Progression
 
-Lot 9.4–9.6 réalisé le 27 octobre 2026 : téléchargements privés, publication/révocation transactionnelles et staging cloud réel démontré. Base et bucket privés distincts, API staging déployée, roundtrip/rollback/410 et ouverture vérifiée des mêmes octets sur Chromium/WebKit et Windows réussis. 9.3 approuvée par le propriétaire ; 9.4/9.5 validées techniquement dans le lot autorisé ; résultat 9.6 en attente de revue, sans approbation après résultat inventée. Domaine, DNS et messagerie conservés, aucune production utilisée. Prochaine étape : 10.0, non engagée. Linux/macOS et Firefox restent exclus.
+Lot 10.0–10.2 préparé le 27 octobre 2026 : scaffold de design, tokens candidats et navigation/primitives disponibles. 9.6 acceptée par la poursuite explicite du propriétaire. Capture originale 1632 × 927 non retrouvée : 10.0 reste active, 10.1/10.2 sont préparées et testées mais restent pending dans la séquence formelle, sans validation de fidélité ou dérogation inventée. 2 tests tokens et 8 tests Chromium/WebKit réussis ; typecheck/build et absence de route dev en sortie vérifiés. Aucun déploiement, domaine et messagerie conservés. 10.3 non engagée. Linux/macOS et Firefox restent exclus.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -839,11 +839,11 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "9.6",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "56947c7",
     "result_commit": "3fbaada",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "Propriétaire : Enchaîne les 3 prochaines étapes, poursuite explicite après le lot 9.4–9.6",
+    "approved_at": "2026-10-27",
     "report_path": "docs/reports/STEP-9.6.md",
     "tests_executed": "Roundtrip Cloudflare réel ; PUT R2 conditionnel, publication, rollback et 410 ; Chromium/WebKit et Windows ouverts sur les mêmes octets ; API finale 3 DTO + 26 Worker",
     "contract_changes": [],
@@ -853,6 +853,51 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
       "docs/evidence/staging9-chromium.png",
       "docs/evidence/staging9-webkit.png",
       "docs/evidence/staging9-windows.png"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "10.0",
+    "status": "active",
+    "source_commit": "9b0db4c",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-10.0.md",
+    "tests_executed": "Scaffold, typecheck/build ; référence originale manquante, aucune mesure revendiquée",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-10.0-10.2.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "10.1",
+    "status": "pending",
+    "source_commit": "9b0db4c",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-10.1.md",
+    "tests_executed": "Préparation réversible : 2 tests de contrastes/source unique réussis ; validation dépendante de 10.0",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-10.0-10.2.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "10.2",
+    "status": "pending",
+    "source_commit": "9b0db4c",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-10.2.md",
+    "tests_executed": "Préparation réversible : 8 tests Chromium/WebKit, axe, clavier/mobile et build réussis ; fidélité visuelle non vérifiée",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-10.0-10.2.json"
     ],
     "frozen": false
   }

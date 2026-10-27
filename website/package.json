@@ -1,0 +1,15 @@
+{
+  "name": "@kortex/website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tokens": "node ../scripts/build-design-tokens.mjs",
+    "dev": "pnpm run tokens && astro dev --host 127.0.0.1 --port 4321",
+    "build": "pnpm run tokens && astro build && node ../scripts/check-design-build.mjs",
+    "typecheck": "astro check",
+    "lint": "node ../scripts/build-design-tokens.mjs --check",
+    "test": "node --test ../tests/design/*.test.mjs"
+  },
+  "dependencies": {"astro": "7.4.2", "tailwindcss": "4.3.3", "@tailwindcss/vite": "4.3.3"},
+  "devDependencies": {"@astrojs/check": "0.9.12", "typescript": "6.0.3"}
+}

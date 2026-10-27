@@ -1,0 +1,29 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+interface Props { title: string; preview?: boolean; }
+const { title, preview = false } = Astro.props;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" /><title>{title}</title>
+    <script is:inline>
+      try {
+        const saved = JSON.parse(localStorage.getItem('kortex-display') || '{}');
+        for (const [key, allowed] of Object.entries({theme:['light','dark'], density:['simple','medium','pro'], type:['standard','large']})) {
+          if (allowed.includes(saved[key])) document.documentElement.dataset[key] = saved[key];
+        }
+        if (['fr','en'].includes(saved.lang)) document.documentElement.lang = saved.lang;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" tabindex="0" data-i18n="skip">Aller au contenu</a>
+    <Header preview={preview} />
+    <main class="shell" id="main" tabindex="-1"><slot /></main>
+    <Footer />
+  </body>
+</html>
