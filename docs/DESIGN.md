@@ -10,7 +10,7 @@ Les éléments **décrits par le plan, pas observés sur l’image** : fond blan
 
 ## Inventaire préparé dans ce lot
 
-Header, logo typographique provisoire K, navigation Outils/Applications/Télécharger/Compte, SearchField, Button principal/secondaire/désactivé, Pill lien ou badge, Shell/MainLayout et Footer. États hover, focus, sélection et désactivation. L’atelier montre ces primitives ; son bloc décoratif ne constitue pas une nouvelle référence. Les cartes de catalogue et leur grille relèvent de 10.3 et ne sont pas implémentées.
+Header, logo typographique provisoire K, navigation Outils/Applications/Télécharger/Compte, SearchField, Button principal/secondaire/désactivé, Pill lien ou badge, Shell/MainLayout et Footer. États hover, focus, sélection et désactivation. L’atelier montre ces primitives ; son bloc décoratif ne constitue pas une nouvelle référence. Le lot 10.3–11.0 ajoute les cartes, les détails validés, leur grille et la recherche ; voir ci-dessous.
 
 Les préférences sont locales, gratuites : densité simple/medium/pro (libellés Simple/Moyenne/Compacte), thème clair/sombre, texte standard/agrandi et FR/EN. « pro » signifie densité compacte et n’accorde aucun droit. Le français demeure sur le contenu de démonstration explicitement balisé comme tel ; seules les chaînes du shell contrôlées sont traduites. Aucun catalogue, compte ou téléchargement n’est simulé. La navigation de l’atelier pointe sur des repères expliquant les futures destinations ; le Header réutilisable prépare les URL /outils, /applications, /telecharger et /compte.
 
@@ -31,4 +31,14 @@ La comparaison et la revue de capture annotée sont donc **non exécutées**. Le
 
 ## Prévisualisation et compilation
 
-`pnpm --filter @kortex/website dev` ouvre l’atelier local à `http://127.0.0.1:4321/__dev/design`. Sa source est `src/previews/design.astro`, hors de `pages`, et la route est injectée uniquement pour `astro dev`. Ce déplacement volontaire par rapport au chemin envisagé dans le plan évite toute inclusion en production ; le build vérifie l’absence de route/contenu de développement. Le seul document statique produit dans ce lot est une page 404 de préparation. Aucun déploiement ni route produit finale n’a lieu avant la phase 11.
+`pnpm --filter @kortex/website dev` ouvre l’atelier local à `http://127.0.0.1:4321/__dev/design`. Sa source est `src/previews/design.astro`, hors de `pages`, et la route est injectée uniquement pour `astro dev`. Ce déplacement volontaire par rapport au chemin envisagé dans le plan évite toute inclusion en production ; le build vérifie l’absence de route/contenu de développement. Depuis 11.0, le site compile en SSR Cloudflare : `/` est un état de préparation réel (503 si API indisponible), sans catalogue inventé ; `/api/v1/*` passe par le binding interne autorisé. Aucun déploiement n’est effectué dans ce lot.
+
+## Bibliothèque candidate — 10.3 / 10.4
+
+ToolCard reçoit exclusivement un ToolSummary validé par les schémas existants. Palette pastel stable par catégorie, titre limité visuellement à deux lignes avec texte complet dans le DOM, monogramme hôte comme icône de repli. Aucun icon_path distant ou SVG d’archive non vérifié n’est rendu : le chargement d’un asset d’outil exige une source de paquet validée qui n’est pas encore raccordée au site. ToolDetails accepte seulement un ToolDetail validé et échappe ses textes. ToolGrid et Feedback centralisent grille, chargement, vide et erreur ; les rendus Astro et Preact partagent modèles, validation, palette, liens et styles.
+
+La recherche est le seul îlot Preact (ADR-0011). Elle soumet explicitement le filtre ; une réponse ancienne ne remplace pas une requête plus récente. Hors démonstration, elle appelle exclusivement `/api/v1/tools` de même origine, avec validation de la réponse et erreurs visibles. Les neuf exemples marqués DEMO sont dans `tests/visual/design-fixtures.json`, uniquement importés par l’atelier. Aucune fixture dans le catalogue public ni dans le bundle de production.
+
+Responsive **conçu**, non mesuré : 3 colonnes à 1632, 2 à 768, 1 à 390 ; seuils uniques dans les tokens (1200 / 768). Cibles de contrôle inchangées, ordre DOM conservé, textes longs cassables et titre accessible. Captures aux viewports prescrits, DPR 1 et polices système Windows, plus captures de la section des neuf cartes. Le thème sombre et les densités restent des interprétations.
+
+Les tokens sont stabilisés dans Git pour cette proposition, **sans gel visuel approuvé**. Aucun écart chiffré à l’original ni Delta E n’est calculé faute de fichier. Voir `docs/evidence/design-baseline.md`. Cette réserve n’empêche pas la préparation technique SSR explicitement demandée après le rapport du lot précédent.

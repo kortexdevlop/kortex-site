@@ -22,3 +22,4 @@ runtime/web/public/tool-shell.css
 runtime/web/public/runtime-style.css
 web-adapter/src/generated-validators.ts
 api/src/generated-validators.ts
+website/src/lib/generated-validators.ts

@@ -1,0 +1,13 @@
+---
+import {isToolSummary,palette,toolHref,type ToolSummary} from '../lib/tools';
+interface Props {tool:ToolSummary;}
+const {tool}=Astro.props;
+if(!isToolSummary(tool))throw new Error('Invalid ToolSummary');
+---
+<article class:list={['tool-card',`pastel-${palette(tool)}`]}>
+  <a href={toolHref(tool)} class="tool-card-link" tabindex="0">
+    <span class="tool-icon" aria-hidden="true">{tool.name.charAt(0).toLocaleUpperCase('fr')}</span>
+    <div><p class="tool-category">{tool.category}</p><h3>{tool.name}</h3><p class="tool-summary">{tool.summary}</p></div>
+    <span class="tool-arrow" aria-hidden="true">↗</span>
+  </a>
+</article>

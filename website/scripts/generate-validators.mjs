@@ -1,0 +1,11 @@
+import Ajv from 'ajv/dist/2020.js';
+import addFormats from 'ajv-formats';
+import standalone from 'ajv/dist/standalone/index.js';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {build} from 'esbuild';
+const ajv=new Ajv({strict:false,code:{source:true,esm:true}});addFormats(ajv);
+for(const name of ['manifest','contract','artifact','api']) ajv.addSchema(JSON.parse(readFileSync(new URL(`../../shared/schemas/${name}.schema.json`,import.meta.url))),`${name}.schema.json`);
+const names=['ToolSummary','ToolList','ToolDetail','ToolActions'];
+const code=standalone.default(ajv,Object.fromEntries(names.map(n=>[n,`api.schema.json#/$defs/${n}`])));
+const bundled=await build({stdin:{contents:code,resolveDir:import.meta.dirname,loader:'js'},bundle:true,format:'esm',platform:'browser',write:false});
+writeFileSync(new URL('../src/lib/generated-validators.ts',import.meta.url),'// @ts-nocheck\n// Generated from public schemas; bundled helpers, no runtime require or evaluation.\n'+bundled.outputFiles[0].text);

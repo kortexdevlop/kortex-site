@@ -1,0 +1,8 @@
+---
+import type {ToolSummary} from '../../lib/tools';
+import ToolCard from '../ToolCard.astro';
+import Feedback from './Feedback.astro';
+interface Props {tools:ToolSummary[];}
+const {tools}=Astro.props;
+---
+{tools.length ? <div class="tool-grid">{tools.map(tool=><ToolCard tool={tool}/>)}</div> : <Feedback state="empty" />}

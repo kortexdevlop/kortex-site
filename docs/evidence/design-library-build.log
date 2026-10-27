@@ -1,0 +1,24 @@
+$ pnpm run generate && pnpm run tokens && astro build && node ../scripts/check-design-build.mjs
+$ node scripts/generate-validators.mjs
+$ node ../scripts/build-design-tokens.mjs
+Design tokens: synchronized
+20:37:44 [@astrojs/cloudflare] Enabling compile-time image optimization. Images will be pre-optimized at build time.
+20:37:44 [@astrojs/cloudflare] Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
+20:37:45 [vite] Re-optimizing dependencies because vite config has changed
+20:37:45 [types] Generated 567ms
+20:37:45 [build] output: "server"
+20:37:45 [build] mode: "server"
+20:37:45 [build] directory: C:\Users\µ\Desktop\KORTEX-\website\dist\
+20:37:45 [build] adapter: @astrojs/cloudflare
+20:37:45 [build] Collecting build info...
+20:37:45 [build] ✓ Completed in 773ms.
+20:37:45 [build] Building server entrypoints...
+20:37:46 [vite] ✓ built in 801ms
+20:37:48 [vite] ✓ built in 1.89s
+20:37:48 [vite] ✓ built in 109ms
+20:37:48 [build] Rearranging server assets...
+20:37:48 [build] ✓ Completed in 3.13s.
+20:37:48 [@astrojs/cloudflare] Injected immutable Cache-Control for /_astro/* into _headers.
+20:37:48 [build] Server built in 3.94s
+20:37:48 [build] Complete!
+SSR output: Worker manifest and favicon present, development preview absent

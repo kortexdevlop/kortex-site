@@ -1,0 +1,8 @@
+---
+import {isToolDetail,type ToolDetail} from '../lib/tools';
+import Pill from './ui/Pill.astro';
+interface Props {detail:ToolDetail;}
+const {detail}=Astro.props;
+if(!isToolDetail(detail))throw new Error('Invalid ToolDetail');
+---
+<section class="tool-details"><h2>{detail.tool.name}</h2><p>{detail.manifest.description}</p><p>Version {detail.tool.version}</p><div class="sample-controls">{detail.tool.tags.map(tag=><Pill>{tag}</Pill>)}</div><h3>Actions disponibles</h3><ul>{detail.contract.actions.map(action=><li>{action.description}</li>)}</ul></section>

@@ -3,13 +3,31 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "generate": "node scripts/generate-validators.mjs",
     "tokens": "node ../scripts/build-design-tokens.mjs",
-    "dev": "pnpm run tokens && astro dev --host 127.0.0.1 --port 4321",
-    "build": "pnpm run tokens && astro build && node ../scripts/check-design-build.mjs",
-    "typecheck": "astro check",
+    "dev": "pnpm run generate && pnpm run tokens && astro dev --host 127.0.0.1 --port 4321",
+    "build": "pnpm run generate && pnpm run tokens && astro build && node ../scripts/check-design-build.mjs",
+    "typecheck": "pnpm run generate && astro check",
+    "check": "pnpm run typecheck && pnpm run test",
     "lint": "node ../scripts/build-design-tokens.mjs --check",
-    "test": "node --test ../tests/design/*.test.mjs"
+    "test": "pnpm run generate && node --test ../tests/design/*.test.mjs tests/*.test.ts"
   },
-  "dependencies": {"astro": "7.4.2", "tailwindcss": "4.3.3", "@tailwindcss/vite": "4.3.3"},
-  "devDependencies": {"@astrojs/check": "0.9.12", "typescript": "6.0.3"}
+  "dependencies": {
+    "@astrojs/cloudflare": "14.4.2",
+    "@astrojs/preact": "6.1.1",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.4.2",
+    "preact": "11.0.1",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@cloudflare/workers-types": "5.20261027.1",
+    "@types/node": "24.10.0",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "esbuild": "0.28.2",
+    "typescript": "6.0.3",
+    "wrangler": "4.152.0"
+  }
 }

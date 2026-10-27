@@ -1,0 +1,211 @@
+{
+  "date": "2026-10-27",
+  "sourceCommit": "d4e9225",
+  "steps": [
+    "10.3",
+    "10.4",
+    "11.0"
+  ],
+  "implementation": "tested locally",
+  "formalValidation": "pending original visual reference",
+  "referenceAvailable": false,
+  "visualDiffExecuted": false,
+  "designFrozen": false,
+  "deployed": false,
+  "domainModified": false,
+  "mailModified": false,
+  "checks": [
+    {
+      "command": "pnpm --filter @kortex/website check",
+      "exitCode": 0,
+      "typeErrors": 0,
+      "warnings": 0,
+      "nodeTests": 10
+    },
+    {
+      "command": "pnpm --filter @kortex/website build",
+      "exitCode": 0,
+      "workerManifestPresent": true,
+      "developmentRouteAbsent": true,
+      "demoDataAbsent": true
+    },
+    {
+      "command": "pnpm exec playwright test tests/design/cards.spec.ts tests/visual/design-system.spec.ts tests/visual/header.spec.ts",
+      "exitCode": 0,
+      "passed": 20,
+      "browsers": [
+        "chromium",
+        "webkit"
+      ],
+      "skipped": 0
+    },
+    {
+      "command": "node website/scripts/smoke-ssr.mjs http://127.0.0.1:4330",
+      "exitCode": 0,
+      "httpChecks": 8,
+      "compiledWorker": true,
+      "liveApiBinding": false
+    },
+    {
+      "command": "pnpm --filter @kortex/api test",
+      "exitCode": 0,
+      "dto": 3,
+      "worker": 26
+    },
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm --filter @kortex/website lint",
+      "exitCode": 0
+    },
+    {
+      "command": "node --test tests/config/secrets.test.mjs",
+      "exitCode": 0,
+      "passed": 6
+    },
+    {
+      "command": "node scripts/check-progress.mjs",
+      "exitCode": 0,
+      "orderedSteps": 54
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "excluded": [
+    "Linux",
+    "macOS",
+    "Firefox"
+  ],
+  "logFormat": "UTF-8 LF; console trailing whitespace removed",
+  "files": [
+    {
+      "path": "docs/evidence/design-library-build.log",
+      "sha256": "17b65009550c6266b772399a4ad0440c5380d4e5cbbecd4d620bc106f57187c7"
+    },
+    {
+      "path": "docs/evidence/design-library-check.log",
+      "sha256": "33eea1d860a88a17c869d643efe0123798feb0e79dc5e2197e6f04a33ae58ac2"
+    },
+    {
+      "path": "docs/evidence/design-library-playwright.json",
+      "sha256": "809cde3d01ccad3630e44092449c718e42b066e2367958b41001e05b2ce70dbb"
+    },
+    {
+      "path": "docs/evidence/design-library-ssr.json",
+      "sha256": "f29b2cc57e16be8263b12fceb780a9ec2b545d35a385cfef15c862befd8d91c7"
+    },
+    {
+      "path": "docs/evidence/library-chromium-desktop-cards.png",
+      "sha256": "d3d6f5fad9b3b8e0099206565752e2fb9120218f35b17867e5b25adc8a4b8cfc",
+      "width": 1440,
+      "height": 848
+    },
+    {
+      "path": "docs/evidence/library-chromium-desktop.png",
+      "sha256": "d8baf65b7227d2ae4c1a68084740d4a0b99fcc1d004c4f574581126e508c7223",
+      "width": 1632,
+      "height": 927
+    },
+    {
+      "path": "docs/evidence/library-chromium-mobile-cards.png",
+      "sha256": "25e093458c49bd6548993a74c2cadf9c4ee2402a8154a4a35602eeba1268e860",
+      "width": 358,
+      "height": 2218
+    },
+    {
+      "path": "docs/evidence/library-chromium-mobile.png",
+      "sha256": "0b3002cddb87a226f9237c441837f613be2f3debd503b0cd51dd3cb25674f26f",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "docs/evidence/library-chromium-tablet-cards.png",
+      "sha256": "e98ee12d8939797a3282698cca9457cf4211f7c262fd8cc4f7847b505f88b064",
+      "width": 672,
+      "height": 1284
+    },
+    {
+      "path": "docs/evidence/library-chromium-tablet.png",
+      "sha256": "39026a5998f0e39c01d02115ac6fa74f3e6ce250efb5d866d7cbc5629a74bc1e",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "path": "docs/evidence/library-webkit-desktop-cards.png",
+      "sha256": "33106d336e958eceb7de7b83c2abd5f162b74887bacb78bf1e4232ce4bc4aa45",
+      "width": 1440,
+      "height": 848
+    },
+    {
+      "path": "docs/evidence/library-webkit-desktop.png",
+      "sha256": "52d94f6a2bdf10ae9e818b362abf1e3f59286c4f02a24487caecfea0c9ec31fb",
+      "width": 1632,
+      "height": 927
+    },
+    {
+      "path": "docs/evidence/library-webkit-mobile-cards.png",
+      "sha256": "9c242a1163127e4cf08b3588557050501f8a12d2b815e12088764105f3ab3a47",
+      "width": 358,
+      "height": 2218
+    },
+    {
+      "path": "docs/evidence/library-webkit-mobile.png",
+      "sha256": "ea7c417bdbf6d670ed557fe065b8ba751d83980f22c5c737ea7771076f04dd3e",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "path": "docs/evidence/library-webkit-tablet-cards.png",
+      "sha256": "9bce3292a30619008403faf2057b919dda497522938113c92b1d42b488ebbdef",
+      "width": 672,
+      "height": 1284
+    },
+    {
+      "path": "docs/evidence/library-webkit-tablet.png",
+      "sha256": "10a31670b89ebb84e7abdc583b7e05b10ffed9be8889a4b0f3db7dc44a80a79f",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "path": "docs/evidence/navigation-chromium-dark.png",
+      "sha256": "b0383b187cf08fff44cfc732242dfa7eb0571b35bb8c805061d1aebd173af28c",
+      "width": 1632,
+      "height": 3945
+    },
+    {
+      "path": "docs/evidence/navigation-chromium-desktop.png",
+      "sha256": "ba9ed1b91712085fd9d9ca1b388e1d5490bd28f27ceb97a46d58be14f382a066",
+      "width": 1632,
+      "height": 3856
+    },
+    {
+      "path": "docs/evidence/navigation-chromium-mobile.png",
+      "sha256": "aa76f3c46f00d72e4066bb76285c888ab90fe6b157d1f446bf9d2d516abe2740",
+      "width": 390,
+      "height": 7750
+    },
+    {
+      "path": "docs/evidence/navigation-webkit-dark.png",
+      "sha256": "0b08eb7e5e1951941bc432d5351dc270c011dace5cfca50c0fc88229251ce135",
+      "width": 1632,
+      "height": 3945
+    },
+    {
+      "path": "docs/evidence/navigation-webkit-desktop.png",
+      "sha256": "60af606e82ee5ecad746325542f9c09719d534d62055d1257f7cd3c87f7ee290",
+      "width": 1632,
+      "height": 3856
+    },
+    {
+      "path": "docs/evidence/navigation-webkit-mobile.png",
+      "sha256": "36091925da99fb97ff498cbba9220b915e746b9a04b3c03605d376c1377b88da",
+      "width": 390,
+      "height": 7750
+    }
+  ],
+  "previewStartup": "Preact dependencies optimized eagerly and deduplicated; subsequent clean-start browser suite passed without initial __H exception"
+}

@@ -1,6 +1,6 @@
 # Progression
 
-Lot 10.0–10.2 préparé le 27 octobre 2026 : scaffold de design, tokens candidats et navigation/primitives disponibles. 9.6 acceptée par la poursuite explicite du propriétaire. Capture originale 1632 × 927 non retrouvée : 10.0 reste active, 10.1/10.2 sont préparées et testées mais restent pending dans la séquence formelle, sans validation de fidélité ou dérogation inventée. 2 tests tokens et 8 tests Chromium/WebKit réussis ; typecheck/build et absence de route dev en sortie vérifiés. Aucun déploiement, domaine et messagerie conservés. 10.3 non engagée. Linux/macOS et Firefox restent exclus.
+Lot 10.3–11.0 implémenté techniquement le 27 octobre 2026 : cartes/recherche/états, démonstration responsive et site Astro SSR Cloudflare préparés et testés localement. Poursuite explicitement demandée après réserve sur la capture originale. 10.0 reste active et les validations formelles suivantes pending : aucune approbation de fidélité ou dérogation inventée. Bibliothèque 20 tests Chromium/WebKit ; 10 tests Node ; Worker compilé 8 contrôles HTTP ; API 3 DTO + 26 Worker. Aucun déploiement, domaine et messagerie conservés. Prochaine étape technique 11.1, non engagée. Linux/macOS et Firefox restent exclus.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -898,6 +898,51 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     "contract_changes": [],
     "evidence": [
       "docs/evidence/validation-10.0-10.2.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "10.3",
+    "status": "pending",
+    "source_commit": "d4e9225",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-10.3.md",
+    "tests_executed": "Implémentation préparée : cartes, états et recherche ; 20 tests navigateur consolidés",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-10.3-11.0.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "10.4",
+    "status": "pending",
+    "source_commit": "d4e9225",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-10.4.md",
+    "tests_executed": "Captures desktop/tablette/mobile et axe ; comparaison à l’original non exécutée",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-10.3-11.0.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "11.0",
+    "status": "pending",
+    "source_commit": "d4e9225",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-11.0.md",
+    "tests_executed": "SSR compilé ; 10 tests Node, 8 HTTP sur Worker compilé ; API 3 DTO + 26 Worker",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-10.3-11.0.json"
     ],
     "frozen": false
   }

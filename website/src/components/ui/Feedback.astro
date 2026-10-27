@@ -1,0 +1,9 @@
+---
+interface Props {state:'loading'|'empty'|'error';}
+const {state}=Astro.props;
+const messages={loading:'Chargement des outils…',empty:'Aucun outil ne correspond à votre recherche.',error:'Le service est momentanément indisponible. Réessayez dans quelques instants.'};
+---
+<div class:list={['feedback',`feedback-${state}`]} role={state==='error'?'alert':'status'} aria-busy={state==='loading'?'true':undefined}>
+  <p>{messages[state]}</p>
+  {state==='loading'&&<div class="skeleton-grid" aria-hidden="true">{[1,2,3].map(()=> <div class="skeleton"></div>)}</div>}
+</div>

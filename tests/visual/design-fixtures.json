@@ -1,0 +1,131 @@
+{
+  "demoOnly": true,
+  "tools": [
+    {
+      "id": "demo-visual-1",
+      "version": "1.0.0",
+      "name": "Calculer simplement",
+      "summary": "Exemple de présentation visuelle, sans outil exécutable.",
+      "category": "calculation",
+      "tags": [
+        "demo"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": 1793059200000
+    },
+    {
+      "id": "demo-visual-2",
+      "version": "1.0.0",
+      "name": "Convertir une unité",
+      "summary": "Exemple de présentation visuelle, sans outil exécutable.",
+      "category": "conversion",
+      "tags": [
+        "demo"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": 1793059200000
+    },
+    {
+      "id": "demo-visual-3",
+      "version": "1.0.0",
+      "name": "Organiser ses documents",
+      "summary": "Exemple de présentation visuelle, sans outil exécutable.",
+      "category": "documents",
+      "tags": [
+        "demo"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": 1793059200000
+    },
+    {
+      "id": "demo-visual-4",
+      "version": "1.0.0",
+      "name": "Explorer les couleurs",
+      "summary": "Exemple de présentation visuelle, sans outil exécutable.",
+      "category": "colors",
+      "tags": [
+        "demo"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": 1793059200000
+    },
+    {
+      "id": "demo-visual-5",
+      "version": "1.0.0",
+      "name": "Préparer un texte",
+      "summary": "Exemple de présentation visuelle, sans outil exécutable.",
+      "category": "text",
+      "tags": [
+        "demo"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": 1793059200000
+    },
+    {
+      "id": "demo-visual-6",
+      "version": "1.0.0",
+      "name": "Comparer des mesures",
+      "summary": "Exemple de présentation visuelle, sans outil exécutable.",
+      "category": "measure",
+      "tags": [
+        "demo"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": 1793059200000
+    },
+    {
+      "id": "demo-visual-7",
+      "version": "1.0.0",
+      "name": "Dessiner une idée",
+      "summary": "Exemple de présentation visuelle, sans outil exécutable.",
+      "category": "drawing",
+      "tags": [
+        "demo"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": 1793059200000
+    },
+    {
+      "id": "demo-visual-8",
+      "version": "1.0.0",
+      "name": "Texte <sans HTML> & détails",
+      "summary": "Exemple de présentation visuelle, sans outil exécutable.",
+      "category": "security",
+      "tags": [
+        "demo"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": 1793059200000
+    },
+    {
+      "id": "demo-visual-9",
+      "version": "1.0.0",
+      "name": "Un titre particulièrement long pour vérifier la troncature accessible sur deux lignes",
+      "summary": "Exemple de présentation visuelle, sans outil exécutable.",
+      "category": "utilities",
+      "tags": [
+        "demo"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published_at": 1793059200000
+    }
+  ]
+}

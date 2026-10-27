@@ -123,3 +123,5 @@
   .site-footer { flex-wrap: wrap; }
   .preferences { flex-wrap: wrap; }
 }
+@media (width < 1200px) { .tool-grid, .skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (width < 768px) { .tool-grid, .skeleton-grid { grid-template-columns: minmax(0, 1fr); } }

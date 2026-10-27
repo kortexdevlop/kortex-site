@@ -1,11 +1,19 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import cloudflare from '@astrojs/cloudflare';
+import preact from '@astrojs/preact';
 
 export default defineConfig({
-  output: 'static',
+  output: 'server',
+  adapter: cloudflare({imageService:'compile'}),
   devToolbar: { enabled: false },
-  vite: { plugins: [tailwindcss()], server: { strictPort: true } },
-  integrations: [{
+  vite: {
+    plugins: [tailwindcss()],
+    server: { strictPort: true },
+    resolve: { dedupe: ['preact'] },
+    optimizeDeps: { include: ['preact/devtools', 'preact', 'preact/hooks', 'preact/jsx-runtime'] },
+  },
+  integrations: [preact(), {
     name: 'kortex-development-preview',
     hooks: {
       'astro:config:setup': ({ command, injectRoute }) => {

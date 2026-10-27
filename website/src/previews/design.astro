@@ -3,6 +3,13 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Button from '../components/ui/Button.astro';
 import Pill from '../components/ui/Pill.astro';
 import SearchField from '../components/ui/SearchField.astro';
+import ToolGrid from '../components/ui/ToolGrid.astro';
+import Feedback from '../components/ui/Feedback.astro';
+import Search from '../components/Search';
+import fixtures from '../../../tests/visual/design-fixtures.json';
+import {isToolSummary,type ToolSummary} from '../lib/tools';
+const demoTools=fixtures.tools as ToolSummary[];
+if(!demoTools.every(isToolSummary)) throw Error('Invalid visual fixtures');
 export const prerender = false;
 const query = Astro.url.searchParams.get('q');
 ---
@@ -17,6 +24,9 @@ const query = Astro.url.searchParams.get('q');
     <div class="sample-row" id="search-demo"><div><h3>Recherche</h3><p>Essai du champ uniquement, sans catalogue connecté.</p></div><div><SearchField id="demo-search" action="/__dev/design" />{query !== null && <p role="status">Texte saisi : <strong>{query || 'Aucun texte'}</strong>. Le catalogue sera raccordé dans une prochaine étape.</p>}</div></div>
   </section>
   <section class="route-notes" aria-label="Destinations de la navigation"><h2>Navigation en préparation</h2><p>Ces repères présentent les futures destinations. Cette page reste un atelier de composants ; aucune connexion au compte ou au catalogue n’est simulée.</p><div class="route-grid">{[['tools','Outils'],['apps','Applications'],['download','Télécharger'],['account','Compte']].map(([id,label]) => <div id={id}><h3>{label}</h3><p>Destination préparée pour la phase suivante.</p></div>)}</div></section>
+  <section class="library-section" id="demo-cards"><p class="eyebrow">DÉMONSTRATION UNIQUEMENT</p><h2>Neuf cartes, une base commune.</h2><p>Ces exemples servent à tester le design. Ils ne font pas partie du catalogue public.</p><ToolGrid tools={demoTools}/></section>
+  <section class="library-section" id="demo-filter"><h2>Rechercher dans la démonstration</h2><Search demoTools={demoTools} client:load /></section>
+  <section class="library-section" id="demo-states"><h2>États de la bibliothèque</h2><Feedback state="loading"/><Feedback state="empty"/><Feedback state="error"/></section>
 </MainLayout>
 <script>
   document.querySelector('#sample-action')?.addEventListener('click', () => { document.querySelector('#action-result')!.textContent = 'Le bouton répond.'; });

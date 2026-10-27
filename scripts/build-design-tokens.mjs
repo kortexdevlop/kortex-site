@@ -12,6 +12,8 @@ export function renderTokens(t) {
   for (const [name, width] of Object.entries(t.breakpoint)) css += `@custom-media --${name} (width < ${width});\n`;
   css += `@media (width < ${t.breakpoint.desktop}) {\n  .site-header { flex-wrap: wrap; }\n  .menu-toggle { margin-left: auto; }\n  .header-panel { flex: 1 0 100%; flex-wrap: wrap; padding-block: var(--spacing-4); }\n  .header-panel nav { flex: 1 0 100%; flex-wrap: wrap; }\n  .header-panel .search { flex: 1 1 16rem; }\n}\n`;
   css += `@media (width < ${t.breakpoint.mobile}) {\n  .shell { width: calc(100% - var(--spacing-8)); }\n  .intro { grid-template-columns: 1fr; gap: var(--spacing-8); }\n  .preview-aside { min-height: 18rem; }\n  .sample-row { grid-template-columns: 1fr; }\n  .route-grid { grid-template-columns: 1fr 1fr; }\n  .site-footer { flex-wrap: wrap; }\n  .preferences { flex-wrap: wrap; }\n}\n`;
+  css += `@media (width < ${t.breakpoint.desktop}) { .tool-grid, .skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }\n`;
+  css += `@media (width < ${t.breakpoint.mobile}) { .tool-grid, .skeleton-grid { grid-template-columns: minmax(0, 1fr); } }\n`;
   return css;
 }
 export function generateTokens(check = false) {

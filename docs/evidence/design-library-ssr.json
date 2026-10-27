@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-27",
+  "runtime": "built Worker in local workerd",
+  "apiConnected": false,
+  "checks": [
+    {
+      "path": "/",
+      "status": 503,
+      "method": "GET"
+    },
+    {
+      "path": "/__dev/design",
+      "status": 404,
+      "method": "GET"
+    },
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "path": "/_astro/MainLayout.B-zP7QKZ.css",
+      "status": 200,
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/tools",
+      "status": 503,
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/tools",
+      "status": 405,
+      "method": "POST"
+    },
+    {
+      "path": "/api/v1/tools",
+      "status": 403,
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/admin/publish",
+      "status": 404,
+      "method": "GET"
+    }
+  ]
+}

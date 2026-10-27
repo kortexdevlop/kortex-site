@@ -15,7 +15,7 @@ test('desktop navigation, keyboard focus, preferences and persistent state', asy
   await expect(page.locator('#header-panel')).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.goto('/__dev/design');
-  await page.screenshot({path:`docs/evidence/design10-${info.project.name}-desktop.png`,fullPage:true});
+  await page.screenshot({path:`docs/evidence/navigation-${info.project.name}-desktop.png`,fullPage:true});
   await page.getByRole('button',{name:'Thème sombre',exact:true}).click();
   await page.getByRole('button',{name:'Agrandir le texte'}).click();
   await page.getByLabel('Densité',{exact:true}).selectOption('pro');
@@ -29,7 +29,7 @@ test('desktop navigation, keyboard focus, preferences and persistent state', asy
   await expect(page.locator('html')).toHaveAttribute('data-density','pro');
   await expect(page.locator('#theme-toggle')).toHaveAttribute('aria-pressed','true');
   await expect(page.locator('#language-toggle')).toHaveText('EN');
-  await page.screenshot({path:`docs/evidence/design10-${info.project.name}-dark.png`,fullPage:true});
+  await page.screenshot({path:`docs/evidence/navigation-${info.project.name}-dark.png`,fullPage:true});
 });
 
 test('mobile disclosure supports keyboard, Escape, resizing and 320px reflow', async ({page},info) => {
@@ -49,7 +49,7 @@ test('mobile disclosure supports keyboard, Escape, resizing and 320px reflow', a
   await page.getByRole('link',{name:'Applications',exact:true}).click();
   await expect(page.locator('#header-panel')).toBeHidden();
   await page.goto('/__dev/design');
-  await page.screenshot({path:`docs/evidence/design10-${info.project.name}-mobile.png`,fullPage:true});
+  await page.screenshot({path:`docs/evidence/navigation-${info.project.name}-mobile.png`,fullPage:true});
   await page.setViewportSize({width:320,height:740});
   await menu.click();
   await page.locator('#type-toggle').click();
@@ -70,8 +70,8 @@ test('light and dark accessible names, contrast and markup; real local search su
   }
   await page.locator('#demo-search').fill('<test & query>');
   await page.locator('#demo-search').press('Enter');
-  await expect(page.getByRole('status')).toContainText('<test & query>');
-  await expect(page.locator('main script')).toHaveCount(0);
+  await expect(page.locator('#search-demo [role="status"]')).toContainText('<test & query>');
+  await expect(page.locator('#search-demo script')).toHaveCount(0);
   await page.locator('#sample-action').click();
   await expect(page.locator('#action-result')).toHaveText('Le bouton répond.');
 });

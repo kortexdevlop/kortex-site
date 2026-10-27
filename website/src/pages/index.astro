@@ -1,0 +1,16 @@
+---
+import {env} from 'cloudflare:workers';
+import MainLayout from '../layouts/MainLayout.astro';
+import Feedback from '../components/ui/Feedback.astro';
+import {ApiClient} from '../lib/api-client';
+export const prerender=false;
+let available=false;
+try {await new ApiClient(env.API_WORKER).listTools(new URLSearchParams({limit:'1'}));available=true;}catch{}
+Astro.response.status=available?200:503;
+Astro.response.headers.set('Cache-Control','private, no-store');
+---
+<MainLayout title="Kortex — vos outils, à votre rythme">
+  <section class="route-notes"><p class="eyebrow">KORTEX</p><h1>Vos outils.<br /><span>À votre rythme.</span></h1>
+    {available ? <p>Le service Kortex est disponible. Le catalogue Web est en préparation.</p> : <Feedback state="error" />}
+  </section>
+</MainLayout>
