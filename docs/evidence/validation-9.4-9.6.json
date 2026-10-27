@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-27T19:04:13.431Z",
+  "source_commits": {
+    "9.4": "d3345ce",
+    "9.5": "56947c7"
+  },
+  "staging_only": true,
+  "api_origin": "https://kortex-api-staging.userpgl.workers.dev",
+  "resources": {
+    "worker": "kortex-api-staging",
+    "database_name": "kortex-catalog-staging",
+    "database_id": "a406c1bf-cf12-4d1d-b8ff-6aa0955abb0a",
+    "bucket": "kortex-tools-staging"
+  },
+  "deployment": {
+    "id": "129af40f-db2a-4ee7-8f20-4702acdd75e0",
+    "versions": [
+      {
+        "version_id": "846a9759-cd0b-4acf-ba56-ec85023f2441",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-27T19:01:07.147167Z"
+  },
+  "migrations": [
+    "0001_catalog.sql",
+    "0002_publication.sql",
+    "0003_admin_operations.sql"
+  ],
+  "private_r2": {
+    "public_dev_url_enabled": false,
+    "custom_domains": 0,
+    "conditional_create_and_replacement_refusal": true
+  },
+  "roundtrip": {
+    "tool_id": "calculatrice",
+    "current_version": "1.0.0",
+    "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+    "byte_length": 264845,
+    "mime": "application/vnd.kortex.tool+zip",
+    "catalog": 200,
+    "download": 200,
+    "unauthorized_admin": 401,
+    "rollback": true,
+    "revoked_version": "1.1.0",
+    "revoked_download": 410
+  },
+  "hosts": {
+    "chromium": "passed",
+    "webkit": "passed",
+    "windows": "passed",
+    "same_downloaded_bytes": true
+  },
+  "auth": {
+    "kind": "temporary pinned staging operator",
+    "real_github_oidc_run": false,
+    "production_operator_mode_forbidden": true,
+    "private_key_persisted": false,
+    "jwt_lifetime_seconds": 300
+  },
+  "tests": {
+    "api_node": 3,
+    "api_workerd": 26,
+    "web_staging": 2,
+    "windows_staging": 1
+  },
+  "contracts_changed": 0,
+  "production_touched": false,
+  "domain_dns_changed": false,
+  "mail_changed": false,
+  "logs": [
+    {
+      "path": "target/validation-9.4-tests.log",
+      "sha256": "f2b492bc1e730aa9c6dc66b2bb3c43a1a14dc2c1d35399f8574d52d37a042036"
+    },
+    {
+      "path": "target/validation-9.5-tests.log",
+      "sha256": "4b3ccc564afaa9112158a0ae42fe3fdcd40694b52d46b2f8c3aa2f98841492a9"
+    },
+    {
+      "path": "target/validation-9.4-9.6-tests.log",
+      "sha256": "b761e4cc3a7a7d54e3fda635f066ad1fe510dcc3a31e78337c565d4534e9e7c9"
+    },
+    {
+      "path": "target/validation-9.4-9.6-typecheck.log",
+      "sha256": "3d39657207fbb0f735737f54f5bf2d8d84a555478030670384a9846bb34e904d"
+    },
+    {
+      "path": "target/validation-9.6-web.log",
+      "sha256": "0732387cd18147336fb1bf113e3e4881049c8e9a01920fe7ca6fdea7b7614856"
+    },
+    {
+      "path": "target/validation-9.6-windows.log",
+      "sha256": "b870ddc30d4f5780e53787c90002315c7a31a2d01577cacbcf0bbcfada61d81f"
+    },
+    {
+      "path": "target/validation-9.4-9.6-build.log",
+      "sha256": "b57ffc5c4e53cacdb200b8d1af40487102a18ccaaa0eb308e076ccc499cfc69b"
+    },
+    {
+      "path": "target/validation-9.4-9.6-secrets.log",
+      "sha256": "d1b29e61b054979ecf96b1d475a9752b6c88a20747a85ea369be9a54d400be8d"
+    }
+  ],
+  "checks": {
+    "typecheck": "passed",
+    "build_dry_run": "passed",
+    "frozen_schema_reference": "passed",
+    "secrets_scan": "6 passed",
+    "progress_register": "48 ordered steps"
+  }
+}

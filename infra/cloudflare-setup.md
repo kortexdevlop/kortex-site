@@ -76,3 +76,11 @@ L'API expose GET/HEAD /api/v1/health et, depuis 9.3, la liste/recherche, les dé
 ## Réinitialisation de l'ancien projet — 27 octobre 2026
 
 Sur demande explicite du propriétaire, les neuf anciens Workers, leurs domaines, les deux bases de comptes, le widget Turnstile et la redirection WWW ont été supprimés. Les inventaires de calcul/stockage vérifiés sont maintenant vides ; les bases préexistantes citées plus haut sont un historique, pas des ressources à réutiliser. L'enregistrement et la zone active kortex.site sont conservés. Le propriétaire a expressément choisi de conserver la messagerie, ses huit DNS et sa règle de routage. Rapport : docs/reports/CLOUDFLARE-RESET-2026-10-27.md. Aucune ressource du nouveau catalogue n'a été créée ; aucun déploiement anticipé de 9.6.
+
+## Nouveau staging — lot 9.4–9.6
+
+L'état « inventaires vides » ci-dessus correspond au retrait de l'ancien projet. Le lot suivant autorisé crée maintenant un staging distinct : kortex-api-staging, kortex-catalog-staging (a406c1bf-cf12-4d1d-b8ff-6aa0955abb0a), kortex-tools-staging privé. L'API a effectivement été déployée sur https://kortex-api-staging.userpgl.workers.dev. Aucun changement DNS/messagerie, aucun binding de production. Les IDs et noms réels sont dans api/wrangler.jsonc ; aucun jeton ni clé privée dans cette configuration.
+
+Les migrations sont exécutées avec le binding DB effectivement adopté en 9.2, donc `wrangler d1 migrations apply DB --remote --env staging --config api/wrangler.jsonc --profile kortex`, et non l'ancien alias KORTEX_DB du banc 9.0. Le déploiement distant est explicite et séparé du script build dry-run.
+
+Consulter infra/staging-checklist.md pour l'identité temporaire d'opérateur, le PUT R2 conditionnel via remote binding, la reprise et le nettoyage. Le roundtrip et l'ouverture sur deux hôtes doivent être attestés dans docs/evidence/cloud-publish.md ; le simple succès du déploiement ou des tests locaux ne suffit pas au gate 9.6.

@@ -1,6 +1,6 @@
 # Progression
 
-Ancien projet distant kortex.site retiré le 27 octobre 2026 ; domaine et messagerie conservés à la demande du propriétaire. Étape 9.3 implémentée et testée localement : 18 tests API, parcours de 10 000 outils dans les deux tris, typecheck et build dry-run réussis. Résultat en attente de revue, sans approbation après résultat inventée. Aucun déploiement du nouveau projet ; provisionnement prévu en 9.6. Prochaine étape : 9.4, non engagée. Linux/macOS et Firefox restent exclus.
+Lot 9.4–9.6 réalisé le 27 octobre 2026 : téléchargements privés, publication/révocation transactionnelles et staging cloud réel démontré. Base et bucket privés distincts, API staging déployée, roundtrip/rollback/410 et ouverture vérifiée des mêmes octets sur Chromium/WebKit et Windows réussis. 9.3 approuvée par le propriétaire ; 9.4/9.5 validées techniquement dans le lot autorisé ; résultat 9.6 en attente de revue, sans approbation après résultat inventée. Domaine, DNS et messagerie conservés, aucune production utilisée. Prochaine étape : 10.0, non engagée. Linux/macOS et Firefox restent exclus.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -792,11 +792,11 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
   },
   {
     "id": "9.3",
-    "status": "awaiting_approval",
+    "status": "validated",
     "source_commit": "088bceec414e0dcd7f4282402604abff549cc278",
     "result_commit": "0a21749",
-    "approved_by": null,
-    "approved_at": null,
+    "approved_by": "Propriétaire : C'est parfait, enchaîne les trois prochaines étapes",
+    "approved_at": "2026-10-27",
     "report_path": "docs/reports/STEP-9.3.md",
     "tests_executed": "3 DTO Node + 15 Worker ; 10 000 outils par tri, filtres, curseurs HMAC, cache et erreurs ; typecheck/build/smoke/frozen/secrets réussis",
     "contract_changes": [],
@@ -804,6 +804,55 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
       "docs/evidence/validation-9.3-local.json",
       "docs/evidence/cloudflare-reset-2026-10-27.json",
       "docs/reports/CLOUDFLARE-RESET-2026-10-27.md"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "9.4",
+    "status": "validated",
+    "source_commit": "6c235f0",
+    "result_commit": "d3345ce",
+    "approved_by": "Propriétaire : lot explicite 9.4–9.6, poursuite après validation technique intermédiaire (pas revue indépendante)",
+    "approved_at": "2026-10-27",
+    "report_path": "docs/reports/STEP-9.4.md",
+    "tests_executed": "3 DTO + 19 Worker ; streaming R2 exact/24 Mio, cache, absence, remplacement, révocation ; typecheck",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-9.4-9.6.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "9.5",
+    "status": "validated",
+    "source_commit": "d3345ce",
+    "result_commit": "56947c7",
+    "approved_by": "Propriétaire : lot explicite 9.4–9.6, poursuite après validation technique intermédiaire (pas revue indépendante)",
+    "approved_at": "2026-10-27",
+    "report_path": "docs/reports/STEP-9.5.md",
+    "tests_executed": "3 DTO + 26 Worker ; 7 publication/auth/courses/transactions/rollback/révocation ; typecheck et build",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-9.4-9.6.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "9.6",
+    "status": "awaiting_approval",
+    "source_commit": "56947c7",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-9.6.md",
+    "tests_executed": "Roundtrip Cloudflare réel ; PUT R2 conditionnel, publication, rollback et 410 ; Chromium/WebKit et Windows ouverts sur les mêmes octets ; API finale 3 DTO + 26 Worker",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-9.4-9.6.json",
+      "docs/evidence/cloud-publish.md",
+      "docs/evidence/staging9-chromium.png",
+      "docs/evidence/staging9-webkit.png",
+      "docs/evidence/staging9-windows.png"
     ],
     "frozen": false
   }

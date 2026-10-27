@@ -6,19 +6,61 @@
   "workers_dev": false,
   "preview_urls": false,
   "send_metrics": false,
-  "vars": {"KORTEX_ENV": "local", "PUBLIC_WEB_ORIGIN": "http://localhost:4321"},
-  "d1_databases": [{"binding":"DB","database_name":"kortex-catalog-local","database_id":"00000000-0000-4000-8000-000000000092","migrations_dir":"../database/migrations"}],
-  "r2_buckets": [{"binding":"TOOLS_BUCKET","bucket_name":"kortex-tools-local"}],
+  "vars": {
+    "KORTEX_ENV": "local",
+    "PUBLIC_WEB_ORIGIN": "http://localhost:4321"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kortex-catalog-local",
+      "database_id": "00000000-0000-4000-8000-000000000092",
+      "migrations_dir": "../database/migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "TOOLS_BUCKET",
+      "bucket_name": "kortex-tools-local"
+    }
+  ],
   "env": {
     "staging": {
-      "name":"kortex-api-staging", "workers_dev":false, "preview_urls":false,
-      "vars":{"KORTEX_ENV":"staging","PUBLIC_WEB_ORIGIN":"https://staging.invalid"},
-      "d1_databases":[], "r2_buckets":[]
+      "name": "kortex-api-staging",
+      "workers_dev": true,
+      "preview_urls": false,
+      "vars": {
+        "KORTEX_ENV": "staging",
+        "PUBLIC_WEB_ORIGIN": "https://staging.kortex.site",
+        "ADMIN_AUTH_POLICY": "{\"issuer\":\"urn:kortex:staging-operator\",\"audience\":\"https://kortex-api-staging.userpgl.workers.dev\",\"subject\":\"kortex-staging-operator\",\"repository\":\"local/kortex-staging\",\"repository_id\":\"0\",\"ref\":\"refs/heads/staging\",\"workflow_ref\":\"local/kortex-staging/staging-publication@refs/heads/staging\",\"actions\":[\"publish\",\"revoke\",\"rollback\"],\"jwks\":{\"keys\":[{\"crv\":\"Ed25519\",\"x\":\"-WC4ev1HQVWK_zOUuxSEyxo48UKKaWwwWD1-v1YV1wA\",\"kty\":\"OKP\",\"kid\":\"staging-operator-df76f6b8\",\"alg\":\"EdDSA\",\"use\":\"sig\"}]}}"
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "kortex-catalog-staging",
+          "database_id": "a406c1bf-cf12-4d1d-b8ff-6aa0955abb0a",
+          "migrations_dir": "../database/migrations",
+          "remote": true
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "TOOLS_BUCKET",
+          "bucket_name": "kortex-tools-staging",
+          "remote": true
+        }
+      ]
     },
     "production": {
-      "name":"kortex-api-production", "workers_dev":false, "preview_urls":false,
-      "vars":{"KORTEX_ENV":"production","PUBLIC_WEB_ORIGIN":"https://production.invalid"},
-      "d1_databases":[], "r2_buckets":[]
+      "name": "kortex-api-production",
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": {
+        "KORTEX_ENV": "production",
+        "PUBLIC_WEB_ORIGIN": "https://production.invalid"
+      },
+      "d1_databases": [],
+      "r2_buckets": []
     }
   }
 }

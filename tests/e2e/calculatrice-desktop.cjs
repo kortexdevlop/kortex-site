@@ -20,7 +20,7 @@ const gate=process.env.KORTEX_GATE_REPORT?JSON.parse(fs.readFileSync(process.env
  await page.getByRole('button',{name:'Diviser',exact:true}).click();await expect(page.locator('[data-node=result]')).toHaveText('DIVIDE_BY_ZERO');
  await page.getByLabel('Action',{exact:true}).fill('divide');await page.getByLabel('Paramètres JSON').fill('{"a":25,"b":0}');await page.getByRole('button',{name:'Exécuter l’action'}).click();await expect(page.getByLabel('Résultat',{exact:true})).toContainText('DIVIDE_BY_ZERO');
  expect(network).toEqual([]);expect(ipc).toBeGreaterThan(0);
- await page.screenshot({path:path.join(root,gate?'docs/evidence/package8-windows.png':'docs/evidence/calculatrice-windows.png'),fullPage:true});
+ await page.screenshot({path:path.join(root,process.env.KORTEX_GATE_SCREENSHOT||(gate?'docs/evidence/package8-windows.png':'docs/evidence/calculatrice-windows.png')),fullPage:true});
  await page.getByRole('button',{name:'Fermer',exact:true}).click();await expect(page.locator('[data-node=calculator]')).toHaveCount(0);await open();await expect(page.getByLabel('Premier nombre',{exact:true})).toHaveValue('');
  const f=gate?{descriptor:{sha256:gate.sha256}}:JSON.parse(fs.readFileSync(path.join(root,'target/calculatrice-fixture/fixture.json')));console.log('PASS Windows calculatrice: keypad/action=1200, identical DIVIDE_BY_ZERO, cancel/close/reopen; archive SHA256 '+f.descriptor.sha256);
 }finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});
