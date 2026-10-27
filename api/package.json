@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev --local --env= --ip 127.0.0.1 --port 8787",
-    "test": "node --test tests/contracts.test.mjs && vitest run",
-    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "generate": "node scripts/generate-validators.mjs",
+    "dev": "pnpm run generate && wrangler dev --local --env= --ip 127.0.0.1 --port 8787",
+    "test": "pnpm run generate && node --test tests/contracts.test.mjs && vitest run",
+    "typecheck": "pnpm run generate && tsc --noEmit -p tsconfig.json",
     "lint": "pnpm run typecheck",
-    "build": "wrangler deploy --dry-run --env= --outdir dist",
+    "build": "pnpm run generate && wrangler deploy --dry-run --env= --outdir dist",
     "check:cloudflare": "node scripts/check-cloudflare.mjs"
   },
   "dependencies": {

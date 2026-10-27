@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-27",
+  "source_commit": "088bceec414e0dcd7f4282402604abff549cc278",
+  "platform": "Windows",
+  "node": "24.15.0",
+  "vitest": "5.0.5",
+  "wrangler": "4.152.0",
+  "typescript": "7.0.2",
+  "runtime": "real local workerd and D1",
+  "test_results": {
+    "node_dto": 3,
+    "worker": 15,
+    "frozen_schema_reference": 1,
+    "secrets": 6,
+    "passed": true
+  },
+  "pagination": {
+    "dataset": "fixed",
+    "published_entries": 10000,
+    "sorts": [
+      "recent",
+      "name"
+    ],
+    "pages_per_sort": 100,
+    "page_size": 100,
+    "duplicates": 0,
+    "missing": 0
+  },
+  "real_cryptographic_or_r2_verification_of_synthetic_fixtures_claimed": false,
+  "api_deployed": false,
+  "new_remote_resources_created": 0,
+  "frozen_schemas_changed": 0,
+  "logs": [
+    {
+      "kind": "tests",
+      "path": "target/validation-9.3-tests.log",
+      "sha256": "e91b05ab5cfdf49475b36f311e65ca96badd909c08b41c42c88834ad8e3445f0",
+      "exit_code": 0
+    },
+    {
+      "kind": "typecheck",
+      "path": "target/validation-9.3-typecheck.log",
+      "sha256": "3d39657207fbb0f735737f54f5bf2d8d84a555478030670384a9846bb34e904d",
+      "exit_code": 0
+    },
+    {
+      "kind": "build",
+      "path": "target/validation-9.3-build.log",
+      "sha256": "44a3c8f2152c81ab48e4e72817887f29e6ec3b770ad9b14d4196d613c9987d45",
+      "exit_code": 0
+    },
+    {
+      "kind": "secrets",
+      "path": "target/validation-9.3-secrets.log",
+      "sha256": "75648ad714b7a41dafc460368029676a1c75d5a7b2fa42ce654d7ef759329c6e",
+      "exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-27",
+  "domain": "kortex.site",
+  "owner_authorized_deletion": true,
+  "owner_exception": "Conserver la messagerie",
+  "deleted": {"workers": 9, "worker_domains": 9, "d1_databases": 2, "turnstile_widgets": 1, "http_redirect_rules": 1},
+  "api_verified_empty": ["workers", "worker_domains", "worker_services", "d1", "r2_default_jurisdiction", "r2_eu_jurisdiction", "kv", "queues", "durable_objects", "pages", "workflows", "vectorize"],
+  "dashboard_verified": {"turnstile_widgets": 0, "page_rules": 0, "custom_security_rules": 0, "rate_limiting_rules": 0, "http_redirect_rules": 0},
+  "preserved": ["domain_registration", "active_zone", "8_mail_dns_records", "mail_routing", "default_security", "new_local_repository", "unrelated_domains"],
+  "new_remote_resources_created": 0,
+  "new_project_deployed": false,
+  "provider_retention_purge_claimed": false
+}

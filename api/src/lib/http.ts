@@ -5,11 +5,11 @@ export function requestId(request:Request):string {
 }
 export function json(value:unknown,status:number,id:string,origin?:string,head=false,extra?:HeadersInit):Response {
  const headers=new Headers(extra);
- headers.set('Content-Type','application/json; charset=utf-8');headers.set('Cache-Control','no-store');
+ headers.set('Content-Type','application/json; charset=utf-8');if(!headers.has('Cache-Control'))headers.set('Cache-Control','no-store');
  headers.set('Content-Security-Policy',"default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'");
  headers.set('X-Content-Type-Options','nosniff');headers.set('Referrer-Policy','no-referrer');headers.set('X-Request-ID',id);headers.set('Vary','Origin');
  if(origin)headers.set('Access-Control-Allow-Origin',origin);
- return new Response(head||status===204?null:JSON.stringify(value),{status,headers});
+ return new Response(head||status===204||status===304?null:JSON.stringify(value),{status,headers});
 }
 export function failure(code:ErrorCode,message:string,status:number,id:string,origin?:string,head=false,extra?:HeadersInit):Response {
  return json({error:{code,message,request_id:id}},status,id,origin,head,extra);

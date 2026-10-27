@@ -4,6 +4,7 @@ export interface Env {
  TOOLS_BUCKET:R2Bucket;
  KORTEX_ENV:'local'|'staging'|'production';
  PUBLIC_WEB_ORIGIN:string;
+ CURSOR_SIGNING_KEY?:string;
 }
 const config=z.object({KORTEX_ENV:z.enum(['local','staging','production']),PUBLIC_WEB_ORIGIN:z.url()}).superRefine((value,ctx)=>{
  const url=new URL(value.PUBLIC_WEB_ORIGIN);
@@ -20,5 +21,5 @@ export function validateEnv(value:unknown):Env|null {
  if(value===null||typeof value!=='object')return null;
  const v=value as Record<string,unknown>;
  if(!config.safeParse(v).success||!methods(v.DB,['prepare','batch'])||!methods(v.TOOLS_BUCKET,['head','get','put']))return null;
- return {KORTEX_ENV:v.KORTEX_ENV as Env['KORTEX_ENV'],PUBLIC_WEB_ORIGIN:v.PUBLIC_WEB_ORIGIN as string,DB:v.DB as D1Database,TOOLS_BUCKET:v.TOOLS_BUCKET as R2Bucket};
+ return {KORTEX_ENV:v.KORTEX_ENV as Env['KORTEX_ENV'],PUBLIC_WEB_ORIGIN:v.PUBLIC_WEB_ORIGIN as string,DB:v.DB as D1Database,TOOLS_BUCKET:v.TOOLS_BUCKET as R2Bucket,CURSOR_SIGNING_KEY:typeof v.CURSOR_SIGNING_KEY==='string'?v.CURSOR_SIGNING_KEY:undefined};
 }

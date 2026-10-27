@@ -1,6 +1,6 @@
 # Progression
 
-Étapes 9.1 et 9.2 validées localement le 27 octobre 2026. Le profil kortex est actif et les accès D1/R2 sont rétablis. Les ressources distantes de catalogue/staging/production restent à configurer lors du provisionnement prévu en 9.6 ; aucune création ou livraison distante effectuée. Prochaine étape : 9.3, non démarrée. Linux/macOS et Firefox restent exclus.
+Ancien projet distant kortex.site retiré le 27 octobre 2026 ; domaine et messagerie conservés à la demande du propriétaire. Étape 9.3 implémentée et testée localement : 18 tests API, parcours de 10 000 outils dans les deux tris, typecheck et build dry-run réussis. Résultat en attente de revue, sans approbation après résultat inventée. Aucun déploiement du nouveau projet ; provisionnement prévu en 9.6. Prochaine étape : 9.4, non engagée. Linux/macOS et Firefox restent exclus.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -789,6 +789,23 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     ],
     "frozen": false,
     "previous_block_reason": "Réautorisation utilisateur réussie et scopes Workers/D1 demandés, mais le contrôle suivant renouvelle un jeton limité à Pages ; D1/R2 refusés code 10000. Cause non établie. Profil kortex dédié proposé, sans login ni modification de droits par l’agent."
+  },
+  {
+    "id": "9.3",
+    "status": "awaiting_approval",
+    "source_commit": "088bceec414e0dcd7f4282402604abff549cc278",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-9.3.md",
+    "tests_executed": "3 DTO Node + 15 Worker ; 10 000 outils par tri, filtres, curseurs HMAC, cache et erreurs ; typecheck/build/smoke/frozen/secrets réussis",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/validation-9.3-local.json",
+      "docs/evidence/cloudflare-reset-2026-10-27.json",
+      "docs/reports/CLOUDFLARE-RESET-2026-10-27.md"
+    ],
+    "frozen": false
   }
 ]
 ```

@@ -71,4 +71,8 @@ pnpm --filter @kortex/api dev
 
 Le build est exclusivement `wrangler deploy --dry-run --env=`. Le serveur de développement utilise --local et 127.0.0.1:8787 ; le smoke utilise un port libre puis arrête uniquement son propre processus. Les migrations peuvent être appliquées à l'émulateur avec `pnpm --filter @kortex/api exec wrangler d1 migrations apply DB --local`. Ne pas ajouter --remote pour les essais locaux.
 
-L'API expose seulement GET/HEAD /api/v1/health et les prérequêtes CORS autorisées. Les autres routes renvoient 404 JSON. La santé est une liveness, pas une interrogation D1/R2. Le catalogue/recherche arrivent en 9.3 et les opérations de publication plus tard. Le schéma api.schema.json pose leurs DTO candidats ; il ne signifie pas que ces routes existent ni que les signatures y sont déjà vérifiées.
+L'API expose GET/HEAD /api/v1/health et, depuis 9.3, la liste/recherche, les détails et actions sous /api/v1/tools. Voir api/README.md pour les paramètres et le secret serveur de curseur. La santé est une liveness, pas une interrogation D1/R2. La publication et le téléchargement restent aux étapes suivantes. Les DTO API restent candidats ; les six schémas gelés sont inchangés.
+
+## Réinitialisation de l'ancien projet — 27 octobre 2026
+
+Sur demande explicite du propriétaire, les neuf anciens Workers, leurs domaines, les deux bases de comptes, le widget Turnstile et la redirection WWW ont été supprimés. Les inventaires de calcul/stockage vérifiés sont maintenant vides ; les bases préexistantes citées plus haut sont un historique, pas des ressources à réutiliser. L'enregistrement et la zone active kortex.site sont conservés. Le propriétaire a expressément choisi de conserver la messagerie, ses huit DNS et sa règle de routage. Rapport : docs/reports/CLOUDFLARE-RESET-2026-10-27.md. Aucune ressource du nouveau catalogue n'a été créée ; aucun déploiement anticipé de 9.6.
