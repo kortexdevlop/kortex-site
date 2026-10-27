@@ -7,3 +7,5 @@ Progression et preuves : [docs/PROGRESS.md](docs/PROGRESS.md). Plan source : [do
 Le workspace utilise les versions figées de Rust, Node et pnpm. Installer les dépendances avec pnpm ; les suites Web exigent également la construction du shell Dioxus et les fixtures WASM indiquées dans les rapports. Les commandes de vérification de l’outil 1 et le scénario Windows sont dans le guide SDK. Linux/macOS et Firefox restent exclus sur instruction du propriétaire ; leur compatibilité n’est pas déclarée.
 
 Configuration : copier .env.example vers .env pour le local ; ne jamais versionner les valeurs réelles. La signature des fixtures utilise une clé privée éphémère en mémoire, sans clé de production. Voir infra/environments.md pour les environnements prévus.
+
+Depuis le lot 8.0–8.2, le dépôt fournit aussi le packageur ZIP canonique, la CLI générique et la signature détachée. Voir [docs/SIGNING.md](docs/SIGNING.md) et les rapports STEP-8.0 à STEP-8.2. Les clés fournies sont exclusivement publiques et de test ; le gel final du format et la publication restent aux étapes suivantes.

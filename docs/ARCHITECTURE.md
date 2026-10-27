@@ -39,3 +39,11 @@ Le trait Tool et les exports SDK de tools/calculatrice exécutent maintenant les
 Un défaut transversal préexistant du pont Rust→JavaScript Web a été corrigé : les commandes doivent devenir des objets JavaScript ordinaires, pas des Map. Les clics réels du parcours calculatrice servent de régression. La CSS commune assure aussi une largeur minimale de bouton de 44 px, en complément de la hauteur existante. Aucun traitement du nom calculatrice, changement de moteur ou nouveau schéma n’a été nécessaire. Les goldens Request/Reply et les empreintes sont sous tests/golden ; voir TOOL_SDK.md et reports/PHASE7_GATE.md.
 
 Cette section remplace l’état « déclaration seule » de 7.0 ci-dessus, conservé comme historique. Entrée/Espace activent les boutons natifs focalisés ; le protocole figé ne transporte pas les raccourcis globaux Entrée/Échap envisagés dans le premier design. Ils ne sont pas revendiqués.
+
+## Packageur et signature — 8.0 à 8.2
+
+Les crates kortex-pack, kortex-xtask et kortex-verify livrent le ZIP canonique, les commandes génériques et la vérification SHA-256/Ed25519 B.2. Le scanner utilise les manifestes et Cargo metadata, sans branche par identifiant. Le validateur effectue une inspection ZIP avant décompression bornée en mémoire et une validation statique du WASM. La signature est détachée, avec graine injectée seulement dans le processus CI ; la racine hors ligne ne publie que son manifeste de clés signé.
+
+Le vérificateur Rust et TrustStore Web vérifient la même fixture publique calculatrice. Le snapshot de clés versionné contrôle dates, révocation et minimum de version fourni par l’hôte. Aucune ancre de production, distribution de révocation distante ou publication cloud n’est configurée. Le CLI garde un profil de confiance TEST explicite par défaut ; la migration des anciens chemins d’admission natifs vers un snapshot distribué sera vérifiée aux étapes responsables. Les limites de publication du nouveau packager sont plus strictes que les prototypes d’admission historiques et ne prétendent pas les avoir tous remplacés.
+
+Documentation : SIGNING.md. Les cinq schémas gelés et la référence TOOL1_V1 sont conservés. Le nouveau schéma artifact et le format canonique restent candidats jusqu’à 8.5 ; le lot présent s’arrête à 8.2.

@@ -42,3 +42,7 @@ Le script générique tests/fixtures/make-tool.cjs accepte manifestPath, contrac
 `tests/golden/calculatrice-reference.json` consigne les empreintes du guest, de l’archive et du corpus. Le test Node vérifie aussi la signature du paquet. Une dérive de binaire échoue volontairement contre cette référence : examiner le compilateur, les chemins incorporés et le gate avant de l’actualiser. Les empreintes ne prouvent pas à elles seules une construction reproductible sur tous les OS. Ne jamais régénérer les attentes automatiquement pendant les tests.
 
 Pour un nouvel outil, suivre la même chaîne manifeste/contrat → SDK → WASM → signature → admission vérifiée → tests UI/actions sur les hôtes. Ajouter ses corpus métier et vérifier qu’aucune branche du runtime ne dépend de son nom.
+
+## Pipeline générique disponible depuis 8.2
+
+Les commandes de construction, validation et packaging ne nécessitent plus le helper de fixture propre à la calculatrice : `cargo run -p kortex-xtask --locked -- build --tool <id>`, puis validate/package. --all, --out, --json et --help sont documentés dans SIGNING.md, ainsi que sign/verify et la racine hors ligne. Le helper de phase 7 reste uniquement pour sa référence binaire immuable. Le packager canonique de publication possède une empreinte différente sans changer les échanges du guest ; son gel final relève de 8.5.

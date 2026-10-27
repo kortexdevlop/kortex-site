@@ -5,7 +5,7 @@ let server:Awaited<ReturnType<typeof serve>>;
 test.beforeAll(async()=>{server=await serve()});test.afterAll(async()=>server.close());
 test('trust store : signature exacte, altération, clé inconnue, révocation et expiration',async({page})=>{
  const keys=generateKeyPairSync('ed25519'),bytes=Buffer.from('signed archive fixture'),sha256=createHash('sha256').update(bytes).digest('hex');
- const proof={tool_id:'test-tool',version:'1.0.0',abi_version:'1.0',sha256,signing_key_id:'test',signature:sign(null,Buffer.from(`kortex-artifact-v1\ntest-tool\n1.0.0\n1.0\n${sha256}\n`),keys.privateKey).toString('base64')};
+ const proof={schema_version:1,tool_id:'test-tool',version:'1.0.0',abi_version:'1.0',sha256,signing_key_id:'test',signature:sign(null,Buffer.from(`kortex-artifact-v1\ntest-tool\n1.0.0\n1.0\n${sha256}\n`),keys.privateKey).toString('base64')};
  await page.goto(server.origin);
  const results=await page.evaluate(async({proof,bytes,key})=>{
   const {TrustStore}=await import('/adapter/trust.js' as string);const store=new TrustStore([{id:'test',public_key_base64:key,not_before:0,expires:200,revoked:false}]);const data=new Uint8Array(bytes);const results=[];
@@ -29,7 +29,7 @@ test('archive signée, ZIP hostile, cache corrompu et MIME refusés avant exécu
   }
   const encoder=new TextEncoder(),module=new Uint8Array(await(await fetch('/fixtures/guest.wasm')).arrayBuffer());const entries:[string,Uint8Array][]=[['manifest.json',encoder.encode(JSON.stringify(t.manifest))],['contract.json',encoder.encode(JSON.stringify(t.contract))],['module.wasm',module],['assets/icon.svg',encoder.encode('<svg xmlns="http://www.w3.org/2000/svg"/>')]];
   const trust=new TrustStore([{id:'test',public_key_base64:btoa(String.fromCharCode(...t.publicKey)),not_before:0,expires:Date.now()+60000,revoked:false}]);
-  async function proof(bytes:Uint8Array){const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');return {tool_id:t.manifest.id,version:t.manifest.version,abi_version:'1.0',sha256,signing_key_id:'test',signature:await (window as any).signTestArtifact(Array.from(encoder.encode(`kortex-artifact-v1\n${t.manifest.id}\n${t.manifest.version}\n1.0\n${sha256}\n`)))};}
+  async function proof(bytes:Uint8Array){const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');return {schema_version:1,tool_id:t.manifest.id,version:t.manifest.version,abi_version:'1.0',sha256,signing_key_id:'test',signature:await (window as any).signTestArtifact(Array.from(encoder.encode(`kortex-artifact-v1\n${t.manifest.id}\n${t.manifest.version}\n1.0\n${sha256}\n`)))};}
   const bytes=zip(entries),descriptor=await proof(bytes);const tool=await t.api.VerifiedTool.verifyArchive(bytes,descriptor,trust);const bridge=await t.api.startVerifiedTool(tool);const reply=await bridge.dispatch({v:1,request_id:crypto.randomUUID(),kind:'action.invoke',payload:{action_id:'multiply',input:{a:3,b:7}}});bridge.stop();
   const errors=[];const tampered=bytes.slice();tampered[40]^=1;try{await t.api.VerifiedTool.verifyArchive(tampered,descriptor,trust)}catch(e){errors.push((e as Error).message)}
   for(const bad of [zip([['../escape',encoder.encode('x')],...entries]),zip(entries,true)]){try{await t.api.VerifiedTool.verifyArchive(bad,await proof(bad),trust)}catch(e){errors.push((e as Error).message)}}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "version": 1,
+  "issued_at": 0,
+  "expires": 4102444800000,
+  "root_key_id": "test-offline-root",
+  "keys": [
+    {
+      "id": "test-release-key",
+      "public_key_base64": "r5MVJ2EuEQtP8GatGLO2KBkeP2jHgBfilz5J3ZooCNg=",
+      "not_before": 0,
+      "expires": 4102444800000,
+      "revoked": false
+    }
+  ],
+  "signature": "sz8OjDh0JC7hDUYbsg1Q7UKRarmLWoBfskJWSZngAziCn6VW1fei5bSIXLEPaOSecTQwQsXdDJ0R7Y1LRODoDw=="
+}

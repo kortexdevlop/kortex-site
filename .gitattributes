@@ -1,1 +1,2 @@
 /tests/golden/*.ndjson text eol=lf
+/tests/fixtures/*.tool binary

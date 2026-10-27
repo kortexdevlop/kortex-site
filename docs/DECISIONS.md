@@ -40,3 +40,13 @@ Le propriétaire demande « Enchaîne les 3 prochaines étape » : calculatrice 
 Les quatre calculs sont du code guest commun aux clics/actions. Les hôtes ignorent le nom de l’outil. La correction du pont Web objet/Map et la largeur minimale commune des boutons corrigent des défauts génériques mis en évidence par les interactions réelles ; elles n’étendent aucun contrat. Le gate décrit explicitement ces corrections, plutôt que prétendre qu’aucun fichier hôte n’a changé.
 
 Le design 7.0 envisageait Entrée globale et Échap/focus. Le schéma UI figé ne fournit ni keydown ni commande de focus guest ; ces raccourcis ne sont pas ajoutés silencieusement. Les contrôles natifs sont tabulables, Entrée/Espace sur bouton et Tout effacer restent disponibles. Les empreintes sont celles de la référence construite sur la chaîne Windows figée ; la reproductibilité générale et le packager de publication relèvent de la phase 8. Les signatures des fixtures utilisent une clé éphémère de test, sans bypass unsigned.
+
+## Lot 8.0–8.2 — 27 octobre 2026
+
+Le propriétaire demande « Enchaîne les 3 prochaines étape » après 7.3. Périmètre exécuté : bibliothèque ZIP canonique, CLI générique, SHA/signature et trust store versionné. Les exclusions Linux/macOS et Firefox restent applicables. Le plan source n’est pas modifié ; 8.3 n’est pas démarrée et le format n’est pas gelé avant son gate 8.5.
+
+Décisions de canonicalisation : ordre lexical ASCII, DOS epoch 1980-01-01, Unix 0644, stored pour éviter une variation de compression, JSON trié récursivement. Contrôles de publication selon 8.0 : ZIP et cumul extrait 25 Mio, fichier 20 Mio, ratio 20:1. Les outils actuels ne référencent qu’une icône sous assets/ ; aucun fichier source ou asset non référencé n’entre dans le paquet.
+
+Le descripteur reprend strictement B.2 ; schema_version=1 est désormais vérifié explicitement côté Web. L’URL de téléchargement appartient au chargeur et est retirée avant la validation du descripteur signé. Les commandes et bytes d’admission Web sont capturés avant les attentes asynchrones. Un manifeste de clés signé par racine publique épinglée fournit une version minimale à contrôler côté hôte ; le CLI ne prétend pas persister cette version ni déployer une rotation réseau.
+
+Aucun secret de production n’est créé. Les fixtures publiques sont signées par des clés TEST éphémères détruites à la sortie du générateur ; les tests d’injection CI utilisent seulement leurs vecteurs de test en mémoire. La graine n’est acceptée ni dans la configuration applicative, ni dans le navigateur. Aucun envoi distant.

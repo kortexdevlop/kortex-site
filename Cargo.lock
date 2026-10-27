@@ -3225,6 +3225,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "kortex-pack"
+version = "1.0.0"
+dependencies = [
+ "crc32fast",
+ "kortex-shared",
+ "serde",
+ "serde_json",
+ "wasmparser 0.262.0",
+ "wat",
+ "zip",
+]
+
+[[package]]
 name = "kortex-runtime-desktop"
 version = "1.0.0"
 dependencies = [
@@ -3307,6 +3320,35 @@ dependencies = [
  "dioxus-ssr",
  "jsonschema",
  "serde_json",
+]
+
+[[package]]
+name = "kortex-verify"
+version = "1.0.0"
+dependencies = [
+ "base64 0.22.1",
+ "ed25519-dalek",
+ "jsonschema",
+ "kortex-shared",
+ "serde",
+ "serde_json",
+ "sha2",
+]
+
+[[package]]
+name = "kortex-xtask"
+version = "1.0.0"
+dependencies = [
+ "base64 0.22.1",
+ "ed25519-dalek",
+ "kortex-pack",
+ "kortex-shared",
+ "kortex-verify",
+ "serde",
+ "serde_json",
+ "sha2",
+ "tempfile",
+ "zeroize",
 ]
 
 [[package]]
@@ -6514,8 +6556,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "974d643b125b272607e2fff8012ea14a8328acd7621e4bafa7afb32500052b1b"
 dependencies = [
  "bitflags 2.13.2",
+ "hashbrown 0.17.1",
  "indexmap",
  "semver",
+ "serde",
 ]
 
 [[package]]

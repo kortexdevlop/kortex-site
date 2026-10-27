@@ -1,10 +1,10 @@
 import {extractArchive} from './archive';
-import type {TrustStore} from './trust';
+import {artifactSigningText,type TrustStore} from './trust';
 import {matchesSchema} from './browser-contracts';
 import {ed25519} from '@noble/curves/ed25519.js';
 import {validateManifest,validateContract,type Manifest,type Contract} from '@kortex/contracts';
 import {request,reply,capability,error,QUEUE_LIMIT,type Request,type Reply,type CapabilityRequest} from './types';
-export interface Descriptor {tool_id:string;version:string;abi_version:string;sha256:string;signing_key_id:string;signature:string}
+export interface Descriptor {schema_version:1;tool_id:string;version:string;abi_version:string;sha256:string;signing_key_id:string;signature:string}
 const admitted=new WeakSet<object>();
 export class VerifiedTool {
  #bytes:Uint8Array;#manifest:Manifest;#contract:Contract;
@@ -18,11 +18,12 @@ export class VerifiedTool {
  /// The .tool ZIP loader is a separate next-stage boundary, never an unsigned development bypass.
  static async verifySignedModule(bytes:Uint8Array,manifest:unknown,contract:unknown,proof:Descriptor,keys:Readonly<Record<string,Uint8Array>>):Promise<VerifiedTool>{
   if(bytes.length>20*1024*1024||!validateManifest(manifest).ok||!validateContract(contract).ok)throw Error('INVALID_METADATA');
+  bytes=bytes.slice();manifest=structuredClone(manifest);contract=structuredClone(contract);proof=structuredClone(proof);keys=Object.fromEntries(Object.entries(keys).map(([id,key])=>[id,key.slice()]));
   const m=manifest as Manifest,c=contract as Contract;if(m.abi_version!=='1.0'||proof.abi_version!=='1.0')throw Error('UNSUPPORTED_ABI');
   if(proof.tool_id!==m.id||proof.version!==m.version||c.tool_id!==m.id||!keys[proof.signing_key_id])throw Error('INTEGRITY_ERROR');
   const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes as BufferSource)),b=>b.toString(16).padStart(2,'0')).join('');if(digest!==proof.sha256)throw Error('INTEGRITY_ERROR');
 
-  const text=new TextEncoder().encode(`kortex-artifact-v1\n${m.id}\n${m.version}\n1.0\n${digest}\n`);
+  const text=artifactSigningText(proof);
   let sig:Uint8Array;try{sig=Uint8Array.from(atob(proof.signature),v=>v.charCodeAt(0));}catch{throw Error('INTEGRITY_ERROR')}
   let valid=false;try{const key=await crypto.subtle.importKey('raw',keys[proof.signing_key_id] as BufferSource,{name:'Ed25519'},false,['verify']);valid=await crypto.subtle.verify('Ed25519',key,sig as BufferSource,text);}catch(e){if(!(e instanceof DOMException)||e.name!=='NotSupportedError')throw Error('INTEGRITY_ERROR');valid=ed25519.verify(sig,text,keys[proof.signing_key_id],{zip215:false});}if(!valid)throw Error('INTEGRITY_ERROR');
   const module=await WebAssembly.compile(bytes as BufferSource);

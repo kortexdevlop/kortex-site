@@ -17,7 +17,7 @@ test('remote environments require identities and HTTPS', () => {
   }
 });
 test('public secret names and CI private keys are rejected without printing values', () => {
-  const errors=validateEnv({...sample,PUBLIC_API_TOKEN:'simulated-secret',KORTEX_SIGNING_PRIVATE_KEY:'simulated-private'});
+  const errors=validateEnv({...sample,PUBLIC_API_TOKEN:'simulated-secret',KORTEX_SIGNING_PRIVATE_KEY:'simulated-private',KORTEX_SIGNING_KEY_SEED_BASE64:'simulated-seed'});
   assert.ok(errors.some(e=>e.startsWith('public-secret:')));
   assert.ok(errors.some(e=>e.startsWith('ci-only:')));
   assert.ok(!errors.join().includes('simulated'));

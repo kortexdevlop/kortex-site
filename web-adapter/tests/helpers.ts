@@ -19,7 +19,7 @@ export async function prepare(page:Page,permissions:string[]=[],wasmURL='/fixtur
    const sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
    const text=new TextEncoder().encode(`kortex-artifact-v1\n${metadata.id}\n${metadata.version}\n1.0\n${sha256}\n`);
    const signature=await (window as any).signTestArtifact(Array.from(text));
-   return api.VerifiedTool.verifySignedModule(bytes,metadata,contracts,{tool_id:metadata.id,version:metadata.version,abi_version:'1.0',sha256,signing_key_id:'ephemeral-test',signature},{'ephemeral-test':pub});
+   return api.VerifiedTool.verifySignedModule(bytes,metadata,contracts,{schema_version:1,tool_id:metadata.id,version:metadata.version,abi_version:'1.0',sha256,signing_key_id:'ephemeral-test',signature},{'ephemeral-test':pub});
   }
   const tool=await admit(bytes);(window as any).adapterTest={api,bytes,tool,admit,manifest,contract,section,publicKey:pub};
  },{manifest:{...manifest,permissions},contract,publicKey,wasmURL});

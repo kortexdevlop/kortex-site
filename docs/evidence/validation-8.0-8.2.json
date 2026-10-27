@@ -1,0 +1,285 @@
+{
+  "date": "2026-10-27",
+  "source_commit": "d6a70d8",
+  "implementation_commit": "commit contenant ce registre",
+  "steps": [
+    "8.0",
+    "8.1",
+    "8.2"
+  ],
+  "status": "completed locally; package format candidate until 8.5",
+  "canonical_archive": {
+    "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+    "bytes": 264845,
+    "independent_outputs": [
+      {
+        "path": "target/packages/calculatrice-1.0.0.tool",
+        "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787"
+      },
+      {
+        "path": "target/packages-second/calculatrice-1.0.0.tool",
+        "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787"
+      },
+      {
+        "path": "target/packages-final/calculatrice-1.0.0.tool",
+        "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787"
+      },
+      {
+        "path": "tests/fixtures/artifact-signed-test.tool",
+        "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787"
+      }
+    ],
+    "lexical_order": true,
+    "dos_epoch": "1980-01-01T00:00:00",
+    "unix_permissions": "0644",
+    "compression": "stored",
+    "metadata_json": "recursive key ordering, compact UTF-8",
+    "limits": {
+      "archive_bytes": 26214400,
+      "unpacked_total_bytes": 26214400,
+      "file_bytes": 20971520,
+      "files": 256,
+      "ratio": 20
+    }
+  },
+  "cli_observations": [
+    {
+      "args": [
+        "build",
+        "--all",
+        "--out",
+        "target/modules-final",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "command": "build",
+        "results": [
+          {
+            "module": "target/modules-final\\calculatrice.wasm",
+            "tool_id": "calculatrice",
+            "valid": true
+          }
+        ]
+      }
+    },
+    {
+      "args": [
+        "validate",
+        "--all",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "command": "validate",
+        "results": [
+          {
+            "files": 4,
+            "tool_id": "calculatrice",
+            "valid": true
+          }
+        ]
+      }
+    },
+    {
+      "args": [
+        "package",
+        "--tool",
+        "calculatrice",
+        "--out",
+        "target/packages-final",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "command": "package",
+        "results": [
+          {
+            "archive": "target/packages-final\\calculatrice-1.0.0.tool",
+            "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+            "signature_verified": false,
+            "tool_id": "calculatrice",
+            "validation": {
+              "files": 4,
+              "issues": [],
+              "tool_id": "calculatrice",
+              "unpacked_bytes": 264415,
+              "valid": true,
+              "version": "1.0.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "args": [
+        "verify",
+        "--artifact",
+        "tests/fixtures/artifact-signed-test.json",
+        "--json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "archive": "tests/fixtures/artifact-signed-test.tool",
+        "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+        "signature_verified": true,
+        "tool_id": "calculatrice",
+        "trust_profile": "test-only-default",
+        "trust_version": 1,
+        "valid": true,
+        "validation": {
+          "files": 4,
+          "issues": [],
+          "tool_id": "calculatrice",
+          "unpacked_bytes": 264415,
+          "valid": true,
+          "version": "1.0.0"
+        }
+      }
+    }
+  ],
+  "descriptor": {
+    "schema_version": 1,
+    "tool_id": "calculatrice",
+    "version": "1.0.0",
+    "abi_version": "1.0",
+    "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+    "signing_key_id": "test-release-key",
+    "signature": "102DJMeLPRf1fWBP6/8880pWn/NWwKRvEPd4yqtWSfie1bpPgST+DO8OQUR3MSrOhcMaNTHuqnsW//HsdROeDQ=="
+  },
+  "trust": {
+    "profile": "TEST ONLY",
+    "root_path": "shared/fixtures/trust-test-root.json",
+    "keys_path": "shared/fixtures/trust-test-keys.json",
+    "minimum_version_tested": true,
+    "removed_and_revoked_keys_rejected": true,
+    "root_signature_mutations_rejected": true,
+    "private_fixture_keys_persisted": false,
+    "production_keys_configured": false,
+    "automatic_minimum_version_persistence": false
+  },
+  "tests": [
+    {
+      "command": "cargo test --workspace --locked",
+      "exit_code": 0,
+      "passed": 94,
+      "failed": 0,
+      "ignored": 1,
+      "ignored_reason": "Opt-in external HTTPS smoke from previous native backend; not needed for pure compute packaging"
+    },
+    {
+      "command": "cargo test -p kortex-pack --locked",
+      "exit_code": 0,
+      "passed": 6
+    },
+    {
+      "command": "cargo test -p kortex-verify --locked",
+      "exit_code": 0,
+      "passed": 4
+    },
+    {
+      "command": "cargo test -p kortex-verify -p kortex-xtask --locked",
+      "exit_code": 0,
+      "passed": 8
+    },
+    {
+      "command": "pnpm --filter @kortex/web-adapter test",
+      "exit_code": 0,
+      "passed": 30
+    },
+    {
+      "command": "pnpm exec playwright test tests/e2e/calculatrice-web.spec.ts tests/web",
+      "exit_code": 0,
+      "passed": 10
+    },
+    {
+      "command": "pnpm --filter @kortex/web-adapter typecheck",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo clippy -p kortex-pack -p kortex-verify -p kortex-xtask --all-targets --no-deps --locked -- -D warnings",
+      "exit_code": 0
+    },
+    {
+      "command": "node --test tests/config/secrets.test.mjs",
+      "exit_code": 0,
+      "passed": 6
+    },
+    {
+      "command": "node --test tests/fixtures/calculatrice.test.cjs",
+      "exit_code": 0,
+      "passed": 1
+    },
+    {
+      "command": "node scripts/check-env.mjs --example",
+      "exit_code": 0
+    }
+  ],
+  "browser_signature_observations": {
+    "projects": [
+      "chromium",
+      "webkit"
+    ],
+    "canonical_calculator_result": 1200,
+    "mutation_policy_rejections_per_project": 12,
+    "csp_regression_passed": true
+  },
+  "frozen_five_schemas_unchanged": true,
+  "tool1_reference_unchanged": true,
+  "remote_publication": false,
+  "exclusions": [
+    "Linux",
+    "macOS",
+    "Firefox"
+  ],
+  "limitations": [
+    "No PACKAGE_FORMAT_V1 freeze before 8.5",
+    "No production CI signer or offline root provisioned",
+    "No revocation network service deployed or persistent rollback counter",
+    "Legacy native trust-map paths are not silently migrated",
+    "Static WASM/asset validation is not a runtime correctness or SVG sanitization guarantee"
+  ],
+  "working_tree_sha256": {
+    ".env.example": "a270772f377bc8b69d40e724600053024a105b16e5389b715aa5f18c35601700",
+    ".gitattributes": "2917aa0250798c2a8b299b87328df6410f357ab9230d9930e491dcfc363f8571",
+    "Cargo.lock": "99cb56ffc56f4ece10cfa6ef4a8dfdef70d2ceb2b5936402a302685e92c56a9b",
+    "Cargo.toml": "5c1bda7497f5d8cb945480deb9edf9095411898f26dd352444b173ae54f5e4db",
+    "crates/kortex-pack/Cargo.toml": "125b8aab4941496db15df4057204a24703c65281a88998bfc7df4053cc80d852",
+    "crates/kortex-pack/src/archive.rs": "5be0ce023a7d144935ea338f5634b13cc2654f444d6ea34e4f10b892589e6246",
+    "crates/kortex-pack/src/lib.rs": "7657157c160d5c4265cebce678aa6caef7f96a2b253dd38255bbebb6551f7a10",
+    "crates/kortex-pack/src/validate.rs": "7a2eb9e5c4ba0957bb17b952c85cdb4ea7dae26fcaebd26137aaab0fddea60fe",
+    "crates/kortex-pack/tests/archive.rs": "c4632653c94b505046cd8780ee69365260f13d87a649658d8473ac72fa239c7e",
+    "crates/kortex-verify/Cargo.toml": "9cea522b1238684e905bbe0db77e0f11680c6834c67d8651d0e8e1e81a5c8585",
+    "crates/kortex-verify/src/keys.rs": "e40a82122e3069e9d9268043154e8e7ff2a28a92b7843e4bf4af2cf2d88ad8b9",
+    "crates/kortex-verify/src/lib.rs": "248d3d6737c00606049e6aa667a9f2dba654436f51fbf31a6dd4b4e627902b66",
+    "crates/kortex-verify/tests/signature.rs": "4d985b972c1219d40242a4ee2dd157b63892f45eecbc4d87476c727e3f150c45",
+    "crates/kortex-xtask/Cargo.toml": "0f9eaa08350d87e7981206e6c56fd548788b0b76cd247782f197370039e930a8",
+    "crates/kortex-xtask/src/build.rs": "4c6810a132bc0e40c720cb03e97fe2928e5934bd83b523b923571bcfc410b00a",
+    "crates/kortex-xtask/src/discovery.rs": "d38df5c23a80e6941bf165b8452431c3bc2bba1b0656180a38fe79f59ee2b414",
+    "crates/kortex-xtask/src/lib.rs": "2fae684ed4c0ae882600ce390f436316a7df1cc414f31a6ae7f0c7d112fb0558",
+    "crates/kortex-xtask/src/main.rs": "2fdcd8560f074d95ae2fe82cbcc877f4bcf2d8e35dc039e708848af8aafbdf65",
+    "crates/kortex-xtask/src/package.rs": "9bb541bfaedabb4df5ee2206fd3d06187a5d9cbbce3d5eddb5ca9d1805b283b0",
+    "crates/kortex-xtask/tests/discovery.rs": "72c5b9be11a65b1f5756d1afe641daaf95c13c16ca44e536a91c8dcbe2f5afff",
+    "crates/kortex-xtask/tests/signing.rs": "59792e4dd0ad958002f115bafcc19116935a273414c169c89da76ec1fa38538e",
+    "docs/SIGNING.md": "0892c5fd7e2277309b7144b86c9b03cb762c7aec4758045faca876e4593c6097",
+    "scripts/check-env.mjs": "633fa5b03e0f3ce5d9f326fc17f30703cb6fca7b2a6f9449237df633a6185b01",
+    "scripts/generate-test-signing-key.mjs": "b419c4c142ec57628b57839982fbc15948fcd917865f36d80daf03635b07f441",
+    "shared/fixtures/trust-test-keys.json": "a5e3cdc5629954e0392c0ab627288345960183e05a7a044a131b04589a421bae",
+    "shared/fixtures/trust-test-root.json": "dcb02159edbc0dcad797f6cb951f1400ee5a3f992696be142c6ece6f5a60ee65",
+    "shared/schemas/artifact.schema.json": "3712fe66d1ff069315b19e87fae71ffe7d523b9843ff1caed02632af84f7926c",
+    "tests/config/secrets.test.mjs": "45f716e20ebb5783835f3c501690f31c1737fa8b94e1f31ca11fe3836c4a270a",
+    "tests/fixtures/artifact-signed-test.json": "a59373284e768a8d56a64be7154cc9cdea3a16cf914bb7696ac81c34f230ed08",
+    "tests/fixtures/artifact-signed-test.tool": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+    "web-adapter/generate-validators.mjs": "17ab385606da5afbefe87db67249870bb9e5561fd07f23ae52c733d8985f13cf",
+    "web-adapter/src/bridge.ts": "4c86f47b4b427dbae24359fa81b6c98d7f9e96e5233276d7521eec85359dc1c2",
+    "web-adapter/src/loader.ts": "8885bd432a45d99956709cabec47a104b9d85fa4b442c0e74acf5bec65e7d1ce",
+    "web-adapter/src/trust.ts": "d4a143a5f36aaf5f164a77929c4fb2c249b59039a995d8cc963bdcad6a1eb992",
+    "web-adapter/tests/signature.spec.ts": "3e3702402588355936a538a7a5a91ae9b15f67e92231ab1c4f0ddec2149385c5"
+  },
+  "local_log_sha256": {
+    "target/phase8-cargo-tests.log": "f402904cb7ec28468786070e0718980514281bfb01c6e312c0f46804109fe484",
+    "target/phase8-web-tests.log": "b5c9e9e4648f6dc7ce92d645bad18a57c670bef4db573cd9f71627ad010d48a8",
+    "target/phase8-web-e2e.log": "fb4f7c38f37679485e2956b79e2f75f598bffa03be2ada4a31abfc99c41013a6",
+    "target/phase8-cli.json": "3a5bd5d390731d7f24a13584764fc7317e1db4863b9c243dd58da5ddc3af0855"
+  }
+}

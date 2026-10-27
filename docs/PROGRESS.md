@@ -1,6 +1,6 @@
 # Progression
 
-Lot 7.1–7.3 terminé le 27 octobre 2026 : calculatrice réelle, parité signée Web/Windows et référence TOOL1_V1 figée localement. Prochaine étape : 8.0, non démarrée. Les étapes absentes sont pending. Les exclusions et dérogations précédentes restent en vigueur.
+Lot 8.0–8.2 terminé le 27 octobre 2026 : ZIP canonique, CLI générique et signatures Rust/Web vérifiés localement. Prochaine étape : 8.3, non démarrée. Le nouveau format reste candidat jusqu’au gate 8.5 ; les dérogations et exclusions précédentes sont maintenues.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -616,6 +616,66 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
       "tests/golden/calculatrice-reference.json"
     ],
     "frozen": true
+  },
+  {
+    "id": "8.0",
+    "status": "validated",
+    "source_commit": "d6a70d8",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-8.0.md",
+    "tests_executed": "6 tests archives, deux constructions déterministes et ABI statique",
+    "approved_by": "propriétaire : Enchaîne les 3 prochaines étape ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Nouveau schéma artifact candidat ; aucun des cinq schémas gelés modifié",
+      "ZIP canonique et SignedKeys candidats au gel 8.5"
+    ],
+    "evidence": [
+      "docs/evidence/validation-8.0-8.2.json",
+      "docs/SIGNING.md",
+      "tests/fixtures/artifact-signed-test.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "8.1",
+    "status": "validated",
+    "source_commit": "d6a70d8",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-8.1.md",
+    "tests_executed": "Discovery de deux outils arbitraires, doublons, CLI build/validate/package --all et --out",
+    "approved_by": "propriétaire : Enchaîne les 3 prochaines étape ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Nouveau schéma artifact candidat ; aucun des cinq schémas gelés modifié",
+      "ZIP canonique et SignedKeys candidats au gel 8.5"
+    ],
+    "evidence": [
+      "docs/evidence/validation-8.0-8.2.json",
+      "docs/SIGNING.md",
+      "tests/fixtures/artifact-signed-test.json"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "8.2",
+    "status": "validated",
+    "source_commit": "d6a70d8",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-8.2.md",
+    "tests_executed": "4 tests signature, injection CI TEST, 94 tests workspace et 40 tests Web ; voir rapport",
+    "approved_by": "propriétaire : Enchaîne les 3 prochaines étape ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Nouveau schéma artifact candidat ; aucun des cinq schémas gelés modifié",
+      "ZIP canonique et SignedKeys candidats au gel 8.5"
+    ],
+    "evidence": [
+      "docs/evidence/validation-8.0-8.2.json",
+      "docs/SIGNING.md",
+      "tests/fixtures/artifact-signed-test.json"
+    ],
+    "frozen": false
   }
 ]
 ```

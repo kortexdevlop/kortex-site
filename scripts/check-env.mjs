@@ -21,7 +21,7 @@ export function validateEnv(env, { example = false } = {}) {
   if (!['local','staging','production'].includes(mode)) errors.push('environment: KORTEX_ENV must be local, staging or production');
   for (const key of Object.keys(env)) {
     if (key.startsWith('PUBLIC_') && !origins.includes(key)) errors.push(`public-secret: unexpected public variable ${key}`);
-    if (key === 'KORTEX_SIGNING_PRIVATE_KEY') errors.push('ci-only: private signing key forbidden in application configuration');
+    if (['KORTEX_SIGNING_PRIVATE_KEY','KORTEX_SIGNING_KEY_SEED_BASE64'].includes(key)) errors.push('ci-only: private signing key forbidden in application configuration');
   }
   for (const key of origins) {
     if (!env[key]) { errors.push(`missing: ${key}`); continue; }

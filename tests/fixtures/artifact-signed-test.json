@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "tool_id": "calculatrice",
+  "version": "1.0.0",
+  "abi_version": "1.0",
+  "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+  "signing_key_id": "test-release-key",
+  "signature": "102DJMeLPRf1fWBP6/8880pWn/NWwKRvEPd4yqtWSfie1bpPgST+DO8OQUR3MSrOhcMaNTHuqnsW//HsdROeDQ=="
+}
