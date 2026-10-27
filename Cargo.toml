@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/kortex-abi", "crates/kortex-sdk", "crates/kortex-core", "crates/kortex-capabilities", "crates/kortex-ui", "runtime/web", "runtime/desktop", "crates/kortex-runtime-native", "shared/rust"]
+members = ["crates/kortex-abi", "crates/kortex-sdk", "crates/kortex-core", "crates/kortex-capabilities", "crates/kortex-ui", "runtime/web", "runtime/desktop", "crates/kortex-runtime-native", "shared/rust", "tools/calculatrice"]
 exclude = ["tests/spikes/*"]
 resolver = "3"
 

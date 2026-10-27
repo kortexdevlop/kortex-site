@@ -1,6 +1,6 @@
 # Progression
 
-Lot 5.4, 6.0 et 6.1 terminé le 27 octobre 2026. Prochaine étape : 6.2 (non démarrée). Les étapes absentes sont pending.
+Lot 6.2, 6.3 (Windows sous dérogation multi-OS) et 7.0 terminé le 27 octobre 2026. Prochaine étape : 7.1, non démarrée. Les étapes absentes sont pending.
 La dérogation 1.2 autorise la progression sans déclarer sa matrice techniquement validée.
 Schéma de rapport : docs/reports/TEMPLATE.md.
 
@@ -499,6 +499,64 @@ Schéma de rapport : docs/reports/TEMPLATE.md.
     "evidence": [
       "docs/evidence/validation-5.4-6.1.json",
       "docs/evidence/native-desktop.png"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "6.2",
+    "status": "validated",
+    "source_commit": "9c3e2d3",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-6.2.md",
+    "tests_executed": "48 tests Rust, HTTPS réel, consentement natif ; voir rapport",
+    "approved_by": "propriétaire : Enchaîne les 3 prochaine étape ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun schéma ou ABI gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-6.2-7.0.json",
+      "docs/evidence/native-capabilities.png"
+    ],
+    "frozen": false
+  },
+  {
+    "id": "6.3",
+    "status": "awaiting_approval",
+    "source_commit": "9c3e2d3",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-6.3.md",
+    "tests_executed": "Windows réel, parité guest et récupération ; autres OS exclus",
+    "approved_by": "propriétaire : Enchaîne les 3 prochaine étape ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun schéma ou ABI gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-6.2-7.0.json",
+      "docs/evidence/native-platforms.md"
+    ],
+    "frozen": false,
+    "waiver": {
+      "reason": "Windows vérifié ; Linux/macOS exclus par instruction antérieure du propriétaire. Poursuite 7.0 autorisée sans valider la matrice complète ni le gate phase 20.",
+      "evidence": "docs/evidence/native-platforms.md"
+    }
+  },
+  {
+    "id": "7.0",
+    "status": "validated",
+    "source_commit": "9c3e2d3",
+    "result_commit": "commit contenant ce registre",
+    "report_path": "docs/reports/STEP-7.0.md",
+    "tests_executed": "3 tests déclaration, 46 cas contrats, cargo check wasm locked",
+    "approved_by": "propriétaire : Enchaîne les 3 prochaine étape ; exclusions Linux/macOS et Firefox maintenues",
+    "approved_at": "2026-10-27",
+    "contract_changes": [
+      "Aucun schéma ou ABI gelé modifié"
+    ],
+    "evidence": [
+      "docs/evidence/validation-6.2-7.0.json",
+      "tools/calculatrice/design.md"
     ],
     "frozen": false
   }

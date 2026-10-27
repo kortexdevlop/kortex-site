@@ -1,0 +1,174 @@
+{
+  "contract_version": "1.0",
+  "tool_id": "calculatrice",
+  "actions": [
+    {
+      "id": "add",
+      "description": "Additionner deux nombres finis",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "b": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "a",
+          "b"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 1000
+    },
+    {
+      "id": "subtract",
+      "description": "Soustraire deux nombres finis",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "b": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "a",
+          "b"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 1000
+    },
+    {
+      "id": "multiply",
+      "description": "Multiplier deux nombres finis",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "b": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "a",
+          "b"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 1000
+    },
+    {
+      "id": "divide",
+      "description": "Diviser deux nombres finis ; DIVIDE_BY_ZERO si b vaut zéro",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "b": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "a",
+          "b"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "number",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 1000
+    }
+  ]
+}

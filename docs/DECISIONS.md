@@ -28,3 +28,7 @@ Le propriétaire a autorisé la suite après 1.4 avec activation de la protectio
 ## Dérogation Firefox — 23 octobre 2026
 
 Instruction explicite du propriétaire : « Oui continue, laisse firefox de coté ». Poursuite après 3.0 autorisée avec Chromium/WebKit. Firefox est omis, non déclaré compatible ; son erreur de lancement reste documentée. Aucun gel de portabilité pour les plateformes non essayées.
+
+## Lot 6.2–7.0 — 27 octobre 2026
+
+Le propriétaire demande « Enchaîne les 3 prochaine étape ». Les étapes sont 6.2, 6.3 et 7.0. Ses exclusions antérieures Linux/macOS et Firefox restent applicables. La vérification native Windows est réalisée ; la matrice complète de 6.3 reste sous la dérogation déjà autorisée, sans statut validated global. La poursuite vers la déclaration 7.0 est autorisée dans ce périmètre. Le gate multi-OS de phase 20 reste non satisfait pour les plateformes exclues. Preuves : evidence/native-platforms.md et reports/STEP-6.3.md.

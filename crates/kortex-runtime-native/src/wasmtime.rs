@@ -3,13 +3,11 @@ use ::wasmtime::*;
 use kortex_abi::{Envelope, Reply, pointer};
 use kortex_core::{GuestEngine, RuntimeError, VerifiedTool};
 use std::{
-    future::poll_fn,
     sync::{
         Arc,
         atomic::{AtomicBool, Ordering},
         mpsc,
     },
-    task::Poll,
     time::{Duration, SystemTime, UNIX_EPOCH},
 };
 struct Host {
@@ -29,8 +27,15 @@ fn failure(e: Error) -> RuntimeError {
         RuntimeError::GuestCrash
     }
 }
-fn machine(tool: &VerifiedTool, engine: &Engine) -> Result<Machine, RuntimeError> {
+fn machine(
+    tool: &VerifiedTool,
+    engine: &Engine,
+    inbox: Option<(crate::permissions::CapabilityInbox, u64)>,
+) -> Result<Machine, RuntimeError> {
     let (manifest, contract, bytes) = crate::package_parts(tool.artifact())?;
+    if !bytes.starts_with(b"\0asm\x01\0\0\0") {
+        return Err(RuntimeError::UnsupportedAbi);
+    }
     if manifest["id"] != tool.manifest().id || manifest["version"] != tool.manifest().version {
         return Err(RuntimeError::IntegrityError);
     }
@@ -85,18 +90,26 @@ fn machine(tool: &VerifiedTool, engine: &Engine) -> Result<Machine, RuntimeError
     store.set_fuel(FUEL).map_err(failure)?;
     store.set_epoch_deadline(3000);
     let mut linker = Linker::new(engine);
+    let declared = tool.manifest().permissions.clone();
     linker
         .func_wrap(
             "kortex_v1",
             "host_enqueue",
-            |mut caller: Caller<'_, Host>, p: i32, n: i32| -> i32 {
+            move |mut caller: Caller<'_, Host>, p: i32, n: i32| -> i32 {
                 let Some(Extern::Memory(memory)) = caller.get_export("memory") else {
                     return -1;
                 };
                 if pointer::checked_range(p as u32, n as u32, memory.data_size(&caller)).is_err() {
                     return -1;
                 }
-                -1
+                let Some((inbox, generation)) = &inbox else {
+                    return -1;
+                };
+                let mut bytes = vec![0; n as u32 as usize];
+                if memory.read(&caller, p as u32 as usize, &mut bytes).is_err() {
+                    return -1;
+                }
+                inbox.enqueue(*generation, &bytes, &declared)
             },
         )
         .map_err(failure)?;
@@ -174,15 +187,23 @@ impl Machine {
     }
 }
 enum Command {
-    Dispatch(Envelope, u64, mpsc::Sender<Result<Reply, RuntimeError>>),
+    Dispatch(
+        Envelope,
+        u64,
+        futures_channel::oneshot::Sender<Result<Reply, RuntimeError>>,
+    ),
 }
 pub struct NativeInstance {
     tx: mpsc::Sender<Command>,
     stop: Arc<AtomicBool>,
     engine: Engine,
+    inbox: Option<(crate::permissions::CapabilityInbox, u64)>,
 }
 impl Drop for NativeInstance {
     fn drop(&mut self) {
+        if let Some((inbox, generation)) = &self.inbox {
+            inbox.close(*generation)
+        }
         self.stop.store(true, Ordering::SeqCst);
         for _ in 0..3001 {
             self.engine.increment_epoch();
@@ -190,25 +211,27 @@ impl Drop for NativeInstance {
     }
 }
 pub struct NativeGuestEngine;
-async fn receive<T>(rx: mpsc::Receiver<T>) -> Result<T, RuntimeError> {
-    poll_fn(move |cx| match rx.try_recv() {
-        Ok(v) => Poll::Ready(Ok(v)),
-        Err(mpsc::TryRecvError::Empty) => {
-            cx.waker().wake_by_ref();
-            Poll::Pending
-        }
-        Err(_) => Poll::Ready(Err(RuntimeError::GuestCrash)),
-    })
-    .await
+async fn receive<T>(rx: futures_channel::oneshot::Receiver<T>) -> Result<T, RuntimeError> {
+    rx.await.map_err(|_| RuntimeError::GuestCrash)
 }
 impl NativeGuestEngine {
     pub async fn instantiate(tool: VerifiedTool) -> Result<NativeInstance, RuntimeError> {
+        Self::instantiate_hosted(tool, None).await
+    }
+    async fn instantiate_hosted(
+        tool: VerifiedTool,
+        inbox: Option<crate::permissions::CapabilityInbox>,
+    ) -> Result<NativeInstance, RuntimeError> {
+        let inbox = inbox.map(|v| {
+            let generation = v.begin();
+            (v, generation)
+        });
         let mut cfg = Config::new();
         cfg.consume_fuel(true).epoch_interruption(true);
         let engine = Engine::new(&cfg).map_err(failure)?;
         let stop = Arc::new(AtomicBool::new(false));
         let (tx, rx) = mpsc::channel();
-        let (ready, wait) = mpsc::channel();
+        let (ready, wait) = futures_channel::oneshot::channel();
         let e = engine.clone();
         let flag = stop.clone();
         let timer_engine = engine.clone();
@@ -219,11 +242,16 @@ impl NativeGuestEngine {
                 timer_engine.increment_epoch();
             }
         });
-        let instance = NativeInstance { tx, stop, engine };
+        let instance = NativeInstance {
+            tx,
+            stop,
+            engine,
+            inbox: inbox.clone(),
+        };
         std::thread::Builder::new()
             .stack_size(32 * 1024 * 1024)
             .spawn(move || {
-                let mut state = match machine(&tool, &e) {
+                let mut state = match machine(&tool, &e, inbox) {
                     Ok(v) => {
                         let _ = ready.send(Ok(()));
                         v
@@ -255,6 +283,32 @@ impl NativeGuestEngine {
         Ok(instance)
     }
 }
+
+pub struct HostedNativeEngine {
+    inbox: crate::permissions::CapabilityInbox,
+}
+impl HostedNativeEngine {
+    pub fn new(inbox: crate::permissions::CapabilityInbox) -> Self {
+        Self { inbox }
+    }
+}
+impl GuestEngine for HostedNativeEngine {
+    type Handle = NativeInstance;
+    async fn load(&mut self, tool: &VerifiedTool) -> Result<NativeInstance, RuntimeError> {
+        NativeGuestEngine::instantiate_hosted(tool.clone(), Some(self.inbox.clone())).await
+    }
+    async fn dispatch(
+        &mut self,
+        h: &mut NativeInstance,
+        r: &Envelope,
+        d: u64,
+    ) -> Result<Reply, RuntimeError> {
+        NativeGuestEngine.dispatch(h, r, d).await
+    }
+    async fn unload(&mut self, h: NativeInstance) -> Result<(), RuntimeError> {
+        NativeGuestEngine.unload(h).await
+    }
+}
 impl GuestEngine for NativeGuestEngine {
     type Handle = NativeInstance;
     async fn load(&mut self, tool: &VerifiedTool) -> Result<NativeInstance, RuntimeError> {
@@ -266,7 +320,7 @@ impl GuestEngine for NativeGuestEngine {
         r: &Envelope,
         d: u64,
     ) -> Result<Reply, RuntimeError> {
-        let (tx, rx) = mpsc::channel();
+        let (tx, rx) = futures_channel::oneshot::channel();
         h.tx.send(Command::Dispatch(r.clone(), d, tx))
             .map_err(|_| RuntimeError::GuestCrash)?;
         {

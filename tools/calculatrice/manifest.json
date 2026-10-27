@@ -1,0 +1,17 @@
+{
+  "format_version":"1.0",
+  "id":"calculatrice",
+  "version":"1.0.0",
+  "name":"Calculatrice",
+  "summary":"Addition, soustraction, multiplication et division en local.",
+  "description":"Une calculatrice accessible avec clavier numérique. Les quatre opérations s’exécutent localement, sans accès aux fichiers, au réseau ou au presse-papiers.",
+  "category":"calculation",
+  "tags":["math","calculator"],
+  "seo":{"title":"Calculatrice accessible — Kortex","description":"Calculez avec quatre opérations et un clavier numérique, localement et sans permission sensible."},
+  "icon_path":"assets/icon.svg",
+  "abi_version":"1.0",
+  "ui_schema_version":"1.0",
+  "permissions":[],
+  "entrypoint":"module.wasm",
+  "min_runtime":"1.0.0"
+}

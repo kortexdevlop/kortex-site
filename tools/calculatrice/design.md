@@ -1,0 +1,11 @@
+# Déclaration de la calculatrice — 7.0
+
+Outil purement calculatoire. `permissions: []` est le champ normatif du manifeste gelé correspondant à l’absence de capacités sensibles. Aucun réseau, fichier, stockage ni presse-papiers. Aucun traitement spécial de cet identifiant dans les hôtes.
+
+Les actions add, subtract, multiply et divide reçoivent exactement `{a:number,b:number}` et renvoient `{result:number}`. Nombres IEEE-754 finis, valeurs et résultats dans [-9007199254740991, 9007199254740991]. NaN/Infinity et JSON null sont rejetés avant le guest. Un résultat non fini ou hors de cet intervalle doit produire INVALID_INPUT. La division par +0 ou -0 produit DIVIDE_BY_ZERO. Les décimaux suivent les règles IEEE-754 ; les tests comparent une tolérance appropriée lorsqu’une valeur est arrondie pour l’affichage. Les données de l’action conservent le résultat numérique, sans le remplacer par sa présentation.
+
+Interface à réaliser en 7.1 : deux champs numériques étiquetés « Premier nombre » et « Deuxième nombre », sélection explicite du champ destinataire, quatre boutons d’opération nommés en français, résultat annoncé poliment et erreur visible. Clavier numérique en grille : chiffres 0–9, séparateur décimal, changement de signe, effacement d’un chiffre et remise à zéro. Les touches comportent un nom accessible, une surface minimale de 44 px, un focus visible et un ordre de tabulation cohérent. Entrée exécute l’opération choisie ; Échap efface l’erreur et remet le focus sur le premier nombre. Aucun raccourci ne doit intercepter une saisie dans un autre champ.
+
+Composition avec les composants UI v1 partagés (stack, grid, input, button, text). Aucune couleur seule pour distinguer erreur/succès. Les textes longs et le mode compact doivent rester lisibles. Chaque nœud a une clé stable ; le renderer de l’hôte possède le DOM, le focus et les validations.
+
+Un clic et un appel action.invoke doivent utiliser exactement la même fonction de calcul dans le guest. L’état de saisie, l’opération et le résultat restent dans le guest. Cette étape ne livre ni implémentation d’actions ni paquet WASM exécutable ; cela relève de 7.1. La fixture `tests/action_cases.json` est une spécification de résultats, pas une simulation de moteur.

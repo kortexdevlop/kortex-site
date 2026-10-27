@@ -356,6 +356,32 @@ impl<E: GuestEngine, C: Clock> Runtime<E, C> {
             },
         }
     }
+    /// Refresh host-owned UI after an action or a resolved native capability.
+    pub async fn render(&mut self, id: InstanceId) -> Result<Reply, RuntimeError> {
+        let instance = self
+            .instances
+            .get(&id)
+            .ok_or(RuntimeError::UnknownInstance)?;
+        if instance.state != State::Running {
+            return Err(RuntimeError::InvalidState);
+        }
+        if !instance.dispatcher.is_empty() {
+            return Err(RuntimeError::QueueBusy);
+        }
+        let request = self.request(RequestKind::Render, Map::new())?;
+        self.instances
+            .get_mut(&id)
+            .ok_or(RuntimeError::UnknownInstance)?
+            .dispatcher
+            .push(Queued {
+                request,
+                timeout_ms: MAX_ACTION_MS,
+                action: None,
+            })?;
+        self.process_next(id)
+            .await?
+            .ok_or(RuntimeError::InvalidReply)
+    }
     pub async fn invoke_action(
         &mut self,
         id: InstanceId,

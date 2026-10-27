@@ -23,3 +23,11 @@ Les limites candidates sont dans CONTRACTS.md et les schémas. Aucun contrat FRO
 Linux/macOS omis sur instruction du propriétaire ; Firefox omis après échec de lancement et instruction explicite. Ces systèmes ne sont pas déclarés compatibles. Protection de branche GitHub distante non activée ; poursuite locale autorisée par le propriétaire. Aucune signature ou attestation technique/sécurité n'est inventée. Le gel exige une nouvelle approbation après correction et preuves.
 
 Reprise de revue 3.4 après CR-2026-001 : les trois divergences de codec sont corrigées et les preuves Web/native rejouées sur un nouveau hash identifié. La recommandation technique passe à GO proposé sur le périmètre local démontré, sous réserve de revue humaine du gate. Aucun gel automatique ni compatibilité supplémentaire déclarée. Le NO-GO décrit plus haut est le constat initial, conservé pour traçabilité.
+
+## Outil de référence : calculatrice (déclaration 7.0)
+
+Le manifeste et le contrat de tools/calculatrice déclarent quatre actions pure compute (add, subtract, multiply, divide), sans permission sensible. Le design et les cas numériques sont versionnés avec le contrat. Les clics et action.invoke partageront les mêmes fonctions guest en 7.1 ; aucun identifiant d’outil ne doit déclencher une branche spéciale dans les hôtes. Le code de 7.0 contient uniquement les déclarations, sans export ABI ni paquet exécutable.
+
+## Backend natif — 6.2 et 6.3
+
+Un import host_enqueue borné collecte les demandes SDK du guest signé. L’identité et les déclarations viennent du Core ; Gateway et les consentements hôtes précèdent les effets. Les fichiers sont conservés ouverts par handles opaques, le stockage non secret est résolu sous le répertoire local OS et le réseau HTTPS connecte exclusivement les IP publiques validées d’origines hôtes autorisées. Aucun WASI ni lancement de processus guest. Fermeture, changement de génération et annulation révoquent la session. Les résultats reviennent par capability.result puis render via le Core. La vue Desktop et les IO attendent sans réveil actif.

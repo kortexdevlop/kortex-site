@@ -1,0 +1,18 @@
+[
+ {"action":"add","input":{"a":2,"b":3},"expected":{"result":5}},
+ {"action":"subtract","input":{"a":2,"b":5},"expected":{"result":-3}},
+ {"action":"multiply","input":{"a":25,"b":48},"expected":{"result":1200}},
+ {"action":"divide","input":{"a":10,"b":4},"expected":{"result":2.5}},
+ {"action":"add","input":{"a":0.1,"b":0.2},"expected":{"result":0.30000000000000004}},
+ {"action":"multiply","input":{"a":0,"b":48},"expected":{"result":0}},
+ {"action":"divide","input":{"a":10,"b":0},"error":"DIVIDE_BY_ZERO"},
+ {"action":"divide","input":{"a":0,"b":0},"error":"DIVIDE_BY_ZERO"},
+ {"action":"add","input":{"a":9007199254740991,"b":0},"expected":{"result":9007199254740991}},
+ {"action":"multiply","input":{"a":9007199254740991,"b":2},"error":"INVALID_INPUT"},
+ {"action":"divide","input":{"a":1,"b":1e-320},"error":"INVALID_INPUT"},
+ {"action":"add","input":{"a":null,"b":1},"error":"INVALID_INPUT","reject_before_guest":true},
+ {"action":"add","input":{"a":"2","b":1},"error":"INVALID_INPUT","reject_before_guest":true},
+ {"action":"add","input":{"a":1},"error":"INVALID_INPUT","reject_before_guest":true},
+ {"action":"add","input":{"a":1,"b":2,"extra":0},"error":"INVALID_INPUT","reject_before_guest":true},
+ {"action":"add","input":{"a":9007199254740992,"b":0},"error":"INVALID_INPUT","reject_before_guest":true}
+]

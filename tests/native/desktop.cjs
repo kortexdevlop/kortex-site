@@ -18,7 +18,7 @@ const root=path.resolve(__dirname,'../..');
   await page.getByLabel('Paramètres JSON').fill('{"a":25,"b":48}');
   await page.getByRole('button',{name:'Exécuter l’action'}).click();
   await expect(page.getByRole('status')).toContainText('1200');
-  await page.screenshot({path:path.join(root,'docs/evidence/native-desktop.png'),fullPage:true});
+  await page.screenshot({path:path.join(root,'docs/evidence/native-desktop-6.3.png'),fullPage:true});
   await page.getByLabel('Paramètres JSON').fill('invalid');
   await page.getByRole('button',{name:'Exécuter l’action'}).click();
   await expect(page.getByRole('status')).toContainText('JSON invalide');

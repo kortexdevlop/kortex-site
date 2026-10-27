@@ -135,6 +135,19 @@ impl Policy {
         if capability.needs_gesture() && !self.gesture_valid(context, gesture, now) {
             return Decision::Deny;
         }
+        self.consent_decision(context, capability, resource, now)
+    }
+    /// Read-only host UI decision. This never authorizes an effect or creates a gesture.
+    pub fn consent_decision(
+        &self,
+        context: &Context,
+        capability: Capability,
+        resource: &Resource,
+        now: u64,
+    ) -> Decision {
+        if !self.is_declared(context, capability) {
+            return Decision::Deny;
+        }
         let Ok(scope) = resource.scope(capability) else {
             return Decision::Deny;
         };
@@ -181,7 +194,9 @@ impl Policy {
             })?
             .expires_ms;
         if capability.needs_gesture() {
-            Some(expiry.min(gesture?.expires_ms))
+            // The fresh, single-use gesture authorizes starting the operation.
+            // An OS selection dialog may legitimately outlast that gesture's TTL.
+            self.gesture_valid(context, gesture, now).then_some(expiry)
         } else {
             Some(expiry)
         }

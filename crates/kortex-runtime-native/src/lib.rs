@@ -1,5 +1,9 @@
 #![allow(async_fn_in_trait)]
+pub mod files;
 pub mod limits;
+pub mod network;
+pub mod permissions;
+pub mod storage;
 mod wasmtime;
 use kortex_core::{ArtifactDescriptor, RuntimeError, VerifiedTool};
 use serde_json::Value;
@@ -7,7 +11,7 @@ use std::{
     collections::{BTreeMap, BTreeSet},
     io::{Cursor, Read},
 };
-pub use wasmtime::{NativeGuestEngine, NativeInstance};
+pub use wasmtime::{HostedNativeEngine, NativeGuestEngine, NativeInstance};
 /// Extract into bounded memory only; signatures are verified before any guest compilation.
 pub fn verify_package(
     bytes: Vec<u8>,
