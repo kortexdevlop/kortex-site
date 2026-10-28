@@ -1,0 +1,535 @@
+{
+  "date": "2026-10-28T11:41:05.141Z",
+  "source_commit": "50159f2",
+  "steps": [
+    "15.2",
+    "15.3",
+    "15.4"
+  ],
+  "platform": "Windows / Chromium",
+  "tests": {
+    "core": 21,
+    "api": 82,
+    "auth_recheck": 21,
+    "web": 25,
+    "desktop_unique": 25,
+    "desktop_commands": {
+      "full_suite": 24,
+      "additional_five_tool_matrix": 1
+    },
+    "contracts": 3,
+    "adapter_browser": 1,
+    "staging_browser": 4
+  },
+  "types_and_builds_passed": true,
+  "gates": {
+    "assistant-native": {
+      "date": "2026-10-28T11:39:04.718Z",
+      "platform": "win32",
+      "passed": true,
+      "mode": "offline",
+      "real_signed_wasm": true,
+      "denial_does_not_execute": true,
+      "multiply": 1200,
+      "offline_tools_unchanged": true,
+      "private_file_preserved": true
+    },
+    "assistant-account-staging": {
+      "date": "2026-10-28T11:27:58.789Z",
+      "staging_only": true,
+      "passed": true,
+      "device_ai_denied_by_default": true,
+      "real_native_scoped_ai_quota_enforced": true,
+      "no_budget_reset": true,
+      "withdrawal_immediate": true,
+      "fixture_removed": true
+    },
+    "assistant-four-tools": {
+      "date": "2026-10-28T11:31:41.131Z",
+      "passed": true,
+      "proposal_provider": "test-only deterministic route",
+      "real_signed_staging_runtime": true,
+      "ai_calls": 1,
+      "frames": 4,
+      "outputs": [
+        {
+          "result": 1200
+        },
+        {
+          "iso_utc": "2024-01-01T00:00:00Z",
+          "unix_millis": 1704067200000,
+          "unix_seconds": 1704067200
+        },
+        {
+          "text": "ÉTÉ SS"
+        },
+        {
+          "columns": 2,
+          "rows": 2,
+          "stats": [
+            {
+              "count": 2,
+              "kind": "number",
+              "max": 3,
+              "mean": 2,
+              "min": 1,
+              "name": "a",
+              "nulls": 0
+            },
+            {
+              "count": 2,
+              "kind": "number",
+              "max": 4,
+              "mean": 3,
+              "min": 2,
+              "name": "b",
+              "nulls": 0
+            }
+          ]
+        }
+      ]
+    },
+    "assistant-privacy": {
+      "date": "2026-10-28T11:31:46.630Z",
+      "passed": true,
+      "real_signed_wasm_file_hash": true,
+      "sha256": "ec71dbe16fe4a0307bee953031f32fbc55c26c79ee4baf64c31b49d31da3c0b3",
+      "no_file_upload": true,
+      "no_ai_call": true,
+      "no_file_in_local_storage": true,
+      "network": [
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/ai",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/global.D1xbSCtw.css",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/Workspace.BJQptNIT.css",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/index.B39Hzhv7.css",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/Workspace.astro_astro_type_script_index_0_lang.ChlbuT2b.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/fonts/RobotoVariable.ttf",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/AIAssistant.WTTyn9ko.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/client.D05c1miY.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/account-client.CYpshTxg.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/preact.0LJ3gdp1.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/hooks.BCFsl2b5.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/runtime-bridge.BSBYs3a2.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/_astro/jsxRuntime.CTsdxqSM.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/api/v1/me",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/api/v1/tools",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-web-staging.userpgl.workers.dev",
+          "path": "/api/v1/tools/calculateur-hash",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/frame.html",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/embed-config.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/runtime-style.css",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/tool-shell.css",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/wasm/kortex-runtime-web.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/wasm/snippets/dioxus-cli-config-74c4aa43f52789a0/inline0.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/wasm/snippets/dioxus-interpreter-js-20451f6aefec841d/inline0.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/wasm/snippets/dioxus-interpreter-js-20451f6aefec841d/src/js/set_attribute.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/wasm/snippets/dioxus-web-eae67878b22d6805/inline0.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/wasm/snippets/dioxus-web-eae67878b22d6805/src/js/eval.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/interop.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-YNBYV6BY.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-OJ7FW3P6.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-O2PX4WYR.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-V2ISKWPR.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-IQFYF3ZR.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-W25TK2MN.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-PCZEWLF6.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-WKGZKWEA.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-ANVSOWQD.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-T2XUZR2J.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-7JU2JYRI.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-3TFJSKEX.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-77T5D7PB.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-YQ5QYMHE.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-Q4AC2O6Z.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/wasm/kortex-runtime-web_bg.wasm",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/api/v1/downloads/calculateur-hash/1.0.0",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/tool-shell.css",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/runtime-style.css",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/worker.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-ANVSOWQD.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-YG54ZLQQ.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-77T5D7PB.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-YQ5QYMHE.js",
+          "body_bytes": 0
+        },
+        {
+          "method": "GET",
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "path": "/adapter/chunk-Q4AC2O6Z.js",
+          "body_bytes": 0
+        }
+      ]
+    },
+    "assistant-native-matrix": {
+      "passed": true,
+      "real_signed_wasm": true,
+      "rows": [
+        {
+          "action_id": "multiply",
+          "offline": true,
+          "output": {
+            "result": 1200
+          },
+          "tool_id": "calculatrice"
+        },
+        {
+          "action_id": "to_unix",
+          "offline": true,
+          "output": {
+            "iso_utc": "2024-01-01T00:00:00Z",
+            "unix_millis": 1704067200000,
+            "unix_seconds": 1704067200
+          },
+          "tool_id": "timestamp-utc"
+        },
+        {
+          "action_id": "upper",
+          "offline": true,
+          "output": {
+            "text": "ÉTÉ SS"
+          },
+          "tool_id": "convertisseur-casse"
+        },
+        {
+          "action_id": "summarize_csv",
+          "offline": true,
+          "output": {
+            "columns": 2,
+            "rows": 2,
+            "stats": [
+              {
+                "count": 2,
+                "kind": "number",
+                "max": 3,
+                "mean": 2,
+                "min": 1,
+                "name": "a",
+                "nulls": 0
+              },
+              {
+                "count": 2,
+                "kind": "number",
+                "max": 4,
+                "mean": 3,
+                "min": 2,
+                "name": "b",
+                "nulls": 0
+              }
+            ]
+          },
+          "tool_id": "explorateur-csv"
+        },
+        {
+          "action_id": "sha256_bytes",
+          "offline": true,
+          "output": {
+            "hex": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+          },
+          "tool_id": "calculateur-hash"
+        }
+      ]
+    }
+  },
+  "source_hash_format": "SHA256 UTF8 LF",
+  "sources": {
+    "api/src/routes/auth.ts": "2764c0cfa648d4d7d98bae0e8947138fdd3c87b064376c7571465b12668369d4",
+    "api/src/routes/users.ts": "9058214c5e0d1c25c090fb1bf9f937796e14be271e47f48ba1a502d335936ddb",
+    "api/src/security/device-session.ts": "a59e8522dfb09a285bcb98eb2685490c5109863ed3dca549f6c352287cfb33ba",
+    "api/tests/device-ai.test.ts": "f3a9332588fe7e04481bdc7a45665dd66017e6262a338b50aef12eccd1f78264",
+    "crates/kortex-core/src/ai_bridge.rs": "26f7fd68b08650f9929e317c47c2ec4a2bf11e7e632e343ec262f186d812da3f",
+    "crates/kortex-core/src/lib.rs": "47b05078fcffff2e573c5e5343153a7fea6f2588786ba69e628508a850bc75d1",
+    "crates/kortex-core/tests/ai_bridge.rs": "4fd5cdd089f1edaf80a9e3bc9173f9638827958a7c4d45daebf9ec3310a6a041",
+    "database/migrations/0010_device_ai_consent.sql": "8e2aacb3f17b771992f6940e39ea701d4307d53dfc92822905d70057caf094fa",
+    "desktop/assets/app.css": "fa04401fb7f34cab67308f5f29925ffd7ef42d28d90e78f9e122a67ee2c991fa",
+    "desktop/src/account.rs": "8ba5eeef9bdf097a0aeb5e9090077b5abed1b83e52ec38348beabd544955e43b",
+    "desktop/src/ai_bridge.rs": "1dcc42ae67c84b21cdd278243c0d5606a1a9442f27abbf0a78a8e9b044716459",
+    "desktop/src/ai_view.rs": "858e4a4b083ec8501c3eb1c61130cc7b9ea98008993406dd16805e32ab49aa79",
+    "desktop/src/api.rs": "ee278f718d810d72590de683b16703947ea16ea3f46c12aafdd1421859285f40",
+    "desktop/src/app.rs": "ee579fb871f4ad0e7cdd6d22affac21188c556a1cd2fcd8eb34e47406dffa240",
+    "desktop/src/lib.rs": "e1cc5a999ae5fb758ab53178b3b0413363a595307231ab6cd1b9e765a2636105",
+    "desktop/tests/ai.rs": "43829b62dfac814004fa783e7b965ceb7571f9a8cedac8e4f70cc09fff8809aa",
+    "scripts/deploy-ai-assistant-staging.mjs": "0e62ecae82c52842fa6f908a7e1f5d14eaa104c8b4a6651aa0eddfdb66228004",
+    "scripts/record-assistant-validation.mjs": "3a7f76414063dcea89e2f395a548866896797b2df67c12792af761c3515383f5",
+    "scripts/test-assistant-account-staging.mjs": "a71baa8b97162bff89b2c5090eccc40e50f2aadf54a7bebd9df130ecdde83cbe",
+    "scripts/test-assistant-native.mjs": "02f7e74a20e9103d5f6323dd5203d2a2beed1c992857c70735da6763f2080c2c",
+    "tests/ai.config.ts": "fd33d193295bdb4f33dc6b04a1205261e7c439674b916ccff7094c70db4fe516",
+    "tests/e2e/ai.spec.ts": "db95901a7354b211e38a11f2ddc7d8dba787f06740aeca7d78c66ba5e1af409e",
+    "tests/security/ai-privacy.spec.ts": "c826afe5ffbcfac60d7dd08e33e70df281be39fc84ce30a02459db9e8565e9c6",
+    "web-adapter/build.mjs": "e5ad78c024a6cf95ff760750e5dbed69c6ff60fe077967d6e9d4f1e4f1c99a2c",
+    "web-adapter/src/ai-bridge.ts": "251ccdfa7a9a0925e79174fc66b866ac5f080a7591ceac14d2f5396dc5306303",
+    "web-adapter/src/host.ts": "073491bf45c7d45aa1bc65b2b3b62d54bbc690b887493750a26f08721198fb66",
+    "web-adapter/src/iframe.ts": "5dd9b0cdebd6703aeca6f5551c4c8c28bd07de158edd621a1753fcbadd74ec3e",
+    "web-adapter/src/interop.ts": "67115c1e8284fd250ea95eb05f6c05cda54b32ed8de7c78755cf7671a5d52701",
+    "web-adapter/tests/ai-bridge.spec.ts": "e51c1f778f8398e98dd2245be9ae406b7714ff7527b0b49bb2c0473bc059a6ad",
+    "website/src/components/AIAssistant.tsx": "d42ccd4781020decf5c425c182c7e5626d6159361c60403f4befcc24e122f0e0",
+    "website/src/components/Workspace.astro": "0f0cb47ebe0923bdd0c14566d12d7b696698d3b225c4f5bae8e291b4bbe37db8",
+    "website/src/lib/ai-csp.ts": "ac623cf8207d5e6e33c005d59a3bfcb0a3fd886e9881923aa3af4f3f2620c240",
+    "website/src/lib/ai-runtime.ts": "f5fc33271521e747fc6fa09be2ccef00f54314dd9c9961477c8b8c51ea1993a4",
+    "website/src/lib/proxy.ts": "77d9f1d69a64486ff8cc92b2c65e2778a86feb5da82eb3dc9a748f82f9533b08",
+    "website/src/middleware.ts": "22c293da474ebe029db0f4bcc962f1db9ee5787dd43e0f6296a7e7d51cc9256e",
+    "website/src/pages/ai/index.astro": "15379986bdcb1a862f7a5b63cb6fb54914a339c76028e614a65ae9273d79cb84",
+    "website/src/scripts/account.ts": "d528577ef8854e2685ac682ebdffc0e41817a4377f536746f7d241bc29d6832f",
+    "website/tests/ai-csp.test.ts": "37917db7673221c7b736aa518323c062972667c3c272d5a93ca1162f72c8dee6"
+  },
+  "native_executable_sha256": "65e0c48ef13c4ddb06a89b73fae844a0ef0bba3788e9dcb50f8299c6e85996e6",
+  "real_provider_reference": "docs/evidence/device-ai-staging.json",
+  "provider_in_this_lot": "Deterministic proposal route ONLY in Playwright tests; actual signed runtimes/catalogue; real scoped API 403/429; no budget reset",
+  "native_sensitive_actions": "Denied; continue in manual tool with its own permissions",
+  "google_oidc": "14.5 real Google gate remains pending",
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false,
+  "passed": true
+}

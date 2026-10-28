@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28T11:39:04.718Z",
+  "platform": "win32",
+  "passed": true,
+  "mode": "offline",
+  "real_signed_wasm": true,
+  "denial_does_not_execute": true,
+  "multiply": 1200,
+  "offline_tools_unchanged": true,
+  "private_file_preserved": true
+}

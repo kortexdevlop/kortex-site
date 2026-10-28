@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "real_signed_wasm": true,
+  "rows": [
+    {
+      "action_id": "multiply",
+      "offline": true,
+      "output": {
+        "result": 1200.0
+      },
+      "tool_id": "calculatrice"
+    },
+    {
+      "action_id": "to_unix",
+      "offline": true,
+      "output": {
+        "iso_utc": "2024-01-01T00:00:00Z",
+        "unix_millis": 1704067200000,
+        "unix_seconds": 1704067200
+      },
+      "tool_id": "timestamp-utc"
+    },
+    {
+      "action_id": "upper",
+      "offline": true,
+      "output": {
+        "text": "ÉTÉ SS"
+      },
+      "tool_id": "convertisseur-casse"
+    },
+    {
+      "action_id": "summarize_csv",
+      "offline": true,
+      "output": {
+        "columns": 2,
+        "rows": 2,
+        "stats": [
+          {
+            "count": 2,
+            "kind": "number",
+            "max": 3.0,
+            "mean": 2.0,
+            "min": 1.0,
+            "name": "a",
+            "nulls": 0
+          },
+          {
+            "count": 2,
+            "kind": "number",
+            "max": 4.0,
+            "mean": 3.0,
+            "min": 2.0,
+            "name": "b",
+            "nulls": 0
+          }
+        ]
+      },
+      "tool_id": "explorateur-csv"
+    },
+    {
+      "action_id": "sha256_bytes",
+      "offline": true,
+      "output": {
+        "hex": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+      },
+      "tool_id": "calculateur-hash"
+    }
+  ]
+}

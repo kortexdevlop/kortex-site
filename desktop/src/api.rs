@@ -92,6 +92,41 @@ pub fn slug(s: &str) -> bool {
         })
 }
 impl Api {
+    // Retry one public read only when Windows aborts before response headers.
+    // HTTP errors and body/signature failures are never retried here.
+    fn send_read(
+        &self,
+        request: reqwest::blocking::RequestBuilder,
+    ) -> Result<reqwest::blocking::Response, Error> {
+        let retry = request.try_clone();
+        match request.send() {
+            Ok(value) => Ok(value),
+            Err(error) => {
+                let mut interrupted = false;
+                #[cfg(windows)]
+                {
+                    let mut cause: Option<&(dyn std::error::Error + 'static)> = Some(&error);
+                    while let Some(value) = cause {
+                        if value
+                            .downcast_ref::<std::io::Error>()
+                            .is_some_and(|e| matches!(e.raw_os_error(), Some(10053 | 10054)))
+                        {
+                            interrupted = true;
+                            break;
+                        }
+                        cause = value.source();
+                    }
+                }
+                if interrupted {
+                    if let Some(retry) = retry {
+                        std::thread::sleep(Duration::from_millis(50));
+                        return retry.send().map_err(|_| Error::Offline);
+                    }
+                }
+                Err(Error::Offline)
+            }
+        }
+    }
     pub fn offline_mode(&self, value: bool) -> Self {
         let mut api = self.clone();
         api.offline = value;
@@ -150,7 +185,7 @@ impl Api {
             }
         }
         self.cache.lock().unwrap().remove(&key);
-        let response = self.client.get(url).send().map_err(|_| Error::Offline)?;
+        let response = self.send_read(self.client.get(url))?;
         match response.status().as_u16() {
             200 => {}
             404 => {
@@ -247,12 +282,11 @@ impl Api {
         if self.offline {
             return Err(Error::Offline);
         }
-        let response = self
-            .client
-            .get(self.artifact_url(d)?)
-            .timeout(Duration::from_secs(60))
-            .send()
-            .map_err(|_| Error::Offline)?;
+        let response = self.send_read(
+            self.client
+                .get(self.artifact_url(d)?)
+                .timeout(Duration::from_secs(60)),
+        )?;
         match response.status().as_u16() {
             200 => Ok(response),
             404 => Err(Error::NotFound),
@@ -264,11 +298,7 @@ impl Api {
         if self.offline {
             return Err(Error::Offline);
         }
-        let response = self
-            .client
-            .head(self.artifact_url(d)?)
-            .send()
-            .map_err(|_| Error::Offline)?;
+        let response = self.send_read(self.client.head(self.artifact_url(d)?))?;
         match response.status().as_u16() {
             200 => {
                 if let Some(hash) = response.headers().get("x-kortex-sha256") {

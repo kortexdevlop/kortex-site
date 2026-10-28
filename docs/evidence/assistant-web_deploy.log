@@ -1,0 +1,111 @@
+
+ ⛅️ wrangler 4.152.0 (update available 4.154.0)
+───────────────────────────────────────────────
+Active profile: kortex
+Attaching additional modules:
+┌───────────────────────────────────────────────────────────┬──────┬─────────────┐
+│ Name                                                      │ Type │ Size        │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/404_C8TvSd12.mjs                                   │ esm  │ 6.53 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/assets_kPVPiGGD.mjs                                │ esm  │ 72.92 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/AuthLayout_Bs9MWU5n.mjs                            │ esm  │ 1.43 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/AuthPanel_Bk9771po.mjs                             │ esm  │ 3.61 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/callback_mZseCS3J.mjs                              │ esm  │ 0.74 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/compiler_EFibggEF.mjs                              │ esm  │ 3.50 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/connect-desktop_lsarx4g9.mjs                       │ esm  │ 1.98 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/global_MIyBKufz.mjs                                │ esm  │ 0.90 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/image-passthrough-endpoint_CCR5zjZ8.mjs            │ esm  │ 2.40 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/image-service-workerd_BkSrLgHC.mjs                 │ esm  │ 0.94 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_CkABAf-b.mjs                                 │ esm  │ 2.82 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_Cym8L5Dg.mjs                                 │ esm  │ 528.30 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_D4t2bAgx.mjs                                 │ esm  │ 2.18 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_iWOqmpG2.mjs                                 │ esm  │ 2.07 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/library_el_gchsP.mjs                               │ esm  │ 2.30 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/login_hQ2Ebe4k.mjs                                 │ esm  │ 1.13 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/noop-entrypoint_Cx5UkKLo.mjs                       │ esm  │ 0.13 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/preact_Du2obcsb.mjs                                │ esm  │ 13.51 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/proxy_ChzUdMD9.mjs                                 │ esm  │ 7.75 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/register_D64sWfBO.mjs                              │ esm  │ 1.18 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/robots_CegsLkEk.mjs                                │ esm  │ 0.71 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/rolldown-runtime_Z978xZBF.mjs                      │ esm  │ 1.46 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/runtime-bridge_B7JlTS7M.mjs                        │ esm  │ 1.78 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/seo_DPgRbi2c.mjs                                   │ esm  │ 1.83 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/sequence_BhfaavnF.mjs                              │ esm  │ 66.02 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/server_AjGhr3DQ.mjs                                │ esm  │ 269.96 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/settings_Ceyq-Abr.mjs                              │ esm  │ 3.69 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/shorthash_2rUSOkAg.mjs                             │ esm  │ 42.90 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/sitemap-index_CdhyOFja.mjs                         │ esm  │ 1.03 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/urls_BPSZR5zV.mjs                                  │ esm  │ 0.95 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/Workspace_C3nPUfuW.mjs                             │ esm  │ 196.87 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_.._BnfuY0Gs.mjs                                   │ esm  │ 0.57 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_astro_assets_dpcvtveh.mjs                         │ esm  │ 22.38 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_id__Bv0XIY4S.mjs                                  │ esm  │ 4.44 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_id__C4iM-iKU.mjs                                  │ esm  │ 4.35 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_page__CUXKG-cp.mjs                                │ esm  │ 1.27 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_virtual_astro_server-island-manifest_CddHi3Kr.mjs │ esm  │ 0.25 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_virtual_astro_session-driver_CPZhEqd2.mjs         │ esm  │ 0.20 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ virtual_astro_middleware.mjs                              │ esm  │ 3.93 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ Total (39 modules)                                        │      │ 1280.90 KiB │
+└───────────────────────────────────────────────────────────┴──────┴─────────────┘
+🌀 Building list of assets...
+✨ Read 31 files from the assets directory C:\Users\µ\Desktop\KORTEX-\website\dist\client
+🌀 Starting asset upload...
+🌀 Found 1 new or modified static asset to upload. Proceeding with upload...
++ /_astro/AIAssistant.WTTyn9ko.js
+Uploaded 1 of 1 asset
+✨ Success! Uploaded 1 file (26 already uploaded) (2.24 sec)
+
+Total Upload: 1586.55 KiB / gzip: 307.61 KiB
+Worker Startup Time: 15 ms
+Your Worker has access to the following bindings:
+Binding                                                                 Resource
+env.API_WORKER (kortex-api-staging)                                     Worker
+env.SITEMAP_WORKER (kortex-api-staging#SitemapService)                  Worker
+env.AUTH_WORKER (kortex-api-staging#AuthService)                        Worker
+env.ASSETS                                                              Assets
+env.WEB_ORIGIN ("https://kortex-web-staging.userpgl.wo...")             Environment Variable
+env.PUBLIC_RUN_ORIGIN ("https://kortex-run-staging.userpgl.wo...")      Environment Variable
+
+Uploaded kortex-web-staging (21.50 sec)
+Deployed kortex-web-staging triggers (2.04 sec)
+  https://kortex-web-staging.userpgl.workers.dev
+Current Version ID: 68c643ab-8b83-4884-8ae1-284867c771e0

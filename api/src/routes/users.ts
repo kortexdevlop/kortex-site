@@ -8,14 +8,15 @@ import {etag,revision,readLibrary,readPreferences,mutateLibrary,mutatePreference
 const route=/^\/api\/v1\/me\/(library|preferences|export|data|devices)$/;
 async function body(request:Request){if(request.headers.get('Content-Type')?.split(';')[0].trim()!=='application/json')throw new SyncError(415,'BAD_REQUEST','JSON required');return JSON.parse(new TextDecoder('utf-8',{fatal:true,ignoreBOM:false}).decode(await readBounded(request.body,16384)))}
 export async function users(request:Request,env:Env,id:string,viaWeb:boolean):Promise<Response|null>{
- const url=new URL(request.url),match=route.exec(url.pathname);if(!match)return null;const name=match[1],methods=name==='library'?['GET','PUT','DELETE']:name==='preferences'?['GET','PATCH']:name==='export'?['GET']:name==='devices'?['GET','DELETE']:['DELETE'];
+ const url=new URL(request.url),match=route.exec(url.pathname);if(!match)return null;const name=match[1],methods=name==='library'?['GET','PUT','DELETE']:name==='preferences'?['GET','PATCH']:name==='export'?['GET']:name==='devices'?['GET','DELETE','PATCH']:['DELETE'];
  if(!methods.includes(request.method))return failure('BAD_REQUEST','Method not allowed',405,id,undefined,false,{Allow:methods.join(', ')});
  try{
   if(url.searchParams.size)throw new SyncError(400,'BAD_REQUEST','Account selectors are not accepted');
   const owner=await userScope(request,env,viaWeb,request.method!=='GET',['export','data','devices'].includes(name)?'account:'+name:request.method==='GET'?'sync:read':'sync:write');
   if(name==='devices'){
+   if(request.method==='PATCH'){const input=z.object({id:z.uuid(),ai_allowed:z.boolean()}).strict().parse(await body(request));await env.DB.prepare('UPDATE device_sessions SET ai_allowed=? WHERE id=? AND user_id=? AND revoked_at IS NULL').bind(input.ai_allowed?1:0,input.id,owner.user_id).run();return json(null,204,id)}
    if(request.method==='DELETE'){const input=z.object({id:z.uuid()}).strict().parse(await body(request));await env.DB.prepare('UPDATE device_sessions SET revoked_at=? WHERE id=? AND user_id=?').bind(Date.now(),input.id,owner.user_id).run();return json(null,204,id)}
-   const rows=await env.DB.prepare('SELECT id,label,created_at,expires_at,revoked_at FROM device_sessions WHERE user_id=? ORDER BY created_at DESC LIMIT 20').bind(owner.user_id).all();return json({devices:rows.results},200,id);
+   const rows=await env.DB.prepare('SELECT id,label,created_at,expires_at,revoked_at,ai_allowed FROM device_sessions WHERE user_id=? ORDER BY created_at DESC LIMIT 20').bind(owner.user_id).all();return json({devices:rows.results},200,id);
   }
   if(name==='preferences'){
    const data=request.method==='GET'?await readPreferences(env.DB,owner.user_id):await mutatePreferences(env.DB,owner.user_id,revision(request.headers.get('If-Match'),'preferences'),settingsSchema.parse(await body(request)));
@@ -36,7 +37,7 @@ export async function users(request:Request,env:Env,id:string,viaWeb:boolean):Pr
   if(name==='export'){
    const rows=await env.DB.batch([env.DB.prepare('SELECT u.id,u.created_at,u.sync_enabled,s.library_revision,s.preferences_revision FROM users u JOIN user_sync s ON s.user_id=u.id WHERE u.id=?').bind(owner.user_id),env.DB.prepare('SELECT email,email_verified,created_at FROM password_credentials WHERE user_id=?').bind(owner.user_id),env.DB.prepare('SELECT issuer,subject,created_at FROM external_identities WHERE user_id=?').bind(owner.user_id),env.DB.prepare('SELECT tool_id,tag,added_revision,removed_revision FROM user_library WHERE user_id=? ORDER BY tool_id,tag').bind(owner.user_id),env.DB.prepare('SELECT data_json FROM user_preferences WHERE user_id=?').bind(owner.user_id),env.DB.prepare('SELECT entity,revision,created_at FROM sync_events WHERE user_id=? ORDER BY entity,revision').bind(owner.user_id),env.DB.prepare('SELECT created_at,expires_at,revoked_at FROM sessions WHERE user_id=? ORDER BY created_at').bind(owner.user_id)]);
    const user=rows[0].results[0] as {library_revision:number;preferences_revision:number}|undefined,preference=rows[4].results[0] as {data_json:string}|undefined;if(!user||!preference)throw new SyncError(401,'UNAUTHORIZED','Session unavailable');const tag=`"account-${user.library_revision}-${user.preferences_revision}"`;
-   const devices=await env.DB.prepare('SELECT id,label,created_at,expires_at,revoked_at FROM device_sessions WHERE user_id=? ORDER BY created_at').bind(owner.user_id).all();
+   const devices=await env.DB.prepare('SELECT id,label,created_at,expires_at,revoked_at,ai_allowed FROM device_sessions WHERE user_id=? ORDER BY created_at').bind(owner.user_id).all();
    const data={schema_version:1,exported_at:Date.now(),user,credentials:rows[1].results,identities:rows[2].results,library:rows[3].results,preferences:JSON.parse(preference.data_json),events:rows[5].results,sessions:rows[6].results,devices:devices.results};if(new TextEncoder().encode(JSON.stringify(data)).length>1048576)throw new SyncError(413,'BAD_REQUEST','Export exceeds the response quota');
    return json(data,200,id,undefined,false,{ETag:tag,'Content-Disposition':'attachment; filename="kortex-account.json"'});
   }

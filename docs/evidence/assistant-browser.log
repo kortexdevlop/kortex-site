@@ -1,0 +1,11 @@
+
+Running 4 tests using 1 worker
+
+(node:5240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\ai.spec.ts:5:5 › assistant reviews four public tools, executes real signed WASM only after approval (12.4s)
+  ok 2 tests\e2e\ai.spec.ts:17:5 › refusal, malformed plan, unknown action, quota and logout never execute (1.9s)
+  ok 3 tests\security\ai-privacy.spec.ts:2:5 › private file hash stays local and no private bytes enter any network request (3.5s)
+  ok 4 tests\security\ai-privacy.spec.ts:9:5 › offline and unavailable AI leave manual tools accessible; expired proposal does not execute (1.3s)
+
+  4 passed (23.5s)

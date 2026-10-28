@@ -1,6 +1,7 @@
 #![allow(async_fn_in_trait)]
 //! Portable coordination core. Engines own execution, cancellation and package extraction.
 pub mod dispatcher;
+pub mod ai_bridge;
 pub mod errors;
 pub mod lifecycle;
 pub mod state;

@@ -1,0 +1,8 @@
+
+ RUN  v5.0.5 C:/Users/µ/Desktop/KORTEX-/api
+
+
+ Test Files  10 passed (10)
+      Tests  82 passed (82)
+   Start at  12:19:46
+   Duration  123.54s (tests 69%, transform 27%, import 4%, worker 1%)

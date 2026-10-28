@@ -3,7 +3,7 @@ import {build} from 'esbuild';
 import {mkdirSync,readdirSync,writeFileSync,unlinkSync} from 'node:fs';
 import {resolve,basename} from 'node:path';
 const here=import.meta.dirname;
-const output=await build({absWorkingDir:here,entryPoints:['src/bridge.ts','src/worker.ts','src/host.ts','src/memory.ts','src/capabilities.ts','src/storage.ts','src/permissions.ts','src/trust.ts','src/archive.ts','src/loader.ts','src/iframe.ts','src/interop.ts'],plugins:[{name:'csp-contracts',setup(build){build.onResolve({filter:/^@kortex\/contracts$/},()=>({path:resolve(here,'src/browser-contracts.ts')}))}}],bundle:true,splitting:true,format:'esm',platform:'browser',target:'es2022',outdir:'dist',sourcemap:true,write:false});
+const output=await build({absWorkingDir:here,entryPoints:['src/ai-bridge.ts','src/bridge.ts','src/worker.ts','src/host.ts','src/memory.ts','src/capabilities.ts','src/storage.ts','src/permissions.ts','src/trust.ts','src/archive.ts','src/loader.ts','src/iframe.ts','src/interop.ts'],plugins:[{name:'csp-contracts',setup(build){build.onResolve({filter:/^@kortex\/contracts$/},()=>({path:resolve(here,'src/browser-contracts.ts')}))}}],bundle:true,splitting:true,format:'esm',platform:'browser',target:'es2022',outdir:'dist',sourcemap:true,write:false});
 const names=new Set(output.outputFiles.map(file=>basename(file.path)));
 for(const folder of [resolve(here,'dist'),resolve(here,'../runtime/web/public/adapter')]){
  mkdirSync(folder,{recursive:true});

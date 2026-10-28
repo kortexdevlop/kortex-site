@@ -106,6 +106,27 @@ fn request(
         .send()
         .map_err(|_| "Compte momentanément injoignable.")?;
     let status = response.status();
+    if path == "/api/v1/ai/plan" {
+        match status.as_u16() {
+            429 => {
+                return Err(
+                    "Quota IA quotidien atteint. Vos outils locaux restent disponibles.".into(),
+                );
+            }
+            403 => {
+                return Err(
+                    "Autorisez l’IA pour cet appareil depuis les réglages Web de votre compte."
+                        .into(),
+                );
+            }
+            503 => {
+                return Err(
+                    "L’IA est momentanément indisponible. Aucun outil n’a été exécuté.".into(),
+                );
+            }
+            _ => {}
+        }
+    }
     if status.as_u16() == 401 {
         return Err("SESSION_EXPIRED".into());
     }
@@ -533,6 +554,26 @@ pub fn preference(c: &Config, key: &str, value: &str) -> Result<View, String> {
         Some(&format!("\"preferences-{}\"", prefs["revision"])),
     )?;
     synchronize(c, None)
+}
+pub fn ai_proposal(c: &Config, message: &str) -> Result<Value, String> {
+    let session = saved(c)?;
+    let ids = crate::ai_bridge::installed_ids(c);
+    if ids.is_empty() {
+        return Err("Installez d’abord un outil depuis le Store.".into());
+    }
+    if message.is_empty() || message.chars().count() > 1000 {
+        return Err("Demande trop longue ou vide.".into());
+    }
+    request(
+        c,
+        Some(&session),
+        reqwest::Method::POST,
+        "/api/v1/ai/plan",
+        Some(
+            json!({"message":message,"available_tool_ids":ids,"consent_context":{"ai_allowed":true,"contains_private_data":false}}),
+        ),
+        None,
+    )
 }
 pub fn logout(c: &Config) -> Result<String, String> {
     let stored = secure_store::load(c)?;

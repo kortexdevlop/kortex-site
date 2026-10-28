@@ -29,7 +29,7 @@ export async function proxy(request:Request,binding:ServiceBinding|undefined,web
 async function authProxy(request:Request,binding:ServiceBinding|undefined,webOrigin:string|undefined):Promise<Response>{
  const url=new URL(request.url),callback=url.pathname==='/api/v1/auth/callback',login=url.pathname==='/api/v1/auth/login',logout=url.pathname==='/api/v1/auth/logout',passwordPost=/\/password\/(?:register|login)$/.test(url.pathname),extraPost=/\/(?:desktop\/approve|ai\/plan)$/.test(url.pathname),account=/\/me\/(library|preferences|export|data|devices)$/.exec(url.pathname);
  if(!webOrigin||url.origin!==webOrigin||request.headers.get('Origin')&&request.headers.get('Origin')!==webOrigin||!callback&&request.headers.get('Sec-Fetch-Site')==='cross-site')return unavailable(403);
- const allowed=account?account[1]==='library'?['GET','PUT','DELETE']:account[1]==='preferences'?['GET','PATCH']:account[1]==='export'?['GET']:account[1]==='devices'?['GET','DELETE']:['DELETE']:logout||passwordPost||extraPost?['POST']:['GET'];
+ const allowed=account?account[1]==='library'?['GET','PUT','DELETE']:account[1]==='preferences'?['GET','PATCH']:account[1]==='export'?['GET']:account[1]==='devices'?['GET','DELETE','PATCH']:['DELETE']:logout||passwordPost||extraPost?['POST']:['GET'];
  if(!allowed.includes(request.method)){const rejected=unavailable(405);rejected.headers.set('Allow',allowed.join(', '));return rejected;}
  if(!binding)return unavailable();
  // The Web facade accepts cookies only. Desktop bearer tokens use the API origin directly.

@@ -1,0 +1,8 @@
+   Compiling kortex-desktop v1.0.0 (C:\Users\µ\Desktop\KORTEX-\desktop)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.81s
+     Running tests\ai.rs (target\debug\deps\ai-a13bab79d4e9160a.exe)
+
+running 1 test
+test five_signed_tools_execute_locally_without_network_or_file_upload ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 56.24s

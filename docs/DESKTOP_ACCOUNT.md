@@ -1,5 +1,7 @@
 # Compte Desktop Windows
 
+Ajout 15.3 : l’onglet « Assistant » utilise le compte déjà connecté. Le droit IA est désactivé par défaut ; l’activer depuis les réglages Web, dans la ligne de l’appareil (« Autoriser l’IA sur cet appareil »). Son retrait est immédiat. Les quotas sont partagés avec le compte Web. Aucune reconnexion Google n’est nécessaire pour les comptes email existants.
+
 Depuis « Compte », « Se connecter dans le navigateur » ouvre le navigateur système. Le navigateur demande une connexion Web puis une confirmation de l’appareil. Le mot de passe n’est jamais saisi dans la WebView Desktop.
 
 Le client ouvre un listener `127.0.0.1` sur un port éphémère, crée un vérificateur PKCE S256 et un `state` aléatoires, puis demande une autorisation de dix minutes. Seuls les ports non privilégiés et le chemin `/callback` sont autorisés. Le navigateur renvoie un code à usage unique et le state ; seul le détenteur du vérificateur peut obtenir la session. L’écoute native s’arrête après cinq minutes ou annulation.

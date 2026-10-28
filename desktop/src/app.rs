@@ -16,6 +16,7 @@ enum Section {
     Library,
     Updates,
     Account,
+    Ai,
 }
 fn category_label(value: &str) -> String {
     match value {
@@ -197,6 +198,7 @@ pub fn App() -> Element {
         Section::Library => "Bibliothèque",
         Section::Updates => "Mises à jour",
         Section::Account => "Compte",
+        Section::Ai => "Assistant",
     };
     let search_api = api.clone();
     let sort_api = api.clone();
@@ -222,7 +224,7 @@ pub fn App() -> Element {
     aside{class:"sidebar",
     div{class:"brand",span{class:"logo"}strong{"kortex"}span{class:"muted",".site"}small{if channel=="staging"{"TEST"}else{"DESKTOP"}}}
     nav{aria_label:"Navigation principale",
-    for (s,label) in [(Section::Store,"Store"),(Section::Library,"Bibliothèque"),(Section::Updates,"Mises à jour"),(Section::Account,"Compte")]{
+    for (s,label) in [(Section::Store,"Store"),(Section::Library,"Bibliothèque"),(Section::Updates,"Mises à jour"),(Section::Account,"Compte"),(Section::Ai,"Assistant")]{
     button{class:if *section.read()==s{"nav-item selected"}else{"nav-item"},aria_current:if *section.read()==s{"page"}else{"false"},disabled:*busy.read(),onclick:move |_|{section.set(s);detail.set(None);active.set(None);},"{label}"}
     }}
     div{class:"sidebar-bottom",div{class:"connection",span{class:if offline{"dot offline"}else{"dot"}}strong{if offline{"Hors connexion"}else{"Application locale"}}p{"Vos fichiers restent sur cet appareil."}button{disabled:*busy.read()||active.read().is_some(),onclick:move |_|{let next=!*offline_mode.read();offline_mode.set(next);},if offline{"Revenir en ligne"}else{"Utiliser hors connexion"}}}p{class:"muted","Kortex Desktop · 1.0"}}
@@ -282,6 +284,7 @@ pub fn App() -> Element {
     {let cfg=config.clone();let api=api.clone();rsx!{button{disabled:*busy.read(),onclick:move |_|{if let(Ok(c),Ok(a))=(cfg.clone(),api.clone()){manager::check(c,a,busy,available,checked,notice)}},"Rechercher les mises à jour"}}}
     for update in available.read().clone(){{let candidate=update.clone();rsx!{article{class:"tool-card",h2{"{update.detail.tool.name}"}p{"{update.installed.version} → {update.detail.tool.version}"}p{"{update.detail.manifest.description}"}button{disabled:*busy.read(),onclick:move |_|confirmation.set(Some(Choice::new(Operation::Update(candidate.clone())))),"Mettre à jour"}}}}}
     },
+    Section::Ai=>rsx!{if let Ok(c)=&config{crate::ai_view::AiView{config:c.clone()}}},
     Section::Account=>rsx!{if let Ok(c)=&config{crate::account_ui::AccountPanel{config:c.clone(),tools:account_tools,on_preferences:move|value|account_preferences.set(value)}}}
     }
     }

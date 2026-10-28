@@ -1,5 +1,7 @@
 pub mod api;
 pub mod account;
+pub mod ai_bridge;
+mod ai_view;
 pub mod secure_store;
 mod account_ui;
 pub mod app;

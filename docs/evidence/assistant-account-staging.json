@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-28T11:27:58.789Z",
+  "staging_only": true,
+  "passed": true,
+  "device_ai_denied_by_default": true,
+  "real_native_scoped_ai_quota_enforced": true,
+  "no_budget_reset": true,
+  "withdrawal_immediate": true,
+  "fixture_removed": true
+}

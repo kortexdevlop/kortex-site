@@ -4,8 +4,12 @@ import {BrowserCapabilities} from './capabilities';
 import {WebBridge,VerifiedTool} from './bridge';
 import type {Manifest} from '@kortex/contracts';
 import type {Request} from './types';
+import {AiReview} from './ai-bridge';
 export interface RuntimeWebConfig {api_origin:string;allowed_parent_origin:string;tool_id:string;tool_version:string;network_origins?:readonly string[]}
 export class BrowserHost {
+ private aiReview:AiReview|undefined;private aiTool:VerifiedTool|undefined;
+ reviewAi(value:unknown){if(!this.bridge||!this.aiTool)throw Error('UNAVAILABLE');this.aiReview=new AiReview(value,this.aiTool,this.bridge)}
+ async decideAi(index:number,approved:boolean){if(!this.aiReview)throw Error('NO_REVIEW');return this.aiReview.decide(index,approved)}
  protected bridge:WebBridge|undefined;private generation=0;private loading:AbortController|undefined;protected capabilities:BrowserCapabilities|undefined;
  constructor(){document.addEventListener('click',event=>{const button=event.target instanceof Element?event.target.closest('button[data-host-approval]'):null;if(!button||!this.capabilities)return;try{this.capabilities.permissions.respond(button.getAttribute('data-host-approval')!,button.getAttribute('data-host-decision')!,event)}catch{/* synthetic/untrusted approval refused */}},true);}
 protected current:Record<string,unknown>={status:navigator.onLine?'unavailable':'offline'};
@@ -16,7 +20,7 @@ protected current:Record<string,unknown>={status:navigator.onLine?'unavailable':
  async startVerifiedTool(tool:VerifiedTool,config:RuntimeWebConfig){
   for(const origin of [config.api_origin,config.allowed_parent_origin]){const u=new URL(origin);if(u.origin!==origin||!(u.protocol==='https:'||u.protocol==='http:'&&['localhost','127.0.0.1'].includes(u.hostname)))throw Error('INVALID_CONFIG');}
   if(config.tool_id!==tool.manifest.id||config.tool_version!==tool.manifest.version)throw Error('INVALID_CONFIG');
-  this.stop();const generation=this.generation;this.current={status:'loading',config};this.emit();
+  this.stop();this.aiTool=tool;const generation=this.generation;this.current={status:'loading',config};this.emit();
   try{const bridge=await WebBridge.startVerifiedTool(tool);if(generation!==this.generation){bridge.stop();throw Error('CANCELLED')}this.bridge=bridge;this.capabilities=new BrowserCapabilities(tool.manifest.id,tool.manifest.version,tool.manifest.permissions,{profile:'local',storageVersion:1,dedicatedOrigin:location.origin,parentOrigin:config.allowed_parent_origin,networkOrigins:config.network_origins??[]},()=>this.emit());const services=this.capabilities;bridge.onCapability=call=>services.request(call);bridge.onFailure=()=>{if(generation===this.generation){services.close();this.current={status:'error'};this.emit();}};bridge.onCapabilitySettled=async()=>{if(generation!==this.generation)return;const rendered=await this.dispatch('render',{});if(rendered.ok){this.current={...this.current,ui:rendered.data};this.emit();}};const init=await this.dispatch('init',{});if(!init.ok)throw Error(init.error?.code||'INIT_FAILED');const result=await this.dispatch('render',{});if(!result.ok)throw Error(result.error?.code||'GUEST_ERROR');this.current={status:'ready',config,ui:result.data};this.emit();}catch(e){if(generation===this.generation){this.stop();this.current={status:'error'};this.emit();}throw e;}
  }
  protected async dispatch(kind:Request['kind'],payload:Record<string,unknown>){if(!this.bridge)throw Error('UNAVAILABLE');return this.bridge.dispatch({v:1,request_id:crypto.randomUUID(),kind,payload});}
@@ -25,7 +29,7 @@ protected current:Record<string,unknown>={status:navigator.onLine?'unavailable':
   else if(message.kind==='action.invoke'){const result=await this.dispatch('action.invoke',message.payload as Record<string,unknown>);this.current={...this.current,result:result.ok?result.data:result.error};}
   this.emit();}catch{this.current={status:'error'};this.emit();}
  }
- stop(){this.generation++;this.loading?.abort();this.loading=undefined;this.capabilities?.close();this.capabilities=undefined;this.bridge?.stop();this.bridge=undefined;this.current={status:'unavailable'};this.emit();}
+ stop(){this.aiReview=undefined;this.aiTool=undefined;this.generation++;this.loading?.abort();this.loading=undefined;this.capabilities?.close();this.capabilities=undefined;this.bridge?.stop();this.bridge=undefined;this.current={status:'unavailable'};this.emit();}
 }
 declare global {interface Window {kortexHost:BrowserHost}}
 if(!window.kortexHost){window.kortexHost=new BrowserHost();window.dispatchEvent(new Event('kortex:host'));}

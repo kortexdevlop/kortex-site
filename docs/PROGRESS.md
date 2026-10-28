@@ -1,5 +1,7 @@
 # Progression
 
+Lot 15.2–15.4 terminé et clos techniquement le 28/10/2026 : médiateurs locaux avec revue/approbation unique/expiration, interface assistant Web et Windows, autorisation IA d’appareil distincte et révocable, cinq outils exécutés réellement dans les moteurs signés Web et Wasmtime. Trace du fichier privé sans upload ni stockage local ; résultats jamais renvoyés au cloud. 21 cœur, 82 API (+21 auth ciblés), 25 Web, 25 Desktop distincts, 3 contrats, 1 adaptateur et 4 scénarios staging réussis ; types/builds et Astro 73 fichiers sans erreur. Aucun quota relevé/remis à zéro : propositions déterministes uniquement en tests et inférence réelle 15.1 référencée. Appareil/compte temporaires nettoyés. Réserve Google 14.5 conservée, production/DNS/mail intacts ; phase 16 non engagée. Preuves : docs/evidence/assistant-validation.json. Les notes suivantes sont historiques.
+
 Lot 14.5–15.1 réalisé le 28/10/2026 : compte Desktop Windows via navigateur et email/PKCE, coffre Windows, sync favoris/réglages bidirectionnelle, appareils révocables et offline prouvés. 14.5 reste partielle pour son gate Google/OIDC réel : clients OAuth toujours absents. 15.0 et 15.1 terminées techniquement : politique, modèle Workers AI vérifié par inférence, quotas atomiques et endpoint strict de propositions sans exécution. 81 tests API, 23 Web, 3 contrats et 22 Desktop réussis ; builds/types et parcours réels staging réussis, quota 429 vérifié. Fixtures nettoyées ; production/DNS/messagerie conservés. Preuves : docs/evidence/device-14.5-15.1-validation.json. Aucun passage à 15.2 ; statuts humains historiques conservés.
 
 Lot 14.2–14.4 terminé et clos techniquement sur staging le 28/10/2026 : favoris OR-set/tombstones et préférences opt-in, API propriétaire/CSRF/révisions, export/purge, pages privées SSR et favoris reliés au workspace sans écraser les données invitées. 71 tests API, 18 Web, 3 contrats, types/build et vrai parcours Chromium Windows à deux sessions réussis, export téléchargé et suppression/révocation vérifiés. Calculatrice toujours utilisable sans compte (25×48=1200). Fixture nettoyée ; production/DNS/mail conservés. Google attend toujours ses clients OAuth ; Desktop sync et 14.5 non engagés. Preuves : docs/evidence/account-14.2-14.4-validation.json. Statuts humains historiques conservés.
@@ -1538,6 +1540,74 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "technical_status": "closed",
     "closed_at": "2026-10-28",
     "authorization": "propriétaire : Enchaines ces 3 étapes"
+  },
+  {
+    "id": "15.2",
+    "status": "pending",
+    "source_commit": "50159f2",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-15.2.md",
+    "tests_executed": "28/10/2026 Windows : cargo test -p kortex-core --locked --offline : 21 réussis ; API complète 82 + auth/appareils ciblés 21 après scopes ; Web 25 ; contrats 3 ; adaptateur Chromium signé 1 ; navigateur staging 4. Desktop : suite complète 24 puis matrice native ajoutée 1 (25 distincts), code sortie 0. Types API/adaptateur, Astro 73 fichiers sans erreur, builds réussis. Cinq outils signés Web/Wasmtime, UI Windows 1200/offline, droit IA 403/429/retrait, fichier privé sans upload, fixture purgée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/assistant-validation.json",
+      "docs/evidence/ai-action-matrix.md",
+      "docs/evidence/assistant-privacy.json",
+      "docs/evidence/assistant-native-matrix.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Google/OIDC réel de 14.5 reste en attente. Quota conservé : propositions fixes uniquement dans les tests, moteurs signés réels ; inférence réelle référencée en 15.1. Actions sensibles natives refusées avec retour vers leur outil."
+  },
+  {
+    "id": "15.3",
+    "status": "pending",
+    "source_commit": "50159f2",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-15.3.md",
+    "tests_executed": "28/10/2026 Windows : cargo test -p kortex-core --locked --offline : 21 réussis ; API complète 82 + auth/appareils ciblés 21 après scopes ; Web 25 ; contrats 3 ; adaptateur Chromium signé 1 ; navigateur staging 4. Desktop : suite complète 24 puis matrice native ajoutée 1 (25 distincts), code sortie 0. Types API/adaptateur, Astro 73 fichiers sans erreur, builds réussis. Cinq outils signés Web/Wasmtime, UI Windows 1200/offline, droit IA 403/429/retrait, fichier privé sans upload, fixture purgée.",
+    "contract_changes": [
+      "PATCH appareils ai_allowed additif, désactivé par défaut ; aucun nouveau droit automatique"
+    ],
+    "evidence": [
+      "docs/evidence/assistant-validation.json",
+      "docs/evidence/ai-action-matrix.md",
+      "docs/evidence/assistant-privacy.json",
+      "docs/evidence/assistant-native-matrix.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Google/OIDC réel de 14.5 reste en attente. Quota conservé : propositions fixes uniquement dans les tests, moteurs signés réels ; inférence réelle référencée en 15.1. Actions sensibles natives refusées avec retour vers leur outil."
+  },
+  {
+    "id": "15.4",
+    "status": "pending",
+    "source_commit": "50159f2",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-15.4.md",
+    "tests_executed": "28/10/2026 Windows : cargo test -p kortex-core --locked --offline : 21 réussis ; API complète 82 + auth/appareils ciblés 21 après scopes ; Web 25 ; contrats 3 ; adaptateur Chromium signé 1 ; navigateur staging 4. Desktop : suite complète 24 puis matrice native ajoutée 1 (25 distincts), code sortie 0. Types API/adaptateur, Astro 73 fichiers sans erreur, builds réussis. Cinq outils signés Web/Wasmtime, UI Windows 1200/offline, droit IA 403/429/retrait, fichier privé sans upload, fixture purgée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/assistant-validation.json",
+      "docs/evidence/ai-action-matrix.md",
+      "docs/evidence/assistant-privacy.json",
+      "docs/evidence/assistant-native-matrix.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Google/OIDC réel de 14.5 reste en attente. Quota conservé : propositions fixes uniquement dans les tests, moteurs signés réels ; inférence réelle référencée en 15.1. Actions sensibles natives refusées avec retour vers leur outil."
   }
 ]
 ```

@@ -1,0 +1,33 @@
+✔ private SSR only forwards the host session cookie and never exposes tokens in its view (115.1753ms)
+✔ anonymous views do not need a binding; service failure with a cookie never impersonates a guest (3.3003ms)
+✔ account proxy supports conditional writes without forwarding owner selection credentials (7.029ms)
+✔ export download headers survive the proxy but bearer and cross-origin account access do not (6.3348ms)
+✔ assistant hydration receives exact script hashes without allowing arbitrary inline scripts (104.5401ms)
+✔ oversized assistant HTML fails closed (9.3988ms)
+✔ real schemas validate demo summaries, stable category colors and reject hostile metadata (10.0983ms)
+✔ SSR client sends only an absolute binding request and validates bounded API responses (69.4649ms)
+✔ same-origin read proxy strips spoofable auth headers, preserves cookies privately and streams bytes (4.2707ms)
+✔ detail and actions clients accept schema-valid API envelopes (6.6475ms)
+✔ detail refuses a descriptor that does not match the requested identity, version or digest (2.9266ms)
+✔ a binding that never responds cannot hold SSR or the proxy open indefinitely (4008.9632ms)
+✔ proxy rejects foreign origins, writes, admin paths, redirects and unsafe session cookies (3.2963ms)
+✔ canonical URLs remain on the configured HTTPS origin (0.6343ms)
+✔ proxy accepts numeric-leading IDs and encoded SemVer build metadata without losing integrity headers (3.6433ms)
+✔ password form JSON is bounded and forwarded privately with CSRF context (104.4149ms)
+✔ auth uses a dedicated binding and strips bearer, forwarded-host and operator headers (5.3297ms)
+✔ auth forwards only safe logout context and refuses another origin or cross-site initiation (9.3669ms)
+✔ Google navigation and OAuth callback redirects are narrowly allowed with no-referrer (13.9894ms)
+✔ auth cookie forwarding requires host-only Kortex names, Secure, HttpOnly, exact Path and SameSite (8.8841ms)
+✔ catalogue query is bounded, cursor retains its filter scope and URLs are encoded (3.3682ms)
+✔ runtime deployment allowlist refuses same origin, arbitrary HTTPS and nonlocal HTTP (0.6699ms)
+✔ bridge validates source, origin, nonce, session, tool/version and disposes listeners (11.6017ms)
+✔ SEO serializers escape XML and script termination without inventing ratings (2.4148ms)
+✔ sitemap DTO is bounded and rejects unsafe IDs (68.4174ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4503.904

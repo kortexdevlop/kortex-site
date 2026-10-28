@@ -22,7 +22,7 @@ export async function auth(request:Request,env:Env,id:string,viaWeb=false,transp
   const returnTo=url.searchParams.get('returnTo');if(returnTo&&!/^\/account\/connect-desktop\?request_id=[0-9a-f-]{36}$/.test(returnTo))throw Error('IDENTITY_RETURN');
   if(me){
    let userId:string,csrf:string|undefined,authentication:string,scopes:readonly string[];
-   if(request.headers.get('Authorization')?.startsWith('Bearer kd_')){const identity=await deviceSession(request,env,'identity:read');userId=identity.user_id;scopes=['identity:read','sync:read','sync:write','device:logout'];authentication='desktop';}
+   if(request.headers.get('Authorization')?.startsWith('Bearer kd_')){const identity=await deviceSession(request,env,'identity:read');userId=identity.user_id;scopes=['identity:read','sync:read','sync:write','device:logout',...(identity.ai_allowed?['ai:plan']:[])];authentication='desktop';}
    else if(request.headers.has('Authorization')){const config=configuration(env);if(!config)throw Error('IDENTITY_CONFIG');const identity=await desktopIdentity(request,env,config,transport);userId=identity.userId;scopes=identity.scopes;authentication='desktop';}
    else{const current=await session(request,env);if(!current)throw Error('IDENTITY_SESSION');userId=current.user_id;csrf=await csrfToken(env,current.token);scopes=['identity:read','session:logout','sync:read','sync:write','account:export','account:delete'];authentication='web';}
    const user=await env.DB.prepare('SELECT u.id,u.sync_enabled,p.email,p.email_verified FROM users u LEFT JOIN password_credentials p ON p.user_id=u.id WHERE u.id=?').bind(userId).first<{id:string;sync_enabled:number;email:string|null;email_verified:number|null}>();if(!user)throw Error('IDENTITY_USER');
