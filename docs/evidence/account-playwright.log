@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+  ok 1 [chromium-windows] › tests\e2e\account.spec.ts:3:5 › compte réel : invité, deux appareils, conflits, favoris, export et purge (21.7s)
+
+  1 passed (22.6s)
+(node:276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

@@ -1,5 +1,7 @@
 # Catalogue D1 — migration 0001
 
+Lot 14.2–14.4 (28/10/2026) : migration additive 0008_sync.sql, sans renumérotation de l'historique. user_sync porte les révisions/CAS, user_library les tags OR-set/tombstones, user_preferences les quatre réglages validés, sync_events un historique borné sans contenu. Toutes ces tables sont liées à users par FK/cascade ; isolation par user_id et transactions D1. Quotas et API dans docs/SYNC.md. Export excluant les secrets et purge atomique testés sur D1 émulée et staging réel.
+
 Le catalogue stocke les métadonnées et les identités de versions. Aucun WASM, ZIP ou autre artefact binaire n'est stocké en base. Le binding prévu est `KORTEX_DB` ; aucun compte ni identifiant distant n'a été créé.
 
 ```mermaid

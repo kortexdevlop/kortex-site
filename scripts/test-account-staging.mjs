@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {randomBytes,randomUUID} from 'node:crypto';
+const root=resolve(import.meta.dirname,'..'),dir=resolve(root,'target/account-staging');mkdirSync(dir,{recursive:true});const json=p=>JSON.parse(readFileSync(resolve(root,p),'utf8')),owner=json('target/cloud-staging-resources.json'),api=json('api/wrangler.jsonc'),web=json('website/wrangler.jsonc');
+assert.equal(api.env.staging.name,owner.worker);assert.equal(api.env.staging.d1_databases[0].database_id,owner.database_id);assert.equal(web.env.staging.name,'kortex-web-staging');
+function cli(args){const result=spawnSync(process.execPath,[resolve(root,'node_modules/wrangler/bin/wrangler.js'),...args,...(args[0]==='whoami'?[]:['--profile','kortex'])],{cwd:root,encoding:'utf8',windowsHide:true,timeout:180000,env:{...process.env,CI:'true',WRANGLER_SEND_METRICS:'false'}});if(result.status!==0)throw Error('Cloudflare '+args[0]+' failed: '+result.stderr.slice(-400));return result.stdout}
+assert.ok(JSON.parse(cli(['whoami','--json'])).accounts.some(a=>a.id===owner.account));const token=JSON.parse(cli(['auth','token','--json'])).token;
+async function cloud(path,body){const response=await fetch('https://api.cloudflare.com/client/v4/accounts/'+owner.account+path,{method:body?'POST':'GET',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(30000)});const data=await response.json();assert.ok(response.ok&&data.success,'Cloudflare request failed');return data.result}
+const email='sync-check-'+randomUUID().slice(0,8)+'@example.invalid',password='Kortex sync test '+randomBytes(18).toString('base64url'),proof={date:new Date().toISOString(),steps:['14.2','14.3','14.4'],staging_only:true,production_touched:false,dns_touched:false,mail_touched:false,passed:false};
+try{
+ const secrets=await cloud('/workers/scripts/'+owner.worker+'/secrets');for(const key of ['SESSION_HMAC_SECRET','PASSWORD_PEPPER'])assert.ok(secrets.some(s=>s.name===key));
+ writeFileSync(resolve(dir,'migrations.log'),cli(['d1','migrations','apply','kortex-catalog-staging','--config','api/wrangler.jsonc','--env','staging','--remote']));
+ writeFileSync(resolve(dir,'api-deploy.log'),cli(['deploy','--config','api/wrangler.jsonc','--env','staging']));
+ const generated=json('website/dist/server/wrangler.json'),compiled=resolve(root,'website/dist/server');const deployment={...generated,name:web.env.staging.name,topLevelName:web.env.staging.name,configPath:resolve(dir,'web.json'),userConfigPath:resolve(dir,'web.json'),main:resolve(compiled,generated.main),assets:{...generated.assets,directory:resolve(compiled,generated.assets.directory)},services:web.env.staging.services,vars:web.env.staging.vars,workers_dev:true,preview_urls:false};writeFileSync(resolve(dir,'web.json'),JSON.stringify(deployment));writeFileSync(resolve(dir,'web-deploy.log'),cli(['deploy','--config',resolve(dir,'web.json')]));proof.deployed=true;
+ const run=spawnSync(process.execPath,[resolve(root,'node_modules/playwright/cli.js'),'test','--config','tests/account.config.ts'],{cwd:root,encoding:'utf8',windowsHide:true,timeout:240000,env:{...process.env,KORTEX_ACCOUNT_EMAIL:email,KORTEX_ACCOUNT_PASSWORD:password}});writeFileSync(resolve(dir,'playwright.log'),(run.stdout+run.stderr).replaceAll(password,'[redacted]').replaceAll(email,'[test-account]'));assert.equal(run.status,0,'Account browser gates failed');proof.passed=true;console.log('PASS staging account: guest calculator, two devices, conflicts, export, purge');
+}catch(error){proof.error=String(error.message).replaceAll(password,'[redacted]').replaceAll(email,'[test-account]').slice(0,800);console.error('Account staging verification failed; see evidence.');process.exitCode=1}
+finally{
+ try{assert.match(email,/^sync-check-[a-f0-9]{8}@example\.invalid$/);const query=body=>cloud('/d1/database/'+owner.database_id+'/query',body);await query({sql:'DELETE FROM users WHERE id IN(SELECT user_id FROM password_credentials WHERE email=?)',params:[email]});const result=await query({sql:'SELECT count(*) AS n FROM password_credentials WHERE email=?',params:[email]});assert.equal(result[0].results[0].n,0);proof.fixture_removed=true}catch{proof.cleanup_failed=true;proof.passed=false;process.exitCode=1}
+ writeFileSync(resolve(root,'docs/evidence/account-staging-deployment.json'),JSON.stringify(proof,null,2)+'\n');
+}

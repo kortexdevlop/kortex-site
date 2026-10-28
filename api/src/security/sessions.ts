@@ -23,5 +23,5 @@ export async function rotateSession(request:Request,env:Env,userId:string):Promi
  const token=randomToken(),hash=await sessionHash(token,secret(env)),now=Date.now(),old=cookie(request,SESSION_COOKIE);
  const writes=[env.DB.prepare('INSERT INTO sessions(token_hash,user_id,created_at,expires_at) VALUES(?,?,?,?)').bind(hash,userId,now,now+SESSION_TTL)];
  if(old)writes.push(env.DB.prepare('UPDATE sessions SET revoked_at=? WHERE token_hash=? AND revoked_at IS NULL').bind(now,await sessionHash(old,secret(env))));
- writes.push(env.DB.prepare('DELETE FROM sessions WHERE expires_at<=?').bind(now));await env.DB.batch(writes);return token;
+ writes.push(env.DB.prepare('DELETE FROM sessions WHERE expires_at<=?').bind(now));writes.push(env.DB.prepare('DELETE FROM sessions WHERE user_id=? AND token_hash<>? AND token_hash NOT IN(SELECT token_hash FROM sessions WHERE user_id=? AND token_hash<>? ORDER BY created_at DESC,token_hash DESC LIMIT 99)').bind(userId,hash,userId,hash));await env.DB.batch(writes);return token;
 }

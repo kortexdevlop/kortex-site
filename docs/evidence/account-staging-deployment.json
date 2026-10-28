@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-28T10:13:38.577Z",
+  "steps": [
+    "14.2",
+    "14.3",
+    "14.4"
+  ],
+  "staging_only": true,
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false,
+  "passed": true,
+  "deployed": true,
+  "fixture_removed": true
+}

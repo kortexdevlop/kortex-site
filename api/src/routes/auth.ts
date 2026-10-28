@@ -21,7 +21,7 @@ export async function auth(request:Request,env:Env,id:string,viaWeb=false,transp
   if(me){
    let userId:string,csrf:string|undefined,authentication:string,scopes:readonly string[];
    if(request.headers.has('Authorization')){const config=configuration(env);if(!config)throw Error('IDENTITY_CONFIG');const identity=await desktopIdentity(request,env,config,transport);userId=identity.userId;scopes=identity.scopes;authentication='desktop';}
-   else{const current=await session(request,env);if(!current)throw Error('IDENTITY_SESSION');userId=current.user_id;csrf=await csrfToken(env,current.token);scopes=['identity:read','session:logout'];authentication='web';}
+   else{const current=await session(request,env);if(!current)throw Error('IDENTITY_SESSION');userId=current.user_id;csrf=await csrfToken(env,current.token);scopes=['identity:read','session:logout','sync:read','sync:write','account:export','account:delete'];authentication='web';}
    const user=await env.DB.prepare('SELECT u.id,u.sync_enabled,p.email,p.email_verified FROM users u LEFT JOIN password_credentials p ON p.user_id=u.id WHERE u.id=?').bind(userId).first<{id:string;sync_enabled:number;email:string|null;email_verified:number|null}>();if(!user)throw Error('IDENTITY_USER');
    return json({user:{id:user.id,sync_enabled:!!user.sync_enabled,...(user.email?{email:user.email,email_verified:!!user.email_verified}:{})},authentication,scopes,...(csrf?{csrf_token:csrf}:{})},200,id);
   }

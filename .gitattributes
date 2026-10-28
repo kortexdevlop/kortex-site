@@ -32,3 +32,5 @@
 /docs/evidence/google-*.json text eol=lf
 /docs/evidence/password-*.json text eol=lf
 /docs/evidence/password-*.log text eol=lf
+/docs/evidence/account-*.json text eol=lf
+/docs/evidence/account-*.log text eol=lf

@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-28T10:14:22.864Z",
+  "platform": "win32",
+  "passed": true,
+  "private_ssr_redirect": true,
+  "guest_calculator_executes": true,
+  "sync_default_off": true,
+  "preferences_shared_between_sessions": true,
+  "preference_conflict_visible_without_silent_overwrite": true,
+  "observed_remove_preserves_concurrent_add": true,
+  "workspace_favorites_sync_without_overwriting_guest_storage": true,
+  "real_export_download_without_secrets": true,
+  "no_account_in_public_html": true,
+  "account_deleted_and_all_sessions_revoked": true
+}

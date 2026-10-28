@@ -1,5 +1,7 @@
 # Architecture Kortex — état vérifié à la revue 3.4
 
+Lot 14.2–14.4 (28/10/2026) : synchronisation opt-in des favoris/réglages, OR-set et CAS D1, routes utilisateur privées, export et purge, middleware SSR des pages /account et interfaces partagées. Aucun contenu de fichier synchronisé. Connexion email utilisée pour les essais réels ; Google reste en attente de configuration. Voir docs/SYNC.md et les preuves account-14.2-14.4-validation.json. Les états décrits ci-dessous sont historiques ; 14.5 non engagée.
+
 **Lot 13.5–14.0 (28/10/2026) :** Store Windows éprouvé avec cinq outils publics et publication d'un sixième pendant que l'application reste ouverte ; matrice et limites dans docs/evidence/desktop-store-matrix.md. Préparation Google facultative dans docs/AUTH.md ; clients OAuth non créés, connexion désactivée et clôture 14.0 en attente de cette configuration externe. Les paragraphes ci-dessous sont historiques.
 
 **Lot 13.2–13.4 (28/10/2026) :** cycle de vie Desktop vérifié : téléchargement signé, installation/index atomiques, bibliothèque hors connexion, désinstallation par profil et mise à jour avec restauration. Workspaces externes isolés pour fiabiliser les artefacts Cargo. Voir DESKTOP-INSTALLATION.md et STEP-13.2 à STEP-13.4. 13.5 non engagée.

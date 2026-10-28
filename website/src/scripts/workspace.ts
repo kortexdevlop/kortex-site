@@ -1,4 +1,5 @@
 export {};
+import {connectWorkspace} from '../lib/workspace-sync';
 const root=document.querySelector<HTMLElement>('.workspace')!;
 const demo=root.dataset.demo==='true';
 const publicSearch=(q:string,category='')=>{const params=new URLSearchParams();if(q.trim())params.set('q',q.trim().slice(0,100));if(category)params.set('category',category);location.assign('/tools'+(params.size?'?'+params:''));};
@@ -17,11 +18,12 @@ const sidebar=root.querySelector<HTMLElement>('.ws-sidebar')!;
 const menu=root.querySelector<HTMLButtonElement>('.ws-mobile-menu')!;
 const backdrop=root.querySelector<HTMLElement>('.ws-drawer-backdrop')!;
 let section='home',category='',filter='',mode='all';
-const storageKey=demo?'kortex-workspace-demo-favorites':'kortex-workspace-favorites';
+let storageKey:string|null=demo?'kortex-workspace-demo-favorites':'kortex-workspace-favorites';
+let remoteFavorite:((id:string,enabled:boolean)=>Promise<void>)|undefined;
 function normalize(s:string){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr');}
 function mobile(){return getComputedStyle(document.documentElement).getPropertyValue('--ws-mobile').trim()==='1';}
 function countFavorites(){const counter=root.querySelector('[data-count=favorites]');if(counter)counter.textContent=String(cards.filter(c=>c.dataset.favorite==='true').length);}
-function persistFavorites(){try{localStorage.setItem(storageKey,JSON.stringify(cards.filter(c=>c.dataset.favorite==='true').map(c=>c.dataset.id)));}catch{}}
+function persistFavorites(){if(!storageKey)return;try{const visible=new Set(cards.map(c=>c.dataset.id)),saved:unknown=JSON.parse(localStorage.getItem(storageKey)||'[]');const retained=Array.isArray(saved)?saved.filter(id=>typeof id==='string'&&!visible.has(id)):[];localStorage.setItem(storageKey,JSON.stringify([...new Set([...retained,...cards.filter(c=>c.dataset.favorite==='true').map(c=>c.dataset.id)])]));}catch{}}
 try{const saved:unknown=JSON.parse(localStorage.getItem(storageKey)||'null');if(Array.isArray(saved)&&saved.every(x=>typeof x==='string'))cards.forEach(c=>{c.dataset.favorite=String(saved.includes(c.dataset.id!));c.querySelector('.ws-favorite')!.setAttribute('aria-pressed',c.dataset.favorite);});}catch{}
 function render(announce=true){
   const words=normalize(filter).split(/\W+/).filter(w=>w.length>2&&!['les','des','une','pour','avec','vos','votre','creer','faire','vers','fichier','formater','compresser'].includes(w));
@@ -43,7 +45,7 @@ root.querySelector('.ws-global-search')!.addEventListener('submit',event=>{event
 composer.addEventListener('submit',event=>{event.preventDefault();if(!demo){publicSearch(task.value);return;}filter=task.value.trim();query.value='';render();root.querySelector('#workspace-tools')!.scrollIntoView({block:'start'});});
 root.querySelectorAll<HTMLButtonElement>('[data-suggestion]').forEach(button=>button.addEventListener('click',()=>{task.value=button.dataset.suggestion!;composer.requestSubmit();}));
 root.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(button=>button.addEventListener('click',()=>{root.querySelector('.ws-tool-grid')!.setAttribute('data-layout',button.dataset.view!);root.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));}));
-cards.forEach(card=>card.querySelector('.ws-favorite')!.addEventListener('click',()=>{card.dataset.favorite=String(card.dataset.favorite!=='true');card.querySelector('.ws-favorite')!.setAttribute('aria-pressed',card.dataset.favorite);persistFavorites();render(false);}));
+cards.forEach(card=>card.querySelector('.ws-favorite')!.addEventListener('click',()=>{card.dataset.favorite=String(card.dataset.favorite!=='true');card.querySelector('.ws-favorite')!.setAttribute('aria-pressed',card.dataset.favorite);persistFavorites();render(false);if(remoteFavorite)void remoteFavorite(card.dataset.id!,card.dataset.favorite==='true');}));
 function openDialog(title:string,text:string){dialog.querySelector('h2')!.textContent=title;dialog.querySelector('p')!.textContent=text;dialog.showModal();}
 if(demo)root.querySelectorAll<HTMLButtonElement>('.ws-tool-open').forEach(button=>button.addEventListener('click',()=>{if(!demo){location.assign('/tools/'+encodeURIComponent(button.closest<HTMLElement>('.ws-tool-card')!.dataset.id!));return;}openDialog(button.dataset.toolTitle!,`${button.dataset.toolSummary} ${demo?'Aperçu visuel : ces outils de démonstration ne sont pas exécutables.':'L’ouverture de cet outil depuis cet espace sera disponible avec le catalogue.'}`);}));
 root.querySelector('[data-open-account]')!.addEventListener('click',()=>{if(demo)openDialog('Mon espace','Aperçu du compte de la capture de référence.');else location.assign('/account')});
@@ -60,3 +62,9 @@ window.addEventListener('resize',()=>{if(!mobile())closeMenu();});
 countFavorites();
 
 const initialView=new URLSearchParams(location.search).get('view');if(!demo&&root.dataset.pageKind!=='detail'&&['favorites','installed'].includes(initialView||''))root.querySelector<HTMLButtonElement>(`[data-section=${initialView}]`)?.click();
+if(!demo)void connectWorkspace().then(context=>{
+ const subtitle=root.querySelector<HTMLElement>('.ws-account strong + span');if(subtitle)subtitle.textContent=context.enabled?'Synchronisation activée':'Compte connecté';if(!context.enabled)return;storageKey=null;
+ const apply=()=>{for(const card of cards){card.dataset.favorite=String(context.items.some(item=>item.tool_id===card.dataset.id));card.querySelector('.ws-favorite')!.setAttribute('aria-pressed',card.dataset.favorite)}render(false)};apply();
+ document.documentElement.dataset.theme=context.preferences.theme;document.documentElement.dataset.density=context.preferences.density;
+ remoteFavorite=async(id,enabled)=>{const buttons=[...root.querySelectorAll<HTMLButtonElement>('.ws-favorite')];buttons.forEach(b=>b.disabled=true);try{await context.toggle(id,enabled);apply();status.hidden=false;status.textContent='Favoris synchronisés.'}catch{apply();status.hidden=false;status.textContent='Ce favori n’a pas été enregistré. Réessayez une fois connecté.'}finally{buttons.forEach(b=>b.disabled=false)}};
+}).catch(()=>{});

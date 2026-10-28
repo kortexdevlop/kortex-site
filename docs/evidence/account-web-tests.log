@@ -1,0 +1,26 @@
+✔ private SSR only forwards the host session cookie and never exposes tokens in its view (64.8569ms)
+✔ anonymous views do not need a binding; service failure with a cookie never impersonates a guest (2.073ms)
+✔ account proxy supports conditional writes without forwarding owner selection credentials (3.7811ms)
+✔ export download headers survive the proxy but bearer and cross-origin account access do not (3.0605ms)
+✔ real schemas validate demo summaries, stable category colors and reject hostile metadata (3.4096ms)
+✔ SSR client sends only an absolute binding request and validates bounded API responses (67.7905ms)
+✔ same-origin read proxy strips spoofable auth headers, preserves cookies privately and streams bytes (6.9909ms)
+✔ detail and actions clients accept schema-valid API envelopes (11.0953ms)
+✔ detail refuses a descriptor that does not match the requested identity, version or digest (3.3474ms)
+✔ a binding that never responds cannot hold SSR or the proxy open indefinitely (4013.2358ms)
+✔ proxy rejects foreign origins, writes, admin paths, redirects and unsafe session cookies (2.8875ms)
+✔ canonical URLs remain on the configured HTTPS origin (0.5378ms)
+✔ proxy accepts numeric-leading IDs and encoded SemVer build metadata without losing integrity headers (3.1131ms)
+✔ password form JSON is bounded and forwarded privately with CSRF context (56.4327ms)
+✔ auth uses a dedicated binding and strips bearer, forwarded-host and operator headers (4.1931ms)
+✔ auth forwards only safe logout context and refuses another origin or cross-site initiation (4.1587ms)
+✔ Google navigation and OAuth callback redirects are narrowly allowed with no-referrer (9.087ms)
+✔ auth cookie forwarding requires host-only Kortex names, Secure, HttpOnly, exact Path and SameSite (6.2929ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4399.5105

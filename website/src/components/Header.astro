@@ -2,7 +2,7 @@
 import SearchField from './ui/SearchField.astro';
 interface Props { active?: 'tools' | 'apps' | 'download' | 'account'; preview?: boolean; }
 const { active, preview = false } = Astro.props;
-const links = [ ['tools', 'Outils', '/outils'], ['apps', 'Applications', '/applications'], ['download', 'Télécharger', '/telecharger'], ['account', 'Compte', '/compte'] ];
+const links = [ ['tools', 'Outils', '/outils'], ['apps', 'Applications', '/applications'], ['download', 'Télécharger', '/telecharger'], ['account', 'Compte', '/account'] ];
 ---
 <header class="site-header shell">
   <a class="brand" href={preview ? '#main' : '/'} aria-label="Kortex — accueil"><span class="brand-mark" aria-hidden="true">K</span><span>kortex<span class="brand-dot">.</span></span></a>

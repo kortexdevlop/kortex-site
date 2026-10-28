@@ -8,6 +8,7 @@ import {downloads} from './routes/downloads';
 import {admin} from './routes/admin';
 import {auth} from './routes/auth';
 import {passwordAuth} from './routes/password-auth';
+import {users} from './routes/users';
 export async function handle(request:Request,bindings:unknown,viaWeb=false):Promise<Response> {
  const id=requestId(request),head=request.method==='HEAD';
  try {
@@ -26,6 +27,7 @@ export async function handle(request:Request,bindings:unknown,viaWeb=false):Prom
    return health(request,id,origin);
   }
   const password=await passwordAuth(request,env,id,viaWeb);if(password)return password;
+  const account=await users(request,env,id,viaWeb);if(account)return account;
   const authentication=await auth(request,env,id,viaWeb);if(authentication)return authentication;
   const administration=await admin(request,env,id,origin);if(administration)return administration;
   const catalog=await tools(request,env,id,origin);if(catalog)return catalog;

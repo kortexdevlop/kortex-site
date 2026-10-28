@@ -1,5 +1,7 @@
 # Progression
 
+Lot 14.2–14.4 terminé et clos techniquement sur staging le 28/10/2026 : favoris OR-set/tombstones et préférences opt-in, API propriétaire/CSRF/révisions, export/purge, pages privées SSR et favoris reliés au workspace sans écraser les données invitées. 71 tests API, 18 Web, 3 contrats, types/build et vrai parcours Chromium Windows à deux sessions réussis, export téléchargé et suppression/révocation vérifiés. Calculatrice toujours utilisable sans compte (25×48=1200). Fixture nettoyée ; production/DNS/mail conservés. Google attend toujours ses clients OAuth ; Desktop sync et 14.5 non engagés. Preuves : docs/evidence/account-14.2-14.4-validation.json. Statuts humains historiques conservés.
+
 Complément email/mot de passe demandé avant 14.2 (28/10/2026) : terminé et actif sur staging. Inscription, connexion, compte minimal, sessions et déconnexion avec contrôles CSRF/rate/scrypt natif ; 56 tests API, 14 proxy, 3 contrats, types/build et parcours réel Chromium (bureau/mobile) réussis. Compte de test supprimé. Adresses non vérifiées et aucune récupération par mail faute de service, confirmé par le propriétaire. Google reste désactivé en attente de ses clients OAuth ; 14.2 non engagée. Preuves : docs/evidence/password-auth-validation.json. Les notes précédentes ci-dessous sont historiques.
 
 Étape 14.1 (28/10/2026) : implémentation locale terminée sur demande explicite du propriétaire. Connexion PKCE, callback anti-rejeu, signatures/claims, sessions/cookies sécurisés, CSRF/logout, relais Astro privé et identité Desktop en lecture seule. 47 tests API, 13 tests proxy, 3 contrats réussis ; types, analyse Astro, builds et six migrations locales vérifiés. Validation réelle Google et clôture staging en attente des clients OAuth toujours inexistants ; connexion désactivée, aucun déploiement ni login réel revendiqué. Preuves : docs/evidence/identity-14.1-validation.json. 14.2 non engagée.
@@ -1408,6 +1410,66 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
         "tests_executed": "56 tests API (9 nouveaux + 47 régressions), 14 proxy, 3 contrats ; types/build et parcours Chromium staging réels réussis. Compte de test supprimé. Emails non vérifiés selon absence de service."
       }
     ]
+  },
+  {
+    "id": "14.2",
+    "status": "pending",
+    "source_commit": "60a7986",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-14.2.md",
+    "tests_executed": "71 tests API, 18 Web, 3 contrats ; types, analyse Astro (67 fichiers), build et scénario Chromium staging réel réussis. Deux sessions, conflits, OR-set/tombstones, isolation A/B, export téléchargé et purge vérifiés ; invité calculatrice 1200. Compte de test supprimé.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/account-14.2-14.4-validation.json",
+      "docs/evidence/account-web-staging.json",
+      "docs/evidence/account-staging-deployment.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaine maintenant 14.2 jusqu’à 14.4"
+  },
+  {
+    "id": "14.3",
+    "status": "pending",
+    "source_commit": "60a7986",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-14.3.md",
+    "tests_executed": "71 tests API, 18 Web, 3 contrats ; types, analyse Astro (67 fichiers), build et scénario Chromium staging réel réussis. Deux sessions, conflits, OR-set/tombstones, isolation A/B, export téléchargé et purge vérifiés ; invité calculatrice 1200. Compte de test supprimé.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/account-14.2-14.4-validation.json",
+      "docs/evidence/account-web-staging.json",
+      "docs/evidence/account-staging-deployment.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaine maintenant 14.2 jusqu’à 14.4"
+  },
+  {
+    "id": "14.4",
+    "status": "pending",
+    "source_commit": "60a7986",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-14.4.md",
+    "tests_executed": "71 tests API, 18 Web, 3 contrats ; types, analyse Astro (67 fichiers), build et scénario Chromium staging réel réussis. Deux sessions, conflits, OR-set/tombstones, isolation A/B, export téléchargé et purge vérifiés ; invité calculatrice 1200. Compte de test supprimé.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/account-14.2-14.4-validation.json",
+      "docs/evidence/account-web-staging.json",
+      "docs/evidence/account-staging-deployment.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaine maintenant 14.2 jusqu’à 14.4"
   }
 ]
 ```

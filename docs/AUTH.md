@@ -1,5 +1,7 @@
 # Identité facultative — étape 14.0
 
+**Lot actuel 14.2–14.4 (28/10/2026) :** pages privées, synchronisation facultative des favoris/réglages, export et suppression du compte opérationnels sur staging via connexion email. Voir [SYNC.md](SYNC.md). Les validations Google attendent toujours ses clients OAuth ; 14.5 non engagée. Les paragraphes suivants conservent l'historique des lots précédents.
+
 **Complément actuel email/mot de passe (28/10/2026) :** inscription, connexion, compte et déconnexion actifs sur le staging, sans dépendance Google. Adresses non vérifiées et pas d'envoi/récupération par mail, conformément à l'absence de service confirmée. Voir [AUTH-PASSWORD.md](AUTH-PASSWORD.md) pour les écrans, contrôles et preuves. Les notes 14.0/14.1 ci-dessous sont historiques ; leur attente de clients OAuth concerne toujours Google. 14.2 non engagée.
 
 ## État actuel — 14.1, 28/10/2026

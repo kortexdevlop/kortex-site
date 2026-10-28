@@ -1,0 +1,11 @@
+✔ health and errors are closed, bounded API V1 envelopes (70.4949ms)
+✔ catalog DTOs use frozen manifest fields and bounded pagination (22.4708ms)
+✔ publication DTO accepts the public example and rejects malformed/unknown fields (12.5328ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 405.7366
