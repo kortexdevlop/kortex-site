@@ -1,5 +1,7 @@
 # Progression
 
+Lot 16.0–16.2 terminé et clos techniquement le 28/10/2026 : moteur local DAG borné, mapping typé, arrêt/retry idempotent, annulation et consentement par étape/lot lié à une exécution, même Policy de capacités et retrait de droits. Éditeur /workflows réel sur staging : palette publiée, carte/liste accessible, paramètres/liens, validation, import/export local et annulation. 50 tests Rust, 31 Web, 3 contrats et 3 scénarios Chromium réussis ; vraie chaîne signée Wasmtime 1200 puis 1210 sans cloud, builds/types vérifiés. L’éditeur ne lance aucun outil : raccordement produit réservé à 16.3, non engagée. API/runtime distant/quotas IA/production/DNS/messagerie conservés. Réserve Google 14.5 inchangée, statuts humains historiques conservés. Preuves : docs/evidence/workflows-validation.json. Les notes suivantes sont historiques.
+
 Correctif du plafond IA staging (28/10/2026) : limite interne relevée de 2/compte et 3/globales à 50/compte et 100/globales par jour UTC, réservations cohérentes et compteurs conservés. Messages Web/Windows distincts du quota Cloudflare ; origine application transmise par le proxy. Nouvelle proposition Workers AI réelle 200, fixture supprimée. Preuve : docs/evidence/ai-limit-fix.json. Aucun forfait, DNS, mail ou production modifié.
 
 Lot 15.2–15.4 terminé et clos techniquement le 28/10/2026 : médiateurs locaux avec revue/approbation unique/expiration, interface assistant Web et Windows, autorisation IA d’appareil distincte et révocable, cinq outils exécutés réellement dans les moteurs signés Web et Wasmtime. Trace du fichier privé sans upload ni stockage local ; résultats jamais renvoyés au cloud. 21 cœur, 82 API (+21 auth ciblés), 25 Web, 25 Desktop distincts, 3 contrats, 1 adaptateur et 4 scénarios staging réussis ; types/builds et Astro 73 fichiers sans erreur. Aucun quota relevé/remis à zéro : propositions déterministes uniquement en tests et inférence réelle 15.1 référencée. Appareil/compte temporaires nettoyés. Réserve Google 14.5 conservée, production/DNS/mail intacts ; phase 16 non engagée. Preuves : docs/evidence/assistant-validation.json. Les notes suivantes sont historiques.
@@ -1610,6 +1612,71 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "closed_at": "2026-10-28",
     "authorization": "propriétaire : Enchaîne ces 3 étapes",
     "limitations": "Google/OIDC réel de 14.5 reste en attente. Quota conservé : propositions fixes uniquement dans les tests, moteurs signés réels ; inférence réelle référencée en 15.1. Actions sensibles natives refusées avec retour vers leur outil."
+  },
+  {
+    "id": "16.0",
+    "status": "pending",
+    "source_commit": "2a7f367",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-16.0.md",
+    "tests_executed": "28/10/2026 Windows : cargo test -p kortex-workflows -p kortex-capabilities -p kortex-core --locked --offline : 50 réussis (13 parcours, 16 capacités, 21 cœur) ; recontrôles moteur 13 et autorisations 6 après dernières bornes/audit, sorties 0. Vrai paquet signé Wasmtime : 1200 puis 1210, sans cloud. Web 31, contrats 3, Chromium staging 3 ; Astro 80 fichiers zéro erreur et build réussis. Deux étapes sans souris, liens typés, cycle bloqué, export/restauration identique, import annulé, mobile et cartes distinctes. Aucun outil invoqué depuis l’éditeur.",
+    "contract_changes": [
+      "Profil runtime workflow V1 plus strict : 50 étapes / 100 liens / profondeur 50 / 1 Mio ; schéma gelé inchangé"
+    ],
+    "evidence": [
+      "docs/evidence/workflows-validation.json",
+      "docs/evidence/workflows-runtime.json",
+      "docs/evidence/workflows-browser.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Éditeur de préparation uniquement ; branchement produit Web/Desktop en 16.3. Google/OIDC réel 14.5 reste en attente. Windows/Chromium selon exclusions du propriétaire."
+  },
+  {
+    "id": "16.1",
+    "status": "pending",
+    "source_commit": "2a7f367",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-16.1.md",
+    "tests_executed": "28/10/2026 Windows : cargo test -p kortex-workflows -p kortex-capabilities -p kortex-core --locked --offline : 50 réussis (13 parcours, 16 capacités, 21 cœur) ; recontrôles moteur 13 et autorisations 6 après dernières bornes/audit, sorties 0. Vrai paquet signé Wasmtime : 1200 puis 1210, sans cloud. Web 31, contrats 3, Chromium staging 3 ; Astro 80 fichiers zéro erreur et build réussis. Deux étapes sans souris, liens typés, cycle bloqué, export/restauration identique, import annulé, mobile et cartes distinctes. Aucun outil invoqué depuis l’éditeur.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/workflows-validation.json",
+      "docs/evidence/workflows-runtime.json",
+      "docs/evidence/workflows-browser.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Éditeur de préparation uniquement ; branchement produit Web/Desktop en 16.3. Google/OIDC réel 14.5 reste en attente. Windows/Chromium selon exclusions du propriétaire."
+  },
+  {
+    "id": "16.2",
+    "status": "pending",
+    "source_commit": "2a7f367",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-16.2.md",
+    "tests_executed": "28/10/2026 Windows : cargo test -p kortex-workflows -p kortex-capabilities -p kortex-core --locked --offline : 50 réussis (13 parcours, 16 capacités, 21 cœur) ; recontrôles moteur 13 et autorisations 6 après dernières bornes/audit, sorties 0. Vrai paquet signé Wasmtime : 1200 puis 1210, sans cloud. Web 31, contrats 3, Chromium staging 3 ; Astro 80 fichiers zéro erreur et build réussis. Deux étapes sans souris, liens typés, cycle bloqué, export/restauration identique, import annulé, mobile et cartes distinctes. Aucun outil invoqué depuis l’éditeur.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/workflows-validation.json",
+      "docs/evidence/workflows-runtime.json",
+      "docs/evidence/workflows-browser.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Éditeur de préparation uniquement ; branchement produit Web/Desktop en 16.3. Google/OIDC réel 14.5 reste en attente. Windows/Chromium selon exclusions du propriétaire."
   }
 ]
 ```

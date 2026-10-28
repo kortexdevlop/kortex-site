@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-28T16:48:21.541Z",
+  "source_commit": "2a7f367",
+  "steps": [
+    "16.0",
+    "16.1",
+    "16.2"
+  ],
+  "platform": "Windows / Chromium",
+  "tests": {
+    "rust_distinct": 50,
+    "workflows": 13,
+    "capabilities": 16,
+    "core": 21,
+    "final_engine_recheck": 13,
+    "final_permission_recheck": 6,
+    "web": 31,
+    "contracts": 3,
+    "staging_browser": 3
+  },
+  "source_hash_format": "SHA256 UTF8 LF",
+  "sources": {
+    "Cargo.lock": "ca0bf5e17aa9b4ad1f434d3624314287b66f8dc21dd9332b41475937b469adcd",
+    "Cargo.toml": "097d429e3cc99b888f8fa6e32377aa97ef05c59858fcf522e0857a64d5842287",
+    "crates/kortex-capabilities/src/policy.rs": "c6a2b00b497c151cd28f9751fb84833214b939afa5f898c24c45be5e0f0c0e59",
+    "crates/kortex-workflows/Cargo.toml": "35c7179236a535ee3e9dc6b26fe3ebee2a10b4404a6b40b3f5d3633db416a7fe",
+    "crates/kortex-workflows/src/dag.rs": "26b1855ab4985bfbc3d7b1f1135ad5cfe7e1f9456f575f51721e683424c0db25",
+    "crates/kortex-workflows/src/lib.rs": "03bcf860cb718caa58dcd41ea1d4a86e7fa9dc04beaa895bfea64fe539c31a40",
+    "crates/kortex-workflows/src/mapper.rs": "f65f6d6c29964e15ac1769e0e4ecb6e097b9742124bb6126244f787770eee85c",
+    "crates/kortex-workflows/src/permissions.rs": "06a8277a387a68c16382ac45dac9859ba3fb6748fd3169741f121a09301d3983",
+    "crates/kortex-workflows/src/runner.rs": "59e4746271bbd34c66c6976c8f0673f79da43fa887841267671eb7b5734d12a0",
+    "crates/kortex-workflows/tests/common/mod.rs": "941e6b19111ffeb8161593a7326553498211268a901863edf2927c01b0996e1b",
+    "crates/kortex-workflows/tests/graph.rs": "c21a354f2de4273101bbe2e78b55856c54103b8bb81647dce5df551e0aec4d05",
+    "crates/kortex-workflows/tests/permissions.rs": "5ee14e0be5b66cdcf1585d73231701afa8b8096fdbeefaf9fd788f43d2cb02f1",
+    "crates/kortex-workflows/tests/runtime.rs": "5d8ff054ee0a1fa0206b92960ea6617b6cf5f3404ff67d87b22be9eccca1db7c",
+    "scripts/deploy-workflows-staging.mjs": "973c8fc40cad937644baad0e6f189442decb6b28a8b0831cc6621cd922b4cceb",
+    "scripts/record-workflows-validation.mjs": "6c60333eb05dd264b473649df65c95d11be11aae1e8850c6e93e9b1f66eb2f2a",
+    "tests/e2e/workflow-editor.spec.ts": "e9208aaf88740b835889559eb431bec92eb5614ddcc59c8d4f0ef8a442a95b54",
+    "tests/workflows.config.ts": "20bd4b6ce6da73a8e441b96465ab792428db9d204b3a00846af50ae83c7579dd",
+    "website/scripts/generate-validators.mjs": "03ca11e36f9c45dac9acc2c14986c1438c2325616032980275ec6f5ec5085508",
+    "website/scripts/generate-workflow-validator.mjs": "cd1e0eedbaabd96c9575f576fc235b578a8bc7e30cfec8962963fa95a0fb17ad",
+    "website/src/components/WorkflowEditor.tsx": "bdcd11e8df4faaecc9ffaa408c16569e17556947d8c3cbca775a56455de848d4",
+    "website/src/components/Workspace.astro": "368419f5ad67fe2a8ab010506f09de8d76631c390e3647475072ce60c419520a",
+    "website/src/lib/ai-csp.ts": "4d0438c4158f5794b94cbb17ae3c449f7a361d90668751b5e78b85fa572b7423",
+    "website/src/lib/workflow-validator.ts": "c832e4363a0222905ebc0068c84adac16a1f7dc7a6ba8da01ffa9ed4d640dc32",
+    "website/src/lib/workflows.ts": "60f72460a75d8fd02a2ef9e0fdd48de96c15d9f998e0a63c98de705ec0791b60",
+    "website/src/middleware.ts": "1c5e25e1d847e1ca930c57276514efdb8188a30c6ce72d0c0e1b43f3ac46d55b",
+    "website/src/pages/workflows/index.astro": "b300de5a1d482b5fb907838bdac4b2f2df7d54e40319462c729ae4af6222f257",
+    "website/src/styles/workflows.css": "434807d9aa12e240346c2e2c771b5ebeb4358e5bd01295d6032d3826d8ffa577",
+    "website/tests/workflows.test.ts": "f51f3be4e2d9bbf98179f460104ed1a80bda78958eca2cd0c8aa88e18969c2d0"
+  },
+  "runtime": {
+    "cloud_calls": 0,
+    "final_result": 1210,
+    "first_result": 1200,
+    "journal": [
+      {
+        "at_ms": 1793205915364,
+        "attempt": 0,
+        "may_have_effects": false,
+        "node_id": "multiply",
+        "status": "COMPLETED"
+      },
+      {
+        "at_ms": 1793205915366,
+        "attempt": 0,
+        "may_have_effects": false,
+        "node_id": "add",
+        "status": "COMPLETED"
+      }
+    ],
+    "passed": true,
+    "real_signed_wasm": true
+  },
+  "browser": {
+    "date": "2026-10-28T16:44:01.278Z",
+    "passed": true,
+    "two_nodes_without_mouse": true,
+    "type_checked_result_binding": true,
+    "cycle_blocks_export": true,
+    "serialize_restore_identical": true,
+    "download_export": true,
+    "tool_invocations": 0
+  },
+  "staging_web_deployment": "d79a93eb-d55f-4f3b-b0ea-7ef8ac2d76db",
+  "schema_changes": false,
+  "editor_executes_tools": false,
+  "product_execution_binding": "16.3 not started",
+  "api_touched": false,
+  "remote_runtime_touched": false,
+  "ai_limits_touched": false,
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false,
+  "passed": true
+}

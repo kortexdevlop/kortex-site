@@ -33,6 +33,7 @@ struct Grant {
 }
 #[derive(Default)]
 pub struct Policy {
+    revocation_revision: u64,
     denied: BTreeSet<(Context, Capability, String)>,
     declared: BTreeMap<Context, BTreeSet<Capability>>,
     grants: Vec<Grant>,
@@ -40,6 +41,8 @@ pub struct Policy {
     gestures: BTreeMap<String, (Context, u64)>,
 }
 impl Policy {
+    /// Hosts use this to stop a workflow after withdrawal, without confusing a consumed one-shot grant with revocation.
+    pub fn revocation_revision(&self) -> u64 { self.revocation_revision }
     pub fn declare(
         &mut self,
         context: Context,
@@ -63,6 +66,7 @@ impl Policy {
         self.grants
             .retain(|g| !(g.context == *context && g.capability == capability && g.scope == scope));
         self.denied.insert((context.clone(), capability, scope));
+        self.revocation_revision = self.revocation_revision.saturating_add(1);
         Ok(())
     }
     pub fn enable_prompting(&mut self, context: &Context) {
@@ -235,6 +239,7 @@ impl Policy {
         Ok(decision)
     }
     pub fn revoke_instance(&mut self, context: &Context) {
+        self.revocation_revision = self.revocation_revision.saturating_add(1);
         self.declared.remove(context);
         self.grants.retain(|g| g.context != *context);
         self.prompting.remove(context);

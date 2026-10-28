@@ -1,0 +1,13 @@
+   Compiling kortex-workflows v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-workflows)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.44s
+     Running tests\permissions.rs (target\debug\deps\permissions-e2e70ec79c0324e5.exe)
+
+running 6 tests
+test revocation_during_effect_stops_next_node_without_claiming_rollback ... ok
+test no_step_launches_without_workflow_consent_or_actual_policy_grant ... ok
+test node_approval_resumes_without_replaying_completed_nodes_and_batch_cannot_be_reused ... ok
+test changed_plan_or_registry_never_inherits_consent ... ok
+test revoke_while_awaiting_and_expired_consent_stop_before_invocation ... ok
+test cancellation_and_timeout_drop_pending_work_before_any_next_node ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s

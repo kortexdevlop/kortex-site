@@ -1,0 +1,23 @@
+{
+  "cloud_calls": 0,
+  "final_result": 1210,
+  "first_result": 1200,
+  "journal": [
+    {
+      "at_ms": 1793205915364,
+      "attempt": 0,
+      "may_have_effects": false,
+      "node_id": "multiply",
+      "status": "COMPLETED"
+    },
+    {
+      "at_ms": 1793205915366,
+      "attempt": 0,
+      "may_have_effects": false,
+      "node_id": "add",
+      "status": "COMPLETED"
+    }
+  ],
+  "passed": true,
+  "real_signed_wasm": true
+}

@@ -9,3 +9,5 @@ const names=['ToolSummary','ToolList','ToolDetail','ToolActions'];
 const code=standalone.default(ajv,Object.fromEntries(names.map(n=>[n,`api.schema.json#/$defs/${n}`])));
 const bundled=await build({stdin:{contents:code,resolveDir:import.meta.dirname,loader:'js'},bundle:true,format:'esm',platform:'browser',write:false});
 writeFileSync(new URL('../src/lib/generated-validators.ts',import.meta.url),'// @ts-nocheck\n// Generated from public schemas; bundled helpers, no runtime require or evaluation.\n'+bundled.outputFiles[0].text);
+
+import './generate-workflow-validator.mjs';

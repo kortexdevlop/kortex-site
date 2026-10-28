@@ -1,0 +1,9 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import WorkflowEditor from '../../components/WorkflowEditor';
+import '../../styles/workflows.css';
+Astro.response.headers.set('Cache-Control','private, no-store');
+Astro.response.headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'");
+Astro.response.headers.set('Referrer-Policy','no-referrer');
+---
+<AppLayout title="Parcours — Kortex"><WorkflowEditor client:load/></AppLayout>

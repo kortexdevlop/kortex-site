@@ -38,3 +38,5 @@
 /docs/evidence/device-*.log text eol=lf
 /docs/evidence/assistant-*.json text eol=lf
 /docs/evidence/assistant-*.log text eol=lf
+/docs/evidence/workflows-*.json text eol=lf
+/docs/evidence/workflows-*.log text eol=lf

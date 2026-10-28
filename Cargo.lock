@@ -3374,6 +3374,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "kortex-workflows"
+version = "1.0.0"
+dependencies = [
+ "ed25519-dalek",
+ "jsonschema",
+ "kortex-abi",
+ "kortex-capabilities",
+ "kortex-core",
+ "kortex-runtime-native",
+ "kortex-shared",
+ "kortex-verify",
+ "serde",
+ "serde_json",
+ "sha2",
+ "tokio",
+]
+
+[[package]]
 name = "kortex-xtask"
 version = "1.0.0"
 dependencies = [

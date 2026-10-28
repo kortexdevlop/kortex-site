@@ -1,5 +1,5 @@
 [workspace]
-members = ["desktop", "crates/kortex-abi", "crates/kortex-sdk", "crates/kortex-core", "crates/kortex-capabilities", "crates/kortex-ui", "runtime/web", "runtime/desktop", "crates/kortex-runtime-native", "shared/rust", "tools/calculatrice", "tools/convertisseur-casse", "tools/calculateur-hash", "tools/timestamp-utc", "tools/explorateur-csv", "crates/kortex-pack", "crates/kortex-xtask", "crates/kortex-verify"]
+members = ["crates/kortex-workflows", "desktop", "crates/kortex-abi", "crates/kortex-sdk", "crates/kortex-core", "crates/kortex-capabilities", "crates/kortex-ui", "runtime/web", "runtime/desktop", "crates/kortex-runtime-native", "shared/rust", "tools/calculatrice", "tools/convertisseur-casse", "tools/calculateur-hash", "tools/timestamp-utc", "tools/explorateur-csv", "crates/kortex-pack", "crates/kortex-xtask", "crates/kortex-verify"]
 exclude = ["tests/spikes/*"]
 resolver = "3"
 

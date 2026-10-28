@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:15304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\e2e\workflow-editor.spec.ts:4:5 › create and connect two nodes using only keyboard, block cycles and restore exact workflow (2.6s)
+  ok 2 tests\e2e\workflow-editor.spec.ts:10:5 › cancel import retains previous document and rejected imports cannot inject unknown actions (5.4s)
+  ok 3 tests\e2e\workflow-editor.spec.ts:11:5 › mobile editor exposes a list alternative and does not send documents to storage or cloud (1.3s)
+
+  3 passed (10.6s)

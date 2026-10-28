@@ -1,0 +1,17 @@
+17:43:27 [@astrojs/cloudflare] Enabling compile-time image optimization. Images will be pre-optimized at build time.
+17:43:27 [types] Generated 155ms
+17:43:27 [build] output: "server"
+17:43:27 [build] mode: "server"
+17:43:27 [build] directory: C:\Users\µ\Desktop\KORTEX-\website\dist\
+17:43:27 [build] adapter: @astrojs/cloudflare
+17:43:27 [build] Collecting build info...
+17:43:27 [build] ✓ Completed in 320ms.
+17:43:27 [build] Building server entrypoints...
+17:43:28 [vite] ✓ built in 727ms
+17:43:30 [vite] ✓ built in 2.59s
+17:43:32 [vite] ✓ built in 1.40s
+17:43:32 [build] Rearranging server assets...
+17:43:32 [build] ✓ Completed in 4.90s.
+17:43:32 [@astrojs/cloudflare] Injected immutable Cache-Control for /_astro/* into _headers.
+17:43:32 [build] Server built in 5.25s
+17:43:32 [build] Complete!
