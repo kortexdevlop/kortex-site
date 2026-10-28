@@ -1,5 +1,11 @@
 # Environments and ownership
 
+## Identity checkpoint — 2026-10-28, step 14.0
+
+Owner selected Google; OAuth clients do not yet exist. Public staging intent: infra/identity/google-staging.json, disabled with null client IDs. Issuer: https://accounts.google.com. Explicit endpoint origins: accounts.google.com, oauth2.googleapis.com, www.googleapis.com. Actual discovery/JWKS/S256 checked; no OAuth client or login claimed.
+
+Configuration consumes OIDC_ENABLED, OIDC_ISSUER, OIDC_WEB_CLIENT_ID, OIDC_DESKTOP_CLIENT_ID, OIDC_WEB_REDIRECT_URI, OIDC_DESKTOP_REDIRECT_URI and comma-separated OIDC_ENDPOINT_ORIGINS. These are server/host settings, never arbitrary request input. Web callback: https://kortex-web-staging.userpgl.workers.dev/auth/callback ; Desktop: http://127.0.0.1:49152/callback. OIDC_WEB_CLIENT_SECRET and SESSION_HMAC_SECRET (at least 32 random bytes) will be server secrets for the later login implementation; never PUBLIC_* or tracked configuration. Separate production clients unprovisioned. See docs/AUTH.md for setup and resume. Migration 0005_auth.sql tested locally ; no production identity deployment.
+
 | Environment | Web / API / runtime | Cloudflare resources | Identity | Ownership |
 |---|---|---|---|---|
 | local | localhost:4321 / :8787 / :4322 | local emulation only | disabled until configured | developer |

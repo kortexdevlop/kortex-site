@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-28T03:21:22.693Z",
+  "tool_id": "desktop-update-549b4014",
+  "passed": true,
+  "five_tools": [
+    {
+      "id": "explorateur-csv",
+      "version": "1.0.0",
+      "sha256": "183f838f554846fe837650f6773cc5c935e02f86096c61a3dac7f5c5f111b662",
+      "installed_launched_uninstalled": true
+    },
+    {
+      "id": "timestamp-utc",
+      "version": "1.0.0",
+      "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
+      "installed_launched_uninstalled": true
+    },
+    {
+      "id": "calculateur-hash",
+      "version": "1.0.0",
+      "sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5",
+      "installed_launched_uninstalled": true
+    },
+    {
+      "id": "convertisseur-casse",
+      "version": "1.0.0",
+      "sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7",
+      "installed_launched_uninstalled": true
+    },
+    {
+      "id": "calculatrice",
+      "version": "1.0.0",
+      "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+      "installed_launched_uninstalled": true
+    }
+  ],
+  "hot_publication_after_app_start": true,
+  "verified_store_install": true,
+  "offline_ui_launch": true,
+  "permission_change_requires_confirmation": true,
+  "update_and_native_start": true,
+  "old_version_retained": true,
+  "manual_rollback": true,
+  "real_bad_guest_update_rejected": true,
+  "uninstall_preserves_data": true,
+  "purge_isolated_to_local_profile": true
+}

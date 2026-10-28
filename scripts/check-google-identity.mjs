@@ -1,0 +1,7 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {discoverIdentity} from '../api/src/services/identity-config.ts';
+const file=JSON.parse(readFileSync(new URL('../infra/identity/google-staging.json',import.meta.url),'utf8'));
+const result=await discoverIdentity({issuer:file.issuer,endpointOrigins:file.endpoint_origins,webClientId:file.web_client_id??'',desktopClientId:file.desktop_client_id??'',webRedirect:file.web_redirect_uri,desktopRedirect:file.desktop_redirect_uri},'staging');
+// Public metadata only: this never submits credentials or tokens, or creates a user.
+const proof={date:new Date().toISOString(),provider:'google',issuer:result.metadata.issuer,discovery_verified:true,jwks_verified:true,pkce_s256:result.metadata.code_challenge_methods_supported.includes('S256'),key_count:result.jwks.keys.length,authorization_endpoint:result.metadata.authorization_endpoint,token_endpoint:result.metadata.token_endpoint,jwks_uri:result.metadata.jwks_uri,clients_configured:Boolean(file.web_client_id&&file.desktop_client_id),login_tested:false,staging_auth_enabled:false,missing:['Google OAuth Web client ID and server-side secret','Google OAuth Desktop client ID','Consent screen and test-user configuration','Actual login implementation follows in step 14.1']};
+writeFileSync(new URL('../docs/evidence/google-identity-readiness.json',import.meta.url),JSON.stringify(proof,null,2)+'\n');console.log('Google discovery, JWKS and S256 verified. OAuth clients not configured; login remains disabled.');

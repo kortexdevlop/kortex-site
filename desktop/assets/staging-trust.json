@@ -1,25 +1,32 @@
 [
   {
     "root": {
-      "id": "dry-run-root",
-      "public_key_base64": "xlUPeGUhhF5EtdooGuM4nQEcyx1kGijFzHY3FoUWzOM="
+      "id": "staging-gate-root",
+      "public_key_base64": "xdMQkc3QUFof+akGs3w89eaYUUZ3kdCv+1y7BjUENG8="
     },
     "document": {
       "schema_version": 1,
       "version": 1,
-      "issued_at": 1793114862262,
-      "expires": 1793201263262,
-      "root_key_id": "dry-run-root",
+      "issued_at": 1793127690603,
+      "expires": 1793213863067,
+      "root_key_id": "staging-gate-root",
       "keys": [
         {
           "id": "dry-run-release",
-          "public_key_base64": "Fv5pkg+STEU7Q64xpTy0yI/lUpyW9GVRvDdUAE8Uat4=",
-          "not_before": 1793114862262,
-          "expires": 1793201263262,
+          "public_key_base64": "dIIBaInFhBCojjvxbCLfXCqmnsS4BUkhTUB32/mzlro=",
+          "not_before": 1793127462067,
+          "expires": 1793213863067,
+          "revoked": false
+        },
+        {
+          "id": "staging-release-95b59d5e",
+          "public_key_base64": "JyE7V7XxCCa6HM3rf91ZK0XsJaBvygI8u/FZ6Igmid0=",
+          "not_before": 1793127625172,
+          "expires": 1793214085172,
           "revoked": false
         }
       ],
-      "signature": "hMfVmeJDsmODmSIpwj8Jp0OGgF1N6IICQUaxPhHX9eYpfUJ8B+hEhLuX9BDrrkRadix4Sgup1zmJY4r2XQoPAg=="
+      "signature": "YJybC3NAY4dIzn7AEDuvhRKX4NuBi0zUXwuZwBsJNut4XLiqNNo4wlv0BnCOM4J7HQ6Z+fyX9hfgPljU6JcvDA=="
     },
     "minimum_version": 1
   },

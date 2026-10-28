@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-28",
+  "base_commit": "ad00aa5",
+  "step": "13.5",
+  "technical_status": "closed_windows_scope",
+  "windows": {
+    "date": "2026-10-28T03:21:22.693Z",
+    "tool_id": "desktop-update-549b4014",
+    "passed": true,
+    "five_tools": [
+      {
+        "id": "explorateur-csv",
+        "version": "1.0.0",
+        "sha256": "183f838f554846fe837650f6773cc5c935e02f86096c61a3dac7f5c5f111b662",
+        "installed_launched_uninstalled": true
+      },
+      {
+        "id": "timestamp-utc",
+        "version": "1.0.0",
+        "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
+        "installed_launched_uninstalled": true
+      },
+      {
+        "id": "calculateur-hash",
+        "version": "1.0.0",
+        "sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5",
+        "installed_launched_uninstalled": true
+      },
+      {
+        "id": "convertisseur-casse",
+        "version": "1.0.0",
+        "sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7",
+        "installed_launched_uninstalled": true
+      },
+      {
+        "id": "calculatrice",
+        "version": "1.0.0",
+        "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+        "installed_launched_uninstalled": true
+      }
+    ],
+    "hot_publication_after_app_start": true,
+    "verified_store_install": true,
+    "offline_ui_launch": true,
+    "permission_change_requires_confirmation": true,
+    "update_and_native_start": true,
+    "old_version_retained": true,
+    "manual_rollback": true,
+    "real_bad_guest_update_rejected": true,
+    "uninstall_preserves_data": true,
+    "purge_isolated_to_local_profile": true
+  },
+  "cleanup": {
+    "date": "2026-10-28T03:20:07.629Z",
+    "tool_id": "desktop-update-549b4014",
+    "staging_only": true,
+    "production_touched": false,
+    "mail_touched": false,
+    "published": [
+      "1.0.0",
+      "1.1.0",
+      "1.2.0"
+    ],
+    "uploaded": [
+      "1.0.0",
+      "1.1.0",
+      "1.2.0"
+    ],
+    "passed": true,
+    "desktop_binary_unchanged": true,
+    "fixtures_revoked": true,
+    "objects_removed": true,
+    "temporary_key_revoked": true,
+    "operator_policy_restored": true
+  },
+  "scope": {
+    "windows": "passed",
+    "macos": "excluded_by_owner_not_tested",
+    "linux": "excluded_by_owner_not_tested",
+    "firefox": "excluded_by_owner_not_tested"
+  },
+  "limitations": [
+    "Five public tools each installed/launched/rendered/uninstalled; updates exercised with sixth signed fixture",
+    "Native file picker dialogs remain manual; detailed guest vectors evidenced in phase12",
+    "Historical multi-OS final gate not claimed"
+  ],
+  "sha256": {
+    "docs/evidence/desktop-store135-artifacts.json": "fbfd17660c1c48136b78b062c6fb0f4e0b6833e6a08b8cac1fa58fd5aebe70bf",
+    "docs/evidence/desktop-store135-staging.json": "858238d127c46adb402ba83383a40bb9c5ebae8a620c574c0cf4c6be42143cc1",
+    "docs/evidence/desktop-store135-windows.json": "8b4c59c5c60a4b878a6a32fe57988676f3be851ac8ad8dd8beefa724dbdeb072",
+    "docs/evidence/desktop-store135-calculateur-hash.png": "f7936d70517a99dd99a920b1baf79c4d90e16c4b49b89ae621bdc842407f7615",
+    "docs/evidence/desktop-store135-calculatrice.png": "a3f085757fd095051612b00ceca77fbfa0ec377211cf15dfde0dcec4b08c80fa",
+    "docs/evidence/desktop-store135-convertisseur-casse.png": "195d7e807af183f35d57f17f79bc64a86e193512cfe0e7b2b546f902066d3180",
+    "docs/evidence/desktop-store135-explorateur-csv.png": "a176175c10aa1debbcfffe5922562ba91d650e4c3cf182c43552ae5b81a24fd1",
+    "docs/evidence/desktop-store135-permissions-windows.png": "9ddcb6adfbdc534ab970c13c4673632fa62d33aa617dbe70814cfe1b1bff1e8c",
+    "docs/evidence/desktop-store135-timestamp-utc.png": "36db88848c73560c08701f72f09b2aa76ce1db2dc57ab9acedb864331112261b",
+    "docs/evidence/desktop-store135-live.log": "da0ae041a6d0d70b3efb49b1e40e0d268d4c3ec5785ccf32cf3b6fc6a22e11d9",
+    "docs/evidence/desktop-store135-build.log": "062c1d081d61c17a6be007c7115aa75a295286ad524f6e74119667b2bc9ff9f2",
+    "target/debug/kortex-desktop.exe": "9ad0a9ee6465348e1286b56375a9908ea5a4bf2bdbb1c97fe68dffd434933a5c",
+    "docs/evidence/desktop-store135-calculator-trust.log": "b53b90ff7101ff32680e1db64b59d42e7d4e9fa546a8581cd26291ba03216323",
+    "docs/evidence/desktop-store135-rollback-windows.png": "f33657905f048ccc388d5f3c18d09076efacaa5d9723abfb6996c9491b30f172"
+  }
+}

@@ -1,5 +1,7 @@
 # Progression
 
+Lot 13.5–14.0 (28/10/2026) : 13.5 clos techniquement dans le périmètre Windows demandé ; cinq outils publics et sixième publié à chaud, aucun rebuild pendant publication, nettoyage confirmé. Linux/macOS non testés conformément à leur exclusion. 14.0 : Google choisi, schéma et contrôles préparés, 36 tests API réussis, types et migrations locales vérifiés, discovery/JWKS/S256 Google réels. Clôture 14.0 en attente des clients OAuth non encore créés selon le propriétaire ; connexion désactivée, aucun login réel revendiqué. Guide docs/AUTH.md. 14.1 non engagée. Statuts formels historiques conservés.
+
 Lot 13.2–13.4 techniquement terminé et clos le 28/10/2026 : téléchargement/installation signée et atomique, bibliothèque/désinstallation avec données conservées par défaut, mises à jour avec permissions explicites et retour arrière. 24 tests Rust et parcours réel Windows/Cloudflare réussis, ouverture hors connexion incluse. Ressources temporaires nettoyées et politique opérateur restaurée. Preuves : docs/evidence/desktop-13.2-13.4-validation.json. 13.5 non engagée ; statuts formels de revue humaine conservés. Les paragraphes suivants décrivent les lots historiques.
 
 Lot 12.6–13.1 techniquement réalisé et clos le 28/10/2026 sur demande du propriétaire : extension temporaire publiée/testée sans modification ou redéploiement des clients pendant publication, puis révoquée/nettoyée ; application Windows produit et Store relié à l’API réelle. Dix tests Rust ciblés, pipeline de signature, test navigateur Cloudflare et deux parcours Windows (connecté/hors connexion) réussis. Bibliothèque signée et paquet altéré refusé ; pagination testée sur 10 000 entrées synthétiques. Preuves : docs/evidence/desktop-phase13-validation.json. Pas de téléchargement/installation Store (13.2 non engagée). Les statuts formels historiques restent distincts de l’exécution technique, sans approbation visuelle inventée.
@@ -1326,6 +1328,44 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "technical_status": "closed",
     "closed_at": "2026-10-28",
     "authorization": "propriétaire : Enchaines ces 3 étapes, travaille de façon hyper intelligente pour avancer rapidement"
+  },
+  {
+    "id": "13.5",
+    "status": "pending",
+    "source_commit": "ad00aa5",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-13.5.md",
+    "tests_executed": "Windows réel : cinq outils installés/lancés/rendus/désinstallés, sixième publié pendant app ouverte sans rebuild ; conversion hors connexion, update/rollback/purge et nettoyage staging vérifiés. Linux/macOS exclus, non testés.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-store135-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaines ces 2 étapes rapidement"
+  },
+  {
+    "id": "14.0",
+    "status": "pending",
+    "source_commit": "ad00aa5",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-14.0.md",
+    "tests_executed": "36 tests API dont 8 identité, types et cinq migrations locales réussis ; Google discovery/JWKS/S256 réels vérifiés. Clients OAuth inexistants selon propriétaire ; aucune connexion testée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/identity-14.0-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "awaiting_external_configuration",
+    "remaining": [
+      "Clients OAuth Google Web et Desktop, consentement et configuration staging"
+    ],
+    "authorization": "propriétaire : Enchaines ces 2 étapes rapidement"
   }
 ]
 ```

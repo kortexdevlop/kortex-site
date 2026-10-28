@@ -1,0 +1,14 @@
+{
+  "provider": "google",
+  "selected_by": "owner: Google, 2026-10-28",
+  "enabled": false,
+  "issuer": "https://accounts.google.com",
+  "endpoint_origins": ["https://accounts.google.com", "https://oauth2.googleapis.com", "https://www.googleapis.com"],
+  "web_client_id": null,
+  "desktop_client_id": null,
+  "web_redirect_uri": "https://kortex-web-staging.userpgl.workers.dev/auth/callback",
+  "desktop_redirect_uri": "http://127.0.0.1:49152/callback",
+  "scopes": ["openid"],
+  "response_type": "code",
+  "code_challenge_method": "S256"
+}

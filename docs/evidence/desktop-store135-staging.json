@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-28T03:20:07.629Z",
+  "tool_id": "desktop-update-549b4014",
+  "staging_only": true,
+  "production_touched": false,
+  "mail_touched": false,
+  "published": [
+    "1.0.0",
+    "1.1.0",
+    "1.2.0"
+  ],
+  "uploaded": [
+    "1.0.0",
+    "1.1.0",
+    "1.2.0"
+  ],
+  "passed": true,
+  "desktop_binary_unchanged": true,
+  "fixtures_revoked": true,
+  "objects_removed": true,
+  "temporary_key_revoked": true,
+  "operator_policy_restored": true
+}

@@ -27,3 +27,6 @@
 /docs/evidence/extension-*.log text eol=lf
 /docs/evidence/desktop-*.json text eol=lf
 /docs/evidence/desktop-*.log text eol=lf
+/docs/evidence/identity-*.json text eol=lf
+/docs/evidence/identity-*.log text eol=lf
+/docs/evidence/google-*.json text eol=lf

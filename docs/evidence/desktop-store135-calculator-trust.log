@@ -1,0 +1,1 @@
+{"archive":"target/calc-remote.tool","sha256":"1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787","signature_verified":true,"tool_id":"calculatrice","trust_profile":"explicit-host-anchor","trust_version":1,"valid":true,"validation":{"files":4,"issues":[],"tool_id":"calculatrice","unpacked_bytes":264415,"valid":true,"version":"1.0.0"}}
