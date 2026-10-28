@@ -6,7 +6,8 @@ import {health} from './routes/health';
 import {tools} from './routes/tools';
 import {downloads} from './routes/downloads';
 import {admin} from './routes/admin';
-export async function handle(request:Request,bindings:unknown):Promise<Response> {
+import {auth} from './routes/auth';
+export async function handle(request:Request,bindings:unknown,viaWeb=false):Promise<Response> {
  const id=requestId(request),head=request.method==='HEAD';
  try {
   const env=validateEnv(bindings);if(!env)return failure('UNAVAILABLE','Service configuration unavailable',503,id,undefined,head);
@@ -23,6 +24,7 @@ export async function handle(request:Request,bindings:unknown):Promise<Response>
    if(!['GET','HEAD'].includes(request.method))return failure('BAD_REQUEST','Method not allowed',405,id,origin,head,{Allow:'GET, HEAD, OPTIONS'});
    return health(request,id,origin);
   }
+  const authentication=await auth(request,env,id,viaWeb);if(authentication)return authentication;
   const administration=await admin(request,env,id,origin);if(administration)return administration;
   const catalog=await tools(request,env,id,origin);if(catalog)return catalog;
   const download=await downloads(request,env,id,origin);if(download)return download;
@@ -32,3 +34,5 @@ export async function handle(request:Request,bindings:unknown):Promise<Response>
 export default {fetch(request:Request,env:Env){return handle(request,env)}} satisfies ExportedHandler<Env>;
 
 export class SitemapService extends WorkerEntrypoint<Env>{fetch(request:Request){return sitemap(request,this.env);}}
+// Only the Web Worker binds this entrypoint. No HTTP header can select it.
+export class AuthService extends WorkerEntrypoint<Env>{fetch(request:Request){return handle(request,this.env,true);}}

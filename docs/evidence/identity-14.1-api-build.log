@@ -1,0 +1,13 @@
+
+ ⛅️ wrangler 4.152.0 (update available 4.154.0)
+───────────────────────────────────────────────
+Active profile: kortex
+Total Upload: 1082.75 KiB / gzip: 158.96 KiB
+Your Worker has access to the following bindings:
+Binding                                              Resource
+env.DB (kortex-catalog-local)                        D1 Database
+env.TOOLS_BUCKET (kortex-tools-local)                R2 Bucket
+env.KORTEX_ENV ("local")                             Environment Variable
+env.PUBLIC_WEB_ORIGIN ("http://localhost:4321")      Environment Variable
+
+--dry-run: exiting now.

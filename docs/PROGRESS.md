@@ -1,5 +1,7 @@
 # Progression
 
+Étape 14.1 (28/10/2026) : implémentation locale terminée sur demande explicite du propriétaire. Connexion PKCE, callback anti-rejeu, signatures/claims, sessions/cookies sécurisés, CSRF/logout, relais Astro privé et identité Desktop en lecture seule. 47 tests API, 13 tests proxy, 3 contrats réussis ; types, analyse Astro, builds et six migrations locales vérifiés. Validation réelle Google et clôture staging en attente des clients OAuth toujours inexistants ; connexion désactivée, aucun déploiement ni login réel revendiqué. Preuves : docs/evidence/identity-14.1-validation.json. 14.2 non engagée.
+
 Lot 13.5–14.0 (28/10/2026) : 13.5 clos techniquement dans le périmètre Windows demandé ; cinq outils publics et sixième publié à chaud, aucun rebuild pendant publication, nettoyage confirmé. Linux/macOS non testés conformément à leur exclusion. 14.0 : Google choisi, schéma et contrôles préparés, 36 tests API réussis, types et migrations locales vérifiés, discovery/JWKS/S256 Google réels. Clôture 14.0 en attente des clients OAuth non encore créés selon le propriétaire ; connexion désactivée, aucun login réel revendiqué. Guide docs/AUTH.md. 14.1 non engagée. Statuts formels historiques conservés.
 
 Lot 13.2–13.4 techniquement terminé et clos le 28/10/2026 : téléchargement/installation signée et atomique, bibliothèque/désinstallation avec données conservées par défaut, mises à jour avec permissions explicites et retour arrière. 24 tests Rust et parcours réel Windows/Cloudflare réussis, ouverture hors connexion incluse. Ressources temporaires nettoyées et politique opérateur restaurée. Preuves : docs/evidence/desktop-13.2-13.4-validation.json. 13.5 non engagée ; statuts formels de revue humaine conservés. Les paragraphes suivants décrivent les lots historiques.
@@ -1366,6 +1368,28 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       "Clients OAuth Google Web et Desktop, consentement et configuration staging"
     ],
     "authorization": "propriétaire : Enchaines ces 2 étapes rapidement"
+  },
+  {
+    "id": "14.1",
+    "status": "pending",
+    "source_commit": "53a0c02",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-14.1.md",
+    "tests_executed": "47 tests API dont 11 nouveaux scénarios auth, 13 tests proxy, 3 contrats ; types, analyse Astro (54 fichiers sans erreur), builds API/Web et six migrations locales réussis. RSA et D1 réels, transport IdP contrôlé. Pas de login Google réel ni déploiement.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/identity-14.1-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "awaiting_real_google_validation",
+    "implementation_status": "complete_local",
+    "remaining": [
+      "Clients OAuth Google Web/Desktop et consentement",
+      "Secrets serveur, déploiement staging et login réel navigateur/cookies/logout"
+    ],
+    "authorization": "propriétaire : Enchaine la prochaine étape rapidement ; Termine"
   }
 ]
 ```

@@ -1,0 +1,21 @@
+✔ real schemas validate demo summaries, stable category colors and reject hostile metadata (3.5129ms)
+✔ SSR client sends only an absolute binding request and validates bounded API responses (59.8994ms)
+✔ same-origin read proxy strips spoofable auth headers, preserves cookies privately and streams bytes (5.4721ms)
+✔ detail and actions clients accept schema-valid API envelopes (7.3039ms)
+✔ detail refuses a descriptor that does not match the requested identity, version or digest (3.1726ms)
+✔ a binding that never responds cannot hold SSR or the proxy open indefinitely (4005.7264ms)
+✔ proxy rejects foreign origins, writes, admin paths, redirects and unsafe session cookies (3.7778ms)
+✔ canonical URLs remain on the configured HTTPS origin (0.601ms)
+✔ proxy accepts numeric-leading IDs and encoded SemVer build metadata without losing integrity headers (3.1895ms)
+✔ auth uses a dedicated binding and strips bearer, forwarded-host and operator headers (58.4956ms)
+✔ auth forwards only safe logout context and refuses another origin or cross-site initiation (3.2187ms)
+✔ Google navigation and OAuth callback redirects are narrowly allowed with no-referrer (5.5159ms)
+✔ auth cookie forwarding requires host-only Kortex names, Secure, HttpOnly, exact Path and SameSite (4.5257ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4380.4262

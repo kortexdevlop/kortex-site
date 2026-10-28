@@ -1,5 +1,21 @@
 # Identité facultative — étape 14.0
 
+## État actuel — 14.1, 28/10/2026
+
+Connexion Web, callback, sessions et déconnexion implémentés et testés localement. Aucun déploiement ni login Google réel : les deux clients OAuth restent à créer. La configuration suivie reste désactivée. Les sections 14.0 ci-dessous décrivent le point de départ historique ; les flux décrits comme futurs y sont maintenant implémentés, sauf interface de connexion Desktop et synchronisation, hors 14.1.
+
+Endpoints : GET /api/v1/auth/login, GET /api/v1/auth/callback, POST /api/v1/auth/logout, GET /api/v1/me. Le callback déjà prévu /auth/callback est un alias Astro vers le même service. Le Web Worker utilise le binding privé AUTH_WORKER et l'entrypoint AuthService, distinct du catalogue et de l'API HTTP publique. Aucun header fourni par un client ne sélectionne cet entrypoint. Les routes de cookie directes sur l'API publique sont refusées.
+
+L'échange de code est effectué par l'API Worker derrière le relais Web : OIDC_WEB_CLIENT_SECRET et SESSION_HMAC_SECRET sont des secrets serveur de l'API. Le Web Worker ne reçoit ni clé ni jeton Google. Son relais ne transmet que cookies et contexte CSRF autorisé ; redirections limitées à Google pour login et à /app pour succès. Cookies __Host-kortex_session et __Host-kortex_oidc : Secure, HttpOnly, SameSite=Lax, Path=/, sans Domain. Le relais refuse toute autre forme de cookie. Aucun bearer transmis depuis le navigateur Web ou l'iframe runtime.
+
+Migration additive 0006_auth_flows.sql : état, navigateur et nonce HMAC-hachés, vérificateur PKCE chiffré AES-GCM, configuration liée à la transaction, expiration dix minutes. La consommation atomique DELETE RETURNING précède l'échange et interdit le rejeu, y compris concurrent. Réponses réseau bornées, délai, absence de redirections HTTP et vérification RSA/RS256 avec clés JWKS épinglées au fournisseur ; issuer, audience, azp, exp, iat, nbf et nonce contrôlés. Une réponse échouée ne peut pas être retentée avec le même état. Aucun rapprochement par email.
+
+Nouvelle session aléatoire à chaque callback réussi, ancienne session révoquée. HMAC seul stocké en D1, durée sept jours. /me retourne seulement user{id,sync_enabled}, authentication, scopes et, pour le Web, un csrf_token dérivé de la session. Déconnexion : Origin exact + X-CSRF-Token obligatoire, révocation D1 puis effacement du cookie. Réponses privées no-store/no-referrer, aucune donnée de session transmise au runtime iframe.
+
+Le bearer Desktop est limité à la lecture /me d'une identité déjà connue : ID token Google signé, audience du client Desktop, scope interne fixe identity:read. Aucun droit d'écriture, synchronisation, administration ou session-cookie n'est déduit d'un ID token ; le scope Google openid n'est pas traité comme un droit API. Le flux Desktop et les futurs droits supplémentaires restent hors de cette étape. L'expiration Google borne ce bearer de lecture ; logout révoque la session Web, pas un ID token Google externe.
+
+Preuves : docs/evidence/identity-14.1-validation.json. 47 tests API dont 11 nouveaux scénarios d'authentification et 8 contrôles de schéma/configuration ; 13 tests ciblés de relais Web ; trois tests de contrats. Signature RSA et base D1 émulée réelles ; transport du fournisseur contrôlé dans les tests, explicitement distinct de Google. Types, analyse Astro et builds local API/Web vérifiés. Le login Google et le comportement des cookies dans un navigateur face à Google restent à vérifier après provisionnement. Aucun mock ou mode de contournement configuré dans le produit. 14.2 non engagée.
+
 Google choisi par le propriétaire le 28/10/2026. Configuration publique : `infra/identity/google-staging.json`. Connexion désactivée tant que les clients réels ne sont pas fournis et que 14.1 n'implémente pas les flux. Aucun compte réel créé ; aucun jeton accepté par le code de cette étape. Le catalogue et l'application anonyme restent accessibles. Aucune dépendance de connexion pour les outils locaux.
 
 ## Configuration et reprise

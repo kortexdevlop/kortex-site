@@ -1,25 +1,86 @@
 {
-  "$schema":"./node_modules/wrangler/config-schema.json",
-  "name":"kortex-web-local",
-  "main":"@astrojs/cloudflare/entrypoints/server",
-  "compatibility_date":"2026-10-26",
-  "compatibility_flags":["nodejs_compat"],
-  "workers_dev":false,
-  "preview_urls":false,
-  "send_metrics":false,
-  "assets":{"directory":"./dist/client", "binding":"ASSETS"},
-  "vars":{"WEB_ORIGIN":"http://127.0.0.1:4321", "PUBLIC_RUN_ORIGIN":""},
-  "services":[{"binding":"API_WORKER", "service":"kortex-api-local"},{"binding":"SITEMAP_WORKER","service":"kortex-api-local","entrypoint":"SitemapService"}],
-  "env":{
-    "staging":{
-      "name":"kortex-web-staging", "workers_dev":true,
-      "vars":{"WEB_ORIGIN":"https://kortex-web-staging.userpgl.workers.dev", "PUBLIC_RUN_ORIGIN":"https://kortex-run-staging.userpgl.workers.dev"},
-      "services":[{"binding":"API_WORKER", "service":"kortex-api-staging"},{"binding":"SITEMAP_WORKER","service":"kortex-api-staging","entrypoint":"SitemapService"}]
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kortex-web-local",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-10-26",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": false,
+  "preview_urls": false,
+  "send_metrics": false,
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "WEB_ORIGIN": "http://127.0.0.1:4321",
+    "PUBLIC_RUN_ORIGIN": ""
+  },
+  "services": [
+    {
+      "binding": "API_WORKER",
+      "service": "kortex-api-local"
     },
-    "production":{
-      "name":"kortex-web-production", "workers_dev":false,
-      "vars":{"WEB_ORIGIN":"https://kortex.site", "PUBLIC_RUN_ORIGIN":"https://run.kortex.site"},
-      "services":[{"binding":"API_WORKER", "service":"kortex-api-production"},{"binding":"SITEMAP_WORKER","service":"kortex-api-production","entrypoint":"SitemapService"}]
+    {
+      "binding": "SITEMAP_WORKER",
+      "service": "kortex-api-local",
+      "entrypoint": "SitemapService"
+    },
+    {
+      "binding": "AUTH_WORKER",
+      "service": "kortex-api-local",
+      "entrypoint": "AuthService"
+    }
+  ],
+  "env": {
+    "staging": {
+      "name": "kortex-web-staging",
+      "workers_dev": true,
+      "vars": {
+        "WEB_ORIGIN": "https://kortex-web-staging.userpgl.workers.dev",
+        "PUBLIC_RUN_ORIGIN": "https://kortex-run-staging.userpgl.workers.dev"
+      },
+      "services": [
+        {
+          "binding": "API_WORKER",
+          "service": "kortex-api-staging"
+        },
+        {
+          "binding": "SITEMAP_WORKER",
+          "service": "kortex-api-staging",
+          "entrypoint": "SitemapService"
+        },
+        {
+          "binding": "AUTH_WORKER",
+          "service": "kortex-api-staging",
+          "entrypoint": "AuthService"
+        }
+      ]
+    },
+    "production": {
+      "name": "kortex-web-production",
+      "workers_dev": false,
+      "vars": {
+        "WEB_ORIGIN": "https://kortex.site",
+        "PUBLIC_RUN_ORIGIN": "https://run.kortex.site"
+      },
+      "services": [
+        {
+          "binding": "API_WORKER",
+          "service": "kortex-api-production"
+        },
+        {
+          "binding": "SITEMAP_WORKER",
+          "service": "kortex-api-production",
+          "entrypoint": "SitemapService"
+        },
+        {
+          "binding": "AUTH_WORKER",
+          "service": "kortex-api-production",
+          "entrypoint": "AuthService"
+        }
+      ]
     }
   }
 }

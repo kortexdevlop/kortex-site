@@ -1,5 +1,6 @@
 import {isToolList,isToolDetail,isToolActions,type ToolList,type ToolDetail,type ToolActions} from './tools.ts';
-export interface ServiceBinding {fetch(request:Request):Promise<Response>;}
+import type {ServiceBinding} from './service-binding.ts';
+export type {ServiceBinding} from './service-binding.ts';
 export class ApiUnavailable extends Error {status:number;constructor(status=503){super('Catalogue indisponible');this.status=status;}}
 export class ApiClient {
   private binding?:ServiceBinding;private browserFetch:typeof fetch;
