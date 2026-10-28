@@ -1397,7 +1397,7 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       {
         "id": "email-password",
         "source_commit": "aee812d",
-        "result_commit": null,
+        "result_commit": "8382795",
         "technical_status": "closed_staging",
         "closed_at": "2026-10-28",
         "authorization": "Avant de passer à 14.2, ajoute la connexion / inscription via email mot de passe",
