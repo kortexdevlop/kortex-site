@@ -7,3 +7,7 @@ Réalisé : `build --all` et `validate --all` canoniques réussis pour les cinq 
 Non réalisé : publication de l’outil 5. `scripts/publish-phase12-staging.mjs` (restreint à cet outil) s’arrête sur `D1_ERROR: exceeded D1's free tier daily row read limit` avant toute écriture ; la politique d’administration temporaire est restaurée et le site n’a pas été redéployé (docs/evidence/phase12-csv-staging.json). Le catalogue staging liste quatre outils. Une relance après réinitialisation du quota (minuit UTC) ou un changement de plan, décision du propriétaire du compte, est nécessaire pour : publier, ouvrir depuis le site, rejouer le test Cloudflare du CSV avec origine d’exécution dédiée.
 
 Autres limites : WebKit non exécuté ; `cargo test --workspace` voir PROGRESS.md ; calculatrice non rejouée dans WebView2 (preuve des phases 7 à 9). Aucune validation humaine formelle inventée.
+
+## Mise à jour 2026-10-28
+
+Après réinitialisation du quota D1, `scripts/publish-phase12-staging.mjs` (restreint à `explorateur-csv`) a publié l’outil 5 sur le staging (sha256 183f838f…, `passed: true`, site non redéployé, politique restaurée ; docs/evidence/phase12-staging.json). Non rejoué : test Cloudflare du CSV avec origine d’exécution dédiée et ouverture depuis le site. Le statut formel reste pending.

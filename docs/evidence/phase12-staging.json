@@ -1,15 +1,23 @@
 {
-  "date": "2026-10-27T23:01:02.031Z",
+  "date": "2026-10-28T01:30:19.285Z",
   "staging_only": true,
   "production_touched": false,
   "mail_touched": false,
   "api_origin": "https://kortex-api-staging.userpgl.workers.dev",
   "web_origin": "https://kortex-web-staging.userpgl.workers.dev",
   "run_origin": "https://kortex-run-staging.userpgl.workers.dev",
-  "tools": [],
-  "passed": false,
+  "tools": [
+    {
+      "id": "explorateur-csv",
+      "version": "1.0.0",
+      "sha256": "183f838f554846fe837650f6773cc5c935e02f86096c61a3dac7f5c5f111b662",
+      "r2_key": "tools/explorateur-csv/1.0.0/183f838f554846fe837650f6773cc5c935e02f86096c61a3dac7f5c5f111b662.tool",
+      "published": true
+    }
+  ],
+  "passed": true,
   "ci": "local controlled operator; canonical builder/signature/verification; not GitHub OIDC",
   "site_deployment_before": "f5912646-b1f6-4b46-b31d-aa9f30b0053c",
-  "error": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+  "site_deployment_after": "f5912646-b1f6-4b46-b31d-aa9f30b0053c",
   "operator_policy_restored": true
 }
