@@ -1,0 +1,33 @@
+   Compiling kortex-xtask v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 35.93s
+     Running `target\debug\kortex-xtask.exe validate --all`
+{
+  "command": "validate",
+  "results": [
+    {
+      "files": 4,
+      "tool_id": "calculateur-hash",
+      "valid": true
+    },
+    {
+      "files": 4,
+      "tool_id": "calculatrice",
+      "valid": true
+    },
+    {
+      "files": 4,
+      "tool_id": "convertisseur-casse",
+      "valid": true
+    },
+    {
+      "files": 4,
+      "tool_id": "explorateur-csv",
+      "valid": true
+    },
+    {
+      "files": 4,
+      "tool_id": "timestamp-utc",
+      "valid": true
+    }
+  ]
+}

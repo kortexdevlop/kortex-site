@@ -174,7 +174,7 @@ Les plafonds B.2 restent inchangés : ZIP 25 MiB et module WASM 20 MiB. Le proto
 
 Le banc 3.3 accepte volontairement un sous-ensemble ZIP strict : méthodes stored/deflate, noms ASCII relatifs déclarés, entrées uniques, aucun chiffrement, descriptor de données, ZIP64 ou multidisque. Ce sous-ensemble expérimental ne définit pas encore tous les octets du ZIP canonique de l'étape 8. La preuve de signature est externe à l'archive et vérifiée avant décompression ; les clés éphémères des tests MUST NOT être réutilisées comme clés de confiance produit.
 
-Le runtime iframe MUST utiliser une origine distincte et vérifier event.origin, event.source et nonce de session. sandbox allow-scripts allow-same-origin n'est admis que sur cette origine distincte. Tout postMessage MUST cibler l'origine exacte ; aucune permission de navigation top n'est accordée. La CSP de prototype restreint les scripts inline par nonce, Worker/connect à self et frame-ancestors au parent attendu. La CSP de production sera construite aux étapes responsables.
+Le runtime iframe MUST utiliser une origine distincte et vérifier event.origin, event.source et nonce de session. sandbox allow-scripts allow-same-origin allow-downloads n'est admis que sur cette origine distincte. Tout postMessage MUST cibler l'origine exacte ; aucune permission de navigation top n'est accordée. La CSP de prototype restreint les scripts inline par nonce, Worker/connect à self et frame-ancestors au parent attendu. La CSP de production sera construite aux étapes responsables.
 
 ## État du gel à la revue 3.4 — 23 octobre 2026
 
@@ -245,3 +245,5 @@ Seule /api/v1/health est implémentée à ce stade, avec GET/HEAD ; les routes c
 ## Implémentation catalogue 9.3
 
 L'état d'implémentation ci-dessus décrit le point initial 9.2. Les GET/HEAD liste, détail et actions existent maintenant sous /api/v1/tools, selon les DTO candidats inchangés. Les accès Cloudflare ont été rétablis puis l'ancien projet supprimé à la demande du propriétaire, avec exception pour la messagerie. Le nouveau catalogue demeure local, sans provisionnement distant. Les paramètres (dont tag exact unique), le curseur HMAC serveur et le cache conditionnel sont décrits dans api/README.md. Aucun schéma public ou format gelé n'est modifié ; les lectures ne remplacent pas la vérification de publication du futur service.
+
+Amendement du 28/10/2026 (clôture 12.3–12.5 demandée par le propriétaire) : allow-downloads permet la capacité file.save après consentement explicite du courtier de permissions. Les scripts des outils restent exécutés dans le Worker Wasm ; aucun accès direct au DOM, aucune navigation top ni ouverture de fenêtre supplémentaire.

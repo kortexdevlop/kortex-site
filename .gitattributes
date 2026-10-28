@@ -18,3 +18,6 @@
 /docs/evidence/search-staging-benchmark.json text eol=lf
 
 /docs/evidence/phase12-*.json text eol=lf
+/docs/evidence/phase12-*.log text eol=lf
+/docs/evidence/phase12-csv-export.csv -text
+/docs/evidence/five-tools-* text eol=lf

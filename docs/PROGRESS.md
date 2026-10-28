@@ -1,8 +1,8 @@
 # Progression
 
-Lot 12.3–12.5 réalisé en partie sur instruction du propriétaire (« Enchaîne les 3 prochaines étapes ») : explorateur CSV (parseur strict en flux, statistiques, interface à onglets, graphique SVG, export `file.save`, fichiers récents `storage.*`) et matrice des cinq outils sur Web et Windows. Paquet de l’outil 5 construit, validé, signé et vérifié ; 14 tests Rust CSV, 4 tests Wasmtime Windows (dont lecture disque de 880 Ko et stockage persistant après redémarrage), 9 essais Chromium locaux (Chrome système), 4 interfaces WebView2 et 9 vecteurs identiques Web/Wasmtime sur les cinq outils réussis. **Non terminé : la publication de l’outil 5 sur le staging est bloquée par le quota gratuit quotidien de lectures D1** (aucune ressource écrite, politique temporaire restaurée) ; le test Cloudflare du CSV et l’ouverture depuis le site restent à rejouer. `cargo test --workspace` n’a pas pu aller au bout : disque C: plein (erreur 112 à la compilation). WebKit non exécuté (aucun navigateur Playwright installé). Statuts formels pending, sans validation humaine inventée. Phase 12.6 non engagée. Linux/macOS et Firefox exclus.
+Lot 12.3–12.5 techniquement terminé et clos le 28/10/2026 sur demande du propriétaire. Explorateur CSV publié ; export réel corrigé et vérifié, stockage IndexedDB réel relu après rechargement avec permission navigateur, refus et absence de persistance couverts. Cinq paquets signés démarrent sur le vrai site Cloudflare ; neuf vecteurs partagés Web/Wasmtime. Build/validate des cinq outils et suite Rust complète réussis en série (125 tests, 1 ignorés explicitement), 3 essais Cloudflare de clôture réussis. Preuves : docs/evidence/phase12-closure.json. Le quota D1 et le disque plein sont des incidents historiques résolus. Les statuts de revue humaine historique restent distincts ; aucune approbation visuelle inventée. 12.6 non engagée. Production, DNS et messagerie intacts.
 
-Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de casse Unicode, SHA-256 de fichier local et dates UTC/Unix. Trois paquets canoniques signés/vérifiés et publiés réellement sur le staging existant ; site non reconstruit, DNS/production/messagerie inchangés. 9 tests Rust, 2 tests Wasmtime Windows, 12 essais navigateur locaux/distants Chromium/WebKit et 3 interfaces Windows réussis. Vrais fichiers, handles/permissions, annulation, dates négatives/overflow et sorties UI/actions vérifiés ; clés privées en mémoire uniquement. Les mêmes SHA sont tracés localement, sur Cloudflare et dans WebView2. Le dialogue Windows de sélection positive n’est pas automatisé : sélection de fichier contrôlée à sa frontière, avec vraies lectures et permissions du backend. Statuts formels pending derrière la revue visuelle existante, sans validation humaine inventée. Phase 12.3 non engagée. Linux/macOS et Firefox exclus.
+Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de casse Unicode, SHA-256 de fichier local et dates UTC/Unix. Trois paquets canoniques signés/vérifiés et publiés réellement sur le staging existant ; site non reconstruit, DNS/production/messagerie inchangés. 9 tests Rust, 2 tests Wasmtime Windows, 12 essais navigateur locaux/distants Chromium/WebKit et 3 interfaces Windows réussis. Vrais fichiers, handles/permissions, annulation, dates négatives/overflow et sorties UI/actions vérifiés ; clés privées en mémoire uniquement. Les mêmes SHA sont tracés localement, sur Cloudflare et dans WebView2. Le dialogue Windows de sélection positive n’est pas automatisé : sélection de fichier contrôlée à sa frontière, avec vraies lectures et permissions du backend. Statuts formels pending derrière la revue visuelle existante, sans validation humaine inventée. État historique au 27/10/2026 ; le lot suivant est clos ci-dessus. Linux/macOS et Firefox exclus.
 
 ```json
 [
@@ -1131,18 +1131,26 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-12.3.md",
-    "tests_executed": "9 tests Rust du parseur et des statistiques (citations, 11 entrées hostiles, bornes 5000x50, nombres stricts, statistiques dorées, indépendance du découpage en blocs, chemin décimal rapide). Défaut de budget d’instructions Wasm trouvé et corrigé par un parseur en flux. Statut formel pending.",
+    "tests_executed": "125 tests Rust workspace réussis en série (1 ignorés explicites), 14 tests CSV, 4 tests Wasmtime phase12, build/validate cinq outils, 5 démarrages Web locaux, 9 vecteurs Web/Wasmtime, 3 tests Cloudflare (export réel, refus, stockage/rechargement et cinq outils). Clôture technique complète ; revue humaine historique conservée sans approbation inventée.",
     "contract_changes": [],
     "evidence": [
+      "docs/evidence/phase12-closure.json",
+      "docs/evidence/phase12-closure.json",
       "docs/evidence/phase12-csv-chromium.png",
       "docs/evidence/phase12-csv-local-playwright-chromium.json",
       "docs/evidence/phase12-windows.json",
       "docs/evidence/phase12-windows-explorateur-csv.png",
       "docs/evidence/five-tools-web.json",
       "docs/evidence/five-tools-matrix.md",
-      "docs/evidence/phase12-csv-staging.json"
+      "docs/evidence/phase12-staging.json",
+      "docs/evidence/phase12-csv-staging-playwright.json",
+      "docs/evidence/phase12-staging.json",
+      "docs/evidence/phase12-csv-staging-playwright.json"
     ],
-    "frozen": false
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "closure_request": "propriétaire : Termines les correctement et clotures les avant de passer à la suite"
   },
   {
     "id": "12.4",
@@ -1152,18 +1160,28 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-12.4.md",
-    "tests_executed": "5 tests Rust d’interface, 1 test Chromium local (vrai sélecteur, export, refus, stockage fermé sans origine dédiée, aucun trafic réseau), 2 tests Wasmtime Windows (fichier disque, refus file.save, stockage persistant après redémarrage), interface WebView2. WebKit et dialogues natifs Windows non automatisés. Statut formel pending.",
-    "contract_changes": [],
+    "tests_executed": "125 tests Rust workspace réussis en série (1 ignorés explicites), 14 tests CSV, 4 tests Wasmtime phase12, build/validate cinq outils, 5 démarrages Web locaux, 9 vecteurs Web/Wasmtime, 3 tests Cloudflare (export réel, refus, stockage/rechargement et cinq outils). Clôture technique complète ; revue humaine historique conservée sans approbation inventée.",
+    "contract_changes": [
+      "KTX-WEB-ORIGIN-001 : allow-downloads ajouté au sandbox pour file.save après consentement, sur demande explicite de corriger et clôturer."
+    ],
     "evidence": [
+      "docs/evidence/phase12-closure.json",
+      "docs/evidence/phase12-closure.json",
       "docs/evidence/phase12-csv-chromium.png",
       "docs/evidence/phase12-csv-local-playwright-chromium.json",
       "docs/evidence/phase12-windows.json",
       "docs/evidence/phase12-windows-explorateur-csv.png",
       "docs/evidence/five-tools-web.json",
       "docs/evidence/five-tools-matrix.md",
-      "docs/evidence/phase12-csv-staging.json"
+      "docs/evidence/phase12-staging.json",
+      "docs/evidence/phase12-csv-staging-playwright.json",
+      "docs/evidence/phase12-staging.json",
+      "docs/evidence/phase12-csv-staging-playwright.json"
     ],
-    "frozen": false
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "closure_request": "propriétaire : Termines les correctement et clotures les avant de passer à la suite"
   },
   {
     "id": "12.5",
@@ -1173,18 +1191,26 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-12.5.md",
-    "tests_executed": "build --all et validate --all réussis pour les cinq outils ; matrice 5x2 : 5/5 démarrages Web, 9/9 vecteurs identiques Web et Wasmtime, 4 interfaces WebView2 ; aucun identifiant d’outil dans hôte, catalogue, API. Publication staging de l’outil 5 NON réalisée (quota D1 gratuit) ; cargo test --workspace non terminé (disque plein). Étape non satisfaite, statut pending.",
+    "tests_executed": "125 tests Rust workspace réussis en série (1 ignorés explicites), 14 tests CSV, 4 tests Wasmtime phase12, build/validate cinq outils, 5 démarrages Web locaux, 9 vecteurs Web/Wasmtime, 3 tests Cloudflare (export réel, refus, stockage/rechargement et cinq outils). Clôture technique complète ; revue humaine historique conservée sans approbation inventée.",
     "contract_changes": [],
     "evidence": [
+      "docs/evidence/phase12-closure.json",
+      "docs/evidence/phase12-closure.json",
       "docs/evidence/phase12-csv-chromium.png",
       "docs/evidence/phase12-csv-local-playwright-chromium.json",
       "docs/evidence/phase12-windows.json",
       "docs/evidence/phase12-windows-explorateur-csv.png",
       "docs/evidence/five-tools-web.json",
       "docs/evidence/five-tools-matrix.md",
-      "docs/evidence/phase12-csv-staging.json"
+      "docs/evidence/phase12-staging.json",
+      "docs/evidence/phase12-csv-staging-playwright.json",
+      "docs/evidence/phase12-staging.json",
+      "docs/evidence/phase12-csv-staging-playwright.json"
     ],
-    "frozen": false
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "closure_request": "propriétaire : Termines les correctement et clotures les avant de passer à la suite"
   }
 ]
 ```

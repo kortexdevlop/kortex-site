@@ -1,0 +1,187 @@
+{
+  "date": "2026-10-28T01:55:43.670Z",
+  "steps": [
+    "12.3",
+    "12.4",
+    "12.5"
+  ],
+  "technical_status": "closed",
+  "next_step_started": false,
+  "staging_only": true,
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false,
+  "website_version": "c18c4f20-3a2d-4f55-9e67-9b66d4107534",
+  "checks": {
+    "workspace": {
+      "command": "cargo test --workspace --locked --offline -- --test-threads=1",
+      "passed": 125,
+      "failed": 0,
+      "ignored": 1,
+      "suites": 56
+    },
+    "canonical_build_all": true,
+    "canonical_validate_all": true,
+    "rebuilt_guest_hashes_match_all_five_signed_archives": true,
+    "web_local_tools": 5,
+    "shared_vectors_web_and_native": 9,
+    "cloudflare_tests": 3,
+    "website_diagnostics": 0,
+    "website_node_tests": 16,
+    "secrets_tests": 6,
+    "tool_specific_host_branches": 0
+  },
+  "export": {
+    "downloaded": true,
+    "content_equals_action": true,
+    "denied_download_absent": true,
+    "sha256": "a208e802c01a77a5e90ad982c37704abbb455ea1c037d095769e36f0f344a7cd"
+  },
+  "storage": {
+    "backend": "real IndexedDB",
+    "profile": "isolated temporary Chrome profile removed after test",
+    "browser_permission": "persistent-storage via Browser.setPermission in test browser only",
+    "api_mocks": false,
+    "reload_and_read": true,
+    "user_denial": true,
+    "unavailable_without_browser_persistence": true
+  },
+  "tools": [
+    {
+      "tool_id": "calculatrice",
+      "version": "1.0.0",
+      "package_sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787",
+      "guest_sha256": "f095744f63b9594af61c02a6a515f2ad7ddab0ca3d5e7ccbcc9120a78f850c50",
+      "permissions": [],
+      "actions": [
+        {
+          "action": "add",
+          "passed": true
+        },
+        {
+          "action": "divide",
+          "passed": true
+        }
+      ],
+      "started": true
+    },
+    {
+      "tool_id": "convertisseur-casse",
+      "version": "1.0.0",
+      "package_sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7",
+      "guest_sha256": "7c0345eb1d2efd5e28783ecffaffbfa2f6738b3b98dd4a6b85d30087ad2ac00c",
+      "permissions": [],
+      "actions": [
+        {
+          "action": "upper",
+          "passed": true
+        },
+        {
+          "action": "title",
+          "passed": true
+        }
+      ],
+      "started": true
+    },
+    {
+      "tool_id": "calculateur-hash",
+      "version": "1.0.0",
+      "package_sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5",
+      "guest_sha256": "701b38100ea30d2ca669fb79067868167ed772bff4d70a0aeebb6e2c693714e2",
+      "permissions": [
+        "file.pick",
+        "file.read"
+      ],
+      "actions": [
+        {
+          "action": "sha256_bytes",
+          "passed": true
+        }
+      ],
+      "started": true
+    },
+    {
+      "tool_id": "timestamp-utc",
+      "version": "1.0.0",
+      "package_sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46",
+      "guest_sha256": "dbd029d4ea263bf3cd7fc7bb513cfabca3c0aeb7eafbe090937bfd0336856c47",
+      "permissions": [],
+      "actions": [
+        {
+          "action": "from_unix",
+          "passed": true
+        },
+        {
+          "action": "to_unix",
+          "passed": true
+        }
+      ],
+      "started": true
+    },
+    {
+      "tool_id": "explorateur-csv",
+      "version": "1.0.0",
+      "package_sha256": "183f838f554846fe837650f6773cc5c935e02f86096c61a3dac7f5c5f111b662",
+      "guest_sha256": "0b8561e2b1da16c96a96a89b70e94c58acff7b25d8c7dee7c44c6b058d9a18fa",
+      "permissions": [
+        "file.pick",
+        "file.read",
+        "file.save",
+        "storage.read",
+        "storage.write"
+      ],
+      "actions": [
+        {
+          "action": "summarize_csv",
+          "passed": true
+        },
+        {
+          "action": "export_report",
+          "passed": true
+        }
+      ],
+      "started": true
+    }
+  ],
+  "limits": [
+    "Linux/macOS and Firefox excluded by owner",
+    "WebKit not replayed in this lot",
+    "Positive native file dialogs not automated; native backend and permission denials exercised",
+    "Previous parallel workspace run timed out while loading signed guests; serial rerun passes without changing runtime deadlines",
+    "Historical visual approval gate remains separate from technical closure"
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/phase12-workspace-closure.log",
+      "sha256": "f8d9cb9262d78f1c682c4afe31cd62b228f3f9fc5d824894699bbe5a7e3a9d6d"
+    },
+    {
+      "path": "docs/evidence/phase12-build-closure.log",
+      "sha256": "73d80b3fc78082697e0955201360e610a48f27be7cfd24bc75ab2fec248c7393"
+    },
+    {
+      "path": "docs/evidence/phase12-validate-closure.log",
+      "sha256": "c86ede0a9d32cc28c24cef31d2c9a9c7e1f1ccf79010a7a5bf51784ebc4782a3"
+    },
+    {
+      "path": "docs/evidence/phase12-csv-staging-playwright.json",
+      "sha256": "88b32f3ab6872b8efcdb4ff40f6b2d820ee340597a1957548fe68e175e9c4108"
+    },
+    {
+      "path": "docs/evidence/phase12-staging-csv-chromium.png",
+      "sha256": "03e8ec065a2085a560d758da577bce1eee98978fc1531217d6829ec7cec828b5"
+    },
+    {
+      "path": "docs/evidence/phase12-csv-export.csv",
+      "sha256": "a208e802c01a77a5e90ad982c37704abbb455ea1c037d095769e36f0f344a7cd"
+    },
+    {
+      "path": "docs/evidence/five-tools-web.json",
+      "sha256": "47e19582e1c8a532fc8ece4e9c2f5db5b231ebac9e34c631ecf879f99208f8cd"
+    },
+    {
+      "path": "docs/evidence/five-tools-matrix.md",
+      "sha256": "a14939a215c65f4aa1a43bdef9235f717478e218810a757aeb53b9ed98bdcee7"
+    }
+  ]
+}

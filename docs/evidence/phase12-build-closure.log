@@ -1,0 +1,38 @@
+   Compiling kortex-xtask v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.65s
+     Running `target\debug\kortex-xtask.exe build --all`
+    Finished `release` profile [optimized] target(s) in 1.18s
+    Finished `release` profile [optimized] target(s) in 0.36s
+    Finished `release` profile [optimized] target(s) in 0.28s
+    Finished `release` profile [optimized] target(s) in 0.28s
+    Finished `release` profile [optimized] target(s) in 0.45s
+{
+  "command": "build",
+  "results": [
+    {
+      "module": "C:\\Users\\µ\\Desktop\\KORTEX-\\target\\wasm32-unknown-unknown/release\\tool_calculateur_hash.wasm",
+      "tool_id": "calculateur-hash",
+      "valid": true
+    },
+    {
+      "module": "C:\\Users\\µ\\Desktop\\KORTEX-\\target\\wasm32-unknown-unknown/release\\tool_calculatrice.wasm",
+      "tool_id": "calculatrice",
+      "valid": true
+    },
+    {
+      "module": "C:\\Users\\µ\\Desktop\\KORTEX-\\target\\wasm32-unknown-unknown/release\\tool_convertisseur_casse.wasm",
+      "tool_id": "convertisseur-casse",
+      "valid": true
+    },
+    {
+      "module": "C:\\Users\\µ\\Desktop\\KORTEX-\\target\\wasm32-unknown-unknown/release\\tool_explorateur_csv.wasm",
+      "tool_id": "explorateur-csv",
+      "valid": true
+    },
+    {
+      "module": "C:\\Users\\µ\\Desktop\\KORTEX-\\target\\wasm32-unknown-unknown/release\\tool_timestamp_utc.wasm",
+      "tool_id": "timestamp-utc",
+      "valid": true
+    }
+  ]
+}

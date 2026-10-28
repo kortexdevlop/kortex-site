@@ -1,0 +1,464 @@
+   Compiling kortex-xtask v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-xtask)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 33.72s
+     Running unittests src\lib.rs (target\debug\deps\kortex_abi-11887f78492ba4f8.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\wire.rs (target\debug\deps\wire-0bfede9033241320.exe)
+
+running 9 tests
+test contradictory_reply ... ok
+test cr001_capability_result_validation ... ok
+test cr001_rejects_explicit_null_fields ... ok
+test enqueue_codes ... ok
+test invalid_envelopes ... ok
+test pointer_bounds ... ok
+test pointer_roundtrip ... ok
+test reply_roundtrip ... ok
+test request_roundtrip ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_capabilities-b6e89fb4b9a6fc73.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\deny_by_default.rs (target\debug\deps\deny_by_default-ef9a02c7040bd7f0.exe)
+
+running 16 tests
+test all_seven_capabilities_require_policy_before_host_call ... ok
+test ask_requires_explicit_prompting_and_never_executes ... ok
+test audit_is_local_bounded_and_contains_no_sensitive_data ... ok
+test clipboard_requires_fresh_single_use_host_gesture ... ok
+test deny_is_default_and_undeclared_cannot_be_granted ... ok
+test expiry_during_dns_is_rechecked_before_host_effect ... ok
+test explicit_deny_overrides_session_and_stops_reprompting ... ok
+test explicitly_authorized_redirect_succeeds_and_loops_stop ... ok
+test file_and_response_budgets_are_enforced ... ok
+test grant_cannot_cross_tool_version_instance_or_resource ... ok
+test once_consumed_session_expiry_and_revocation ... ok
+test opaque_handles_are_short_lived_and_owner_bound ... ok
+test private_dns_and_ip_forms_are_denied ... ok
+test private_dns_answer_is_denied_before_connection ... ok
+test redirect_to_unapproved_origin_is_rejected_before_effect ... ok
+test same_origin_redirect_is_bounded_and_reuses_once_permission ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_core-46981891e22998fa.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running ..\..\tests\integration\core_conformance.rs (target\debug\deps\core_conformance-2c03d5e1d69eb774.exe)
+
+running 1 test
+test recorded_scenario_and_one_hundred_actions_have_bounded_retained_memory ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+     Running tests\lifecycle.rs (target\debug\deps\lifecycle-84de81b2fd9fc8ab.exe)
+
+running 11 tests
+test cleanup_failure_is_visible_and_registry_is_empty ... ok
+test crash_correlation_and_bad_output_are_fatal_and_clean ... ok
+test handshake_actions_events_and_shutdown ... ok
+test instances_remain_isolated_and_invalid_input_does_not_dispatch ... ok
+test lifecycle_accepts_only_declared_transitions ... ok
+test ordinary_guest_error_is_reported_without_losing_instance ... ok
+test queue_128_fifo_and_backpressure ... ok
+test runtime_derives_identity_and_declarations_for_every_capability ... ok
+test shutdown_error_still_removes_and_unloads ... ok
+test timeout_30_seconds_cancels_future_and_cleans_instance ... ok
+test verification_rejects_unsigned_tampered_and_untrusted_material ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.39s
+
+     Running tests\state.rs (target\debug\deps\state-a18c7535acd9c974.exe)
+
+running 6 tests
+test invalid_migration_and_oversized_snapshot_are_rejected ... ok
+test isolation_cleanup_and_export ... ok
+test migration_failure_rolls_back ... ok
+test quota_is_atomic_and_shared_across_versions ... ok
+test recoverable_backend_errors_and_conflict ... ok
+test roundtrip_and_corruption ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.41s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_pack-9a932cc9382f0677.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\archive.rs (target\debug\deps\archive-28daa771471d4ab6.exe)
+
+running 6 tests
+test abi_signatures_imports_memory_and_binary_are_checked ... ok
+test bombs_oversize_and_unlisted_files_fail_closed ... ok
+test bounded_deflate_round_trip_and_metadata_binding ... ok
+test deterministic_metadata_and_canonical_headers ... ok
+test traversal_duplicate_case_links_crc_and_headers_are_rejected ... ok
+test truncated_and_mutated_headers_never_panic ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.26s
+
+     Running tests\security.rs (target\debug\deps\security-1a5903341dd0c54c.exe)
+
+running 2 tests
+test hostile_packages_are_rejected_without_instantiation ... ok
+test ten_thousand_seeded_zip_and_wasm_mutations_never_panic ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.16s
+
+     Running unittests src\main.rs (target\debug\deps\kortex_runtime_desktop-c58a11fa1dbf31e4.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_runtime_native-afb1c261101e45c3.exe)
+
+running 2 tests
+test permissions::tests::cancelled_io_job_observes_cancellation ... ok
+test permissions::tests::inbox_is_bounded_correlated_and_generation_scoped ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests\capabilities.rs (target\debug\deps\capabilities-0e381de6ce49026b.exe)
+
+running 8 tests
+test directory_links_and_traversal_are_refused ... ok
+test durable_isolation_migration_conflict_quota_and_corruption ... ok
+test existing_session_permission_is_reused_and_once_is_consumed ... ok
+test files_are_pinned_scoped_bounded_and_cancelled ... ok
+test gateway_denies_without_grant_then_persists_and_redacts_audit ... ok
+test https_only_allowlist_and_unapproved_redirect_targets ... ok
+test live_https_and_external_redirect ... ignored, Explicit live HTTPS smoke: cargo test --test capabilities live_https -- --ignored
+test trusted_dialog_can_complete_after_the_start_gesture_expires ... ok
+
+test result: ok. 7 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.37s
+
+     Running ..\..\tests\desktop\parity.rs (target\debug\deps\desktop_parity-6a76928b3263aea1.exe)
+
+running 1 test
+test identical_sdk_guest_consent_storage_ui_and_reopen ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 25.31s
+
+     Running tests\guest.rs (target\debug\deps\guest-ec83ffa944464414.exe)
+
+running 5 tests
+test cancelled_dispatch_interrupts_actor_and_can_be_unloaded ... ok
+test loop_and_invalid_buffer_are_fatal ... ok
+test real_calculatrice_signed_archive_and_goldens ... ok
+test same_guest_checksum_and_native_multiply ... ok
+test signed_text_module_is_not_a_portable_wasm_binary ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 24.54s
+
+     Running tests\package_security.rs (target\debug\deps\package_security-d7e3152dc7bfb7c3.exe)
+
+running 2 tests
+test native_signed_root_admission_and_tampering ... ok
+test signed_hostile_packages_are_refused_before_engine_creation ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.78s
+
+     Running tests\phase12.rs (target\debug\deps\phase12-6e6ccdc33cdb2494.exe)
+
+running 4 tests
+test five_tools_produce_the_shared_web_vectors_on_the_native_wasmtime_host ... ok
+test real_windows_csv_stream_stats_export_denial_and_persistent_recent_files ... ok
+test real_windows_file_stream_permission_denial_and_cancel ... ok
+test signed_case_utc_hash_and_csv_guests_run_identical_ui_and_actions_in_wasmtime ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 243.87s
+
+     Running unittests src\main.rs (target\debug\deps\kortex_runtime_web-04588743f4e8da78.exe)
+
+running 2 tests
+test app::tests::config_has_only_fixed_public_origins ... ok
+test embed::tests::same_origin_is_refused ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_sdk-f86295ab8941bdc6.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\dispatch.rs (target\debug\deps\dispatch-fa7774d339724ffe.exe)
+
+running 7 tests
+test buffer_ownership_and_pointer_length_fuzz ... ok
+test dispatcher_correlates_async_results ... ok
+test invalid_tool_reply_is_structured ... ok
+test multiple_actions_and_validation ... ok
+test native_tool_panic_is_caught_before_ffi ... ok
+test pending_results_out_of_order_and_no_replay ... ok
+test queue_limits_and_host_rejections ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_shared-1c73e7c6dc490615.exe)
+
+running 2 tests
+test tests::canonical_fixtures ... ok
+test tests::cross_language_matrix ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_ui-6ea07f3846e2b8e0.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\render.rs (target\debug\deps\render-8088e0469636539b.exe)
+
+running 7 tests
+test accessible_labels_native_tab_order_and_tabs ... ok
+test actual_dioxus_handlers_emit_schema_valid_events_and_tabs_switch ... ok
+test all_frozen_types_and_snapshot ... ok
+test every_type_rejects_unknown_properties_and_escapes_labels ... ok
+test headings_charts_disabled_and_multiple_mounts ... ok
+test html_injection_is_text_in_every_content_path ... ok
+test invalid_trees_have_visible_fallback_without_partial_render ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_verify-6066363befb9ea88.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\signature.rs (target\debug\deps\signature-b809f781562620b7.exe)
+
+running 4 tests
+test committed_public_fixture_verifies_without_any_private_key ... ok
+test descriptor_schema_rejects_unknown_fields_injection_and_encoding ... ok
+test exact_b2_and_hash_before_signature ... ok
+test unknown_removed_revoked_expired_keys_and_signed_store_rollback ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_xtask-d497660c263e3a5d.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (target\debug\deps\kortex_xtask-424564216cb35114.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\discovery.rs (target\debug\deps\discovery-fd26478c92717984.exe)
+
+running 3 tests
+test arbitrary_tools_are_discovered_without_identifier_branches ... ok
+test cli_help_and_bad_arguments ... ok
+test duplicate_ids_and_invalid_manifests_are_refused ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+     Running tests\signing.rs (target\debug\deps\signing-1031b41454398674.exe)
+
+running 1 test
+test cli_signs_from_injected_test_secret_and_verifies_public_proof ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.80s
+
+     Running unittests src\lib.rs (target\debug\deps\tool_calculateur_hash-127eae49be606e4d.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\hash.rs (target\debug\deps\hash-9c6b69f01748d5a3.exe)
+
+running 2 tests
+test chunks_cancel_denial_and_protocol_bounds ... ok
+test known_vectors_and_strict_base64 ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+     Running unittests src\lib.rs (target\debug\deps\tool_calculatrice-43f8d272dd09a486.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\tool.rs (target\debug\deps\tool-0953320bb4fc973b.exe)
+
+running 3 tests
+test arithmetic_contract_corpus ... ok
+test frozen_wire_goldens ... ok
+test lifecycle_keypad_and_ui_action_agree ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests src\lib.rs (target\debug\deps\tool_convertisseur_casse-e686b76f84dc9a46.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\unicode.rs (target\debug\deps\unicode-17a606bf05ece540.exe)
+
+running 3 tests
+test reactive_ui_uses_the_identical_action_and_valid_schema ... ok
+test rejects_unknown_fields_and_byte_overflow ... ok
+test unicode_and_documented_french_initials ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running unittests src\lib.rs (target\debug\deps\tool_explorateur_csv-d764b00f8df36f39.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\parser.rs (target\debug\deps\parser-e33f6cd52ec1a35c.exe)
+
+running 9 tests
+test actions_return_json_without_non_finite_numbers_and_share_the_ui_parser ... ok
+test bounds_are_exact ... ok
+test exported_report_neutralises_formulas_and_quotes_names ... ok
+test fast_number_path_matches_the_standard_parser ... ok
+test golden_statistics_and_null_policy ... ok
+test hostile_inputs_are_refused_with_explicit_codes ... ok
+test numbers_are_strict_decimal_and_never_nan_or_infinite ... ok
+test quotes_newlines_bom_and_crlf ... ok
+test streaming_is_independent_of_chunk_boundaries_including_utf8_crlf_and_quotes ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests\ui.rs (target\debug\deps\ui-16ba537ae3fec5ca.exe)
+
+running 5 tests
+test export_and_storage_use_gesture_bound_capabilities_and_report_denial ... ok
+test hostile_file_is_explained_and_leaves_no_table ... ok
+test interactions_pagination_search_chart_and_same_action_output ... ok
+test permission_denial_cancel_and_late_results_expose_nothing ... ok
+test tree_stays_within_ui_limits_for_maximum_table ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.93s
+
+     Running unittests src\lib.rs (target\debug\deps\tool_timestamp_utc-30a96362b97a5300.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\dates.rs (target\debug\deps\dates-4e065debd0d52ae8.exe)
+
+running 4 tests
+test epoch_negatives_and_roundtrips ... ok
+test explicit_units_integer_and_overflow ... ok
+test reactive_ui_and_autonomous_action_agree ... ok
+test rejects_ambiguous_invalid_and_submillisecond_dates ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+   Doc-tests kortex_abi
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests kortex_capabilities
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests kortex_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests kortex_pack
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests kortex_runtime_native
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests kortex_sdk
+
+running 1 test
+test crates\kortex-sdk\src\lib.rs - (line 3) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+all doctests ran in 0.90s; merged doctests compilation took 0.76s
+   Doc-tests kortex_shared
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests kortex_ui
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests kortex_verify
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests kortex_xtask
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests tool_calculateur_hash
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests tool_calculatrice
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests tool_convertisseur_casse
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests tool_explorateur_csv
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests tool_timestamp_utc
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

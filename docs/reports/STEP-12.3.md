@@ -7,3 +7,7 @@ Nouvelle crate tool-explorateur-csv, manifeste, icône et contrat (`summarize_cs
 Défaut trouvé et corrigé pendant l’étape : un analyseur à tampon complet dépassait le budget de 100 M d’instructions Wasm sur un fichier de 880 Ko (`Timeout` dans Wasmtime). Le parseur est devenu un flux qui consomme chaque bloc de 256 Kio, avec cellules dans une arène unique et statistiques accumulées au passage ; la statistique « distincts » a été retirée. Les résultats sont identiques quel que soit le découpage en blocs (testé de 1 à 64 octets, y compris caractères multi-octets, CRLF et guillemets à cheval).
 
 Tests Rust (tests/parser.rs, 9) : guillemets/retours/BOM, 11 entrées hostiles, bornes exactes, nombres stricts et débordements, statistiques dorées, actions JSON, injection de formule, indépendance du découpage, chemin rapide décimal comparé bit à bit à `str::parse`. Preuves : tools/explorateur-csv/tests/parser.rs. Statut formel pending ; 12.4 suit dans le même lot.
+
+## Clôture technique — 28/10/2026
+
+Travail terminé sur demande du propriétaire : publication réelle, export téléchargé et comparé à export_report, stockage IndexedDB réel après rechargement et refus contrôlés. Les trois essais Cloudflare de clôture couvrent également les cinq outils et neuf vecteurs. Voir docs/evidence/phase12-closure.json et STEP-12.5.md pour les commandes, preuves et limites. Le statut historique de revue humaine reste distinct de cette clôture technique ; aucune approbation visuelle antérieure n’est inventée. Étape 12.6 non commencée.
