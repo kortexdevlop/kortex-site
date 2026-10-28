@@ -1,0 +1,9 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "type":"object","additionalProperties":false,"required":["v","steps","summary"],
+ "properties":{
+  "v":{"const":1},
+  "steps":{"type":"array","maxItems":10,"items":{"type":"object","additionalProperties":false,"required":["tool_id","action_id","input","requires_consent"],"properties":{"tool_id":{"type":"string","minLength":3,"maxLength":64,"pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"action_id":{"type":"string","minLength":1,"maxLength":64},"input":{"type":"object","maxProperties":100},"requires_consent":{"const":true}}}},
+  "summary":{"type":"string","minLength":1,"maxLength":500}
+ }
+}

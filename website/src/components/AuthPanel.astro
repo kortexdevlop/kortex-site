@@ -1,12 +1,15 @@
 ---
 interface Props {register?:boolean;}
 const {register=false}=Astro.props;
+const returnTo=Astro.url.searchParams.get('returnTo');
+const next=returnTo&&/^\/account\/connect-desktop\?request_id=[0-9a-f]{8}-[0-9a-f-]{27}$/.test(returnTo)?returnTo:null;
+const suffix=next?'?returnTo='+encodeURIComponent(next):'';
 ---
 <section class="auth-card" data-password-auth data-mode={register?'register':'login'}>
   <p class="auth-eyebrow">VOTRE ESPACE KORTEX</p>
   <h1>{register?'Créez votre compte':'Heureux de vous retrouver'}</h1>
   <p class="auth-description">{register?'Un compte gratuit. Vos outils restent accessibles sans connexion.':'Connectez-vous à votre espace personnel.'}</p>
-  <a class="auth-google" href="/api/v1/auth/login" data-google hidden>Continuer avec Google</a>
+  <a class="auth-google" href={'/api/v1/auth/login'+suffix} data-google hidden>Continuer avec Google</a>
   <p class="auth-divider" data-google hidden>ou par email</p>
   <form method="post" action={register?'/api/v1/auth/password/register':'/api/v1/auth/password/login'}>
     <label for="auth-email">Adresse email</label><input id="auth-email" name="email" type="email" autocomplete="username" inputmode="email" required maxlength="254" placeholder="vous@exemple.fr"/>
@@ -16,7 +19,7 @@ const {register=false}=Astro.props;
     <button class="auth-submit" type="submit" disabled>{register?'Créer mon compte':'Se connecter'}</button>
   </form>
   {register&&<p class="auth-help auth-verification">L’adresse sert d’identifiant. Sa vérification par email n’est pas encore disponible.</p>}
-  <p class="auth-switch">{register?'Déjà un compte ?':'Nouveau sur Kortex ?'} <a href={register?'/auth/login':'/auth/register'}>{register?'Se connecter':'Créer un compte'}</a></p>
+  <p class="auth-switch">{register?'Déjà un compte ?':'Nouveau sur Kortex ?'} <a href={(register?'/auth/login':'/auth/register')+suffix}>{register?'Se connecter':'Créer un compte'}</a></p>
   <noscript><p>Activez JavaScript pour utiliser la connexion sécurisée.</p></noscript>
 </section>
 <script>import '../scripts/password-auth';</script>

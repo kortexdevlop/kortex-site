@@ -1,5 +1,7 @@
 # Progression
 
+Lot 14.5–15.1 réalisé le 28/10/2026 : compte Desktop Windows via navigateur et email/PKCE, coffre Windows, sync favoris/réglages bidirectionnelle, appareils révocables et offline prouvés. 14.5 reste partielle pour son gate Google/OIDC réel : clients OAuth toujours absents. 15.0 et 15.1 terminées techniquement : politique, modèle Workers AI vérifié par inférence, quotas atomiques et endpoint strict de propositions sans exécution. 81 tests API, 23 Web, 3 contrats et 22 Desktop réussis ; builds/types et parcours réels staging réussis, quota 429 vérifié. Fixtures nettoyées ; production/DNS/messagerie conservés. Preuves : docs/evidence/device-14.5-15.1-validation.json. Aucun passage à 15.2 ; statuts humains historiques conservés.
+
 Lot 14.2–14.4 terminé et clos techniquement sur staging le 28/10/2026 : favoris OR-set/tombstones et préférences opt-in, API propriétaire/CSRF/révisions, export/purge, pages privées SSR et favoris reliés au workspace sans écraser les données invitées. 71 tests API, 18 Web, 3 contrats, types/build et vrai parcours Chromium Windows à deux sessions réussis, export téléchargé et suppression/révocation vérifiés. Calculatrice toujours utilisable sans compte (25×48=1200). Fixture nettoyée ; production/DNS/mail conservés. Google attend toujours ses clients OAuth ; Desktop sync et 14.5 non engagés. Preuves : docs/evidence/account-14.2-14.4-validation.json. Statuts humains historiques conservés.
 
 Complément email/mot de passe demandé avant 14.2 (28/10/2026) : terminé et actif sur staging. Inscription, connexion, compte minimal, sessions et déconnexion avec contrôles CSRF/rate/scrypt natif ; 56 tests API, 14 proxy, 3 contrats, types/build et parcours réel Chromium (bureau/mobile) réussis. Compte de test supprimé. Adresses non vérifiées et aucune récupération par mail faute de service, confirmé par le propriétaire. Google reste désactivé en attente de ses clients OAuth ; 14.2 non engagée. Preuves : docs/evidence/password-auth-validation.json. Les notes précédentes ci-dessous sont historiques.
@@ -1470,6 +1472,72 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "technical_status": "closed",
     "closed_at": "2026-10-28",
     "authorization": "propriétaire : Enchaine maintenant 14.2 jusqu’à 14.4"
+  },
+  {
+    "id": "14.5",
+    "status": "pending",
+    "source_commit": "b00a6af",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-14.5.md",
+    "tests_executed": "28/10/2026 Windows : 81 tests API, 23 Web, 3 contrats, 22 Desktop dont 4 comptes, types, Astro 69 fichiers sans erreur et builds réussis. Parcours réel navigateur/client Rust/coffre Windows, interface native et sync bidirectionnelle, révocation/logout/fichiers conservés. Workers AI réel 200, privé 400, quota 429. Fixtures supprimées.",
+    "contract_changes": [
+      "Ajouts compatibles sessions appareil et gestion révocation"
+    ],
+    "evidence": [
+      "docs/evidence/device-14.5-15.1-validation.json",
+      "docs/evidence/device-ai-staging.json",
+      "docs/evidence/device-sync-ui-staging.json"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "remaining": "Gate issuer OIDC Google réel : clients OAuth encore inexistants. Partie email/Windows réalisée et prouvée.",
+    "authorization": "propriétaire : Enchaines ces 3 étapes"
+  },
+  {
+    "id": "15.0",
+    "status": "pending",
+    "source_commit": "b00a6af",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-15.0.md",
+    "tests_executed": "28/10/2026 Windows : 81 tests API, 23 Web, 3 contrats, 22 Desktop dont 4 comptes, types, Astro 69 fichiers sans erreur et builds réussis. Parcours réel navigateur/client Rust/coffre Windows, interface native et sync bidirectionnelle, révocation/logout/fichiers conservés. Workers AI réel 200, privé 400, quota 429. Fixtures supprimées.",
+    "contract_changes": [
+      "Nouveau schéma de proposition ai-plan V1, aucun changement des anciens contrats"
+    ],
+    "evidence": [
+      "docs/evidence/device-14.5-15.1-validation.json",
+      "docs/evidence/device-ai-staging.json",
+      "docs/evidence/device-sync-ui-staging.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaines ces 3 étapes"
+  },
+  {
+    "id": "15.1",
+    "status": "pending",
+    "source_commit": "b00a6af",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-15.1.md",
+    "tests_executed": "28/10/2026 Windows : 81 tests API, 23 Web, 3 contrats, 22 Desktop dont 4 comptes, types, Astro 69 fichiers sans erreur et builds réussis. Parcours réel navigateur/client Rust/coffre Windows, interface native et sync bidirectionnelle, révocation/logout/fichiers conservés. Workers AI réel 200, privé 400, quota 429. Fixtures supprimées.",
+    "contract_changes": [
+      "POST /api/v1/ai/plan additif, proposition uniquement"
+    ],
+    "evidence": [
+      "docs/evidence/device-14.5-15.1-validation.json",
+      "docs/evidence/device-ai-staging.json",
+      "docs/evidence/device-sync-ui-staging.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaines ces 3 étapes"
   }
 ]
 ```

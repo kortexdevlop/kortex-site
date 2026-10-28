@@ -3252,6 +3252,9 @@ dependencies = [
  "tokio",
  "url",
  "wat",
+ "webbrowser",
+ "windows-sys 0.61.2",
+ "zeroize",
  "zip",
 ]
 

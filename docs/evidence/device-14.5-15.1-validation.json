@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-28T11:10:54.310Z",
+  "source_commit": "b00a6af",
+  "steps": [
+    "14.5",
+    "15.0",
+    "15.1"
+  ],
+  "platform": "Windows",
+  "source_hash_format": "SHA256 UTF8 LF",
+  "sources": {
+    "Cargo.lock": "03eb4c3bd8838b5c00017165a6de0343223ae7dfff694647e41b43abb573339c",
+    "api/src/env.ts": "d9b6925f7a91c0634575135059e88922d9ff90b7d232061fa0233f896961f6da",
+    "api/src/index.ts": "7d808d4dbf36e81b389ee10bd8d0f920ec9fd8522668a334b4f42eb30fa04f13",
+    "api/src/routes/ai.ts": "4fa1002c89205101612cbf1e383f6f008eb439027c4a926312a2e9395d218042",
+    "api/src/routes/auth.ts": "d4c63e8697627bab0a5ef6d3f10d9ad90d14693fdcf7260ac2968ceb63479412",
+    "api/src/routes/desktop-auth.ts": "935f8d000c6a7a4c7c80815e47e1ac263703646bb3857924d2723bd4333b5eef",
+    "api/src/routes/users.ts": "b19ffebc6a1e1e9cc5ddda2d9cec674ed1499d1f44e3b570a0652d7abce3529c",
+    "api/src/security/ai-rate-limit.ts": "7931b77f93ca286e54f482f947e1c2e1da4dc76003b78c576e667955e54b4a51",
+    "api/src/security/device-session.ts": "adf34d9fb87badd185a3d29c036faa2be7ea12dad5b657502f0844b2f496cccd",
+    "api/src/security/user-scope.ts": "09e74f532309a704d9ea3f2f5af510ecac46d4638c8a9b23d153b511a8969d2f",
+    "api/src/services/ai-config.ts": "dc9762728ece781ccfc0128cfe074f0c9d7e27e5c9e47d1b71020be6021c7865",
+    "api/src/services/ai.ts": "fee08a5add94ae63e5f35e3ed57bdd16a4bb26cfbda612692639e8d7abb5f763",
+    "api/src/services/catalog.ts": "cdcd57f1f0a325aa254a76aa0a97a9d74f770e7fb10a202be97aab4116e3c874",
+    "api/tests/catalog.test.ts": "32d60e26581c93c95554c7b6698618871eeb78a27d55e2696c9f191308dbfb69",
+    "api/tests/device-ai.test.ts": "7873d528ac4a3a769639eb6be3436cebce9ea9d9a90c510ad532fb6bee2f3a41",
+    "api/wrangler.jsonc": "ca5b9046cf29aae32d629d990f9eb0d5d323cb663c7e6351cd80de1b2cbbfc60",
+    "database/migrations/0009_devices_ai.sql": "58cc5effffb611aa30f3fa06dd35f108b362b66766326b9b4c911b0974dddc43",
+    "desktop/Cargo.toml": "843b9617e4065f11cbf9c0a7671a0050dd50b0e058390ec03141862cc7e29c53",
+    "desktop/assets/app.css": "dc83c59f5acdecbd05342271f2ac1d4e2ef0257ab50ca75e6e989378dcbb27dd",
+    "desktop/examples/account_probe.rs": "6b22925a60b1dbbc371a93d55fefa29ba75a9d1ef7fcc8a5a8398740bec5a0cb",
+    "desktop/src/account.rs": "9daf01d2c21b2af4afdd098154a83041388122d9302a823443e50fd393e26e48",
+    "desktop/src/account_ui.rs": "5652acbbb0143eae26f955c41c5509006589c7db6b49f343678cab8ec2a2f948",
+    "desktop/src/app.rs": "a314df2fac2857eb0481653970491ebc3cc3c55f4cd35505bdce638c09355fed",
+    "desktop/src/config.rs": "bfafb62780bf6a1ed839f93663dfe2d2a71ae5a173da09559489b99429ee5d2d",
+    "desktop/src/lib.rs": "b324c188768859fbe6e30ba08734c6889d6e70314a76cc13892b738f2402b1ae",
+    "desktop/src/library.rs": "263d6a4d8f465223d3a47ff41317db2cff381b6970aab230349cb9f32416eb22",
+    "desktop/src/secure_store.rs": "16036fc10b1921fa21a06d3ec93eed6ffa27614dc1eb982c4a2a4ca5f6c319bc",
+    "desktop/tests/account.rs": "ce440a22e0fcb41a95a44c5024fd287083bcbad80ad7edd4788e03a3f6c533a4",
+    "scripts/record-device-ai-validation.mjs": "7f0bee10a60fed30e918fa7a4b45da1ed47b929bb95c8510dd79fdc97d3fc2ce",
+    "scripts/test-device-ai-staging.mjs": "6d3dfa9d8f10877953c90e55d0aee59dce887870b9c8f6d921ab1166ea6d3fa4",
+    "shared/schemas/ai-plan.schema.json": "86289d5e756a597e1f7ec8650be191213474b3a77457c1bef7c9214dba243d6c",
+    "shared/typescript/src/value-schema.ts": "10233fe069b9193ed361832c29e6acbb2df0d58d562719913b25202f09076b5a",
+    "website/src/components/AuthPanel.astro": "e5dcd155300a082e91e7b9bb9c27ef6e65c50bf20e742ff629180906bc3f8db5",
+    "website/src/lib/proxy.ts": "d5d132c0b8069800d21552490c23f23a95d3173a3c770ecb00bdeb259a163e44",
+    "website/src/lib/return-to.ts": "e8cc722b609afed476f40d68fa84f0f7e4c1ca3274b8c049b14f56d821642172",
+    "website/src/middleware.ts": "86007747fec7074c617383c29cf04d286512760f9bc5458c4e701cbba7ec7b36",
+    "website/src/pages/account/connect-desktop.astro": "932fcd576b4e1615ce3187d7c714af1b588a18d31afc69016215eacbd73375a5",
+    "website/src/pages/account/settings.astro": "670900993cffc3e0e7fb50245a75136a9549feaa8f8b0e67db9cddc1c3bed607",
+    "website/src/scripts/account.ts": "d70d521611e19c746793da5aad72ff757a389f8b9b717bfda6b5529360713b93",
+    "website/src/scripts/password-auth.ts": "a01e64cb9496b54d6f50901123bb53e8adae11d2fb5563be9419c09d97206316"
+  },
+  "tests": {
+    "api": 81,
+    "web": 23,
+    "contracts": 3,
+    "native_account": 4,
+    "native_regression_passed": true,
+    "types": true,
+    "astro": true,
+    "web_build": true,
+    "native_build": true
+  },
+  "staging": {
+    "date": "2026-10-28T11:01:11.621Z",
+    "steps": [
+      "14.5",
+      "15.0",
+      "15.1"
+    ],
+    "platform": "win32",
+    "staging_only": true,
+    "production_touched": false,
+    "dns_touched": false,
+    "mail_touched": false,
+    "passed": true,
+    "pkce_loopback_windows_vault": true,
+    "email_browser_return_path": true,
+    "offline_session": true,
+    "desktop_to_web_favorite": true,
+    "web_lists_device": true,
+    "private_data_rejected": true,
+    "ai_status": 200,
+    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "real_ai_proposal": {
+      "v": 1,
+      "steps": [
+        {
+          "tool_id": "calculatrice",
+          "action_id": "add",
+          "input": {
+            "a": 2,
+            "b": 3
+          },
+          "requires_consent": true
+        }
+      ],
+      "summary": "add 2 and 3"
+    },
+    "worker_executes_nothing": true,
+    "web_revokes_device": true,
+    "logout_clears_vault_preserves_files": true,
+    "fixture_removed": true
+  },
+  "native_ui": {
+    "date": "2026-10-28T11:08:41.564Z",
+    "steps": [
+      "14.5",
+      "15.0",
+      "15.1"
+    ],
+    "platform": "win32",
+    "staging_only": true,
+    "production_touched": false,
+    "dns_touched": false,
+    "mail_touched": false,
+    "passed": true,
+    "pkce_loopback_windows_vault": true,
+    "email_browser_return_path": true,
+    "offline_session": true,
+    "desktop_to_web_favorite": true,
+    "web_lists_device": true,
+    "native_ui_writes_web_preferences": true,
+    "web_preferences_apply_native": true,
+    "private_data_rejected": true,
+    "actual_daily_quota_enforced": true,
+    "web_revokes_device": true,
+    "logout_clears_vault_preserves_files": true,
+    "fixture_removed": true
+  },
+  "closure": {
+    "14.5": "partial: email/Windows proven; real Google OIDC gate pending",
+    "15.0": "technical complete",
+    "15.1": "technical complete"
+  },
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false
+}

@@ -1,0 +1,77 @@
+   Compiling kortex-desktop v1.0.0 (C:\Users\µ\Desktop\KORTEX-\desktop)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 31.07s
+     Running unittests src\lib.rs (target\debug\deps\kortex_desktop-adbdd899ea829ac7.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (target\debug\deps\kortex_desktop-b4fa2c0874de9276.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\account.rs (target\debug\deps\account-489cc939fef51ecc.exe)
+
+running 4 tests
+test callback_state_duplicate_code_and_path_are_checked ... ok
+test expired_session_is_removed_and_offline_login_refused ... ok
+test remote_references_never_install_or_delete_local_files ... ok
+test windows_vault_roundtrip_logout_preserves_tools_and_no_plaintext_disk ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests\installer.rs (target\debug\deps\installer-f5053896f2eaee06.exe)
+
+running 5 tests
+test cancellation_during_streaming_removes_partial_download ... ok
+test interrupted_tampered_oversized_redirect_and_cancelled_downloads_leave_no_active_package ... ok
+test invalid_signature_unconfirmed_permissions_and_unwritable_storage_are_refused ... ok
+test signed_install_is_atomic_idempotent_and_never_extracts_guest_paths ... ok
+test signed_zip_traversal_is_rejected_without_writing_outside_the_install ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.60s
+
+     Running tests\library.rs (target\debug\deps\library-d9011c1ad68cea89.exe)
+
+running 3 tests
+test confirmed_online_revocation_is_remembered_offline_and_missing_managed_index_fails_closed ... ok
+test offline_launch_uses_a_verified_package_and_running_lease_blocks_uninstall ... ok
+test uninstall_preserves_data_by_default_and_purges_only_the_current_profile_on_request ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.33s
+
+     Running tests\smoke.rs (target\debug\deps\smoke-f268901b0f5b392e.exe)
+
+running 2 tests
+test config_pins_https_origins_and_library_starts_offline_without_account ... ok
+test installed_signed_package_remains_available_offline_and_tampering_is_refused ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.41s
+
+     Running tests\store.rs (target\debug\deps\store-fe1a04eafd3fa7fe.exe)
+
+running 3 tests
+test filters_are_encoded_and_hostile_ids_or_inconsistent_details_are_refused ... ok
+test requests_use_real_http_schema_validation_ttl_and_explicit_failures ... ok
+test ten_thousand_entries_paginate_without_duplicates_and_scope_resets ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.30s
+
+     Running tests\updates.rs (target\debug\deps\updates-6b6e33e79ffe983e.exe)
+
+running 5 tests
+test cancel_before_activation_preserves_old_current_and_profile ... ok
+test real_guest_start_failure_and_migration_failure_leave_old_version_and_data_intact ... ok
+test semver_permissions_and_successful_update_retain_old_version_until_confirmed_start ... ok
+test semver_precedence_ignores_build_metadata_and_checks_minimum_runtime ... ok
+test unconfirmed_first_launch_rollback_restores_saved_data_and_blocks_failed_version ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 19.33s
+
+   Doc-tests kortex_desktop
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

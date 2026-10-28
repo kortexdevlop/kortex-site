@@ -1,7 +1,14 @@
 import {ToolSummary,ToolDetail,ToolActions} from '../generated-validators';
 import {BadQuery,slug,signCursor,readCursor,type Scope} from '../lib/cursor';
-import {listRows,detailRow,type CatalogRow} from './database';
+import {listRows,detailRow,downloadRow,type CatalogRow} from './database';
 export class CatalogIntegrityError extends Error {}
+export async function publishedActions(db:D1Database,ids:string[]){
+ const result:{tool_id:string;action_id:string;description:string;input_schema:Record<string,unknown>}[]=[];
+ for(const id of ids){const actions=await detail(db,id,true) as {version:string;actions:{id:string;description:string;input_schema:Record<string,unknown>}[]}|null;if(!actions)continue;const artifact=await downloadRow(db,id,actions.version);if(!artifact||artifact.revoked||!artifact.verified||!artifact.published||artifact.tool_status!=='published'||artifact.version_status!=='published')continue;
+  for(const action of actions.actions){if(result.length>=20)break;result.push({tool_id:id,action_id:action.id,description:action.description.slice(0,160),input_schema:action.input_schema})}
+ }
+ return result;
+}
 export function query(params:URLSearchParams):{scope:Scope;cursor:string|null} {
  const allowed=new Set(['cursor','limit','q','category','tag','sort']);
  for(const name of params.keys())if(!allowed.has(name)||params.getAll(name).length!==1)throw new BadQuery();

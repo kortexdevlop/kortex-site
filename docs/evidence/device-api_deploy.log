@@ -1,0 +1,25 @@
+
+ ⛅️ wrangler 4.152.0 (update available 4.154.0)
+───────────────────────────────────────────────
+Active profile: kortex
+Total Upload: 1131.42 KiB / gzip: 169.85 KiB
+Worker Startup Time: 26 ms
+Your Worker has access to the following bindings:
+Binding                                                                        Resource
+env.DB (kortex-catalog-staging)                                                D1 Database
+env.TOOLS_BUCKET (kortex-tools-staging)                                        R2 Bucket
+env.AI                                                                         AI
+env.KORTEX_ENV ("staging")                                                     Environment Variable
+env.PUBLIC_WEB_ORIGIN ("https://kortex-web-staging.userpgl.wo...")             Environment Variable
+env.ADMIN_AUTH_POLICY ("{"issuer":"urn:kortex:staging-operato...")             Environment Variable
+env.PASSWORD_AUTH_ENABLED ("true")                                             Environment Variable
+env.AI_ENABLED ("true")                                                        Environment Variable
+env.AI_MODEL ("@cf/meta/llama-3.3-70b-instruct-fp8-f...")                      Environment Variable
+env.AI_USER_DAILY_REQUESTS ("2")                                               Environment Variable
+env.AI_GLOBAL_DAILY_REQUESTS ("3")                                             Environment Variable
+env.AI_DAILY_RESERVED_TOKENS ("50688")                                         Environment Variable
+
+Uploaded kortex-api-staging (12.06 sec)
+Deployed kortex-api-staging triggers (2.06 sec)
+  https://kortex-api-staging.userpgl.workers.dev
+Current Version ID: 78bbca6f-93a9-4cb4-9585-a30cedf88939

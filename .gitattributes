@@ -34,3 +34,5 @@
 /docs/evidence/password-*.log text eol=lf
 /docs/evidence/account-*.json text eol=lf
 /docs/evidence/account-*.log text eol=lf
+/docs/evidence/device-*.json text eol=lf
+/docs/evidence/device-*.log text eol=lf

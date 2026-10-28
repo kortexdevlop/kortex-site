@@ -1,0 +1,7 @@
+11:56:21 [@astrojs/cloudflare] Enabling compile-time image optimization. Images will be pre-optimized at build time.
+11:56:22 [types] Generated 541ms
+11:56:22 [check] Getting diagnostics for Astro files in C:\Users\µ\Desktop\KORTEX-\website...
+Result (69 files):
+- 0 errors
+- 0 warnings
+- 0 hints

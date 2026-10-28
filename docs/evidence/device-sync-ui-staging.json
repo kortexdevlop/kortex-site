@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-28T11:08:41.564Z",
+  "steps": [
+    "14.5",
+    "15.0",
+    "15.1"
+  ],
+  "platform": "win32",
+  "staging_only": true,
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false,
+  "passed": true,
+  "pkce_loopback_windows_vault": true,
+  "email_browser_return_path": true,
+  "offline_session": true,
+  "desktop_to_web_favorite": true,
+  "web_lists_device": true,
+  "native_ui_writes_web_preferences": true,
+  "web_preferences_apply_native": true,
+  "private_data_rejected": true,
+  "actual_daily_quota_enforced": true,
+  "web_revokes_device": true,
+  "logout_clears_vault_preserves_files": true,
+  "fixture_removed": true
+}

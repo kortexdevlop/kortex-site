@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-28T11:01:11.621Z",
+  "steps": [
+    "14.5",
+    "15.0",
+    "15.1"
+  ],
+  "platform": "win32",
+  "staging_only": true,
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false,
+  "passed": true,
+  "pkce_loopback_windows_vault": true,
+  "email_browser_return_path": true,
+  "offline_session": true,
+  "desktop_to_web_favorite": true,
+  "web_lists_device": true,
+  "private_data_rejected": true,
+  "ai_status": 200,
+  "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+  "real_ai_proposal": {
+    "v": 1,
+    "steps": [
+      {
+        "tool_id": "calculatrice",
+        "action_id": "add",
+        "input": {
+          "a": 2,
+          "b": 3
+        },
+        "requires_consent": true
+      }
+    ],
+    "summary": "add 2 and 3"
+  },
+  "worker_executes_nothing": true,
+  "web_revokes_device": true,
+  "logout_clears_vault_preserves_files": true,
+  "fixture_removed": true
+}

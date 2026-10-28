@@ -1,0 +1,29 @@
+   Compiling kortex-desktop v1.0.0 (C:\Users\µ\Desktop\KORTEX-\desktop)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 19.27s
+     Running tests\updates.rs (target\debug\deps\updates-6b6e33e79ffe983e.exe)
+
+running 5 tests
+test cancel_before_activation_preserves_old_current_and_profile ... ok
+test real_guest_start_failure_and_migration_failure_leave_old_version_and_data_intact ... ok
+LOOPBACK_TEST_ERROR=reqwest::Error { kind: Request, url: "http://127.0.0.1:62030/api/v1/downloads/desktop-lifecycle-test/1.0.0", source: hyper_util::client::legacy::Error(SendRequest, hyper::Error(Io, Os { code: 10053, kind: ConnectionAborted, message: "Une connexion établie a été abandonnée par un logiciel de votre ordinateur hôte." })) }
+
+thread 'semver_permissions_and_successful_update_retain_old_version_until_confirmed_start' (6440) panicked at desktop\tests\common\mod.rs:300:6:
+called `Result::unwrap()` on an `Err` value: "Hors connexion. Votre bibliothèque reste disponible."
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test semver_permissions_and_successful_update_retain_old_version_until_confirmed_start ... FAILED
+test semver_precedence_ignores_build_metadata_and_checks_minimum_runtime ... ok
+LOOPBACK_TEST_ERROR=reqwest::Error { kind: Request, url: "http://127.0.0.1:62033/api/v1/downloads/desktop-lifecycle-test/1.1.0", source: hyper_util::client::legacy::Error(SendRequest, hyper::Error(Io, Os { code: 10053, kind: ConnectionAborted, message: "Une connexion établie a été abandonnée par un logiciel de votre ordinateur hôte." })) }
+
+thread 'unconfirmed_first_launch_rollback_restores_saved_data_and_blocks_failed_version' (12156) panicked at desktop\tests\updates.rs:117:6:
+called `Result::unwrap()` on an `Err` value: "Hors connexion. Votre bibliothèque reste disponible."
+test unconfirmed_first_launch_rollback_restores_saved_data_and_blocks_failed_version ... FAILED
+
+failures:
+
+failures:
+    semver_permissions_and_successful_update_retain_old_version_until_confirmed_start
+    unconfirmed_first_launch_rollback_restores_saved_data_and_blocks_failed_version
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.97s
+
+error: test failed, to rerun pass `-p kortex-desktop --test updates`

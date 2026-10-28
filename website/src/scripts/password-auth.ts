@@ -1,4 +1,5 @@
 type Me={user:{id:string;email?:string;email_verified?:boolean};csrf_token?:string};
+import {accountReturn} from '../lib/return-to';
 async function request(path:string,init:RequestInit={}){return fetch(path,{...init,credentials:'same-origin',cache:'no-store',redirect:'error',signal:AbortSignal.timeout(30000)})}
 const panel=document.querySelector<HTMLElement>('[data-password-auth]');
 if(panel){
@@ -15,7 +16,7 @@ if(panel){
   submit.disabled=true;status.textContent=register?'Création de votre compte…':'Connexion en cours…';
   try{
    const response=await request('/api/v1/auth/password/'+(register?'register':'login'),{method:'POST',headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},body:JSON.stringify({email:email.value,password:password.value})});
-   if(response.ok){password.value='';if(confirmation)confirmation.value='';location.assign('/account');return}
+   if(response.ok){password.value='';if(confirmation)confirmation.value='';location.assign(accountReturn(new URLSearchParams(location.search).get('returnTo')));return}
    if(response.status===403){await prepare();status.textContent='Le formulaire a expiré. Réessayez.'}
    else status.textContent=response.status===429?'Trop de tentatives. Patientez avant de réessayer.':response.status===401?'Email ou mot de passe incorrect.':response.status===409?'Impossible de créer ce compte avec ces informations. Essayez de vous connecter.':response.status===400?'Vérifiez votre email et choisissez un mot de passe personnel de 15 à 128 caractères.':'La connexion est momentanément indisponible.';
   }catch{status.textContent='La connexion a été interrompue. Réessayez.'}finally{submit.disabled=false}

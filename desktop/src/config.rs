@@ -1,5 +1,5 @@
 use std::path::PathBuf;
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct Config {
     pub api_origin: String,
     pub channel: String,

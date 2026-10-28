@@ -9,6 +9,8 @@ import {admin} from './routes/admin';
 import {auth} from './routes/auth';
 import {passwordAuth} from './routes/password-auth';
 import {users} from './routes/users';
+import {desktopAuth} from './routes/desktop-auth';
+import {ai} from './routes/ai';
 export async function handle(request:Request,bindings:unknown,viaWeb=false):Promise<Response> {
  const id=requestId(request),head=request.method==='HEAD';
  try {
@@ -26,6 +28,8 @@ export async function handle(request:Request,bindings:unknown,viaWeb=false):Prom
    if(!['GET','HEAD'].includes(request.method))return failure('BAD_REQUEST','Method not allowed',405,id,origin,head,{Allow:'GET, HEAD, OPTIONS'});
    return health(request,id,origin);
   }
+  const device=await desktopAuth(request,env,id,viaWeb);if(device)return device;
+  const proposal=await ai(request,env,id,viaWeb);if(proposal)return proposal;
   const password=await passwordAuth(request,env,id,viaWeb);if(password)return password;
   const account=await users(request,env,id,viaWeb);if(account)return account;
   const authentication=await auth(request,env,id,viaWeb);if(authentication)return authentication;

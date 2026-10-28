@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-10-28T10:59:52.290Z",
+    "steps": [
+      "14.5",
+      "15.0",
+      "15.1"
+    ],
+    "platform": "win32",
+    "staging_only": true,
+    "production_touched": false,
+    "dns_touched": false,
+    "mail_touched": false,
+    "passed": false,
+    "pkce_loopback_windows_vault": true,
+    "email_browser_return_path": true,
+    "offline_session": true,
+    "desktop_to_web_favorite": true,
+    "web_lists_device": true,
+    "private_data_rejected": true,
+    "ai_status": 503,
+    "ai_error": "AI_UNKNOWN_ACTION_OR_INPUT; nothing was executed",
+    "error": "Real Workers AI returned 503",
+    "fixture_removed": true
+  }
+]

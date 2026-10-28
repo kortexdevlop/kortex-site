@@ -1,6 +1,8 @@
 use crate::{config::Config, paths, trust};
 use serde::{Deserialize, Serialize};
 use std::{collections::BTreeMap, path::PathBuf};
+/// Remote favorites are references only: reconcile presence without installing, deleting or uploading files.
+pub fn remote_presence(c:&Config,ids:&[String])->Result<Vec<(String,bool)>,String>{if ids.len()>2000{return Err("Trop de références synchronisées.".into())}let local=scan(c);Ok(ids.iter().map(|id|(id.clone(),local.tools.iter().any(|tool|tool.id==*id))).collect())}
 #[derive(Clone, Debug, PartialEq)]
 pub struct Installed {
     pub id: String,

@@ -1,4 +1,7 @@
 pub mod api;
+pub mod account;
+pub mod secure_store;
+mod account_ui;
 pub mod app;
 pub mod config;
 pub mod installer;

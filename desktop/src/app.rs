@@ -122,6 +122,7 @@ pub fn App() -> Element {
     let mut store = use_signal(Store::default);
     let mut busy = use_signal(|| false);
     let mut status = use_signal(String::new);
+    let mut account_preferences=use_signal(||serde_json::Value::Null);
     let epoch = use_signal(|| 0u64);
     let mut query = use_signal(String::new);
     let mut category = use_signal(String::new);
@@ -213,9 +214,11 @@ pub fn App() -> Element {
         .page
         .as_ref()
         .and_then(|p| p.next_cursor.clone());
+    let account_tools:Vec<(String,String)>=rows.iter().map(|t|(t.id.clone(),t.name.clone())).collect();
+    let account_class=format!("desktop-workspace {} {} {}",if account_preferences.read()["theme"]=="dark"{"account-dark"}else{""},if account_preferences.read()["density"]=="pro"{"account-compact"}else{""},if account_preferences.read()["type"]=="large"{"account-large"}else{""});
     rsx! {
     style{{include_str!("../assets/app.css")}}
-    div{class:"desktop-workspace",
+    div{class:account_class,
     aside{class:"sidebar",
     div{class:"brand",span{class:"logo"}strong{"kortex"}span{class:"muted",".site"}small{if channel=="staging"{"TEST"}else{"DESKTOP"}}}
     nav{aria_label:"Navigation principale",
@@ -279,7 +282,7 @@ pub fn App() -> Element {
     {let cfg=config.clone();let api=api.clone();rsx!{button{disabled:*busy.read(),onclick:move |_|{if let(Ok(c),Ok(a))=(cfg.clone(),api.clone()){manager::check(c,a,busy,available,checked,notice)}},"Rechercher les mises à jour"}}}
     for update in available.read().clone(){{let candidate=update.clone();rsx!{article{class:"tool-card",h2{"{update.detail.tool.name}"}p{"{update.installed.version} → {update.detail.tool.version}"}p{"{update.detail.manifest.description}"}button{disabled:*busy.read(),onclick:move |_|confirmation.set(Some(Choice::new(Operation::Update(candidate.clone())))),"Mettre à jour"}}}}}
     },
-    Section::Account=>rsx!{h1{"Mon espace"}div{class:"empty",h2{"Vous utilisez Kortex sans compte"}p{"Votre bibliothèque locale reste accessible sans connexion à un compte."}}}
+    Section::Account=>rsx!{if let Ok(c)=&config{crate::account_ui::AccountPanel{config:c.clone(),tools:account_tools,on_preferences:move|value|account_preferences.set(value)}}}
     }
     }
     for id in library.read().unavailable.clone(){if *section.read()==Section::Library{{let id2=id.clone();rsx!{div{class:"empty",p{"Outil indisponible : {id}"}button{disabled:*busy.read(),onclick:move |_|confirmation.set(Some(Choice::new(Operation::Uninstall{id:id2.clone(),name:id2.clone()}))),"Désinstaller"}}}}}}
