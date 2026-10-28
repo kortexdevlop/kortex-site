@@ -92,6 +92,11 @@ pub fn slug(s: &str) -> bool {
         })
 }
 impl Api {
+    pub fn offline_mode(&self, value: bool) -> Self {
+        let mut api = self.clone();
+        api.offline = value;
+        api
+    }
     pub fn new(c: &Config) -> Result<Self, Error> {
         crate::config::validate_origin(&c.api_origin).map_err(Error::Invalid)?;
         {
@@ -208,6 +213,74 @@ impl Api {
         let out = decode_detail(v.clone(), id).map_err(Error::Invalid)?;
         self.remember(&path, &[], v);
         Ok(out)
+    }
+
+    pub fn detail_fresh(&self, id: &str) -> Result<ToolDetail, Error> {
+        if !slug(id) {
+            return Err(Error::Invalid("Identifiant invalide.".into()));
+        }
+        let v = self.get(&format!("/api/v1/tools/{id}"), &[], true)?;
+        decode_detail(v, id).map_err(Error::Invalid)
+    }
+    pub fn actions_fresh(&self, id: &str, version: &str) -> Result<ToolActions, Error> {
+        if !slug(id) {
+            return Err(Error::Invalid("Identifiant invalide.".into()));
+        }
+        let v = self.get(&format!("/api/v1/tools/{id}/actions"), &[], true)?;
+        decode_actions(v, id, version).map_err(Error::Invalid)
+    }
+    fn artifact_url(&self, d: &kortex_verify::Descriptor) -> Result<url::Url, Error> {
+        if !slug(&d.tool_id) || d.version.len() > 128 || semver::Version::parse(&d.version).is_err()
+        {
+            return Err(Error::Invalid("Identité invalide.".into()));
+        }
+        let mut u = url::Url::parse(&self.origin).map_err(|_| Error::Unavailable)?;
+        u.path_segments_mut()
+            .map_err(|_| Error::Unavailable)?
+            .extend(["api", "v1", "downloads", &d.tool_id, &d.version]);
+        Ok(u)
+    }
+    pub fn download(
+        &self,
+        d: &kortex_verify::Descriptor,
+    ) -> Result<reqwest::blocking::Response, Error> {
+        if self.offline {
+            return Err(Error::Offline);
+        }
+        let response = self
+            .client
+            .get(self.artifact_url(d)?)
+            .timeout(Duration::from_secs(60))
+            .send()
+            .map_err(|_| Error::Offline)?;
+        match response.status().as_u16() {
+            200 => Ok(response),
+            404 => Err(Error::NotFound),
+            410 => Err(Error::Invalid("Cette version a été révoquée.".into())),
+            _ => Err(Error::Unavailable),
+        }
+    }
+    pub fn availability(&self, d: &kortex_verify::Descriptor) -> Result<bool, Error> {
+        if self.offline {
+            return Err(Error::Offline);
+        }
+        let response = self
+            .client
+            .head(self.artifact_url(d)?)
+            .send()
+            .map_err(|_| Error::Offline)?;
+        match response.status().as_u16() {
+            200 => {
+                if let Some(hash) = response.headers().get("x-kortex-sha256") {
+                    if hash.to_str().ok() != Some(d.sha256.as_str()) {
+                        return Err(Error::Invalid("Empreinte distante incohérente.".into()));
+                    }
+                }
+                Ok(true)
+            }
+            404 | 410 => Ok(false),
+            _ => Err(Error::Unavailable),
+        }
     }
     pub fn actions(&self, id: &str, version: &str) -> Result<ToolActions, Error> {
         if !slug(id) {

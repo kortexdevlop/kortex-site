@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-28T03:06:09.082Z",
+  "tool_id": "desktop-update-c74850bf",
+  "passed": true,
+  "verified_store_install": true,
+  "offline_ui_launch": true,
+  "permission_change_requires_confirmation": true,
+  "update_and_native_start": true,
+  "old_version_retained": true,
+  "manual_rollback": true,
+  "real_bad_guest_update_rejected": true,
+  "uninstall_preserves_data": true,
+  "purge_isolated_to_local_profile": true
+}

@@ -83,3 +83,21 @@ fn external_fixture_is_explicit_and_not_a_product_tool() {
     );
     assert!(tool.directory.ends_with("sixth-tool-fixture"));
 }
+
+#[test]
+fn external_workspace_has_isolated_target_directory() {
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../..")
+        .canonicalize()
+        .unwrap();
+    let fixture =
+        kortex_xtask::discovery::source(&root.join("tests/integration/sixth-tool-fixture"))
+            .unwrap();
+    let external = kortex_xtask::build::target_directory(&root, &fixture);
+    assert!(external.starts_with(root.join("target/external")));
+    let product = kortex_xtask::discovery::source(&root.join("tools/calculatrice")).unwrap();
+    assert_eq!(
+        kortex_xtask::build::target_directory(&root, &product),
+        root.join("target")
+    );
+}

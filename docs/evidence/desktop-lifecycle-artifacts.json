@@ -1,0 +1,113 @@
+[
+  {
+    "version": "1.0.0",
+    "sha256": "f2137e88d83f88c6ee02bfa4ed32e6e41944768255273b48b0a1c23486c8bd2a",
+    "descriptor": {
+      "schema_version": 1,
+      "tool_id": "desktop-update-c74850bf",
+      "version": "1.0.0",
+      "abi_version": "1.0",
+      "sha256": "f2137e88d83f88c6ee02bfa4ed32e6e41944768255273b48b0a1c23486c8bd2a",
+      "signing_key_id": "desktop-update-c74850bf-release",
+      "signature": "q93KQaTwfWoO1QW4DUhiNv2Tq6sCfL2nfWmj2e9tH8jpJzGwnQp74qTI6sruQ29yjvg9HgczO3pLBMV3ipNzBA=="
+    },
+    "host_trust": {
+      "root": {
+        "id": "desktop-update-c74850bf-root",
+        "public_key_base64": "9PYGDxIasDz9EhyeY5RHHoHAtbyEVGgQ+HdRLAORxD4="
+      },
+      "document": {
+        "schema_version": 1,
+        "version": 1,
+        "issued_at": 1793156654247,
+        "expires": 1793243055247,
+        "root_key_id": "desktop-update-c74850bf-root",
+        "keys": [
+          {
+            "id": "desktop-update-c74850bf-release",
+            "public_key_base64": "39AkJkIbSvfTCB77VVjWC0uxPNfNgcECiPTlVq+BA6c=",
+            "not_before": 1793156654247,
+            "expires": 1793243055247,
+            "revoked": false
+          }
+        ],
+        "signature": "zbegFlq0+zXqfbPbZtQ6Sm8XMbg+mbFAj42GhDLnpWJg9G/Mx2QTtP+R5Jwh7zbjUSbBjnXi4pGKRVsSckAbCg=="
+      },
+      "minimum_version": 1
+    }
+  },
+  {
+    "version": "1.1.0",
+    "sha256": "d2c5225652a147f6b2db92c4af93fd568ef243b73383dded88d7119acba28b2e",
+    "descriptor": {
+      "schema_version": 1,
+      "tool_id": "desktop-update-c74850bf",
+      "version": "1.1.0",
+      "abi_version": "1.0",
+      "sha256": "d2c5225652a147f6b2db92c4af93fd568ef243b73383dded88d7119acba28b2e",
+      "signing_key_id": "desktop-update-c74850bf-release",
+      "signature": "gVNmIu84VoY7nk1s21H3MnzpVQjbtneeebufKDrX8XGbFuJBetROYQ4ifAtIbvtMijZwANwTHlwqagjxjkWqDg=="
+    },
+    "host_trust": {
+      "root": {
+        "id": "desktop-update-c74850bf-root",
+        "public_key_base64": "9PYGDxIasDz9EhyeY5RHHoHAtbyEVGgQ+HdRLAORxD4="
+      },
+      "document": {
+        "schema_version": 1,
+        "version": 1,
+        "issued_at": 1793156654247,
+        "expires": 1793243055247,
+        "root_key_id": "desktop-update-c74850bf-root",
+        "keys": [
+          {
+            "id": "desktop-update-c74850bf-release",
+            "public_key_base64": "39AkJkIbSvfTCB77VVjWC0uxPNfNgcECiPTlVq+BA6c=",
+            "not_before": 1793156654247,
+            "expires": 1793243055247,
+            "revoked": false
+          }
+        ],
+        "signature": "zbegFlq0+zXqfbPbZtQ6Sm8XMbg+mbFAj42GhDLnpWJg9G/Mx2QTtP+R5Jwh7zbjUSbBjnXi4pGKRVsSckAbCg=="
+      },
+      "minimum_version": 1
+    }
+  },
+  {
+    "version": "1.2.0",
+    "sha256": "9bcf18f3009715617d350c7aa8316a2bf342fa5e210bdb0e1862d9c8c3f0f754",
+    "descriptor": {
+      "schema_version": 1,
+      "tool_id": "desktop-update-c74850bf",
+      "version": "1.2.0",
+      "abi_version": "1.0",
+      "sha256": "9bcf18f3009715617d350c7aa8316a2bf342fa5e210bdb0e1862d9c8c3f0f754",
+      "signing_key_id": "desktop-update-c74850bf-release",
+      "signature": "t6NBfva7DR/4AFLZ8j3A9QbaM1mcpI17ohMEynziaxVZm+gZRcnfvPtPz2MaDyCyR3r7KnwnAhimcmJsBrC7DA=="
+    },
+    "host_trust": {
+      "root": {
+        "id": "desktop-update-c74850bf-root",
+        "public_key_base64": "9PYGDxIasDz9EhyeY5RHHoHAtbyEVGgQ+HdRLAORxD4="
+      },
+      "document": {
+        "schema_version": 1,
+        "version": 1,
+        "issued_at": 1793156654247,
+        "expires": 1793243055247,
+        "root_key_id": "desktop-update-c74850bf-root",
+        "keys": [
+          {
+            "id": "desktop-update-c74850bf-release",
+            "public_key_base64": "39AkJkIbSvfTCB77VVjWC0uxPNfNgcECiPTlVq+BA6c=",
+            "not_before": 1793156654247,
+            "expires": 1793243055247,
+            "revoked": false
+          }
+        ],
+        "signature": "zbegFlq0+zXqfbPbZtQ6Sm8XMbg+mbFAj42GhDLnpWJg9G/Mx2QTtP+R5Jwh7zbjUSbBjnXi4pGKRVsSckAbCg=="
+      },
+      "minimum_version": 1
+    }
+  }
+]

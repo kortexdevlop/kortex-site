@@ -1,5 +1,7 @@
 # Kortex Desktop — étapes 13.0 et 13.1
 
+**Mise à jour 13.2–13.4 :** installation depuis le Store, bibliothèque versionnée, désinstallation, mises à jour et retour arrière sont implémentés. Voir DESKTOP-INSTALLATION.md et les preuves associées. Les descriptions ci-dessous documentent l’état initial de 13.0–13.1.
+
 L’application produit est desktop/, distincte du shell expérimental runtime/desktop. Elle réutilise son composant ToolSession et les moteurs kortex-runtime-native / kortex-ui : pas de second moteur ni de branche d’identifiant d’outil. Les paramètres de paquet, les clés publiques et le panneau JSON du shell expérimental sont masqués en mode produit. Un clic d’ouverture dans la bibliothèque démarre l’outil sans consentement global inutile ; le courtier demande séparément chaque capacité sensible.
 
 ## Lancer et vérifier

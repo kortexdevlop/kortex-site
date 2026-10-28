@@ -1,6 +1,13 @@
 pub mod api;
 pub mod app;
 pub mod config;
+pub mod installer;
+pub mod launcher;
 pub mod library;
+mod manager;
 pub mod models;
+pub mod paths;
 pub mod store;
+pub mod trust;
+pub mod updates;
+pub mod versions;

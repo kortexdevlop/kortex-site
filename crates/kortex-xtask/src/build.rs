@@ -6,12 +6,25 @@ use std::{
 fn cargo() -> std::ffi::OsString {
     std::env::var_os("CARGO").unwrap_or_else(|| "cargo".into())
 }
+/// External workspaces must not share top-level artifact filenames.
+pub fn target_directory(root: &Path, tool: &Tool) -> PathBuf {
+    if tool.directory.starts_with(root.join("tools")) {
+        root.join("target")
+    } else {
+        let path = tool
+            .directory
+            .canonicalize()
+            .unwrap_or_else(|_| tool.directory.clone());
+        root.join("target/external")
+            .join(kortex_verify::sha256(path.to_string_lossy().as_bytes()))
+    }
+}
 /// Resolve package/target names from Cargo metadata, never from an identifier match.
 pub fn artifact(root: &Path, tool: &Tool) -> Result<(String, String, PathBuf)> {
     let output = Command::new(cargo())
         .current_dir(&tool.directory)
         .args(["metadata", "--no-deps", "--format-version", "1", "--locked"])
-        .env("CARGO_TARGET_DIR", root.join("target"))
+        .env("CARGO_TARGET_DIR", target_directory(root, tool))
         .output()
         .map_err(|e| e.to_string())?;
     if !output.status.success() {
@@ -87,7 +100,7 @@ pub fn build(root: &Path, tool: &Tool) -> Result<PathBuf> {
             "--release",
             "--locked",
         ])
-        .env("CARGO_TARGET_DIR", root.join("target"))
+        .env("CARGO_TARGET_DIR", target_directory(root, tool))
         .env("RUSTFLAGS", flags.trim())
         .env_remove("CARGO_ENCODED_RUSTFLAGS")
         .stdout(std::process::Stdio::inherit())

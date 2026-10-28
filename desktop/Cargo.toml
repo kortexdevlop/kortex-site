@@ -9,6 +9,7 @@ dioxus={version="=0.7.10",default-features=false,features=["macro","html","signa
 kortex-runtime-desktop={path="../runtime/desktop"}
 kortex-runtime-native={path="../crates/kortex-runtime-native"}
 kortex-core={path="../crates/kortex-core"}
+kortex-capabilities={path="../crates/kortex-capabilities"}
 kortex-ui={path="../crates/kortex-ui"}
 kortex-verify={path="../crates/kortex-verify"}
 kortex-shared={path="../shared/rust"}
@@ -19,5 +20,14 @@ reqwest={version="=0.12.28",default-features=false,features=["blocking","rustls-
 url="=2.5.8"
 dirs="=6.0.0"
 tokio={version="=1.54.1",features=["rt","time"]}
+fs2="=0.4.3"
+semver="=1.0.28"
+getrandom="=0.3.4"
+sha2="=0.10.9"
 [dev-dependencies]
+ed25519-dalek="=2.2.0"
+base64="=0.22.1"
+kortex-pack={path="../crates/kortex-pack"}
+zip={version="=2.4.2",default-features=false,features=["deflate"]}
+wat="=1.262.0"
 tempfile="=3.27.0"

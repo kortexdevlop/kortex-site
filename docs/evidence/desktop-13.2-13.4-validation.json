@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-28",
+  "base_commit": "aff61f9",
+  "steps": [
+    "13.2",
+    "13.3",
+    "13.4"
+  ],
+  "technical_status": "closed",
+  "rust_tests_passed": 24,
+  "windows": {
+    "date": "2026-10-28T03:06:09.082Z",
+    "tool_id": "desktop-update-c74850bf",
+    "passed": true,
+    "verified_store_install": true,
+    "offline_ui_launch": true,
+    "permission_change_requires_confirmation": true,
+    "update_and_native_start": true,
+    "old_version_retained": true,
+    "manual_rollback": true,
+    "real_bad_guest_update_rejected": true,
+    "uninstall_preserves_data": true,
+    "purge_isolated_to_local_profile": true
+  },
+  "staging_cleanup": {
+    "date": "2026-10-28T03:04:09.934Z",
+    "tool_id": "desktop-update-c74850bf",
+    "staging_only": true,
+    "production_touched": false,
+    "mail_touched": false,
+    "published": [
+      "1.0.0",
+      "1.1.0",
+      "1.2.0"
+    ],
+    "uploaded": [
+      "1.0.0",
+      "1.1.0",
+      "1.2.0"
+    ],
+    "passed": true,
+    "fixtures_revoked": true,
+    "objects_removed": true,
+    "temporary_key_revoked": true,
+    "operator_policy_restored": true
+  },
+  "checks": [
+    "signed streamed download and atomic activation",
+    "signature/hash/archive traversal/size/redirect rejection",
+    "cancellation before activation and during download",
+    "per-profile data retention and explicit purge isolation",
+    "SemVer precedence and minRuntime",
+    "real Wasmtime probe and failed-guest rejection",
+    "pending launch rollback and profile restore",
+    "migration checkpoint failure restores partially changed profile",
+    "external builder artifact cache isolation"
+  ],
+  "limits": [
+    "Windows only; Linux/macOS and Firefox excluded by owner",
+    "V1 has no arbitrary migration ABI; injected migration checkpoint tests host restoration",
+    "Application installer and Authenticode not part of this lot",
+    "13.5 not started; formal human review statuses preserved"
+  ],
+  "sha256": {
+    "docs/evidence/desktop-13.2-13.4-rust.log": "ccb839573ff0648540af9c7ee5524e141525f9f89085350d7667b797f60fdf63",
+    "docs/evidence/desktop-13.2-13.4-build.log": "5a73e76f97d75c6fab8f19ea8cbed1b8fd5920646be387e53e4284d04a8090fe",
+    "docs/evidence/desktop-13.2-13.4-live.log": "da0ae041a6d0d70b3efb49b1e40e0d268d4c3ec5785ccf32cf3b6fc6a22e11d9",
+    "docs/evidence/desktop-lifecycle-artifacts.json": "d5e4992bce4be2e46819bfbc4ef94d0605ecf6d1c45849ca4ef4939fbd3f12b0",
+    "docs/evidence/desktop-lifecycle-staging.json": "d1acfaada0cee7b6153ff0927736fdfd7dc2967adff389ec99861eadba6b7736",
+    "docs/evidence/desktop-lifecycle-windows.json": "0a4b473aef31d1f68b5f8466f6a861d0b5c3950b3ed1204cecad27c5fc35a524",
+    "docs/evidence/desktop-update-permissions-windows.png": "9ddcb6adfbdc534ab970c13c4673632fa62d33aa617dbe70814cfe1b1bff1e8c",
+    "docs/evidence/desktop-update-rollback-windows.png": "f33657905f048ccc388d5f3c18d09076efacaa5d9723abfb6996c9491b30f172",
+    "target/debug/kortex-desktop.exe": "52db07d342fe148d1e4765a62d36adf7360c9ad2a9b609239133e191be9c8f75"
+  }
+}

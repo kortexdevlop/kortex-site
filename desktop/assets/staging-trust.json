@@ -1,0 +1,122 @@
+[
+  {
+    "root": {
+      "id": "dry-run-root",
+      "public_key_base64": "xlUPeGUhhF5EtdooGuM4nQEcyx1kGijFzHY3FoUWzOM="
+    },
+    "document": {
+      "schema_version": 1,
+      "version": 1,
+      "issued_at": 1793114862262,
+      "expires": 1793201263262,
+      "root_key_id": "dry-run-root",
+      "keys": [
+        {
+          "id": "dry-run-release",
+          "public_key_base64": "Fv5pkg+STEU7Q64xpTy0yI/lUpyW9GVRvDdUAE8Uat4=",
+          "not_before": 1793114862262,
+          "expires": 1793201263262,
+          "revoked": false
+        }
+      ],
+      "signature": "hMfVmeJDsmODmSIpwj8Jp0OGgF1N6IICQUaxPhHX9eYpfUJ8B+hEhLuX9BDrrkRadix4Sgup1zmJY4r2XQoPAg=="
+    },
+    "minimum_version": 1
+  },
+  {
+    "root": {
+      "id": "phase12-root-ba8b36d3",
+      "public_key_base64": "bNKRe4ZwRbrJMi+mBsiDRZvCu4XvaAg1StB09SAAClY="
+    },
+    "document": {
+      "schema_version": 1,
+      "version": 1,
+      "issued_at": 1793135971566,
+      "expires": 1793740772566,
+      "root_key_id": "phase12-root-ba8b36d3",
+      "keys": [
+        {
+          "id": "convertisseur-casse-5b8c1111",
+          "public_key_base64": "Ry/zNTMlvR1FUYpXhWEV+euk6er5t7xDyZnA4qh1/7M=",
+          "not_before": 1793135912566,
+          "expires": 1793740772566,
+          "revoked": false
+        }
+      ],
+      "signature": "vZPUCvmcI/sq+GsGpmdxmMsrGqfd0xzVqviMaQPOO0dyLwccmIkaXweKbsUbFxOy1TIOz+hlz/lYliUSW6PgBg=="
+    },
+    "minimum_version": 1
+  },
+  {
+    "root": {
+      "id": "phase12-root-8be52644",
+      "public_key_base64": "A2svea94zJgM1azex/RqXbJQYSFCwQthHBv7UYJNwEQ="
+    },
+    "document": {
+      "schema_version": 1,
+      "version": 1,
+      "issued_at": 1793136052929,
+      "expires": 1793740853929,
+      "root_key_id": "phase12-root-8be52644",
+      "keys": [
+        {
+          "id": "calculateur-hash-107bddff",
+          "public_key_base64": "HFjKEs10W+OjdqDxTuSZTB0U3tR+Axjya8DFhaDmO1A=",
+          "not_before": 1793135993929,
+          "expires": 1793740853929,
+          "revoked": false
+        }
+      ],
+      "signature": "y0sTrd2ot/lT8TVNrmDKl56xodNbpAjJaaJEFejOF5AiETTXv1wMrsSv0WtowFnyNjrBzMRUTh4NCGmDKFVEDA=="
+    },
+    "minimum_version": 1
+  },
+  {
+    "root": {
+      "id": "phase12-root-41a1f7df",
+      "public_key_base64": "Ku1KgIBl0bdMvii58qx1Usd8xyspd9L/XfGfhKU/RuY="
+    },
+    "document": {
+      "schema_version": 1,
+      "version": 1,
+      "issued_at": 1793136062393,
+      "expires": 1793740863393,
+      "root_key_id": "phase12-root-41a1f7df",
+      "keys": [
+        {
+          "id": "timestamp-utc-d5cee877",
+          "public_key_base64": "WLhNxjaF3TCsLyX1LgIo7yEx0A6/GzfPSAgUfG+ae6Y=",
+          "not_before": 1793136003393,
+          "expires": 1793740863393,
+          "revoked": false
+        }
+      ],
+      "signature": "KEMQCFllAgQep4JLRBXQa5b9/EhnTQiHZp1pZ5p1PeYImbIhFMSIbWYkABEJi9YJ/yD1q2aERjCX3w9cG7UdDw=="
+    },
+    "minimum_version": 1
+  },
+  {
+    "root": {
+      "id": "phase12-root-37e67d31",
+      "public_key_base64": "c+SFaBoJ9Pf4MlJMfs6lh5aKfTc+8JxoQt3r2HhU/AY="
+    },
+    "document": {
+      "schema_version": 1,
+      "version": 1,
+      "issued_at": 1793139436285,
+      "expires": 1793744237285,
+      "root_key_id": "phase12-root-37e67d31",
+      "keys": [
+        {
+          "id": "explorateur-csv-22bc15ec",
+          "public_key_base64": "ZjCfH/tzIwrOB0EsU89ise7Y+wRET3J6adXWQ301tfg=",
+          "not_before": 1793139377285,
+          "expires": 1793744237285,
+          "revoked": false
+        }
+      ],
+      "signature": "e+7JQYL6vChFbOrAadWcn0jJhX48NkFOBaepzhaWAYVbFFgSCXgO17+Gv/NUkVXhF8YkYCcsn8+Z776R2HsDCQ=="
+    },
+    "minimum_version": 1
+  }
+]

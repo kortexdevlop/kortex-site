@@ -1,5 +1,7 @@
 # Progression
 
+Lot 13.2–13.4 techniquement terminé et clos le 28/10/2026 : téléchargement/installation signée et atomique, bibliothèque/désinstallation avec données conservées par défaut, mises à jour avec permissions explicites et retour arrière. 24 tests Rust et parcours réel Windows/Cloudflare réussis, ouverture hors connexion incluse. Ressources temporaires nettoyées et politique opérateur restaurée. Preuves : docs/evidence/desktop-13.2-13.4-validation.json. 13.5 non engagée ; statuts formels de revue humaine conservés. Les paragraphes suivants décrivent les lots historiques.
+
 Lot 12.6–13.1 techniquement réalisé et clos le 28/10/2026 sur demande du propriétaire : extension temporaire publiée/testée sans modification ou redéploiement des clients pendant publication, puis révoquée/nettoyée ; application Windows produit et Store relié à l’API réelle. Dix tests Rust ciblés, pipeline de signature, test navigateur Cloudflare et deux parcours Windows (connecté/hors connexion) réussis. Bibliothèque signée et paquet altéré refusé ; pagination testée sur 10 000 entrées synthétiques. Preuves : docs/evidence/desktop-phase13-validation.json. Pas de téléchargement/installation Store (13.2 non engagée). Les statuts formels historiques restent distincts de l’exécution technique, sans approbation visuelle inventée.
 
 Lot 12.3–12.5 techniquement terminé et clos le 28/10/2026 sur demande du propriétaire. Explorateur CSV publié ; export réel corrigé et vérifié, stockage IndexedDB réel relu après rechargement avec permission navigateur, refus et absence de persistance couverts. Cinq paquets signés démarrent sur le vrai site Cloudflare ; neuf vecteurs partagés Web/Wasmtime. Build/validate des cinq outils et suite Rust complète réussis en série (125 tests, 1 ignorés explicitement), 3 essais Cloudflare de clôture réussis. Preuves : docs/evidence/phase12-closure.json. Le quota D1 et le disque plein sont des incidents historiques résolus. Les statuts de revue humaine historique restent distincts ; aucune approbation visuelle inventée. 12.6 non engagée. Production, DNS et messagerie intacts.
@@ -1259,6 +1261,66 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       "docs/evidence/desktop-phase13-validation.json",
       "docs/evidence/desktop-online-windows.json",
       "docs/evidence/desktop-offline-windows.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaines ces 3 étapes, travaille de façon hyper intelligente pour avancer rapidement"
+  },
+  {
+    "id": "13.2",
+    "status": "pending",
+    "source_commit": "aff61f9",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-13.2.md",
+    "tests_executed": "24 tests Rust ciblés réussis ; parcours réel Windows/Cloudflare : installation signée, ouverture hors connexion, confirmation des permissions, mise à jour, refus du guest défaillant, retour arrière, désinstallation avec conservation puis purge isolée. Fixtures, objets et clé temporaires nettoyés ; politique opérateur restaurée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-13.2-13.4-validation.json",
+      "docs/evidence/desktop-lifecycle-windows.json",
+      "docs/evidence/desktop-lifecycle-staging.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaines ces 3 étapes, travaille de façon hyper intelligente pour avancer rapidement"
+  },
+  {
+    "id": "13.3",
+    "status": "pending",
+    "source_commit": "aff61f9",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-13.3.md",
+    "tests_executed": "24 tests Rust ciblés réussis ; parcours réel Windows/Cloudflare : installation signée, ouverture hors connexion, confirmation des permissions, mise à jour, refus du guest défaillant, retour arrière, désinstallation avec conservation puis purge isolée. Fixtures, objets et clé temporaires nettoyés ; politique opérateur restaurée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-13.2-13.4-validation.json",
+      "docs/evidence/desktop-lifecycle-windows.json",
+      "docs/evidence/desktop-lifecycle-staging.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaines ces 3 étapes, travaille de façon hyper intelligente pour avancer rapidement"
+  },
+  {
+    "id": "13.4",
+    "status": "pending",
+    "source_commit": "aff61f9",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-13.4.md",
+    "tests_executed": "24 tests Rust ciblés réussis ; parcours réel Windows/Cloudflare : installation signée, ouverture hors connexion, confirmation des permissions, mise à jour, refus du guest défaillant, retour arrière, désinstallation avec conservation puis purge isolée. Fixtures, objets et clé temporaires nettoyés ; politique opérateur restaurée.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-13.2-13.4-validation.json",
+      "docs/evidence/desktop-lifecycle-windows.json",
+      "docs/evidence/desktop-lifecycle-staging.json"
     ],
     "frozen": false,
     "technical_status": "closed",

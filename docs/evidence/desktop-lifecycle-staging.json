@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-28T03:04:09.934Z",
+  "tool_id": "desktop-update-c74850bf",
+  "staging_only": true,
+  "production_touched": false,
+  "mail_touched": false,
+  "published": [
+    "1.0.0",
+    "1.1.0",
+    "1.2.0"
+  ],
+  "uploaded": [
+    "1.0.0",
+    "1.1.0",
+    "1.2.0"
+  ],
+  "passed": true,
+  "fixtures_revoked": true,
+  "objects_removed": true,
+  "temporary_key_revoked": true,
+  "operator_policy_restored": true
+}
