@@ -1373,7 +1373,7 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "id": "14.1",
     "status": "pending",
     "source_commit": "53a0c02",
-    "result_commit": null,
+    "result_commit": "deefdb8",
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-14.1.md",
