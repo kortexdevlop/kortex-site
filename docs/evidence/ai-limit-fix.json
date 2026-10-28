@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-28T16:18:12.339Z",
+  "staging_only": true,
+  "passed": true,
+  "counters_reset": false,
+  "status": 200,
+  "real_proposal": {
+    "v": 1,
+    "steps": [
+      {
+        "tool_id": "calculatrice",
+        "action_id": "multiply",
+        "input": {
+          "a": 25,
+          "b": 48
+        },
+        "requires_consent": true
+      }
+    ],
+    "summary": "Multiplication de 25 et 48"
+  },
+  "fixture_removed": true
+}

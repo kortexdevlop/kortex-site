@@ -37,9 +37,9 @@
         "PASSWORD_AUTH_ENABLED": "true",
         "AI_ENABLED": "true",
         "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-        "AI_USER_DAILY_REQUESTS": "2",
-        "AI_GLOBAL_DAILY_REQUESTS": "3",
-        "AI_DAILY_RESERVED_TOKENS": "50688"
+        "AI_USER_DAILY_REQUESTS": "50",
+        "AI_GLOBAL_DAILY_REQUESTS": "100",
+        "AI_DAILY_RESERVED_TOKENS": "1689600"
       },
       "d1_databases": [
         {

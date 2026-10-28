@@ -3,7 +3,7 @@ import type {Env} from '../env';
 export const MODEL='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 export function aiConfig(env:Env){
  if(env.AI_ENABLED!=='true'||!env.AI||env.AI_MODEL!==MODEL)return null;
- const config=z.object({user:z.coerce.number().int().min(1).max(10),global:z.coerce.number().int().min(1).max(20),tokens:z.coerce.number().int().min(16896).max(337920)}).parse({user:env.AI_USER_DAILY_REQUESTS??'2',global:env.AI_GLOBAL_DAILY_REQUESTS??'3',tokens:env.AI_DAILY_RESERVED_TOKENS??'50688'});
+ const config=z.object({user:z.coerce.number().int().min(1).max(100),global:z.coerce.number().int().min(1).max(200),tokens:z.coerce.number().int().min(16896).max(3379200)}).parse({user:env.AI_USER_DAILY_REQUESTS??'50',global:env.AI_GLOBAL_DAILY_REQUESTS??'100',tokens:env.AI_DAILY_RESERVED_TOKENS??'1689600'});
  return {...config,model:MODEL,output:512,reservation:16896};
 }
 export function scrubMessage(message:string):string{

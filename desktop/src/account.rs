@@ -110,7 +110,16 @@ fn request(
         match status.as_u16() {
             429 => {
                 return Err(
-                    "Quota IA quotidien atteint. Vos outils locaux restent disponibles.".into(),
+                    if response
+                        .headers()
+                        .get("X-Kortex-Limit-Source")
+                        .is_some_and(|v| v == "application")
+                    {
+                        "Limite quotidienne de Kortex atteinte. Le quota Cloudflare peut encore être disponible.".into()
+                    } else {
+                        "Le service IA limite temporairement les demandes. Réessayez plus tard."
+                            .into()
+                    },
                 );
             }
             403 => {

@@ -47,7 +47,7 @@ async function authProxy(request:Request,binding:ServiceBinding|undefined,webOri
   }
   const upstream=await Promise.race([binding.fetch(new Request('https://kortex-api.internal'+url.pathname+url.search,{method:request.method,headers,...(body?{body}:{}),redirect:'manual',signal:controller.signal})),expired]);
   const safe=new Headers({'Cache-Control':account?'private, no-store, no-transform':'private, no-store','Vary':'Cookie','Content-Security-Policy':"default-src 'none'; frame-ancestors 'none'",'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});
-  for(const name of ['content-type','x-request-id','retry-after','allow','etag','content-disposition']){const value=upstream.headers.get(name);if(value)safe.set(name,value);}
+  for(const name of ['content-type','x-request-id','retry-after','allow','etag','content-disposition','x-kortex-limit-source']){const value=upstream.headers.get(name);if(value)safe.set(name,value);}
   if(upstream.status>=300&&upstream.status<400){
    const target=new URL(upstream.headers.get('Location')??'');const local=new URL(webOrigin).protocol==='http:';
    const provider=target.origin==='https://accounts.google.com'||local&&target.protocol==='http:'&&['127.0.0.1','localhost','[::1]'].includes(target.hostname);

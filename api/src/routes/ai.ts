@@ -12,7 +12,7 @@ export async function ai(request:Request,env:Env,id:string,viaWeb:boolean):Promi
   if(url.searchParams.size||request.headers.get('Content-Type')?.split(';')[0]!=='application/json')return failure('BAD_REQUEST','Invalid AI request',400,id);
   const parsed=aiRequest.safeParse(JSON.parse(new TextDecoder().decode(await readBounded(request.body,8192))));if(!parsed.success)return failure('BAD_REQUEST','Only consented messages without private files are supported',400,id);
   try{scrubMessage(parsed.data.message)}catch{return failure('BAD_REQUEST','Remove private data or secrets from the message',400,id)}
-  if(!await reserveAi(env,owner.user_id,config))return failure('RATE_LIMITED','Daily AI quota reached',429,id,undefined,false,{'Retry-After':'86400'});
+  if(!await reserveAi(env,owner.user_id,config))return failure('RATE_LIMITED','Kortex application daily limit reached; this does not indicate Cloudflare quota usage',429,id,undefined,false,{'Retry-After':String(Math.ceil((86400000-Date.now()%86400000)/1000)),'X-Kortex-Limit-Source':'application'});
   try{return json(await makeProposal(env,parsed.data),200,id)}catch(error){
    // Only fixed categories / numeric provider codes escape; never prompts, model output or exception text.
    const message=error instanceof Error?error.message:'';
