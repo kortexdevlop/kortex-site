@@ -1,0 +1,2 @@
+import {defineConfig} from 'playwright/test';
+export default defineConfig({testDir:'.',testMatch:['e2e/workspace.spec.ts','e2e/workspace-actions.spec.ts','security/workspace-isolation.spec.ts','security/workspace-router.spec.ts'],workers:1,timeout:180000,expect:{timeout:30000},use:{baseURL:'https://kortex-web-staging.userpgl.workers.dev',browserName:'chromium',trace:'off',video:'off',screenshot:'off'},reporter:'list'});

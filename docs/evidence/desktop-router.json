@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-28T21:52:21.398Z",
+  "passed": true,
+  "actual_source_bundle": true,
+  "real_signed_runtimes": true,
+  "foreign": "FORBIDDEN",
+  "unknown": "NOT_FOUND",
+  "valid": {
+    "result": 1200
+  },
+  "pending": "NOT_FOUND",
+  "retired": "NOT_FOUND",
+  "reused": "DUPLICATE",
+  "forged_guest_command_ignored": true
+}

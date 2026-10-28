@@ -1,5 +1,7 @@
 # Progression
 
+Lot 17.1–17.3 du 28/10/2026 : **terminé et clos techniquement sur staging.** Bureau Web /workspace avec huit fenêtres isolées, dock, souris/clavier et onglets mobiles ; actions et parcours liés aux instances existantes, résultats éphémères dans la bonne fenêtre et historique de métadonnées. Huit scénarios Chromium réels et 37 tests Web réussis ; deux lectures de fichiers simultanées consenties, handle étranger refusé, droits expirés redemandés, fermeture/annulation et zéro moteur restant contrôlés. Astro 92 fichiers sans erreur/avertissement et build réussis. Axe zéro critique, contraste sérieux signalé. Clé calculatrice expirée détectée : nouvelle version immuable signée 1.0.1 publiée sur staging, sans contourner la vérification. Production/DNS/mail/secrets/quotas IA préservés. Hors connexion pour moteurs déjà chargés uniquement ; statut humain formel conservé ; Google 14.5 inchangé et phase 18 non engagée. Preuves : desktop-validation.json et workspace-gate.md. Les notes suivantes sont historiques.
+
 Complément du 28/10/2026 : **16.3 et 16.5 terminées et closes techniquement.** Les autorisations Windows passent désormais par HostedNativeEngine et NativeServices/Gateway, avec dialogue par accès et ressource, droits à usage unique, contrôle de la demande effective et révocation à l’arrêt. Les décisions restent éphémères. Le Web attend la résolution réelle des capacités et conserve les instances isolées entre étapes, avec requêtes uniques et anti-rejeu. Vrais paquets signés et vrais backends Windows/IndexedDB vérifiés ; refus, scope détourné, annulation et séparation des outils testés. Statuts humains formels conservés. Preuves : workflow-permissions-validation.json. 17.1 non engagée. Les réserves du lot précédent ci-dessous sont historiques.
 
 Lot 16.3–17.0 du 28/10/2026 : **16.4 et 17.0 terminées techniquement ; 16.3 et 16.5 restent ouvertes.** Les parcours signés fonctionnent sur Web/Windows, fichier local consenti compris, et la sauvegarde locale/cloud avec conflits est active sur staging. Le lanceur Windows refuse encore les actions déclarant des capacités hôte : leurs dialogues/scopes restent à raccorder, sans transformer une approbation de parcours en droit de capacité. Les preuves du catalogue actuel ne sont pas présentées comme une clôture universelle. Modèle strict du bureau livré, sans interface 17.1. Rapports STEP-16.3 à STEP-17.0 et preuves orchestration-*. Statuts humains historiques conservés.
@@ -1770,6 +1772,78 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "closed_at": "2026-10-28",
     "authorization": "propriétaire : Enchaînes les 4 étape",
     "limitations": "Clôture technique du bloc implémenté, statut humain laissé pending. 16.3/16.5 restent ouvertes ; Google/OIDC 14.5 inchangé ; aucune interface 17.1."
+  },
+  {
+    "id": "17.1",
+    "status": "pending",
+    "source_commit": "10da685",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-17.1.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 8 scénarios staging réels, 37 tests Web, 2 scénarios visuels repris pour captures complètes ; axe zéro critique ; Astro 92 fichiers sans erreur/avertissement, build SSR réussi. Paquet calculatrice 1.0.1 construit, signé et vérifié avant publication staging.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-validation.json",
+      "docs/evidence/workspace-gate.md",
+      "docs/evidence/desktop-playwright.log",
+      "docs/evidence/desktop-router.json",
+      "docs/evidence/desktop-files.json",
+      "docs/evidence/desktop-isolation.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Clôture technique Web V1, revue humaine formelle en attente. Hors connexion réservé aux moteurs déjà chargés ; sessions/droits recréés au reload. Contraste sérieux exposé, pas de certification AA ou lecteur d’écran humain. Windows/Chromium uniquement ; Google 14.5 inchangé ; phase 18 non engagée."
+  },
+  {
+    "id": "17.2",
+    "status": "pending",
+    "source_commit": "10da685",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-17.2.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 8 scénarios staging réels, 37 tests Web, 2 scénarios visuels repris pour captures complètes ; axe zéro critique ; Astro 92 fichiers sans erreur/avertissement, build SSR réussi. Paquet calculatrice 1.0.1 construit, signé et vérifié avant publication staging.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-validation.json",
+      "docs/evidence/workspace-gate.md",
+      "docs/evidence/desktop-playwright.log",
+      "docs/evidence/desktop-router.json",
+      "docs/evidence/desktop-files.json",
+      "docs/evidence/desktop-isolation.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Clôture technique Web V1, revue humaine formelle en attente. Hors connexion réservé aux moteurs déjà chargés ; sessions/droits recréés au reload. Contraste sérieux exposé, pas de certification AA ou lecteur d’écran humain. Windows/Chromium uniquement ; Google 14.5 inchangé ; phase 18 non engagée."
+  },
+  {
+    "id": "17.3",
+    "status": "pending",
+    "source_commit": "10da685",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-17.3.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 8 scénarios staging réels, 37 tests Web, 2 scénarios visuels repris pour captures complètes ; axe zéro critique ; Astro 92 fichiers sans erreur/avertissement, build SSR réussi. Paquet calculatrice 1.0.1 construit, signé et vérifié avant publication staging.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-validation.json",
+      "docs/evidence/workspace-gate.md",
+      "docs/evidence/desktop-playwright.log",
+      "docs/evidence/desktop-router.json",
+      "docs/evidence/desktop-files.json",
+      "docs/evidence/desktop-isolation.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Clôture technique Web V1, revue humaine formelle en attente. Hors connexion réservé aux moteurs déjà chargés ; sessions/droits recréés au reload. Contraste sérieux exposé, pas de certification AA ou lecteur d’écran humain. Windows/Chromium uniquement ; Google 14.5 inchangé ; phase 18 non engagée."
   }
 ]
 ```

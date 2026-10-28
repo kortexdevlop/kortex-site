@@ -55,3 +55,11 @@ Les gris faibles de l’image sont conservés pour respecter la consigne de repr
 ## Vérification et suite
 
 Captures `workspace-chromium-reference.png` / `workspace-webkit-reference.png`, mesures et comparaison dans `docs/evidence/workspace-*`. Original et résultats sont reliés par leurs SHA-256. Le build SSR vérifie l’absence des routes dev et des fixtures, y compris identifiants reference-workspace et noms de récents. Domaine, DNS et messagerie inchangés ; aucune publication dans ce travail.
+
+## Bureau Web V1 — étapes 17.1 à 17.3
+
+La route /workspace réutilise l’enveloppe, les couleurs cyan/lilas, la typographie locale et la navigation existantes. La référence représente l’accueil uniquement : fenêtres arrondies, dock et panneau de parcours sont des adaptations cohérentes, sans équivalent raster à comparer. L’aperçu de référence conserve sa navigation de référence.
+
+Huit fenêtres au plus, déplacement/poignée au pointeur et au clavier, minimisation, agrandissement et focus sans recharger les moteurs. Sous 700 px : une fenêtre visible, dock en onglets navigables avec flèches/Home/End ; aucun déplacement tactile imposé. Titres et contrôles nommés, annonce des états, focus visible. Dernier résultat local attaché à sa fenêtre ; paramètres/parcours dans un panneau repliable.
+
+La disposition seule est persistée ; recharger recrée les sessions et les permissions. Les données des outils et résultats restent éphémères. Le bureau V1 reste une page Web, distincte des services natifs Windows ; voir docs/evidence/workspace-gate.md. Captures inspectées à 1440×1100 et 390×844 ; absence de débordement contrôlée à 320 px. Axe zéro critique, contraste sérieux connu signalé : aucune conformité AA générale déclarée.

@@ -1,7 +1,7 @@
 {
   "format_version":"1.0",
   "id":"calculatrice",
-  "version":"1.0.0",
+  "version":"1.0.1",
   "name":"Calculatrice",
   "summary":"Addition, soustraction, multiplication et division en local.",
   "description":"Une calculatrice accessible avec clavier numérique. Les quatre opérations s’exécutent localement, sans accès aux fichiers, au réseau ou au presse-papiers.",

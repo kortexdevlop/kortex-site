@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-28T21:48:10.212Z",
+  "staging_only": true,
+  "production_touched": false,
+  "mail_touched": false,
+  "api_origin": "https://kortex-api-staging.userpgl.workers.dev",
+  "web_origin": "https://kortex-web-staging.userpgl.workers.dev",
+  "run_origin": "https://kortex-run-staging.userpgl.workers.dev",
+  "tools": [
+    {
+      "id": "calculatrice",
+      "version": "1.0.1",
+      "sha256": "b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f",
+      "r2_key": "tools/calculatrice/1.0.1/b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f.tool",
+      "published": true
+    }
+  ],
+  "passed": true,
+  "ci": "local controlled operator; canonical builder/signature/verification; not GitHub OIDC",
+  "site_deployment_before": "d3daaaac-91e9-4e90-91e8-1b39d9d717f2",
+  "site_deployment_after": "d3daaaac-91e9-4e90-91e8-1b39d9d717f2",
+  "operator_policy_restored": true
+}

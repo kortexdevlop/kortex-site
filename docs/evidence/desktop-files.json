@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-28T21:52:16.864Z",
+  "passed": true,
+  "concurrent_real_file_reads": 2,
+  "reads_before_consent": 0,
+  "distinct_signed_wasm_results": true,
+  "foreign_handle_rejected": true,
+  "expired_grant_prompts_again": true,
+  "files_not_persisted": true
+}

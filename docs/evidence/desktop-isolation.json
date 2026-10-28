@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-28T21:52:11.949Z",
+  "passed": true,
+  "windows": 8,
+  "critical_axe": 0,
+  "axe_violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious"
+    }
+  ],
+  "workers_after_close": 0,
+  "dom_counters": {
+    "before": {
+      "documents": 4,
+      "nodes": 425,
+      "jsEventListeners": 60
+    },
+    "loaded": {
+      "documents": 10,
+      "nodes": 3339,
+      "jsEventListeners": 304
+    },
+    "closed": {
+      "documents": 1,
+      "nodes": 1252,
+      "jsEventListeners": 208
+    }
+  },
+  "metadata_only": true
+}

@@ -1,0 +1,24 @@
+{
+  "root": {
+    "id": "phase12-root-16067b2f",
+    "public_key_base64": "4tTiehlVnOOrB4AMdDaB5H+xmwhsO8BTwENYfnSMGhw="
+  },
+  "document": {
+    "schema_version": 1,
+    "version": 1,
+    "issued_at": 1793224066282,
+    "expires": 1793828867282,
+    "root_key_id": "phase12-root-16067b2f",
+    "keys": [
+      {
+        "id": "calculatrice-8e94c0ee",
+        "public_key_base64": "nxi23BK0AK+8nSyMspjjXLHU9B0kSpYs6zRNdG2m/tE=",
+        "not_before": 1793224007282,
+        "expires": 1793828867282,
+        "revoked": false
+      }
+    ],
+    "signature": "fXhCaV2QOBffzydViLmtdNWcoJFquiJce2tkRnH+mndsLKxp/Vcq+EG9BUSff090WzpMQjnRtExd16M30hXRBA=="
+  },
+  "minimum_version": 1
+}
