@@ -31,3 +31,9 @@ export function validate(value:unknown,registry:Registry):{ok:true;workflow:Work
 }
 export function serialize(w:Workflow):string{return JSON.stringify({workflow_version:'1.0',id:w.id,name:w.name,nodes:w.nodes.map(n=>({id:n.id,action_ref:n.action_ref,input_bindings:Object.fromEntries(Object.entries(n.input_bindings).sort(([a],[b])=>a.localeCompare(b))),requires_confirmation:n.requires_confirmation})),edges:w.edges.map(e=>({from:e.from,to:e.to}))},null,2)}
 export function outputPaths(s:ValueSchema,prefix='',depth=0):string[]{if(depth>8)return [];if(s.type==='object')return Object.entries(s.properties??{}).flatMap(([k,v])=>outputPaths(v,prefix+'/'+k.replace(/~/g,'~0').replace(/\//g,'~1'),depth+1));return[prefix]}
+export function assembleInput(node:Workflow['nodes'][number],entry:Entry,outputs:Map<string,unknown>):unknown{
+ let input:unknown=entry.action.input_schema.type==='object'?Object.create(null):null;
+ for(const[p,b]of Object.entries(node.input_bindings)){let value:unknown;if('value'in b)value=b.value;else{if(!outputs.has(b.from_node))throw new WorkflowError('DEPENDENCY',node.id);value=outputs.get(b.from_node);for(const key of tokens(b.source_pointer)){if(!value||typeof value!=='object'||!Object.hasOwn(value,key))throw new WorkflowError('POINTER',node.id);value=(value as Record<string,unknown>)[key]}}
+ input=put(input,entry.action.input_schema,tokens(p),structuredClone(value));}
+ if(bytes(input)>1048576||!valid(entry.action.input_schema,input))throw new WorkflowError('MISSING',node.id);return input;
+}

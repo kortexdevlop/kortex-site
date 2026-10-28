@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-28T17:34:21.235Z",
+  "passed": true,
+  "real_signed_wasm": true,
+  "platform": "win32",
+  "mode": "offline",
+  "no_execution_without_consent": true,
+  "first_result": 1200,
+  "final_result": 1210,
+  "local_definition_roundtrip": true,
+  "unknown_action_rejected": true
+}

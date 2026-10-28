@@ -9,6 +9,7 @@ dioxus={version="=0.7.10",default-features=false,features=["macro","html","signa
 kortex-runtime-desktop={path="../runtime/desktop"}
 kortex-runtime-native={path="../crates/kortex-runtime-native"}
 kortex-core={path="../crates/kortex-core"}
+kortex-workflows={path="../crates/kortex-workflows"}
 kortex-capabilities={path="../crates/kortex-capabilities"}
 kortex-ui={path="../crates/kortex-ui"}
 kortex-verify={path="../crates/kortex-verify"}

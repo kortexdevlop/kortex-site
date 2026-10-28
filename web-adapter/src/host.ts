@@ -5,11 +5,22 @@ import {WebBridge,VerifiedTool} from './bridge';
 import type {Manifest} from '@kortex/contracts';
 import type {Request} from './types';
 import {AiReview} from './ai-bridge';
+import {matchesSchema} from './browser-contracts';
 export interface RuntimeWebConfig {api_origin:string;allowed_parent_origin:string;tool_id:string;tool_version:string;network_origins?:readonly string[]}
 export class BrowserHost {
  private aiReview:AiReview|undefined;private aiTool:VerifiedTool|undefined;
  reviewAi(value:unknown){if(!this.bridge||!this.aiTool)throw Error('UNAVAILABLE');this.aiReview=new AiReview(value,this.aiTool,this.bridge)}
  async decideAi(index:number,approved:boolean){if(!this.aiReview)throw Error('NO_REVIEW');return this.aiReview.decide(index,approved)}
+ async invokeWorkflow(actionId:unknown,input:unknown){
+  const tool=this.aiTool,bridge=this.bridge,generation=this.generation;
+  if(!tool||!bridge||typeof actionId!=='string')throw Error('UNAVAILABLE');
+  const action=tool.contract.actions.find(a=>a.id===actionId);
+  if(!action||new TextEncoder().encode(JSON.stringify(input)).length>1048576||!matchesSchema(action.input_schema,input))throw Error('INVALID_INPUT');
+  const result=await bridge.dispatch({v:1,request_id:crypto.randomUUID(),kind:'action.invoke',payload:{action_id:actionId,input:structuredClone(input)}});
+  if(generation!==this.generation||!result.ok)throw Error('ACTION_FAILED');
+  if(new TextEncoder().encode(JSON.stringify(result.data)).length>1048576||!matchesSchema(action.output_schema,result.data))throw Error('INVALID_OUTPUT');
+  return{executed_locally:true,data:result.data,shareable:false};
+ }
  protected bridge:WebBridge|undefined;private generation=0;private loading:AbortController|undefined;protected capabilities:BrowserCapabilities|undefined;
  constructor(){document.addEventListener('click',event=>{const button=event.target instanceof Element?event.target.closest('button[data-host-approval]'):null;if(!button||!this.capabilities)return;try{this.capabilities.permissions.respond(button.getAttribute('data-host-approval')!,button.getAttribute('data-host-decision')!,event)}catch{/* synthetic/untrusted approval refused */}},true);}
 protected current:Record<string,unknown>={status:navigator.onLine?'unavailable':'offline'};

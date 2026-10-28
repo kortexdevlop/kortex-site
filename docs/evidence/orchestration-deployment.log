@@ -1,0 +1,115 @@
+
+ ⛅️ wrangler 4.152.0 (update available 4.154.0)
+───────────────────────────────────────────────
+Active profile: kortex
+Attaching additional modules:
+┌───────────────────────────────────────────────────────────┬──────┬─────────────┐
+│ Name                                                      │ Type │ Size        │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/404_CGWX6XYT.mjs                                   │ esm  │ 6.57 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/account-client_BcwTCL2T.mjs                        │ esm  │ 1.09 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/assets_BPw0B1tH.mjs                                │ esm  │ 72.79 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/AuthLayout_DKa0hq0_.mjs                            │ esm  │ 1.44 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/AuthPanel_DX2NFwGd.mjs                             │ esm  │ 3.61 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/callback_ns3B29BB.mjs                              │ esm  │ 0.75 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/compiler_CFEXdAsu.mjs                              │ esm  │ 3.49 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/connect-desktop_DlmK0uUh.mjs                       │ esm  │ 1.99 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/global_C3vcBVfb.mjs                                │ esm  │ 0.90 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/image-passthrough-endpoint_C1DEXlI5.mjs            │ esm  │ 2.39 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/image-service-workerd_Rt9s4f9w.mjs                 │ esm  │ 0.94 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_C6jlPEE2.mjs                                 │ esm  │ 2.84 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_Cr1uLvCH.mjs                                 │ esm  │ 2.08 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_DmGps2EB.mjs                                 │ esm  │ 99.21 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_DWy_Wv_O.mjs                                 │ esm  │ 2.19 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/index_rWrmh1hJ.mjs                                 │ esm  │ 527.83 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/library_DVSxWzZB.mjs                               │ esm  │ 2.31 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/login_-JBhTWsw.mjs                                 │ esm  │ 1.13 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/noop-entrypoint_Cx5UkKLo.mjs                       │ esm  │ 0.13 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/preact_D47qyFli.mjs                                │ esm  │ 13.51 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/proxy_HdtdPbH1.mjs                                 │ esm  │ 7.99 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/register_DpByEEXA.mjs                              │ esm  │ 1.19 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/robots_Br1281DF.mjs                                │ esm  │ 0.72 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/rolldown-runtime_Z978xZBF.mjs                      │ esm  │ 1.46 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/runtime-bridge_B9rtNqPV.mjs                        │ esm  │ 1.80 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/seo_rjKyjpVj.mjs                                   │ esm  │ 1.84 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/sequence_BM3vks-C.mjs                              │ esm  │ 65.92 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/server_DRNjzEl0.mjs                                │ esm  │ 269.79 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/settings_P2-RcYJS.mjs                              │ esm  │ 3.70 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/shorthash_Dq-OqDqa.mjs                             │ esm  │ 42.88 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/sitemap-index_BAWq5G0x.mjs                         │ esm  │ 1.04 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/urls_C4dXey1r.mjs                                  │ esm  │ 0.96 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/Workspace_DbNVFjSl.mjs                             │ esm  │ 197.60 KiB  │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_.._BFnZ2ei_.mjs                                   │ esm  │ 0.58 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_astro_assets_7I_phneX.mjs                         │ esm  │ 22.36 KiB   │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_id__CK01NR_Z.mjs                                  │ esm  │ 4.38 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_id__DkfEksy7.mjs                                  │ esm  │ 4.45 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_page__DRHzQthG.mjs                                │ esm  │ 1.28 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_virtual_astro_server-island-manifest_CddHi3Kr.mjs │ esm  │ 0.25 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ chunks/_virtual_astro_session-driver_CPZhEqd2.mjs         │ esm  │ 0.20 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ virtual_astro_middleware.mjs                              │ esm  │ 3.99 KiB    │
+├───────────────────────────────────────────────────────────┼──────┼─────────────┤
+│ Total (41 modules)                                        │      │ 1381.55 KiB │
+└───────────────────────────────────────────────────────────┴──────┴─────────────┘
+🌀 Building list of assets...
+✨ Read 34 files from the assets directory C:\Users\µ\Desktop\KORTEX-\website\dist\client
+🌀 Starting asset upload...
+🌀 Found 1 new or modified static asset to upload. Proceeding with upload...
++ /_astro/WorkflowEditor.VEeFE5yU.js
+Uploaded 1 of 1 asset
+✨ Success! Uploaded 1 file (29 already uploaded) (1.86 sec)
+
+Total Upload: 1688.49 KiB / gzip: 328.37 KiB
+Worker Startup Time: 14 ms
+Your Worker has access to the following bindings:
+Binding                                                                 Resource
+env.API_WORKER (kortex-api-staging)                                     Worker
+env.SITEMAP_WORKER (kortex-api-staging#SitemapService)                  Worker
+env.AUTH_WORKER (kortex-api-staging#AuthService)                        Worker
+env.ASSETS                                                              Assets
+env.WEB_ORIGIN ("https://kortex-web-staging.userpgl.wo...")             Environment Variable
+env.PUBLIC_RUN_ORIGIN ("https://kortex-run-staging.userpgl.wo...")      Environment Variable
+
+Uploaded kortex-web-staging (17.10 sec)
+Deployed kortex-web-staging triggers (1.96 sec)
+  https://kortex-web-staging.userpgl.workers.dev
+Current Version ID: d8cb0749-887c-4cde-a245-530c998f8780

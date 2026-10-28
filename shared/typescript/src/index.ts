@@ -12,3 +12,7 @@ export const validateManifest=(value:unknown)=>validate<Manifest>('manifest',val
 export const validateContract=(value:unknown)=>validate<Contract>('contract',value);
 export const validateUi=(value:unknown)=>validate<UiNode>('ui',value);
 export const validateWorkflow=(value:unknown)=>validate<Workflow>('workflow',value);
+/** Local workspace metadata only; no serialized guest state, file bytes or credentials. */
+export interface WorkspaceBounds {x:number;y:number;width:number;height:number}
+export interface WorkspaceWindow {window_id:string;instance_id:string;tool_id:string;version:string;bounds:WorkspaceBounds;mode:'normal'|'minimized'|'maximized';z:number}
+export interface WorkspaceState {workspace_version:'1.0';windows:WorkspaceWindow[];focused:string|null}

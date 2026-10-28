@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-28T17:34:31.285Z",
+  "staging_only": true,
+  "passed": true,
+  "strong_etag": true,
+  "stale_write_rejected": true,
+  "file_content_rejected": true,
+  "definition_roundtrip": true,
+  "fixture_removed": true
+}

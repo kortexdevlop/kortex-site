@@ -3243,6 +3243,7 @@ dependencies = [
  "kortex-shared",
  "kortex-ui",
  "kortex-verify",
+ "kortex-workflows",
  "reqwest",
  "semver",
  "serde",

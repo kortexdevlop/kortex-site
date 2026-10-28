@@ -11,6 +11,7 @@ import {passwordAuth} from './routes/password-auth';
 import {users} from './routes/users';
 import {desktopAuth} from './routes/desktop-auth';
 import {ai} from './routes/ai';
+import {workflows} from './routes/workflows';
 export async function handle(request:Request,bindings:unknown,viaWeb=false):Promise<Response> {
  const id=requestId(request),head=request.method==='HEAD';
  try {
@@ -31,6 +32,7 @@ export async function handle(request:Request,bindings:unknown,viaWeb=false):Prom
   const device=await desktopAuth(request,env,id,viaWeb);if(device)return device;
   const proposal=await ai(request,env,id,viaWeb);if(proposal)return proposal;
   const password=await passwordAuth(request,env,id,viaWeb);if(password)return password;
+  const workflow=await workflows(request,env,id,viaWeb);if(workflow)return workflow;
   const account=await users(request,env,id,viaWeb);if(account)return account;
   const authentication=await auth(request,env,id,viaWeb);if(authentication)return authentication;
   const administration=await admin(request,env,id,origin);if(administration)return administration;

@@ -1,0 +1,11 @@
+
+running 3 tests
+test workflows::input_tests::file_requires_consent_and_remains_ephemeral ... ok
+test workflow_store::tests::local_definition_roundtrips_without_account ... ok
+test workflow_store::tests::rejects_private_payloads_handles_paths_and_foreign_state ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+   Compiling kortex-desktop v1.0.0 (C:\Users\µ\Desktop\KORTEX-\desktop)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 13.60s
+     Running unittests src\lib.rs (target\debug\deps\kortex_desktop-38ff7e0a2cccb0c1.exe)

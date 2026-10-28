@@ -1,5 +1,7 @@
 # Progression
 
+Lot 16.3–17.0 du 28/10/2026 : **16.4 et 17.0 terminées techniquement ; 16.3 et 16.5 restent ouvertes.** Les parcours signés fonctionnent sur Web/Windows, fichier local consenti compris, et la sauvegarde locale/cloud avec conflits est active sur staging. Le lanceur Windows refuse encore les actions déclarant des capacités hôte : leurs dialogues/scopes restent à raccorder, sans transformer une approbation de parcours en droit de capacité. Les preuves du catalogue actuel ne sont pas présentées comme une clôture universelle. Modèle strict du bureau livré, sans interface 17.1. Rapports STEP-16.3 à STEP-17.0 et preuves orchestration-*. Statuts humains historiques conservés.
+
 Lot 16.0–16.2 terminé et clos techniquement le 28/10/2026 : moteur local DAG borné, mapping typé, arrêt/retry idempotent, annulation et consentement par étape/lot lié à une exécution, même Policy de capacités et retrait de droits. Éditeur /workflows réel sur staging : palette publiée, carte/liste accessible, paramètres/liens, validation, import/export local et annulation. 50 tests Rust, 31 Web, 3 contrats et 3 scénarios Chromium réussis ; vraie chaîne signée Wasmtime 1200 puis 1210 sans cloud, builds/types vérifiés. L’éditeur ne lance aucun outil : raccordement produit réservé à 16.3, non engagée. API/runtime distant/quotas IA/production/DNS/messagerie conservés. Réserve Google 14.5 inchangée, statuts humains historiques conservés. Preuves : docs/evidence/workflows-validation.json. Les notes suivantes sont historiques.
 
 Correctif du plafond IA staging (28/10/2026) : limite interne relevée de 2/compte et 3/globales à 50/compte et 100/globales par jour UTC, réservations cohérentes et compteurs conservés. Messages Web/Windows distincts du quota Cloudflare ; origine application transmise par le proxy. Nouvelle proposition Workers AI réelle 200, fixture supprimée. Preuve : docs/evidence/ai-limit-fix.json. Aucun forfait, DNS, mail ou production modifié.
@@ -1677,6 +1679,89 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "closed_at": "2026-10-28",
     "authorization": "propriétaire : Enchaîne ces 3 étapes",
     "limitations": "Éditeur de préparation uniquement ; branchement produit Web/Desktop en 16.3. Google/OIDC réel 14.5 reste en attente. Windows/Chromium selon exclusions du propriétaire."
+  },
+  {
+    "id": "16.3",
+    "status": "pending",
+    "source_commit": "16de346",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-16.3.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 37 tests Web, 14 moteur Rust, 3 persistance/entrée Windows, 1 fichier signé Windows ; 85 API en régression puis 10 ciblés dont 1 nouveau test de scope natif ; 5 scénarios staging, 1 protocole isolé ; vrai parcours Windows et CRUD D1 réel. Types et builds réussis. Les tests du profil actuel passent, les capacités déclarées Desktop restent refusées.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/orchestration-validation.json",
+      "docs/evidence/orchestration-cross-tools.md"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "authorization": "propriétaire : Enchaînes les 4 étape",
+    "limitations": "Dialogue et scopes des capacités hôte déclarées Desktop à raccorder au NativeServices/Gateway normal avant clôture universelle ; aucun grant implicite. Google/OIDC 14.5 inchangé."
+  },
+  {
+    "id": "16.4",
+    "status": "pending",
+    "source_commit": "16de346",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-16.4.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 37 tests Web, 14 moteur Rust, 3 persistance/entrée Windows, 1 fichier signé Windows ; 85 API en régression puis 10 ciblés dont 1 nouveau test de scope natif ; 5 scénarios staging, 1 protocole isolé ; vrai parcours Windows et CRUD D1 réel. Types et builds réussis. Les tests du profil actuel passent, les capacités déclarées Desktop restent refusées.",
+    "contract_changes": [
+      "Migration additive 0011, CRUD /me/workflows, If-Match workflows-N et tombstones",
+      "ETag opaque export/purge du compte étendu avec la révision des parcours"
+    ],
+    "evidence": [
+      "docs/evidence/orchestration-validation.json",
+      "docs/evidence/orchestration-cross-tools.md"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaînes les 4 étape",
+    "limitations": "Clôture technique du bloc implémenté, statut humain laissé pending. 16.3/16.5 restent ouvertes ; Google/OIDC 14.5 inchangé ; aucune interface 17.1."
+  },
+  {
+    "id": "16.5",
+    "status": "pending",
+    "source_commit": "16de346",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-16.5.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 37 tests Web, 14 moteur Rust, 3 persistance/entrée Windows, 1 fichier signé Windows ; 85 API en régression puis 10 ciblés dont 1 nouveau test de scope natif ; 5 scénarios staging, 1 protocole isolé ; vrai parcours Windows et CRUD D1 réel. Types et builds réussis. Les tests du profil actuel passent, les capacités déclarées Desktop restent refusées.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/orchestration-validation.json",
+      "docs/evidence/orchestration-cross-tools.md"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "authorization": "propriétaire : Enchaînes les 4 étape",
+    "limitations": "Dialogue et scopes des capacités hôte déclarées Desktop à raccorder au NativeServices/Gateway normal avant clôture universelle ; aucun grant implicite. Google/OIDC 14.5 inchangé."
+  },
+  {
+    "id": "17.0",
+    "status": "pending",
+    "source_commit": "16de346",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-17.0.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 37 tests Web, 14 moteur Rust, 3 persistance/entrée Windows, 1 fichier signé Windows ; 85 API en régression puis 10 ciblés dont 1 nouveau test de scope natif ; 5 scénarios staging, 1 protocole isolé ; vrai parcours Windows et CRUD D1 réel. Types et builds réussis. Les tests du profil actuel passent, les capacités déclarées Desktop restent refusées.",
+    "contract_changes": [
+      "Nouveau schéma workspace 1.0 de métadonnées uniquement"
+    ],
+    "evidence": [
+      "docs/evidence/orchestration-validation.json",
+      "docs/evidence/orchestration-cross-tools.md"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaînes les 4 étape",
+    "limitations": "Clôture technique du bloc implémenté, statut humain laissé pending. 16.3/16.5 restent ouvertes ; Google/OIDC 14.5 inchangé ; aucune interface 17.1."
   }
 ]
 ```

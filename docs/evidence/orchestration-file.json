@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-28T17:44:58.289Z",
+  "passed": true,
+  "reads_before_consent": 0,
+  "reads_after_consent": 1,
+  "real_signed_wasm": true,
+  "sha256_abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+  "file_not_persisted": true,
+  "explicit_local_download": true
+}

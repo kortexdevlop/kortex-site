@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-28T17:32:58.326Z",
+  "definition_unchanged": true,
+  "no_file_binding_without_consent": true,
+  "offline": true,
+  "passed": true,
+  "real_signed_wasm": true,
+  "sha256_abc": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+}

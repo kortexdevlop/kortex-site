@@ -3,7 +3,7 @@ const route=/^\/api\/v1\/(?:health|tools(?:\/[a-z0-9]+(?:-[a-z0-9]+)*(?:\/action
 function unavailable(status=503):Response {return Response.json({error:{code:status===403?'FORBIDDEN':status===405?'BAD_REQUEST':status===404?'NOT_FOUND':'UNAVAILABLE',message:status===503?'Service unavailable':'Request rejected',request_id:crypto.randomUUID()}},{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...(status===405?{Allow:'GET, HEAD'}:{})}});}
 export async function proxy(request:Request,binding:ServiceBinding|undefined,webOrigin:string|undefined,authBinding?:ServiceBinding):Promise<Response> {
   const url=new URL(request.url);
-  if(/^\/api\/v1\/(?:auth\/(?:login|callback|logout|options|desktop\/(?:request|approve)|password\/(?:token|register|login))|ai\/plan|me(?:\/(?:library|preferences|export|data|devices))?)$/.test(url.pathname))return authProxy(request,authBinding,webOrigin);
+  if(/^\/api\/v1\/(?:auth\/(?:login|callback|logout|options|desktop\/(?:request|approve)|password\/(?:token|register|login))|ai\/plan|me(?:\/(?:library|preferences|export|data|devices|workflows(?:\/[a-zA-Z0-9_-]{1,64})?))?)$/.test(url.pathname))return authProxy(request,authBinding,webOrigin);
   if(!route.test(url.pathname))return unavailable(404);
   if(!['GET','HEAD'].includes(request.method))return unavailable(405);
   const origin=request.headers.get('Origin');
@@ -27,9 +27,9 @@ export async function proxy(request:Request,binding:ServiceBinding|undefined,web
 }
 
 async function authProxy(request:Request,binding:ServiceBinding|undefined,webOrigin:string|undefined):Promise<Response>{
- const url=new URL(request.url),callback=url.pathname==='/api/v1/auth/callback',login=url.pathname==='/api/v1/auth/login',logout=url.pathname==='/api/v1/auth/logout',passwordPost=/\/password\/(?:register|login)$/.test(url.pathname),extraPost=/\/(?:desktop\/approve|ai\/plan)$/.test(url.pathname),account=/\/me\/(library|preferences|export|data|devices)$/.exec(url.pathname);
+ const url=new URL(request.url),callback=url.pathname==='/api/v1/auth/callback',login=url.pathname==='/api/v1/auth/login',logout=url.pathname==='/api/v1/auth/logout',passwordPost=/\/password\/(?:register|login)$/.test(url.pathname),extraPost=/\/(?:desktop\/approve|ai\/plan)$/.test(url.pathname),account=/\/me\/(library|preferences|export|data|devices|workflows)(?:\/[a-zA-Z0-9_-]{1,64})?$/.exec(url.pathname);
  if(!webOrigin||url.origin!==webOrigin||request.headers.get('Origin')&&request.headers.get('Origin')!==webOrigin||!callback&&request.headers.get('Sec-Fetch-Site')==='cross-site')return unavailable(403);
- const allowed=account?account[1]==='library'?['GET','PUT','DELETE']:account[1]==='preferences'?['GET','PATCH']:account[1]==='export'?['GET']:account[1]==='devices'?['GET','DELETE','PATCH']:['DELETE']:logout||passwordPost||extraPost?['POST']:['GET'];
+ const allowed=account?account[1]==='workflows'?['GET','POST','PUT','DELETE']:account[1]==='library'?['GET','PUT','DELETE']:account[1]==='preferences'?['GET','PATCH']:account[1]==='export'?['GET']:account[1]==='devices'?['GET','DELETE','PATCH']:['DELETE']:logout||passwordPost||extraPost?['POST']:['GET'];
  if(!allowed.includes(request.method)){const rejected=unavailable(405);rejected.headers.set('Allow',allowed.join(', '));return rejected;}
  if(!binding)return unavailable();
  // The Web facade accepts cookies only. Desktop bearer tokens use the API origin directly.
@@ -40,9 +40,9 @@ async function authProxy(request:Request,binding:ServiceBinding|undefined,webOri
  try{
   const expired=new Promise<never>((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(Error('Auth timeout'))},35000)});
   let body:Uint8Array<ArrayBuffer>|undefined;
-  if(passwordPost||extraPost||account&&['PUT','PATCH'].includes(request.method)||account&&['data','devices'].includes(account[1])&&request.method==='DELETE'){
+  if(passwordPost||extraPost||account&&['POST','PUT','PATCH'].includes(request.method)||account&&['data','devices'].includes(account[1])&&request.method==='DELETE'){
    const reader=request.body?.getReader();if(!reader)return unavailable(403);const chunks:Uint8Array[]=[];let size=0;
-   try{for(;;){const part=await Promise.race([reader.read(),expired]);if(part.done)break;size+=part.value.length;if(size>(passwordPost?4096:16384))return unavailable(403);chunks.push(part.value)}}finally{void reader.cancel().catch(()=>{})}
+   try{for(;;){const part=await Promise.race([reader.read(),expired]);if(part.done)break;size+=part.value.length;if(size>(passwordPost?4096:account?.[1]==='workflows'?262144:16384))return unavailable(403);chunks.push(part.value)}}finally{void reader.cancel().catch(()=>{})}
    body=new Uint8Array(size);let at=0;for(const chunk of chunks){body.set(chunk,at);at+=chunk.length}
   }
   const upstream=await Promise.race([binding.fetch(new Request('https://kortex-api.internal'+url.pathname+url.search,{method:request.method,headers,...(body?{body}:{}),redirect:'manual',signal:controller.signal})),expired]);

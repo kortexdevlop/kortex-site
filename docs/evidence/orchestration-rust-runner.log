@@ -1,0 +1,46 @@
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 7 tests
+test mapping_checks_schema_ranges_escaping_arrays_and_presence ... ok
+test runtime_missing_optional_result_stops_before_next_step ... ok
+test validates_order_mapping_and_empty_queue_has_no_effect ... ok
+test rejects_cycles_duplicate_nodes_edges_unknown_actions_and_absent_dependencies ... ok
+test rejects_type_mismatch_overlapping_bindings_bad_pointers_and_51_nodes ... ok
+test retries_only_idempotent_actions_and_stops_invalid_output ... ok
+test real_signed_contracts_lock_cross_tool_types_and_unknown_actions ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.00s
+
+
+running 6 tests
+test revocation_during_effect_stops_next_node_without_claiming_rollback ... ok
+test no_step_launches_without_workflow_consent_or_actual_policy_grant ... ok
+test changed_plan_or_registry_never_inherits_consent ... ok
+test node_approval_resumes_without_replaying_completed_nodes_and_batch_cannot_be_reused ... ok
+test revoke_while_awaiting_and_expired_consent_stop_before_invocation ... ok
+test cancellation_and_timeout_drop_pending_work_before_any_next_node ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+running 1 test
+test real_signed_two_step_workflow_runs_locally_without_cloud_execution ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.99s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling kortex-workflows v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-workflows)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.04s
+     Running unittests src\lib.rs (target\debug\deps\kortex_workflows-b2149113b41249b9.exe)
+     Running tests\graph.rs (target\debug\deps\graph-742e018a2965b23c.exe)
+     Running tests\permissions.rs (target\debug\deps\permissions-e2e70ec79c0324e5.exe)
+     Running tests\runtime.rs (target\debug\deps\runtime-dbaf88273e6836d2.exe)
+   Doc-tests kortex_workflows

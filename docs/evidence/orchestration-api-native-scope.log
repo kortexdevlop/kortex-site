@@ -1,0 +1,6 @@
+Command: node ../node_modules/vitest/vitest.mjs run tests/users.test.ts (cwd api)
+Test Files 1 passed (1)
+Tests 10 passed (10)
+Start at 18:39:56
+Duration 4.24s
+Includes scoped native workflow write, browser Origin refusal, changed-account refusal and revoked-token refusal.

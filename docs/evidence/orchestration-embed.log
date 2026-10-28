@@ -1,0 +1,3 @@
+Command: node node_modules/playwright/cli.js test --config tests/web/playwright.config.ts --project=chromium tests/web/embed.spec.ts
+ok 1 [chromium] tests/web/embed.spec.ts — iframe Dioxus : paquet signé, CSP stricte, isolation, nonce et recovery
+1 passed (6.1s)

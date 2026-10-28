@@ -1,0 +1,45 @@
+✔ private SSR only forwards the host session cookie and never exposes tokens in its view (69.6779ms)
+✔ anonymous views do not need a binding; service failure with a cookie never impersonates a guest (2.8658ms)
+✔ account proxy supports conditional writes without forwarding owner selection credentials (6.6698ms)
+✔ export download headers survive the proxy but bearer and cross-origin account access do not (5.3941ms)
+✔ assistant hydration receives exact script hashes without allowing arbitrary inline scripts (162.9431ms)
+✔ oversized assistant HTML fails closed (9.128ms)
+✔ real schemas validate demo summaries, stable category colors and reject hostile metadata (6.4516ms)
+✔ SSR client sends only an absolute binding request and validates bounded API responses (104.3085ms)
+✔ same-origin read proxy strips spoofable auth headers, preserves cookies privately and streams bytes (7.9759ms)
+✔ detail and actions clients accept schema-valid API envelopes (10.4977ms)
+✔ detail refuses a descriptor that does not match the requested identity, version or digest (6.2529ms)
+✔ a binding that never responds cannot hold SSR or the proxy open indefinitely (4017.1122ms)
+✔ proxy rejects foreign origins, writes, admin paths, redirects and unsafe session cookies (2.9185ms)
+✔ canonical URLs remain on the configured HTTPS origin (0.5416ms)
+✔ proxy accepts numeric-leading IDs and encoded SemVer build metadata without losing integrity headers (3.0848ms)
+✔ password form JSON is bounded and forwarded privately with CSRF context (146.6228ms)
+✔ auth uses a dedicated binding and strips bearer, forwarded-host and operator headers (3.865ms)
+✔ auth forwards only safe logout context and refuses another origin or cross-site initiation (6.6895ms)
+✔ Google navigation and OAuth callback redirects are narrowly allowed with no-referrer (9.0913ms)
+✔ auth cookie forwarding requires host-only Kortex names, Secure, HttpOnly, exact Path and SameSite (10.4951ms)
+✔ catalogue query is bounded, cursor retains its filter scope and URLs are encoded (3.8605ms)
+✔ runtime deployment allowlist refuses same origin, arbitrary HTTPS and nonlocal HTTP (0.8039ms)
+✔ bridge validates source, origin, nonce, session, tool/version and disposes listeners (16.397ms)
+✔ workspace schema accepts normalized metadata and rejects serialized tool contents (307.7037ms)
+✔ local runner maps real contracts, pins its snapshot, asks consent and closes (7.4416ms)
+✔ denial, invalid output and abort stop without executing dependent nodes (4.1128ms)
+✔ local persistence roundtrips definition only; rejects file content, handles and paths (2.2225ms)
+✔ workspace limits instances, clamps restored bounds and persists only validated metadata (4.1553ms)
+✔ focus, minimize, maximize, restore and close maintain stable unique z order (0.7077ms)
+✔ SEO serializers escape XML and script termination without inventing ratings (2.4844ms)
+✔ sitemap DTO is bounded and rejects unsafe IDs (82.3996ms)
+✔ valid workflow binds typed result and serializes/restores identically (35.9356ms)
+✔ cycles, absent dependency and unknown actions are rejected (1.636ms)
+✔ required parameters, incompatible values and overlapping pointers cannot be exported (1.2962ms)
+✔ duplicates, dangling nodes, limits and foreign JSON fields fail closed (8.5058ms)
+✔ pointer escaping, canonical array indexes and conservative schema compatibility (0.7371ms)
+✔ prototype-named properties are data only and never mutate prototypes (0.7862ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4575.5344
