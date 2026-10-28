@@ -2,6 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {proxy} from '../src/lib/proxy.ts';
 const web='https://kortex.site';
+test('password form JSON is bounded and forwarded privately with CSRF context',async()=>{
+ let sent:Request|undefined;const binding={async fetch(r:Request){sent=r;assert.deepEqual(await r.json(),{email:'test@example.test',password:'synthetic-test-phrase'});return Response.json({ok:true})}};
+ const response=await proxy(new Request(web+'/api/v1/auth/password/login',{method:'POST',headers:{Origin:web,'Content-Type':'application/json','X-CSRF-Token':'proof'},body:JSON.stringify({email:'test@example.test',password:'synthetic-test-phrase'})}),undefined,web,binding);assert.equal(response.status,200);assert.equal(sent?.headers.get('Content-Type'),'application/json');assert.equal(sent?.headers.get('X-CSRF-Token'),'proof');assert.equal(new URL(sent!.url).search,'');
+ assert.equal((await proxy(new Request(web+'/api/v1/auth/password/login',{method:'POST',headers:{Origin:web},body:'x'.repeat(4097)}),undefined,web,binding)).status,403);
+ assert.equal((await proxy(new Request(web+'/api/v1/auth/password/login'),undefined,web,binding)).headers.get('Allow'),'POST');
+});
 test('auth uses a dedicated binding and strips bearer, forwarded-host and operator headers',async()=>{
  let sent:Request|undefined;const binding={async fetch(r:Request){sent=r;return Response.json({user:null})}};
  assert.equal((await proxy(new Request(web+'/api/v1/me'),binding,web)).status,503);

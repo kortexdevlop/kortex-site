@@ -1,5 +1,7 @@
 # Rapport 14.1 — Connexion Web et sessions
 
+Complément ultérieur demandé avant 14.2 : email/mot de passe terminé et validé réellement sur staging ; voir AUTH-EMAIL-PASSWORD.md et docs/AUTH-PASSWORD.md. L'attente de configuration mentionnée dans ce rapport historique reste applicable à Google.
+
 28/10/2026. Base 53a0c02. Autorisation explicite : « Enchaine la prochaine étape rapidement », puis « Termine », malgré l'attente externe des identifiants OAuth de 14.0.
 
 Endpoints login, callback, logout et me implémentés. Code exchange + PKCE S256 ; state lié au navigateur, nonce et configuration, consommation atomique anti-rejeu et vérificateur chiffré. Validation RSA/JWKS/issuer/audience/azp/exp/iat/nbf. Sessions opaques HMAC, cookies host-only Secure/HttpOnly/SameSite=Lax ; rotation et révocation. Protection Origin/CSRF pour logout. Google ID token Desktop limité à identité connue et lecture seule, sans autorisation d'écriture déduite.

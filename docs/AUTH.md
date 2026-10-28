@@ -1,5 +1,7 @@
 # Identité facultative — étape 14.0
 
+**Complément actuel email/mot de passe (28/10/2026) :** inscription, connexion, compte et déconnexion actifs sur le staging, sans dépendance Google. Adresses non vérifiées et pas d'envoi/récupération par mail, conformément à l'absence de service confirmée. Voir [AUTH-PASSWORD.md](AUTH-PASSWORD.md) pour les écrans, contrôles et preuves. Les notes 14.0/14.1 ci-dessous sont historiques ; leur attente de clients OAuth concerne toujours Google. 14.2 non engagée.
+
 ## État actuel — 14.1, 28/10/2026
 
 Connexion Web, callback, sessions et déconnexion implémentés et testés localement. Aucun déploiement ni login Google réel : les deux clients OAuth restent à créer. La configuration suivie reste désactivée. Les sections 14.0 ci-dessous décrivent le point de départ historique ; les flux décrits comme futurs y sont maintenant implémentés, sauf interface de connexion Desktop et synchronisation, hors 14.1.

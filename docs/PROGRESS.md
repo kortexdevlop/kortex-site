@@ -1,5 +1,7 @@
 # Progression
 
+Complément email/mot de passe demandé avant 14.2 (28/10/2026) : terminé et actif sur staging. Inscription, connexion, compte minimal, sessions et déconnexion avec contrôles CSRF/rate/scrypt natif ; 56 tests API, 14 proxy, 3 contrats, types/build et parcours réel Chromium (bureau/mobile) réussis. Compte de test supprimé. Adresses non vérifiées et aucune récupération par mail faute de service, confirmé par le propriétaire. Google reste désactivé en attente de ses clients OAuth ; 14.2 non engagée. Preuves : docs/evidence/password-auth-validation.json. Les notes précédentes ci-dessous sont historiques.
+
 Étape 14.1 (28/10/2026) : implémentation locale terminée sur demande explicite du propriétaire. Connexion PKCE, callback anti-rejeu, signatures/claims, sessions/cookies sécurisés, CSRF/logout, relais Astro privé et identité Desktop en lecture seule. 47 tests API, 13 tests proxy, 3 contrats réussis ; types, analyse Astro, builds et six migrations locales vérifiés. Validation réelle Google et clôture staging en attente des clients OAuth toujours inexistants ; connexion désactivée, aucun déploiement ni login réel revendiqué. Preuves : docs/evidence/identity-14.1-validation.json. 14.2 non engagée.
 
 Lot 13.5–14.0 (28/10/2026) : 13.5 clos techniquement dans le périmètre Windows demandé ; cinq outils publics et sixième publié à chaud, aucun rebuild pendant publication, nettoyage confirmé. Linux/macOS non testés conformément à leur exclusion. 14.0 : Google choisi, schéma et contrôles préparés, 36 tests API réussis, types et migrations locales vérifiés, discovery/JWKS/S256 Google réels. Clôture 14.0 en attente des clients OAuth non encore créés selon le propriétaire ; connexion désactivée, aucun login réel revendiqué. Guide docs/AUTH.md. 14.1 non engagée. Statuts formels historiques conservés.
@@ -1380,7 +1382,8 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "tests_executed": "47 tests API dont 11 nouveaux scénarios auth, 13 tests proxy, 3 contrats ; types, analyse Astro (54 fichiers sans erreur), builds API/Web et six migrations locales réussis. RSA et D1 réels, transport IdP contrôlé. Pas de login Google réel ni déploiement.",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/identity-14.1-validation.json"
+      "docs/evidence/identity-14.1-validation.json",
+      "docs/evidence/password-auth-validation.json"
     ],
     "frozen": false,
     "technical_status": "awaiting_real_google_validation",
@@ -1389,7 +1392,22 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       "Clients OAuth Google Web/Desktop et consentement",
       "Secrets serveur, déploiement staging et login réel navigateur/cookies/logout"
     ],
-    "authorization": "propriétaire : Enchaine la prochaine étape rapidement ; Termine"
+    "authorization": "propriétaire : Enchaine la prochaine étape rapidement ; Termine",
+    "supplements": [
+      {
+        "id": "email-password",
+        "source_commit": "aee812d",
+        "result_commit": null,
+        "technical_status": "closed_staging",
+        "closed_at": "2026-10-28",
+        "authorization": "Avant de passer à 14.2, ajoute la connexion / inscription via email mot de passe",
+        "report_path": "docs/reports/AUTH-EMAIL-PASSWORD.md",
+        "evidence": [
+          "docs/evidence/password-auth-validation.json"
+        ],
+        "tests_executed": "56 tests API (9 nouveaux + 47 régressions), 14 proxy, 3 contrats ; types/build et parcours Chromium staging réels réussis. Compte de test supprimé. Emails non vérifiés selon absence de service."
+      }
+    ]
   }
 ]
 ```

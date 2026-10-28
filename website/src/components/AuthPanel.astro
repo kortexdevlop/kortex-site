@@ -1,0 +1,22 @@
+---
+interface Props {register?:boolean;}
+const {register=false}=Astro.props;
+---
+<section class="auth-card" data-password-auth data-mode={register?'register':'login'}>
+  <p class="auth-eyebrow">VOTRE ESPACE KORTEX</p>
+  <h1>{register?'Créez votre compte':'Heureux de vous retrouver'}</h1>
+  <p class="auth-description">{register?'Un compte gratuit. Vos outils restent accessibles sans connexion.':'Connectez-vous à votre espace personnel.'}</p>
+  <a class="auth-google" href="/api/v1/auth/login" data-google hidden>Continuer avec Google</a>
+  <p class="auth-divider" data-google hidden>ou par email</p>
+  <form method="post" action={register?'/api/v1/auth/password/register':'/api/v1/auth/password/login'}>
+    <label for="auth-email">Adresse email</label><input id="auth-email" name="email" type="email" autocomplete="username" inputmode="email" required maxlength="254" placeholder="vous@exemple.fr"/>
+    <label for="auth-password">Mot de passe</label><div class="auth-password-field"><input id="auth-password" name="password" type="password" autocomplete={register?'new-password':'current-password'} required minlength={register?15:1} maxlength="256" aria-describedby={register?'password-help':undefined}/><button type="button" data-toggle-password aria-label="Afficher le mot de passe" aria-pressed="false">Afficher</button></div>
+    {register&&<><p id="password-help" class="auth-help">15 à 128 caractères. Une phrase personnelle est facile à retenir.</p><label for="auth-confirm">Confirmer le mot de passe</label><input id="auth-confirm" name="confirmation" type="password" autocomplete="new-password" required maxlength="256"/></>}
+    <p class="auth-status" role="status" aria-live="polite" data-auth-status>Préparation de votre connexion…</p>
+    <button class="auth-submit" type="submit" disabled>{register?'Créer mon compte':'Se connecter'}</button>
+  </form>
+  {register&&<p class="auth-help auth-verification">L’adresse sert d’identifiant. Sa vérification par email n’est pas encore disponible.</p>}
+  <p class="auth-switch">{register?'Déjà un compte ?':'Nouveau sur Kortex ?'} <a href={register?'/auth/login':'/auth/register'}>{register?'Se connecter':'Créer un compte'}</a></p>
+  <noscript><p>Activez JavaScript pour utiliser la connexion sécurisée.</p></noscript>
+</section>
+<script>import '../scripts/password-auth';</script>

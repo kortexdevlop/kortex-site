@@ -14,16 +14,16 @@ export async function auth(request:Request,env:Env,id:string,viaWeb=false,transp
  if(!viaWeb&&(!me||!request.headers.has('Authorization')))return failure('NOT_FOUND','Route not found',404,id);
  const clear=()=>setCookie(FLOW_COOKIE,'',0);
  try{
-  const config=configuration(env);if(!config)return failure('UNAVAILABLE','Sign-in is not configured',503,id);
+  if(env.OIDC_ENABLED!=='true'&&env.PASSWORD_AUTH_ENABLED!=='true')return failure('UNAVAILABLE','Sign-in is not configured',503,id);
   secret(env); // Fail before storing flow data when server secrets are unavailable.
   if(url.href.length>8192)throw Error('IDENTITY_QUERY');
   const names=[...url.searchParams.keys()];if(new Set(names).size!==names.length||names.some(n=>!(callback?['code','state','error','error_description','iss']:[]).includes(n)))throw Error('IDENTITY_QUERY');
   if(me){
    let userId:string,csrf:string|undefined,authentication:string,scopes:readonly string[];
-   if(request.headers.has('Authorization')){const identity=await desktopIdentity(request,env,config,transport);userId=identity.userId;scopes=identity.scopes;authentication='desktop';}
+   if(request.headers.has('Authorization')){const config=configuration(env);if(!config)throw Error('IDENTITY_CONFIG');const identity=await desktopIdentity(request,env,config,transport);userId=identity.userId;scopes=identity.scopes;authentication='desktop';}
    else{const current=await session(request,env);if(!current)throw Error('IDENTITY_SESSION');userId=current.user_id;csrf=await csrfToken(env,current.token);scopes=['identity:read','session:logout'];authentication='web';}
-   const user=await env.DB.prepare('SELECT id,sync_enabled FROM users WHERE id=?').bind(userId).first<{id:string;sync_enabled:number}>();if(!user)throw Error('IDENTITY_USER');
-   return json({user:{id:user.id,sync_enabled:!!user.sync_enabled},authentication,scopes,...(csrf?{csrf_token:csrf}:{})},200,id);
+   const user=await env.DB.prepare('SELECT u.id,u.sync_enabled,p.email,p.email_verified FROM users u LEFT JOIN password_credentials p ON p.user_id=u.id WHERE u.id=?').bind(userId).first<{id:string;sync_enabled:number;email:string|null;email_verified:number|null}>();if(!user)throw Error('IDENTITY_USER');
+   return json({user:{id:user.id,sync_enabled:!!user.sync_enabled,...(user.email?{email:user.email,email_verified:!!user.email_verified}:{})},authentication,scopes,...(csrf?{csrf_token:csrf}:{})},200,id);
   }
   if(logout){
    if(request.headers.has('Authorization'))return failure('FORBIDDEN','Cookie session required',403,id);
@@ -33,6 +33,7 @@ export async function auth(request:Request,env:Env,id:string,viaWeb=false,transp
    return json(null,204,id,undefined,false,{'Set-Cookie':setCookie(SESSION_COOKIE,'',0)});
   }
   if(!callback){
+   const config=configuration(env);if(!config)return failure('UNAVAILABLE','Google sign-in is not configured',503,id);
    if(request.headers.get('Sec-Fetch-Site')==='cross-site'||request.headers.get('Origin')&&request.headers.get('Origin')!==env.PUBLIC_WEB_ORIGIN) return failure('FORBIDDEN','Invalid sign-in origin',403,id);
    const discovery=await discoverIdentity(config,env.KORTEX_ENV,transport);
    if(!discovery.metadata.id_token_signing_alg_values_supported.includes('RS256'))throw Error('IDENTITY_ALGORITHM');
@@ -45,6 +46,7 @@ export async function auth(request:Request,env:Env,id:string,viaWeb=false,transp
    const target=new URL(discovery.metadata.authorization_endpoint);target.search=new URLSearchParams({client_id:config.webClientId,redirect_uri:config.webRedirect,response_type:'code',scope:'openid',state,nonce,code_challenge:b64(new Uint8Array(await crypto.subtle.digest('SHA-256',encoder.encode(verifier)))),code_challenge_method:'S256'}).toString();
    return json(null,302,id,undefined,false,{Location:target.href,'Set-Cookie':setCookie(FLOW_COOKIE,browser,FLOW_TTL/1000)});
   }
+  const config=configuration(env);if(!config)return failure('UNAVAILABLE','Google sign-in is not configured',503,id);
   const state=url.searchParams.get('state'),browser=cookie(request,FLOW_COOKIE);
   if(!state||!/^[A-Za-z0-9_-]{43}$/.test(state)||!browser)throw Error('IDENTITY_STATE');
   // One atomic DELETE..RETURNING, before token exchange: concurrent callbacks cannot replay a flow.
