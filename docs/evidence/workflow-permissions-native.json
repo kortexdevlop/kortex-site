@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-28T18:39:12.740Z",
+  "approval_then_read": true,
+  "cancel_stops_next_node": true,
+  "cloud_execution": false,
+  "deny_has_no_write": true,
+  "passed": true,
+  "real_native_services_gateway": true,
+  "real_signed_wasm": true,
+  "scope_escape_refused": true,
+  "separate_tool_namespaces": true,
+  "single_use_grant": true
+}

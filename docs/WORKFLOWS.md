@@ -43,3 +43,11 @@ Les paragraphes précédents décrivent le lot historique 16.0–16.2. Le Web st
 La sélection de fichier est éphémère, séparée de la définition ; une autorisation de lecture distincte précède la lecture bornée. Aucune étape ne reçoit automatiquement une capacité hôte grâce à son approbation de parcours. **Les actions déclarant des capacités restent refusées dans le lanceur Desktop.** Le raccordement de leurs scopes/dialogues au NativeServices existant manque encore : 16.3 et la clôture universelle 16.5 restent ouvertes, même si les scénarios des outils actuellement publiés passent.
 
 La sauvegarde locale et la synchronisation du compte sont explicites, sans transfert des résultats/fichiers. Migration 0011, propriétaire, révisions/If-Match, tombstones et refus de conflits ; le token natif reste dans le coffre. Le layout 17.0 est un modèle strict de métadonnées avec huit fenêtres, focus/z et restauration recadrée ; aucune interface 17.1 n’est engagée. Voir `docs/evidence/orchestration-validation.json` et les quatre rapports pour le statut exact.
+
+## Clôture du complément 16.3 / 16.5
+
+La réserve historique ci-dessus est levée : les actions sensibles Windows utilisent maintenant le courtier existant, un dialogue par capacité/ressource et un droit à usage unique. La demande réelle du guest est aussi vérifiée contre les permissions de son action et le scope choisi. Les initialisations sont médiées séparément. Refus/annulation/expiration/fermeture bloquent la suite et révoquent les services ; un journal abandonné ne provoque aucune reprise.
+
+Le Web attend les résultats des capacités, conserve au plus huit instances isolées pendant le Run et admet jusqu’à 50 requêtes distinctes par session ; un identifiant consommé ne peut être rejoué. Les files et limites des courtiers restent actives. Le test de stockage Web utilise une autorisation navigateur réelle de stockage durable dans un profil Chromium persistant et des transactions IndexedDB réelles, sans remplacer les sondes ni le backend. Les restrictions de la plateforme restent fail-closed.
+
+Les scénarios signés, normaux et adversariaux, sont consignés dans docs/evidence/workflow-permissions-validation.json. Aucun changement de contrat workflow gelé, outil métier, API, quota IA, production, DNS ou messagerie. 16.3 et 16.5 closes techniquement ; 17.1 non engagée.

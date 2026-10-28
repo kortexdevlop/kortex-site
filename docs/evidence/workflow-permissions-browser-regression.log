@@ -1,0 +1,11 @@
+  ok  2 [chromium] › tests\web\workflow-permissions.spec.ts:2:5 › signed workflow waits for real browser capability consent and retains its instance between actions (3.0s)
+  ok  3 [chromium] › web-adapter\tests\ai-bridge.spec.ts:3:1 › signed WASM multiply only after review and consent, no replay or expired approval (1.2s)
+  ok  4 [chromium] › web-adapter\tests\capabilities.spec.ts:16:1 › sept capacités refusées par défaut et consentement synthétique rejeté (671ms)
+  ok  5 [chromium] › web-adapter\tests\capabilities.spec.ts:21:1 › IndexedDB réel : isolation profils/outils/versions, quota atomique et refus non durable (812ms)
+  ok  6 [chromium] › web-adapter\tests\capabilities.spec.ts:38:1 › file picker réel : annulation, 10 Mio+1 refusé, blocs et sauvegarde (2.8s)
+  ok  7 [chromium] › web-adapter\tests\capabilities.spec.ts:46:1 › réseau : allowlist, redirects refusés, offline et corps borné (1.0s)
+  ok  8 [chromium] › web-adapter\tests\capabilities.spec.ts:55:1 › révocation annule les demandes et clipboard requiert un vrai geste (614ms)
+  ok  9 [chromium] › web-adapter\tests\capabilities.spec.ts:59:1 › Dioxus affiche le consentement réel et la révocation (1.0s)
+  ok 10 [chromium] › web-adapter\tests\capabilities.spec.ts:66:1 › guest SDK réel : host_enqueue, consentement, IndexedDB et capability.result vers UiRenderer (1.7s)
+
+  10 passed (19.6s)

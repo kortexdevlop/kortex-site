@@ -18,4 +18,6 @@ pub mod updates;
 pub mod versions;
 mod workflow_view;
 pub mod workflows;
+pub mod workflow_permissions;
+mod workflow_host;
 pub mod workflow_store;

@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-28T18:56:46.675Z",
+  "source_commit": "5c9a78b",
+  "steps": [
+    "16.3",
+    "16.5"
+  ],
+  "technical_status": "closed",
+  "human_approval_invented": false,
+  "source_hash_format": "SHA256 UTF8 LF",
+  "sources": {
+    ".gitattributes": "0878e434457292eeb1a53dbe3d4bf514a13dc31b30fa881aea850d62d3e961bd",
+    "crates/kortex-runtime-native/src/network.rs": "3611363e50018e7a9e29842c38d1c8366201da5de5d05e7b991d140e2f97b2b5",
+    "crates/kortex-runtime-native/src/permissions.rs": "75885d711d67911171bb29de5066216ce1af6dab62b222ab459a2b7d150b7a15",
+    "desktop/src/lib.rs": "f4ab217951e2c8d68996054c2d6f7543093c1d2645e203b14cfabe0b3bb73962",
+    "desktop/src/workflow_host.rs": "fe1689333f3817ae08a07238b6d207504a5a4945874e0541606b719c466c1ab9",
+    "desktop/src/workflow_permissions.rs": "b6e15a4ec85c5b7de04edd9e7763aa101deeb22ff75ca6c7ce8860bd2e19f7b0",
+    "desktop/src/workflow_view.rs": "330ff70e46d52a28aef1c9e1a1306a62a9cabcbf8002ec8f1f26ece63b72d180",
+    "desktop/src/workflows.rs": "6efa26cbc1661ad5f3e3e87e1d6b245569240317aa57e35d14d10dd2ba9248f5",
+    "desktop/tests/workflow_permissions.rs": "b7b1cdc37768e84e8b63177688ba67f1b474a16f81f67fea96df5dda1b38b322",
+    "scripts/deploy-workflow-permissions-staging.mjs": "e0d771abaf863508d2702561275810db44997e5bb3aea9a9afa239d8c5d1cd6a",
+    "scripts/record-workflow-permissions-validation.mjs": "f7a841f822523afb51ec4805c9872814533c306b86dcb96a8e36958d73a841c8",
+    "scripts/test-workflow-permissions-native.mjs": "66ca65744d3af98a4549549e670a01e4d8d27c731d6586250c62e5009326d434",
+    "tests/e2e/workflow-run.spec.ts": "845a62c61707c2ec21c2e760e0087afa9de31f6e6df0ea05884537ae6a7cdd21",
+    "tests/fixtures/workflow-capability-guest/Cargo.lock": "5a975876c3285a209c7847a4c020e20626be72c24f689578a0fcdcfec149f647",
+    "tests/fixtures/workflow-capability-guest/Cargo.toml": "0a1a28df23308c77d2c7e39790d3bc6318575f29630ce2ff53fa28715836adf2",
+    "tests/fixtures/workflow-capability-guest/src/lib.rs": "f3b4b2f33512689b2afe142ed5d130ebc9bb6effbb57424ad0b17dc2e34236a0",
+    "tests/web/embed.spec.ts": "ebb82b88f2625a257c2b7e7b7eb6ad93c8348c0260808cade65583f1e0519212",
+    "tests/web/workflow-permissions.spec.ts": "86bfe4389216aefdd8c7b1a5cec6d0a33021db3547a751566039b6e4e4f6a190",
+    "web-adapter/src/bridge.ts": "d5e1d437ec00965c483afcb2fcb2adf49a7c2578f76d7211ed8b72c02935f176",
+    "web-adapter/src/host.ts": "70c957b7fa8c074db7f8179bb574acd7fd5f0a6604b01de502813e10251ceb04",
+    "web-adapter/src/iframe.ts": "1c3e9022c43ad99a47622a66b891b88681f381968f68ca3ab18cb428d77347cb",
+    "website/src/lib/workflow-runtime.ts": "d5da085acacb59fb2f788cc290ed1917c3c0d36fcdc2cac9e7912365d4502cce"
+  },
+  "tests": {
+    "rust_workflow_engine": 14,
+    "native_capabilities": 7,
+    "external_https_smoke_ignored": 1,
+    "desktop_units": 6,
+    "native_signed_sensitive_workflows": true,
+    "real_windows_permission_dialogs": true,
+    "native_signed_file_hash": true,
+    "web_unit_targeted": 12,
+    "chromium_local": 10,
+    "chromium_staging": 6,
+    "real_indexeddb": true,
+    "browser_durable_storage_permission": "Chromium CDP Browser.setPermission for embedding/embedded origins; no backend/probe replacement"
+  },
+  "native": {
+    "approval_then_read": true,
+    "cancel_stops_next_node": true,
+    "cloud_execution": false,
+    "deny_has_no_write": true,
+    "passed": true,
+    "real_native_services_gateway": true,
+    "real_signed_wasm": true,
+    "scope_escape_refused": true,
+    "separate_tool_namespaces": true,
+    "single_use_grant": true
+  },
+  "browser": {
+    "date": "2026-10-28T18:47:35.797Z",
+    "passed": true,
+    "real_signed_wasm": true,
+    "real_browser_capability_broker": true,
+    "no_result_before_consent": true,
+    "denied_write_absent": true,
+    "write_then_read": [
+      "written",
+      "private-test-value"
+    ],
+    "same_instance": true,
+    "replayed_request_ignored": true
+  },
+  "windows_ui": {
+    "date": "2026-10-28T18:39:32.843Z",
+    "passed": true,
+    "platform": "win32",
+    "real_signed_wasm": true,
+    "offline": true,
+    "deny_has_no_effect": true,
+    "approve_write_then_read": true,
+    "scope_escape_refused": true,
+    "closing_view_cancels_pending_permission": true
+  },
+  "signed_sensitive_fixture": {
+    "tool_id": "workflow-sensitive-test",
+    "version": "1.0.0",
+    "sha256": "49cfe1d8a9323d6539bdc95f173ddec24daa92e3c7a93b8bcc897f9f90710af7",
+    "signing_key_id": "lifecycle-test-release"
+  },
+  "deployments": {
+    "runtime": "fb251e14-617f-4f84-8f44-abed841a2df4",
+    "web": "dfc8f332-1bc1-4013-9007-b000b1a4e0a2"
+  },
+  "limits": {
+    "tool_instances": 8,
+    "nodes": 50,
+    "unique_requests_per_web_session": 50
+  },
+  "workflow_schema_changed": false,
+  "production_touched": false,
+  "api_touched": false,
+  "ai_quota_touched": false,
+  "dns_touched": false,
+  "mail_touched": false,
+  "phase17_1_started": false,
+  "passed": true
+}

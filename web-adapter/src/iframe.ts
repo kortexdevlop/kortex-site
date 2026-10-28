@@ -1,7 +1,7 @@
 /** The configuration is selected by the host deployment, never taken from a message. */
 export interface EmbedConfig {parentOrigin:string;clientVersion:string}
 export class EmbedSession {
- private nonce:string|undefined;private session:string|undefined;private active=false;private opened=false;private workflowUsed=false;
+ private nonce:string|undefined;private session:string|undefined;private active=false;private opened=false;private workflowUsed=new Set<string>();
  constructor(private config:EmbedConfig,private open:(tool_id:string,version:string)=>Promise<unknown>,private changed:(state:string)=>void=()=>{},private ai?:(data:Record<string,unknown>)=>Promise<unknown>){
   const parent=new URL(config.parentOrigin);if(parent.origin!==config.parentOrigin||parent.origin===location.origin||!['https:','http:'].includes(parent.protocol))throw Error('INVALID_PARENT_ORIGIN');
  }
@@ -13,7 +13,7 @@ export class EmbedSession {
    this.nonce=data.nonce;this.session=crypto.randomUUID();window.parent.postMessage({kind:'READY',nonce:this.nonce,session_id:this.session},this.config.parentOrigin);return;
   }
   if(['AI_REVIEW','AI_DECIDE','WORKFLOW_INVOKE'].includes(data.kind)&&this.opened&&this.ai&&this.session&&data.session_id===this.session&&data.nonce===this.nonce&&!this.active&&typeof data.request_id==='string'&&/^[a-f0-9-]{36}$/.test(data.request_id)){
-   if(data.kind==='WORKFLOW_INVOKE'){if(this.workflowUsed)return;this.workflowUsed=true;}
+   if(data.kind==='WORKFLOW_INVOKE'){if(this.workflowUsed.has(data.request_id)||this.workflowUsed.size>=50)return;this.workflowUsed.add(data.request_id);}
    this.active=true;void this.ai(data).then(result=>window.parent.postMessage({kind:'AI_RESULT',session_id:this.session,nonce:this.nonce,request_id:data.request_id,result},this.config.parentOrigin),()=>window.parent.postMessage({kind:'AI_ERROR',session_id:this.session,nonce:this.nonce,request_id:data.request_id,code:'ACTION_REFUSED'},this.config.parentOrigin)).finally(()=>this.active=false);return;
   }
   if(data.kind!=='OPEN'||this.opened||!this.session||data.session_id!==this.session||data.nonce!==this.nonce||this.active||typeof data.tool_id!=='string'||!/^[a-z][a-z0-9-]{0,63}$/.test(data.tool_id)||typeof data.version!=='string'||data.version.length>100)return;

@@ -35,11 +35,14 @@ export class VerifiedTool {
 export class WebBridge {
  private worker:Worker|undefined;private sequence=0;private stopped=false;private pending=new Map<number,{resolve:(v:any)=>void;reject:(e:Error)=>void;timer:ReturnType<typeof setTimeout>}>();private tail:Promise<unknown>=Promise.resolve();private queued=0;
  onCapabilitySettled:()=>Promise<void>=async()=>{};onFailure:(reason:string)=>void=()=>{};
+ private capabilities=new Set<Promise<void>>();private capabilityError:Error|undefined;private capabilityVersion=0;private capabilityReply:Reply|undefined;
+ capabilityRevision(){return this.capabilityVersion}
+ async settleCapabilities(since=this.capabilityVersion):Promise<Reply|undefined>{while(this.capabilities.size)await Promise.allSettled([...this.capabilities]);if(this.stopped)throw Error('STOPPED');if(this.capabilityError)throw this.capabilityError;return this.capabilityVersion>since?this.capabilityReply:undefined}
  onCapability:(call:CapabilityRequest)=>Promise<Record<string,unknown>>=async()=>{throw Error('PERMISSION')};
  private constructor(private tool:VerifiedTool,private timeout:number){
   this.worker=new Worker(new URL('./worker.js',import.meta.url),{type:'module'});
   this.worker.onmessage=({data})=>{if(this.stopped)return;
-   if(data?.capability){try{capability(data.capability);const call=data.capability;void this.onCapability(call).then(value=>this.capabilityResult(call.request_id,{ok:true,data:value}),e=>this.capabilityResult(call.request_id,{ok:false,error:error(e instanceof Error?e.message:'UNAVAILABLE')}));}catch{this.stop('INVALID_CAPABILITY')}return;}
+   if(data?.capability){try{capability(data.capability);if(this.capabilities.size>=QUEUE_LIMIT)throw Error('QUEUE_FULL');const call=data.capability;const job=(async()=>{let outcome:Record<string,unknown>,failure:Error|undefined;try{outcome={ok:true,data:await this.onCapability(call)}}catch(e){failure=e instanceof Error?e:Error('UNAVAILABLE');outcome={ok:false,error:error(failure.message)}}await this.capabilityResult(call.request_id,outcome);if(failure)throw failure})();this.capabilities.add(job);void job.then(()=>this.capabilities.delete(job),e=>{this.capabilityError=e instanceof Error?e:Error('PERMISSION');this.capabilities.delete(job)});}catch{this.stop('INVALID_CAPABILITY')}return;}
    const item=this.pending.get(data?.id);if(!item){this.stop('CORRELATION_ERROR');return;}clearTimeout(item.timer);this.pending.delete(data.id);if(data.error){item.reject(Error(data.error));this.stop(data.error);}else item.resolve(data.result);
   };
   this.worker.onerror=()=>this.stop('GUEST_CRASH');this.worker.onmessageerror=()=>this.stop('INVALID_MESSAGE');
@@ -60,7 +63,7 @@ export class WebBridge {
   const task=this.tail.then(async()=>{const result=await this.call({op:'dispatch',request:copy},action?Math.min(this.timeout,action.timeout_ms):this.timeout);reply(result);if(action&&result.ok&&!matchesSchema(action.output_schema,result.data)){this.stop('INVALID_OUTPUT');throw Error('INVALID_OUTPUT')}if(result.request_id!==copy.request_id){this.stop('CORRELATION_ERROR');throw Error('CORRELATION_ERROR')}return result;});
   this.tail=task.catch(()=>{});return task.finally(()=>{this.queued--;});
  }
- private async capabilityResult(id:string,result:Record<string,unknown>){try{await this.dispatch({v:1,request_id:crypto.randomUUID(),kind:'capability.result',payload:{capability_request_id:id,...result}});await this.onCapabilitySettled();}catch{/* shutdown/timeout already reported to callers */}}
+ private async capabilityResult(id:string,result:Record<string,unknown>){const reply=await this.dispatch({v:1,request_id:crypto.randomUUID(),kind:'capability.result',payload:{capability_request_id:id,...result}});this.capabilityVersion++;this.capabilityReply=reply;await this.onCapabilitySettled();if(!reply.ok)throw Error(reply.error?.code??'PERMISSION');}
  stop(reason='CANCELLED'){if(this.stopped)return;this.stopped=true;this.worker?.terminate();this.worker=undefined;for(const item of this.pending.values()){clearTimeout(item.timer);item.reject(Error(reason));}this.pending.clear();if(reason!=='CANCELLED')this.onFailure(reason);}
 }
 export const startVerifiedTool=WebBridge.startVerifiedTool;

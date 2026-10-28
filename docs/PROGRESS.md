@@ -1,5 +1,7 @@
 # Progression
 
+Complément du 28/10/2026 : **16.3 et 16.5 terminées et closes techniquement.** Les autorisations Windows passent désormais par HostedNativeEngine et NativeServices/Gateway, avec dialogue par accès et ressource, droits à usage unique, contrôle de la demande effective et révocation à l’arrêt. Les décisions restent éphémères. Le Web attend la résolution réelle des capacités et conserve les instances isolées entre étapes, avec requêtes uniques et anti-rejeu. Vrais paquets signés et vrais backends Windows/IndexedDB vérifiés ; refus, scope détourné, annulation et séparation des outils testés. Statuts humains formels conservés. Preuves : workflow-permissions-validation.json. 17.1 non engagée. Les réserves du lot précédent ci-dessous sont historiques.
+
 Lot 16.3–17.0 du 28/10/2026 : **16.4 et 17.0 terminées techniquement ; 16.3 et 16.5 restent ouvertes.** Les parcours signés fonctionnent sur Web/Windows, fichier local consenti compris, et la sauvegarde locale/cloud avec conflits est active sur staging. Le lanceur Windows refuse encore les actions déclarant des capacités hôte : leurs dialogues/scopes restent à raccorder, sans transformer une approbation de parcours en droit de capacité. Les preuves du catalogue actuel ne sont pas présentées comme une clôture universelle. Modèle strict du bureau livré, sans interface 17.1. Rapports STEP-16.3 à STEP-17.0 et preuves orchestration-*. Statuts humains historiques conservés.
 
 Lot 16.0–16.2 terminé et clos techniquement le 28/10/2026 : moteur local DAG borné, mapping typé, arrêt/retry idempotent, annulation et consentement par étape/lot lié à une exécution, même Policy de capacités et retrait de droits. Éditeur /workflows réel sur staging : palette publiée, carte/liste accessible, paramètres/liens, validation, import/export local et annulation. 50 tests Rust, 31 Web, 3 contrats et 3 scénarios Chromium réussis ; vraie chaîne signée Wasmtime 1200 puis 1210 sans cloud, builds/types vérifiés. L’éditeur ne lance aucun outil : raccordement produit réservé à 16.3, non engagée. API/runtime distant/quotas IA/production/DNS/messagerie conservés. Réserve Google 14.5 inchangée, statuts humains historiques conservés. Preuves : docs/evidence/workflows-validation.json. Les notes suivantes sont historiques.
@@ -1683,21 +1685,24 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
   {
     "id": "16.3",
     "status": "pending",
-    "source_commit": "16de346",
-    "result_commit": "3ee286d2ee14c7a9565183f342e23e27f716fe7d",
+    "source_commit": "5c9a78b",
+    "result_commit": null,
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-16.3.md",
-    "tests_executed": "28/10/2026 Windows/Chromium : 37 tests Web, 14 moteur Rust, 3 persistance/entrée Windows, 1 fichier signé Windows ; 85 API en régression puis 10 ciblés dont 1 nouveau test de scope natif ; 5 scénarios staging, 1 protocole isolé ; vrai parcours Windows et CRUD D1 réel. Types et builds réussis. Les tests du profil actuel passent, les capacités déclarées Desktop restent refusées.",
+    "tests_executed": "28/10/2026 Windows/Chromium : fixture SDK signée, vrai HostedNativeEngine/NativeServices/Gateway et stockage réel : accord écriture/lecture, refus sans effet, scope détourné bloqué, droit unique consommé, annulation entre étapes et namespaces séparés ; dialogues dans application Windows réelle ; même paquet et IndexedDB réel dans Chromium. 14 moteur, 7 capacités natives (1 smoke HTTPS externe ignoré), 6 unités Desktop, hash fichier signé Windows, 10 scénarios navigateur locaux, 6 staging, 12 tests Web ciblés ; types/builds et secrets vérifiés.",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/orchestration-validation.json",
-      "docs/evidence/orchestration-cross-tools.md"
+      "docs/evidence/workflow-permissions-validation.json",
+      "docs/evidence/workflow-permissions-native.json",
+      "docs/evidence/workflow-permissions-web.json",
+      "docs/evidence/workflow-permissions-ui.json"
     ],
     "frozen": false,
-    "technical_status": "partial",
-    "authorization": "propriétaire : Enchaînes les 4 étape",
-    "limitations": "Dialogue et scopes des capacités hôte déclarées Desktop à raccorder au NativeServices/Gateway normal avant clôture universelle ; aucun grant implicite. Google/OIDC 14.5 inchangé."
+    "technical_status": "closed",
+    "authorization": "propriétaire : Termine 16.3 et 16.5 rapidement",
+    "limitations": "Restrictions normales des courtiers et du navigateur conservées : HTTPS/allowlist/CORS, gestes frais et stockage durable confirmé. Windows/Chromium uniquement. Aucun runner cloud ; Google/OIDC 14.5 inchangé ; 17.1 non engagée.",
+    "closed_at": "2026-10-28"
   },
   {
     "id": "16.4",
@@ -1725,21 +1730,24 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
   {
     "id": "16.5",
     "status": "pending",
-    "source_commit": "16de346",
-    "result_commit": "3ee286d2ee14c7a9565183f342e23e27f716fe7d",
+    "source_commit": "5c9a78b",
+    "result_commit": null,
     "approved_by": null,
     "approved_at": null,
     "report_path": "docs/reports/STEP-16.5.md",
-    "tests_executed": "28/10/2026 Windows/Chromium : 37 tests Web, 14 moteur Rust, 3 persistance/entrée Windows, 1 fichier signé Windows ; 85 API en régression puis 10 ciblés dont 1 nouveau test de scope natif ; 5 scénarios staging, 1 protocole isolé ; vrai parcours Windows et CRUD D1 réel. Types et builds réussis. Les tests du profil actuel passent, les capacités déclarées Desktop restent refusées.",
+    "tests_executed": "28/10/2026 Windows/Chromium : fixture SDK signée, vrai HostedNativeEngine/NativeServices/Gateway et stockage réel : accord écriture/lecture, refus sans effet, scope détourné bloqué, droit unique consommé, annulation entre étapes et namespaces séparés ; dialogues dans application Windows réelle ; même paquet et IndexedDB réel dans Chromium. 14 moteur, 7 capacités natives (1 smoke HTTPS externe ignoré), 6 unités Desktop, hash fichier signé Windows, 10 scénarios navigateur locaux, 6 staging, 12 tests Web ciblés ; types/builds et secrets vérifiés.",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/orchestration-validation.json",
-      "docs/evidence/orchestration-cross-tools.md"
+      "docs/evidence/workflow-permissions-validation.json",
+      "docs/evidence/workflow-permissions-native.json",
+      "docs/evidence/workflow-permissions-web.json",
+      "docs/evidence/workflow-permissions-ui.json"
     ],
     "frozen": false,
-    "technical_status": "partial",
-    "authorization": "propriétaire : Enchaînes les 4 étape",
-    "limitations": "Dialogue et scopes des capacités hôte déclarées Desktop à raccorder au NativeServices/Gateway normal avant clôture universelle ; aucun grant implicite. Google/OIDC 14.5 inchangé."
+    "technical_status": "closed",
+    "authorization": "propriétaire : Termine 16.3 et 16.5 rapidement",
+    "limitations": "Restrictions normales des courtiers et du navigateur conservées : HTTPS/allowlist/CORS, gestes frais et stockage durable confirmé. Windows/Chromium uniquement. Aucun runner cloud ; Google/OIDC 14.5 inchangé ; 17.1 non engagée.",
+    "closed_at": "2026-10-28"
   },
   {
     "id": "17.0",

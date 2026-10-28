@@ -9,7 +9,7 @@ use std::{
 };
 #[derive(Clone, Default)]
 pub struct NativeNetwork {
-    allowed: BTreeSet<String>,
+    allowed: std::sync::Arc<std::sync::Mutex<BTreeSet<String>>>,
 }
 impl NativeNetwork {
     pub fn new(origins: impl IntoIterator<Item = String>) -> Result<Self, CapabilityError> {
@@ -21,8 +21,10 @@ impl NativeNetwork {
             }
             allowed.insert(s);
         }
-        Ok(Self { allowed })
+        Ok(Self { allowed:std::sync::Arc::new(std::sync::Mutex::new(allowed)) })
     }
+    /// Host consent UI only. Gateway policy still checks the exact owner and approved scope.
+    pub fn allow_origin(&self,origin:String)->Result<(),CapabilityError>{let u=Self::url(&origin)?;if u.origin().ascii_serialization()!=origin{return Err(CapabilityError::NetworkDenied)}self.allowed.lock().map_err(|_|CapabilityError::HostFailure)?.insert(origin);Ok(())}
     pub fn url(value: &str) -> Result<url::Url, CapabilityError> {
         let u = url::Url::parse(value).map_err(|_| CapabilityError::NetworkDenied)?;
         if u.scheme() != "https"
@@ -58,7 +60,7 @@ impl NativeNetwork {
         remaining: Duration,
     ) -> Result<CapabilityResponse, CapabilityError> {
         let u = Self::url(url)?;
-        if !self.allowed.contains(&u.origin().ascii_serialization()) || addresses.is_empty() {
+        if !self.allowed.lock().map_err(|_|CapabilityError::HostFailure)?.contains(&u.origin().ascii_serialization()) || addresses.is_empty() {
             return Err(CapabilityError::NetworkDenied);
         }
         let sockets = addresses

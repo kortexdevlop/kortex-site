@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28T18:39:32.843Z",
+  "passed": true,
+  "platform": "win32",
+  "real_signed_wasm": true,
+  "offline": true,
+  "deny_has_no_effect": true,
+  "approve_write_then_read": true,
+  "scope_escape_refused": true,
+  "closing_view_cancels_pending_permission": true
+}

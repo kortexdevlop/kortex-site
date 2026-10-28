@@ -244,7 +244,7 @@ impl NativeServices {
         allow: bool,
         duration: Duration,
     ) -> Result<Map<String, Value>, kortex_abi::HostError> {
-        self.dispatch_decision(owner, request, Some((allow, duration)))
+        self.dispatch_decision(owner, request, Some((allow, duration)), false)
             .await
     }
     pub async fn execute_existing(
@@ -252,13 +252,19 @@ impl NativeServices {
         owner: &Context,
         request: &CapabilityRequest,
     ) -> Result<Map<String, Value>, kortex_abi::HostError> {
-        self.dispatch_decision(owner, request, None).await
+        self.dispatch_decision(owner, request, None, false).await
+    }
+    /// Trusted host only: caller must have a fresh actual UI approval for this exact operation.
+    /// Consumes the existing scoped grant; does not create a second grant.
+    pub async fn execute_existing_with_gesture(&mut self,owner:&Context,request:&CapabilityRequest)->Result<Map<String,Value>,kortex_abi::HostError>{
+        self.dispatch_decision(owner,request,None,true).await
     }
     async fn dispatch_decision(
         &mut self,
         owner: &Context,
         request: &CapabilityRequest,
         decision: Option<(bool, Duration)>,
+        fresh_ui_gesture: bool,
     ) -> Result<Map<String, Value>, kortex_abi::HostError> {
         let outcome = async {
             let cap = Capability::try_from(request.capability.as_str())?;
@@ -282,6 +288,7 @@ impl NativeServices {
                     self.gateway.policy.deny(owner, cap, &resource)?;
                     None
                 }
+                None if fresh_ui_gesture => Some(self.gateway.policy.record_gesture(owner,now_ms())?),
                 None => None,
             };
             let response = self

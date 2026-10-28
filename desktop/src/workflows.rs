@@ -1,12 +1,6 @@
 //! Product adapter: signed installed packages, universal action dispatcher, no cloud execution.
 use crate::{api::Api, config::Config, launcher};
-use kortex_capabilities::policy::Policy;
-use kortex_core::{Runtime, dispatcher::Clock};
-use kortex_workflows::{
-    permissions::Scope,
-    runner::{Cancellation, Host, InvokeError, Options, Run},
-    *,
-};
+use kortex_workflows::{Workflow, runner::Cancellation};
 use serde_json::{Value, json};
 use std::{
     collections::BTreeSet,
@@ -77,65 +71,6 @@ pub fn bind_file(
     node["requires_confirmation"] = json!(true);
     Ok(local)
 }
-struct NativeClock;
-impl Clock for NativeClock {
-    fn now_ms(&self) -> u64 {
-        kortex_runtime_native::permissions::now_ms()
-    }
-    async fn wait_until(&self, deadline: u64) {
-        tokio::time::sleep(std::time::Duration::from_millis(
-            deadline.saturating_sub(self.now_ms()),
-        ))
-        .await
-    }
-}
-struct LocalHost {
-    registry: Registry,
-    policy: Policy,
-    runtime: Runtime<kortex_runtime_native::NativeGuestEngine, NativeClock>,
-    progress: Arc<Mutex<Vec<String>>>,
-}
-impl Host for LocalHost {
-    fn registry(&self) -> &Registry {
-        &self.registry
-    }
-    fn policy(&self) -> &Policy {
-        &self.policy
-    }
-    fn scopes(&self, _: &Node, s: &ActionSpec, _: &Value) -> Result<Vec<Scope>, Error> {
-        if !s.action.permissions.is_empty() {
-            return Err(Error::PermissionDenied);
-        }
-        Ok(vec![])
-    }
-    async fn invoke(
-        &mut self,
-        node: &Node,
-        s: &ActionSpec,
-        input: Value,
-        _: u64,
-    ) -> Result<Value, InvokeError> {
-        if let Ok(mut p) = self.progress.lock() {
-            p.push(format!("{} : en cours", node.id));
-        }
-        let reply = self
-            .runtime
-            .invoke_action(s.context.instance_id, &s.action.id, input)
-            .await
-            .map_err(|_| InvokeError { retryable: false })?;
-        if !reply.ok {
-            return Err(InvokeError { retryable: false });
-        }
-        let data = reply
-            .data
-            .map(Value::Object)
-            .ok_or(InvokeError { retryable: false })?;
-        if let Ok(mut p) = self.progress.lock() {
-            p.push(format!("{} : terminé", node.id));
-        }
-        Ok(data)
-    }
-}
 pub fn execute(
     config: &Config,
     value: Value,
@@ -143,6 +78,65 @@ pub fn execute(
     cancel: Cancellation,
     progress: Arc<Mutex<Vec<String>>>,
 ) -> Result<Value, String> {
+    execute_with_permissions(
+        config,
+        value,
+        approved,
+        cancel,
+        progress,
+        crate::workflow_permissions::Permissions::default(),
+    )
+}
+/// A hard-closed process cannot keep a runner alive. Never rewrite the marker of another live run.
+pub fn recover_last_run(config: &Config) -> Result<bool, String> {
+    let Ok(_lease) = crate::paths::lock(&config.data_dir, "workflow-run.lock", false) else {
+        return Ok(false);
+    };
+    let path = config.data_dir.join("workflow.last-run.v1.json");
+    if !path.exists() {
+        return Ok(false);
+    }
+    #[derive(serde::Serialize, serde::Deserialize)]
+    #[serde(deny_unknown_fields)]
+    struct Record {
+        run_id: String,
+        status: String,
+        journal: Vec<Event>,
+    }
+    #[derive(serde::Serialize, serde::Deserialize)]
+    #[serde(deny_unknown_fields)]
+    struct Event {
+        node_id: String,
+        status: String,
+        attempt: u8,
+        at_ms: u64,
+        may_have_effects: bool,
+    }
+    let mut record: Record = serde_json::from_slice(&crate::paths::read(&path, 131072)?)
+        .map_err(|_| "Journal invalide")?;
+    if record.run_id.len() > 64 || record.journal.len() > 256 {
+        return Err("Journal invalide".into());
+    }
+    if record.status != "running" {
+        return Ok(false);
+    }
+    record.status = "Cancelled".into();
+    crate::paths::atomic(
+        &path,
+        &serde_json::to_vec(&record).map_err(|_| "Journal invalide")?,
+    )?;
+    Ok(true)
+}
+pub fn execute_with_permissions(
+    config: &Config,
+    value: Value,
+    approved: bool,
+    cancel: Cancellation,
+    progress: Arc<Mutex<Vec<String>>>,
+    permissions: crate::workflow_permissions::Permissions,
+) -> Result<Value, String> {
+    let _lease = crate::paths::lock(&config.data_dir, "workflow-run.lock", false)?;
+    permissions.clear();
     if !approved {
         return Err("Vérifiez et approuvez le parcours avant de le lancer.".into());
     }
@@ -154,7 +148,14 @@ pub fn execute(
             .unwrap()
             .as_slice(),
     );
-    let outcome = execute_inner(config, value, approved, cancel.clone(), progress);
+    let outcome = execute_inner(
+        config,
+        value,
+        approved,
+        cancel.clone(),
+        progress,
+        permissions.clone(),
+    );
     let (status, journal) = match &outcome {
         Ok(v) => (
             v["status"].as_str().unwrap_or("failed"),
@@ -175,6 +176,7 @@ pub fn execute(
             .unwrap()
             .as_slice(),
     );
+    permissions.clear();
     outcome
 }
 fn execute_inner(
@@ -183,7 +185,9 @@ fn execute_inner(
     approved: bool,
     cancel: Cancellation,
     progress: Arc<Mutex<Vec<String>>>,
+    permissions: crate::workflow_permissions::Permissions,
 ) -> Result<Value, String> {
+    let end = kortex_runtime_native::permissions::now_ms() + 300000;
     if serde_json::to_vec(&value)
         .map_err(|_| "Parcours invalide")?
         .len()
@@ -205,8 +209,14 @@ fn execute_inner(
     let api = Api::new(config).map_err(|e| e.to_string())?;
     let mut packages = Vec::new();
     let mut leases = Vec::new();
-    let tool_ids=workflow.nodes.iter().map(|n|n.action_ref.split('.').next().unwrap_or("")).collect::<BTreeSet<_>>();
-    if tool_ids.len()>8{return Err("Limite Desktop : huit outils distincts par parcours.".into())}
+    let tool_ids = workflow
+        .nodes
+        .iter()
+        .map(|n| n.action_ref.split('.').next().unwrap_or(""))
+        .collect::<BTreeSet<_>>();
+    if tool_ids.len() > 8 {
+        return Err("Limite Desktop : huit outils distincts par parcours.".into());
+    }
     for id in tool_ids {
         if cancel.is_cancelled() {
             return Err("Parcours arrêté.".into());
@@ -230,32 +240,42 @@ fn execute_inner(
             installed.trust.to_str().ok_or("Clés invalides")?,
             Some(&installed.trust_seal),
         )?;
-        if tool.contract().actions.iter().any(|a| {
-            workflow
-                .nodes
-                .iter()
-                .any(|n| n.action_ref == format!("{}.{}", id, a.id))
-                && !a.permissions.is_empty()
-        }) {
-            return Err("Ce parcours demande un accès sensible. Cet accès n’est pas encore disponible dans le lanceur de parcours Desktop ; ouvrez l’outil directement.".into());
-        }
         packages.push(tool);
     }
-    let executor = tokio::runtime::Builder::new_current_thread()
-        .enable_time()
-        .build()
-        .map_err(|_| "Moteur indisponible")?;
-    executor.block_on(async{let mut runtime=Runtime::new(kortex_runtime_native::NativeGuestEngine,NativeClock);let mut registry=Registry::default();let mut ids=Vec::new();
-  let outcome=async{for tool in packages{let id=runtime.load(tool.clone()).await.map_err(|_|"Paquet refusé")?;ids.push(id);registry.register_verified(&tool,id).map_err(|_|"Actions refusées")?;}
-   let compiled=Compiled::new(&value,&registry).map_err(|_|"Paramètres ou liaisons incompatibles")?;for id in &ids{runtime.initialize(*id).await.map_err(|_|"Initialisation refusée")?;}let mut run=Run::new(compiled,Options::default()).map_err(|_|"Parcours refusé")?;let mut consent=run.consent(kortex_runtime_native::permissions::now_ms(),true);let nodes=workflow.nodes.iter().map(|n|n.id.clone()).collect::<Vec<_>>();consent.approve_batch(run.plan(),&nodes).map_err(|_|"Confirmation refusée")?;
-   let mut host=LocalHost{registry,policy:Policy::default(),runtime,progress};let status=run.advance(&mut host,&mut consent,&NativeClock,&cancel).await;for id in &ids{let _=host.runtime.shutdown(*id).await;}Ok::<_,String>(json!({"status":format!("{status:?}"),"outputs":run.outputs(),"journal":run.journal(),"executed_locally":true,"shareable":false}))
-  }.await;outcome
- })
+    crate::workflow_host::run(config, &value, packages, cancel, progress, permissions, end)
 }
 
 #[cfg(test)]
 mod input_tests {
     use super::*;
+    #[test]
+    fn abandoned_journal_is_cancelled_but_live_run_is_not_rewritten() {
+        let t = tempfile::tempdir().unwrap();
+        let c = Config {
+            api_origin: "https://kortex-api-staging.userpgl.workers.dev".into(),
+            channel: "staging".into(),
+            data_dir: t.path().into(),
+            trust_path: t.path().join("trust.json"),
+            offline: true,
+        };
+        let path = c.data_dir.join("workflow.last-run.v1.json");
+        std::fs::write(
+            &path,
+            br#"{"run_id":"previous","status":"running","journal":[]}"#,
+        )
+        .unwrap();
+        let lease = crate::paths::lock(&c.data_dir, "workflow-run.lock", false).unwrap();
+        assert!(!recover_last_run(&c).unwrap());
+        assert!(std::fs::read_to_string(&path).unwrap().contains("running"));
+        drop(lease);
+        assert!(recover_last_run(&c).unwrap());
+        assert!(
+            std::fs::read_to_string(&path)
+                .unwrap()
+                .contains("Cancelled")
+        );
+        assert!(!recover_last_run(&c).unwrap());
+    }
     #[test]
     fn file_requires_consent_and_remains_ephemeral() {
         let t = tempfile::tempdir().unwrap();

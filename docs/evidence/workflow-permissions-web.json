@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-28T18:47:35.797Z",
+  "passed": true,
+  "real_signed_wasm": true,
+  "real_browser_capability_broker": true,
+  "no_result_before_consent": true,
+  "denied_write_absent": true,
+  "write_then_read": [
+    "written",
+    "private-test-value"
+  ],
+  "same_instance": true,
+  "replayed_request_ignored": true
+}

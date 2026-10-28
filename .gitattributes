@@ -42,3 +42,5 @@
 /docs/evidence/workflows-*.log text eol=lf
 /docs/evidence/orchestration-*.json text eol=lf
 /docs/evidence/orchestration-*.log text eol=lf
+/docs/evidence/workflow-permissions-*.json text eol=lf
+/docs/evidence/workflow-permissions-*.log text eol=lf
