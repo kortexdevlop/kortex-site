@@ -6,7 +6,9 @@ function base64(bytes:Uint8Array){let value='';for(let i=0;i<bytes.length;i+=819
 function decode(value:unknown){if(typeof value!=='string'||value.length>1400000)throw Error('MESSAGE_LIMIT');let raw:string;try{raw=atob(value)}catch{throw Error('INVALID_INPUT')};return Uint8Array.from(raw,v=>v.charCodeAt(0));}
 function networkOrigin(input:unknown):URL {
  if(typeof input!=='string')throw Error('NETWORK_DENIED');let u:URL;try{u=new URL(input)}catch{throw Error('NETWORK_DENIED')};const host=u.hostname.toLowerCase();
- if(u.protocol!=='https:'||u.username||u.password||u.hash||host==='localhost'||host.endsWith('.localhost')||host.endsWith('.local')||host.includes(':')||/^\d/.test(host))throw Error('NETWORK_DENIED');return u;
+ if(u.protocol!=='https:'||u.username||u.password||u.hash||host==='localhost'||host.endsWith('.localhost')||host.endsWith('.local')||host.includes(':'))throw Error('NETWORK_DENIED');
+ if(/^\d+(?:\.\d+){3}$/.test(host)){const [a,b,c,d]=host.split('.').map(Number);if([a,b,c,d].some(n=>n>255)||a===0||a===10||a===127||a>=224||a===169&&b===254||a===172&&b>=16&&b<=31||a===192&&b===168||a===100&&b>=64&&b<=127||a===192&&b===0&&[0,2].includes(c)||a===198&&[18,19].includes(b)||a===198&&b===51&&c===100||a===203&&b===0&&c===113)throw Error('NETWORK_DENIED')}
+ return u;
 }
 export class BrowserCapabilities {
  readonly permissions:PermissionBroker;private handles=new Map<string,{file:File;expires:number}>();private active=new Set<AbortController>();private closed=false;private epoch=0;private files=new Set<()=>void>();
@@ -18,7 +20,7 @@ export class BrowserCapabilities {
  private origins:Set<string>;
  private scope(call:CapabilityRequest){capability(call);const p=call.payload;
   if(call.capability.startsWith('storage.')){storageKey(String(p.key??''));if(p.secret===true)throw Error('PERMISSION');return String(p.key);}
-  if(call.capability==='network.fetch'){const u=networkOrigin(p.url);if(!this.origins.has(u.origin))throw Error('NETWORK_DENIED');return u.origin;}
+  if(call.capability==='network.fetch'){const u=networkOrigin(p.url);if(!this.origins.has(u.origin))throw Error('NETWORK_DENIED');if(!/^\d+(?:\.\d+){3}$/.test(u.hostname))throw Error('UNSUPPORTED');return u.origin;}
   if(call.capability==='file.read'){if(typeof p.handle!=='string'||!/^[a-f0-9]{64}$/.test(p.handle))throw Error('INVALID_HANDLE');return p.handle;}
   return call.capability;
  }

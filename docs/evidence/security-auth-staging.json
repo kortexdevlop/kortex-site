@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-28T22:18:20.247Z",
+  "passed": true,
+  "forged_requests": [
+    401,
+    403,
+    400,
+    404
+  ],
+  "strict_csp": true,
+  "private_cache": true
+}

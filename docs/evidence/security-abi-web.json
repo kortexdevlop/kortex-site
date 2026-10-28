@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-28T22:23:45.599Z",
+  "passed": true,
+  "outcomes": [
+    {
+      "mode": "alloc-loop",
+      "error": "TIMEOUT",
+      "ms": 340.5
+    },
+    {
+      "mode": "dispatch-loop",
+      "error": "TIMEOUT",
+      "ms": 340
+    },
+    {
+      "mode": "dealloc-loop",
+      "error": "TIMEOUT",
+      "ms": 339
+    },
+    {
+      "mode": "overflow",
+      "error": "INVALID_BUFFER",
+      "ms": 38.900000005960464
+    },
+    {
+      "mode": "overlap",
+      "error": "OVERLAPPING_BUFFER",
+      "ms": 40.099999994039536
+    },
+    {
+      "mode": "correlation",
+      "error": "CORRELATION_ERROR",
+      "ms": 59.5
+    },
+    {
+      "mode": "table-unbounded",
+      "error": "INVALID_WASM_ABI",
+      "ms": 31.399999991059303
+    },
+    {
+      "mode": "table-large",
+      "error": "INVALID_WASM_ABI",
+      "ms": 36.79999999701977
+    },
+    {
+      "mode": "memory-large",
+      "error": "INVALID_WASM_ABI",
+      "ms": 34.400000005960464
+    },
+    {
+      "mode": "zero-control",
+      "error": "ACCEPT",
+      "ms": 31.5
+    }
+  ],
+  "ticks": 128,
+  "mutations": 4096
+}

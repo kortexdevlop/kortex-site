@@ -35,7 +35,7 @@ fn deterministic_metadata_and_canonical_headers() {
     let mut names = Vec::new();
     for i in 0..zip.len() {
         let f = zip.by_index(i).unwrap();
-        names.push(f.name().to_string());
+        names.push(f.name().unwrap().to_string());
         assert_eq!(f.last_modified().unwrap(), zip::DateTime::default());
         assert_eq!(f.unix_mode().unwrap() & 0o777, 0o644);
         assert_eq!(f.compression(), zip::CompressionMethod::Stored);

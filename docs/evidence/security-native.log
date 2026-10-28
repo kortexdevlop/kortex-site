@@ -1,0 +1,145 @@
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 17 tests
+test ask_requires_explicit_prompting_and_never_executes ... ok
+test deny_is_default_and_undeclared_cannot_be_granted ... ok
+test expiry_during_dns_is_rechecked_before_host_effect ... ok
+test dns_rebinding_after_same_origin_redirect_is_denied_before_second_effect ... ok
+test clipboard_requires_fresh_single_use_host_gesture ... ok
+test all_seven_capabilities_require_policy_before_host_call ... ok
+test explicit_deny_overrides_session_and_stops_reprompting ... ok
+test explicitly_authorized_redirect_succeeds_and_loops_stop ... ok
+test file_and_response_budgets_are_enforced ... ok
+test grant_cannot_cross_tool_version_instance_or_resource ... ok
+test once_consumed_session_expiry_and_revocation ... ok
+test private_dns_answer_is_denied_before_connection ... ok
+test private_dns_and_ip_forms_are_denied ... ok
+test opaque_handles_are_short_lived_and_owner_bound ... ok
+test redirect_to_unapproved_origin_is_rejected_before_effect ... ok
+test same_origin_redirect_is_bounded_and_reuses_once_permission ... ok
+test audit_is_local_bounded_and_contains_no_sensitive_data ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 6 tests
+test traversal_duplicate_case_links_crc_and_headers_are_rejected ... ok
+test abi_signatures_imports_memory_and_binary_are_checked ... ok
+test bounded_deflate_round_trip_and_metadata_binding ... ok
+test deterministic_metadata_and_canonical_headers ... ok
+test truncated_and_mutated_headers_never_panic ... ok
+test bombs_oversize_and_unlisted_files_fail_closed ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+
+running 2 tests
+test hostile_packages_are_rejected_without_instantiation ... ok
+test ten_thousand_seeded_zip_and_wasm_mutations_never_panic ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.45s
+
+
+running 2 tests
+test permissions::tests::inbox_is_bounded_correlated_and_generation_scoped ... ok
+test permissions::tests::cancelled_io_job_observes_cancellation ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 4 tests
+test deterministic_pointer_mutations_fail_closed ... ok
+test network_backend_itself_rejects_private_and_mixed_pinned_addresses ... ok
+test table_growth_and_memory_growth_are_rejected_before_instantiation ... ok
+test hostile_alloc_dispatch_dealloc_and_overlap_never_crash_the_host ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.22s
+
+
+running 8 tests
+test live_https_and_external_redirect ... ignored, Explicit live HTTPS smoke: cargo test --test capabilities live_https -- --ignored
+test https_only_allowlist_and_unapproved_redirect_targets ... ok
+test trusted_dialog_can_complete_after_the_start_gesture_expires ... ok
+test existing_session_permission_is_reused_and_once_is_consumed ... ok
+test files_are_pinned_scoped_bounded_and_cancelled ... ok
+test gateway_denies_without_grant_then_persists_and_redacts_audit ... ok
+test durable_isolation_migration_conflict_quota_and_corruption ... ok
+test directory_links_and_traversal_are_refused ... ok
+
+test result: ok. 7 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+
+running 1 test
+test identical_sdk_guest_consent_storage_ui_and_reopen ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 23.17s
+
+
+running 5 tests
+test signed_text_module_is_not_a_portable_wasm_binary ... ok
+test cancelled_dispatch_interrupts_actor_and_can_be_unloaded ... ok
+test loop_and_invalid_buffer_are_fatal ... ok
+test same_guest_checksum_and_native_multiply ... ok
+test real_calculatrice_signed_archive_and_goldens ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 14.14s
+
+
+running 2 tests
+test signed_hostile_packages_are_refused_before_engine_creation ... ok
+test native_signed_root_admission_and_tampering ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
+
+
+running 4 tests
+test real_windows_csv_stream_stats_export_denial_and_persistent_recent_files ... ok
+test real_windows_file_stream_permission_denial_and_cancel ... ok
+test signed_case_utc_hash_and_csv_guests_run_identical_ui_and_actions_in_wasmtime ... ok
+test five_tools_produce_the_shared_web_vectors_on_the_native_wasmtime_host has been running for over 60 seconds
+test five_tools_produce_the_shared_web_vectors_on_the_native_wasmtime_host ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 108.71s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling kortex-pack v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-pack)
+   Compiling kortex-runtime-native v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-runtime-native)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 25.56s
+     Running unittests src\lib.rs (target\debug\deps\kortex_capabilities-01c59baea0ba912e.exe)
+     Running tests\deny_by_default.rs (target\debug\deps\deny_by_default-7a350c5bc701ed36.exe)
+     Running unittests src\lib.rs (target\debug\deps\kortex_pack-4a2f2d5d61de04f6.exe)
+     Running tests\archive.rs (target\debug\deps\archive-0a284238d08b396d.exe)
+     Running tests\security.rs (target\debug\deps\security-66f6c0d5b1597c39.exe)
+     Running unittests src\lib.rs (target\debug\deps\kortex_runtime_native-e12a38645c1f44a9.exe)
+     Running tests\adversarial.rs (target\debug\deps\adversarial-0859cec9ac0a728c.exe)
+     Running tests\capabilities.rs (target\debug\deps\capabilities-a5bbd56323c49082.exe)
+     Running ..\..\tests\desktop\parity.rs (target\debug\deps\desktop_parity-417113c84e805533.exe)
+     Running tests\guest.rs (target\debug\deps\guest-d8c106c41b508e4c.exe)
+     Running tests\package_security.rs (target\debug\deps\package_security-50c5c09654c027cc.exe)
+     Running tests\phase12.rs (target\debug\deps\phase12-9fc729ce486bf369.exe)
+   Doc-tests kortex_capabilities
+   Doc-tests kortex_pack
+   Doc-tests kortex_runtime_native

@@ -165,7 +165,7 @@ fn public_v4(ip: Ipv4Addr) -> bool {
         && !(a[0] == 192 && a[1] == 0 && a[2] == 0)
         && !(a[0] == 198 && (18..=19).contains(&a[1]))
 }
-fn public_ip(ip: IpAddr) -> bool {
+pub fn public_ip(ip: IpAddr) -> bool {
     match ip {
         IpAddr::V4(ip) => public_v4(ip),
         IpAddr::V6(ip) => {

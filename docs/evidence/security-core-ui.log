@@ -1,0 +1,134 @@
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 9 tests
+test pointer_roundtrip ... ok
+test enqueue_codes ... ok
+test pointer_bounds ... ok
+test cr001_rejects_explicit_null_fields ... ok
+test reply_roundtrip ... ok
+test contradictory_reply ... ok
+test request_roundtrip ... ok
+test invalid_envelopes ... ok
+test cr001_capability_result_validation ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 3 tests
+test output_redacts_handles_paths_and_rejects_oversize ... ok
+test review_and_deny_never_invoke_and_approval_is_single_use ... ok
+test expiry_unknown_actions_invalid_input_and_unloaded_instance_fail_closed ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 1 test
+test recorded_scenario_and_one_hundred_actions_have_bounded_retained_memory ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+
+running 11 tests
+test lifecycle_accepts_only_declared_transitions ... ok
+test cleanup_failure_is_visible_and_registry_is_empty ... ok
+test ordinary_guest_error_is_reported_without_losing_instance ... ok
+test shutdown_error_still_removes_and_unloads ... ok
+test timeout_30_seconds_cancels_future_and_cleans_instance ... ok
+test handshake_actions_events_and_shutdown ... ok
+test instances_remain_isolated_and_invalid_input_does_not_dispatch ... ok
+test crash_correlation_and_bad_output_are_fatal_and_clean ... ok
+test verification_rejects_unsigned_tampered_and_untrusted_material ... ok
+test queue_128_fifo_and_backpressure ... ok
+test runtime_derives_identity_and_declarations_for_every_capability ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+
+running 6 tests
+test recoverable_backend_errors_and_conflict ... ok
+test isolation_cleanup_and_export ... ok
+test migration_failure_rolls_back ... ok
+test roundtrip_and_corruption ... ok
+test quota_is_atomic_and_shared_across_versions ... ok
+test invalid_migration_and_oversized_snapshot_are_rejected ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.29s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 7 tests
+test html_injection_is_text_in_every_content_path ... ok
+test actual_dioxus_handlers_emit_schema_valid_events_and_tabs_switch ... ok
+test all_frozen_types_and_snapshot ... ok
+test accessible_labels_native_tab_order_and_tabs ... ok
+test headings_charts_disabled_and_multiple_mounts ... ok
+test every_type_rejects_unknown_properties_and_escapes_labels ... ok
+test invalid_trees_have_visible_fallback_without_partial_render ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling ahash v0.8.12
+   Compiling icu_normalizer v2.4.0
+   Compiling generational-box v0.7.10
+   Compiling kortex-abi v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-abi)
+   Compiling curve25519-dalek v4.1.3
+   Compiling keyboard-types v0.7.0
+   Compiling referencing v0.60.0
+   Compiling jsonschema-value v0.60.0
+   Compiling dioxus-core v0.7.10
+   Compiling idna_adapter v1.2.2
+   Compiling idna v1.1.0
+   Compiling jsonschema v0.60.0
+   Compiling url v2.5.8
+   Compiling ed25519-dalek v2.2.0
+   Compiling kortex-capabilities v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-capabilities)
+   Compiling dioxus-signals v0.7.10
+   Compiling dioxus-ssr v0.7.10
+   Compiling dioxus-hooks v0.7.10
+   Compiling dioxus-stores v0.7.10
+   Compiling dioxus-html v0.7.10
+   Compiling kortex-shared v1.0.0 (C:\Users\µ\Desktop\KORTEX-\shared\rust)
+   Compiling kortex-core v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-core)
+   Compiling dioxus v0.7.10
+   Compiling kortex-ui v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-ui)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 48.08s
+     Running unittests src\lib.rs (target\debug\deps\kortex_abi-f89f0c269006fa29.exe)
+     Running tests\wire.rs (target\debug\deps\wire-f55e1d60ba59fb58.exe)
+     Running unittests src\lib.rs (target\debug\deps\kortex_core-5061856ce6e177af.exe)
+     Running tests\ai_bridge.rs (target\debug\deps\ai_bridge-6d229635a8cd02f2.exe)
+     Running ..\..\tests\integration\core_conformance.rs (target\debug\deps\core_conformance-246aebbb9674c11d.exe)
+     Running tests\lifecycle.rs (target\debug\deps\lifecycle-a4a42e49a6562728.exe)
+     Running tests\state.rs (target\debug\deps\state-6fe225bc76ec7fc9.exe)
+     Running unittests src\lib.rs (target\debug\deps\kortex_ui-f5a3df3429d4dbf8.exe)
+     Running tests\render.rs (target\debug\deps\render-ea8bdd42f5dabc76.exe)
+   Doc-tests kortex_abi
+   Doc-tests kortex_core
+   Doc-tests kortex_ui

@@ -1,0 +1,2 @@
+import {defineConfig} from 'playwright/test';
+export default defineConfig({testDir:'..',testMatch:['tests/security/abi-limits.spec.ts','tests/security/network-files.spec.ts','tests/security/auth-abuse.spec.ts','tests/security/data-privacy.spec.ts','web-adapter/tests/**/*.spec.ts'],workers:1,timeout:90000,expect:{timeout:15000},use:{browserName:'chromium',baseURL:'https://kortex-web-staging.userpgl.workers.dev',ignoreHTTPSErrors:true},reporter:'list'});

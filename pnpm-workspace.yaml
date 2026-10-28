@@ -11,3 +11,7 @@ minimumReleaseAgeExclude:
 allowBuilds:
   esbuild: true
   workerd: true
+
+overrides:
+  zod@4.6.5: 4.6.6
+  undici@7.29.1: 7.30.1

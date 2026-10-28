@@ -6,7 +6,7 @@ let server:Awaited<ReturnType<typeof serve>>;let network:Awaited<ReturnType<type
 test.beforeAll(async()=>{server=await serve();network=await serveNetwork()});test.afterAll(async()=>{await server.close();await network.close()});
 async function setup(page:Page){await page.goto(server.origin);await page.evaluate(async()=>{
  const {BrowserCapabilities}=await import('/adapter/capabilities.js' as string);
- const s=new BrowserCapabilities('test.tool','1.0.0',['storage.read','storage.write','file.pick','file.read','file.save','network.fetch','clipboard.write'],{profile:'a',storageVersion:1,dedicatedOrigin:location.origin,parentOrigin:'https://catalog.example.test',networkOrigins:['https://api.example.test']});
+ const s=new BrowserCapabilities('test.tool','1.0.0',['storage.read','storage.write','file.pick','file.read','file.save','network.fetch','clipboard.write'],{profile:'a',storageVersion:1,dedicatedOrigin:location.origin,parentOrigin:'https://catalog.example.test',networkOrigins:['https://8.8.8.8']});
  (window as any).s=s;(window as any).decision='once';
  const button=document.createElement('button');button.textContent='Autoriser (banc de test)';button.onclick=e=>{const target=(window as any).s;target.permissions.respond(target.permissions.prompts()[0].id,(window as any).decision,e)};document.body.append(button);
 });}
@@ -14,7 +14,7 @@ async function ask(page:Page,capability:string,payload:Record<string,unknown>){a
 async function approve(page:Page,decision='once'){await page.evaluate(value=>{(window as any).decision=value},decision);await page.getByRole('button',{name:'Autoriser (banc de test)',exact:true}).click();}
 async function result(page:Page){await expect.poll(()=>page.evaluate(()=>(window as any).out)).toBeTruthy();return page.evaluate(()=>(window as any).out);}
 test('sept capacités refusées par défaut et consentement synthétique rejeté',async({page})=>{
- await setup(page);const errors=await page.evaluate(async()=>{const calls=[['storage.read',{key:'x'}],['storage.write',{key:'x',value:1}],['file.pick',{}],['file.read',{handle:'0'.repeat(64)}],['file.save',{name:'x',data_base64:'eA=='}],['network.fetch',{url:'https://api.example.test/data'}],['clipboard.write',{text:'x'}]];const errors=[];for(const [capability,payload] of calls)try{await (window as any).s.execute({request_id:crypto.randomUUID(),capability,payload});errors.push('ACCEPT')}catch(e){errors.push((e as Error).message)}return errors});expect(errors).toEqual(Array(7).fill('PERMISSION'));
+ await setup(page);const errors=await page.evaluate(async()=>{const calls=[['storage.read',{key:'x'}],['storage.write',{key:'x',value:1}],['file.pick',{}],['file.read',{handle:'0'.repeat(64)}],['file.save',{name:'x',data_base64:'eA=='}],['network.fetch',{url:'https://8.8.8.8/data'}],['clipboard.write',{text:'x'}]];const errors=[];for(const [capability,payload] of calls)try{await (window as any).s.execute({request_id:crypto.randomUUID(),capability,payload});errors.push('ACCEPT')}catch(e){errors.push((e as Error).message)}return errors});expect(errors).toEqual(Array(7).fill('PERMISSION'));
  await ask(page,'storage.read',{key:'x'});expect(await page.evaluate(()=>{const s=(window as any).s;try{s.permissions.respond(s.permissions.prompts()[0].id,'session',new Event('click'));return false}catch{return true}})).toBe(true);
  await approve(page,'deny');expect((await result(page)).error).toBe('PERMISSION');
 });
@@ -45,12 +45,12 @@ test('file picker réel : annulation, 10 Mio+1 refusé, blocs et sauvegarde',asy
 });
 test('réseau : allowlist, redirects refusés, offline et corps borné',async({page})=>{
  await setup(page);let forbidden=0;page.on('request',r=>{if(r.url().startsWith('https://evil.example.test'))forbidden++});
- await page.route('https://api.example.test/**',route=>route.continue({url:network.origin+new URL(route.request().url()).pathname}));
+ await page.route('https://8.8.8.8/**',route=>route.continue({url:network.origin+new URL(route.request().url()).pathname}));
  await ask(page,'network.fetch',{url:'https://evil.example.test/data'});expect((await result(page)).error).toBe('NETWORK_DENIED');
- await ask(page,'network.fetch',{url:'https://api.example.test/data'});await approve(page,'session');expect((await result(page)).value.data_base64).toBe('aGVsbG8=');
- await ask(page,'network.fetch',{url:'https://api.example.test/redirect'});expect((await result(page)).error).toBe('UNAVAILABLE');expect(forbidden).toBe(0);
- await ask(page,'network.fetch',{url:'https://api.example.test/large'});expect((await result(page)).error).toBe('SIZE_LIMIT');
- await page.context().setOffline(true);await ask(page,'network.fetch',{url:'https://api.example.test/data'});expect((await result(page)).error).toBe('OFFLINE');await page.context().setOffline(false);
+ await ask(page,'network.fetch',{url:'https://8.8.8.8/data'});await approve(page,'session');expect((await result(page)).value.data_base64).toBe('aGVsbG8=');
+ await ask(page,'network.fetch',{url:'https://8.8.8.8/redirect'});expect((await result(page)).error).toBe('UNAVAILABLE');expect(forbidden).toBe(0);
+ await ask(page,'network.fetch',{url:'https://8.8.8.8/large'});expect((await result(page)).error).toBe('SIZE_LIMIT');
+ await page.context().setOffline(true);await ask(page,'network.fetch',{url:'https://8.8.8.8/data'});expect((await result(page)).error).toBe('OFFLINE');await page.context().setOffline(false);
 });
 test('révocation annule les demandes et clipboard requiert un vrai geste',async({page})=>{
  await setup(page);await ask(page,'storage.read',{key:'pending'});await page.evaluate(()=>(window as any).s.revoke());expect((await result(page)).error).toBe('CANCELLED');

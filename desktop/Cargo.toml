@@ -33,6 +33,6 @@ windows-sys={version="=0.61.2",features=["Win32_Security_Credentials","Win32_Fou
 [dev-dependencies]
 ed25519-dalek="=2.2.0"
 kortex-pack={path="../crates/kortex-pack"}
-zip={version="=2.4.2",default-features=false,features=["deflate"]}
+zip={version="=9.0.0",default-features=false,features=["deflate"]}
 wat="=1.262.0"
 tempfile="=3.27.0"

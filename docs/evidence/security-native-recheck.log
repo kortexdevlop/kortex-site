@@ -1,0 +1,12 @@
+
+running 4 tests
+test deterministic_pointer_mutations_fail_closed ... ok
+test network_backend_itself_rejects_private_and_mixed_pinned_addresses ... ok
+test table_growth_and_memory_growth_are_rejected_before_instantiation ... ok
+test hostile_alloc_dispatch_dealloc_and_overlap_never_crash_the_host ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.58s
+
+   Compiling kortex-runtime-native v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-runtime-native)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.74s
+     Running tests\adversarial.rs (target\debug\deps\adversarial-0859cec9ac0a728c.exe)

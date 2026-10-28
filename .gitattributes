@@ -47,3 +47,6 @@
 
 /docs/evidence/desktop-*.json text eol=lf
 /docs/evidence/desktop-*.log text eol=lf
+
+/docs/evidence/security-*.json text eol=lf
+/docs/evidence/security-*.log text eol=lf

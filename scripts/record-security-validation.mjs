@@ -1,0 +1,18 @@
+// Collect executed checks; this script does not turn missing tests or gates into success.
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+const json=p=>JSON.parse(readFileSync(p,'utf8')),text=p=>readFileSync(p,'utf8'),hash=b=>createHash('sha256').update(b).digest('hex');
+const count=p=>[...text(p).matchAll(/^test result: ok\. (\d+) passed; 0 failed;/gm)].reduce((n,m)=>n+Number(m[1]),0);
+assert.equal(count('docs/evidence/security-native.log'),50);assert.equal(count('docs/evidence/security-core-ui.log'),37);assert.equal(count('docs/evidence/security-native-recheck.log'),4);
+assert.match(text('docs/evidence/security-playwright.log'),/21 passed/);assert.match(text('docs/evidence/security-desktop-regression.log'),/8 passed/);
+assert.equal(json('docs/evidence/security-api-summary.json').tests_passed,88);
+const rust=json('docs/evidence/security-cargo-audit.json'),npm=json('docs/evidence/security-pnpm-audit.json');assert.equal(rust.vulnerabilities.count,0);assert.equal(Object.keys(npm.advisories).length,0);
+for(const file of ['security-abi-web','security-auth-staging','security-network-web','security-ai-privacy','security-staging-deploy'])assert.equal(json('docs/evidence/'+file+'.json').passed,true);
+assert.equal(json('docs/evidence/security-abi-web.json').outcomes.find(o=>o.mode==='zero-control').error,'ACCEPT');
+const web='https://kortex-web-staging.userpgl.workers.dev',options=await(await fetch(web+'/api/v1/auth/options')).json();assert.equal(options.google,false);assert.equal(options.password,true);
+const changed=execFileSync('git',['diff','HEAD','--name-only'],{encoding:'utf8'}),added=execFileSync('git',['ls-files','--others','--exclude-standard'],{encoding:'utf8'}),files=[...new Set((changed+'\n'+added).trim().split(/\r?\n/))].filter(Boolean).sort();
+const sources={},evidence={};for(const p of files){if(p==='docs/PROGRESS.md'||p==='docs/evidence/security-validation.json')continue;if(p.startsWith('docs/evidence/'))evidence[p]=hash(readFileSync(p));else sources[p]=hash(text(p).replace(/\r\n/g,'\n'))}
+writeFileSync('docs/evidence/security-validation.json',JSON.stringify({date:new Date().toISOString(),source_commit:'6e67be3',steps:{'18.0':'closed technically; human review pending','18.1':'closed technically within Windows/Chromium corpus','18.2':'partial; real Google and operator retention gates open'},platform:'Windows / Chromium',tests:{native:50,native_recheck:4,core_abi_ui:37,api:88,web_security:23,web_base_suite:21,additional_live_privacy:2,web_abi_zero_pointer_recheck:true,desktop_staging:8,ignored_native_live_public_network_smoke:1},checks:{rust_vulnerabilities:0,npm_vulnerabilities:0,rust_warnings:Object.fromEntries(Object.entries(rust.warnings).map(([k,rows])=>[k,rows.map(r=>r.advisory.id)])),desktop_compile_check:true,api_types:true,adapter_types:true,ssr_build:true},gates:{google_real:'BLOCKED: clients Web/Desktop absent, Google disabled; local provider tests do not close this gate',operator_retention:'OPEN: host logs/backups retention not verified',human_review:'pending; no invented approval'},auth_options:{google:options.google,password:options.password},active_scope_checks_passed:true,all_three_steps_fully_closed:false,staging_only:true,production_touched:false,dns_touched:false,mail_touched:false,ai_quotas_changed:false,source_hash_format:'SHA256 UTF8 LF; PROGRESS commit metadata excluded',evidence_hash_format:'SHA256 raw bytes',sources,evidence},null,2)+'\n');
+console.log('Security sources and evidence recorded; 18.2 open gates preserved.');

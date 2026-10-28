@@ -6,7 +6,7 @@ const port=globalThis as unknown as {postMessage:(v:unknown)=>void;onmessage:(ev
 let guest:Guest|undefined;let busy=false;let queued=0;const pending=new Set<string>();
 function dispatch(r:Request):Reply {
  if(!guest)throw Error('UNAVAILABLE');request(r);
- const bytes=bounded(r),input=guest.kortex_alloc(bytes.length)>>>0;if(!input)throw Error('ALLOCATION_FAILED');
+ const bytes=bounded(r),input=guest.kortex_alloc(bytes.length)>>>0;
  let output=0,length=0,validOutput=false;
  try {
   range(guest.memory,input,bytes.length);new Uint8Array(guest.memory.buffer,input,bytes.length).set(bytes);

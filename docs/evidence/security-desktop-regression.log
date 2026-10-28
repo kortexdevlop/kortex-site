@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+  ok 1 tests\e2e\workspace-actions.spec.ts:2:5 › cancel stops a pending workflow before any action starts (4.3s)
+  ok 2 tests\e2e\workspace-actions.spec.ts:3:5 › actions target the chosen instance, survive offline and never persist results (8.4s)
+  ok 3 tests\e2e\workspace-actions.spec.ts:4:5 › workflow runs in existing windows and stops when a future instance is closed (7.2s)
+  ok 4 tests\e2e\workspace.spec.ts:2:5 › two real tools preserve their instances through focus, keyboard layout and reload (11.2s)
+  ok 5 tests\e2e\workspace.spec.ts:4:5 › mobile uses accessible tabs and closes windows without drag (4.7s)
+  ok 6 tests\security\workspace-isolation.spec.ts:2:1 › eight real windows remain bounded, accessible and unload all workers on close (15.6s)
+  ok 7 tests\security\workspace-isolation.spec.ts:4:1 › two file-reading tools keep file handles and permissions scoped to their own instance (5.1s)
+  ok 8 tests\security\workspace-router.spec.ts:6:1 › actual router rejects foreign, unknown, retired and closing instances; guests cannot dispatch (3.5s)
+
+  8 passed (1.1m)
+(node:10212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

@@ -50,6 +50,15 @@ pub fn check(bytes: &[u8]) -> Result<()> {
                     memories.push(m.map_err(|_| bad())?);
                 }
             }
+            Payload::TableSection(r) => {
+                if r.count() > 1 { return Err(bad()); }
+                for table in r {
+                    let t = table.map_err(|_| bad())?.ty;
+                    if t.table64 || t.shared || t.maximum.is_none_or(|n| n > 65536 || t.initial > n) {
+                        return Err(bad());
+                    }
+                }
+            }
             Payload::ExportSection(r) => {
                 for e in r {
                     let e = e.map_err(|_| bad())?;

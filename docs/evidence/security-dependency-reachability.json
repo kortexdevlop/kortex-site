@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-28T22:24:27.711Z",
+  "target": "x86_64-pc-windows-msvc",
+  "graphs": {
+    "glib@0.18.5": {
+      "exit": 0,
+      "tree": "",
+      "diagnostic": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly."
+    },
+    "rand@0.7.3": {
+      "exit": 0,
+      "tree": "",
+      "diagnostic": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly."
+    },
+    "fxhash": {
+      "exit": 0,
+      "tree": "",
+      "diagnostic": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly."
+    },
+    "paste": {
+      "exit": 0,
+      "tree": "paste v1.0.15 (proc-macro)\n├── pulp v0.22.3\n│   └── exr v1.74.2\n│       └── image v0.25.10\n│           └── dioxus-desktop v0.7.10\n│               └── dioxus v0.7.10\n│                   ├── kortex-desktop v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\desktop)\n│                   ├── kortex-runtime-desktop v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\runtime\\desktop)\n│                   │   └── kortex-desktop v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\desktop)\n│                   ├── kortex-runtime-web v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\runtime\\web)\n│                   └── kortex-ui v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\crates\\kortex-ui)\n│                       ├── kortex-desktop v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\desktop)\n│                       ├── kortex-runtime-desktop v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\runtime\\desktop) (*)\n│                       └── kortex-runtime-web v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\runtime\\web)\n│                       [dev-dependencies]\n│                       ├── tool-calculateur-hash v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\tools\\calculateur-hash)\n│                       ├── tool-convertisseur-casse v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\tools\\convertisseur-casse)\n│                       ├── tool-explorateur-csv v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\tools\\explorateur-csv)\n│                       └── tool-timestamp-utc v1.0.0 (C:\\Users\\µ\\Desktop\\KORTEX-\\tools\\timestamp-utc)\n└── rav1e v0.8.1\n    └── ravif v0.13.0\n        └── image v0.25.10 (*)",
+      "diagnostic": ""
+    },
+    "proc-macro-error": {
+      "exit": 0,
+      "tree": "",
+      "diagnostic": "warning: nothing to print.\n\nTo find dependencies that require specific target platforms, try to use option `--target all` first, and then narrow your search scope accordingly."
+    }
+  }
+}

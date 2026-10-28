@@ -1,0 +1,272 @@
+{
+  "advisories": {
+    "1243066": {
+      "findings": [
+        {
+          "version": "4.6.5",
+          "paths": [
+            "api>zod",
+            "api>@cloudflare/vitest-plugin>zod"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243066,
+      "title": "Zod can exhaust memory while validating oversized constrained collections",
+      "module_name": "zod",
+      "vulnerable_versions": "<4.6.6",
+      "patched_versions": ">=4.6.6",
+      "severity": "high",
+      "cwe": "CWE-770",
+      "github_advisory_id": "GHSA-mrhx-c7xc-m3w5",
+      "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5"
+    },
+    "1243078": {
+      "findings": [
+        {
+          "version": "7.29.1",
+          "paths": [
+            ".>wrangler>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>wrangler>miniflare>undici",
+            "api>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>wrangler>miniflare>undici",
+            "website>wrangler>miniflare>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243078,
+      "title": "undici vulnerable to Denial of Service via unbounded memory in the EventSource parser",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.30.1",
+      "patched_versions": ">=7.30.1",
+      "severity": "moderate",
+      "cwe": "CWE-770",
+      "github_advisory_id": "GHSA-4qv8-2p9j-2685",
+      "url": "https://github.com/advisories/GHSA-4qv8-2p9j-2685"
+    },
+    "1243081": {
+      "findings": [
+        {
+          "version": "7.29.1",
+          "paths": [
+            ".>wrangler>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>wrangler>miniflare>undici",
+            "api>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>wrangler>miniflare>undici",
+            "website>wrangler>miniflare>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243081,
+      "title": "undici vulnerable to Subresource Integrity bypass via non-lowercase algorithm tokens",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.15.0 <7.30.1",
+      "patched_versions": ">=7.30.1",
+      "severity": "moderate",
+      "cwe": "CWE-178",
+      "github_advisory_id": "GHSA-f72v-6w45-q472",
+      "url": "https://github.com/advisories/GHSA-f72v-6w45-q472"
+    },
+    "1243113": {
+      "findings": [
+        {
+          "version": "7.29.1",
+          "paths": [
+            ".>wrangler>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>wrangler>miniflare>undici",
+            "api>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>wrangler>miniflare>undici",
+            "website>wrangler>miniflare>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243113,
+      "title": "undici vulnerable to Denial of Service via unhandled error on excessive content-encodings",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.18.0 <7.30.1",
+      "patched_versions": ">=7.30.1",
+      "severity": "high",
+      "cwe": "CWE-248, CWE-459",
+      "github_advisory_id": "GHSA-xjj6-f33q-929c",
+      "url": "https://github.com/advisories/GHSA-xjj6-f33q-929c"
+    },
+    "1243473": {
+      "findings": [
+        {
+          "version": "7.29.1",
+          "paths": [
+            ".>wrangler>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>wrangler>miniflare>undici",
+            "api>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>wrangler>miniflare>undici",
+            "website>wrangler>miniflare>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243473,
+      "title": "undici vulnerable to cache poisoning and cross-user disclosure via cross-origin redirects",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.30.1",
+      "patched_versions": ">=7.30.1",
+      "severity": "high",
+      "cwe": "CWE-346, CWE-524",
+      "github_advisory_id": "GHSA-4w7w-5xrc-9h26",
+      "url": "https://github.com/advisories/GHSA-4w7w-5xrc-9h26"
+    },
+    "1243475": {
+      "findings": [
+        {
+          "version": "7.29.1",
+          "paths": [
+            ".>wrangler>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>wrangler>miniflare>undici",
+            "api>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>wrangler>miniflare>undici",
+            "website>wrangler>miniflare>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243475,
+      "title": "undici vulnerable to TLS certificate validation bypass via dropped tls options in Agent",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.30.1",
+      "patched_versions": ">=7.30.1",
+      "severity": "high",
+      "cwe": "CWE-295",
+      "github_advisory_id": "GHSA-2m5v-pch6-74hx",
+      "url": "https://github.com/advisories/GHSA-2m5v-pch6-74hx"
+    },
+    "1243478": {
+      "findings": [
+        {
+          "version": "7.29.1",
+          "paths": [
+            ".>wrangler>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>wrangler>miniflare>undici",
+            "api>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>wrangler>miniflare>undici",
+            "website>wrangler>miniflare>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243478,
+      "title": "undici vulnerable to Denial of Service via TLS 1.2 certificate-changing renegotiation",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.30.1",
+      "patched_versions": ">=7.30.1",
+      "severity": "high",
+      "cwe": "CWE-248, CWE-617",
+      "github_advisory_id": "GHSA-qrxm-fqhp-jwvm",
+      "url": "https://github.com/advisories/GHSA-qrxm-fqhp-jwvm"
+    },
+    "1243481": {
+      "findings": [
+        {
+          "version": "7.29.1",
+          "paths": [
+            ".>wrangler>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>wrangler>miniflare>undici",
+            "api>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>wrangler>miniflare>undici",
+            "website>wrangler>miniflare>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243481,
+      "title": "undici WebSocket client vulnerable to Denial of Service via unbounded automatic PONG buffering",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.0.0 <7.30.1",
+      "patched_versions": ">=7.30.1",
+      "severity": "moderate",
+      "cwe": "CWE-400, CWE-405, CWE-770",
+      "github_advisory_id": "GHSA-9fm3-97px-rjf6",
+      "url": "https://github.com/advisories/GHSA-9fm3-97px-rjf6"
+    },
+    "1243484": {
+      "findings": [
+        {
+          "version": "7.29.1",
+          "paths": [
+            ".>wrangler>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>miniflare>undici",
+            "api>@cloudflare/vitest-plugin>wrangler>miniflare>undici",
+            "api>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>miniflare>undici",
+            "website>@astrojs/cloudflare>@cloudflare/vite-plugin>wrangler>miniflare>undici",
+            "website>@astrojs/cloudflare>wrangler>miniflare>undici",
+            "website>wrangler>miniflare>undici"
+          ],
+          "dev": false,
+          "optional": false,
+          "bundled": false
+        }
+      ],
+      "id": 1243484,
+      "title": "undici vulnerable to Denial of Service via unhandled exception in the decompress interceptor",
+      "module_name": "undici",
+      "vulnerable_versions": ">=7.15.0 <7.30.1",
+      "patched_versions": ">=7.30.1",
+      "severity": "moderate",
+      "cwe": "CWE-248",
+      "github_advisory_id": "GHSA-55wc-3pg8-jfw6",
+      "url": "https://github.com/advisories/GHSA-55wc-3pg8-jfw6"
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 4,
+      "high": 5,
+      "critical": 0
+    },
+    "dependencies": 297,
+    "devDependencies": 104,
+    "optionalDependencies": 150,
+    "totalDependencies": 531
+  }
+}

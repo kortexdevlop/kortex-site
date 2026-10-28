@@ -7,7 +7,7 @@ fn files() -> Files {
     Files::from([
         (
             "manifest.json".into(),
-            include_bytes!("../../../tools/calculatrice/manifest.json").to_vec(),
+            include_bytes!("../../../tests/fixtures/calculatrice-v1-manifest.json").to_vec(),
         ),
         (
             "contract.json".into(),

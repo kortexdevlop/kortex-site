@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-28T22:28:13.336Z",
+  "command": "node ../node_modules/vitest/vitest.mjs run",
+  "cwd": "api",
+  "test_files": 11,
+  "tests_passed": 88,
+  "failed": 0,
+  "duration_seconds": 93.29,
+  "source": "terminal result of the executed workerd/D1 suite; summary, not reconstructed raw stdout",
+  "api_types": true,
+  "adapter_types": true,
+  "ssr_build": true
+}

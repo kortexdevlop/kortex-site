@@ -1,0 +1,28 @@
+
+Running 21 tests using 1 worker
+
+  ok  1 tests\security\abi-limits.spec.ts:6:1 › signed hostile guests: alloc/dispatch/dealloc timeouts, invalid buffers, table and memory limits (2.4s)
+  ok  2 tests\security\auth-abuse.spec.ts:3:1 › live staging rejects forged sessions, account selectors and browser bearer confusion (822ms)
+  ok  3 tests\security\network-files.spec.ts:5:1 › private IP aliases and DNS destinations fail before consent or network traffic (631ms)
+  ok  4 tests\security\network-files.spec.ts:10:1 › filename traversal has no download effect even after a real host consent (1.0s)
+  ok  5 web-adapter\tests\ai-bridge.spec.ts:3:1 › signed WASM multiply only after review and consent, no replay or expired approval (997ms)
+  ok  6 web-adapter\tests\capabilities.spec.ts:16:1 › sept capacités refusées par défaut et consentement synthétique rejeté (788ms)
+  ok  7 web-adapter\tests\capabilities.spec.ts:21:1 › IndexedDB réel : isolation profils/outils/versions, quota atomique et refus non durable (1.0s)
+  ok  8 web-adapter\tests\capabilities.spec.ts:38:1 › file picker réel : annulation, 10 Mio+1 refusé, blocs et sauvegarde (3.9s)
+  ok  9 web-adapter\tests\capabilities.spec.ts:46:1 › réseau : allowlist, redirects refusés, offline et corps borné (1.2s)
+  ok 10 web-adapter\tests\capabilities.spec.ts:55:1 › révocation annule les demandes et clipboard requiert un vrai geste (844ms)
+  ok 11 web-adapter\tests\capabilities.spec.ts:59:1 › Dioxus affiche le consentement réel et la révocation (1.2s)
+  ok 12 web-adapter\tests\capabilities.spec.ts:66:1 › guest SDK réel : host_enqueue, consentement, IndexedDB et capability.result vers UiRenderer (1.2s)
+  ok 13 web-adapter\tests\loader.spec.ts:6:1 › trust store : signature exacte, altération, clé inconnue, révocation et expiration (689ms)
+  ok 14 web-adapter\tests\loader.spec.ts:19:1 › archive signée, ZIP hostile, cache corrompu et MIME refusés avant exécution (1.9s)
+  ok 15 web-adapter\tests\package-security.spec.ts:7:1 › six paquets correctement signés mais malformés refusés sans création de Worker (723ms)
+  ok 16 web-adapter\tests\signature.spec.ts:10:1 › signature B.2 commune Rust/Web : paquet canonique, mutations et rotation signée (2.3s)
+  ok 17 web-adapter\tests\wasm.spec.ts:9:1 › module signé réel en Worker : multiply, corpus, 100 actions et refus unsigned (776ms)
+  ok 18 web-adapter\tests\wasm.spec.ts:24:1 › buffers hors limites, module invalide et métadonnées altérées refusés (618ms)
+  ok 19 web-adapter\tests\wasm.spec.ts:33:1 › le shell Dioxus reçoit le vrai rendu du Worker (908ms)
+  ok 20 web-adapter\tests\wasm.spec.ts:40:1 › worker interrompu sur boucle CPU, buffers invalides et mauvaise corrélation (949ms)
+  ok 21 web-adapter\tests\wasm.spec.ts:59:1 › calculatrice réelle : archive signée et goldens SDK inchangés dans le Worker (681ms)
+
+  21 passed (37.0s)
+(node:6324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

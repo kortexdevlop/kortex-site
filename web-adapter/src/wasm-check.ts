@@ -10,6 +10,7 @@ export function inspectWasm(bytes:Uint8Array):void {
   if(id===1){const n=uint();if(n>100000)bad();for(let i=0;i<n;i++){if(byte()!==96)bad();types.push({p:values(),r:values()})}}
   else if(id===2){const n=uint();if(n>1)bad();for(let i=0;i<n;i++){if(text()!=='kortex_v1'||text()!=='host_enqueue'||byte()!==0)bad();funcs.push(uint());imports++}}
   else if(id===3){const n=uint();if(n>100000)bad();for(let i=0;i<n;i++)funcs.push(uint())}
+  else if(id===4){const n=uint();if(n>1)bad();for(let i=0;i<n;i++){if(byte()!==112||uint()!==1)bad();const min=uint(),max=uint();if(min>max||max>65536)bad()}}
   else if(id===5){memories=uint();if(memories!==1||uint()!==1)bad();const min=uint(),max=uint();if(min>max||max>1024)bad()}
   else if(id===7){const n=uint();if(n>100000)bad();for(let i=0;i<n;i++){const name=text(),kind=byte(),index=uint();if(exports.has(name))bad();exports.set(name,{kind,index})}}
   else if(id===8)bad();

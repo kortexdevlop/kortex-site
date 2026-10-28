@@ -158,7 +158,7 @@ pub fn read(bytes: &[u8]) -> Result<Files> {
     let mut files = Files::new();
     for (index, (name, len, crc)) in entries.into_iter().enumerate() {
         let mut f = archive.by_index(index).map_err(|_| bad())?;
-        if f.name() != name || f.size() != len as u64 {
+        if f.name().map_err(|_| bad())?.as_ref() != name || f.size() != len as u64 {
             return Err(bad());
         }
         let mut data = Vec::with_capacity(len);
@@ -190,6 +190,7 @@ pub fn write(files: &Files) -> Result<Vec<u8>> {
     }
     let mut zip = zip::ZipWriter::new(Cursor::new(Vec::new()));
     let options = zip::write::SimpleFileOptions::default()
+        .system(zip::System::Unix)
         .compression_method(zip::CompressionMethod::Stored)
         .last_modified_time(zip::DateTime::default())
         .unix_permissions(0o644);

@@ -1,5 +1,7 @@
 # Progression
 
+Lot 18.0–18.2 du 28/10/2026 : **18.0 et 18.1 closes techniquement ; 18.2 reste partielle pour Google réel et la rétention opérateur.** Modèle de menace et matrice, budgets tables/ABI durcis, réseau Web non vérifiable refusé, protections Windows et fichiers/comptes éprouvées. ZIP/Zod/Undici corrigés : scans réellement exécutés sans vulnérabilité détectée, cinq avertissements RustSec conservés/documentés. 50 tests natifs, 37 core/ABI/UI, 88 API, 23 Web sécurité et 8 bureau staging réussis ; types, check Windows et build Web réussis. Confidentialité du fichier réel et purge du seul propriétaire vérifiées. Staging API/runtime/Web actualisé en préservant paramètres, clés, secrets et quotas ; production/DNS/mail inchangés. Rapports STEP-18.0 à STEP-18.2 et security-validation.json ; statuts humains formels conservés, 18.3 non engagée. Les notes suivantes sont historiques.
+
 Lot 17.1–17.3 du 28/10/2026 : **terminé et clos techniquement sur staging.** Bureau Web /workspace avec huit fenêtres isolées, dock, souris/clavier et onglets mobiles ; actions et parcours liés aux instances existantes, résultats éphémères dans la bonne fenêtre et historique de métadonnées. Huit scénarios Chromium réels et 37 tests Web réussis ; deux lectures de fichiers simultanées consenties, handle étranger refusé, droits expirés redemandés, fermeture/annulation et zéro moteur restant contrôlés. Astro 92 fichiers sans erreur/avertissement et build réussis. Axe zéro critique, contraste sérieux signalé. Clé calculatrice expirée détectée : nouvelle version immuable signée 1.0.1 publiée sur staging, sans contourner la vérification. Production/DNS/mail/secrets/quotas IA préservés. Hors connexion pour moteurs déjà chargés uniquement ; statut humain formel conservé ; Google 14.5 inchangé et phase 18 non engagée. Preuves : desktop-validation.json et workspace-gate.md. Les notes suivantes sont historiques.
 
 Complément du 28/10/2026 : **16.3 et 16.5 terminées et closes techniquement.** Les autorisations Windows passent désormais par HostedNativeEngine et NativeServices/Gateway, avec dialogue par accès et ressource, droits à usage unique, contrôle de la demande effective et révocation à l’arrêt. Les décisions restent éphémères. Le Web attend la résolution réelle des capacités et conserve les instances isolées entre étapes, avec requêtes uniques et anti-rejeu. Vrais paquets signés et vrais backends Windows/IndexedDB vérifiés ; refus, scope détourné, annulation et séparation des outils testés. Statuts humains formels conservés. Preuves : workflow-permissions-validation.json. 17.1 non engagée. Les réserves du lot précédent ci-dessous sont historiques.
@@ -1844,6 +1846,75 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "closed_at": "2026-10-28",
     "authorization": "propriétaire : Enchaîne ces 3 étapes",
     "limitations": "Clôture technique Web V1, revue humaine formelle en attente. Hors connexion réservé aux moteurs déjà chargés ; sessions/droits recréés au reload. Contraste sérieux exposé, pas de certification AA ou lecteur d’écran humain. Windows/Chromium uniquement ; Google 14.5 inchangé ; phase 18 non engagée."
+  },
+  {
+    "id": "18.0",
+    "status": "pending",
+    "source_commit": "6e67be3",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-18.0.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 50 tests natifs et 37 core/ABI/UI, 88 API, 23 Web sécurité et 8 bureau staging réussis ; contrôles ABI Web et 4 adversarial natifs repris après derniers ajustements ; 1 smoke réseau public explicitement ignoré. Types, check Desktop et build SSR réussis. Scans Rust/npm exécutés réellement, zéro vulnérabilité après mises à jour, cinq avertissements RustSec documentés.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/security-validation.json",
+      "docs/evidence/abi-security.md",
+      "tests/security/threat-matrix.md",
+      "docs/SECURITY_EXCEPTIONS.md",
+      "docs/evidence/data-flows.md"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Windows/Chromium uniquement. Revue humaine non inventée ; corpus fini, aucun plafond de RAM totale certifié. Google réel et politique de sauvegardes restent ouverts ; avertissements upstream exposés ; phase 18.3 non engagée."
+  },
+  {
+    "id": "18.1",
+    "status": "pending",
+    "source_commit": "6e67be3",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-18.1.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 50 tests natifs et 37 core/ABI/UI, 88 API, 23 Web sécurité et 8 bureau staging réussis ; contrôles ABI Web et 4 adversarial natifs repris après derniers ajustements ; 1 smoke réseau public explicitement ignoré. Types, check Desktop et build SSR réussis. Scans Rust/npm exécutés réellement, zéro vulnérabilité après mises à jour, cinq avertissements RustSec documentés.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/security-validation.json",
+      "docs/evidence/abi-security.md",
+      "tests/security/threat-matrix.md",
+      "docs/SECURITY_EXCEPTIONS.md",
+      "docs/evidence/data-flows.md"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Windows/Chromium uniquement. Revue humaine non inventée ; corpus fini, aucun plafond de RAM totale certifié. Google réel et politique de sauvegardes restent ouverts ; avertissements upstream exposés ; phase 18.3 non engagée."
+  },
+  {
+    "id": "18.2",
+    "status": "pending",
+    "source_commit": "6e67be3",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-18.2.md",
+    "tests_executed": "28/10/2026 Windows/Chromium : 50 tests natifs et 37 core/ABI/UI, 88 API, 23 Web sécurité et 8 bureau staging réussis ; contrôles ABI Web et 4 adversarial natifs repris après derniers ajustements ; 1 smoke réseau public explicitement ignoré. Types, check Desktop et build SSR réussis. Scans Rust/npm exécutés réellement, zéro vulnérabilité après mises à jour, cinq avertissements RustSec documentés.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/security-validation.json",
+      "docs/evidence/abi-security.md",
+      "tests/security/threat-matrix.md",
+      "docs/SECURITY_EXCEPTIONS.md",
+      "docs/evidence/data-flows.md"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "remaining_gate": "Google Web/Desktop réel absent et rétention opérateur non vérifiée ; aucune clôture complète",
+    "authorization": "propriétaire : Enchaîne ces 3 étapes",
+    "limitations": "Windows/Chromium uniquement. Revue humaine non inventée ; corpus fini, aucun plafond de RAM totale certifié. Google réel et politique de sauvegardes restent ouverts ; avertissements upstream exposés ; phase 18.3 non engagée."
   }
 ]
 ```
