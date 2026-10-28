@@ -1,0 +1,22 @@
+import {test,expect,type Page,type Frame} from 'playwright/test';
+import {readFileSync} from 'node:fs';
+const proof=JSON.parse(readFileSync('docs/evidence/phase12-staging.json','utf8'));if(!proof.passed||!proof.operator_policy_restored||!proof.tools.some((t:{id:string;published:boolean})=>t.id==='explorateur-csv'&&t.published))throw Error('Real staging publication of explorateur-csv required; no mocks/skips.');
+async function open(page:Page){const response=await page.goto(proof.web_origin+'/tools/explorateur-csv');expect(response!.status()).toBe(200);await page.getByRole('link',{name:'Ouvrir',exact:true}).click();await expect(page.locator('[data-runtime-viewer]')).toHaveAttribute('data-state','ready',{timeout:45000});return page.frames().find(f=>f.url().startsWith(proof.run_origin))!;}
+async function action(frame:Frame,id:string,input:unknown){await frame.evaluate(async({id,input})=>{await (window as any).kortexHost.command({kind:'action.invoke',payload:{action_id:id,input}});},{id,input});return frame.evaluate(()=>(window as any).kortexHost.snapshot().result);}
+test('Cloudflare : explorateur CSV signé, fichier, stats, graphique, export, stockage et refus',async({page},info)=>{
+ const lines=['id,"nom, complet",valeur'];for(let i=0;i<120;i++)lines.push(`${i},"ligne ${i} ""q""",${i*2}`);const buffer=Buffer.from(lines.join('\r\n')+'\r\n','utf8'),text=buffer.toString('utf8');
+ let f=await open(page);const traffic:string[]=[];page.on('request',r=>traffic.push(r.url()));
+ await f.getByRole('button',{name:'Choisir un fichier CSV',exact:true}).click();await f.getByRole('button',{name:'Refuser',exact:true}).click();await expect(f.locator('[data-node=status]')).toContainText('PERMISSION');await expect(f.locator('[data-node=tabs]')).toHaveCount(0);
+ f=await open(page);
+ await f.getByRole('button',{name:'Choisir un fichier CSV',exact:true}).click();const chooser=page.waitForEvent('filechooser');await f.getByRole('button',{name:'Autoriser une fois',exact:true}).click();await(await chooser).setFiles({name:'données.csv',mimeType:'text/csv',buffer});await f.getByRole('button',{name:'Autoriser pour la session',exact:true}).click();
+ await expect(f.locator('[data-node=range]')).toContainText('120 ligne(s) sur 120 · page 1 / 3',{timeout:30000});await expect(f.locator('[data-node=rows] tbody tr')).toHaveCount(50);
+ await f.getByRole('tab',{name:'Statistiques',exact:true}).click();await expect(f.locator('[data-node=stats_table] tbody tr')).toHaveCount(3);await expect(f.locator('[data-node=stats_table] tbody tr').nth(2)).toContainText('238');
+ await f.getByRole('tab',{name:'Graphique',exact:true}).click();await expect(f.locator('[data-node=chart] svg rect.kortex-series')).toHaveCount(120);
+ const result=await action(f,'summarize_csv',{data_text:text});expect(result.rows).toBe(120);expect(result.stats[2]).toEqual({name:'valeur',kind:'number',count:120,nulls:0,min:0,max:238,mean:119});
+ // Constat : le sandbox contractuel de l'iframe n'a pas allow-downloads ; le téléchargement file.save y est bloqué.
+ await f.getByRole('button',{name:'Exporter le rapport',exact:true}).click();let downloaded=false;page.once('download',()=>{downloaded=true;});await f.getByRole('button',{name:'Autoriser une fois',exact:true}).click();await page.waitForTimeout(3000);expect(downloaded).toBe(false);expect((await action(f,'export_report',{data_text:text})).report_csv).toContain('valeur');
+ await page.screenshot({path:`docs/evidence/phase12-staging-csv-${info.project.name}.png`,fullPage:true});
+ await f.getByRole('button',{name:'Mémoriser ce fichier',exact:true}).click();await f.getByRole('button',{name:'Autoriser pour la session',exact:true}).click();await expect(f.locator('[data-node=notice]')).toContainText(/(PERMISSION|UNAVAILABLE)/);await expect(f.locator('[data-node=notice]')).not.toContainText('mémorisé');
+ expect(traffic.filter(url=>!url.startsWith(proof.web_origin)&&!url.startsWith(proof.run_origin)&&!/^https:\/\/fonts\.(googleapis|gstatic)\.com\//.test(url))).toEqual([]);
+ f=await open(page);await f.getByRole('button',{name:'Choisir un fichier CSV',exact:true}).click();const bad=page.waitForEvent('filechooser');await f.getByRole('button',{name:'Autoriser une fois',exact:true}).click();await(await bad).setFiles({name:'mauvais.csv',mimeType:'text/csv',buffer:Buffer.from('a,b\n1,"2\n')});await f.getByRole('button',{name:'Autoriser pour la session',exact:true}).click();await expect(f.locator('[data-node=status]')).toContainText('UNTERMINATED_QUOTE');await expect(f.locator('[data-node=tabs]')).toHaveCount(0);
+});

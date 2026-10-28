@@ -1,0 +1,146 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\µ\\Desktop\\KORTEX-\\node_modules\\playwright\\cli.js",
+      "test",
+      "-c",
+      "tests/tools/playwright.csv-staging.config.ts"
+    ],
+    "configFile": "C:\\Users\\µ\\Desktop\\KORTEX-\\tests\\tools\\playwright.csv-staging.config.ts",
+    "rootDir": "C:/Users/µ/Desktop/KORTEX-/tests/tools",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/µ/Desktop/KORTEX-/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/µ/Desktop/KORTEX-/tests/tools",
+        "testIgnore": [],
+        "testMatch": [
+          "phase12-csv-staging.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\µ\\Desktop\\KORTEX-\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\µ\\Desktop\\KORTEX-\\tests\\tools",
+        "snapshotDir": "C:\\Users\\µ\\Desktop\\KORTEX-\\tests\\tools",
+        "testIgnore": [],
+        "testMatch": "phase12-csv-staging.spec.ts",
+        "timeout": 120000,
+        "use": {
+          "browserName": "chromium",
+          "channel": "chrome"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "C:\\Users\\µ\\Desktop\\KORTEX-/docs/evidence/phase12-csv-staging-playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "phase12-csv-staging.spec.ts",
+      "file": "phase12-csv-staging.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Cloudflare : explorateur CSV signé, fichier, stats, graphique, export, stockage et refus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10644,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-28T01:40:58.661Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b648bb9abcee73f6fe72-9508b79ceac60cb994bc",
+          "file": "phase12-csv-staging.spec.ts",
+          "line": 6,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-28T01:40:57.696Z",
+    "duration": 12272.489,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

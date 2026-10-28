@@ -11,3 +11,12 @@ Autres limites : WebKit non exécuté ; `cargo test --workspace` voir PROGRESS.m
 ## Mise à jour 2026-10-28
 
 Après réinitialisation du quota D1, `scripts/publish-phase12-staging.mjs` (restreint à `explorateur-csv`) a publié l’outil 5 sur le staging (sha256 183f838f…, `passed: true`, site non redéployé, politique restaurée ; docs/evidence/phase12-staging.json). Non rejoué : test Cloudflare du CSV avec origine d’exécution dédiée et ouverture depuis le site. Le statut formel reste pending.
+
+## Test Cloudflare de l’outil 5 (2026-10-28)
+
+`tests/tools/phase12-csv-staging.spec.ts` (Chrome système, aucun mock) passe contre le staging réel : ouverture depuis la fiche, refus de permission, fichier de 120 lignes, aperçu paginé, statistiques, graphique, action `summarize_csv`, CSV invalide refusé (`UNTERMINATED_QUOTE`), aucun trafic réseau externe. Preuves : docs/evidence/phase12-csv-staging-playwright.json et phase12-staging-csv-chromium.png.
+
+Deux constats, non masqués :
+- **Export `file.save` bloqué sur le site** : le sandbox contractuel de l’iframe (`allow-scripts allow-same-origin`, docs/CONTRACTS.md:177) n’a pas `allow-downloads`, donc le téléchargement par ancre n’aboutit pas (le test l’affirme). Ajouter `allow-downloads` est un changement de contrat : décision du propriétaire, non appliquée.
+- **Stockage « fichiers récents » indisponible dans Chrome automatisé** : `navigator.storage.persist()` est refusé, le stockage échoue fermé (`UNAVAILABLE`) comme conçu. La persistance réelle est prouvée côté Windows.
+WebKit non exécuté.
