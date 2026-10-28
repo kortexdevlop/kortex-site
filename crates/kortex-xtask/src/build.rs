@@ -9,8 +9,9 @@ fn cargo() -> std::ffi::OsString {
 /// Resolve package/target names from Cargo metadata, never from an identifier match.
 pub fn artifact(root: &Path, tool: &Tool) -> Result<(String, String, PathBuf)> {
     let output = Command::new(cargo())
-        .current_dir(root)
+        .current_dir(&tool.directory)
         .args(["metadata", "--no-deps", "--format-version", "1", "--locked"])
+        .env("CARGO_TARGET_DIR", root.join("target"))
         .output()
         .map_err(|e| e.to_string())?;
     if !output.status.success() {
@@ -76,7 +77,7 @@ pub fn build(root: &Path, tool: &Tool) -> Result<PathBuf> {
         std::env::var("RUSTFLAGS").unwrap_or_default()
     );
     let status = Command::new(cargo())
-        .current_dir(root)
+        .current_dir(&tool.directory)
         .args([
             "build",
             "-p",
@@ -86,6 +87,7 @@ pub fn build(root: &Path, tool: &Tool) -> Result<PathBuf> {
             "--release",
             "--locked",
         ])
+        .env("CARGO_TARGET_DIR", root.join("target"))
         .env("RUSTFLAGS", flags.trim())
         .env_remove("CARGO_ENCODED_RUSTFLAGS")
         .stdout(std::process::Stdio::inherit())

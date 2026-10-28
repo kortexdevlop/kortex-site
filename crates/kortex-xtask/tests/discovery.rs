@@ -69,3 +69,17 @@ fn cli_help_and_bad_arguments() {
             .success()
     );
 }
+
+#[test]
+fn external_fixture_is_explicit_and_not_a_product_tool() {
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
+    let tool = kortex_xtask::discovery::source(&root.join("tests/integration/sixth-tool-fixture"))
+        .unwrap();
+    assert_eq!(tool.manifest.id, "extension-echo-check");
+    assert!(
+        !discover(&root.join("tools"))
+            .unwrap()
+            .contains_key(&tool.manifest.id)
+    );
+    assert!(tool.directory.ends_with("sixth-tool-fixture"));
+}

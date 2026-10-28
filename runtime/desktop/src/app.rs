@@ -257,8 +257,10 @@ impl Model {
         }
     }
 }
+#[allow(non_snake_case)]
+pub fn App() -> Element { rsx! { ToolSession {} } }
 #[component]
-pub fn App() -> Element {
+pub fn ToolSession(#[props(default)] archive:Option<String>,#[props(default)] trust_bundle:Option<String>,#[props(default)] product:bool) -> Element {
     let inbox = use_hook(CapabilityInbox::default);
     let queue = inbox.clone();
     let model = use_hook(move || Rc::new(RefCell::new(Model::new(inbox))));
@@ -270,7 +272,20 @@ pub fn App() -> Element {
     let mut busy = use_signal(|| false);
     let mut consent = use_signal(|| false);
     let mut pending = use_signal(|| None::<CapabilityRequest>);
-    let startup = use_hook(|| std::env::args().skip(1).collect::<Vec<_>>());
+    let startup = use_hook(move || match (archive,trust_bundle) {(Some(a),Some(t))=>vec![a,t],_=>std::env::args().skip(1).collect::<Vec<_>>()});
+    let startup_once=startup.clone();
+    let opener_once=model.clone();
+    // Product launch is already an explicit user action. Capability consent stays separate.
+    use_future(move || {let model=opener_once.clone();let args=startup_once.clone();async move {
+        if !product || args.len()<2 {return}
+        busy.set(true);
+        let mut m=model.borrow_mut();
+        match m.open(args[0].clone(),args[1].clone()).await {
+            Ok(names)=>{action.set(names.first().cloned().unwrap_or_default());view.set(m.view("Prêt".into()));},
+            Err(error)=>{m.close().await;view.set(m.view(error));}
+        }
+        busy.set(false);
+    }});
     let config_model = model.clone();
     use_effect(move || {
         if startup.len() >= 2 {
@@ -332,10 +347,10 @@ pub fn App() -> Element {
     let permission_model = model.clone();
     rsx! {
     style {"{kortex_ui::SHELL_CSS}"} style {{include_str!("../assets/style.css")}}
-    main {class:"desktop-shell",h1 {"Kortex Desktop — expérimental"}p {"Exécution locale Wasmtime. Chaque accès sensible exige votre accord explicite."}
+    main {class:"desktop-shell",if !product {h1 {"Kortex Desktop — expérimental"}p {"Exécution locale Wasmtime. Chaque accès sensible exige votre accord explicite."}
     label {r#for:"package","Paquet .tool signé"}input {id:"package",value:"{path}",disabled:*busy.read(),oninput:move|e|path.set(e.value())}
     label {r#for:"trust","Clés publiques hôte (JSON)"}input {id:"trust",value:"{trust}",disabled:*busy.read(),oninput:move|e|trust.set(e.value())}
-    button {disabled:*busy.read()||view.read().active,onclick:move |_|consent.set(true),"Ouvrir"}
+    button {disabled:*busy.read()||view.read().active,onclick:move |_|consent.set(true),"Ouvrir"}}
     if *consent.read(){section {role:"dialog",aria_label:"Permissions de l’outil",h2 {"Permissions de l’outil"}p {"L’outil s’ouvre sans autorisation. Ses demandes sensibles seront affichées séparément."}
     button {onclick:move |_|consent.set(false),"Annuler"}
     button {onclick:move |_|{consent.set(false);let model=opener.clone();let path=path.read().clone();let trust=trust.read().clone();spawn(async move{busy.set(true);pending.set(None);let mut m=model.borrow_mut();let result=m.open(path,trust).await;match result{Ok(names)=>{action.set(names.first().cloned().unwrap_or_default());view.set(m.view("Prêt".into()));},Err(error)=>{m.close().await;view.set(m.view(error));}}busy.set(false);});},"Continuer sans accès sensibles"}
@@ -345,7 +360,7 @@ pub fn App() -> Element {
     for (allow,duration,label) in [(false,Duration::Once,"Refuser"),(true,Duration::Once,"Autoriser une fois"),(true,Duration::Session,"Autoriser pour la session")] {button {disabled:*busy.read(),onclick:{let model=permission_model.clone();let request=request.clone();move |_|{let model=model.clone();let request=request.clone();spawn(async move{busy.set(true);pending.set(None);let mut m=model.borrow_mut();let result=m.resolve(request,allow,duration).await;m.recover_if_fatal().await;view.set(m.view(result.unwrap_or_else(|e|e)));busy.set(false);});}},"{label}"}}
     }}
     if let Some(value)=view.read().ui.clone(){kortex_ui::UiBoundary {value,on_event:move|event:kortex_ui::events::UiEvent|{let model=event_model.clone();spawn(async move{if *busy.peek(){return}busy.set(true);let mut m=model.borrow_mut();let result=if let Some(id)=m.id{match m.runtime.dispatch_event(id,event.payload()).await{Ok(reply) if reply.ok=>m.refresh().await.map(|_|"Prêt".into()),Ok(reply)=>Err(reply.error.map(|e|e.code).unwrap_or("INVALID_REPLY".into())),Err(e)=>Err(format!("{e:?}"))}}else{Err("Outil fermé".into())};m.recover_if_fatal().await;view.set(m.view(result.unwrap_or_else(|e|e)));busy.set(false);});}}}
-    if view.read().active {label {r#for:"action","Action"}input {id:"action",value:"{action}",oninput:move|e|action.set(e.value())}label {r#for:"input","Paramètres JSON"}textarea {id:"input",value:"{input}",oninput:move|e|input.set(e.value())}
+    if !product && view.read().active {label {r#for:"action","Action"}input {id:"action",value:"{action}",oninput:move|e|action.set(e.value())}label {r#for:"input","Paramètres JSON"}textarea {id:"input",value:"{input}",oninput:move|e|input.set(e.value())}
     button {disabled:*busy.read(),onclick:move |_|{let model=runner.clone();let name=action.read().clone();let value=input.read().clone();spawn(async move{busy.set(true);let mut m=model.borrow_mut();let result=m.action(&name,&value).await;m.recover_if_fatal().await;view.set(m.view(result.unwrap_or_else(|e|e)));busy.set(false);});},"Exécuter l’action"}}
     output {aria_label:"Résultat",role:"status","{view.read().result}"}
     }

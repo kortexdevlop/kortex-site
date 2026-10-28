@@ -3225,6 +3225,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "kortex-desktop"
+version = "1.0.0"
+dependencies = [
+ "dioxus",
+ "dirs",
+ "jsonschema",
+ "kortex-core",
+ "kortex-runtime-desktop",
+ "kortex-runtime-native",
+ "kortex-shared",
+ "kortex-ui",
+ "kortex-verify",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "tokio",
+ "url",
+]
+
+[[package]]
 name = "kortex-pack"
 version = "1.0.0"
 dependencies = [

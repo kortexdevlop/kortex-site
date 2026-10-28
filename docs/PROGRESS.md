@@ -1,5 +1,7 @@
 # Progression
 
+Lot 12.6–13.1 techniquement réalisé et clos le 28/10/2026 sur demande du propriétaire : extension temporaire publiée/testée sans modification ou redéploiement des clients pendant publication, puis révoquée/nettoyée ; application Windows produit et Store relié à l’API réelle. Dix tests Rust ciblés, pipeline de signature, test navigateur Cloudflare et deux parcours Windows (connecté/hors connexion) réussis. Bibliothèque signée et paquet altéré refusé ; pagination testée sur 10 000 entrées synthétiques. Preuves : docs/evidence/desktop-phase13-validation.json. Pas de téléchargement/installation Store (13.2 non engagée). Les statuts formels historiques restent distincts de l’exécution technique, sans approbation visuelle inventée.
+
 Lot 12.3–12.5 techniquement terminé et clos le 28/10/2026 sur demande du propriétaire. Explorateur CSV publié ; export réel corrigé et vérifié, stockage IndexedDB réel relu après rechargement avec permission navigateur, refus et absence de persistance couverts. Cinq paquets signés démarrent sur le vrai site Cloudflare ; neuf vecteurs partagés Web/Wasmtime. Build/validate des cinq outils et suite Rust complète réussis en série (125 tests, 1 ignorés explicitement), 3 essais Cloudflare de clôture réussis. Preuves : docs/evidence/phase12-closure.json. Le quota D1 et le disque plein sont des incidents historiques résolus. Les statuts de revue humaine historique restent distincts ; aucune approbation visuelle inventée. 12.6 non engagée. Production, DNS et messagerie intacts.
 
 Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de casse Unicode, SHA-256 de fichier local et dates UTC/Unix. Trois paquets canoniques signés/vérifiés et publiés réellement sur le staging existant ; site non reconstruit, DNS/production/messagerie inchangés. 9 tests Rust, 2 tests Wasmtime Windows, 12 essais navigateur locaux/distants Chromium/WebKit et 3 interfaces Windows réussis. Vrais fichiers, handles/permissions, annulation, dates négatives/overflow et sorties UI/actions vérifiés ; clés privées en mémoire uniquement. Les mêmes SHA sont tracés localement, sur Cloudflare et dans WebView2. Le dialogue Windows de sélection positive n’est pas automatisé : sélection de fichier contrôlée à sa frontière, avec vraies lectures et permissions du backend. Statuts formels pending derrière la revue visuelle existante, sans validation humaine inventée. État historique au 27/10/2026 ; le lot suivant est clos ci-dessus. Linux/macOS et Firefox exclus.
@@ -1202,6 +1204,66 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "technical_status": "closed",
     "closed_at": "2026-10-28",
     "closure_request": "propriétaire : Termines les correctement et clotures les avant de passer à la suite"
+  },
+  {
+    "id": "12.6",
+    "status": "pending",
+    "source_commit": "6a47c5e",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-12.6.md",
+    "tests_executed": "CLI externe build/validate/package/sign/verify, tests xtask et pipeline local, publication et action echo sur le staging réel ; hashes et déploiements clients identiques pendant publication ; fixture et clé révoquées, R2 nettoyé, réglages restaurés.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-phase13-validation.json",
+      "docs/evidence/extension-staging.json",
+      "docs/evidence/desktop-offline-windows.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaines ces 3 étapes, travaille de façon hyper intelligente pour avancer rapidement"
+  },
+  {
+    "id": "13.0",
+    "status": "pending",
+    "source_commit": "6a47c5e",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-13.0.md",
+    "tests_executed": "Application produit Windows démarrée dans WebView2, bibliothèque signée sans compte, outil ouvert et conversion Unicode exécutée hors réseau sans dialogue de permission indu ; refus du paquet altéré.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-phase13-validation.json",
+      "docs/evidence/desktop-online-windows.json",
+      "docs/evidence/desktop-offline-windows.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaines ces 3 étapes, travaille de façon hyper intelligente pour avancer rapidement"
+  },
+  {
+    "id": "13.1",
+    "status": "pending",
+    "source_commit": "6a47c5e",
+    "result_commit": null,
+    "approved_by": null,
+    "approved_at": null,
+    "report_path": "docs/reports/STEP-13.1.md",
+    "tests_executed": "Store réel Cloudflare : cinq fiches, recherche, catégorie, tri et actions ; contrôleur pagination sur 10000 synthétiques ; HTTP local réel, TTL, 404/503, offline et schémas partagés. Dix tests Rust ciblés au total pour desktop/xtask.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/desktop-phase13-validation.json",
+      "docs/evidence/desktop-online-windows.json",
+      "docs/evidence/desktop-offline-windows.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "closed_at": "2026-10-28",
+    "authorization": "propriétaire : Enchaines ces 3 étapes, travaille de façon hyper intelligente pour avancer rapidement"
   }
 ]
 ```

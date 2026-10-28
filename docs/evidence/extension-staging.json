@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-28T02:01:01.950Z",
+  "staging_only": true,
+  "production_touched": false,
+  "mail_touched": false,
+  "api_origin": "https://kortex-api-staging.userpgl.workers.dev",
+  "web_origin": "https://kortex-web-staging.userpgl.workers.dev",
+  "run_origin": "https://kortex-run-staging.userpgl.workers.dev",
+  "tools": [
+    {
+      "id": "extension-echo-check",
+      "version": "1.0.0",
+      "sha256": "bb9e1af8258d61cae8445124b2ad9a4395bb888b17e70a9b6376e8f5f9bd7bd6",
+      "r2_key": "tools/extension-echo-check/1.0.0/bb9e1af8258d61cae8445124b2ad9a4395bb888b17e70a9b6376e8f5f9bd7bd6.tool",
+      "published": true
+    }
+  ],
+  "passed": true,
+  "ci": "local controlled operator; canonical builder/signature/verification; not GitHub OIDC",
+  "source_before": {
+    "website/src": "bd3be2550d49e10492f09f205d8d4ae818a5544cbd21947803c062142ddaf265",
+    "runtime": "688ffa0bc3130f3f863356bfa9df22ca06d922a370bbdd5439e87daf6b45995f",
+    "api/src": "b5ed4df44e3ad2a20a845a52cdc093d9538e3feaab8e828fda5b5571313bfd85"
+  },
+  "site_deployment_before": "e389a1e7-c990-44ee-a58a-cfc115274ad2",
+  "web_deployment_before": "e389a1e7-c990-44ee-a58a-cfc115274ad2",
+  "run_deployment_before": "5cc546c9-7967-471f-b17d-eb84ee4eec63",
+  "web_deployment_after": "e389a1e7-c990-44ee-a58a-cfc115274ad2",
+  "run_deployment_after": "5cc546c9-7967-471f-b17d-eb84ee4eec63",
+  "source_after": {
+    "website/src": "bd3be2550d49e10492f09f205d8d4ae818a5544cbd21947803c062142ddaf265",
+    "runtime": "688ffa0bc3130f3f863356bfa9df22ca06d922a370bbdd5439e87daf6b45995f",
+    "api/src": "b5ed4df44e3ad2a20a845a52cdc093d9538e3feaab8e828fda5b5571313bfd85"
+  },
+  "site_deployment_after": "e389a1e7-c990-44ee-a58a-cfc115274ad2",
+  "fixture_revoked": true,
+  "fixture_object_removed": true,
+  "runtime_public_trust_restored": true,
+  "operator_policy_restored": true,
+  "fixture_signing_key_revoked": true
+}

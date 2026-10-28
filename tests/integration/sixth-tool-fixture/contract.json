@@ -1,0 +1,40 @@
+{
+  "contract_version": "1.0",
+  "tool_id": "extension-echo-check",
+  "actions": [
+    {
+      "id": "echo",
+      "description": "Retourne un texte borné.",
+      "input_schema": {
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 256
+          }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 256
+          }
+        }
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 1000
+    }
+  ]
+}

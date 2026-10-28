@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-28T02:21:18.488Z",
+  "steps": [
+    "12.6",
+    "13.0",
+    "13.1"
+  ],
+  "technical_status": "completed",
+  "next_step_started": false,
+  "platform": "Windows",
+  "source_commit": "6a47c5e",
+  "binary": {
+    "path": "target/debug/kortex-desktop.exe",
+    "sha256": "2f00049aa9469d601383b9573bd4ec58ea3340c6426bd3a471a178745586139f",
+    "kind": "development executable, not installer"
+  },
+  "checks": {
+    "targeted_rust_tests": 10,
+    "local_release_pipeline_regression": true,
+    "live_extension_playwright": 1,
+    "windows_product_modes": [
+      "real Cloudflare catalogue",
+      "offline signed installed fixture"
+    ],
+    "synthetic_pagination_entries": 10000,
+    "real_http_ttl_404_503": true,
+    "shared_api_schema_validation": true,
+    "source_specific_tool_branches": false,
+    "signature_and_tamper_checks": true,
+    "guest_runtime_reused": true
+  },
+  "extension": {
+    "web_deployment_unchanged_during_publication": true,
+    "runtime_deployment_unchanged_during_publication": true,
+    "source_hashes_unchanged": true,
+    "fixture_revoked": true,
+    "r2_fixture_removed": true,
+    "temporary_key_revoked": true,
+    "public_trust_restored": true,
+    "operator_policy_restored": true,
+    "audit_records_preserved": true
+  },
+  "scope": {
+    "staging_only": true,
+    "production_touched": false,
+    "dns_touched": false,
+    "mail_touched": false,
+    "installation_13_2_started": false
+  },
+  "limits": [
+    "Windows only; Linux/macOS and Firefox excluded",
+    "WebKit not replayed",
+    "10,000 synthetic entries exercise pagination controller, not a remote load benchmark",
+    "Offline test provisions an existing signed fixture in an isolated folder, not a Store installation",
+    "Updates and Account are navigation states; updater and authentication not implemented in these steps",
+    "Historical visual approval gate remains separate from technical completion"
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/extension-staging.json",
+      "sha256": "84ba362345be46c4ba83ad99d7e925be46899da96102ef14b189cc3098e130ca"
+    },
+    {
+      "path": "docs/evidence/extension-artifact.json",
+      "sha256": "0781ade9ddc2f4f7cca6a0af26d345c623e9d243ecc36021b25b957976ace4d3"
+    },
+    {
+      "path": "docs/evidence/extension-playwright.json",
+      "sha256": "bda29aa6f218c01660f15823a7ca831b04ac63d327b942cd02bc5c50dbb66cfd"
+    },
+    {
+      "path": "docs/evidence/extension-gate.md",
+      "sha256": "85a350217e1ca59c7bb1b8dc6d160422e78a31061b169d769783d523b7226fe3"
+    },
+    {
+      "path": "docs/evidence/desktop-online-windows.json",
+      "sha256": "e05b053fce679cd9c61bc1e654d71c64b0221bfdafa446c0301d8ea0164a8678"
+    },
+    {
+      "path": "docs/evidence/desktop-offline-windows.json",
+      "sha256": "71ffc6ce19619859f209d80fde24504b176635172e56609d1aadb248e8c462db"
+    },
+    {
+      "path": "docs/evidence/desktop-store-windows.png",
+      "sha256": "f6a5b5c0c3a46b2899fb61b579ae487a996970fff2687f01710b2f85235c8813"
+    },
+    {
+      "path": "docs/evidence/desktop-offline-windows.png",
+      "sha256": "5fa590df00eb299cabc7860543dc749599bc11711024e06fd062719aab10b43a"
+    },
+    {
+      "path": "docs/evidence/desktop-rust-tests.log",
+      "sha256": "a59a6d7257941f1b3f16026adffff00b72d2aca8ae68f5ae8cd952860e8d5282"
+    },
+    {
+      "path": "docs/evidence/desktop-build.log",
+      "sha256": "2c2dba856326f7784c3c25f066b9beef488ef5048dd3879b086e20b01773ee0b"
+    },
+    {
+      "path": "docs/evidence/desktop-product-ui.log",
+      "sha256": "26d1d9c569d6f40206fb7456bb11de686b23aff5edcb99a85563cadfecd180e0"
+    },
+    {
+      "path": "docs/evidence/extension-pipeline-regression.log",
+      "sha256": "9a044a8e0775bf4e539a5cf0cc0dc0537c61e6178215adcc3436fc0a6b60db97"
+    }
+  ]
+}

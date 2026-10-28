@@ -19,7 +19,7 @@ export function prepareRelease(options){
  if(options.requestId&&!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(options.requestId))throw Error('INVALID_REQUEST_ID');
  if(previous&&options.requestId&&options.requestId!==previous.request_id)throw Error('STAGING_REQUEST_ID_CONFLICT');
  const env={...process.env,CARGO_NET_OFFLINE:'true'};delete env.KORTEX_SIGNING_KEY_SEED_BASE64;
- const calls=[];const cli=(args,extra={})=>{const r=spawnSync('cargo',['run','-p','kortex-xtask','--locked','--',...args,'--json'],{cwd:root,encoding:'utf8',env:{...env,...extra}});if(r.status!==0)throw Error(`CLI_${args[0]}_FAILED`);calls.push(args[0]);return JSON.parse(r.stdout)};
+ const calls=[];const cli=(args,extra={})=>{const r=spawnSync('cargo',['run','-p','kortex-xtask','--locked','--',...args,...(options.sourceDir&&['build','validate','package'].includes(args[0])?['--source-dir',resolve(options.sourceDir)]:[]),'--json'],{cwd:root,encoding:'utf8',env:{...env,...extra}});if(r.status!==0)throw Error(`CLI_${args[0]}_FAILED`);calls.push(args[0]);return JSON.parse(r.stdout)};
  cli(['build','--tool',tool]);cli(['validate','--tool',tool]);const packed=cli(['package','--tool',tool,'--out',resolve(out,'packages')]).results[0];
  const {manifest,contract,sha256}=packed;
  if(createHash('sha256').update(readFileSync(packed.archive)).digest('hex')!==sha256)throw Error('HASH_MISMATCH');calls.push('hash');if(manifest.id!==tool||contract.tool_id!==tool)throw Error('IDENTITY_MISMATCH');

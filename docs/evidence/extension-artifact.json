@@ -1,0 +1,36 @@
+{
+  "descriptor": {
+    "schema_version": 1,
+    "tool_id": "extension-echo-check",
+    "version": "1.0.0",
+    "abi_version": "1.0",
+    "sha256": "bb9e1af8258d61cae8445124b2ad9a4395bb888b17e70a9b6376e8f5f9bd7bd6",
+    "signing_key_id": "extension-echo-check-2cc3c643",
+    "signature": "rZYNbHkLrX0B0tfr+ANwV7ir4D3dXZR+aN7bEJK5YagaWSSk1m+C1v0wDzCfKLP9MypXlD/VOs+zw99L+0MuDw=="
+  },
+  "host_trust": {
+    "root": {
+      "id": "phase12-root-b117b305",
+      "public_key_base64": "lTuXAW6z4fhw/+HsXTg54405mZbg1iEtYKF/PIt4Aow="
+    },
+    "document": {
+      "schema_version": 1,
+      "version": 1,
+      "issued_at": 1793152817382,
+      "expires": 1793757618382,
+      "root_key_id": "phase12-root-b117b305",
+      "keys": [
+        {
+          "id": "extension-echo-check-2cc3c643",
+          "public_key_base64": "ZnZjjXy3iccOykxqC1VIFIwNAv4+KrirmTT89gsnbqU=",
+          "not_before": 1793152758382,
+          "expires": 1793757618382,
+          "revoked": false
+        }
+      ],
+      "signature": "C05TPl3VZ7WUaV8ebzz7jp775t2lbw6SZ325iywXT9nDz2TIvxjwWK6pgJMaJm0+UUGbUfHOzCZC/3iPisaGDQ=="
+    },
+    "minimum_version": 1
+  },
+  "sha256": "bb9e1af8258d61cae8445124b2ad9a4395bb888b17e70a9b6376e8f5f9bd7bd6"
+}

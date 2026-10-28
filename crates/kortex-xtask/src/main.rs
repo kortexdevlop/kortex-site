@@ -4,7 +4,7 @@ use std::{
     collections::BTreeMap,
     path::{Path, PathBuf},
 };
-const HELP: &str = "Kortex tool builder (local; no publication)\n\n  build --tool <id> | --all [--out <directory>] [--json]\n  validate --tool <id> | --all [--json]\n  package --tool <id> | --all [--out <directory>] [--json]\n  sign --artifact <archive.tool> [--out <descriptor.json>] [--json]\n  verify --artifact <descriptor.json> [--archive <archive.tool>]\n         [--trust <signed-keys.json>] [--root <pinned-root.json>]\n         [--min-trust-version <integer>] [--json]\n\nDefault package directory: target/packages. Build --out copies the WASM there.\nSign requires CI=true, KORTEX_SIGNING_KEY_ID and KORTEX_SIGNING_KEY_SEED_BASE64.\nDefault verification anchors are TEST-ONLY; configure --root/--trust for releases.\nVerify checks hash, signed trust snapshot, signature, then package metadata/ABI.\nvalidate checks the previously built module. package builds before packaging.\nExisting packages with different bytes are never overwritten.\n";
+const HELP: &str = "Kortex tool builder (local; no publication)\n\n  build --tool <id> | --all [--out <directory>] [--json]\n  validate --tool <id> | --all [--json]\n  package --tool <id> | --all [--out <directory>] [--json]\n  sign --artifact <archive.tool> [--out <descriptor.json>] [--json]\n  verify --artifact <descriptor.json> [--archive <archive.tool>]\n         [--trust <signed-keys.json>] [--root <pinned-root.json>]\n         [--min-trust-version <integer>] [--json]\n\nBuild/validate/package accept --source-dir <external-tool-directory>.\nDefault package directory: target/packages. Build --out copies the WASM there.\nSign requires CI=true, KORTEX_SIGNING_KEY_ID and KORTEX_SIGNING_KEY_SEED_BASE64.\nDefault verification anchors are TEST-ONLY; configure --root/--trust for releases.\nVerify checks hash, signed trust snapshot, signature, then package metadata/ABI.\nvalidate checks the previously built module. package builds before packaging.\nExisting packages with different bytes are never overwritten.\n";
 fn main() {
     if let Err(error) = run() {
         if std::env::args().any(|a| a == "--json") {
@@ -27,6 +27,7 @@ fn run() -> Result<()> {
     while i < args.len() {
         let k = &args[i];
         if ![
+            "--source-dir",
             "--tool",
             "--all",
             "--out",
@@ -55,8 +56,8 @@ fn run() -> Result<()> {
         i += 1;
     }
     let allowed = match command {
-        "build" | "package" => vec!["--tool", "--all", "--out", "--json"],
-        "validate" => vec!["--tool", "--all", "--json"],
+        "build" | "package" => vec!["--tool", "--all", "--out", "--json", "--source-dir"],
+        "validate" => vec!["--tool", "--all", "--json", "--source-dir"],
         "sign" => vec!["--artifact", "--out", "--json"],
         "verify" => vec![
             "--artifact",
@@ -81,7 +82,15 @@ fn run() -> Result<()> {
         if options.contains_key("--all") == options.contains_key("--tool") {
             return Err("SELECT_TOOL_OR_ALL".into());
         }
-        let mut tools = kortex_xtask::discovery::discover(&root.join("tools"))?;
+        let mut tools = if let Some(source) = options.get("--source-dir") {
+            if options.contains_key("--all") {
+                return Err("SOURCE_REQUIRES_ONE_TOOL".into());
+            }
+            let tool = kortex_xtask::discovery::source(Path::new(source))?;
+            BTreeMap::from([(tool.manifest.id.clone(), tool)])
+        } else {
+            kortex_xtask::discovery::discover(&root.join("tools"))?
+        };
         let selected = if let Some(id) = options.get("--tool") {
             vec![tools.remove(id).ok_or("UNKNOWN_TOOL")?]
         } else {

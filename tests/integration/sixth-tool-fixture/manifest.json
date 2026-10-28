@@ -1,0 +1,22 @@
+{
+  "format_version": "1.0",
+  "id": "extension-echo-check",
+  "version": "1.0.0",
+  "name": "Test extension temporaire",
+  "summary": "Outil temporaire de vérification de l’extension du catalogue.",
+  "description": "Outil temporaire de vérification de l’extension du catalogue. Aucune permission.",
+  "category": "developer",
+  "tags": [
+    "test"
+  ],
+  "seo": {
+    "title": "Test extension temporaire",
+    "description": "Vérification temporaire de l’extension du catalogue."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

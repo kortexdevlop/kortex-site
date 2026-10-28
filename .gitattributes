@@ -21,3 +21,9 @@
 /docs/evidence/phase12-*.log text eol=lf
 /docs/evidence/phase12-csv-export.csv -text
 /docs/evidence/five-tools-* text eol=lf
+
+/docs/evidence/extension-*.json text eol=lf
+/docs/evidence/extension-*.md text eol=lf
+/docs/evidence/extension-*.log text eol=lf
+/docs/evidence/desktop-*.json text eol=lf
+/docs/evidence/desktop-*.log text eol=lf

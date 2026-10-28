@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-28T02:16:41.385Z",
+  "mode": "online",
+  "passed": true,
+  "tools": [
+    {
+      "id": "explorateur-csv",
+      "sha256": "183f838f554846fe837650f6773cc5c935e02f86096c61a3dac7f5c5f111b662"
+    },
+    {
+      "id": "timestamp-utc",
+      "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46"
+    },
+    {
+      "id": "calculateur-hash",
+      "sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5"
+    },
+    {
+      "id": "convertisseur-casse",
+      "sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7"
+    },
+    {
+      "id": "calculatrice",
+      "sha256": "1d4c1a0967b583489f69921d80d1c062dbd57ecb0d9dabea8337575e4ab32787"
+    }
+  ],
+  "real_catalogue": true,
+  "search": true,
+  "filters": true,
+  "sort": true,
+  "details_and_actions": true
+}

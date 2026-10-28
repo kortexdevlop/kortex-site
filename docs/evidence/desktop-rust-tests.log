@@ -1,0 +1,72 @@
+   Compiling kortex-xtask v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-xtask)
+   Compiling kortex-desktop v1.0.0 (C:\Users\µ\Desktop\KORTEX-\desktop)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 30.26s
+     Running unittests src\lib.rs (target\debug\deps\kortex_desktop-51e71350495e30e5.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (target\debug\deps\kortex_desktop-a39311c510c3ad1a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\smoke.rs (target\debug\deps\smoke-33c06fd19179e80d.exe)
+
+running 2 tests
+test config_pins_https_origins_and_library_starts_offline_without_account ... ok
+test installed_signed_package_remains_available_offline_and_tampering_is_refused ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.37s
+
+     Running tests\store.rs (target\debug\deps\store-918154e4e85e0562.exe)
+
+running 3 tests
+test filters_are_encoded_and_hostile_ids_or_inconsistent_details_are_refused ... ok
+test ten_thousand_entries_paginate_without_duplicates_and_scope_resets ... ok
+test requests_use_real_http_schema_validation_ttl_and_explicit_failures ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.09s
+
+     Running unittests src\lib.rs (target\debug\deps\kortex_xtask-f96a38e8538f5d7c.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (target\debug\deps\kortex_xtask-a712f1112acc218b.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\discovery.rs (target\debug\deps\discovery-7df069a23393439a.exe)
+
+running 4 tests
+test external_fixture_is_explicit_and_not_a_product_tool ... ok
+test arbitrary_tools_are_discovered_without_identifier_branches ... ok
+test duplicate_ids_and_invalid_manifests_are_refused ... ok
+test cli_help_and_bad_arguments ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.33s
+
+     Running tests\signing.rs (target\debug\deps\signing-95a49b6f387aa92b.exe)
+
+running 1 test
+test cli_signs_from_injected_test_secret_and_verifies_public_proof ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.86s
+
+   Doc-tests kortex_desktop
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests kortex_xtask
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

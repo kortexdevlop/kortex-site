@@ -56,3 +56,20 @@ pub fn discover(tools: &Path) -> Result<BTreeMap<String, Tool>> {
     }
     Ok(found)
 }
+
+pub fn source(directory: &Path) -> Result<Tool> {
+    if link(&std::fs::symlink_metadata(directory).map_err(|e| e.to_string())?) {
+        return Err("SYMLINK_TOOL".into());
+    }
+    let manifest_path = directory.join("manifest.json");
+    if link(&std::fs::symlink_metadata(&manifest_path).map_err(|e| e.to_string())?) {
+        return Err("SYMLINK_MANIFEST".into());
+    }
+    let value = serde_json::from_slice(&read_bounded(&manifest_path, 1048576)?)
+        .map_err(|e| e.to_string())?;
+    let manifest = validate_manifest(&value).map_err(|_| "INVALID_MANIFEST")?;
+    Ok(Tool {
+        directory: directory.canonicalize().map_err(|e| e.to_string())?,
+        manifest,
+    })
+}

@@ -1,0 +1,3 @@
+# Rapport 12.6 — Extension sans modification des clients
+
+28/10/2026. Lot 12.6, 13.0, 13.1 explicitement autorisé par le propriétaire. Gate techniquement réalisé : fixture externe au workspace produit, option CLI explicite, vrai paquet signé, publication API/D1/R2, chargement Web et action echo. Hash sources et déploiements clients identiques pendant la publication. Clé de test provisionnée avant mesure puis supprimée de la confiance active ; fixture révoquée et objet R2 supprimé, audits append-only préservés. Rapport : docs/evidence/extension-gate.md. Preuves cryptographiques publiques et navigateur jointes. Pas de modification du contrat public. Le statut historique d’approbation visuelle demeure distinct du résultat technique.

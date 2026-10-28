@@ -1,0 +1,12 @@
+[package]
+name="kortex-extension-fixture"
+version="1.0.0"
+edition="2024"
+rust-version="1.99"
+publish=false
+[workspace]
+[lib]
+crate-type=["cdylib","rlib"]
+[dependencies]
+kortex-sdk={path="../../../crates/kortex-sdk"}
+serde_json="=1.0.154"

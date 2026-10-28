@@ -1,5 +1,7 @@
 # Architecture Kortex — état vérifié à la revue 3.4
 
+**Lot 12.6–13.1 (28/10/2026) :** extension réelle sans modification/redeployment des clients pendant publication, fixture révoquée et supprimée de R2 ; application produit Windows dans desktop/, Store API réel, bibliothèque signée utilisable hors connexion. Réutilisation du shell natif par composant, aucun second moteur. Voir DESKTOP.md et STEP-12.6/13.0/13.1. Installation depuis le Store : 13.2, non engagée.
+
 **Clôture technique 12.3–12.5 (28/10/2026) :** explorateur CSV publié, cinq outils comparés Web/Windows, export réel corrigé et stockage réel vérifié sur le site de staging. Contrat de sandbox amendé pour file.save ; détail et limites dans STEP-12.5.md et phase12-closure.json. 12.6 non engagée.
 
 **Lot outils 12.0–12.2 (27/10/2026) :** trois nouveaux guests SDK signés, casse Unicode/SHA-256 local/UTC-Unix, publiés sur staging sans rebuild Web. Véritable Runtime Web et Wasmtime/WebView2 Windows, sans bridge spécifique. Détails et limites : TOOLS-PHASE12.md et STEP-12.0 à STEP-12.2.
