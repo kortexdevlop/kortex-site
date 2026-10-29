@@ -1,5 +1,7 @@
 # Progression
 
+21.1 : quatre guides rédigés et reliés au README/SDK ; sixième outil Base64 construit, testé et signé/vérifié en dry-run depuis un clone propre, sans upload. Périmètre Windows/Chromium ; recette humaine sur machine neuve non attestée, gates RC/production conservés. Aucun passage à 21.2. Les notes suivantes sont historiques.
+
 Lot 20.4–21.0 : résilience locale vérifiée (188 Rust + HTTPS réel séparé, 100 API, 7 Chromium). RC préparée mais non gelée : CI finale/staging et signature Windows restent bloquants. Supervision à métadonnées bornées testée, dont sonde Cloudflare privée nettoyée ; aucune notification ni collecte globale continue activée. Aucun passage à 21.1. Rapports STEP-20.4, STEP-20.5 et STEP-21.0. Les notes suivantes sont historiques.
 
 Lot 20.2–20.3 : vérifications locales Windows/Chromium réussies, rapports et preuves joints. Clôture staging en attente du quota D1 partagé épuisé par la charge 20.1 ; incident et prévention documentés. Aucun passage à 20.4. Les notes suivantes sont historiques.
@@ -2238,6 +2240,23 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "authorization": "Propriétaire : Enchaîne 20.4 jusqu’à 21.0",
     "technical_scope": "Windows x64 / Chromium-WebView2",
     "remaining_gate": "Déploiement staging après gates ; collecteur global, astreinte et destination de notification à configurer avant activation continue."
+  },
+  {
+    "id": "21.1",
+    "status": "pending",
+    "source_commit": "7759e6f9e2b5e409b527dea3bf7f2af4d07add8c",
+    "result_commit": "1451ea8b31bcabded6b3f64f320dbbe0fe3368a0",
+    "report_path": "docs/reports/STEP-21.1.md",
+    "tests_executed": "Clone HTTPS propre ; pnpm frozen, build/validate/package Base64, 2 tests métier et préparation sign/verify dry-run réussis sans upload ; liens internes et registre vérifiés.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/onboarding-21.1.json"
+    ],
+    "frozen": false,
+    "technical_status": "documentation_verified_clean_checkout",
+    "authorization": "Propriétaire : Continue avec 21.1",
+    "technical_scope": "Windows x64 / Chromium-WebView2 ; documentation et onboarding",
+    "remaining_gate": "Recette humaine indépendante sur machine neuve non attestée ; RC/staging et prérequis de production restent distincts."
   }
 ]
 ```

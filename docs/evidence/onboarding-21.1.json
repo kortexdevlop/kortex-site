@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-29T16:44:46.760Z",
+  "documentation_commit": "1451ea8b31bcabded6b3f64f320dbbe0fe3368a0",
+  "source_commit": "7759e6f9e2b5e409b527dea3bf7f2af4d07add8c",
+  "platform": "Windows x64",
+  "clean_checkout": true,
+  "clone_origin": "https://github.com/kortexdevlop/kortex-site.git",
+  "branch": "codex/runtime-performance-accessibility",
+  "generated_files_reused_from_original_workspace": false,
+  "registry_and_pnpm_store_cache_reused": true,
+  "preinstalled_toolchains_and_build_tools": true,
+  "human_on_new_machine": false,
+  "commands": [
+    {
+      "command": "pnpm.cmd install --frozen-lockfile",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo fetch --locked",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo run -p kortex-xtask --locked -- build --tool encodeur-base64 --json",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo run -p kortex-xtask --locked -- validate --tool encodeur-base64 --json",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo run -p kortex-xtask --locked -- package --tool encodeur-base64 --out target/onboarding-packages --json",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo test -p tool-encodeur-base64 --locked",
+      "exit_code": 0,
+      "passed": 2,
+      "failed": 0
+    },
+    {
+      "command": "node scripts/release-tool.mjs --tool encodeur-base64 --dry-run --out target/onboarding-base64",
+      "exit_code": 0
+    }
+  ],
+  "release": {
+    "prepared": true,
+    "dry_run": true,
+    "remote_writes": 0,
+    "cargo_offline": true,
+    "tool_id": "encodeur-base64",
+    "version": "1.0.0",
+    "sha256": "1ca12ec6e040e45d59d82cb55eb422e404015da48c2cc6eae732fd7b7d2d5e15",
+    "calls": [
+      "build",
+      "validate",
+      "package",
+      "hash",
+      "sign",
+      "verify"
+    ]
+  },
+  "published": false,
+  "production_ready": false,
+  "human_approval": false,
+  "relative_links_checked": 42,
+  "broken_relative_links": 0
+}
