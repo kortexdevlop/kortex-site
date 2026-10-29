@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-29T15:16:10.468Z",
+  "implementation_commit": "1c77871215fd405d02835d55f90c1d4890b355f9",
+  "scope": "Windows x64 / Chromium / local API+D1+R2+Runtime",
+  "runtime_version": "1.0.2",
+  "remote_writes": 0,
+  "real_publication_verified": true,
+  "archives": [
+    {
+      "id": "calculatrice",
+      "sha256": "b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f"
+    },
+    {
+      "id": "convertisseur-casse",
+      "sha256": "98c145ea02adba455778b82e4de21cbcbc565bd96333839cdb8cc9f6c5432ad3"
+    },
+    {
+      "id": "calculateur-hash",
+      "sha256": "d04f567dfc516d2599226049767805539482eb3a0c99f4f716db33b8599139a5"
+    },
+    {
+      "id": "timestamp-utc",
+      "sha256": "04aa4c0959bf6c4e61c1de1879e77473b0eb3145f23d16bb2939f7911ee559cb"
+    },
+    {
+      "id": "explorateur-csv",
+      "sha256": "6e3d469155df26e1157f28976a9c7de7b83ad8b6bc264b69705fa69ecaa220a2"
+    }
+  ],
+  "native_passed": true,
+  "web_passed": true,
+  "interface_tests": 33,
+  "unexpected": 0,
+  "skipped": 0,
+  "contracts_passed": true,
+  "native_regression_tests_passed": 13,
+  "cloud_validation": "pending D1 quota reset and CI",
+  "human_approval": false
+}

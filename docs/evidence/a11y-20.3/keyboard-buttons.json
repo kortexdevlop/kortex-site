@@ -1,0 +1,32 @@
+[
+  {
+    "route": "/",
+    "enabled_visible_buttons": 25,
+    "tab_reached": 25
+  },
+  {
+    "route": "/tools",
+    "enabled_visible_buttons": 19,
+    "tab_reached": 19
+  },
+  {
+    "route": "/account",
+    "enabled_visible_buttons": 2,
+    "tab_reached": 2
+  },
+  {
+    "route": "/ai",
+    "enabled_visible_buttons": 8,
+    "tab_reached": 8
+  },
+  {
+    "route": "/workflows",
+    "enabled_visible_buttons": 13,
+    "tab_reached": 13
+  },
+  {
+    "route": "/workspace",
+    "enabled_visible_buttons": 9,
+    "tab_reached": 9
+  }
+]

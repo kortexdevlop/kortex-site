@@ -21,3 +21,8 @@ Les listes et détails API portent un ETag et `max-age=0, must-revalidate`. L’
 Après un build Astro valide, `node scripts/qa-isolated.mjs` crée des ressources privées temporaires distinctes, vérifie les coupures de release, importe les fiches synthétiques par lots, mesure deux séries de 100 requêtes à 10 req/s, contrôle pagination, SSR et sitemaps, ajoute la 10001e fiche sans rebuild puis nettoie ses seules ressources. Les secrets restent en mémoire et en bindings secrets ; expiration d’accès au bout de deux heures. Un échec de nettoyage est un échec du gate et reste inscrit dans la preuve datée.
 
 Ne pas utiliser les anciens scripts `web-hot-publish.mjs` ou `benchmark-search-staging.mjs` pour ce gate : ils décrivent des campagnes historiques et certains accèdent au bucket partagé ou à des navigateurs désormais exclus. Référence actuelle : `docs/QA_PLAN.md`, `docs/reports/QA_BASELINE.md` et `docs/reports/CATALOG_SCALE_10K.md`.
+
+
+## Complément 20.2–20.3
+
+Gates locaux décrits dans RUNTIME_PERFORMANCE et DESIGN_A11Y ; staging en attente, voir docs/reports/D1_QUOTA_INCIDENT.md. La charge 10k exige un compte QA distinct et budgets D1 explicites. QA Runtime/interface sans cloud : node scripts/qa-verify.mjs après préparation fixtures/builds.

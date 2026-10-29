@@ -1,0 +1,1611 @@
+{
+  "date": "2026-10-29T10:58:50.717Z",
+  "done": true,
+  "rows": [
+    {
+      "origin": "http://127.0.0.1:4321",
+      "path": "/__dev/design",
+      "status": 200,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#989a9d",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.67,
+                    "fontSize": "14.5pt (19.2993px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-brand-site\">.site</span>",
+              "target": [
+                ".ws-brand-site"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#82868a",
+                    "bgColor": "#eceef0",
+                    "contrastRatio": 3.15,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"ws-beta\">BETA</span>",
+                      "target": [
+                        ".ws-beta"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-beta\">BETA</span>",
+              "target": [
+                ".ws-beta"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#a6a8ab",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.26,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.26 (foreground color: #a6a8ab, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-count\" data-count=\"all\">14</span>",
+              "target": [
+                "span[data-count=\"all\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.26 (foreground color: #a6a8ab, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#97999c",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.71,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p class=\"ws-category-heading\">CATÉGORIES</p>",
+              "target": [
+                ".ws-category-heading"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#fdfdfe",
+                    "contrastRatio": 3.07,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"ws-connection\"><p><span class=\"ws-connection-dot is-connected\" aria-hidden=\"true\"></span>App locale connectée</p><span>Kortex Desktop 2.4 · 5 outils installés</span></div>",
+                      "target": [
+                        ".ws-connection"
+                      ]
+                    },
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Kortex Desktop 2.4 · 5 outils installés</span>",
+              "target": [
+                ".ws-connection > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.96,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Gratuit</span>",
+              "target": [
+                ".ws-account > span:nth-child(2) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#75787b",
+                    "bgColor": "#f0f1f2",
+                    "contrastRatio": 3.92,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<fieldset class=\"ws-modes\">",
+                      "target": [
+                        "fieldset"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.92 (foreground color: #75787b, background color: #f0f1f2, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>En ligne</span>",
+              "target": [
+                "label:nth-child(3) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.92 (foreground color: #75787b, background color: #f0f1f2, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#75787b",
+                    "bgColor": "#f0f1f2",
+                    "contrastRatio": 3.92,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<fieldset class=\"ws-modes\">",
+                      "target": [
+                        "fieldset"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.92 (foreground color: #75787b, background color: #f0f1f2, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Local</span>",
+              "target": [
+                "label:nth-child(4) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.92 (foreground color: #75787b, background color: #f0f1f2, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "origin": "https://kortex-web-staging.userpgl.workers.dev",
+      "path": "/",
+      "status": 200,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#989a9d",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.67,
+                    "fontSize": "14.5pt (19.2993px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-brand-site\">.site</span>",
+              "target": [
+                ".ws-brand-site"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#82868a",
+                    "bgColor": "#eceef0",
+                    "contrastRatio": 3.15,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"ws-beta\">BETA</span>",
+                      "target": [
+                        ".ws-beta"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-beta\">BETA</span>",
+              "target": [
+                ".ws-beta"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#97999c",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.71,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p class=\"ws-category-heading\">CATÉGORIES</p>",
+              "target": [
+                ".ws-category-heading"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#fdfdfe",
+                    "contrastRatio": 3.07,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"ws-connection\"><p><span class=\"ws-connection-dot\" aria-hidden=\"true\"></span>App locale non connectée</p><span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span></div>",
+                      "target": [
+                        ".ws-connection"
+                      ]
+                    },
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span>",
+              "target": [
+                ".ws-connection > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.96,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Sans connexion</span>",
+              "target": [
+                ".ws-account > span:nth-child(2) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#75787b",
+                    "bgColor": "#f0f1f2",
+                    "contrastRatio": 3.92,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<fieldset class=\"ws-modes\">",
+                      "target": [
+                        ".ws-modes"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.92 (foreground color: #75787b, background color: #f0f1f2, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>En ligne</span>",
+              "target": [
+                "label:nth-child(3) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.92 (foreground color: #75787b, background color: #f0f1f2, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#75787b",
+                    "bgColor": "#f0f1f2",
+                    "contrastRatio": 3.92,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<fieldset class=\"ws-modes\">",
+                      "target": [
+                        ".ws-modes"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.92 (foreground color: #75787b, background color: #f0f1f2, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Local</span>",
+              "target": [
+                "label:nth-child(4) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.92 (foreground color: #75787b, background color: #f0f1f2, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "origin": "https://kortex-web-staging.userpgl.workers.dev",
+      "path": "/tools",
+      "status": 503,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#989a9d",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.67,
+                    "fontSize": "14.5pt (19.2993px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-brand-site\">.site</span>",
+              "target": [
+                ".ws-brand-site"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#82868a",
+                    "bgColor": "#eceef0",
+                    "contrastRatio": 3.15,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"ws-beta\">BETA</span>",
+                      "target": [
+                        ".ws-beta"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-beta\">BETA</span>",
+              "target": [
+                ".ws-beta"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#97999c",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.71,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p class=\"ws-category-heading\">CATÉGORIES</p>",
+              "target": [
+                ".ws-category-heading"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#fdfdfe",
+                    "contrastRatio": 3.07,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"ws-connection\"><p><span class=\"ws-connection-dot\" aria-hidden=\"true\"></span>App locale non connectée</p><span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span></div>",
+                      "target": [
+                        ".ws-connection"
+                      ]
+                    },
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span>",
+              "target": [
+                ".ws-connection > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.96,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Sans connexion</span>",
+              "target": [
+                ".ws-account > span:nth-child(2) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "origin": "https://kortex-web-staging.userpgl.workers.dev",
+      "path": "/tools/calculatrice",
+      "status": 503,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#989a9d",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.67,
+                    "fontSize": "14.5pt (19.2993px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-brand-site\">.site</span>",
+              "target": [
+                ".ws-brand-site"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#82868a",
+                    "bgColor": "#eceef0",
+                    "contrastRatio": 3.15,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"ws-beta\">BETA</span>",
+                      "target": [
+                        ".ws-beta"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-beta\">BETA</span>",
+              "target": [
+                ".ws-beta"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#97999c",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.71,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p class=\"ws-category-heading\">CATÉGORIES</p>",
+              "target": [
+                ".ws-category-heading"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#fdfdfe",
+                    "contrastRatio": 3.07,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"ws-connection\"><p><span class=\"ws-connection-dot\" aria-hidden=\"true\"></span>App locale non connectée</p><span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span></div>",
+                      "target": [
+                        ".ws-connection"
+                      ]
+                    },
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span>",
+              "target": [
+                ".ws-connection > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.96,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Sans connexion</span>",
+              "target": [
+                ".ws-account > span:nth-child(2) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "origin": "https://kortex-web-staging.userpgl.workers.dev",
+      "path": "/account",
+      "status": 200,
+      "violations": []
+    },
+    {
+      "origin": "https://kortex-web-staging.userpgl.workers.dev",
+      "path": "/ai",
+      "status": 200,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#989a9d",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.67,
+                    "fontSize": "14.5pt (19.2993px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-brand-site\">.site</span>",
+              "target": [
+                ".ws-brand-site"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#82868a",
+                    "bgColor": "#eceef0",
+                    "contrastRatio": 3.15,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"ws-beta\">BETA</span>",
+                      "target": [
+                        ".ws-beta"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-beta\">BETA</span>",
+              "target": [
+                ".ws-beta"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#97999c",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.71,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p class=\"ws-category-heading\">CATÉGORIES</p>",
+              "target": [
+                ".ws-category-heading"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#fdfdfe",
+                    "contrastRatio": 3.07,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"ws-connection\"><p><span class=\"ws-connection-dot\" aria-hidden=\"true\"></span>App locale non connectée</p><span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span></div>",
+                      "target": [
+                        ".ws-connection"
+                      ]
+                    },
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span>",
+              "target": [
+                ".ws-connection > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.96,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Sans connexion</span>",
+              "target": [
+                ".ws-account > span:nth-child(2) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "origin": "https://kortex-web-staging.userpgl.workers.dev",
+      "path": "/workflows",
+      "status": 200,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#989a9d",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.67,
+                    "fontSize": "14.5pt (19.2993px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-brand-site\">.site</span>",
+              "target": [
+                ".ws-brand-site"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#82868a",
+                    "bgColor": "#eceef0",
+                    "contrastRatio": 3.15,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"ws-beta\">BETA</span>",
+                      "target": [
+                        ".ws-beta"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-beta\">BETA</span>",
+              "target": [
+                ".ws-beta"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#97999c",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.71,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p class=\"ws-category-heading\">CATÉGORIES</p>",
+              "target": [
+                ".ws-category-heading"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#fdfdfe",
+                    "contrastRatio": 3.07,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"ws-connection\"><p><span class=\"ws-connection-dot\" aria-hidden=\"true\"></span>App locale non connectée</p><span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span></div>",
+                      "target": [
+                        ".ws-connection"
+                      ]
+                    },
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span>",
+              "target": [
+                ".ws-connection > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.96,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Sans connexion</span>",
+              "target": [
+                ".ws-account > span:nth-child(2) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "origin": "https://kortex-web-staging.userpgl.workers.dev",
+      "path": "/workspace",
+      "status": 200,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#989a9d",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.67,
+                    "fontSize": "14.5pt (19.2993px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-brand-site\">.site</span>",
+              "target": [
+                ".ws-brand-site"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #989a9d, background color: #f8f9fb, font size: 14.5pt (19.2993px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#82868a",
+                    "bgColor": "#eceef0",
+                    "contrastRatio": 3.15,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<span class=\"ws-beta\">BETA</span>",
+                      "target": [
+                        ".ws-beta"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span class=\"ws-beta\">BETA</span>",
+              "target": [
+                ".ws-beta"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.15 (foreground color: #82868a, background color: #eceef0, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#97999c",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.71,
+                    "fontSize": "9.0pt (12.0621px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<p class=\"ws-category-heading\">CATÉGORIES</p>",
+              "target": [
+                ".ws-category-heading"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.71 (foreground color: #97999c, background color: #f8f9fb, font size: 9.0pt (12.0621px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#fdfdfe",
+                    "contrastRatio": 3.07,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<div class=\"ws-connection\"><p><span class=\"ws-connection-dot\" aria-hidden=\"true\"></span>App locale non connectée</p><span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span></div>",
+                      "target": [
+                        ".ws-connection"
+                      ]
+                    },
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Connectez Kortex Desktop pour retrouver vos outils locaux.</span>",
+              "target": [
+                ".ws-connection > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.07 (foreground color: #909294, background color: #fdfdfe, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#909294",
+                    "bgColor": "#f8f9fb",
+                    "contrastRatio": 2.96,
+                    "fontSize": "10.9pt (14.4745px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<aside class=\"ws-sidebar\" id=\"workspace-sidebar\" aria-label=\"Navigation de l’espace de travail\">",
+                      "target": [
+                        "#workspace-sidebar"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span>Sans connexion</span>",
+              "target": [
+                ".ws-account > span:nth-child(2) > span"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.96 (foreground color: #909294, background color: #f8f9fb, font size: 10.9pt (14.4745px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "error": null
+}

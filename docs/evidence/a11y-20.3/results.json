@@ -1,0 +1,722 @@
+{
+  "date": "2026-10-29T15:15:04.802Z",
+  "engine": "axe-core WCAG 2.2 AA tags; Chromium; anonymous public flows; not a full screen-reader certification",
+  "rows": [
+    {
+      "label": "/ top",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/ bottom",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/tools top",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/tools bottom",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/tools/calculatrice top",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/tools/calculatrice bottom",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/account top",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/ai top",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/ai bottom",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/workflows top",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/workflows bottom",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/workspace top",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/workspace bottom",
+      "viewport": {
+        "width": 1632,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/ top",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/ bottom",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools top",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools bottom",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools/calculatrice top",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools/calculatrice bottom",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/account top",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/ai top",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/ai bottom",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workflows top",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workflows bottom",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workspace top",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workspace bottom",
+      "viewport": {
+        "width": 1024,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/ top",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/ bottom",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools top",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools bottom",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools/calculatrice top",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools/calculatrice bottom",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/account top",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/ai top",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/ai bottom",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workflows top",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workflows bottom",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workspace top",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workspace bottom",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/ top",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/ bottom",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools top",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools bottom",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools/calculatrice top",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/tools/calculatrice bottom",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/account top",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast"
+      ]
+    },
+    {
+      "label": "/ai top",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/ai bottom",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workflows top",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workflows bottom",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workspace top",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "/workspace bottom",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "Docs dialog",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "Search dialog",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "1632px at 200% equivalent layout viewport",
+      "viewport": {
+        "width": 816,
+        "height": 500
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "aria-prohibited-attr",
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "Not-found error feedback",
+      "viewport": {
+        "width": 816,
+        "height": 500
+      },
+      "violations": [],
+      "incomplete_rules": [
+        "color-contrast",
+        "label-content-name-mismatch"
+      ]
+    },
+    {
+      "label": "Real tool calculatrice",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "violations": [],
+      "incomplete_rules": []
+    },
+    {
+      "label": "Real tool convertisseur-casse",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "violations": [],
+      "incomplete_rules": []
+    },
+    {
+      "label": "Real tool calculateur-hash",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "violations": [],
+      "incomplete_rules": []
+    },
+    {
+      "label": "Real tool timestamp-utc",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "violations": [],
+      "incomplete_rules": []
+    },
+    {
+      "label": "Real tool explorateur-csv",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "violations": [],
+      "incomplete_rules": []
+    }
+  ]
+}

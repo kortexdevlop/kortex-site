@@ -1,5 +1,7 @@
 # Progression
 
+Lot 20.2–20.3 : vérifications locales Windows/Chromium réussies, rapports et preuves joints. Clôture staging en attente du quota D1 partagé épuisé par la charge 20.1 ; incident et prévention documentés. Aucun passage à 20.4. Les notes suivantes sont historiques.
+
 Lot 19.5–20.1 du 29/10/2026 : **trois étapes closes techniquement dans le périmètre staging Windows/Chromium autorisé**. Reprise release réelle éprouvée, plan QA traçant 22 exigences, catalogue privé de 10 000 puis 10 001 fiches sans rebuild en 4 432 ms. p95 HTTPS : liste 97,29 ms et détail 91,67 ms, sur 100 observations chacune à 10 req/s. Nettoyage final réussi ; calibration et ses coûts/échecs conservés. Catalogue réel de six outils, production, DNS et messagerie préservés. Implémentation b841c05904f56ba059be8f61a10bcece4d610ae4 ; validation GitHub 40856245744 entièrement réussie (contrats, Windows natif, Web et sécurité). Les gates V1 finaux et approbations humaines restent distincts ; 20.2 non engagée.
 
 Lot 18.3–19.4 du 29/10/2026 : **18.3 et 19.0 à 19.4 closes techniquement sur Windows x64 / Chromium-WebView2 / staging.** CI complète verte sur 4950cbadb2a25a4ca377838f1cb54b4c2eeec397 (40844352974) : 188 Rust, 91 API, 27 Chromium ; un smoke HTTPS externe optionnel reste explicitement ignoré. Sixième outil Base64 publié, exécuté réellement et relivré sans modifier archive, date, site ou Runtime. Déploiements séparés, rollback API CI et rollback Runtime avec calcul réel vérifiés. Installateur Windows reconstruit avec le bon WebView2 x64 Microsoft, testé sur machine fraîche puis publié en préversion immuable ; provenance/checksum et canal signé séquence 4 vérifiés. Production, DNS, messagerie, secrets applicatifs existants et quotas IA conservés. 18.2/18.4 restent partielles pour Google réel, rétention et revue humaine/licences ; certificat Windows de production absent. La clôture technique ne remplace pas une approbation humaine formelle et ne lève aucun gate production. Rapports STEP-19.0 à STEP-19.4 et preuves pipeline-*. Les notes suivantes sont historiques.
@@ -2146,6 +2148,38 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "technical_scope": "Windows x64 / Chromium-WebView2 / staging privé ; Linux/macOS/Firefox exclus",
     "remaining_gate": "Production, signature Windows et Google réel/rétention/revues humaines restent distincts ; gates 20.2–20.5 et 21–22 non réalisés par ce lot.",
     "limitations": "Clôture technique dans le périmètre autorisé ; statuts formels et approbations humaines non fabriqués."
+  },
+  {
+    "id": "20.2",
+    "status": "pending",
+    "source_commit": "c1692b8",
+    "result_commit": "1c77871215fd405d02835d55f90c1d4890b355f9",
+    "report_path": "docs/reports/STEP-20.2.md",
+    "tests_executed": "5 outils signés ; 10 froids et 100 actions/outil Web et Wasmtime ; 50 cycles ; huit fenêtres ; 13 tests natifs ciblés réussis.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/runtime-native-performance.json",
+      "docs/evidence/runtime-web-performance.json"
+    ],
+    "frozen": false,
+    "technical_status": "local_verified_awaiting_staging",
+    "remaining_gate": "Quota D1 partagé et nouveau passage CI ; D1_QUOTA_INCIDENT.md."
+  },
+  {
+    "id": "20.3",
+    "status": "pending",
+    "source_commit": "c1692b8",
+    "result_commit": "1c77871215fd405d02835d55f90c1d4890b355f9",
+    "report_path": "docs/reports/STEP-20.3.md",
+    "tests_executed": "33 tests Chromium réussis, axe zéro sérieux/critique, clavier, 4 largeurs, Narrateur et comparaison visuelle.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/a11y-20.3/results.json",
+      "docs/evidence/a11y-20.3/reference-geometry.json"
+    ],
+    "frozen": false,
+    "technical_status": "local_verified_awaiting_staging",
+    "remaining_gate": "Quota D1 partagé et nouveau passage CI ; D1_QUOTA_INCIDENT.md."
   }
 ]
 ```

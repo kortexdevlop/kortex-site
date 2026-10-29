@@ -1,0 +1,212 @@
+{
+  "reference_sha256": "22b72dd91b43675643c8bf996074690916bec86b5ebd55d785aeff2fae603067",
+  "render_sha256": "df4e04c5f6f600f8d596d825e03c6028e35d7d19c55adc7675ccf93e2eba75c9",
+  "size": [
+    2706,
+    1764
+  ],
+  "mean_absolute_rgb_error_0_255": 5.168432,
+  "root_mean_square_rgb_error": 23.986769,
+  "samples": [
+    {
+      "name": "outer",
+      "position": [
+        0,
+        0
+      ],
+      "reference_rgb": [
+        238.0,
+        240.0,
+        243.0
+      ],
+      "render_rgb": [
+        238.0,
+        240.0,
+        243.0
+      ],
+      "ciede2000": 0.0
+    },
+    {
+      "name": "sidebar",
+      "position": [
+        200,
+        1100
+      ],
+      "reference_rgb": [
+        248.0,
+        249.0,
+        251.0
+      ],
+      "render_rgb": [
+        248.0,
+        249.0,
+        251.0
+      ],
+      "ciede2000": 0.0
+    },
+    {
+      "name": "selected_navigation",
+      "position": [
+        200,
+        280
+      ],
+      "reference_rgb": [
+        231.0,
+        232.0,
+        234.0
+      ],
+      "render_rgb": [
+        231.0,
+        232.0,
+        234.0
+      ],
+      "ciede2000": 0.0
+    },
+    {
+      "name": "cyan",
+      "position": [
+        1600,
+        200
+      ],
+      "reference_rgb": [
+        216.0,
+        244.0,
+        255.0
+      ],
+      "render_rgb": [
+        216.0,
+        244.0,
+        255.0
+      ],
+      "ciede2000": 0.0
+    },
+    {
+      "name": "upper_left",
+      "position": [
+        600,
+        200
+      ],
+      "reference_rgb": [
+        240.0,
+        246.0,
+        251.0
+      ],
+      "render_rgb": [
+        235.0,
+        246.0,
+        252.0
+      ],
+      "ciede2000": 2.03276
+    },
+    {
+      "name": "composer",
+      "position": [
+        1000,
+        600
+      ],
+      "reference_rgb": [
+        252.0,
+        254.0,
+        255.0
+      ],
+      "render_rgb": [
+        253.0,
+        254.0,
+        255.0
+      ],
+      "ciede2000": 0.49284
+    },
+    {
+      "name": "neutral",
+      "position": [
+        600,
+        900
+      ],
+      "reference_rgb": [
+        245.0,
+        248.0,
+        250.0
+      ],
+      "render_rgb": [
+        245.0,
+        248.0,
+        251.0
+      ],
+      "ciede2000": 0.52215
+    },
+    {
+      "name": "lilac",
+      "position": [
+        2550,
+        1650
+      ],
+      "reference_rgb": [
+        248.0,
+        238.0,
+        254.0
+      ],
+      "render_rgb": [
+        247.0,
+        239.0,
+        253.0
+      ],
+      "ciede2000": 1.16012
+    },
+    {
+      "name": "image_icon",
+      "position": [
+        630,
+        1385
+      ],
+      "reference_rgb": [
+        212.0,
+        240.0,
+        255.0
+      ],
+      "render_rgb": [
+        212.0,
+        240.0,
+        255.0
+      ],
+      "ciede2000": 0.0
+    },
+    {
+      "name": "document_icon",
+      "position": [
+        2160,
+        1385
+      ],
+      "reference_rgb": [
+        255.0,
+        228.0,
+        218.0
+      ],
+      "render_rgb": [
+        255.0,
+        228.0,
+        218.0
+      ],
+      "ciede2000": 0.0
+    },
+    {
+      "name": "developer_icon",
+      "position": [
+        1150,
+        1690
+      ],
+      "reference_rgb": [
+        218.0,
+        243.0,
+        225.0
+      ],
+      "render_rgb": [
+        218.0,
+        243.0,
+        225.0
+      ],
+      "ciede2000": 0.0
+    }
+  ],
+  "maximum_sample_ciede2000": 2.03276,
+  "limits": "RGB error is a descriptive metric, not a perceptual similarity percentage. Sample Delta E only applies to listed flat zones. Original font is unidentified; no perfect pixel identity claimed."
+}

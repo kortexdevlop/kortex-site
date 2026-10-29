@@ -1,0 +1,155 @@
+{
+  "date": "2026-10-29T15:15:06.400Z",
+  "source_sha256": "22b72dd91b43675643c8bf996074690916bec86b5ebd55d785aeff2fae603067",
+  "human_approved": false,
+  "rows": [
+    {
+      "name": "sidebar",
+      "actual": {
+        "x": 26,
+        "y": 26,
+        "width": 444,
+        "height": 1712
+      },
+      "expected": {
+        "x": 26,
+        "y": 26,
+        "width": 444,
+        "height": 1712
+      },
+      "deviations": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "name": "main",
+      "actual": {
+        "x": 498,
+        "y": 26,
+        "width": 2182,
+        "height": 1712
+      },
+      "expected": {
+        "x": 498,
+        "y": 26,
+        "width": 2182,
+        "height": 1712
+      },
+      "deviations": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "name": "header",
+      "actual": {
+        "x": 498,
+        "y": 26,
+        "width": 2182,
+        "height": 126
+      },
+      "expected": {
+        "x": 498,
+        "y": 26,
+        "width": 2182,
+        "height": 126
+      },
+      "deviations": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "name": "composer",
+      "actual": {
+        "x": 815,
+        "y": 458,
+        "width": 1520,
+        "height": 280
+      },
+      "expected": {
+        "x": 815,
+        "y": 458,
+        "width": 1520,
+        "height": 280
+      },
+      "deviations": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "name": "firstRecent",
+      "actual": {
+        "x": 578,
+        "y": 1008,
+        "width": 479,
+        "height": 132
+      },
+      "expected": {
+        "x": 578,
+        "y": 1008,
+        "width": 479,
+        "height": 132
+      },
+      "deviations": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "name": "firstTool",
+      "actual": {
+        "x": 578,
+        "y": 1320,
+        "width": 479,
+        "height": 304
+      },
+      "expected": {
+        "x": 578,
+        "y": 1320,
+        "width": 479,
+        "height": 304
+      },
+      "deviations": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "name": "connection",
+      "actual": {
+        "x": 50,
+        "y": 1414,
+        "width": 396,
+        "height": 176
+      },
+      "expected": {
+        "x": 50,
+        "y": 1414,
+        "width": 396,
+        "height": 176
+      },
+      "deviations": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    }
+  ],
+  "limitation": "Muted text deliberately darkened for WCAG contrast; original reference unchanged. Geometry is measured, not pixel-perfect identity."
+}

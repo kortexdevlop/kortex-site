@@ -58,3 +58,8 @@ Les autres seuils Runtime/ressources, accessibilité, résilience et sécurité 
 Un échec conserve sa preuve datée. Un test ignoré doit avoir une raison et ne peut satisfaire un gate critique. Le smoke HTTPS externe facultatif des tests Rust reste explicitement exclu de la validation locale ; les essais Cloudflare réels apportent une preuve distincte. Une exécution sur fixtures ou un double de test n’est jamais présentée comme une exécution distante. Les identifiants de ressources temporaires sont audités, les secrets exclus des rapports, et le nettoyage fait partie du résultat.
 
 Exécution reproductible et versions : [QA_BASELINE](reports/QA_BASELINE.md), [recettes E2E](../tests/e2e/README.md). Les états formels du registre restent soumis aux approbations existantes ; les statuts techniques sont séparés.
+
+
+## Complément 20.2–20.3
+
+Gates locaux décrits dans RUNTIME_PERFORMANCE et DESIGN_A11Y ; staging en attente, voir docs/reports/D1_QUOTA_INCIDENT.md. La charge 10k exige un compte QA distinct et budgets D1 explicites. QA Runtime/interface sans cloud : node scripts/qa-verify.mjs après préparation fixtures/builds.

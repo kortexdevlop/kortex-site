@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-29T15:10:24.202Z",
+  "scope": "real signed packages / Chromium on Windows / loopback transport, no cloud mutation",
+  "hardware": {
+    "cpu": "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz",
+    "logical_cpus": 8,
+    "memory_bytes": 25713045504,
+    "windows": "10.0.22621"
+  },
+  "tools": [],
+  "passed": false,
+  "test_failures": [
+    {
+      "test": "eight real local workspace windows remain responsive and preserve all guests",
+      "status": "failed"
+    }
+  ]
+}

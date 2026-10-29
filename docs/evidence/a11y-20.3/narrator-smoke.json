@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-29T11:15:35.810Z",
+  "platform": "Windows 11 / native Narrator / visible Chromium",
+  "url": "http://127.0.0.1:4322/",
+  "steps": [
+    "Narrator.exe started from pre-existing Windows install",
+    "Native Windows accessibility tree exposes main, headings, labeled form controls and tool links",
+    "Tab then Enter activates Aller au contenu and highlights main",
+    "Narrator scan H moves to Récents heading; observed cyan focus rectangle",
+    "Narrator scan Shift+E moves to labeled task textarea; observed cyan focus rectangle"
+  ],
+  "screenshots": [
+    "narrator-heading.jpg",
+    "narrator-field.jpg"
+  ],
+  "scope": "Observed real assistive-technology keyboard navigation and UIA structure; speech was not recorded or subjectively assessed; no certification or human approval claimed"
+}

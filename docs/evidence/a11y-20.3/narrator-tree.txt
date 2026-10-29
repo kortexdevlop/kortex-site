@@ -1,0 +1,98 @@
+										90 lien Kortex.site — accueil Value: http://127.0.0.1:4322/
+										91 Bouton Nouvelle tâche
+										92 navigation Espace de travail
+											93 Bouton Accueil
+											94 Bouton Tous les outils 6
+											95 Bouton Favoris 0
+											96 Bouton Installés 0
+										97 lien Assistant Value: http://127.0.0.1:4322/ai
+										98 lien Parcours Value: http://127.0.0.1:4322/workflows
+										99 lien Bureau Value: http://127.0.0.1:4322/workspace
+										100 Texte CATÉGORIES
+										101 navigation Catégories
+											102 Bouton calculation 1
+											103 Bouton data 1
+											104 Bouton Développeur 3
+											105 Bouton Sécurité 1
+										106 Texte App locale non connectée
+										107 Texte Connectez Kortex Desktop pour retrouver vos outils locaux.
+										108 Bouton K Mon espace Sans connexion
+									109 en-tête de section
+										110 Texte Espace de travail
+										111 Texte Accueil
+										112 rechercher Rechercher partout
+											113 Texte Rechercher partout
+											114 Modifier (settable, string) Rechercher partout Description: Rechercher partout ID: ws-global-query
+										115 Bouton Docs
+									116 principal ID: workspace-main
+										117 région Que voulez-vous faire aujourd'hui ?
+											118 titre Que voulez-vous faire aujourd'hui ? ID: workspace-title
+											119 Texte Décrivez votre besoin ou déposez un fichier. Kortex propose le bon outil.
+											120 Texte Décrivez votre besoin
+											121 Modifier (settable, string) Décrivez votre besoin Description: Ex. compresser 40 photos pour le web, convertir un PDF en Word... ID: ws-task
+											122 Bouton + Déposer un fichier
+											123 Bouton Choisir un fichier: Aucun fichier choisi Value: Aucun fichier choisi ID: ws-file
+											124 Groupe Disponibilité des outils
+												125 Texte Disponibilité des outils
+												126 case d’option (selectable, settable, string) Tous
+												127 Texte Tous
+												128 case d’option (selectable, settable, string) En ligne
+												129 Texte En ligne
+												130 case d’option (selectable, settable, string) Local
+												131 Texte Local
+											132 Bouton Trouver le bon outil
+											133 Groupe Suggestions de tâches
+												134 Bouton Compresser une image
+												135 Bouton PDF vers Word
+												136 Bouton Formater du JSON
+												137 Bouton Créer un QR code
+										138 région Récents
+											139 titre Récents ID: ws-recent-title
+											140 Bouton Tout voir
+											141 Texte Vos activités récentes s’afficheront ici.
+										142 région Tous les outils 6 outils ID: workspace-tools
+											143 titre Tous les outils 6 outils ID: ws-tools-title
+											144 Groupe Affichage des outils
+												145 bouton d'activation/de désactivation Grille
+												146 bouton d'activation/de désactivation Liste
+											147 article
+												148 lien WEB Encodeur Base64 Encodez du texte UTF-8 en Base64 sur votre appareil. Value: http://127.0.0.1:4322/tools/encodeur-base64
+													149 titre Encodeur Base64
+												150 bouton d'activation/de désactivation Favori : Encodeur Base64
+											151 article
+												152 lien WEB Calculatrice Addition, soustraction, multiplication et division en local. Value: http://127.0.0.1:4322/tools/calculatrice
+													153 titre Calculatrice
+												154 bouton d'activation/de désactivation Favori : Calculatrice
+											155 article
+												156 lien WEB Explorateur CSV Explorez un fichier CSV local : aperçu, statistiques et graphique. Value: http://127.0.0.1:4322/tools/explorateur-csv
+													157 titre Explorateur CSV
+												158 bouton d'activation/de désactivation Favori : Explorateur CSV
+											159 article
+												160 lien WEB Dates UTC et Unix Convertissez les dates UTC et timestamps Unix, en secondes ou millisecondes. Value: http://127.0.0.1:4322/tools/timestamp-utc
+													161 titre Dates UTC et Unix
+												162 bouton d'activation/de désactivation Favori : Dates UTC et Unix
+											163 article
+												164 lien WEB Calculateur SHA-256 Calculez localement l’empreinte SHA-256 d’un fichier. Value: http://127.0.0.1:4322/tools/calculateur-hash
+													165 titre Calculateur SHA-256
+												166 bouton d'activation/de désactivation Favori : Calculateur SHA-256
+											167 article
+												168 lien WEB Convertisseur de casse Majuscules, minuscules et initiales, sans envoyer votre texte. Value: http://127.0.0.1:4322/tools/convertisseur-casse
+													169 titre Convertisseur de casse
+												170 bouton d'activation/de désactivation Favori : Convertisseur de casse
+											171 lien Parcourir tous les outils → Value: http://127.0.0.1:4322/tools
+							27 région
+						28 région
+							29 région
+								30 Bouton Recherche dans les onglets
+							31 région ID: view_21
+								32 tabulation
+									33 tab item (selectable) Kortex — Espace de travail ID: view_20
+										34 Bouton Fermer
+								35 région
+							36 Bouton Nouvel onglet
+							37 région
+						38 région
+
+Document text: ```
+￼
+```

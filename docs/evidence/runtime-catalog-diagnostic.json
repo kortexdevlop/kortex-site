@@ -1,0 +1,324 @@
+{
+  "date": "2026-10-29T13:29:09.312Z",
+  "name": "kortex-runtime-diag-534be467",
+  "shared_database_read_only": true,
+  "rows": [
+    {
+      "status": 200,
+      "failure": null
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "23b7537f-819e-4ae3-a190-4cf7da70f10e"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "de0ab4a6-de86-43d0-beda-ad0623c6108a"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "6eb257dc-df45-4b97-b153-bf70d7f7b84d"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "54434335-6417-465d-8a0e-27a11c651377"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "0309a047-37be-4e2a-b74e-b9f8e1de0a99"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "04cdf97b-858b-4339-825d-2c29095ff6bd"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "c69401e3-0c17-4623-8a59-f3e572b326fb"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "e8e4da61-2b8c-432e-8f87-67c2fc43bfab"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "4c6f19eb-6e6a-4cea-a56d-1d3e9df85de5"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "01537b91-4b48-42f3-a50e-a4c1bdb2836a"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "ffee8de7-07d3-4f25-a1a2-bff970b7f2cb"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "405c445a-e8ed-4387-b3f3-7d8179c94881"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "1c314f02-ff8d-4fe4-942d-28bde235eb24"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "5e8bd725-93d5-493b-aa0b-d409321487b0"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "e43dbac8-5b9d-4b43-8215-7f6b539f0ca1"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "d05b92ef-1b67-420f-8644-ee163744bd8a"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "2b393ac7-0687-4db8-8bd0-54858e62a014"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "2bcba019-1467-4751-b4f5-5a3a2f1a3613"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "57b3e146-8aec-48ec-9e3f-8ef5a09f2f73"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "015d1ef0-d2ec-48ce-8541-6ae0552039c0"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "dd0c2777-4a5c-4ef6-b68d-69abe406b98a"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "93a78485-d386-4806-99b6-a47329349392"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "7f6a75ca-a999-4809-9d4f-1dd5b196a3e8"
+      }
+    },
+    {
+      "status": 503,
+      "failure": {
+        "name": "Error",
+        "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.",
+        "cause": "Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+      },
+      "error": {
+        "code": "UNAVAILABLE",
+        "message": "Catalog unavailable",
+        "request_id": "195bc7d1-fc5e-4cdc-82d0-9006db5c1c89"
+      }
+    }
+  ],
+  "cleanup": true
+}
