@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29T15:51:05.181Z",
+  "commit": "a2ec09e8d50def8a4801915c1a78daa63b3753fb",
+  "scope": "Windows x64 / Chromium-WebView2",
+  "release_candidate": false,
+  "production_ready": false,
+  "blockers": [
+    "ci_same_commit",
+    "ci_native",
+    "ci_web",
+    "ci_security",
+    "staging",
+    "artifact_source_api",
+    "artifact_source_site",
+    "artifact_source_runtime",
+    "artifact_source_windows_installer",
+    "artifact_source_native_sbom",
+    "artifact_source_web_sbom",
+    "windows_code_signing",
+    "human_approval"
+  ],
+  "evidence": {
+    "commit": "a2ec09e8d50def8a4801915c1a78daa63b3753fb",
+    "scope": "Windows x64 / Chromium-WebView2",
+    "ci": {
+      "commit": "c026f2d8a64229a16d68e191aa5e48b4687eeef3",
+      "run_id": 40904514247,
+      "lanes": {
+        "contracts": "success",
+        "native": "in_progress",
+        "web": "in_progress",
+        "security": "in_progress"
+      }
+    },
+    "gates": {
+      "staging": false,
+      "runtime_performance": true,
+      "design_a11y": true,
+      "resilience": true,
+      "security": true
+    },
+    "tools": [
+      {
+        "id": "calculatrice",
+        "sha256": "b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f",
+        "signature_verified": true,
+        "signature_evidence": "runtime-local-gate.json + native/web signed tool tests"
+      },
+      {
+        "id": "convertisseur-casse",
+        "sha256": "98c145ea02adba455778b82e4de21cbcbc565bd96333839cdb8cc9f6c5432ad3",
+        "signature_verified": true,
+        "signature_evidence": "runtime-local-gate.json + native/web signed tool tests"
+      },
+      {
+        "id": "calculateur-hash",
+        "sha256": "d04f567dfc516d2599226049767805539482eb3a0c99f4f716db33b8599139a5",
+        "signature_verified": true,
+        "signature_evidence": "runtime-local-gate.json + native/web signed tool tests"
+      },
+      {
+        "id": "timestamp-utc",
+        "sha256": "04aa4c0959bf6c4e61c1de1879e77473b0eb3145f23d16bb2939f7911ee559cb",
+        "signature_verified": true,
+        "signature_evidence": "runtime-local-gate.json + native/web signed tool tests"
+      },
+      {
+        "id": "explorateur-csv",
+        "sha256": "6e3d469155df26e1157f28976a9c7de7b83ad8b6bc264b69705fa69ecaa220a2",
+        "signature_verified": true,
+        "signature_evidence": "runtime-local-gate.json + native/web signed tool tests"
+      }
+    ],
+    "artifacts": {
+      "api": {
+        "sha256": "ca86f37d45f58d683fd2f361151c016ec5ff49ab15b79f801aa6b786fb74d126",
+        "source_commit": "c026f2d8a64229a16d68e191aa5e48b4687eeef3",
+        "kind": "local dry-run Worker bundle"
+      },
+      "site": {
+        "sha256": "18cb241a613585daf67a8d00f32dd43062089aca08d149bb0e2d27b8c135fb3c",
+        "source_commit": "1c77871215fd405d02835d55f90c1d4890b355f9",
+        "kind": "local tree manifest; unchanged site build from prior gate"
+      },
+      "runtime": {
+        "sha256": "e139eba106eff5624ca66b8f103dc7bf00a6a469b1924a9ccf94c3f232268bee",
+        "source_commit": "1c77871215fd405d02835d55f90c1d4890b355f9",
+        "version": "1.0.2",
+        "kind": "local immutable bundle manifest; not deployed"
+      },
+      "windows_installer": {
+        "url": "https://github.com/kortexdevlop/kortex-site/releases/download/desktop-staging-v1.0.0/KortexDesktop_1.0.0_x64-setup.exe",
+        "bytes": 225520032,
+        "sha256": "f73a0a4c74376b7d741d04fc06bf67ffacce001324a05aadd0846bbdf30ef9ac",
+        "github_digest_verified": true,
+        "code_signed": false,
+        "source_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
+        "kind": "historical staging installer, not rebuilt for this RC"
+      },
+      "native_sbom": {
+        "sha256": "ba2b1e0465e946cf969080aded6702a4cdcc3483eea14c0bb417e219ccec6bf1",
+        "source_commit": "c026f2d8a64229a16d68e191aa5e48b4687eeef3",
+        "kind": "CycloneDX dependency inventory"
+      },
+      "web_sbom": {
+        "sha256": "fbf40552f0b4e25ad86fb8d1ffc0df9740997942292ddcf5a2210744c4a8159a",
+        "source_commit": "c026f2d8a64229a16d68e191aa5e48b4687eeef3",
+        "kind": "CycloneDX dependency inventory"
+      }
+    },
+    "windows_code_signed": false,
+    "human_approved": false,
+    "remaining_production_gates": [
+      "Google OAuth clients absent; email authentication available",
+      "Windows signing certificate absent",
+      "financial ceilings, retention and operational notification destination not configured",
+      "human security/license review and V1 acceptance"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-29T15:45:28.963Z",
+  "implementation_commit": "a2ec09e8d50def8a4801915c1a78daa63b3753fb",
+  "scope": "Windows x64 / Chromium-WebView2",
+  "api": {
+    "passed": 100,
+    "failed": 0,
+    "total": 100
+  },
+  "browser": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0
+  },
+  "native": {
+    "passed": 188,
+    "failed": 0,
+    "ignored": 1,
+    "exit_code": 0,
+    "full_workspace": true,
+    "ignored_reason": "Default suite optional HTTPS smoke was executed separately and passed",
+    "live_https": {
+      "passed": 1,
+      "failed": 0,
+      "ignored": 0,
+      "profile": "desktop-release",
+      "evidence": "resilience-native-live.log"
+    }
+  },
+  "source_hashes": {
+    "api/src/lib/telemetry.ts": "0f6a4ece9fae58e80525687b83a44988dddde1a79fa6a21f0d0e9025f70f29bd",
+    "api/src/index.ts": "ce09e30eaac8a099840366a452cf9bc52fc956af3ba6a47a976180e10e26ada0",
+    "api/tests/resilience.test.ts": "f99933d5c339e16c4bc37eb1f068d07bcfca14f2c6dcffaa381db4c81dc66efd",
+    "tests/resilience/end-to-end.spec.ts": "b84d1d5be27848008ec9db8a0b4d243184d4306ee0fde44079f397d9c340ac3d",
+    "desktop/tests/common/mod.rs": "7edc95343a0322d9833301ee59e057b90983d6a23a552844181433185f126868",
+    "desktop/tests/installer.rs": "65884cdde95ceb75ae18086d34690e042897cf85855753419da9cffe445a829b",
+    "scripts/release-candidate.mjs": "61df43154ab50b2afb101d6b331659dfe58004f4df78ac94b495191cfe85521c",
+    "Cargo.lock": "f7c9ca4d49bc23fb21d8f3650dec8331ddfd707def0c8687e3d414a3358b7afd",
+    "pnpm-lock.yaml": "fa232db58c8080bfa0febe510745f840cbfeec9641978ed2488f2eb94ecc5f0a"
+  },
+  "production_fault_injection": false,
+  "shared_d1_load": false
+}

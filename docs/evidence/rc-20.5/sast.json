@@ -1,0 +1,6 @@
+{
+  "tool": "TypeScript compiler AST",
+  "scope": "production TypeScript/TSX dynamic code and unsafe JSX; Rust clippy separately",
+  "files": 103,
+  "findings": []
+}

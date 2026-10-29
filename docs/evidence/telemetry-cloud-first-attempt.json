@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-29T15:37:16.269Z",
+  "owner": "kortex-observe-qa-8b332221",
+  "passed": false,
+  "cleanup": true,
+  "d1_bindings": 0,
+  "r2_bindings": 0,
+  "ai_bindings": 0,
+  "notification_sent": false,
+  "http_requests": 6
+}

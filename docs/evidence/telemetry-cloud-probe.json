@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-29T15:39:13.616Z",
+  "owner": "kortex-observe-qa-63bdb212",
+  "passed": true,
+  "cleanup": true,
+  "d1_bindings": 0,
+  "r2_bindings": 0,
+  "ai_bindings": 0,
+  "notification_sent": false,
+  "http_requests": 203,
+  "rounds": [
+    {
+      "injected_503": 3,
+      "summary": {
+        "requests": 100,
+        "errors": 3,
+        "limited": 0,
+        "error_rate": 0.03,
+        "p95_ms": 0,
+        "latency_samples": 100,
+        "alert": true
+      }
+    },
+    {
+      "injected_503": 0,
+      "summary": {
+        "requests": 100,
+        "errors": 0,
+        "limited": 0,
+        "error_rate": 0,
+        "p95_ms": 0,
+        "latency_samples": 100,
+        "alert": false
+      }
+    }
+  ],
+  "final_inventory_check": {
+    "date": "2026-10-29T15:54:35.467Z",
+    "owned_workers_remaining": 0
+  }
+}

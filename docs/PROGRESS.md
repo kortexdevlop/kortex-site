@@ -1,5 +1,7 @@
 # Progression
 
+Lot 20.4–21.0 : résilience locale vérifiée (188 Rust + HTTPS réel séparé, 100 API, 7 Chromium). RC préparée mais non gelée : CI finale/staging et signature Windows restent bloquants. Supervision à métadonnées bornées testée, dont sonde Cloudflare privée nettoyée ; aucune notification ni collecte globale continue activée. Aucun passage à 21.1. Rapports STEP-20.4, STEP-20.5 et STEP-21.0. Les notes suivantes sont historiques.
+
 Lot 20.2–20.3 : vérifications locales Windows/Chromium réussies, rapports et preuves joints. Clôture staging en attente du quota D1 partagé épuisé par la charge 20.1 ; incident et prévention documentés. Aucun passage à 20.4. Les notes suivantes sont historiques.
 
 Lot 19.5–20.1 du 29/10/2026 : **trois étapes closes techniquement dans le périmètre staging Windows/Chromium autorisé**. Reprise release réelle éprouvée, plan QA traçant 22 exigences, catalogue privé de 10 000 puis 10 001 fiches sans rebuild en 4 432 ms. p95 HTTPS : liste 97,29 ms et détail 91,67 ms, sur 100 observations chacune à 10 req/s. Nettoyage final réussi ; calibration et ses coûts/échecs conservés. Catalogue réel de six outils, production, DNS et messagerie préservés. Implémentation b841c05904f56ba059be8f61a10bcece4d610ae4 ; validation GitHub 40856245744 entièrement réussie (contrats, Windows natif, Web et sécurité). Les gates V1 finaux et approbations humaines restent distincts ; 20.2 non engagée.
@@ -2180,6 +2182,62 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "frozen": false,
     "technical_status": "local_verified_awaiting_staging",
     "remaining_gate": "Quota D1 partagé et nouveau passage CI ; D1_QUOTA_INCIDENT.md."
+  },
+  {
+    "id": "20.4",
+    "status": "pending",
+    "source_commit": "4b9b4d990faeb76223323f34efa965a74bd015ff",
+    "result_commit": "a2ec09e8d50def8a4801915c1a78daa63b3753fb",
+    "report_path": "docs/reports/STEP-20.4.md",
+    "tests_executed": "188 Rust complets + 1 HTTPS réel séparé, 100 API, 7 Chromium, 10 installateur/update ciblés : réussis.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/resilience-validation.json",
+      "docs/evidence/resilience-native.log",
+      "docs/evidence/resilience-native-live.log",
+      "docs/evidence/resilience-web.json"
+    ],
+    "frozen": false,
+    "technical_status": "local_verified_awaiting_staging",
+    "authorization": "Propriétaire : Enchaîne 20.4 jusqu’à 21.0",
+    "technical_scope": "Windows x64 / Chromium-WebView2",
+    "remaining_gate": "CI/staging de la révision finale après quota D1."
+  },
+  {
+    "id": "20.5",
+    "status": "pending",
+    "source_commit": "4b9b4d990faeb76223323f34efa965a74bd015ff",
+    "result_commit": "a2ec09e8d50def8a4801915c1a78daa63b3753fb",
+    "report_path": "docs/reports/STEP-20.5.md",
+    "tests_executed": "Évaluateur RC : 2 tests réussis ; inventaire réel refusé comme attendu ; scanner sécurité zéro finding bloquant.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/v1-signed-matrix.json",
+      "docs/evidence/rc-20.5/gate.json"
+    ],
+    "frozen": false,
+    "technical_status": "prepared_not_frozen",
+    "authorization": "Propriétaire : Enchaîne 20.4 jusqu’à 21.0",
+    "technical_scope": "Windows x64 / Chromium-WebView2",
+    "remaining_gate": "CI complète, staging, artefacts révision commune, signature Windows et approbation finale."
+  },
+  {
+    "id": "21.0",
+    "status": "pending",
+    "source_commit": "4b9b4d990faeb76223323f34efa965a74bd015ff",
+    "result_commit": "a2ec09e8d50def8a4801915c1a78daa63b3753fb",
+    "report_path": "docs/reports/STEP-21.0.md",
+    "tests_executed": "4 tests API de télémétrie + CLI alerte/rétablissement ; 298 événements locaux ; sonde Cloudflare privée 203 requêtes, alerte puis rétablissement et nettoyage réussis.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/telemetry-cloud-probe.json",
+      "docs/evidence/telemetry-local-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "implemented_verified_pending_activation",
+    "authorization": "Propriétaire : Enchaîne 20.4 jusqu’à 21.0",
+    "technical_scope": "Windows x64 / Chromium-WebView2",
+    "remaining_gate": "Déploiement staging après gates ; collecteur global, astreinte et destination de notification à configurer avant activation continue."
   }
 ]
 ```

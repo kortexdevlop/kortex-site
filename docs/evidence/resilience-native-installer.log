@@ -1,0 +1,53 @@
+   Compiling futures-util v0.3.34
+   Compiling time v0.3.55
+   Compiling dioxus-interpreter-js v0.7.10
+   Compiling sledgehammer_bindgen_macro v0.6.5
+   Compiling dioxus-cli-config v0.7.10
+   Compiling dioxus-config-macro v0.7.10
+   Compiling dioxus-asset-resolver v0.7.10
+   Compiling sledgehammer_bindgen v0.6.0
+   Compiling cookie v0.18.2
+   Compiling wry v0.53.5
+   Compiling dioxus-core v0.7.10
+   Compiling hyper-util v0.1.21
+   Compiling tower v0.5.3
+   Compiling tower-http v0.6.11
+   Compiling hyper-rustls v0.27.10
+   Compiling reqwest v0.12.28
+   Compiling dioxus-signals v0.7.10
+   Compiling dioxus-devtools-types v0.7.10
+   Compiling dioxus-history v0.7.10
+   Compiling dioxus-hooks v0.7.10
+   Compiling dioxus-devtools v0.7.10
+   Compiling dioxus-stores v0.7.10
+   Compiling dioxus-html v0.7.10
+   Compiling kortex-runtime-native v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-runtime-native)
+   Compiling dioxus-document v0.7.10
+   Compiling dioxus-desktop v0.7.10
+   Compiling dioxus v0.7.10
+   Compiling kortex-ui v1.0.0 (C:\Users\µ\Desktop\KORTEX-\crates\kortex-ui)
+   Compiling kortex-runtime-desktop v1.0.0 (C:\Users\µ\Desktop\KORTEX-\runtime\desktop)
+   Compiling kortex-desktop v1.0.0 (C:\Users\µ\Desktop\KORTEX-\desktop)
+    Finished `test` profile [unoptimized] target(s) in 38.95s
+     Running tests\installer.rs (target\debug\deps\installer-0cb669b15288af74.exe)
+
+running 5 tests
+test signed_zip_traversal_is_rejected_without_writing_outside_the_install ... ok
+test cancellation_during_streaming_removes_partial_download ... ok
+test invalid_signature_unconfirmed_permissions_and_unwritable_storage_are_refused ... ok
+test signed_install_is_atomic_idempotent_and_never_extracts_guest_paths ... ok
+test interrupted_tampered_oversized_redirect_and_cancelled_downloads_leave_no_active_package ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.38s
+
+     Running tests\updates.rs (target\debug\deps\updates-a1020f6785cc2031.exe)
+
+running 5 tests
+test semver_precedence_ignores_build_metadata_and_checks_minimum_runtime ... ok
+test cancel_before_activation_preserves_old_current_and_profile ... ok
+test unconfirmed_first_launch_rollback_restores_saved_data_and_blocks_failed_version ... ok
+test real_guest_start_failure_and_migration_failure_leave_old_version_and_data_intact ... ok
+test semver_permissions_and_successful_update_retain_old_version_until_confirmed_start ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 10.61s
+

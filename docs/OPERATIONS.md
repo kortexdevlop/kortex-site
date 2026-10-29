@@ -26,3 +26,10 @@ Ne pas utiliser les anciens scripts `web-hot-publish.mjs` ou `benchmark-search-s
 ## Complément 20.2–20.3
 
 Gates locaux décrits dans RUNTIME_PERFORMANCE et DESIGN_A11Y ; staging en attente, voir docs/reports/D1_QUOTA_INCIDENT.md. La charge 10k exige un compte QA distinct et budgets D1 explicites. QA Runtime/interface sans cloud : node scripts/qa-verify.mjs après préparation fixtures/builds.
+
+
+## Supervision 21.0
+
+Métadonnées serveur autorisées uniquement ; aucun corps, fichier, prompt, email, IP, cookie, token ou identifiant utilisateur journalisé par le nouveau module. Identifiant de trace serveur aléatoire et minute UTC ; familles de routes bornées, statuts et durées. Champs, limites des métriques et preuves : docs/reports/TELEMETRY.md. Paramètres staging préparés : sans persistence de logs, sans invocation automatique et sans traces. Aucune nouvelle collecte Desktop ou transmission locale.
+
+Cible disponibilité 99,5 % mensuelle ; alerte 5xx >2 % sur cinq minutes avec au moins 100 requêtes. Évaluateur testé, mais collecte globale continue, destinataire/astreinte, rétention des agrégats et plafonds financiers restent à configurer avant production. Aucun message envoyé ni forfait modifié. Procédure : infra/alerts.md.

@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-29T15:45:28.982Z",
+  "implementation_commit": "c026f2d8a64229a16d68e191aa5e48b4687eeef3",
+  "structured_events": 298,
+  "example": {
+    "v": 1,
+    "environment": "local",
+    "request_id": "a4474280-eaf0-4edf-a8b7-abb94c751a4f",
+    "minute": 29888130,
+    "route": "catalog",
+    "event": "request",
+    "status": 200,
+    "duration_ms": 6
+  },
+  "allowed_fields": [
+    "v",
+    "event",
+    "environment",
+    "request_id",
+    "minute",
+    "route",
+    "status",
+    "duration_ms",
+    "service",
+    "operation"
+  ],
+  "raw_body_recorded": false,
+  "cloud_probe": "docs/evidence/telemetry-cloud-probe.json",
+  "external_notifications_active": false
+}

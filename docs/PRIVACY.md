@@ -21,3 +21,10 @@
 L’export authentifié fournit les données du propriétaire, jamais les hashes de mot de passe/session, secrets ou données d’un autre compte. L’effacement exige CSRF, confirmation et révision CAS courante ; DELETE users entraîne les cascades documentées, révoque les sessions/appareils et invalide la répétition de la demande. Les tests gardent un deuxième compte pour vérifier qu’il est conservé. Les compteurs pseudonymisés du jour et le flux navigateur courant sont nettoyés par la route de purge ; aucune promesse d’effacement de toutes traces agrégées historiques ou sauvegardes Cloudflare n’est faite.
 
 Le stockage local d’un navigateur ou d’une installation hors ligne n’est pas supprimé à distance par cette purge SQL. Le propriétaire doit effacer ces espaces depuis cet appareil. Rétention des sauvegardes et journaux Cloudflare : non vérifiée dans ce lot, gate opérateur avant production (SEC-OPS-18). Tests locaux à identités fictives et requêtes négatives staging ; aucun compte utilisateur réel supprimé.
+
+
+## Supervision 21.0
+
+Métadonnées serveur autorisées uniquement ; aucun corps, fichier, prompt, email, IP, cookie, token ou identifiant utilisateur journalisé par le nouveau module. Identifiant de trace serveur aléatoire et minute UTC ; familles de routes bornées, statuts et durées. Champs, limites des métriques et preuves : docs/reports/TELEMETRY.md. Paramètres staging préparés : sans persistence de logs, sans invocation automatique et sans traces. Aucune nouvelle collecte Desktop ou transmission locale.
+
+Cible disponibilité 99,5 % mensuelle ; alerte 5xx >2 % sur cinq minutes avec au moins 100 requêtes. Évaluateur testé, mais collecte globale continue, destinataire/astreinte, rétention des agrégats et plafonds financiers restent à configurer avant production. Aucun message envoyé ni forfait modifié. Procédure : infra/alerts.md.
