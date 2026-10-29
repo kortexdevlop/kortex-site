@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-29T03:41:09.347Z",
+  "staging_only": true,
+  "temporary_object": true,
+  "put": 200,
+  "get": 200,
+  "exact_bytes": true,
+  "deleted": true,
+  "passed": true,
+  "absent_after_cleanup": true
+}

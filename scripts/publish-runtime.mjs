@@ -1,3 +1,4 @@
+import {requireQuality} from './ci-quality.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createPrivateKey,sign} from 'node:crypto';
@@ -6,7 +7,7 @@ import {runtimeSigningText,runtimeCompatible,verifyRuntime} from '../shared/type
 import {channels,context,protection} from './ci-publish-tool.mjs';
 export async function publishRuntime(env=process.env,channel='staging',{operator=false}={}){
  if(operator&&(process.platform!=='win32'||env.CI==='true'||channel!=='staging'))throw Error('LOCAL_STAGING_OPERATOR_REQUIRED');
- const c=operator?channels.staging:context(env,channel);if(!operator)await protection(env,channel);if(channel!=='staging')throw Error('PRODUCTION_RELEASE_GATE');
+ const c=operator?channels.staging:context(env,channel);if(!operator){await requireQuality(env);await protection(env,channel);}if(channel!=='staging')throw Error('PRODUCTION_RELEASE_GATE');
  if(!env.CLOUDFLARE_API_TOKEN||!env.KORTEX_SIGNING_KEY_SEED_BASE64)throw Error('PROTECTED_CREDENTIAL_REQUIRED');
  const request=async(path)=>{const r=await fetch(`https://api.cloudflare.com/client/v4/accounts/${c.account_id}${path}`,{headers:{Authorization:'Bearer '+env.CLOUDFLARE_API_TOKEN},redirect:'error',signal:AbortSignal.timeout(30000)});const v=await r.json();if(!r.ok||!v.success)throw Error('CLOUDFLARE_UNAVAILABLE');return v.result};
  const live=await request('/workers/scripts/'+c.api_worker+'/settings'),vars=Object.fromEntries(live.bindings.filter(b=>b.type==='plain_text').map(b=>[b.name,b.text]));

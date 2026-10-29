@@ -56,3 +56,5 @@
 /docs/evidence/pipeline-*.json text eol=lf
 /docs/evidence/pipeline-*.log text eol=lf
 /docs/evidence/pipeline-*.png binary
+
+/crates/**/tests/snapshots/*.txt text eol=lf

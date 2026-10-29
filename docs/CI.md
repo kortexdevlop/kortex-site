@@ -15,3 +15,5 @@ Les publications et déploiements exigent une validation réussie du **même SHA
 `api.yml` et `website.yml` sont indépendants. L'option manuelle `rehearse_rollback` exerce un retour arrière staging puis restaure la version courante et ses paramètres ; aucune base de données n'est restaurée par ce test. Voir `infra/deploy-order.md`.
 
 `desktop.yml` fabrique l'installateur Windows, l'installe dans un dossier de test neuf, démarre le processus, le désinstalle et publie une préversion staging avec checksum et provenance. Linux/macOS/Firefox sont exclus sur instruction du propriétaire. La signature Authenticode de production nécessite un certificat réel ; la signature de provenance ne la remplace pas.
+
+Les processus de compilation et vérification ne reçoivent pas les tokens Cloudflare/GitHub ni les autres secrets de l’environnement. La signature appelle directement le binaire xtask déjà compilé, avec la seule clé de signature nécessaire ; elle ne relance pas Cargo avec la clé privée.
