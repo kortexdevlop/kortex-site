@@ -1,6 +1,8 @@
 # Créer un outil Core WASM v1
 
-Référence locale du 27 octobre 2026 : calculatrice 1.0.0, ABI 1.0, UI 1.0. Le même module est exécuté dans un Worker Web et dans Wasmtime Windows. Aucun identifiant d’outil n’est codé dans les hôtes. Le catalogue cloud et le packager de publication de phase 8 ne sont pas encore livrés.
+Référence protocolaire : ABI 1.0 et UI 1.0. Le même module est exécuté dans un Worker Web et dans Wasmtime Windows. Aucun identifiant d’outil n’est codé dans les hôtes. Le packager déterministe, les signatures et la publication cloud sont implémentés ; la promotion de production reste un gate distinct.
+
+Pour démarrer, suivre [DEVELOPER_SETUP](DEVELOPER_SETUP.md), puis [TOOL_AUTHOR_GUIDE](TOOL_AUTHOR_GUIDE.md), qui construit le sixième outil réel Base64 depuis un clone propre. Pour déployer : [DEPLOYMENT](DEPLOYMENT.md). Pour les permissions et parcours côté utilisateur : [USER_GUIDE](USER_GUIDE.md). Les recettes de calculatrice ci-dessous servent aussi à comprendre les fixtures historiques et ne remplacent pas ces points d’entrée courants.
 
 ## Déclarer et implémenter
 
@@ -16,7 +18,7 @@ Le SDK ne fournit pas WASI. Les capacités passent par Host et host_enqueue avec
 
 ## Construire et vérifier
 
-Rust est figé à 1.99.1 dans ce dépôt. Installer la cible wasm32-unknown-unknown. Exemple PowerShell pour la calculatrice :
+Rust est figé à 1.99.1 dans ce dépôt. Installer la cible wasm32-unknown-unknown. La boucle générique actuelle est `xtask build → validate → package`, puis préparation signée de test ; voir le guide auteur. Exemple historique PowerShell de la fixture calculatrice, conservé pour sa référence binaire :
 
 ```powershell
 $env:RUSTFLAGS='-C link-arg=--max-memory=67108864'
@@ -33,7 +35,7 @@ pnpm exec playwright test tests/e2e/calculatrice-web.spec.ts
 
 CARGO_TARGET_DIR est facultatif pour déplacer le cache. Le script tests/fixtures/prepare-calculatrice.mjs construit le guest puis prépare sa fixture ; l’adaptateur Web et le scénario Windows l’appellent. Pour les tests Rust seuls, le lancer avant cargo test. Le shell Web Dioxus doit avoir été construit et servi par le harness de tests/web ; sa copie de test est target/web-dist. Voir les rapports 5.x pour sa construction avec dx. Le scénario Windows exige Windows/WebView2 ; aucun résultat Linux/macOS ou Firefox n’est revendiqué.
 
-Le script générique tests/fixtures/make-tool.cjs accepte manifestPath, contractPath, wasmPath et iconPath. Son enveloppe de test contient ces fichiers et module.wasm dans un ZIP, avec descripteur SHA-256 et signature Ed25519 B.2 séparée. La clé privée éphémère reste en mémoire ; seule la clé publique est écrite sous target/. Aucun mode unsigned ni clé de production. Le même fichier signé sert aux deux hôtes. La fixture est conservée tant que ses octets correspondent et que sa clé n’a pas expiré. Ce helper ne remplace pas le packager déterministe de publication prévu en phase 8.
+Le script générique tests/fixtures/make-tool.cjs accepte manifestPath, contractPath, wasmPath et iconPath. Son enveloppe de test contient ces fichiers et module.wasm dans un ZIP, avec descripteur SHA-256 et signature Ed25519 B.2 séparée. La clé privée éphémère reste en mémoire ; seule la clé publique est écrite sous target/. Aucun mode unsigned ni clé de production. Le même fichier signé sert aux deux hôtes. La fixture est conservée tant que ses octets correspondent et que sa clé n’a pas expiré. Ce helper de régression ne remplace pas le packager de publication disponible via xtask.
 
 ## Référence de compatibilité
 
@@ -45,7 +47,7 @@ Pour un nouvel outil, suivre la même chaîne manifeste/contrat → SDK → WASM
 
 ## Pipeline générique disponible depuis 8.2
 
-Les commandes de construction, validation et packaging ne nécessitent plus le helper de fixture propre à la calculatrice : `cargo run -p kortex-xtask --locked -- build --tool <id>`, puis validate/package. --all, --out, --json et --help sont documentés dans SIGNING.md, ainsi que sign/verify et la racine hors ligne. Le helper de phase 7 reste uniquement pour sa référence binaire immuable. Le packager canonique de publication possède une empreinte différente sans changer les échanges du guest ; son gel final relève de 8.5.
+Les commandes de construction, validation et packaging ne nécessitent plus le helper de fixture propre à la calculatrice : `cargo run -p kortex-xtask --locked -- build --tool <id>`, puis validate/package. --all, --out, --json et --help sont documentés dans SIGNING.md, ainsi que sign/verify et la racine hors ligne. Le helper de phase 7 reste uniquement pour sa référence binaire immuable. Le packager canonique de publication possède une empreinte différente sans changer les échanges du guest ; son format est gelé depuis le gate 8.5, référencé dans CONTRACTS.md.
 
 ## Exemples plus complets : les cinq outils
 
