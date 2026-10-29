@@ -3,7 +3,7 @@ import {authorize} from '../src/security/admin-auth';
 import type {Env} from '../src/env';
 
 it('accepts the signed GitHub OIDC certificate thumbprint header and rejects extensions',async()=>{
- const pair=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['sign','verify']);
+ const pair=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['sign','verify']) as CryptoKeyPair;
  const jwk=await crypto.subtle.exportKey('jwk',pair.publicKey),kid='github-header-regression';
  const policy={issuer:'https://token.actions.githubusercontent.com',audience:'kortex',subject:'repo:kortexdevlop/kortex-site:environment:staging',repository:'kortexdevlop/kortex-site',repository_id:'1437766566',ref:'refs/heads/main',workflow_ref:'kortexdevlop/kortex-site/.github/workflows/tools.yml@refs/heads/main',actions:['publish']};
  const config={ADMIN_AUTH_POLICY:JSON.stringify(policy),KORTEX_ENV:'staging'} as Env;
