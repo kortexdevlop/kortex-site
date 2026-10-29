@@ -1,6 +1,6 @@
 {
   "format_version": "1.0",
-  "id": "demo-calculator",
+  "id": "../intentional-invalid-contract",
   "version": "1.0.0",
   "name": "Demo calculator",
   "summary": "Addition demonstration",
