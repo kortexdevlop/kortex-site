@@ -1,0 +1,9 @@
+import {test,expect} from 'playwright/test';
+import {readFileSync} from 'node:fs';
+import {serve} from '../web/harness';
+let server:Awaited<ReturnType<typeof serve>>;test.beforeAll(async()=>server=await serve());test.afterAll(async()=>server.close());
+test('signed runtime metadata matches native golden, rejects tamper/replay/expiry and asks for update before admission',async({page})=>{
+ const fixture=JSON.parse(readFileSync('tests/fixtures/runtime-channels.signed-test.json','utf8'));await page.goto(server.origin);
+ const results=await page.evaluate(async f=>{const api=await import('/adapter/runtime-channels.js' as string),d=await api.verifyRuntime(f.envelope,f.root,7,f.now),errors:string[]=[];for(const [envelope,minimum,now]of [[{...f.envelope,document:{...f.envelope.document,sequence:8}},7,f.now],[f.envelope,8,f.now],[f.envelope,7,f.now+3600000]]as any){try{await api.verifyRuntime(envelope,f.root,minimum,now);errors.push('ACCEPT')}catch(e){errors.push((e as Error).message)}}let update='',abi='';try{api.requireRuntime({min_runtime:'2.0.0',abi_version:'1.0'},d.channels.staging.runtime_version)}catch(e){update=(e as Error).message}try{api.requireRuntime({min_runtime:'1.0.0',abi_version:'2.0'})}catch(e){abi=(e as Error).message}return{signing:new TextDecoder().decode(api.runtimeSigningText(d)),version:d.channels.staging.runtime_version,stable:d.channels.stable,compatible:api.runtimeCompatible('1.0.0','1.0',d.channels.staging.runtime_version),errors,update,abi}},fixture);
+ expect(results.signing).toBe(fixture.signing_text);expect(results.version).toBe('1.0.1');expect(results.stable).toBeNull();expect(results.compatible).toBe(true);expect(results.errors).toEqual(['RUNTIME_SIGNATURE','RUNTIME_ROLLBACK_OR_EXPIRED','RUNTIME_ROLLBACK_OR_EXPIRED']);expect(results.update).toBe('UPDATE_REQUIRED');expect(results.abi).toBe('UNSUPPORTED_ABI');
+});

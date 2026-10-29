@@ -2035,6 +2035,42 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "remaining_gate": "Identifiants CI dédiés et exercice réel du rollback CI manquants ; production non configurée.",
     "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
     "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
+  },
+  {
+    "id": "19.3",
+    "status": "pending",
+    "source_commit": "14aa8a4",
+    "result_commit": "pending",
+    "report_path": "docs/reports/STEP-19.3.md",
+    "tests_executed": "Tests Rust, API et navigateur des métadonnées exécutés ; vérifications globales en cours.",
+    "contract_changes": [
+      "Métadonnées de canaux Runtime signées v1, sans modification des contrats outils 1.0"
+    ],
+    "evidence": [
+      "docs/DISTRIBUTION_CI.md"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "authorization": "propriétaire : enchaîne jusqu’à 19.4 ; conserver exclusions Linux/macOS/Firefox",
+    "remaining_gate": "Installer Windows et publication des canaux à vérifier ; production signée bloquée faute de certificat."
+  },
+  {
+    "id": "19.4",
+    "status": "pending",
+    "source_commit": "14aa8a4",
+    "result_commit": "pending",
+    "report_path": "docs/reports/STEP-19.4.md",
+    "tests_executed": "Tests Rust, API et navigateur des métadonnées exécutés ; vérifications globales en cours.",
+    "contract_changes": [
+      "Métadonnées de canaux Runtime signées v1, sans modification des contrats outils 1.0"
+    ],
+    "evidence": [
+      "docs/DISTRIBUTION_CI.md"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "authorization": "propriétaire : enchaîne jusqu’à 19.4 ; conserver exclusions Linux/macOS/Firefox",
+    "remaining_gate": "Installer Windows et publication des canaux à vérifier ; production signée bloquée faute de certificat."
   }
 ]
 ```

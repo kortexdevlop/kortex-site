@@ -1,0 +1,57 @@
+{
+  "now": 1700000000000,
+  "root": {
+    "id": "runtime-test-root",
+    "public_key_base64": "wFDFY3pE+oYp//PMzOIwDLNipj2Z2V/FQUUmb0MyRFo="
+  },
+  "envelope": {
+    "document": {
+      "schema_version": 1,
+      "sequence": 7,
+      "issued_at": 1700000000000,
+      "expires": 1700003600000,
+      "channels": {
+        "stable": null,
+        "staging": {
+          "runtime_version": "1.0.1",
+          "abi_versions": [
+            "1.0"
+          ],
+          "protocol_versions": [
+            1
+          ],
+          "ui_schema_versions": [
+            "1.0"
+          ],
+          "web": {
+            "origin": "https://run.example.test",
+            "version_url": "https://run.example.test/version.json",
+            "bundle_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+            "script_integrity": "sha256-AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE="
+          },
+          "desktop": null
+        }
+      },
+      "signing_key_id": "runtime-test-release",
+      "signature": "DcgPlWc3SSo4wQpmlXvzz+bJgPaONWDXxZ7ZqxceQYVhFFo2lfLzbHmny29W3AdVzXbYTPgfOJUk95MMMXUMAg=="
+    },
+    "keys": {
+      "schema_version": 1,
+      "version": 1,
+      "issued_at": 1699999999000,
+      "expires": 1700086400000,
+      "root_key_id": "runtime-test-root",
+      "keys": [
+        {
+          "id": "runtime-test-release",
+          "public_key_base64": "PvCJWQMwKMj8b8bUkaElSOeN9q77LXwsGQw/eM7z9Qs=",
+          "not_before": 1699999999000,
+          "expires": 1700086400000,
+          "revoked": false
+        }
+      ],
+      "signature": "7Vtsial61uiojbISr0XFtHwYW6XbNkKtlMXXQ0cvuex5LCacDibXrkSa2GgwTRcwAcdoPfLtQ0hJDiIGQ1+XDA=="
+    }
+  },
+  "signing_text": "kortex-runtime-channels-v1\n{\"channels\":{\"stable\":null,\"staging\":{\"abi_versions\":[\"1.0\"],\"desktop\":null,\"protocol_versions\":[1],\"runtime_version\":\"1.0.1\",\"ui_schema_versions\":[\"1.0\"],\"web\":{\"bundle_sha256\":\"1111111111111111111111111111111111111111111111111111111111111111\",\"origin\":\"https://run.example.test\",\"script_integrity\":\"sha256-AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQE=\",\"version_url\":\"https://run.example.test/version.json\"}}},\"expires\":1700003600000,\"issued_at\":1700000000000,\"schema_version\":1,\"sequence\":7,\"signing_key_id\":\"runtime-test-release\"}\n"
+}

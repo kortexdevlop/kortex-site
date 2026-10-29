@@ -250,6 +250,10 @@ impl Api {
         Ok(out)
     }
 
+    pub fn runtime_channels(&self) -> Result<kortex_verify::runtime::Envelope, Error> {
+        serde_json::from_value(self.get("/api/v1/runtime/channels", &[], true)?)
+            .map_err(|_| Error::Invalid("Canaux Runtime invalides.".into()))
+    }
     pub fn revocations(&self) -> Result<kortex_verify::revocation::Document, Error> {
         serde_json::from_value(self.get("/api/v1/trust/revocations", &[], true)?)
             .map_err(|_| Error::Invalid("Liste signée invalide.".into()))

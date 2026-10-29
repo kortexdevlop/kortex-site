@@ -5,6 +5,7 @@ import {failure,json,requestId} from './lib/http';
 import {health} from './routes/health';
 import {tools} from './routes/tools';
 import {downloads} from './routes/downloads';
+import {runtime} from './routes/runtime';
 import {revocations} from './routes/revocations';
 import {admin} from './routes/admin';
 import {auth} from './routes/auth';
@@ -30,6 +31,7 @@ export async function handle(request:Request,bindings:unknown,viaWeb=false):Prom
    if(!['GET','HEAD'].includes(request.method))return failure('BAD_REQUEST','Method not allowed',405,id,origin,head,{Allow:'GET, HEAD, OPTIONS'});
    return health(request,id,origin);
   }
+  const channels=await runtime(request,env,id,origin);if(channels)return channels;
   const device=await desktopAuth(request,env,id,viaWeb);if(device)return device;
   const proposal=await ai(request,env,id,viaWeb);if(proposal)return proposal;
   const password=await passwordAuth(request,env,id,viaWeb);if(password)return password;

@@ -3305,7 +3305,7 @@ dependencies = [
 
 [[package]]
 name = "kortex-runtime-web"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "dioxus",
  "js-sys",
@@ -3358,6 +3358,7 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2",
+ "url",
 ]
 
 [[package]]
@@ -6179,6 +6180,15 @@ version = "1.0.0"
 dependencies = [
  "kortex-sdk",
  "kortex-ui",
+ "serde_json",
+]
+
+[[package]]
+name = "tool-encodeur-base64"
+version = "1.0.0"
+dependencies = [
+ "base64 0.22.1",
+ "kortex-sdk",
  "serde_json",
 ]
 

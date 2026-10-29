@@ -13,6 +13,7 @@ on:
         default: staging
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: deploy-api-${{ inputs.environment || 'staging' }}
   cancel-in-progress: false
@@ -36,6 +37,8 @@ jobs:
           node-version: '24.15.0'
       - run: npm install --global pnpm@11.25.0
       - run: pnpm install --frozen-lockfile
+      - run: node api/scripts/generate-validators.mjs
+      - run: node web-adapter/generate-validators.mjs
       - run: node scripts/ci-deploy.mjs api ${{ env.KORTEX_DEPLOY_ENV }}
         env:
           GITHUB_TOKEN: ${{ github.token }}

@@ -125,5 +125,29 @@
       "signature": "e+7JQYL6vChFbOrAadWcn0jJhX48NkFOBaepzhaWAYVbFFgSCXgO17+Gv/NUkVXhF8YkYCcsn8+Z776R2HsDCQ=="
     },
     "minimum_version": 1
+  },
+  {
+    "root": {
+      "id": "revocation-root-a946d4fb423b",
+      "public_key_base64": "X2w1zfrmpEQ9wADZUqubkxQvC/pevUisic7HCWo95Jg="
+    },
+    "document": {
+      "schema_version": 1,
+      "version": 1,
+      "issued_at": 1793241547472,
+      "expires": 1801017607472,
+      "root_key_id": "revocation-root-a946d4fb423b",
+      "keys": [
+        {
+          "id": "ci-staging-20261029",
+          "public_key_base64": "vKgq9u8PDjfFvJr+BWEPFCEHlWkQGcDQnxvy4pXzSbk=",
+          "not_before": 1793241547472,
+          "expires": 1801017607472,
+          "revoked": false
+        }
+      ],
+      "signature": "mIVgbCfXjBWyb3Dr2c6xmsO8eJlhnpLey6wEsvosCBcxNQdD80F7tMOJiWWtQcQfhH6+CSrLWM7EuYDINVR2AQ=="
+    },
+    "minimum_version": 1
   }
 ]

@@ -1,3 +1,4 @@
+import '../../web-adapter/generate-validators.mjs';
 // Compare precompiled CSP-safe validators with the independent golden corpus.
 // Generate the corpus first: node --test tests/contracts/cross-language.test.mjs
 import {createRequire} from 'node:module';

@@ -1,3 +1,4 @@
+import {requireRuntime} from '../../shared/typescript/src/runtime';
 import {inspectWasm} from './wasm-check';
 import {extractArchive} from './archive';
 import {artifactSigningText,type TrustStore} from './trust';
@@ -13,14 +14,14 @@ export class VerifiedTool {
  get bytes(){return this.#bytes.slice()}get manifest(){return structuredClone(this.#manifest)}get contract(){return structuredClone(this.#contract)}
  static async verifyArchive(bytes:Uint8Array,proof:Descriptor,trust:TrustStore):Promise<VerifiedTool>{
   proof=structuredClone(proof);const copy=bytes.slice();await trust.verify(copy,proof);const files=await extractArchive(copy);const decode=(name:string)=>{const b=files.get(name)!;if(b.length>1048576)throw Error('INVALID_METADATA');return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(b))};
-  const m=decode('manifest.json'),c=decode('contract.json');if(!validateManifest(m).ok||!validateContract(c).ok||m.id!==proof.tool_id||m.version!==proof.version||c.tool_id!==m.id)throw Error('INTEGRITY_ERROR');if(m.abi_version!=='1.0')throw Error('UNSUPPORTED_ABI');const allowed=new Set(['manifest.json','contract.json','module.wasm',m.icon_path]);if(!m.icon_path.startsWith('assets/')||!files.get(m.icon_path)?.length||[...files.keys()].some(k=>!allowed.has(k))||c.actions.some((a:any)=>a.permissions.some((p:string)=>!m.permissions.includes(p))))throw Error('INVALID_METADATA');const module=files.get('module.wasm')!;inspectWasm(module);await WebAssembly.compile(module as BufferSource);return new VerifiedTool(module,m,c);
+  const m=decode('manifest.json'),c=decode('contract.json');if(!validateManifest(m).ok||!validateContract(c).ok||m.id!==proof.tool_id||m.version!==proof.version||c.tool_id!==m.id)throw Error('INTEGRITY_ERROR');if(m.abi_version!=='1.0')throw Error('UNSUPPORTED_ABI');const allowed=new Set(['manifest.json','contract.json','module.wasm',m.icon_path]);if(!m.icon_path.startsWith('assets/')||!files.get(m.icon_path)?.length||[...files.keys()].some(k=>!allowed.has(k))||c.actions.some((a:any)=>a.permissions.some((p:string)=>!m.permissions.includes(p))))throw Error('INVALID_METADATA');requireRuntime(m);const module=files.get('module.wasm')!;inspectWasm(module);await WebAssembly.compile(module as BufferSource);return new VerifiedTool(module,m,c);
  }
  /// Standalone signed WASM admission for this adapter stage. Metadata must be embedded in signed custom sections.
  /// The .tool ZIP loader is a separate next-stage boundary, never an unsigned development bypass.
  static async verifySignedModule(bytes:Uint8Array,manifest:unknown,contract:unknown,proof:Descriptor,keys:Readonly<Record<string,Uint8Array>>):Promise<VerifiedTool>{
   if(bytes.length>20*1024*1024||!validateManifest(manifest).ok||!validateContract(contract).ok)throw Error('INVALID_METADATA');
   bytes=bytes.slice();manifest=structuredClone(manifest);contract=structuredClone(contract);proof=structuredClone(proof);keys=Object.fromEntries(Object.entries(keys).map(([id,key])=>[id,key.slice()]));
-  const m=manifest as Manifest,c=contract as Contract;if(m.abi_version!=='1.0'||proof.abi_version!=='1.0')throw Error('UNSUPPORTED_ABI');
+  const m=manifest as Manifest,c=contract as Contract;requireRuntime(m);if(m.abi_version!=='1.0'||proof.abi_version!=='1.0')throw Error('UNSUPPORTED_ABI');
   if(proof.tool_id!==m.id||proof.version!==m.version||c.tool_id!==m.id||!keys[proof.signing_key_id])throw Error('INTEGRITY_ERROR');
   const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes as BufferSource)),b=>b.toString(16).padStart(2,'0')).join('');if(digest!==proof.sha256)throw Error('INTEGRITY_ERROR');
 

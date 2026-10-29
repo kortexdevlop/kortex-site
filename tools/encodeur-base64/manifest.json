@@ -1,0 +1,24 @@
+{
+  "format_version": "1.0",
+  "id": "encodeur-base64",
+  "version": "1.0.0",
+  "name": "Encodeur Base64",
+  "summary": "Encodez du texte UTF-8 en Base64 sur votre appareil.",
+  "description": "Transformez du texte UTF-8 en Base64, sans réseau ni permission sensible. Limite de 32 Kio de texte.",
+  "category": "developer",
+  "tags": [
+    "base64",
+    "text",
+    "encoding"
+  ],
+  "seo": {
+    "title": "Encodeur Base64 — Kortex",
+    "description": "Encodez du texte UTF-8 en Base64 localement, sans envoi de données."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

@@ -3,17 +3,19 @@ import type {ToolDetail} from '../lib/tools';
 interface Props {detail:ToolDetail;origin:string|null;}
 const {detail,origin}=Astro.props;
 ---
-<section class="ws-viewer" data-runtime-viewer data-origin={origin} data-id={detail.tool.id} data-version={detail.tool.version}>
+<section class="ws-viewer" data-runtime-viewer data-origin={origin} data-id={detail.tool.id} data-version={detail.tool.version} data-min-runtime={detail.manifest.min_runtime} data-abi={detail.manifest.abi_version}>
   <h1>{detail.tool.name}</h1><p>Version {detail.tool.version} · Exécution sur votre appareil</p>
   <details><summary>Permissions demandées</summary>{detail.manifest.permissions.length?<ul>{detail.manifest.permissions.map(permission=><li>{permission}</li>)}</ul>:<p>Aucune permission sensible demandée.</p>}<p>Les autorisations sont gérées dans l’outil.</p></details>
   <p role="status" data-runtime-status>{origin?'Connexion à l’espace sécurisé…':'L’espace d’exécution n’est pas configuré. Réessayez après son activation.'}</p>
-  {origin&&<iframe src={origin+'/frame.html?tool='+encodeURIComponent(detail.tool.id)+'&version='+encodeURIComponent(detail.tool.version)} sandbox="allow-scripts allow-same-origin allow-downloads" referrerpolicy="no-referrer" title={`Outil : ${detail.tool.name}`} allow="camera 'none'; microphone 'none'; geolocation 'none'"/>}
+  {origin&&<iframe data-src={origin+'/frame.html?tool='+encodeURIComponent(detail.tool.id)+'&version='+encodeURIComponent(detail.tool.version)} sandbox="allow-scripts allow-same-origin allow-downloads" referrerpolicy="no-referrer" title={`Outil : ${detail.tool.name}`} allow="camera 'none'; microphone 'none'; geolocation 'none'"/>}
   <p><a href={`/tools/${encodeURIComponent(detail.tool.id)}`}>← Fiche de l’outil</a> · <a href="/tools">Tous les outils</a></p>
 </section>
 <script>
+import {verifyRuntime,requireRuntime} from '../../../shared/typescript/src/runtime';
+import runtimeRoot from '../../../infra/trust/release-staging-root.json';
 import {connectRuntime} from '../lib/runtime-bridge';
 const viewer=document.querySelector<HTMLElement>('[data-runtime-viewer]');
 if(viewer?.dataset.origin){const frame=viewer.querySelector('iframe')!;const status=viewer.querySelector<HTMLElement>('[data-runtime-status]')!;
 const labels:Record<string,string>={connecting:'Connexion à l’espace sécurisé…',loading:'Vérification et chargement de l’outil…',ready:'L’outil est prêt.',error:'Impossible d’ouvrir cet outil. Rechargez la page pour réessayer.'};
-const stop=connectRuntime(frame,viewer.dataset.origin,viewer.dataset.id!,viewer.dataset.version!,state=>{viewer.dataset.state=state;status.textContent=labels[state];});window.addEventListener('pagehide',stop,{once:true});}
+void (async()=>{try{const key='kortex.runtime.v1:'+runtimeRoot.id;const previous=JSON.parse(localStorage.getItem(key)||'null');const floor=Number.isSafeInteger(previous?.sequence)&&previous.sequence>0?previous.sequence:1;const response=await fetch('/api/v1/runtime/channels',{credentials:'same-origin',cache:'no-store',redirect:'error',signal:AbortSignal.timeout(8000)});if(!response.ok)throw Error('RUNTIME_UNAVAILABLE');const d=await verifyRuntime(await response.json(),runtimeRoot,floor);const release=Object.values(d.channels).find(r=>r?.web.origin===viewer.dataset.origin);if(!release)throw Error('RUNTIME_UNAVAILABLE');requireRuntime({min_runtime:viewer.dataset.minRuntime!,abi_version:viewer.dataset.abi!},release.runtime_version);localStorage.setItem(key,JSON.stringify({sequence:d.sequence,version:release.runtime_version}));const src=new URL(frame.dataset.src!);src.searchParams.set('runtime',release.runtime_version);frame.src=src.href;const stop=connectRuntime(frame,viewer.dataset.origin!,viewer.dataset.id!,viewer.dataset.version!,state=>{viewer.dataset.state=state;status.textContent=labels[state];});window.addEventListener('pagehide',stop,{once:true});}catch(error){viewer.dataset.state='error';status.textContent=error instanceof Error&&error.message==='UPDATE_REQUIRED'?'Une mise à jour de l’espace d’exécution est nécessaire. Réessayez après sa publication.':'La version sécurisée de l’espace d’exécution est indisponible. Réessayez plus tard.';}})();}
 </script>

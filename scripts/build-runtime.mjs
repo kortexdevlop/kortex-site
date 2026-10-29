@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {cpSync,readFileSync,writeFileSync,mkdirSync,readdirSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -14,4 +15,9 @@ mkdirSync(out+'/wasm',{recursive:true});
 writeFileSync(out+'/wasm/kortex-runtime-web.js',`import {subscribe,command} from '/adapter/interop.js';\nglobalThis.kortexInterop={subscribe,command};\nawait import('/assets/${js[0]}');\n`);
 writeFileSync(out+'/index.html',readFileSync(source+'/index.html','utf8').replace(/<script type="module"[^>]*src="[^"]*kortex-runtime-web[^"]*"[^>]*><\/script>/,'<script type="module" src="/wasm/kortex-runtime-web.js"></script>'));
 cpSync('web-adapter/dist',out+'/adapter',{recursive:true});
+const bootstrap=readFileSync(out+'/wasm/kortex-runtime-web.js');const sri='sha256-'+createHash('sha256').update(bootstrap).digest('base64');
+const wasm=[...new Set(boot.match(/kortex-runtime-web_bg-[a-z0-9]+\.wasm/g)??[])];if(wasm.length!==1)throw Error('Runtime WASM asset missing');
+const entries=['assets/'+js[0],'assets/'+wasm[0],'wasm/kortex-runtime-web.js','runtime-style.css','tool-shell.css',...readdirSync('web-adapter/dist').filter(f=>f.endsWith('.js')).map(f=>'adapter/'+f)].sort();
+const hashes=Object.fromEntries(entries.map(p=>[p,createHash('sha256').update(readFileSync(out+'/'+p)).digest('hex')]));
+const version={...JSON.parse(readFileSync('runtime/web/public/version.json')),bundle_sha256:createHash('sha256').update(JSON.stringify(hashes)).digest('hex'),script_integrity:sri,files:hashes};writeFileSync(out+'/version.json',JSON.stringify(version,null,2)+'\n');writeFileSync(out+'/index.html',readFileSync(out+'/index.html','utf8').replace('src="/wasm/kortex-runtime-web.js"','src="/wasm/kortex-runtime-web.js" integrity="'+sri+'" crossorigin="anonymous"'));
 console.log('Runtime compiled assets and external bootstrap ready.');

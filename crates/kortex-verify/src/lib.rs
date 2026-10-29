@@ -1,6 +1,7 @@
 //! SHA-256 and detached Ed25519 proof over the exact B.2 publication text.
 pub mod keys;
 pub mod revocation;
+pub mod runtime;
 use base64::{Engine as _, engine::general_purpose::STANDARD};
 use ed25519_dalek::{Signature, Signer, SigningKey, VerifyingKey};
 use serde::{Deserialize, Serialize};

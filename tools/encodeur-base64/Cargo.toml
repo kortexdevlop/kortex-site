@@ -1,0 +1,12 @@
+[package]
+name="tool-encodeur-base64"
+version="1.0.0"
+edition.workspace=true
+rust-version.workspace=true
+publish=false
+[lib]
+crate-type=["rlib","cdylib"]
+[dependencies]
+kortex-sdk={path="../../crates/kortex-sdk"}
+serde_json="=1.0.154"
+base64="=0.22.1"

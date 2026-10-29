@@ -1,5 +1,5 @@
 import type {ServiceBinding} from './service-binding.ts';
-const route=/^\/api\/v1\/(?:health|trust\/revocations|tools(?:\/[a-z0-9]+(?:-[a-z0-9]+)*(?:\/actions)?)?|downloads\/[a-z0-9]+(?:-[a-z0-9]+)*\/(?:[0-9A-Za-z.+-]|%2[bB])+)$/;
+const route=/^\/api\/v1\/(?:health|trust\/revocations|runtime\/channels|tools(?:\/[a-z0-9]+(?:-[a-z0-9]+)*(?:\/actions)?)?|downloads\/[a-z0-9]+(?:-[a-z0-9]+)*\/(?:[0-9A-Za-z.+-]|%2[bB])+)$/;
 function unavailable(status=503):Response {return Response.json({error:{code:status===403?'FORBIDDEN':status===405?'BAD_REQUEST':status===404?'NOT_FOUND':'UNAVAILABLE',message:status===503?'Service unavailable':'Request rejected',request_id:crypto.randomUUID()}},{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...(status===405?{Allow:'GET, HEAD'}:{})}});}
 export async function proxy(request:Request,binding:ServiceBinding|undefined,webOrigin:string|undefined,authBinding?:ServiceBinding):Promise<Response> {
   const url=new URL(request.url);

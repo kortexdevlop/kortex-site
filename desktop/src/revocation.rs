@@ -26,6 +26,12 @@ pub fn cache_path(c: &Config, r: &RootKey) -> std::path::PathBuf {
     ))
 }
 pub fn check(c: &Config, api: &Api, p: &Descriptor) -> Result<(), String> {
+    check_with(c, api, |document| document.revoked(p))
+}
+pub fn check_signing_key(c: &Config, api: &Api, id: &str) -> Result<(), String> {
+    check_with(c, api, |d| d.revoked_keys.iter().any(|key| key == id))
+}
+fn check_with(c: &Config, api: &Api, revoked: impl Fn(&Document) -> bool) -> Result<(), String> {
     let root = root(c)?;
     let path = cache_path(c, &root);
     let now = kortex_runtime_native::permissions::now_ms();
@@ -68,7 +74,7 @@ pub fn check(c: &Config, api: &Api, p: &Descriptor) -> Result<(), String> {
         )?;
     }
     // Known revocation is permanent, even when the signed snapshot has expired.
-    if next.revoked(p) {
+    if revoked(&next) {
         return Err("REVOKED".into());
     }
     if !next.fresh(now) {

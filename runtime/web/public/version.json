@@ -1,0 +1,7 @@
+{
+  "runtime_version": "1.0.1",
+  "abi_versions": ["1.0"],
+  "protocol_versions": [1],
+  "ui_schema_versions": ["1.0"],
+  "channel": "staging"
+}

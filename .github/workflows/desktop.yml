@@ -1,0 +1,86 @@
+name: Desktop Windows staging
+on:
+  push:
+    branches: [main]
+    paths: ['desktop/**', 'runtime/desktop/**', 'scripts/desktop-*', '.github/workflows/desktop.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: desktop-staging
+  cancel-in-progress: false
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    env:
+      CARGO_INCREMENTAL: '0'
+      CARGO_PROFILE_DEV_DEBUG: '0'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.15.0'
+      - run: npm install --global pnpm@11.25.0
+      - run: rustup toolchain install 1.99.1 --profile minimal --component rustfmt --component clippy --target wasm32-unknown-unknown
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}
+      - run: pnpm install --frozen-lockfile
+      - name: Install pinned Dioxus CLI
+        shell: pwsh
+        run: |
+          $taskDxZip = Join-Path $env:RUNNER_TEMP 'dx.zip'
+          $taskDxDir = Join-Path $env:RUNNER_TEMP 'dx'
+          Invoke-WebRequest 'https://github.com/DioxusLabs/dioxus/releases/download/v0.7.10/dx-x86_64-pc-windows-msvc.zip' -OutFile $taskDxZip
+          if ((Get-FileHash -LiteralPath $taskDxZip -Algorithm SHA256).Hash.ToLowerInvariant() -ne '45eb4f87b7f86fdba8508ee7e0ef1f9e13cf8f2ffcc6a2d5858d0e8ea7dd1531') { throw 'Dioxus checksum mismatch' }
+          Expand-Archive -LiteralPath $taskDxZip -DestinationPath $taskDxDir
+          $taskDxDir | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - run: node scripts/ci-quality.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - run: node scripts/desktop-package.mjs
+      - name: Install, start and uninstall staging installer
+        shell: pwsh
+        run: |
+          $taskDescriptor = Get-Content -Raw target/desktop-package/desktop-release.json | ConvertFrom-Json
+          ./scripts/desktop-installer-smoke.ps1 -Installer (Join-Path 'target/desktop-package' $taskDescriptor.filename) -Destination (Join-Path $pwd 'target/installer-smoke')
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: desktop-windows-staging
+          path: target/desktop-package/
+          if-no-files-found: error
+          retention-days: 7
+  publish:
+    needs: windows
+    if: vars.KORTEX_STAGING_DEPLOY_ENABLED == 'true'
+    environment: staging
+    runs-on: windows-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.15.0'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: desktop-windows-staging
+          path: target/desktop-package/
+      - run: node scripts/publish-desktop.mjs
+        env:
+          KORTEX_DEPLOY_ENV: staging
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          KORTEX_SIGNING_KEY_ID: ${{ vars.KORTEX_SIGNING_KEY_ID }}
+          KORTEX_SIGNING_KEY_SEED_BASE64: ${{ secrets.KORTEX_SIGNING_KEY_SEED_BASE64 }}
