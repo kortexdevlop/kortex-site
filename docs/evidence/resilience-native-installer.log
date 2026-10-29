@@ -50,4 +50,3 @@ test real_guest_start_failure_and_migration_failure_leave_old_version_and_data_i
 test semver_permissions_and_successful_update_retain_old_version_until_confirmed_start ... ok
 
 test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 10.61s
-
