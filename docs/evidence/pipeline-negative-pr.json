@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-29T03:24:59.385Z",
+  "pull_request": "https://github.com/kortexdevlop/kortex-site/pull/14",
+  "commit": "9abb06d61a08ecb587d1e08db1bdf84e7e54bf67",
+  "workflow_run": "https://github.com/kortexdevlop/kortex-site/actions/runs/40811620259",
+  "expected_failure": true,
+  "failed_job": "quality (contracts)",
+  "job_id": 123243007938,
+  "pr_closed_without_merge": true,
+  "temporary_branch_deleted": true,
+  "publication_allowed": false,
+  "protected_secrets_in_pr": false
+}

@@ -13,3 +13,5 @@ En cas d'échec du smoke, `ci-deploy.mjs` revient à la version précédente du 
 Les exercices réels `rehearse-staging-rollback.mjs api|runtime --operator` passent par la version précédente, contrôlent le service et restaurent immédiatement la version courante avec ses bindings. L'identité de schéma D1 est comparée avant/après. Les preuves pipeline-rollback-* ne concernent que le staging. Aucun DNS, routage mail ou service production n'est touché.
 
 Les versions de Runtime ont une séquence signée croissante ; les clients refusent un document ancien. Le publisher refuse une version sémantique inférieure. Un rollback d'urgence doit être une action opérateur explicite et garder les outils compatibles, jamais une réinstallation automatique plus ancienne chez l'utilisateur.
+
+Le site attend aussi la fin de tout workflow API du même commit, y compris son exercice de rollback. Le header public X-Kortex-Api-Revision identifie la révision déployée sans modifier le DTO health V1. Une API plus ancienne est acceptée seulement après comparaison GitHub prouvant que les fichiers API, DB et contrats pertinents sont inchangés.

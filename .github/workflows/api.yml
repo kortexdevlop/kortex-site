@@ -5,6 +5,9 @@ on:
     paths:
       - 'api/**'
       - 'database/**'
+      - 'shared/**'
+      - 'web-adapter/src/archive.ts'
+      - 'web-adapter/src/wasm-check.ts'
   workflow_dispatch:
     inputs:
       rehearse_rollback:
@@ -24,7 +27,7 @@ jobs:
   deploy:
     if: vars.KORTEX_STAGING_DEPLOY_ENABLED == 'true'
     runs-on: windows-latest
-    timeout-minutes: 35
+    timeout-minutes: 60
     environment: ${{ inputs.environment || 'staging' }}
     env:
       KORTEX_DEPLOY_ENV: ${{ inputs.environment || 'staging' }}

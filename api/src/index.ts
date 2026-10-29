@@ -29,7 +29,7 @@ export async function handle(request:Request,bindings:unknown,viaWeb=false):Prom
   }
   if(new URL(request.url).pathname==='/api/v1/health'){
    if(!['GET','HEAD'].includes(request.method))return failure('BAD_REQUEST','Method not allowed',405,id,origin,head,{Allow:'GET, HEAD, OPTIONS'});
-   return health(request,id,origin);
+   return health(request,id,origin,env.DEPLOY_REVISION);
   }
   const channels=await runtime(request,env,id,origin);if(channels)return channels;
   const device=await desktopAuth(request,env,id,viaWeb);if(device)return device;

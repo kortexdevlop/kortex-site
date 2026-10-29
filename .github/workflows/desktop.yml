@@ -77,6 +77,8 @@ jobs:
         with:
           name: desktop-windows-staging
           path: target/desktop-package/
+      - run: npm install --global pnpm@11.25.0
+      - run: pnpm install --frozen-lockfile
       - run: node scripts/publish-desktop.mjs
         env:
           KORTEX_DEPLOY_ENV: staging
