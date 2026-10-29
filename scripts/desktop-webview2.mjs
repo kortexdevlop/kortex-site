@@ -6,9 +6,9 @@ import {spawnSync} from 'node:child_process';
 const publisher='CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US';
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 function signatureDetails(path){
- const env=Object.fromEntries(Object.entries(process.env).filter(([name])=>!/(TOKEN|SECRET|PASSWORD|PEPPER|PRIVATE_KEY|SIGNING_KEY_SEED)/i.test(name)));env.KORTEX_WEBVIEW_VERIFY_PATH=path;
+ const env=Object.fromEntries(Object.entries(process.env).filter(([name])=>!/(TOKEN|SECRET|PASSWORD|PEPPER|PRIVATE_KEY|SIGNING_KEY_SEED)/i.test(name)&&!/^(PSModulePath|PSHOME)$/i.test(name)));env.KORTEX_WEBVIEW_VERIFY_PATH=path;
  const r=spawnSync('powershell.exe',['-NoProfile','-NonInteractive','-Command',"$s=Get-AuthenticodeSignature -LiteralPath $env:KORTEX_WEBVIEW_VERIFY_PATH; @{status=$s.Status.ToString();subject=$s.SignerCertificate.Subject} | ConvertTo-Json -Compress"],{encoding:'utf8',windowsHide:true,timeout:45000,env});
- try{if(r.status!==0)throw Error();return JSON.parse(r.stdout)}catch{throw Error('WEBVIEW2_SIGNATURE_UNAVAILABLE')}
+ try{if(r.status!==0)throw Error();return JSON.parse(r.stdout)}catch{throw Error('WEBVIEW2_SIGNATURE_UNAVAILABLE_'+(r.error?.code??r.status??'NO_STATUS'))}
 }
 export async function ensureWebView2({manifest=JSON.parse(readFileSync('infra/desktop/webview2-x64.json')),cache=resolve(homedir(),'.dx/tools/MicrosoftEdgeWebView2RuntimeInstaller_x64.exe'),work=resolve('target/desktop-webview2'),fetcher=fetch,signature=signatureDetails}={}){
  const url=new URL(manifest.url);
