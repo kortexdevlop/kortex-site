@@ -3214,7 +3214,7 @@ dependencies = [
 name = "kortex-desktop"
 version = "1.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "dioxus",
  "dirs",
  "ed25519-dalek",
@@ -3263,7 +3263,7 @@ dependencies = [
 name = "kortex-runtime-desktop"
 version = "1.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "dioxus",
  "kortex-capabilities",
  "kortex-core",
@@ -3280,7 +3280,7 @@ name = "kortex-runtime-native"
 version = "1.0.0"
 dependencies = [
  "arboard",
- "base64 0.22.1",
+ "base64 0.23.1",
  "dirs",
  "ed25519-dalek",
  "fs2",
@@ -3351,7 +3351,7 @@ dependencies = [
 name = "kortex-verify"
 version = "1.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "ed25519-dalek",
  "jsonschema",
  "kortex-shared",
@@ -3383,7 +3383,7 @@ dependencies = [
 name = "kortex-xtask"
 version = "1.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "ed25519-dalek",
  "kortex-pack",
  "kortex-shared",
@@ -6159,7 +6159,7 @@ dependencies = [
 name = "tool-calculateur-hash"
 version = "1.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "kortex-sdk",
  "kortex-ui",
  "serde_json",
@@ -6187,7 +6187,7 @@ dependencies = [
 name = "tool-encodeur-base64"
 version = "1.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "kortex-sdk",
  "serde_json",
 ]
@@ -6196,7 +6196,7 @@ dependencies = [
 name = "tool-explorateur-csv"
 version = "1.0.0"
 dependencies = [
- "base64 0.22.1",
+ "base64 0.23.1",
  "kortex-sdk",
  "kortex-ui",
  "serde_json",
