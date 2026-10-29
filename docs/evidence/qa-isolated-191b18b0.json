@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29T10:07:51.983Z",
+  "source_commit": "51d32c866393d38073143437bf10c331a92969ec",
+  "platform": "win32",
+  "node": "v24.15.0",
+  "environment": "private temporary real Cloudflare D1/R2/API/Astro SSR",
+  "owner": "kortex-qa-191b18b0",
+  "synthetic_metadata_only": true,
+  "passed": false,
+  "cleanup": true,
+  "database_id": "7191dfa9-a644-4c3e-8e7d-a496625b51fb",
+  "release": {
+    "before_publish_invisible": true,
+    "after_publish_reconciled": true,
+    "replay_does_not_repoint": true,
+    "rollback": true,
+    "signed_revocation": true,
+    "download_status": 410,
+    "append_only_enforced": true,
+    "operations": [
+      {
+        "operation": "publish",
+        "n": 2
+      },
+      {
+        "operation": "revoke",
+        "n": 1
+      },
+      {
+        "operation": "rollback",
+        "n": 1
+      }
+    ],
+    "backup_objects": 4,
+    "audit_objects": 23
+  },
+  "error": "SQL INSERT OR IGNORE INTO signing_keys VALUES('synthetic-metadata','A : [{\"code\":7500,\"message\":\"IMMUTABLE_SIGNING_KEY: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)\"}]",
+  "cleanup_errors": []
+}

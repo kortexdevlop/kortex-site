@@ -1,5 +1,7 @@
 # Progression
 
+Lot 19.5–20.1 du 29/10/2026 : **trois étapes closes techniquement dans le périmètre staging Windows/Chromium autorisé**. Reprise release réelle éprouvée, plan QA traçant 22 exigences, catalogue privé de 10 000 puis 10 001 fiches sans rebuild en 4 432 ms. p95 HTTPS : liste 97,29 ms et détail 91,67 ms, sur 100 observations chacune à 10 req/s. Nettoyage final réussi ; calibration et ses coûts/échecs conservés. Catalogue réel de six outils, production, DNS et messagerie préservés. Implémentation b841c05904f56ba059be8f61a10bcece4d610ae4 ; validation GitHub 40856245744 entièrement réussie (contrats, Windows natif, Web et sécurité). Les gates V1 finaux et approbations humaines restent distincts ; 20.2 non engagée.
+
 Lot 18.3–19.4 du 29/10/2026 : **18.3 et 19.0 à 19.4 closes techniquement sur Windows x64 / Chromium-WebView2 / staging.** CI complète verte sur 4950cbadb2a25a4ca377838f1cb54b4c2eeec397 (40844352974) : 188 Rust, 91 API, 27 Chromium ; un smoke HTTPS externe optionnel reste explicitement ignoré. Sixième outil Base64 publié, exécuté réellement et relivré sans modifier archive, date, site ou Runtime. Déploiements séparés, rollback API CI et rollback Runtime avec calcul réel vérifiés. Installateur Windows reconstruit avec le bon WebView2 x64 Microsoft, testé sur machine fraîche puis publié en préversion immuable ; provenance/checksum et canal signé séquence 4 vérifiés. Production, DNS, messagerie, secrets applicatifs existants et quotas IA conservés. 18.2/18.4 restent partielles pour Google réel, rétention et revue humaine/licences ; certificat Windows de production absent. La clôture technique ne remplace pas une approbation humaine formelle et ne lève aucun gate production. Rapports STEP-19.0 à STEP-19.4 et preuves pipeline-*. Les notes suivantes sont historiques.
 
 Lot 18.0–18.2 du 28/10/2026 : **18.0 et 18.1 closes techniquement ; 18.2 reste partielle pour Google réel et la rétention opérateur.** Modèle de menace et matrice, budgets tables/ABI durcis, réseau Web non vérifiable refusé, protections Windows et fichiers/comptes éprouvées. ZIP/Zod/Undici corrigés : scans réellement exécutés sans vulnérabilité détectée, cinq avertissements RustSec conservés/documentés. 50 tests natifs, 37 core/ABI/UI, 88 API, 23 Web sécurité et 8 bureau staging réussis ; types, check Windows et build Web réussis. Confidentialité du fichier réel et purge du seul propriétaire vérifiées. Staging API/runtime/Web actualisé en préservant paramètres, clés, secrets et quotas ; production/DNS/mail inchangés. Rapports STEP-18.0 à STEP-18.2 et security-validation.json ; statuts humains formels conservés, 18.3 non engagée. Les notes suivantes sont historiques.
@@ -2081,6 +2083,69 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "remaining_gate": "Renouvellement opérateur des révocations avant 24 h et métadonnées avant expiration ; production et revue humaine formelle restent distinctes.",
     "technical_scope": "Windows x64 / Chromium-WebView2 / staging ; Linux/macOS/Firefox exclus par le propriétaire",
     "limitations": "Clôture technique dans le périmètre autorisé ; aucune approbation humaine ou livraison production inventée. Voir STEP-19.4.md."
+  },
+  {
+    "id": "19.5",
+    "status": "pending",
+    "source_commit": "51d32c866393d38073143437bf10c331a92969ec",
+    "result_commit": "b841c05904f56ba059be8f61a10bcece4d610ae4",
+    "report_path": "docs/reports/STEP-19.5.md",
+    "tests_executed": "Six tests Node ciblés et gate contracts réussis ; drill Cloudflare privé réel avant/après publication, réconciliation, rollback, retrait signé 410 et journal D1 append-only ; quatre backups et 23 événements R2. CI GitHub 40856245744 : quatre lanes Windows natives/contrats/Web/sécurité réussies sur le commit résultat.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/qa-isolated-e3732687.json",
+      "docs/evidence/release-maintenance-policy.json",
+      "docs/evidence/release-staging-preserved.json",
+      "docs/evidence/qa-ci-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "authorization": "propriétaire : enchaîne les trois étapes 19.5, 20.0 et 20.1 ; périmètre Windows/Chromium staging maintenu",
+    "technical_scope": "Windows x64 / Chromium-WebView2 / staging privé ; Linux/macOS/Firefox exclus",
+    "remaining_gate": "Production, signature Windows et Google réel/rétention/revues humaines restent distincts ; gates 20.2–20.5 et 21–22 non réalisés par ce lot.",
+    "limitations": "Clôture technique dans le périmètre autorisé ; statuts formels et approbations humaines non fabriqués."
+  },
+  {
+    "id": "20.0",
+    "status": "pending",
+    "source_commit": "51d32c866393d38073143437bf10c331a92969ec",
+    "result_commit": "b841c05904f56ba059be8f61a10bcece4d610ae4",
+    "report_path": "docs/reports/STEP-20.0.md",
+    "tests_executed": "Plan QA : 22 exigences I01–I22 reliées à tests ou recettes identifiées, exclusions explicites, seuils et échantillons >=100 ; gate contracts réussi. CI GitHub 40856245744 : quatre lanes Windows natives/contrats/Web/sécurité réussies sur le commit résultat.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/QA_PLAN.md",
+      "docs/reports/QA_BASELINE.md",
+      "tests/e2e/README.md",
+      "docs/evidence/qa-ci-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "authorization": "propriétaire : enchaîne les trois étapes 19.5, 20.0 et 20.1 ; périmètre Windows/Chromium staging maintenu",
+    "technical_scope": "Windows x64 / Chromium-WebView2 / staging privé ; Linux/macOS/Firefox exclus",
+    "remaining_gate": "Production, signature Windows et Google réel/rétention/revues humaines restent distincts ; gates 20.2–20.5 et 21–22 non réalisés par ce lot.",
+    "limitations": "Clôture technique dans le périmètre autorisé ; statuts formels et approbations humaines non fabriqués."
+  },
+  {
+    "id": "20.1",
+    "status": "pending",
+    "source_commit": "51d32c866393d38073143437bf10c331a92969ec",
+    "result_commit": "b841c05904f56ba059be8f61a10bcece4d610ae4",
+    "report_path": "docs/reports/STEP-20.1.md",
+    "tests_executed": "10000 IDs uniques ; catégories 9990/9/1 ; deux séries de 100 requêtes à 10 req/s, p95 liste 97.29 ms et détail 91.67 ms ; sitemaps 10 000 puis 10 001, SSR et ajout en 4 432 ms sans rebuild ; cleanup réussi. CI GitHub 40856245744 : quatre lanes Windows natives/contrats/Web/sécurité réussies sur le commit résultat.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/qa-isolated-e3732687.json",
+      "docs/evidence/qa-d1-query-cost-final.json",
+      "docs/evidence/qa-cleanup-b877b858.json",
+      "docs/evidence/qa-ci-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "authorization": "propriétaire : enchaîne les trois étapes 19.5, 20.0 et 20.1 ; périmètre Windows/Chromium staging maintenu",
+    "technical_scope": "Windows x64 / Chromium-WebView2 / staging privé ; Linux/macOS/Firefox exclus",
+    "remaining_gate": "Production, signature Windows et Google réel/rétention/revues humaines restent distincts ; gates 20.2–20.5 et 21–22 non réalisés par ce lot.",
+    "limitations": "Clôture technique dans le périmètre autorisé ; statuts formels et approbations humaines non fabriqués."
   }
 ]
 ```

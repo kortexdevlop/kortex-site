@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-29T10:34:09.916Z",
+  "run_id": 40856245744,
+  "source_commit": "b841c05904f56ba059be8f61a10bcece4d610ae4",
+  "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40856245744",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 123388354680,
+      "name": "quality (native)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40856245744/job/123388354680",
+      "started_at": "2026-10-29T10:17:41Z",
+      "completed_at": "2026-10-29T10:32:32Z"
+    },
+    {
+      "id": 123388354926,
+      "name": "quality (contracts)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40856245744/job/123388354926",
+      "started_at": "2026-10-29T10:17:40Z",
+      "completed_at": "2026-10-29T10:18:58Z"
+    },
+    {
+      "id": 123388355049,
+      "name": "quality (security)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40856245744/job/123388355049",
+      "started_at": "2026-10-29T10:17:40Z",
+      "completed_at": "2026-10-29T10:25:08Z"
+    },
+    {
+      "id": 123388355086,
+      "name": "quality (web)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40856245744/job/123388355086",
+      "started_at": "2026-10-29T10:17:41Z",
+      "completed_at": "2026-10-29T10:27:34Z"
+    }
+  ],
+  "local_release_seed_tests": 6,
+  "remote_gate": "docs/evidence/qa-isolated-e3732687.json",
+  "remote_passed": true,
+  "cleanup": true,
+  "scope": "Windows x64 / Chromium-WebView2 / staging; production not configured"
+}

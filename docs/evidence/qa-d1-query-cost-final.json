@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-29T10:18:39.154Z",
+  "owner": "kortex-qa-e3732687",
+  "scope": "Direct D1 diagnostic reads after bounded 10k import and ANALYZE; not total account billing",
+  "queries": {
+    "list": {
+      "rows": 21,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "CDG",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 1.1749
+        },
+        "duration": 1.1749,
+        "changes": 0,
+        "last_row_id": 10002,
+        "changed_db": false,
+        "size_after": 65208320,
+        "rows_read": 62,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "detail": {
+      "rows": 1,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "CDG",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.3192
+        },
+        "duration": 0.3192,
+        "changes": 0,
+        "last_row_id": 10002,
+        "changed_db": false,
+        "size_after": 65208320,
+        "rows_read": 5,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "count": {
+      "rows": 1,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "CDG",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.4194
+        },
+        "duration": 0.4194,
+        "changes": 0,
+        "last_row_id": 10002,
+        "changed_db": false,
+        "size_after": 65208320,
+        "rows_read": 10000,
+        "rows_written": 0,
+        "total_attempts": 1
+      },
+      "published": 10000
+    }
+  }
+}

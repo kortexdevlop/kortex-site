@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29T10:10:20.016Z",
+  "source_commit": "03becd5fd0614bafcfbeacaaf8ee677c0e74cb67",
+  "platform": "win32",
+  "node": "v24.15.0",
+  "cpu": "Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz",
+  "logical_cpus": 8,
+  "memory_bytes": 25713045504,
+  "os_release": "10.0.22621",
+  "environment": "private temporary real Cloudflare D1/R2/API/Astro SSR",
+  "owner": "kortex-qa-38255c20",
+  "synthetic_metadata_only": true,
+  "passed": false,
+  "cleanup": true,
+  "test_sources": {
+    "scripts/qa-isolated.mjs": "93e0e36433598dc067429a228ebd3d685ab88a73414306f64c48eaf82ad5e129",
+    "scripts/release-core.mjs": "8e7f1a69e1af21b5f50c15dd5a0d3161081e468a6785024762969102c1e8fca0",
+    "scripts/release-cloud.mjs": "383d1a1b17a4efdbf848da59289064643268f55712bc6e363f11ab15fdac5588",
+    "tests/perf/seed-10k.mjs": "cbe75d62cbea3381abe113c3fb20cd51577fe0d208896999ed6b23ec572a37e2",
+    "tests/perf/catalog-load.mjs": "0429285a1e883db7d13d1ca56e7a358979f53d765442f97262845751c3f3f398",
+    "tests/perf/sitemap-load.mjs": "919693bba751485fd9d459cda7b4a68eca051ea532f8d41427e2f1b95f542c05"
+  },
+  "http_requests": 1,
+  "d1": {
+    "query_calls": 0,
+    "rows_read": 0,
+    "rows_written": 0,
+    "sql_duration_ms": 0
+  },
+  "database_id": "e0507577-471a-42a4-a2b7-4c29ed50cc76",
+  "error": "Expected values to be strictly equal:\n\n401 !== 200\n",
+  "cleanup_errors": []
+}

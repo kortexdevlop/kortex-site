@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29T10:00:52.758Z",
+  "source_commit": "51d32c866393d38073143437bf10c331a92969ec",
+  "platform": "win32",
+  "node": "v24.15.0",
+  "environment": "private temporary real Cloudflare D1/R2/API/Astro SSR",
+  "owner": "kortex-qa-b9fc782a",
+  "synthetic_metadata_only": true,
+  "passed": false,
+  "cleanup": true,
+  "error": "CLOUDFLARE_401",
+  "cleanup_errors": []
+}

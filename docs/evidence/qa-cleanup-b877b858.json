@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-29T10:15:29.998Z",
+  "owner": "kortex-qa-b877b858",
+  "remaining_worker_removed": true,
+  "prior_evidence": "qa-isolated-b877b858.json",
+  "reason": "API service was still bound when original cleanup ran; Web already removed; final owned API now removed"
+}

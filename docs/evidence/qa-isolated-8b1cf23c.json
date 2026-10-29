@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29T10:01:20.459Z",
+  "source_commit": "51d32c866393d38073143437bf10c331a92969ec",
+  "platform": "win32",
+  "node": "v24.15.0",
+  "environment": "private temporary real Cloudflare D1/R2/API/Astro SSR",
+  "owner": "kortex-qa-8b1cf23c",
+  "synthetic_metadata_only": true,
+  "passed": false,
+  "cleanup": true,
+  "database_id": "fbe66cb6-e246-4507-b6f1-85eca27b642a",
+  "release": {
+    "before_publish_invisible": true,
+    "after_publish_reconciled": true,
+    "replay_does_not_repoint": true,
+    "rollback": true,
+    "signed_revocation": true,
+    "download_status": 410,
+    "append_only_enforced": true,
+    "operations": [
+      {
+        "operation": "publish",
+        "n": 2
+      },
+      {
+        "operation": "revoke",
+        "n": 1
+      },
+      {
+        "operation": "rollback",
+        "n": 1
+      }
+    ],
+    "backup_objects": 4,
+    "audit_objects": 23
+  },
+  "error": "WRANGLER_FAILED_d1; log in target/qa-isolated/8b1cf23c",
+  "cleanup_errors": []
+}

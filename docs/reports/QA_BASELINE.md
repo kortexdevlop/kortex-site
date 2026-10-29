@@ -11,3 +11,5 @@ Les fixtures 10k sont des métadonnées marquées `SYNTHETIC_METADATA_NO_R2`. El
 Ressources partagées exclues : catalogue staging réel, production, DNS, messagerie, utilisateurs, secrets applicatifs et quota Workers AI. Aucun changement de plan payant ni restauration D1 destructive. Le script supprime exclusivement ses propres noms et vérifie le marqueur propriétaire avant suppression des Workers et le nom D1 avant suppression de la base.
 
 La durée réseau dépend du poste et de la région Cloudflare. Les résultats ne sont pas des garanties de production. Voir `CATALOG_SCALE_10K.md` et les observations JSON pour les percentiles, le stockage, les index et les ressources réellement utilisées.
+
+Validation consolidée : [CI GitHub 40856245744](https://github.com/kortexdevlop/kortex-site/actions/runs/40856245744), source b841c05904f56ba059be8f61a10bcece4d610ae4, quatre lanes réussies (Windows natif, contrats, Web, sécurité). Preuve : `docs/evidence/qa-ci-validation.json`.

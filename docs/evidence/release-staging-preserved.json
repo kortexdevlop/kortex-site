@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-29T10:11:53.171Z",
+  "catalog_status": 200,
+  "ids": [
+    "encodeur-base64",
+    "calculatrice",
+    "explorateur-csv",
+    "timestamp-utc",
+    "calculateur-hash",
+    "convertisseur-casse"
+  ],
+  "versions": [
+    {
+      "id": "encodeur-base64",
+      "version": "1.0.0",
+      "sha256": "75637ad92cea6ffd21be272e53f2fdc485265c6c2a94c14406b6f0bf8b699139"
+    },
+    {
+      "id": "calculatrice",
+      "version": "1.0.1",
+      "sha256": "b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f"
+    },
+    {
+      "id": "explorateur-csv",
+      "version": "1.0.0",
+      "sha256": "183f838f554846fe837650f6773cc5c935e02f86096c61a3dac7f5c5f111b662"
+    },
+    {
+      "id": "timestamp-utc",
+      "version": "1.0.0",
+      "sha256": "7ca4588ad879b32a898edc506cfc1cac485595d81374c572958de80b11761e46"
+    },
+    {
+      "id": "calculateur-hash",
+      "version": "1.0.0",
+      "sha256": "aee5fc4a0e713be9654b895a53829f58236b77a06509806ab1be821c3dfb86b5"
+    },
+    {
+      "id": "convertisseur-casse",
+      "version": "1.0.0",
+      "sha256": "d4dfadd3c099c104bbf152589e49ed5dfd20316fa1c35140f3f162567a51ebe7"
+    }
+  ],
+  "admin_actions": [
+    "publish",
+    "rollback",
+    "revoke"
+  ],
+  "identity_preserved": true,
+  "existing_binding_names_preserved": true,
+  "production_configured": false
+}
