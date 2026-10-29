@@ -3192,7 +3192,7 @@ dependencies = [
 name = "kortex-capabilities"
 version = "1.0.0"
 dependencies = [
- "getrandom 0.3.4",
+ "getrandom 0.4.3",
  "kortex-abi",
  "url",
 ]
@@ -3219,7 +3219,7 @@ dependencies = [
  "dirs",
  "ed25519-dalek",
  "fs2",
- "getrandom 0.3.4",
+ "getrandom 0.4.3",
  "jsonschema",
  "kortex-capabilities",
  "kortex-core",
@@ -3285,7 +3285,7 @@ dependencies = [
  "ed25519-dalek",
  "fs2",
  "futures-channel",
- "getrandom 0.3.4",
+ "getrandom 0.4.3",
  "kortex-abi",
  "kortex-capabilities",
  "kortex-core",

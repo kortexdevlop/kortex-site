@@ -22,7 +22,7 @@ rfd="=0.17.2"
 reqwest={version="=0.12.28",default-features=false,features=["blocking","rustls-tls"]}
 url="=2.5.8"
 futures-channel="=0.3.34"
-getrandom="=0.3.4"
+getrandom="=0.4.3"
 arboard={version="=3.6.1",default-features=false}
 kortex-pack={path="../kortex-pack"}
 kortex-verify={path="../kortex-verify"}
