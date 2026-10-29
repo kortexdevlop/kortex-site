@@ -66,7 +66,7 @@ jobs:
       - run: cargo run -p kortex-xtask --locked -- build --tool ${{ matrix.tool }} --json
       - run: cargo run -p kortex-xtask --locked -- validate --tool ${{ matrix.tool }} --json
       - run: cargo run -p kortex-xtask --locked -- package --tool ${{ matrix.tool }} --out target/ci-reports/packages --json
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: package-${{ matrix.tool }}
           path: target/ci-reports/packages/
@@ -96,7 +96,7 @@ jobs:
           KORTEX_DEPLOY_ENV: staging
           GITHUB_TOKEN: ${{ github.token }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:
           name: release-maintenance-journal
@@ -136,7 +136,7 @@ jobs:
           KORTEX_SIGNING_KEY_SEED_BASE64: ${{ secrets.KORTEX_SIGNING_KEY_SEED_BASE64 }}
           KORTEX_ROOT_FILE: infra/trust/release-staging-root.json
           KORTEX_TRUST_FILE: infra/trust/release-staging-keys.json
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: signed-${{ matrix.tool }}
           path: target/ci-publication/
