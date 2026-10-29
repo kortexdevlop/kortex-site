@@ -203,7 +203,28 @@ fn five_signed_tools_cold_warm_memory_and_lifecycle() {
         run(engine.unload(h)).unwrap()
     }
     std::thread::sleep(Duration::from_millis(100));
-    let baseline = rss();
+    // Compare the same initialized/unloaded state on both sides. Windows' heap
+    // retains JIT allocation arenas, so one arbitrarily timed idle sample is
+    // not a stable baseline. Keep every sample and compare resident envelopes.
+    let mut baseline_samples = Vec::new();
+    for n in 0..8 {
+        let mut h = run(engine.load(&tool)).unwrap();
+        assert!(
+            run(engine.dispatch(&mut h, &request("init", json!({}), n + 900), deadline()))
+                .unwrap()
+                .ok
+        );
+        run(engine.unload(h)).unwrap();
+        std::thread::sleep(Duration::from_millis(25));
+        baseline_samples.push(rss());
+    }
+    let baseline = percentile(
+        &baseline_samples
+            .iter()
+            .map(|v| *v as f64)
+            .collect::<Vec<_>>(),
+        0.95,
+    );
     let mut memory = Vec::new();
     for n in 0..50 {
         let mut h = run(engine.load(&tool)).unwrap();
@@ -217,10 +238,15 @@ fn five_signed_tools_cold_warm_memory_and_lifecycle() {
         memory.push(rss())
     }
     std::thread::sleep(Duration::from_millis(100));
-    let after = rss();
-    let growth = after as f64 / baseline as f64 - 1.0;
+    let idle_after = rss();
+    let after = percentile(
+        &memory[40..].iter().map(|v| *v as f64).collect::<Vec<_>>(),
+        0.95,
+    )
+    .max(idle_after as f64);
+    let growth = after / baseline - 1.0;
     let passed = rows.iter().all(|r| r["thresholds_met"] == true) && growth <= 0.10;
-    let report = json!({"date_unix_ms":now(),"platform":"Windows x64 / real Wasmtime / signed local packages","build_profile":if cfg!(debug_assertions){"debug calibration; not release acceptance"}else{"desktop-release inherits release, strip false; same optimization as shipped Desktop"},"cold_definition":"new Engine; package read and verification included; no network; OS filesystem cache not flushed","tools":rows,"eight_instances_rss_bytes":eight_rss,"lifecycle":{"cycles":50,"baseline_rss_bytes":baseline,"after_rss_bytes":after,"growth_fraction":growth,"samples_rss_bytes":memory},"passed":passed});
+    let report = json!({"date_unix_ms":now(),"platform":"Windows x64 / real Wasmtime / signed local packages","build_profile":if cfg!(debug_assertions){"debug calibration; not release acceptance"}else{"desktop-release inherits release, strip false; same optimization as shipped Desktop"},"cold_definition":"new Engine; package read and verification included; no network; OS filesystem cache not flushed","tools":rows,"eight_instances_rss_bytes":eight_rss,"lifecycle":{"cycles":50,"metric":"process RSS envelope: p95 of eight matching warmup cycles versus max(idle after, p95 of last ten measured cycles); all samples retained","baseline_warmup_cycles":8,"baseline_samples_rss_bytes":baseline_samples,"baseline_rss_bytes":baseline,"after_rss_bytes":after,"idle_after_rss_bytes":idle_after,"growth_fraction":growth,"samples_rss_bytes":memory},"passed":passed});
     let out = std::env::var_os("KORTEX_NATIVE_PERF_REPORT")
         .map(std::path::PathBuf::from)
         .unwrap_or_else(|| root.join("target/ci-reports/runtime-native-performance.json"));

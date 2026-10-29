@@ -200,6 +200,8 @@ pub struct NativeInstance {
     stop: Arc<AtomicBool>,
     engine: Engine,
     inbox: Option<(crate::permissions::CapabilityInbox, u64)>,
+    worker: Option<std::thread::JoinHandle<()>>,
+    timer: Option<std::thread::JoinHandle<()>>,
 }
 impl NativeInstance {
     /// Host-side diagnostic only: read the current guest linear-memory size without executing guest code.
@@ -219,6 +221,14 @@ impl Drop for NativeInstance {
         self.stop.store(true, Ordering::SeqCst);
         for _ in 0..3001 {
             self.engine.increment_epoch();
+        }
+        // Unload completes only after guest state and its epoch timer are released.
+        // Closing the inbox above also cancels a pending capability response.
+        if let Some(worker) = self.worker.take() {
+            let _ = worker.join();
+        }
+        if let Some(timer) = self.timer.take() {
+            let _ = timer.join();
         }
     }
 }
@@ -248,57 +258,61 @@ impl NativeGuestEngine {
         let flag = stop.clone();
         let timer_engine = engine.clone();
         let timer_stop = stop.clone();
-        std::thread::spawn(move || {
+        let timer = std::thread::spawn(move || {
             while !timer_stop.load(Ordering::SeqCst) {
                 std::thread::sleep(Duration::from_millis(10));
                 timer_engine.increment_epoch();
             }
         });
-        let instance = NativeInstance {
+        let mut instance = NativeInstance {
             tx,
             stop,
             engine,
             inbox: inbox.clone(),
+            worker: None,
+            timer: Some(timer),
         };
-        std::thread::Builder::new()
-            .stack_size(32 * 1024 * 1024)
-            .spawn(move || {
-                let mut state = match machine(&tool, &e, inbox) {
-                    Ok(v) => {
-                        let _ = ready.send(Ok(()));
-                        v
-                    }
-                    Err(err) => {
-                        let _ = ready.send(Err(err));
-                        flag.store(true, Ordering::SeqCst);
-                        return;
-                    }
-                };
-                while !flag.load(Ordering::SeqCst) {
-                    match rx.recv_timeout(Duration::from_millis(10)) {
-                        Ok(Command::Memory(reply)) => {
-                            let size = state
-                                .instance
-                                .get_memory(&mut state.store, "memory")
-                                .map(|m| m.data_size(&state.store))
-                                .ok_or(RuntimeError::GuestCrash);
-                            let _ = reply.send(size);
+        instance.worker = Some(
+            std::thread::Builder::new()
+                .stack_size(32 * 1024 * 1024)
+                .spawn(move || {
+                    let mut state = match machine(&tool, &e, inbox) {
+                        Ok(v) => {
+                            let _ = ready.send(Ok(()));
+                            v
                         }
-                        Ok(Command::Dispatch(r, d, reply)) => {
-                            let result = state.dispatch(&r, d);
-                            let fatal = result.is_err();
-                            let _ = reply.send(result);
-                            if fatal {
-                                break;
+                        Err(err) => {
+                            let _ = ready.send(Err(err));
+                            flag.store(true, Ordering::SeqCst);
+                            return;
+                        }
+                    };
+                    while !flag.load(Ordering::SeqCst) {
+                        match rx.recv_timeout(Duration::from_millis(10)) {
+                            Ok(Command::Memory(reply)) => {
+                                let size = state
+                                    .instance
+                                    .get_memory(&mut state.store, "memory")
+                                    .map(|m| m.data_size(&state.store))
+                                    .ok_or(RuntimeError::GuestCrash);
+                                let _ = reply.send(size);
                             }
+                            Ok(Command::Dispatch(r, d, reply)) => {
+                                let result = state.dispatch(&r, d);
+                                let fatal = result.is_err();
+                                let _ = reply.send(result);
+                                if fatal {
+                                    break;
+                                }
+                            }
+                            Err(mpsc::RecvTimeoutError::Timeout) => {}
+                            Err(_) => break,
                         }
-                        Err(mpsc::RecvTimeoutError::Timeout) => {}
-                        Err(_) => break,
                     }
-                }
-                flag.store(true, Ordering::SeqCst);
-            })
-            .map_err(|_| RuntimeError::GuestCrash)?;
+                    flag.store(true, Ordering::SeqCst);
+                })
+                .map_err(|_| RuntimeError::GuestCrash)?,
+        );
         receive(wait).await??;
         Ok(instance)
     }

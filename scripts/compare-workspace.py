@@ -2,6 +2,7 @@
 import json
 import math
 import hashlib
+import argparse
 from pathlib import Path
 import numpy as np
 from PIL import Image
@@ -49,14 +50,14 @@ def delta_e(first, second):
     rt = -2 * math.sqrt(cm ** 7 / (cm ** 7 + 25 ** 7)) * math.sin(math.radians(60 * math.exp(-((hm - 275) / 25) ** 2)))
     return math.sqrt((dl / sl) ** 2 + (dc / sc) ** 2 + (dh / sh) ** 2 + rt * dc / sc * dh / sh)
 
-def compare():
+def compare(render_file='docs/evidence/workspace-chromium-reference.png', output_file='docs/evidence/workspace-comparison.json'):
     # Published Sharma/Wu/Dalal pairs, plus symmetry. doi:10.1002/col.20070.
     for first, expected in [((50, 2.6772, -79.7751), 2.0425), ((50, 3.1571, -77.2803), 2.8615), ((50, 2.8361, -74.0200), 3.4412)]:
         second = (50, 0, -82.7485)
         assert abs(delta_e(first, second) - expected) < .0001
         assert abs(delta_e(first, second) - delta_e(second, first)) < 1e-10
     source_path = ROOT / 'docs/reference/workspace-selection.png'
-    render_path = ROOT / 'docs/evidence/workspace-chromium-reference.png'
+    render_path = ROOT / render_file
     source = np.asarray(Image.open(source_path).convert('RGB'), dtype=float)
     render = np.asarray(Image.open(render_path).convert('RGB'), dtype=float)
     assert source.shape == render.shape == (1764, 2706, 3)
@@ -75,9 +76,13 @@ def compare():
               'root_mean_square_rgb_error': round(float(np.sqrt(((source-render)**2).mean())), 6),
               'samples': samples, 'maximum_sample_ciede2000': max(s['ciede2000'] for s in samples),
               'limits': 'RGB error is a descriptive metric, not a perceptual similarity percentage. Sample Delta E only applies to listed flat zones. Original font is unidentified; no perfect pixel identity claimed.'}
-    (ROOT / 'docs/evidence/workspace-comparison.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf8')
+    (ROOT / output_file).write_text(json.dumps(report, indent=2) + '\n', encoding='utf8')
     assert report['maximum_sample_ciede2000'] <= 12
     print(json.dumps({'rgb_mae': report['mean_absolute_rgb_error_0_255'], 'max_sample_ciede2000': report['maximum_sample_ciede2000'], 'samples': len(samples)}))
 
 if __name__ == '__main__':
-    compare()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--render', default='docs/evidence/workspace-chromium-reference.png')
+    parser.add_argument('--out', default='docs/evidence/workspace-comparison.json')
+    args = parser.parse_args()
+    compare(args.render, args.out)
