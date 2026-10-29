@@ -1,4 +1,5 @@
 import {requireQuality} from './ci-quality.mjs';
+import {waitRuntimePublication} from './runtime-publication.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createPrivateKey,sign} from 'node:crypto';
@@ -22,7 +23,7 @@ export async function publishRuntime(env=process.env,channel='staging',{operator
  const envelope={document,keys};await verifyRuntime(envelope,root);
  const bindings=live.bindings.filter(b=>!['RUNTIME_ROOT','RUNTIME_CHANNELS'].includes(b.name));bindings.push({type:'plain_text',name:'RUNTIME_ROOT',text:JSON.stringify(root)},{type:'plain_text',name:'RUNTIME_CHANNELS',text:JSON.stringify(envelope)});
  const body=new FormData();body.set('settings',JSON.stringify({bindings}));const patched=await fetch(`https://api.cloudflare.com/client/v4/accounts/${c.account_id}/workers/scripts/${c.api_worker}/settings`,{method:'PATCH',headers:{Authorization:'Bearer '+env.CLOUDFLARE_API_TOKEN},body,redirect:'error',signal:AbortSignal.timeout(30000)});if(!patched.ok||!(await patched.json()).success)throw Error('RUNTIME_CHANNEL_PUBLICATION_FAILED');
- const visible=await fetch(c.api_origin+'/api/v1/runtime/channels',{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!visible.ok)throw Error('RUNTIME_CHANNEL_NOT_VISIBLE');const checked=await verifyRuntime(await visible.json(),root,document.sequence);if(checked.signature!==document.signature)throw Error('RUNTIME_CHANNEL_MISMATCH');
+ await waitRuntimePublication(c.api_origin+'/api/v1/runtime/channels',root,document);
  mkdirSync('target/ci-reports/runtime',{recursive:true});writeFileSync('target/ci-reports/runtime/channels.json',JSON.stringify(envelope,null,2)+'\n');return{published:true,channel,sequence:document.sequence,runtime_version:version.runtime_version,bundle_sha256:version.bundle_sha256};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){try{console.log(JSON.stringify(await publishRuntime(process.env,'staging',{operator:process.argv.includes('--operator')})))}catch(e){console.error(e.message);process.exitCode=1}}
