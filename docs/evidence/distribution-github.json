@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-29T02:27:15.427Z",
+  "repository": "https://github.com/kortexdevlop/kortex-site",
+  "private": true,
+  "source_commit": "90bbb0681f0c2ac744accd1af2c34fd45cbc3ee8",
+  "validation_run": "https://github.com/kortexdevlop/kortex-site/actions/runs/40806371042",
+  "remote_validation_started": false,
+  "remote_gate": "GitHub: recent account payments failed or spending limit needs increase",
+  "job_ids": [
+    123226181435,
+    123226181726,
+    123226181812,
+    123226181833
+  ],
+  "staging_main_only": true,
+  "automatic_publication": false,
+  "automatic_deployment": false,
+  "production_reviewers_http": 422,
+  "cloudflare_token_creation_http": 403,
+  "dependabot_configuration": "validated by GitHub",
+  "account_billing_changed": false,
+  "production_changed": false
+}

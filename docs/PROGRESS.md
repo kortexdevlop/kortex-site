@@ -1920,7 +1920,7 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "id": "18.3",
     "status": "pending",
     "source_commit": "a66543f",
-    "result_commit": "pending",
+    "result_commit": "90bbb0681f0c2ac744accd1af2c34fd45cbc3ee8",
     "report_path": "docs/reports/STEP-18.3.md",
     "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
     "contract_changes": [
@@ -1931,7 +1931,8 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       "docs/evidence/distribution-revocation-web.json",
       "docs/evidence/distribution-headers.json",
       "docs/evidence/distribution-staging-deploy.json",
-      "docs/evidence/distribution-validation.json"
+      "docs/evidence/distribution-validation.json",
+      "docs/evidence/distribution-github.json"
     ],
     "frozen": false,
     "technical_status": "closed",
@@ -1943,7 +1944,7 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "id": "18.4",
     "status": "pending",
     "source_commit": "a66543f",
-    "result_commit": "pending",
+    "result_commit": "90bbb0681f0c2ac744accd1af2c34fd45cbc3ee8",
     "report_path": "docs/reports/STEP-18.4.md",
     "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
     "contract_changes": [
@@ -1954,7 +1955,8 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       "docs/evidence/distribution-revocation-web.json",
       "docs/evidence/distribution-headers.json",
       "docs/evidence/distribution-staging-deploy.json",
-      "docs/evidence/distribution-validation.json"
+      "docs/evidence/distribution-validation.json",
+      "docs/evidence/distribution-github.json"
     ],
     "frozen": false,
     "technical_status": "partial",
@@ -1966,7 +1968,7 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "id": "19.0",
     "status": "pending",
     "source_commit": "a66543f",
-    "result_commit": "pending",
+    "result_commit": "90bbb0681f0c2ac744accd1af2c34fd45cbc3ee8",
     "report_path": "docs/reports/STEP-19.0.md",
     "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
     "contract_changes": [
@@ -1977,11 +1979,12 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       "docs/evidence/distribution-revocation-web.json",
       "docs/evidence/distribution-headers.json",
       "docs/evidence/distribution-staging-deploy.json",
-      "docs/evidence/distribution-validation.json"
+      "docs/evidence/distribution-validation.json",
+      "docs/evidence/distribution-github.json"
     ],
     "frozen": false,
     "technical_status": "partial",
-    "remaining_gate": "Résultat de la première exécution distante à confirmer après envoi de ces changements.",
+    "remaining_gate": "GitHub ne démarre aucun des quatre jobs : paiement du compte en échec ou plafond de dépenses à corriger. Exécution distante non validée.",
     "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
     "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
   },
@@ -1989,7 +1992,7 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "id": "19.1",
     "status": "pending",
     "source_commit": "a66543f",
-    "result_commit": "pending",
+    "result_commit": "90bbb0681f0c2ac744accd1af2c34fd45cbc3ee8",
     "report_path": "docs/reports/STEP-19.1.md",
     "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
     "contract_changes": [
@@ -2000,7 +2003,8 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       "docs/evidence/distribution-revocation-web.json",
       "docs/evidence/distribution-headers.json",
       "docs/evidence/distribution-staging-deploy.json",
-      "docs/evidence/distribution-validation.json"
+      "docs/evidence/distribution-validation.json",
+      "docs/evidence/distribution-github.json"
     ],
     "frozen": false,
     "technical_status": "partial",
@@ -2012,7 +2016,7 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "id": "19.2",
     "status": "pending",
     "source_commit": "a66543f",
-    "result_commit": "pending",
+    "result_commit": "90bbb0681f0c2ac744accd1af2c34fd45cbc3ee8",
     "report_path": "docs/reports/STEP-19.2.md",
     "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
     "contract_changes": [
@@ -2023,7 +2027,8 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       "docs/evidence/distribution-revocation-web.json",
       "docs/evidence/distribution-headers.json",
       "docs/evidence/distribution-staging-deploy.json",
-      "docs/evidence/distribution-validation.json"
+      "docs/evidence/distribution-validation.json",
+      "docs/evidence/distribution-github.json"
     ],
     "frozen": false,
     "technical_status": "partial",

@@ -31,3 +31,7 @@ La session OAuth Wrangler locale ne permet pas de créer ce token dédié (403).
 Le déploiement API conserve les paramètres vivants, demande un point de restauration D1, applique uniquement les migrations en avant et contrôle le service après déploiement. Le site/runtime exige une API compatible. Un échec de smoke restaure la version précédente du Worker ; **aucune restauration destructive de base n'est automatisée**. Le chemin de rollback CI doit encore être exercé avec les identifiants dédiés. Le déploiement staging local est distinct de cette preuve CI.
 
 Les preuves historiques restent intactes. Les nouvelles preuves utilisent le préfixe `distribution-`. DNS, messagerie, production, secrets et limites IA n'ont pas été modifiés.
+
+## Résultat GitHub observé
+
+Le commit 90bbb06 est envoyé sur main. Le run Validate 40806371042 échoue avant toute commande : GitHub indique un paiement récent en échec ou un plafond de dépenses insuffisant. Les quatre jobs ont zéro étape exécutée. Pour continuer, le propriétaire doit corriger Billing & plans du compte kortexdevlop, puis relancer Validate. Les déploiements et la publication restent désactivés ; aucune dépense ni modification du forfait n'a été autorisée ici.
