@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-29T03:58:25.219Z",
+  "source_commit": "3a639ce3af5013aa3a50ccc12252c2149777880f",
+  "environment": "Windows 11 / Chromium",
+  "command": "node node_modules/playwright/cli.js test --config tests/security.config.ts",
+  "exit_code": 0,
+  "passed": 27,
+  "failed": 0,
+  "log": "target/phase19/chromium-final.log",
+  "historical_evidence_restored": [
+    "distribution-headers.json",
+    "distribution-revocation-web.json",
+    "security-abi-web.json",
+    "security-ai-privacy.json",
+    "security-auth-staging.json",
+    "security-network-web.json"
+  ]
+}

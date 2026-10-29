@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-29T04:41:24.784Z",
+  "source_commit": "53efb4e3def6c026c744a7049a18fa2863040a15",
+  "run": 40817599252,
+  "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40817599252",
+  "detail": {
+    "tool": {
+      "id": "encodeur-base64",
+      "version": "1.0.0",
+      "name": "Encodeur Base64",
+      "summary": "Encodez du texte UTF-8 en Base64 sur votre appareil.",
+      "category": "developer",
+      "tags": [
+        "base64",
+        "text",
+        "encoding"
+      ],
+      "icon_path": "assets/icon.svg",
+      "abi_version": "1.0",
+      "sha256": "75637ad92cea6ffd21be272e53f2fdc485265c6c2a94c14406b6f0bf8b699139",
+      "published_at": 1793248857985
+    },
+    "manifest": {
+      "abi_version": "1.0",
+      "category": "developer",
+      "description": "Transformez du texte UTF-8 en Base64, sans réseau ni permission sensible. Limite de 32 Kio de texte.",
+      "entrypoint": "module.wasm",
+      "format_version": "1.0",
+      "icon_path": "assets/icon.svg",
+      "id": "encodeur-base64",
+      "min_runtime": "1.0.0",
+      "name": "Encodeur Base64",
+      "permissions": [],
+      "seo": {
+        "description": "Encodez du texte UTF-8 en Base64 localement, sans envoi de données.",
+        "title": "Encodeur Base64 — Kortex"
+      },
+      "summary": "Encodez du texte UTF-8 en Base64 sur votre appareil.",
+      "tags": [
+        "base64",
+        "text",
+        "encoding"
+      ],
+      "ui_schema_version": "1.0",
+      "version": "1.0.0"
+    },
+    "contract": {
+      "actions": [
+        {
+          "description": "Encoder le texte UTF-8 en Base64",
+          "id": "encode",
+          "idempotent": true,
+          "input_schema": {
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "maxLength": 32768,
+                "type": "string"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "type": "object"
+          },
+          "output_schema": {
+            "additionalProperties": false,
+            "properties": {
+              "base64": {
+                "maxLength": 43692,
+                "type": "string"
+              }
+            },
+            "required": [
+              "base64"
+            ],
+            "type": "object"
+          },
+          "permissions": [],
+          "side_effect": "none",
+          "timeout_ms": 3000
+        }
+      ],
+      "contract_version": "1.0",
+      "tool_id": "encodeur-base64"
+    },
+    "descriptor": {
+      "abi_version": "1.0",
+      "schema_version": 1,
+      "sha256": "75637ad92cea6ffd21be272e53f2fdc485265c6c2a94c14406b6f0bf8b699139",
+      "signature": "F38rKRkA6nm2z3lYd+vKozo4c9u42J/nqJ00N4N8C8vUHJDVEchScL7Ne59V6ID8lD06/6//uHdz8rYQZ5IoBw==",
+      "signing_key_id": "ci-staging-20261029",
+      "tool_id": "encodeur-base64",
+      "version": "1.0.0"
+    }
+  }
+}

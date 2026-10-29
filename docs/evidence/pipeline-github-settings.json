@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-29T04:06:52.963Z",
+  "repository": {
+    "url": "https://github.com/kortexdevlop/kortex-site",
+    "id": 1437766566,
+    "visibility": "public",
+    "default_branch": "main"
+  },
+  "staging": {
+    "custom_branch_policy": true,
+    "branches": [
+      {
+        "name": "main",
+        "type": "branch"
+      }
+    ],
+    "oidc_subject": "repo:kortexdevlop@334040072/kortex-site@1437766566:environment:staging",
+    "oidc_immutable_subject": true
+  },
+  "production": {
+    "custom_branch_policy": true,
+    "review_required": true
+  },
+  "secrets_values_exposed": false
+}

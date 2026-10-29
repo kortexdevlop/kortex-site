@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-29T08:29:20.670Z",
+  "passed": true,
+  "source_commit": "53efb4e3def6c026c744a7049a18fa2863040a15",
+  "publication_run": 40817599252,
+  "download_status": 200,
+  "bytes": 242826,
+  "sha256": "75637ad92cea6ffd21be272e53f2fdc485265c6c2a94c14406b6f0bf8b699139",
+  "ed25519_signature_verified": true,
+  "signing_key_id": "ci-staging-20261029"
+}

@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-29T04:25:15.256Z",
+  "source_commit": "53efb4e3def6c026c744a7049a18fa2863040a15",
+  "observed": {
+    "github_oidc_immutable_subject": "repo:kortexdevlop@334040072/kortex-site@1437766566:environment:staging",
+    "cloudflare_fetch_rejection": "Invalid redirect value: error is not implemented at the edge",
+    "runtime_metadata_propagation": "Configuration PATCH succeeded, immediate GET returned a valid older sequence"
+  },
+  "fixes": {
+    "server_redirect_mode": "manual; non-success including 3xx rejected",
+    "runtime_visibility": "bounded polling; every response verified; conflicting or altered metadata rejected",
+    "github_subject": "exact immutable account/repository IDs; no wildcard"
+  },
+  "targeted_tests": {
+    "auth_publication": 27,
+    "propagation": 2,
+    "api_types": true
+  },
+  "temporary_staging_diagnostics_removed": true,
+  "token_logged": false
+}

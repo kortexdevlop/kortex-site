@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-29T08:15:36.767Z",
+  "redelivery_run": 40839663529,
+  "redelivery_url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40839663529",
+  "tool": "encodeur-base64",
+  "same_sha256": true,
+  "same_signature": true,
+  "same_published_at": true,
+  "website_not_rebuilt": true,
+  "runtime_not_rebuilt": true,
+  "same_runtime_bundle": true,
+  "website_deployed_before_initial_publication": true,
+  "runtime_deployed_before_initial_publication": true,
+  "passed": true,
+  "database_jobs": [
+    {
+      "request_id": "c1ac57e9-c042-4f5f-9742-d36e03547d57",
+      "status": "published",
+      "created_at": 1793248857326,
+      "updated_at": 1793248857985
+    }
+  ],
+  "single_publication_job": true
+}

@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-29T04:05:10.436Z",
+  "source_commit": "e02618ac817561be2c59b203474e6d49fe14e95f",
+  "run": 40815136583,
+  "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40815136583",
+  "tool": "encodeur-base64",
+  "build_tests_passed": 2,
+  "artifact": "package-encodeur-base64",
+  "artifact_bytes": 242826,
+  "secret_exact_value_scan": {
+    "passed": true,
+    "files": 2
+  },
+  "publication": {
+    "status": "published",
+    "run": 40817599252,
+    "source_commit": "53efb4e3def6c026c744a7049a18fa2863040a15",
+    "proof": "pipeline-base64-verification.json"
+  }
+}

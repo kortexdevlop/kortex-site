@@ -1,10 +1,10 @@
 {
-  "date": "2026-10-29T03:33:00.368Z",
+  "date": "2026-10-29T09:07:49.836Z",
   "passed": true,
   "real_windows_release_executable": true,
   "real_api_response": true,
   "signature_and_revocation_checked_by_native_code": true,
-  "sequence": 1,
+  "sequence": 4,
   "web_runtime": "1.0.1",
   "no_automatic_install": true
 }

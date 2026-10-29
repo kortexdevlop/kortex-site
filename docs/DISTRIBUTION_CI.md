@@ -2,7 +2,7 @@
 
 29/10/2026 — Windows et Chromium uniquement.
 
-Le dépôt privé autorisé est https://github.com/kortexdevlop/kortex-site, identifiant 1437766566, branche main. Le compte du connecteur GitHub est différent ; aucune permission de ce connecteur n'est supposée pour ce dépôt.
+Le dépôt public autorisé est https://github.com/kortexdevlop/kortex-site, identifiant 1437766566, branche main. Le compte du connecteur GitHub est différent ; aucune permission de ce connecteur n'est supposée pour ce dépôt.
 
 ## Révocations
 
@@ -24,14 +24,18 @@ La clé privée de révocation est chiffrée avec DPAPI pour l'utilisateur Windo
 
 Les workflows séparent validation, packaging des outils modifiés, publication, déploiement API et site/runtime. Les actions sont épinglées par commit ; les jobs de publication refusent PR, fork, mauvaise branche, dépôt ou environnement avant d'utiliser les identifiants. Les clés d'objets R2 sont adressées par hash. Les reprises gardent le même identifiant de publication. La provenance in-toto est signée par la clé de release ; elle ne constitue pas une attestation GitHub/SLSA certifiée.
 
-L'environnement staging GitHub est limité à main. `KORTEX_STAGING_PUBLISH_ENABLED` et `KORTEX_STAGING_DEPLOY_ENABLED` valent false. Pour activer la CI distante : créer un token Cloudflare dédié aux ressources staging, l'ajouter comme secret d'environnement, fournir une clé de release protégée avec son certificat public et sa politique OIDC GitHub dans l'API, puis exécuter une publication réelle et vérifier son artefact/provenance avant activation. Les fichiers publics `release-staging-root.json` et `release-staging-keys.json` doivent correspondre à cette clé enregistrée ; ils ne sont pas inventés ici.
+L’environnement staging GitHub est limité à main. KORTEX_STAGING_PUBLISH_ENABLED et KORTEX_STAGING_DEPLOY_ENABLED valent true. Le token Cloudflare et la clé de release déléguée sont configurés dans les secrets de cet environnement. La racine privée reste hors CI. Les certificats publics release-staging-root.json et release-staging-keys.json correspondent à la clé enregistrée dans D1 et dans les hôtes. L’API admin vérifie les claims OIDC du workflow tools.yml, le sujet immuable effectivement configuré par GitHub et sa signature RSA, y compris son en-tête x5t documenté. Les appels serveur utilisent redirect:manual et refusent explicitement les réponses de redirection ; redirect:error n’est pas accepté par le moteur Cloudflare déployé.
 
-La session OAuth Wrangler locale ne permet pas de créer ce token dédié (403). Elle n'est pas exportée vers GitHub. Les reviewers obligatoires de production sur ce dépôt privé sont refusés par le forfait GitHub (422). Aucun changement de forfait ni passage en public n'a été effectué. La production est non configurée et explicitement refusée par les scripts.
+Le passage en public a été demandé par le propriétaire. Les anciens refus de facturation du dépôt privé sont historiques. Les runners publics exécutent réellement les jobs. L’environnement production exige maintenant le reviewer propriétaire ; il n’a ni secret Cloudflare ni ressources de déploiement configurées. Les scripts continuent de refuser toute livraison production.
 
-Le déploiement API conserve les paramètres vivants, demande un point de restauration D1, applique uniquement les migrations en avant et contrôle le service après déploiement. Le site/runtime exige une API compatible. Un échec de smoke restaure la version précédente du Worker ; **aucune restauration destructive de base n'est automatisée**. Le chemin de rollback CI doit encore être exercé avec les identifiants dédiés. Le déploiement staging local est distinct de cette preuve CI.
+Le déploiement API conserve les paramètres vivants, demande un point de restauration D1, applique uniquement les migrations en avant et contrôle le service après déploiement. Le site/runtime exige une API compatible. Un échec de smoke restaure la version précédente du Worker ; **aucune restauration destructive de base n'est automatisée**. Le retour arrière et la restauration des Workers API/Runtime ont été exercés réellement en staging ; voir les preuves pipeline-rollback-*.json. Le déploiement staging local est distinct de cette preuve CI.
 
-Les preuves historiques restent intactes. Les nouvelles preuves utilisent le préfixe `distribution-`. DNS, messagerie, production, secrets et limites IA n'ont pas été modifiés.
+Les preuves historiques restent intactes. Les preuves de cette phase utilisent le préfixe pipeline-. DNS, messagerie, production, secrets applicatifs existants et limites IA ont été conservés. Les secrets nécessaires à la CI staging ont été configurés dans son environnement protégé.
 
-## Résultat GitHub observé
+## Vérifications observées
 
-Le commit 90bbb06 est envoyé sur main. Le run Validate 40806371042 échoue avant toute commande : GitHub indique un paiement récent en échec ou un plafond de dépenses insuffisant. Les quatre jobs ont zéro étape exécutée. Pour continuer, le propriétaire doit corriger Billing & plans du compte kortexdevlop, puis relancer Validate. Les déploiements et la publication restent désactivés ; aucune dépense ni modification du forfait n'a été autorisée ici.
+Les 91 tests API et 27 scénarios Chromium passent localement sur Windows le 29/10/2026. Les essais réels couvrent les révocations, les métadonnées de canaux signées, les refus de downgrade/replay, la compatibilité ABI, les permissions et le module calculatrice fraîchement reconstruit. Les références binaires et goldens historiques restent inchangés.
+
+La PR négative no 14 a effectivement échoué sur le contrat altéré ; elle est fermée sans fusion et sa branche a été supprimée. Les détails figurent dans pipeline-negative-pr.json. L’installation, le démarrage et la désinstallation de l’EXE Windows ont réussi ; le contrôle visuel WebView2 a vérifié les canaux signés. Le staging sert le Runtime Web 1.0.1 et le calcul signé donne 1200.
+
+Les résultats finaux des publications GitHub sont consignés séparément dans les rapports STEP-19.* et les preuves pipeline-*. La production, la signature Authenticode, Google OAuth réel et la rétention opérateur restent soumis aux gates déjà documentés. Le canal stable reste nul.

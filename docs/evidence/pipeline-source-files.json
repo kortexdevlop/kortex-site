@@ -1,0 +1,434 @@
+{
+  "base_commit": "14aa8a4",
+  "result_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
+  "changes": [
+    {
+      "status": "M",
+      "path": ".gitattributes"
+    },
+    {
+      "status": "M",
+      "path": ".github/workflows/api.yml"
+    },
+    {
+      "status": "A",
+      "path": ".github/workflows/desktop.yml"
+    },
+    {
+      "status": "M",
+      "path": ".github/workflows/tools.yml"
+    },
+    {
+      "status": "M",
+      "path": ".github/workflows/website.yml"
+    },
+    {
+      "status": "M",
+      "path": "Cargo.lock"
+    },
+    {
+      "status": "M",
+      "path": "Cargo.toml"
+    },
+    {
+      "status": "M",
+      "path": "api/src/env.ts"
+    },
+    {
+      "status": "M",
+      "path": "api/src/index.ts"
+    },
+    {
+      "status": "M",
+      "path": "api/src/routes/health.ts"
+    },
+    {
+      "status": "A",
+      "path": "api/src/routes/runtime.ts"
+    },
+    {
+      "status": "M",
+      "path": "api/src/security/admin-auth.ts"
+    },
+    {
+      "status": "M",
+      "path": "api/src/services/identity-config.ts"
+    },
+    {
+      "status": "M",
+      "path": "api/src/services/identity.ts"
+    },
+    {
+      "status": "A",
+      "path": "api/tests/admin-github.test.ts"
+    },
+    {
+      "status": "M",
+      "path": "api/tests/auth-schema.test.ts"
+    },
+    {
+      "status": "M",
+      "path": "api/tests/auth.test.ts"
+    },
+    {
+      "status": "A",
+      "path": "api/tests/runtime.test.ts"
+    },
+    {
+      "status": "M",
+      "path": "crates/kortex-runtime-native/tests/guest.rs"
+    },
+    {
+      "status": "M",
+      "path": "crates/kortex-verify/Cargo.toml"
+    },
+    {
+      "status": "M",
+      "path": "crates/kortex-verify/src/lib.rs"
+    },
+    {
+      "status": "A",
+      "path": "crates/kortex-verify/src/runtime.rs"
+    },
+    {
+      "status": "A",
+      "path": "crates/kortex-verify/tests/runtime.rs"
+    },
+    {
+      "status": "M",
+      "path": "crates/kortex-workflows/tests/runtime.rs"
+    },
+    {
+      "status": "A",
+      "path": "desktop/Dioxus.toml"
+    },
+    {
+      "status": "M",
+      "path": "desktop/assets/staging-trust.json"
+    },
+    {
+      "status": "M",
+      "path": "desktop/src/api.rs"
+    },
+    {
+      "status": "M",
+      "path": "desktop/src/app.rs"
+    },
+    {
+      "status": "M",
+      "path": "desktop/src/lib.rs"
+    },
+    {
+      "status": "M",
+      "path": "desktop/src/revocation.rs"
+    },
+    {
+      "status": "A",
+      "path": "desktop/src/runtime_update.rs"
+    },
+    {
+      "status": "A",
+      "path": "desktop/src/runtime_update_ui.rs"
+    },
+    {
+      "status": "A",
+      "path": "docs/CI.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/DEPENDENCY_BASELINE.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/DESKTOP_DISTRIBUTION.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/PROGRESS.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-desktop-install.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-desktop-release.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-desktop-runtime-check.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-desktop-version.png"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-frozen-binaries.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-negative-pr.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-permissions.png"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-r2-transport.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-rollback-api.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-rollback-runtime.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-runtime-channels.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/pipeline-staging-deploy.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/reports/STEP-19.3.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/reports/STEP-19.4.md"
+    },
+    {
+      "status": "A",
+      "path": "infra/deploy-order.md"
+    },
+    {
+      "status": "A",
+      "path": "infra/desktop/webview2-x64.json"
+    },
+    {
+      "status": "A",
+      "path": "infra/trust/release-staging-keys.json"
+    },
+    {
+      "status": "A",
+      "path": "infra/trust/release-staging-root.json"
+    },
+    {
+      "status": "M",
+      "path": "runtime/web/Cargo.toml"
+    },
+    {
+      "status": "A",
+      "path": "runtime/web/public/version.json"
+    },
+    {
+      "status": "M",
+      "path": "runtime/web/worker.ts"
+    },
+    {
+      "status": "A",
+      "path": "scripts/api-readiness.mjs"
+    },
+    {
+      "status": "M",
+      "path": "scripts/build-runtime.mjs"
+    },
+    {
+      "status": "M",
+      "path": "scripts/ci-deploy.mjs"
+    },
+    {
+      "status": "M",
+      "path": "scripts/ci-prepare.mjs"
+    },
+    {
+      "status": "M",
+      "path": "scripts/ci-publish-tool.mjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/ci-quality.mjs"
+    },
+    {
+      "status": "M",
+      "path": "scripts/ci-verify.mjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/desktop-artifact-source.mjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/desktop-installer-smoke.ps1"
+    },
+    {
+      "status": "A",
+      "path": "scripts/desktop-package.mjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/desktop-webview2.mjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/offline-release-key.mjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/publish-desktop.mjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/publish-runtime.mjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/rehearse-staging-rollback.mjs"
+    },
+    {
+      "status": "M",
+      "path": "scripts/release-tool.mjs"
+    },
+    {
+      "status": "A",
+      "path": "scripts/runtime-publication.mjs"
+    },
+    {
+      "status": "M",
+      "path": "scripts/security-gate.mjs"
+    },
+    {
+      "status": "A",
+      "path": "shared/typescript/src/runtime.ts"
+    },
+    {
+      "status": "M",
+      "path": "tests/contracts/browser-csp.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/desktop/installer-smoke.md"
+    },
+    {
+      "status": "A",
+      "path": "tests/desktop/runtime-channel-smoke.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/fixtures/calculatrice-reference.wasm"
+    },
+    {
+      "status": "M",
+      "path": "tests/fixtures/calculatrice.cjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/fixtures/core-reference.wasm"
+    },
+    {
+      "status": "M",
+      "path": "tests/fixtures/prepare-calculatrice.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/fixtures/prepare-runtime.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/fixtures/runtime-channels.signed-test.json"
+    },
+    {
+      "status": "A",
+      "path": "tests/integration/runtime-update.spec.ts"
+    },
+    {
+      "status": "A",
+      "path": "tests/publication/api-readiness.test.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/publication/ci-quality.test.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/publication/desktop-artifact-source.test.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/publication/desktop-webview2.test.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tests/publication/local-pipeline.test.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tests/publication/runtime-publication.test.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tests/security.config.ts"
+    },
+    {
+      "status": "M",
+      "path": "tests/web/harness.ts"
+    },
+    {
+      "status": "A",
+      "path": "tools/encodeur-base64/Cargo.toml"
+    },
+    {
+      "status": "A",
+      "path": "tools/encodeur-base64/assets/icon.svg"
+    },
+    {
+      "status": "A",
+      "path": "tools/encodeur-base64/contract.json"
+    },
+    {
+      "status": "A",
+      "path": "tools/encodeur-base64/manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "tools/encodeur-base64/src/lib.rs"
+    },
+    {
+      "status": "M",
+      "path": "web-adapter/build.mjs"
+    },
+    {
+      "status": "M",
+      "path": "web-adapter/src/bridge.ts"
+    },
+    {
+      "status": "A",
+      "path": "web-adapter/src/runtime-channels.ts"
+    },
+    {
+      "status": "M",
+      "path": "web-adapter/tests/capabilities.spec.ts"
+    },
+    {
+      "status": "M",
+      "path": "web-adapter/tests/wasm.spec.ts"
+    },
+    {
+      "status": "M",
+      "path": "website/src/components/ToolViewer.astro"
+    },
+    {
+      "status": "M",
+      "path": "website/src/lib/proxy.ts"
+    },
+    {
+      "status": "M",
+      "path": "website/tests/api-client.test.ts"
+    }
+  ]
+}

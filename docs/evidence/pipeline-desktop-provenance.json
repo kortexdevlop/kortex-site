@@ -1,0 +1,46 @@
+{
+  "statement": {
+    "descriptor": {
+      "schema_version": 1,
+      "platform": "windows-x64",
+      "channel": "staging",
+      "version": "1.0.0",
+      "format": "nsis",
+      "filename": "KortexDesktop_1.0.0_x64-setup.exe",
+      "sha256": "f73a0a4c74376b7d741d04fc06bf67ffacce001324a05aadd0846bbdf30ef9ac",
+      "bytes": 225520032,
+      "code_signed": false,
+      "production_ready": false,
+      "webview2": {
+        "architecture": "x64",
+        "installer_version": "1.3.303.7",
+        "sha256": "1c401b327fbc7bb9731b4e350a2194f083cbc3ede46508d52e1cae6610a39bea",
+        "bytes": 214884560,
+        "publisher_verified": true
+      },
+      "url": "https://github.com/kortexdevlop/kortex-site/releases/download/desktop-staging-v1.0.0/KortexDesktop_1.0.0_x64-setup.exe"
+    },
+    "repository": "kortexdevlop/kortex-site",
+    "commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
+    "workflow": "kortexdevlop/kortex-site/.github/workflows/desktop.yml@refs/heads/main"
+  },
+  "signing_key_id": "ci-staging-20261029",
+  "signature": "1iT+Nhh77lDd8++ibZtJzKSdq1FJVfUxh2aasvnMDxqUhnsItK21bAdiTifI01aHfjHPsxyZ0GFHv0ApfKw1Bw==",
+  "keys": {
+    "schema_version": 1,
+    "version": 1,
+    "issued_at": 1793241547472,
+    "expires": 1801017607472,
+    "root_key_id": "revocation-root-a946d4fb423b",
+    "keys": [
+      {
+        "id": "ci-staging-20261029",
+        "public_key_base64": "vKgq9u8PDjfFvJr+BWEPFCEHlWkQGcDQnxvy4pXzSbk=",
+        "not_before": 1793241547472,
+        "expires": 1801017607472,
+        "revoked": false
+      }
+    ],
+    "signature": "mIVgbCfXjBWyb3Dr2c6xmsO8eJlhnpLey6wEsvosCBcxNQdD80F7tMOJiWWtQcQfhH6+CSrLWM7EuYDINVR2AQ=="
+  }
+}

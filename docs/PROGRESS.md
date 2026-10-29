@@ -1,5 +1,7 @@
 # Progression
 
+Lot 18.3–19.4 du 29/10/2026 : **18.3 et 19.0 à 19.4 closes techniquement sur Windows x64 / Chromium-WebView2 / staging.** CI complète verte sur 4950cbadb2a25a4ca377838f1cb54b4c2eeec397 (40844352974) : 188 Rust, 91 API, 27 Chromium ; un smoke HTTPS externe optionnel reste explicitement ignoré. Sixième outil Base64 publié, exécuté réellement et relivré sans modifier archive, date, site ou Runtime. Déploiements séparés, rollback API CI et rollback Runtime avec calcul réel vérifiés. Installateur Windows reconstruit avec le bon WebView2 x64 Microsoft, testé sur machine fraîche puis publié en préversion immuable ; provenance/checksum et canal signé séquence 4 vérifiés. Production, DNS, messagerie, secrets applicatifs existants et quotas IA conservés. 18.2/18.4 restent partielles pour Google réel, rétention et revue humaine/licences ; certificat Windows de production absent. La clôture technique ne remplace pas une approbation humaine formelle et ne lève aucun gate production. Rapports STEP-19.0 à STEP-19.4 et preuves pipeline-*. Les notes suivantes sont historiques.
+
 Lot 18.0–18.2 du 28/10/2026 : **18.0 et 18.1 closes techniquement ; 18.2 reste partielle pour Google réel et la rétention opérateur.** Modèle de menace et matrice, budgets tables/ABI durcis, réseau Web non vérifiable refusé, protections Windows et fichiers/comptes éprouvées. ZIP/Zod/Undici corrigés : scans réellement exécutés sans vulnérabilité détectée, cinq avertissements RustSec conservés/documentés. 50 tests natifs, 37 core/ABI/UI, 88 API, 23 Web sécurité et 8 bureau staging réussis ; types, check Windows et build Web réussis. Confidentialité du fichier réel et purge du seul propriétaire vérifiées. Staging API/runtime/Web actualisé en préservant paramètres, clés, secrets et quotas ; production/DNS/mail inchangés. Rapports STEP-18.0 à STEP-18.2 et security-validation.json ; statuts humains formels conservés, 18.3 non engagée. Les notes suivantes sont historiques.
 
 Lot 17.1–17.3 du 28/10/2026 : **terminé et clos techniquement sur staging.** Bureau Web /workspace avec huit fenêtres isolées, dock, souris/clavier et onglets mobiles ; actions et parcours liés aux instances existantes, résultats éphémères dans la bonne fenêtre et historique de métadonnées. Huit scénarios Chromium réels et 37 tests Web réussis ; deux lectures de fichiers simultanées consenties, handle étranger refusé, droits expirés redemandés, fermeture/annulation et zéro moteur restant contrôlés. Astro 92 fichiers sans erreur/avertissement et build réussis. Axe zéro critique, contraste sérieux signalé. Clé calculatrice expirée détectée : nouvelle version immuable signée 1.0.1 publiée sur staging, sans contourner la vérification. Production/DNS/mail/secrets/quotas IA préservés. Hors connexion pour moteurs déjà chargés uniquement ; statut humain formel conservé ; Google 14.5 inchangé et phase 18 non engagée. Preuves : desktop-validation.json et workspace-gate.md. Les notes suivantes sont historiques.
@@ -1968,109 +1970,117 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "id": "19.0",
     "status": "pending",
     "source_commit": "a66543f",
-    "result_commit": "90bbb0681f0c2ac744accd1af2c34fd45cbc3ee8",
+    "result_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
     "report_path": "docs/reports/STEP-19.0.md",
-    "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
-    "contract_changes": [
-      "Liste de révocation signée v1 (Rust/TypeScript)"
-    ],
+    "tests_executed": "29/10/2026 Windows/Chromium : node scripts/ci-verify.mjs --lane contracts|native|web|security, quatre jobs exit 0, run 40844352974. 188 Rust réussis + 1 smoke HTTPS externe optionnel ignoré, 91 API et 27 Chromium ; fmt/clippy/types/build/audits/SBOM réussis. PR négative 14 effectivement refusée.",
+    "contract_changes": [],
     "evidence": [
-      "docs/DISTRIBUTION_CI.md",
-      "docs/evidence/distribution-revocation-web.json",
-      "docs/evidence/distribution-headers.json",
-      "docs/evidence/distribution-staging-deploy.json",
-      "docs/evidence/distribution-validation.json",
-      "docs/evidence/distribution-github.json"
+      "docs/evidence/pipeline-ci-validation.json",
+      "docs/evidence/pipeline-negative-pr.json",
+      "docs/evidence/pipeline-frozen-binaries.json",
+      "docs/evidence/pipeline-source-files.json"
     ],
     "frozen": false,
-    "technical_status": "partial",
-    "remaining_gate": "GitHub ne démarre aucun des quatre jobs : paiement du compte en échec ou plafond de dépenses à corriger. Exécution distante non validée.",
-    "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
-    "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
+    "technical_status": "closed",
+    "remaining_gate": "Revue humaine formelle non enregistrée ; gates de production 18.2/18.4 inchangés.",
+    "authorization": "propriétaire : enchaîne jusqu’à 19.4 ; reprise confirmée ; exclusions Linux/macOS/Firefox maintenues",
+    "limitations": "Clôture technique dans le périmètre autorisé ; aucune approbation humaine ou livraison production inventée. Voir STEP-19.0.md.",
+    "technical_scope": "Windows x64 / Chromium-WebView2 / staging ; Linux/macOS/Firefox exclus par le propriétaire"
   },
   {
     "id": "19.1",
     "status": "pending",
     "source_commit": "a66543f",
-    "result_commit": "90bbb0681f0c2ac744accd1af2c34fd45cbc3ee8",
+    "result_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
     "report_path": "docs/reports/STEP-19.1.md",
-    "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
+    "tests_executed": "Publication réelle run 40817599252 et redelivery 40839663529 : succès ; deux tests du tool ciblé, UI UTF-8 réelle, encode(abc)=YWJj, SHA/signature vérifiés, une publication D1, site/Runtime inchangés.",
     "contract_changes": [
-      "Liste de révocation signée v1 (Rust/TypeScript)"
+      "Nouveau contrat encodeur-base64 compatible ABI 1.0 ; schémas gelés inchangés"
     ],
     "evidence": [
-      "docs/DISTRIBUTION_CI.md",
-      "docs/evidence/distribution-revocation-web.json",
-      "docs/evidence/distribution-headers.json",
-      "docs/evidence/distribution-staging-deploy.json",
-      "docs/evidence/distribution-validation.json",
-      "docs/evidence/distribution-github.json"
+      "docs/evidence/pipeline-base64-published.json",
+      "docs/evidence/pipeline-base64-browser.json",
+      "docs/evidence/pipeline-base64-verification.json",
+      "docs/evidence/pipeline-redelivery.json",
+      "docs/evidence/pipeline-r2-transport.json",
+      "docs/evidence/pipeline-github-settings.json"
     ],
     "frozen": false,
-    "technical_status": "partial",
-    "remaining_gate": "Token Cloudflare CI et clé/certificat de release protégés absents ; publication distante désactivée.",
-    "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
-    "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
+    "technical_status": "closed",
+    "remaining_gate": "Revue humaine formelle non enregistrée ; gates de production 18.2/18.4 inchangés.",
+    "authorization": "propriétaire : enchaîne jusqu’à 19.4 ; reprise confirmée ; exclusions Linux/macOS/Firefox maintenues",
+    "limitations": "Clôture technique dans le périmètre autorisé ; aucune approbation humaine ou livraison production inventée. Voir STEP-19.1.md.",
+    "technical_scope": "Windows x64 / Chromium-WebView2 / staging ; Linux/macOS/Firefox exclus par le propriétaire"
   },
   {
     "id": "19.2",
     "status": "pending",
     "source_commit": "a66543f",
-    "result_commit": "90bbb0681f0c2ac744accd1af2c34fd45cbc3ee8",
+    "result_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
     "report_path": "docs/reports/STEP-19.2.md",
-    "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
+    "tests_executed": "API 40817562928 et Website 40817566516 : succès ; node scripts/smoke-cloud.mjs --env staging exit 0. Rollback API CI 40816034275 et Runtime navigateur réel (1200) réussis, versions courantes rétablies, schéma D1 inchangé, aucun rebuild du site pendant publication/retry outil.",
     "contract_changes": [
-      "Liste de révocation signée v1 (Rust/TypeScript)"
+      "En-tête X-Kortex-Api-Revision additif ; DTO health V1 inchangé"
     ],
     "evidence": [
-      "docs/DISTRIBUTION_CI.md",
-      "docs/evidence/distribution-revocation-web.json",
-      "docs/evidence/distribution-headers.json",
-      "docs/evidence/distribution-staging-deploy.json",
-      "docs/evidence/distribution-validation.json",
-      "docs/evidence/distribution-github.json"
+      "docs/evidence/pipeline-rollback-ci.json",
+      "docs/evidence/pipeline-rollback-runtime-browser.json",
+      "docs/evidence/pipeline-redelivery.json",
+      "docs/evidence/pipeline-runtime-final-verification.json"
     ],
     "frozen": false,
-    "technical_status": "partial",
-    "remaining_gate": "Identifiants CI dédiés et exercice réel du rollback CI manquants ; production non configurée.",
-    "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
-    "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
+    "technical_status": "closed",
+    "remaining_gate": "Revue humaine formelle non enregistrée ; gates de production 18.2/18.4 inchangés.",
+    "authorization": "propriétaire : enchaîne jusqu’à 19.4 ; reprise confirmée ; exclusions Linux/macOS/Firefox maintenues",
+    "limitations": "Clôture technique dans le périmètre autorisé ; aucune approbation humaine ou livraison production inventée. Voir STEP-19.2.md.",
+    "technical_scope": "Windows x64 / Chromium-WebView2 / staging ; Linux/macOS/Firefox exclus par le propriétaire"
   },
   {
     "id": "19.3",
     "status": "pending",
     "source_commit": "14aa8a4",
-    "result_commit": "pending",
+    "result_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
     "report_path": "docs/reports/STEP-19.3.md",
-    "tests_executed": "Tests Rust, API et navigateur des métadonnées exécutés ; vérifications globales en cours.",
-    "contract_changes": [
-      "Métadonnées de canaux Runtime signées v1, sans modification des contrats outils 1.0"
-    ],
+    "tests_executed": "Run Windows Server 2022 40844353018 : build EXE NSIS x64, installation/démarrage/désinstallation sur machine fraîche puis publication protégée réussis. WebView2 x64 Microsoft épinglé et vérifié ; Windows 11 local réussi ; provenance, digest GitHub et tag source vérifiés. EXE staging non signé Authenticode.",
+    "contract_changes": [],
     "evidence": [
-      "docs/DISTRIBUTION_CI.md"
+      "docs/evidence/pipeline-desktop-ci-smoke.json",
+      "docs/evidence/pipeline-desktop-published.json",
+      "docs/evidence/pipeline-desktop-provenance.json",
+      "docs/evidence/pipeline-desktop-x64-package.json",
+      "docs/evidence/pipeline-desktop-runtime-check.json",
+      "docs/evidence/pipeline-desktop-version.png"
     ],
     "frozen": false,
-    "technical_status": "partial",
-    "authorization": "propriétaire : enchaîne jusqu’à 19.4 ; conserver exclusions Linux/macOS/Firefox",
-    "remaining_gate": "Installer Windows et publication des canaux à vérifier ; production signée bloquée faute de certificat."
+    "technical_status": "closed",
+    "authorization": "propriétaire : enchaîne jusqu’à 19.4 ; reprise confirmée ; exclusions Linux/macOS/Firefox maintenues",
+    "remaining_gate": "Production signée bloquée sans certificat Windows ; revue humaine formelle et gates 18.2/18.4 inchangés.",
+    "technical_scope": "Windows x64 / Chromium-WebView2 / staging ; Linux/macOS/Firefox exclus par le propriétaire",
+    "limitations": "Clôture technique dans le périmètre autorisé ; aucune approbation humaine ou livraison production inventée. Voir STEP-19.3.md."
   },
   {
     "id": "19.4",
     "status": "pending",
     "source_commit": "14aa8a4",
-    "result_commit": "pending",
+    "result_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
     "report_path": "docs/reports/STEP-19.4.md",
-    "tests_executed": "Tests Rust, API et navigateur des métadonnées exécutés ; vérifications globales en cours.",
+    "tests_executed": "Tests Rust/Chromium communs de signature/expiration/replay/ABI/UPDATE_REQUIRED réussis ; canal public signé séquence 4, bootstrap SRI vérifié et même signature via proxy Website, UI WebView2 native vérifiée réellement, rollback navigateur précédent avec résultat 1200 puis restauration.",
     "contract_changes": [
-      "Métadonnées de canaux Runtime signées v1, sans modification des contrats outils 1.0"
+      "GET /api/v1/runtime/channels et métadonnées signées V1 (additif) ; ABI/schémas outils inchangés"
     ],
     "evidence": [
-      "docs/DISTRIBUTION_CI.md"
+      "docs/evidence/pipeline-runtime-channels-final.json",
+      "docs/evidence/pipeline-runtime-final-verification.json",
+      "docs/evidence/pipeline-desktop-runtime-check.json",
+      "docs/evidence/pipeline-rollback-runtime-browser.json",
+      "docs/evidence/pipeline-ci-validation.json"
     ],
     "frozen": false,
-    "technical_status": "partial",
-    "authorization": "propriétaire : enchaîne jusqu’à 19.4 ; conserver exclusions Linux/macOS/Firefox",
-    "remaining_gate": "Installer Windows et publication des canaux à vérifier ; production signée bloquée faute de certificat."
+    "technical_status": "closed",
+    "authorization": "propriétaire : enchaîne jusqu’à 19.4 ; reprise confirmée ; exclusions Linux/macOS/Firefox maintenues",
+    "remaining_gate": "Renouvellement opérateur des révocations avant 24 h et métadonnées avant expiration ; production et revue humaine formelle restent distinctes.",
+    "technical_scope": "Windows x64 / Chromium-WebView2 / staging ; Linux/macOS/Firefox exclus par le propriétaire",
+    "limitations": "Clôture technique dans le périmètre autorisé ; aucune approbation humaine ou livraison production inventée. Voir STEP-19.4.md."
   }
 ]
 ```

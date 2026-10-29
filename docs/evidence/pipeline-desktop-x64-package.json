@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-29T08:47:54.095Z",
+  "source_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
+  "local_package": {
+    "schema_version": 1,
+    "platform": "windows-x64",
+    "channel": "staging",
+    "version": "1.0.0",
+    "format": "nsis",
+    "filename": "KortexDesktop_1.0.0_x64-setup.exe",
+    "sha256": "29ffc9d29fb4ec1682b3b4fb9ac68b6e9ad01878b68e2d5fe4602d28f828ca3f",
+    "bytes": 225520649,
+    "code_signed": false,
+    "production_ready": false,
+    "webview2": {
+      "architecture": "x64",
+      "installer_version": "1.3.303.7",
+      "sha256": "1c401b327fbc7bb9731b4e350a2194f083cbc3ede46508d52e1cae6610a39bea",
+      "bytes": 214884560,
+      "publisher_verified": true
+    }
+  },
+  "root_cause": {
+    "dioxus_cli": "0.7.10",
+    "wrong_x64_url": "https://go.microsoft.com/fwlink/?linkid=2099617",
+    "observed_payload": "MicrosoftEdgeWebview_X86_156.0.4314.50.exe",
+    "correct_x64_source": "https://go.microsoft.com/fwlink/?linkid=2124701",
+    "official_signature": "Valid / Microsoft Corporation",
+    "installer_hash_pin": "1c401b327fbc7bb9731b4e350a2194f083cbc3ede46508d52e1cae6610a39bea"
+  },
+  "old_cache_preserved": true,
+  "local_install_start_uninstall": {
+    "process_start": true,
+    "uninstalled": true,
+    "visual_interactions": false,
+    "platform": "windows-x64",
+    "installed": true,
+    "production_signed": false,
+    "passed": true
+  }
+}

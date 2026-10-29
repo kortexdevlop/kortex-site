@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-29T03:48:58.154Z",
+  "passed": true,
+  "parent_verified_signed_channel": true,
+  "isolated_frame": true,
+  "real_signed_wasm": true,
+  "result": 1200,
+  "runtime": "1.0.1",
+  "sequence": 1
+}

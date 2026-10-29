@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-29T04:31:24.056Z",
+  "staging_only": true,
+  "target": "runtime",
+  "worker": "kortex-run-staging",
+  "previous_version": "8191b14a-9f77-43cc-b4bf-200cb0a5e576",
+  "current_version": "b754459b-ab29-499d-9791-006898592252",
+  "rollback_exercised": true,
+  "current_restored": true,
+  "public_variables_preserved": true,
+  "database_schema_unchanged": true,
+  "database_restore": false,
+  "previous_runtime_browser": {
+    "isolated_frame": true,
+    "verified_signed_package": true,
+    "result": 1200,
+    "executed_locally": true
+  },
+  "passed": true
+}

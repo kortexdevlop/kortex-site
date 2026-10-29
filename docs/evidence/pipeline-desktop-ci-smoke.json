@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-29T09:08:32.472Z",
+  "source_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
+  "run": 40844353018,
+  "artifact_id": 12884563751,
+  "installer-smoke.json": {
+    "uninstalled": true,
+    "production_signed": false,
+    "process_start": true,
+    "platform": "windows-x64",
+    "passed": true,
+    "visual_interactions": false,
+    "installed": true
+  },
+  "desktop-release.json": {
+    "schema_version": 1,
+    "platform": "windows-x64",
+    "channel": "staging",
+    "version": "1.0.0",
+    "format": "nsis",
+    "filename": "KortexDesktop_1.0.0_x64-setup.exe",
+    "sha256": "f73a0a4c74376b7d741d04fc06bf67ffacce001324a05aadd0846bbdf30ef9ac",
+    "bytes": 225520032,
+    "code_signed": false,
+    "production_ready": false,
+    "webview2": {
+      "architecture": "x64",
+      "installer_version": "1.3.303.7",
+      "sha256": "1c401b327fbc7bb9731b4e350a2194f083cbc3ede46508d52e1cae6610a39bea",
+      "bytes": 214884560,
+      "publisher_verified": true
+    }
+  },
+  "smoke-logs/webview2.json": {
+    "runtime_versions": [
+      "156.0.4314.50"
+    ],
+    "browser_override": null,
+    "os_version": "10.0.20348.0"
+  },
+  "webview2-dependency.json": {
+    "architecture": "x64",
+    "installer_version": "1.3.303.7",
+    "sha256": "1c401b327fbc7bb9731b4e350a2194f083cbc3ede46508d52e1cae6610a39bea",
+    "bytes": 214884560,
+    "publisher_verified": true
+  }
+}

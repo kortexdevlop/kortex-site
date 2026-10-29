@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-29T04:39:31.184Z",
+  "repository": "kortexdevlop/kortex-site",
+  "source_commit": "53efb4e3def6c026c744a7049a18fa2863040a15",
+  "run": 40817562895,
+  "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40817562895",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 123262196807,
+      "name": "quality (contracts)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40817562895/job/123262196807"
+    },
+    {
+      "id": 123262197039,
+      "name": "quality (security)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40817562895/job/123262197039"
+    },
+    {
+      "id": 123262197163,
+      "name": "quality (web)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40817562895/job/123262197163"
+    },
+    {
+      "id": 123262197230,
+      "name": "quality (native)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40817562895/job/123262197230"
+    }
+  ],
+  "platform": "windows-latest / Chromium",
+  "excluded_by_owner": [
+    "Linux",
+    "macOS",
+    "Firefox"
+  ],
+  "rust": {
+    "passed": 188,
+    "ignored": 1
+  },
+  "api_tests": 91,
+  "chromium_tests": 27,
+  "security": {
+    "technical_passed": true,
+    "high_or_critical_findings": 0,
+    "release_ready": false
+  },
+  "secret_exact_value_scan": {
+    "passed": true,
+    "files": 26
+  }
+}

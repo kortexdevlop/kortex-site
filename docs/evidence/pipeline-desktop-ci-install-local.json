@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-29T08:16:28.095Z",
+  "source_commit": "53efb4e3def6c026c744a7049a18fa2863040a15",
+  "github_build_run": 40817568503,
+  "artifact_id": 12873938541,
+  "sha256": "2146317141dc84d0dc2e1c791bf1412cfa9655432d47a14ad4f699d08ccda974",
+  "bytes": 201117713,
+  "platform": "Windows 11 x64",
+  "smoke": {
+    "platform": "windows-x64",
+    "passed": true,
+    "process_start": true,
+    "production_signed": false,
+    "uninstalled": true,
+    "installed": true,
+    "visual_interactions": false
+  },
+  "download_hash_verified": true,
+  "runner_startup_original": "Windows latest: WebView2 unavailable, HRESULT 0x80070002; retesting on Windows Server 2022 with explicit Runtime detection"
+}

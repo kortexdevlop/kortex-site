@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-29T09:12:05.441Z",
+  "passed": true,
+  "sequence": 4,
+  "runtime_version": "1.0.1",
+  "stable": null,
+  "api_and_website_same_signature": true,
+  "bootstrap_sri_verified": true,
+  "bundle_sha256": "89ee58fa6177b03e434b0e3054380185075aaadf0676db9b77712ac05de03e1a",
+  "desktop_sha256": "f73a0a4c74376b7d741d04fc06bf67ffacce001324a05aadd0846bbdf30ef9ac",
+  "desktop_code_signed": false
+}

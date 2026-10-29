@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-29T09:00:24.864Z",
+  "repository": "kortexdevlop/kortex-site",
+  "source_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
+  "run": 40844352974,
+  "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40844352974",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 123348277808,
+      "name": "quality (native)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40844352974/job/123348277808"
+    },
+    {
+      "id": 123348278154,
+      "name": "quality (contracts)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40844352974/job/123348278154"
+    },
+    {
+      "id": 123348278179,
+      "name": "quality (security)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40844352974/job/123348278179"
+    },
+    {
+      "id": 123348278210,
+      "name": "quality (web)",
+      "conclusion": "success",
+      "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40844352974/job/123348278210"
+    }
+  ],
+  "platform": "Windows / Chromium",
+  "excluded_by_owner": [
+    "Linux",
+    "macOS",
+    "Firefox"
+  ],
+  "rust": {
+    "passed": 188,
+    "ignored": 1
+  },
+  "api_tests": 91,
+  "chromium_tests": 27,
+  "security": {
+    "technical_passed": true,
+    "high_or_critical_findings": 0,
+    "release_ready": false
+  },
+  "validation_jobs_read_only": true,
+  "staging_credentials_not_mapped_to_validation": true
+}

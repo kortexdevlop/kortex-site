@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-29T09:06:19.428Z",
+  "passed": true,
+  "source_commit": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397",
+  "github_run": 40844353018,
+  "run_url": "https://github.com/kortexdevlop/kortex-site/actions/runs/40844353018",
+  "release": "https://github.com/kortexdevlop/kortex-site/releases/tag/desktop-staging-v1.0.0",
+  "installer": {
+    "url": "https://github.com/kortexdevlop/kortex-site/releases/download/desktop-staging-v1.0.0/KortexDesktop_1.0.0_x64-setup.exe",
+    "bytes": 225520032,
+    "sha256": "f73a0a4c74376b7d741d04fc06bf67ffacce001324a05aadd0846bbdf30ef9ac",
+    "github_digest_verified": true,
+    "code_signed": false
+  },
+  "signed_provenance_verified": true,
+  "channel_sequence": 4,
+  "prerelease": true,
+  "tag_commit_verified": "4950cbadb2a25a4ca377838f1cb54b4c2eeec397"
+}
