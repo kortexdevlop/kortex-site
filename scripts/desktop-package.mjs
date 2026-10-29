@@ -4,10 +4,12 @@ import {mkdirSync,readdirSync,readFileSync,writeFileSync,copyFileSync,existsSync
 import {resolve,join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
-export function packageDesktop({channel='staging',out=resolve('target/desktop-package'),run=spawnSync}={}){
+import {ensureWebView2} from './desktop-webview2.mjs';
+export async function packageDesktop({channel='staging',out=resolve('target/desktop-package'),run=spawnSync}={}){
  if(process.platform!=='win32')throw Error('OS excluded by owner: Windows only');
  if(channel!=='staging')throw Error('Production requires an operator-provided Windows signing certificate');
  mkdirSync(out,{recursive:true});
+ const webview2=await ensureWebView2();writeFileSync(join(out,'webview2-dependency.json'),JSON.stringify(webview2,null,2)+'\n');
  const result=run('dx',['bundle','--desktop','--release','--package','kortex-desktop','--package-types','nsis','--out-dir',out,'--locked'],{cwd:resolve('desktop'),encoding:'utf8',windowsHide:true,maxBuffer:16*1024*1024,env:{...process.env,CARGO_INCREMENTAL:'0'}});
  writeFileSync(join(out,'build.log'),(result.stdout||'')+(result.stderr||''));
  if(result.status!==0){
@@ -21,7 +23,7 @@ export function packageDesktop({channel='staging',out=resolve('target/desktop-pa
  const files=readdirSync(out).filter(f=>/\.exe$/i.test(f));if(files.length!==1)throw Error('Exactly one NSIS installer expected');
  const file=join(out,files[0]),bytes=readFileSync(file);if(bytes[0]!==0x4d||bytes[1]!==0x5a)throw Error('Invalid Windows executable');
  const version=/^version\s*=\s*"([^"]+)"/m.exec(readFileSync('desktop/Cargo.toml','utf8'))?.[1];if(!version)throw Error('Missing Desktop version');
- const descriptor={schema_version:1,platform:'windows-x64',channel,version,format:'nsis',filename:files[0],sha256:createHash('sha256').update(bytes).digest('hex'),bytes:bytes.length,code_signed:false,production_ready:false};
+ const descriptor={schema_version:1,platform:'windows-x64',channel,version,format:'nsis',filename:files[0],sha256:createHash('sha256').update(bytes).digest('hex'),bytes:bytes.length,code_signed:false,production_ready:false,webview2};
  writeFileSync(join(out,'desktop-release.json'),JSON.stringify(descriptor,null,2)+'\n');return descriptor;
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){try{console.log(JSON.stringify(packageDesktop()))}catch(e){console.error(e.message);process.exitCode=1}}
+if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){try{console.log(JSON.stringify(await packageDesktop()))}catch(e){console.error(e.message);process.exitCode=1}}

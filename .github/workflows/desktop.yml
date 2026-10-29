@@ -2,7 +2,7 @@ name: Desktop Windows staging
 on:
   push:
     branches: [main]
-    paths: ['desktop/**', 'runtime/desktop/**', 'scripts/desktop-*', '.github/workflows/desktop.yml']
+    paths: ['desktop/**', 'runtime/desktop/**', 'infra/desktop/**', 'scripts/desktop-*', '.github/workflows/desktop.yml']
   workflow_dispatch:
     inputs:
       artifact_run:

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "architecture": "x64",
+  "installer_version": "1.3.303.7",
+  "source": "https://go.microsoft.com/fwlink/?linkid=2124701",
+  "url": "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/f699d81e-69ce-4b09-aa07-23ff2713045b/MicrosoftEdgeWebView2RuntimeInstallerX64.exe",
+  "sha256": "1c401b327fbc7bb9731b4e350a2194f083cbc3ede46508d52e1cae6610a39bea",
+  "bytes": 214884560,
+  "publisher_subject": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+  "verified_at": "2026-10-29"
+}
