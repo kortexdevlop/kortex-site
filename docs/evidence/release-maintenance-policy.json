@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-29T10:08:56.536Z",
+  "worker": "kortex-api-staging",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "workflow_ref": "kortexdevlop/kortex-site/.github/workflows/tools.yml@refs/heads/main",
+  "repository": "kortexdevlop/kortex-site",
+  "actions": [
+    "publish",
+    "rollback",
+    "revoke"
+  ],
+  "scope": "staging only; existing bindings retained; no catalog mutation; production unconfigured"
+}

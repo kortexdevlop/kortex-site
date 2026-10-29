@@ -1,23 +1,23 @@
-# Exploitation du site Kortex
+# Exploitation de Kortex — staging Windows/Chromium
 
-## Environnement de validation
+Les déploiements réels passent par les workflows protégés GitHub, avec qualité vérifiée sur le même commit et identité OIDC de main. Production, DNS et messagerie restent hors des changements de ce lot. Le Runtime garde son origine distincte. Le catalogue réel ne reçoit aucune des 10 000 fiches du benchmark.
 
-Le site et le Runtime de staging utilisent exclusivement les Workers kortex-web-staging et kortex-run-staging sur workers.dev. L’API, D1 et R2 restent les ressources de staging déjà possédées par le projet. Aucun DNS, routage de messagerie ou service de production n’est modifié. Le site de staging porte X-Robots-Tag: noindex, nofollow.
+## Publication et reprise
 
-Déploiement reproductible : construire le site, exécuter ses contrôles locaux puis `node scripts/web-hot-publish.mjs`. Ce script vérifie le compte et l’identité des ressources, déploie l’API/site/Runtime de staging, publie un fixture signé unique, l’exécute réellement dans Chromium et WebKit, le révoque et compare l’identifiant du déploiement Web ainsi que le hash du build avant/après. L’opérateur de publication est temporaire, sa clé privée reste en mémoire et la politique antérieure est restaurée à la fin. Il s’agit d’un opérateur local simulant le pipeline CI, sans revendication d’un passage GitHub OIDC.
+Le publisher `scripts/ci-publish-tool.mjs` utilise le moteur commun `scripts/release-core.mjs` : sauvegarde metadata et bookmark D1, upload adressé par hash, publication atomique, audit et réconciliation. Les commandes opérateur `promote-release.mjs`, `rollback-release.mjs`, `revoke-artifact.mjs` exigent un plan explicite. Garder le même request_id et le même contenu pour reprendre une coupure ; ne jamais éditer une opération déjà engagée. Voir `docs/reports/RELEASE_PIPELINE_GATE.md` et `infra/releases/README.md`.
 
-Les configurations générées sont sous target/web-hot-publish ; elles ne remplacent pas la configuration de production. Pour tester ensuite l’état distant : `pnpm exec playwright test --config tests/integration/playwright.hot.config.ts`. Le test refuse un rapport de publication manquant ou non réussi.
+Le workflow tools expose la maintenance staging uniquement sur déclenchement explicite. Le document de révocation doit être signé hors CI et conserver tous les tombstones. Ne pas restaurer une D1 pour annuler un simple déploiement Worker : le rollback de code conserve le schéma, et une migration incompatible demande un correctif compensatoire. Le rollback Desktop annonce un canal signé ; il ne force pas l’installation.
 
-## Cache, nouvelle publication et révocation
+## Audit et sauvegarde
 
-- Catalogue et fiches publiques : Cache-Control public, max-age=60. Recherche via proxy API privé no-store.
-- Sitemap/index/robots : max-age=900 ; les dates correspondent au published_at réel en millisecondes.
-- App, frame et configuration du Runtime : no-store. Le Runtime relit la fiche publiée via Service Binding avant d’admettre un lancement et avant de livrer le descripteur signé.
-- Téléchargement Runtime : proxy de l’API, sans cache HTTP. Le cache local d’archives du loader est borné, vérifié à nouveau et ne dispense jamais de l’admission API d’un nouveau lancement.
-- Une révocation retire la fiche/actions/sitemap et refuse les nouveaux lancements/téléchargements ; elle n’efface pas les octets déjà détenus par une personne ni ne prétend interrompre un calcul hors ligne déjà commencé.
+Les opérations D1 sont append-only par triggers. Le journal local vérifie une chaîne de hashes et les copies R2 utilisent des clés d’événement uniques. Time Travel est vérifié par bookmark avant opération ; aucun restore destructif automatique. Cette immutabilité applicative n’est pas un verrou WORM contre l’administrateur Cloudflare. La durée de rétention/locks R2 et le drill incident complet restent à arrêter en phase 21.
 
-Aucune mise en cache HTML supplémentaire dans caches.default ou règle CDN n’est activée ici. Si une telle couche est ajoutée, conserver les TTL maximaux, purger les URLs de catalogue/fiche/sitemap concernées et refaire le gate de révocation avant activation. Les artefacts R2 sont immuables ; retirer un outil par révocation et conserver l’audit, sans écrasement du paquet.
+## Cache et retrait
 
-## Mesure de recherche
+Les listes et détails API portent un ETag et `max-age=0, must-revalidate`. L’HTML catalogue/fiche peut garder son TTL court configuré ; sitemap et robots ont un maximum de 900 secondes. Aucun caches.default supplémentaire ni nouvelle règle CDN. Le retrait refuse les nouveaux téléchargements et lancements, sans prétendre effacer les copies déjà détenues ni interrompre un calcul hors ligne commencé.
 
-`node scripts/benchmark-search-staging.mjs` crée un Worker et une D1 temporaires avec 10 000 enregistrements synthétiques distincts du catalogue du produit. Il mesure 25 aller-retours HTTPS API avec lecture/validation des résultats, calcule le p95, puis supprime uniquement ces ressources nouvellement créées. Le délai de saisie de 250 ms est une valeur UI séparée de cette mesure réseau/API. Rapport : docs/evidence/search-staging-benchmark.json.
+## Charge isolée
+
+Après un build Astro valide, `node scripts/qa-isolated.mjs` crée des ressources privées temporaires distinctes, vérifie les coupures de release, importe les fiches synthétiques par lots, mesure deux séries de 100 requêtes à 10 req/s, contrôle pagination, SSR et sitemaps, ajoute la 10001e fiche sans rebuild puis nettoie ses seules ressources. Les secrets restent en mémoire et en bindings secrets ; expiration d’accès au bout de deux heures. Un échec de nettoyage est un échec du gate et reste inscrit dans la preuve datée.
+
+Ne pas utiliser les anciens scripts `web-hot-publish.mjs` ou `benchmark-search-staging.mjs` pour ce gate : ils décrivent des campagnes historiques et certains accèdent au bucket partagé ou à des navigateurs désormais exclus. Référence actuelle : `docs/QA_PLAN.md`, `docs/reports/QA_BASELINE.md` et `docs/reports/CATALOG_SCALE_10K.md`.
