@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "scope": "Windows x64 / Chromium-WebView2",
+  "owner_decisions": {
+    "license": "proprietary",
+    "license_choice_confirmed": true,
+    "monthly_budget_eur": 0,
+    "automatic_paid_upgrade": false
+  },
+  "domain": "kortex.site",
+  "domain_access_verified": true,
+  "billing_free_only_verified": false,
+  "security_contact": "admin@kortex.site",
+  "legal_publisher_identified": false,
+  "legal_terms_reviewed": false,
+  "dependency_licenses_reviewed": false,
+  "google_clients_configured": false,
+  "windows_authenticode_valid": false,
+  "production_secret_bindings_verified": false,
+  "production_dns_tls_verified": false,
+  "continuous_alerts_configured": false,
+  "final_release_approved": false,
+  "production_deployed": false,
+  "note": "État non secret observé/préparé. Les champs non confirmés restent faux ; aucun secret, certificat ou approbation n'est inventé."
+}

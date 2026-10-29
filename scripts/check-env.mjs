@@ -30,6 +30,7 @@ export function validateEnv(env, { example = false } = {}) {
       if (!['http:','https:'].includes(url.protocol) || url.username || url.password || url.search || url.hash || url.pathname !== '/') throw Error();
       if (mode !== 'local' && url.protocol !== 'https:') throw Error();
       if (mode !== 'local' && ['localhost','127.0.0.1','[::1]'].includes(url.hostname)) throw Error();
+      if (mode === 'production' && /(?:\.(?:invalid|test|example)$|^(?:example\.(?:com|net|org))$)/.test(url.hostname)) throw Error();
     } catch { errors.push(`origin: invalid ${key}`); }
   }
   if (env.PUBLIC_WEB_ORIGIN === env.PUBLIC_RUN_ORIGIN) errors.push('isolation: runtime must have a distinct origin');
@@ -45,6 +46,11 @@ export function validateEnv(env, { example = false } = {}) {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   try {
     const example = process.argv.includes('--example');
+    if(process.argv.includes('--production')){
+      if(example||process.env.KORTEX_ENV!=='production')throw Error('PRODUCTION_ENV_REQUIRED');
+      const {readinessFromDisk}=await import('./production-readiness.mjs');const report=readinessFromDisk();
+      if(!report.ready)throw Error('PRODUCTION_GATES_OPEN: '+report.blockers.join(', '));
+    }
     const env = example ? parseEnv(readFileSync('.env.example','utf8')) : process.env;
     const errors = validateEnv(env, { example });
     if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }

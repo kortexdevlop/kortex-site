@@ -1,0 +1,26 @@
+{
+  "description": "Responsabilité de maintenance par rôle et étape ; ce n'est pas une attribution humaine ni la date de création des fichiers. Premier préfixe correspondant prioritaire. Les rapports STEP portent leur étape exacte.",
+  "rules": [
+    {"files":["LICENSE"],"step":"22.0","role":"Propriétaire / licence"},
+    {"files":["README.md"],"step":"21.1","role":"Documentation / onboarding"},
+    {"files":["scripts/check-doc-links.mjs"],"step":"21.3","role":"Documentation / gouvernance"},
+    {"files":["scripts/qa-disaster-drill.mjs"],"step":"21.2","role":"Exploitation / récupération"},
+    {"files":["scripts/production-readiness.mjs","scripts/deploy-production.mjs"],"step":"22.0","role":"Exploitation / gate production"},
+    {"prefix":"docs/evidence/","step":"20.0","role":"QA / traçabilité"},
+    {"prefix":"docs/","step":"21.3","role":"Documentation / gouvernance"},
+    {"prefix":".github/","step":"18.0","role":"CI / release"},
+    {"prefix":"api/","step":"9.2","role":"Backend / catalogue et identité"},
+    {"prefix":"database/","step":"9.0","role":"Backend / schéma et migrations"},
+    {"prefix":"website/","step":"11.0","role":"Site / interface"},
+    {"prefix":"web-adapter/","step":"4.0","role":"Runtime Web / admission"},
+    {"prefix":"runtime/","step":"6.0","role":"Runtime / hôtes"},
+    {"prefix":"desktop/","step":"13.0","role":"Application Windows"},
+    {"prefix":"crates/","step":"2.0","role":"Cœur Rust / SDK"},
+    {"prefix":"shared/","step":"1.0","role":"Contrats partagés / schémas"},
+    {"prefix":"tools/","step":"18.3","role":"Auteurs des outils"},
+    {"prefix":"tests/","step":"20.0","role":"QA / conformité"},
+    {"prefix":"scripts/","step":"18.0","role":"CI / outillage"},
+    {"prefix":"infra/","step":"21.2","role":"Exploitation / infrastructure"},
+    {"files":[".editorconfig",".npmrc",".prettierrc.json",".gitignore",".gitattributes",".env.example","Cargo.toml","Cargo.lock","rust-toolchain.toml","package.json","pnpm-lock.yaml","pnpm-workspace.yaml","playwright.config.ts","tsconfig.json","tsconfig.base.json"],"step":"1.0","role":"Socle / dépendances et configuration"}
+  ]
+}

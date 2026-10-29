@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29T17:58:37.947Z",
+  "ready": false,
+  "blockers": [
+    "PRODUCTION_RESOURCES_UNCONFIGURED",
+    "FREE_ONLY_BILLING_UNVERIFIED",
+    "PUBLISHER_IDENTITY",
+    "LEGAL_TERMS",
+    "DEPENDENCY_LICENSE_REVIEW",
+    "GOOGLE_OAUTH",
+    "WINDOWS_CODE_SIGNING",
+    "PRODUCTION_SECRETS",
+    "PRODUCTION_DNS_TLS",
+    "ALERTING",
+    "FINAL_APPROVAL",
+    "RC_NOT_FROZEN",
+    "REMOTE_DISASTER_DRILL",
+    "CI_SAME_COMMIT"
+  ],
+  "budget_eur_per_month": 0,
+  "production_deployed": false,
+  "scope": "Windows x64 / Chromium-WebView2"
+}

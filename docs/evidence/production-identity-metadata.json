@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-29T17:52:16.468Z",
+  "google_enabled": false,
+  "google_web_client_configured": false,
+  "google_desktop_client_configured": false,
+  "google_secret_binding_present": false,
+  "github_environments": [
+    {
+      "name": "production",
+      "protected": true
+    },
+    {
+      "name": "staging",
+      "protected": true
+    }
+  ],
+  "security_contact": "admin@kortex.site",
+  "valid_current_user_windows_code_signing_certificates": 0
+}

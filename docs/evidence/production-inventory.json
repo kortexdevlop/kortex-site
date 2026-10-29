@@ -1,0 +1,23 @@
+{
+  "observed_at": "2026-10-29T17:58:45.610Z",
+  "workers": [
+    "kortex-api-staging",
+    "kortex-run-staging",
+    "kortex-web-staging"
+  ],
+  "databases": [
+    {
+      "name": "kortex-catalog-staging",
+      "id": "a406c1bf-cf12-4d1d-b8ff-6aa0955abb0a"
+    }
+  ],
+  "buckets": [
+    "kortex-tools-staging"
+  ],
+  "temporary_drill_resources_remaining": false,
+  "dns_records": 8,
+  "dns_mutations_performed": 0,
+  "mail_preserved": true,
+  "budget_eur": 0,
+  "production_deployed": false
+}

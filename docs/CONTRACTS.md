@@ -258,3 +258,7 @@ Amendement 15.2–15.4 : la revue et l’exécution locales sont maintenant impl
 `POST /api/v1/ai/plan` accepte uniquement `{message,available_tool_ids,consent_context:{ai_allowed:true,contains_private_data:false}}`, sous session Web/CSRF. Pas de fichiers ou champs supplémentaires, pas de comptes invités, pas d’accès via jeton Desktop. Les schémas d’entrée publiés sont contrôlés indépendamment au retour du fournisseur. Voir `AI_POLICY.md` pour quotas et conservation.
 
 Les nouveaux endpoints `/api/v1/auth/desktop/{start,request,approve,token,logout}` assurent le lien navigateur/native avec S256, state et code à usage unique. `request` et `approve` passent exclusivement par le binding privé Web, sous session cookie ; `start`, `token` et `logout` exigent un client natif sans Origin. Les sessions d’appareil opaques n’élargissent pas les droits des anciens ID tokens Google. Elles permettent uniquement l’identité et la synchronisation opt-in, sans export/purge/IA. `/api/v1/me/devices` liste/révoque les appareils de la session Web. L’export inclut leur métadonnée sans hash/token ; la purge cascade sur les sessions d’appareil.
+
+## Maintenance documentaire — 21.3
+
+Les politiques de contribution et de compatibilité sont décrites dans [CONTRIBUTING](CONTRIBUTING.md) et [COMPATIBILITY_POLICY](COMPATIBILITY_POLICY.md). Les contrats gelés précédents restent inchangés. Le contrôle des liens et la responsabilité de maintenance par rôle sont vérifiés par la CI.

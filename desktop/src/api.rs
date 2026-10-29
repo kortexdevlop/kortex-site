@@ -147,9 +147,16 @@ impl Api {
             .redirect(reqwest::redirect::Policy::none())
             .connect_timeout(Duration::from_secs(5))
             .timeout(Duration::from_secs(12))
-            .user_agent("KortexDesktop/1.0")
-            .build()
-            .map_err(|_| Error::Unavailable)?;
+            .user_agent("KortexDesktop/1.0");
+        // Local HTTP fixtures must not inherit a runner's outbound proxy or
+        // reuse sockets from the deliberately interrupted one-shot server.
+        #[cfg(debug_assertions)]
+        let client = if origin.starts_with("http://127.0.0.1:") {
+            client.no_proxy().pool_max_idle_per_host(0)
+        } else {
+            client
+        };
+        let client = client.build().map_err(|_| Error::Unavailable)?;
         Ok(Self {
             origin,
             client,

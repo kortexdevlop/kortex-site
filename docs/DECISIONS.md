@@ -92,3 +92,7 @@ Le gate 9.6 a ensuite été réellement exécuté : staging distinct créé, mig
 ## 2026-10-27 — Lot 12.3 à 12.5 : outil CSV et matrice des cinq outils
 
 Le propriétaire demande « Enchaîne les 3 prochaines étapes » après 12.2. Périmètre : parseur et statistiques bornés, interface et actions de l’explorateur CSV, matrice des cinq outils. Choix techniques : parseur maison en flux plutôt que la crate `csv` (absente du verrou hors ligne ; le flux est imposé par le budget de 100 M d’instructions par appel) ; suppression de la statistique « distincts » (coût de hachage) ; vecteurs partagés Web/Wasmtime. Aucun contrat public gelé n’est modifié. La publication staging de l’outil 5 est bloquée par le quota quotidien de lectures D1 du compte (limite du plan gratuit) : aucune ressource n’a été écrite, la politique temporaire a été restaurée. Un passage à un plan payant n’est pas décidé ici. Linux/macOS et Firefox restent exclus ; WebKit n’a pas pu s’exécuter faute de navigateur Playwright installé.
+
+## Décisions du propriétaire — 29 octobre 2026
+
+Licence propriétaire choisie explicitement ; plafond mensuel 0 €, aucune montée automatique vers une offre payante. Contact sécurité : admin@kortex.site. La messagerie existante reste conservée. Ces décisions ne constituent pas une attestation de certificat Windows, de configuration Google ou de validation de production.

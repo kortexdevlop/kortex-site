@@ -41,3 +41,8 @@ test('tracked files have no recognizable private keys or forbidden public assign
   const files=execFileSync('git',['ls-files','-z'],{encoding:'utf8'}).split('\0').filter(Boolean);
   for (const file of files) assert.equal(containsSecret(readFileSync(file,'utf8')),false,`Forbidden secret pattern in ${file}`);
 });
+
+test('production rejects reserved origins and cannot validate the example as production', () => {
+  for (const origin of ['https://kortex.invalid','https://kortex.test','https://kortex.example','https://example.com']) assert.ok(validateEnv({...sample,KORTEX_ENV:'production',PUBLIC_WEB_ORIGIN:origin}).includes('origin: invalid PUBLIC_WEB_ORIGIN'));
+  assert.throws(()=>execFileSync(process.execPath,['scripts/check-env.mjs','--production','--example'],{stdio:'pipe'}), e=>e.status===1 && e.stderr.toString().includes('PRODUCTION_ENV_REQUIRED'));
+});

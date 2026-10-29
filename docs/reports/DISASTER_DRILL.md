@@ -1,0 +1,11 @@
+# Exercice de récupération — 21.2
+
+Le 29/10/2026, un exercice distant a créé une DB et un bucket temporaires dédiés, sans restaurer le staging réel. Cloudflare a refusé les premières migrations avec l'erreur 7500 : quota quotidien gratuit de lectures D1 épuisé au niveau du compte. Aucune restauration Time Travel n'a été exécutée. Les objets, le bucket et la base temporaires ont été supprimés ; `disaster-drill.json` conserve l'échec et le nettoyage. La limite n'a été ni contournée ni relevée.
+
+La recette locale distincte a ensuite utilisé les vrais API/Astro et stockages D1/R2 émulés du système QA fraîchement créé : sauvegarde SQLite cohérente et copie d'archive, corruption contrôlée de métadonnées et retrait d'objet, erreurs 503/404 observées, restauration et retour API/site/téléchargement 200. Le SHA avant/après est `b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f`. Aucune ligne métier saine perdue ; snapshot de l'incident conservé sous le dossier local ignoré pour retour/investigation.
+
+Temps observés locaux : récupération 4 818 ms, âge de la sauvegarde à la fin 7 251 ms. Ces valeurs sur cinq outils ne prouvent ni une cadence de sauvegarde en production ni un RPO/RTO Cloudflare à grande échelle. La sauvegarde utilise l'[API SQLite de Node 24.15.0](https://nodejs.org/download/release/v24.15.0/docs/api/sqlite.html#sqlitebackupsourceDb-path-options), pas Time Travel.
+
+Objectifs du plan : RPO ≤24 h et RTO ≤4 h pour le catalogue. La preuve distante obligatoire reste ouverte : reprendre sur de nouvelles ressources privées une fois le quota rétabli, mesurer les restaurations et l'annulation, comparer données/hashes, puis contrôler API et site. Le dernier essai local réussi ne ferme pas ce gate. Voir [RECOVERY](../RECOVERY.md) et [le runbook D1](../runbooks/restore-d1.md).
+
+Commandes du dépôt : `node scripts/qa-disaster-drill.mjs --isolated-cloud` pour le drill cloud borné ; `node scripts/qa-local-system.mjs`, attendre prêt, puis `node scripts/qa-local-restore.mjs` pour la recette locale. Ne pas rejouer le test 10k sur le compte produit. Budget propriétaire : 0 € ; aucun changement de forfait ou restauration des données utilisateur n'est autorisé par cette recette.

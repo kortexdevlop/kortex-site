@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "mode": "plan-only",
+  "version": "1.0.0",
+  "channel": "production",
+  "deployment_executed": false,
+  "budget_eur_per_month": 0,
+  "ordered_steps": [
+    {"id":"database","action":"Inventaire, sauvegarde/bookmark vérifiés puis migrations compatibles sur la DB production distincte","requires":"readiness ready et restauration distante démontrée"},
+    {"id":"api","action":"API depuis le commit RC et secrets production indépendants ; smoke avant poursuite","requires":"database"},
+    {"id":"packages","action":"Cinq paquets V1 signés, octets immuables R2 et publication D1 vérifiée","requires":"api"},
+    {"id":"runtime","action":"Origine Runtime séparée, bundle/version/SRI et canaux signés","requires":"packages"},
+    {"id":"website","action":"Site Astro SSR, domaine/TLS, CSP/CORS, catalogue et sitemap","requires":"runtime"},
+    {"id":"desktop","action":"Nouvel installateur Windows x64 Authenticode valide, provenance et smoke","requires":"website"}
+  ],
+  "on_smoke_failure": "Arrêter ; retour du code selon runbook, aucune restauration DB implicite. Conserver les reçus et contre-vérifier les droits/retraits.",
+  "note": "Ce fichier documente l'ordre. Il n'est pas un plan exécutable releaseCli et ne contourne pas les guards production fermés."
+}

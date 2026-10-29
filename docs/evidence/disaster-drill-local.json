@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-29T17:49:59.823Z",
+  "scope": "local real API/Astro/D1+R2 emulation; no cloud Time Travel claim",
+  "passed": true,
+  "remote_writes": 0,
+  "production_touched": false,
+  "before_hash": "b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f",
+  "injected": {
+    "metadata_status": 503,
+    "missing_object_status": 404
+  },
+  "after_hash": "b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f",
+  "recovered": {
+    "api": 200,
+    "site": 200,
+    "download": 200
+  },
+  "incident_snapshot_preserved": true,
+  "known_good_rows_lost": 0,
+  "rto_observed_ms": 4818,
+  "rpo_observed_ms": 7251
+}

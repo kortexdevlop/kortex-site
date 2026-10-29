@@ -33,3 +33,7 @@ Gates locaux décrits dans RUNTIME_PERFORMANCE et DESIGN_A11Y ; staging en atten
 Métadonnées serveur autorisées uniquement ; aucun corps, fichier, prompt, email, IP, cookie, token ou identifiant utilisateur journalisé par le nouveau module. Identifiant de trace serveur aléatoire et minute UTC ; familles de routes bornées, statuts et durées. Champs, limites des métriques et preuves : docs/reports/TELEMETRY.md. Paramètres staging préparés : sans persistence de logs, sans invocation automatique et sans traces. Aucune nouvelle collecte Desktop ou transmission locale.
 
 Cible disponibilité 99,5 % mensuelle ; alerte 5xx >2 % sur cinq minutes avec au moins 100 requêtes. Évaluateur testé, mais collecte globale continue, destinataire/astreinte, rétention des agrégats et plafonds financiers restent à configurer avant production. Aucun message envoyé ni forfait modifié. Procédure : infra/alerts.md.
+
+## Reprise et production — 29 octobre 2026
+
+Contact sécurité : admin@kortex.site ; aucune astreinte permanente n’est attestée. Voir [récupération](RECOVERY.md), [rotation des clés](KEY_ROTATION.md) et [exercice de reprise](reports/DISASTER_DRILL.md). Le plafond de 0 € interdit toute montée automatique de forfait. La reprise locale est vérifiée ; la restauration Cloudflare est bloquée par le quota D1 gratuit. Les ressources et secrets de production restent non configurés.
