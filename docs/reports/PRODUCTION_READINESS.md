@@ -17,3 +17,5 @@ Aucun site, API ou installateur n'est annoncé en production sur la base d'un co
 Vérifications finales locales : lane contrats complète réussie, 11 tests configuration/documentation/readiness, format Rust conforme et audit technique sans finding haut/critique. Voir [preuve](../evidence/preproduction-validation.json) et [audit](../evidence/production-security-gate.json). Le contact sécurité confirmé est admin@kortex.site. Ces résultats ne remplacent pas la CI complète de la révision finale.
 
 Mise à jour propriétaire : Google OAuth reporté ; email/mot de passe conservé. L’absence de clients Google ne bloque plus cette livraison. Aucun autre gate n’est levé par cette décision.
+
+Actualisation du périmètre : Google OAuth et signature Windows Authenticode sont reportés explicitement par le propriétaire. Ils ne bloquent plus la poursuite de la préparation ; leurs états techniques restent non configurés/non validés. Connexion email/mot de passe conservée. Les autres prérequis et signatures des paquets/canaux restent applicables.

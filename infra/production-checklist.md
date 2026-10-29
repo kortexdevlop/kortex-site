@@ -14,7 +14,7 @@
 - [ ] Quotas suffisants pour le trafic retenu ; service dégradé explicite si le palier gratuit est atteint.
 - [x] Google OAuth reporté par le propriétaire ; email/mot de passe conservé.
 - [ ] Connexion email/mot de passe validée sur la production réelle.
-- [ ] Certificat Windows valide et nouvel installateur signé depuis la révision retenue.
+- [x] Signature Windows Authenticode reportée explicitement par le propriétaire ; état du certificat toujours non validé.
 - [ ] CI complète verte et RC gelée sur le même commit, cinq paquets vérifiés et artefacts traçables.
 - [ ] Drill D1/R2 distant réussi, RPO/RTO observés et copie de retour disponibles.
 - [ ] Sauvegardes, rétention, collecteur et destinataire/astreinte réellement activés et testés.

@@ -7,7 +7,8 @@
     "monthly_budget_eur": 0,
     "automatic_paid_upgrade": false,
     "google_oauth_deferred": true,
-    "authentication": "email_password"
+    "authentication": "email_password",
+    "windows_authenticode_deferred": true
   },
   "domain": "kortex.site",
   "domain_access_verified": true,

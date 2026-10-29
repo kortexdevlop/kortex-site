@@ -100,3 +100,7 @@ Licence propriétaire choisie explicitement ; plafond mensuel 0 €, aucune mont
 ## Google OAuth reporté — décision du propriétaire
 
 Google OAuth est écarté de la version actuelle ; la connexion/inscription email et mot de passe est conservée. Les clients Google restent absents. Le contrôleur accepte ce report explicite avec le mode email/mot de passe ; les autres gates restent applicables.
+
+## Reports explicites du propriétaire — Google et signature Windows
+
+Le propriétaire demande de mettre de côté temporairement Google OAuth et les signatures Windows. La connexion email/mot de passe reste le mode retenu. Le contrôle de préparation accepte ces deux reports explicites sans déclarer Google configuré ni un certificat Authenticode valide. Les signatures cryptographiques des paquets, canaux et mises à jour restent exigées : la décision concerne la signature de code Windows.

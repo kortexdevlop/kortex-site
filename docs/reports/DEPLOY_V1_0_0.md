@@ -9,3 +9,5 @@ Les scripts de publication/déploiement actuels gardent leurs refus production. 
 À réunir avant exécution : RC/CI vérifiées sur la révision retenue, ressources/origines production réelles et isolées, secrets et règles OIDC protégés, budget gratuit vérifié, restauration distante réussie, certificat et installateur signés, contacts/revues et acceptation de la livraison concrète. Ensuite seulement créer le tag, effectuer la bascule ordonnée et archiver les reçus/checksums/version IDs réels.
 
 Les notes [v1.0.0](../releases/v1.0.0.md) restent un brouillon. La recette production 22.2 et le gel V1 22.3 ne sont pas engagés.
+
+Actualisation du périmètre : Google OAuth et signature Windows Authenticode sont reportés explicitement par le propriétaire. Ils ne bloquent plus la poursuite de la préparation ; leurs états techniques restent non configurés/non validés. Connexion email/mot de passe conservée. Les autres prérequis et signatures des paquets/canaux restent applicables.
