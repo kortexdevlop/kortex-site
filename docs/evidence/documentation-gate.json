@@ -1,0 +1,7125 @@
+{
+  "date": "2026-10-29T17:59:50.596Z",
+  "documents": 250,
+  "internal_links": 119,
+  "files_owned": 1423,
+  "issues": [],
+  "owners": [
+    {
+      "file": "docs/evidence/documentation-gate.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/preproduction-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/production-security-gate.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/reports/STEP-21.2.md",
+      "step": "21.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-21.3.md",
+      "step": "21.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-22.0.md",
+      "step": "22.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-22.1.md",
+      "step": "22.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": ".editorconfig",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": ".env.example",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": ".gitattributes",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": ".github/CODEOWNERS",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".github/dependabot.yml",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".github/pull_request_template.md",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".github/workflows/api.yml",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".github/workflows/desktop.yml",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".github/workflows/pull-request.yml",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".github/workflows/tools.yml",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".github/workflows/validate.yml",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".github/workflows/website.yml",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".gitignore",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": ".npmrc",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": ".prettierrc.json",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": "Cargo.lock",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": "Cargo.toml",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": "LICENSE",
+      "step": "22.0",
+      "role": "Propriétaire / licence"
+    },
+    {
+      "file": "README.md",
+      "step": "21.1",
+      "role": "Documentation / onboarding"
+    },
+    {
+      "file": "api/README.md",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/package.json",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/scripts/check-cloudflare.mjs",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/scripts/generate-validators.mjs",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/scripts/smoke-local.mjs",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/env.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/index.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/lib/admin-error.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/lib/cursor.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/lib/http.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/lib/telemetry.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/admin.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/ai.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/auth.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/desktop-auth.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/downloads.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/health.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/password-auth.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/revocations.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/runtime.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/sitemap.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/tools.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/users.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/routes/workflows.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/security/admin-auth.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/security/ai-rate-limit.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/security/csrf.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/security/device-session.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/security/passwords.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/security/sessions.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/security/user-scope.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/ai-config.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/ai.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/catalog.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/database.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/identity-config.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/identity-store.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/identity.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/publication.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/storage.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/src/services/sync.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/admin-github.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/auth-schema.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/auth.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/catalog.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/contracts.test.mjs",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/device-ai.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/downloads.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/health.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/helpers.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/password-auth.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/publication.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/resilience.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/revocations.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/runtime.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/security-abuse.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/sync-model.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/telemetry.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tests/users.test.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/tsconfig.json",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/vitest.config.ts",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "api/wrangler.jsonc",
+      "step": "9.2",
+      "role": "Backend / catalogue et identité"
+    },
+    {
+      "file": "crates/kortex-abi/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-abi/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-abi/src/pointer.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-abi/src/wire.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-abi/tests/wire.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-capabilities/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-capabilities/src/audit.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-capabilities/src/handles.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-capabilities/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-capabilities/src/policy.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-capabilities/src/storage.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-capabilities/tests/deny_by_default.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/src/ai_bridge.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/src/dispatcher.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/src/errors.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/src/lifecycle.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/src/state.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/tests/ai_bridge.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/tests/lifecycle.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-core/tests/state.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-pack/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-pack/src/archive.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-pack/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-pack/src/validate.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-pack/src/wasm_check.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-pack/tests/archive.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-pack/tests/security.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/src/files.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/src/limits.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/src/network.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/src/permissions.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/src/storage.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/src/wasmtime.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/tests/adversarial.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/tests/capabilities.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/tests/common/mod.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/tests/guest.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/tests/package_security.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-runtime-native/tests/phase12.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-sdk/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-sdk/src/capability.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-sdk/src/ffi.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-sdk/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-sdk/tests/dispatch.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-ui/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-ui/src/chart.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-ui/src/components.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-ui/src/events.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-ui/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-ui/tests/browser.cjs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-ui/tests/render.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-ui/tests/snapshots/tree.txt",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-verify/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-verify/src/keys.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-verify/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-verify/src/revocation.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-verify/src/runtime.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-verify/tests/revocation.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-verify/tests/runtime.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-verify/tests/signature.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/src/dag.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/src/mapper.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/src/permissions.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/src/runner.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/tests/common/mod.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/tests/graph.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/tests/permissions.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-workflows/tests/runtime.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-xtask/Cargo.toml",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-xtask/src/build.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-xtask/src/discovery.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-xtask/src/lib.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-xtask/src/main.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-xtask/src/package.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-xtask/tests/discovery.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "crates/kortex-xtask/tests/signing.rs",
+      "step": "2.0",
+      "role": "Cœur Rust / SDK"
+    },
+    {
+      "file": "database/migrations/0001_catalog.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0002_publication.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0003_admin_operations.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0004_sitemap.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0005_auth.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0006_auth_flows.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0007_password_auth.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0008_sync.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0009_devices_ai.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0010_device_ai_consent.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0011_workflows.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/migrations/0012_publication_performance.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/tests/catalog.test.mjs",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/tests/catalog.test.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/tests/d1-local.mjs",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/tests/publication-d1-local.mjs",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/tests/publication.test.mjs",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "database/tests/publication.test.sql",
+      "step": "9.0",
+      "role": "Backend / schéma et migrations"
+    },
+    {
+      "file": "desktop/Cargo.toml",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/Dioxus.toml",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/assets/app.css",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/assets/icon.png",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/assets/icon.rgba",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/assets/staging-trust.json",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/examples/account_probe.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/account.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/account_ui.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/ai_bridge.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/ai_view.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/api.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/app.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/config.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/installer.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/launcher.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/lib.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/library.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/main.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/manager.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/models.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/paths.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/revocation.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/runtime_update.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/runtime_update_ui.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/secure_store.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/store.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/trust.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/updates.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/versions.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/workflow_host.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/workflow_permissions.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/workflow_store.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/workflow_view.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/src/workflows.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/account.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/ai.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/common/mod.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/installer.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/library.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/revocation.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/smoke.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/store.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/support/revocation.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/updates.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/workflow_files.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "desktop/tests/workflow_permissions.rs",
+      "step": "13.0",
+      "role": "Application Windows"
+    },
+    {
+      "file": "docs/AI_POLICY.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/ARCHITECTURE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/AUTH-PASSWORD.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/AUTH.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/CHANGE_REQUESTS/CR-2026-001.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/CI.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/COMPATIBILITY_POLICY.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/CONTRACTS.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/CONTRIBUTING.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DATABASE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DECISIONS.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DEPENDENCY_BASELINE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DEPLOYMENT.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DESIGN.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DESKTOP-INSTALLATION.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DESKTOP.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DESKTOP_ACCOUNT.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DESKTOP_DISTRIBUTION.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DEVELOPER_SETUP.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/DISTRIBUTION_CI.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/FILE_OWNERS.json",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/KEY_ROTATION.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/LEGAL_PENDING.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/MASTER_PLAN.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/OPERATIONS.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/PRIVACY.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/PROGRESS.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/QA_PLAN.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/RECOVERY.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/SECURITY.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/SECURITY_EXCEPTIONS.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/SIGNING.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/SYNC.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/TOOLS-PHASE12.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/TOOL_AUTHOR_GUIDE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/TOOL_PUBLISHING.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/TOOL_SDK.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/USER_GUIDE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/WORKFLOWS.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/adr/0001-wasm-core.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/adr/0002-host-ui.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/adr/0003-service-catalog.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/adr/0004-local-execution.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/adr/0005-distribution-trust.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/adr/0006-versioning.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/adr/0007-prototype-outcome.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/adr/0011-website-islands.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/adr/0012-runtime-measurements.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/evidence/ARCHITECTURE_GATE.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/account-1632.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/account-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/ai-1632.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/ai-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/color-comparison.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/home-1632.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/home-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/keyboard-buttons.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/narrator-field.jpg",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/narrator-heading.jpg",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/narrator-smoke.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/narrator-tree.txt",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/reference-2706.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/reference-geometry.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/results.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/results.ndjson",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/tools-1632.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/tools-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/tools-calculatrice-1632.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/tools-calculatrice-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/workflows-1632.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/workflows-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/workspace-1632.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-20.3/workspace-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/a11y-baseline-20.3.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/abi-security.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-14.2-14.4-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-api-deploy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-api-final-targeted.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-api-tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-contracts.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-design-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-migrations.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-playwright.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-settings-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-settings-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-staging-deployment.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-staging-live.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-types.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-web-deploy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-web-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-web-tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-website-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/account-website-check.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/ai-action-matrix.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/ai-limit-fix.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-account-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-account.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-adapter.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-adapter_types.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-api.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-api_deploy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-api_types.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-astro.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-auth_final.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-browser.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-contracts.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-core.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-desktop.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-four-tools.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-migration.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-native-matrix.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-native.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-native_build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-native_matrix.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-native_ui.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-privacy.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-runtime_deploy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-web.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-web.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-web_build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-web_deploy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/assistant-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/calculatrice-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/calculatrice-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/calculatrice-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/capabilities-4.2.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/cloud-publish.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/cloudflare-checkpoint-9.2.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/cloudflare-kortex-profile-9.2.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/cloudflare-reauthorization-9.2.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/cloudflare-reset-2026-10-27.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/cr-2026-001.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/data-flows.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design-baseline.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design-library-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design-library-check.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design-library-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design-library-ssr.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design10-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design10-chromium-dark.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design10-chromium-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design10-chromium-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design10-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design10-typecheck.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design10-webkit-dark.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design10-webkit-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/design10-webkit-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-13.2-13.4-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-13.2-13.4-live.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-13.2-13.4-rust.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-13.2-13.4-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-calculator-descriptor.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-calculator-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-calculator-trust.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-files.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-isolation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-lifecycle-artifacts.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-lifecycle-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-lifecycle-windows.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-offline-windows.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-offline-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-online-windows.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-phase13-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-playwright.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-product-ui.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-router.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-rust-tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store-matrix.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-artifacts.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-calculateur-hash.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-calculator-trust.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-calculatrice.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-convertisseur-casse.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-explorateur-csv.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-live.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-permissions-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-rollback-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-timestamp-utc.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-store135-windows.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-ui.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-update-permissions-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-update-rollback-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-web-unit.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/desktop-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-14.5-15.1-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-account-staging.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-account-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-ai-attempts.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-ai-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-api.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-api_deploy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-contracts.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-historical_native_failure.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-migration.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-native_account.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-native_build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-native_regression.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-sync-ui-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-types.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-web_build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-web_check.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-web_deploy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/device-web_tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/disaster-drill-local.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/disaster-drill.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/distribution-github.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/distribution-headers.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/distribution-permissions.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/distribution-revocation-web.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/distribution-security-gate.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/distribution-staging-deploy.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/distribution-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/extension-artifact.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/extension-gate.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/extension-pipeline-regression.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/extension-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/extension-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/extension-staging.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/five-tools-matrix.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/five-tools-web.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/google-identity-readiness.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/home-real-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/home-real-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/hot-publication-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/hot-publication-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/hot-publish-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.0-migrations.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.0-tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.0-types.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.0-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-api-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-api-tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-auth-tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-contracts.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-design-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-migrations.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-types.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-web-tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-website-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/identity-14.1-website-check.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-chromium-desktop-cards.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-chromium-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-chromium-mobile-cards.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-chromium-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-chromium-tablet-cards.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-chromium-tablet.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-webkit-desktop-cards.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-webkit-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-webkit-mobile-cards.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-webkit-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-webkit-tablet-cards.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/library-webkit-tablet.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/native-capabilities.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/native-desktop-6.3.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/native-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/native-engine.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/native-platforms.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/navigation-chromium-dark.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/navigation-chromium-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/navigation-chromium-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/navigation-webkit-dark.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/navigation-webkit-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/navigation-webkit-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/onboarding-21.1.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/open-tool-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/open-tool-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-adapter-types.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-api-native-scope.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-api-tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-api-types.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-browser.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-cloud.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-cross-tools.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-deployment.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-embed.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-file.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-native-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-native-file.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-native-file.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-native-store.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-native.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-rust-runner.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-web-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-web-check.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-web-tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-web.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-web.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/orchestration-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pack-security.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/package8-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/package8-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/package8-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-account-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-api-deploy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-api-new.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-api-regression.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-contracts.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-design-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-live.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-migrations.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-proxy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-register-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-register-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-types.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-web-deploy.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-website-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/password-auth-website-check.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-artifacts.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-build-closure.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-case-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-case-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-closure.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-csv-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-csv-export.csv",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-csv-local-playwright-chromium.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-csv-staging-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-csv-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-hash-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-hash-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-local-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-staging-case-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-staging-case-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-staging-csv-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-staging-hash-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-staging-hash-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-staging-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-staging-utc-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-staging-utc-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-utc-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-utc-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-validate-closure.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-windows-calculateur-hash.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-windows-convertisseur-casse.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-windows-explorateur-csv.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-windows-timestamp-utc.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-windows.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/phase12-workspace-closure.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-base64-browser.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-base64-published.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-base64-verification.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-base64.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-chromium.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-ci-validation-53efb4e.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-ci-validation-e02618a.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-ci-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-desktop-ci-install-local.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-desktop-ci-smoke.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-desktop-install.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-desktop-provenance.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-desktop-published.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-desktop-release.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-desktop-runtime-check.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-desktop-version.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-desktop-x64-package.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-frozen-binaries.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-github-settings.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-integration-fixes.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-live-viewer.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-negative-pr.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-permissions.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-r2-transport.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-redelivery.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-rollback-api.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-rollback-ci.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-rollback-runtime-browser.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-rollback-runtime.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-runtime-channels-final.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-runtime-channels.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-runtime-final-verification.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-source-files.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-staging-deploy.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/pipeline-tool-build.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/production-ci.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/production-identity-metadata.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/production-inventory.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/production-readiness.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-ci-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-cleanup-b877b858.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-cleanup-inventory.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-d1-query-cost-final.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-d1-query-cost.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-isolated-191b18b0.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-isolated-33281b8c.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-isolated-38255c20.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-isolated-8b1cf23c.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-isolated-b877b858.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-isolated-b9fc782a.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-isolated-e3732687.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/qa-isolated-f92cc39f.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/rc-20.5/gate.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/rc-20.5/input.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/rc-20.5/licenses.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/rc-20.5/native.cdx.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/rc-20.5/sast.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/rc-20.5/site-manifest.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/rc-20.5/web.cdx.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/release-maintenance-policy.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/release-staging-preserved.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/resilience-api.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/resilience-native-installer.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/resilience-native-live.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/resilience-native.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/resilience-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/resilience-web.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-4.1.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-catalog-diagnostic.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-eight-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-local-gate.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-native-performance-before-shutdown-fix.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-native-performance-single-snapshot.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-native-performance.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-web-performance-expired-local-key.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-web-performance-prior-bundle.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/runtime-web-performance.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/sdk-4.0.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/search-staging-benchmark.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-abi-web.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-ai-privacy.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-api-summary.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-auth-staging.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-cargo-audit-before.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-cargo-audit.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-core-ui.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-dependency-reachability.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-desktop-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-desktop-regression.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-native-recheck.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-native.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-network-web.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-playwright.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-pnpm-audit-before.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-pnpm-audit.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-staging-deploy.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/security-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/spike-3.0.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/spike-3.1.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/spike-3.2-chrome.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/spike-3.2-desktop.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/spike-3.2.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/spike-3.3.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/staging9-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/staging9-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/staging9-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/storage-4.3.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/telemetry-cloud-first-attempt.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/telemetry-cloud-probe.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/telemetry-local-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/tool-1-parity.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/ui-4.4-browser.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/ui-4.4-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/ui-4.4-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/ui-4.4.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/v1-signed-matrix.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-10.0-10.2.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-10.3-11.0.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-5.4-6.1.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-6.2-7.0.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-7.1-7.3.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-8.0-8.2.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-8.3-9.0.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-9.1.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-9.2-local.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-9.3-local.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/validation-9.4-9.6.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/web-5.0.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/web-5.1.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/web-5.2-chromium.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/web-5.2-webkit.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/web-5.2.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/web-5.3.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/web-host.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/web-hot-publish.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/web-hot-publish.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-11.1-11.3-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-11.1-11.3-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-11.4-11.6-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-11.4-11.6-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-chromium-320.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-chromium-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-chromium-768.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-chromium-accessibility.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-chromium-reference.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-webkit-320.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-webkit-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-webkit-768.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-webkit-accessibility.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/website-workspace-regression/workspace-webkit-reference.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-browser-regression.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-cross-web.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-file.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-native.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-runtime-deployment.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-ui.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-web-deployment.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-web.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflow-permissions-windows.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-astro.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-browser.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-browser.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-contracts.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-deployment.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-editor.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-engine_final.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-mobile.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-permissions_final.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-runtime.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-rust_regression.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-web_build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workflows-web_tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-build.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-check.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-chromium-320.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-chromium-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-chromium-768.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-chromium-accessibility.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-chromium-reference.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-comparison.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-compatibility-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-gate.md",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-geometry.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-playwright.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-ssr.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-webkit-320.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-webkit-390.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-webkit-768.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-webkit-accessibility.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/workspace-webkit-reference.png",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/reference/workspace-selection.png",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/releases/v1.0.0.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/AI_LIMIT_FIX.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/AUTH-EMAIL-PASSWORD.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/CATALOG_SCALE_10K.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/CLOUDFLARE-RESET-2026-10-27.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/D1_QUOTA_INCIDENT.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/DEPLOY_V1_0_0.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/DESIGN-WORKSPACE-2026-10-27.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/DESIGN_A11Y.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/DISASTER_DRILL.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/DOCUMENTATION_GATE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/PHASE4_GATE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/PHASE7_GATE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/PHASE8_GATE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/PRODUCTION_READINESS.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/QA_BASELINE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/RELEASE_CANDIDATE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/RELEASE_PIPELINE_GATE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/RESILIENCE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/RUNTIME_PERFORMANCE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/STEP-1.0.md",
+      "step": "1.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-1.1.md",
+      "step": "1.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-1.2.md",
+      "step": "1.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-1.3.md",
+      "step": "1.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-1.4.md",
+      "step": "1.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-10.0.md",
+      "step": "10.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-10.1.md",
+      "step": "10.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-10.2.md",
+      "step": "10.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-10.3.md",
+      "step": "10.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-10.4.md",
+      "step": "10.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-11.0.md",
+      "step": "11.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-11.1.md",
+      "step": "11.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-11.2.md",
+      "step": "11.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-11.3.md",
+      "step": "11.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-11.4.md",
+      "step": "11.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-11.5.md",
+      "step": "11.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-11.6.md",
+      "step": "11.6",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-12.0.md",
+      "step": "12.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-12.1.md",
+      "step": "12.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-12.2.md",
+      "step": "12.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-12.3.md",
+      "step": "12.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-12.4.md",
+      "step": "12.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-12.5.md",
+      "step": "12.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-12.6.md",
+      "step": "12.6",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-13.0.md",
+      "step": "13.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-13.1.md",
+      "step": "13.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-13.2.md",
+      "step": "13.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-13.3.md",
+      "step": "13.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-13.4.md",
+      "step": "13.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-13.5.md",
+      "step": "13.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-14.0.md",
+      "step": "14.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-14.1.md",
+      "step": "14.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-14.2.md",
+      "step": "14.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-14.3.md",
+      "step": "14.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-14.4.md",
+      "step": "14.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-14.5.md",
+      "step": "14.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-15.0.md",
+      "step": "15.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-15.1.md",
+      "step": "15.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-15.2.md",
+      "step": "15.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-15.3.md",
+      "step": "15.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-15.4.md",
+      "step": "15.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-16.0.md",
+      "step": "16.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-16.1.md",
+      "step": "16.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-16.2.md",
+      "step": "16.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-16.3.md",
+      "step": "16.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-16.4.md",
+      "step": "16.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-16.5.md",
+      "step": "16.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-17.0.md",
+      "step": "17.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-17.1.md",
+      "step": "17.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-17.2.md",
+      "step": "17.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-17.3.md",
+      "step": "17.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-18.0.md",
+      "step": "18.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-18.1.md",
+      "step": "18.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-18.2.md",
+      "step": "18.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-18.3.md",
+      "step": "18.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-18.4.md",
+      "step": "18.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-19.0.md",
+      "step": "19.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-19.1.md",
+      "step": "19.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-19.2.md",
+      "step": "19.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-19.3.md",
+      "step": "19.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-19.4.md",
+      "step": "19.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-19.5.md",
+      "step": "19.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-2.0.md",
+      "step": "2.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-2.1.md",
+      "step": "2.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-2.2.md",
+      "step": "2.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-2.3.md",
+      "step": "2.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-2.4.md",
+      "step": "2.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-2.5.md",
+      "step": "2.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-20.0.md",
+      "step": "20.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-20.1.md",
+      "step": "20.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-20.2.md",
+      "step": "20.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-20.3.md",
+      "step": "20.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-20.4.md",
+      "step": "20.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-20.5.md",
+      "step": "20.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-21.0.md",
+      "step": "21.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-21.1.md",
+      "step": "21.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-3.0.md",
+      "step": "3.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-3.1.md",
+      "step": "3.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-3.2.md",
+      "step": "3.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-3.3.md",
+      "step": "3.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-3.4.md",
+      "step": "3.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-4.0.md",
+      "step": "4.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-4.1.md",
+      "step": "4.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-4.2.md",
+      "step": "4.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-4.3.md",
+      "step": "4.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-4.4.md",
+      "step": "4.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-4.5.md",
+      "step": "4.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-5.0.md",
+      "step": "5.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-5.1.md",
+      "step": "5.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-5.2.md",
+      "step": "5.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-5.3.md",
+      "step": "5.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-5.4.md",
+      "step": "5.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-6.0.md",
+      "step": "6.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-6.1.md",
+      "step": "6.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-6.2.md",
+      "step": "6.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-6.3.md",
+      "step": "6.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-7.0.md",
+      "step": "7.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-7.1.md",
+      "step": "7.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-7.2.md",
+      "step": "7.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-7.3.md",
+      "step": "7.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-8.0.md",
+      "step": "8.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-8.1.md",
+      "step": "8.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-8.2.md",
+      "step": "8.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-8.3.md",
+      "step": "8.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-8.4.md",
+      "step": "8.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-8.5.md",
+      "step": "8.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-9.0.md",
+      "step": "9.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-9.1.md",
+      "step": "9.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-9.2.md",
+      "step": "9.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-9.3.md",
+      "step": "9.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-9.4.md",
+      "step": "9.4",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-9.5.md",
+      "step": "9.5",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-9.6.md",
+      "step": "9.6",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/TELEMETRY.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/TEMPLATE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/runbooks/cloud-outage.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/runbooks/restore-d1.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/runbooks/revoke-tool.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/runbooks/rotate-keys.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "infra/alerts.md",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/cloudflare-setup.md",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/deploy-order.md",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/deploy/channels.json",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/desktop/webview2-x64.json",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/environments.md",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/identity/google-staging.json",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/production-checklist.md",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/production-release-plan.json",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/production-state.json",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/r2-policy.md",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/releases/README.md",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/staging-checklist.md",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/trust/release-staging-keys.json",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/trust/release-staging-root.json",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/trust/revocation-root.json",
+      "step": "21.2",
+      "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "package.json",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": "playwright.config.ts",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": "pnpm-lock.yaml",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": "pnpm-workspace.yaml",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": "runtime/assets/tool-shell.css",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/desktop/Cargo.toml",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/desktop/README.md",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/desktop/assets/style.css",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/desktop/src/app.rs",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/desktop/src/lib.rs",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/desktop/src/main.rs",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/Cargo.toml",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/Dioxus.toml",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/assets/style.css",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/public/embed-config.js",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/public/frame.html",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/public/trust-keys.json",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/public/version.json",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/src/app.rs",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/src/embed.rs",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/src/interop.rs",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/src/main.rs",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/worker.ts",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "rust-toolchain.toml",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": "scripts/api-readiness.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/benchmark-search-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/build-design-tokens.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/build-runtime.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/changed-tools.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/check-design-build.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/check-doc-links.mjs",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "scripts/check-env.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/check-google-identity.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/check-progress.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/ci-deploy.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/ci-prepare.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/ci-publish-tool.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/ci-quality.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/ci-verify.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/compare-workspace.py",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/deploy-ai-assistant-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/deploy-desktop-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/deploy-distribution-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/deploy-orchestration-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/deploy-orchestration-web-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/deploy-password-auth-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/deploy-security-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/deploy-workflow-permissions-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/deploy-workflows-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/desktop-artifact-source.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/desktop-installer-smoke.ps1",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/desktop-package.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/desktop-webview2.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/generate-test-signing-key.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/health-summary.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/measure-native.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/offline-release-key.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/offline-revocations.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/prepare-desktop-calculator.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/prepare-extension.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/prepare-phase12.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/production-readiness.mjs",
+      "step": "22.0",
+      "role": "Exploitation / gate production"
+    },
+    {
+      "file": "scripts/promote-release.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/publish-desktop-calculator-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/publish-desktop.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/publish-phase12-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/publish-runtime.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/qa-disaster-drill.mjs",
+      "step": "21.2",
+      "role": "Exploitation / récupération"
+    },
+    {
+      "file": "scripts/qa-isolated.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/qa-local-restore.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/qa-local-system.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/qa-telemetry-cloud.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/qa-verify.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/record-assistant-validation.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/record-desktop-validation.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/record-device-ai-validation.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/record-orchestration-validation.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/record-security-validation.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/record-workflow-permissions-validation.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/record-workflows-validation.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/rehearse-staging-rollback.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/release-candidate.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/release-cloud.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/release-core.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/release-maintenance.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/release-tool.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/revoke-artifact.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/rollback-release.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/runtime-publication.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/security-gate.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/smoke-cloud.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/staging-fixtures.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/staging-publication.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-account-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-ai-limit-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-assistant-account-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-assistant-native.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-desktop-lifecycle.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-device-ai-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-extension-staging.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-orchestration-cloud.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-orchestration-native.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/test-workflow-permissions-native.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/validate-orchestration.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/validate-schema.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "scripts/web-hot-publish.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
+      "file": "shared/fixtures/contract.valid.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/fixtures/invalid-contract.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/fixtures/invalid-manifest.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/fixtures/manifest.valid.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/fixtures/publication-request.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/fixtures/trust-test-keys.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/fixtures/trust-test-root.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/fixtures/ui.valid.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/fixtures/workflow.valid.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/generated/README.md",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/rust/Cargo.toml",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/rust/src/lib.rs",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/schemas/ai-plan.schema.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/schemas/api.schema.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/schemas/artifact.schema.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/schemas/contract.schema.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/schemas/manifest.schema.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/schemas/protocol.schema.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/schemas/ui.schema.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/schemas/workflow.schema.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/schemas/workspace.schema.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/typescript/package.json",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/typescript/src/index.ts",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/typescript/src/revocation.ts",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/typescript/src/runtime.ts",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/typescript/src/validate.ts",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "shared/typescript/src/value-schema.ts",
+      "step": "1.0",
+      "role": "Contrats partagés / schémas"
+    },
+    {
+      "file": "tests/a11y/setup.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/a11y/site.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/a11y/site.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/account.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/ai.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/config/doc-links.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/config/secrets.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/conformance/README.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/conformance/check.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/conformance/v1.cases.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/contracts/browser-csp.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/contracts/cross-language.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/design/cards.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/design/tokens.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/e2e-checklist.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/five-tools.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/installer-smoke.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/lifecycle.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/lifecycle.ps1",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/native-smoke.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/native-smoke.ps1",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/parity.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/product-smoke.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/product-smoke.ps1",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/desktop/runtime-channel-smoke.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/README.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/account-scenario.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/account.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/ai.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/calculatrice-desktop.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/calculatrice-desktop.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/calculatrice-desktop.ps1",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/calculatrice-web.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/catalog.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/open-tool.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/package-desktop.ps1",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/package-web.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/search.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/workflow-editor.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/workflow-run.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/workspace-actions.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/workspace-helpers.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/e2e/workspace.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/artifact-signed-test.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/artifact-signed-test.tool",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/calculatrice-reference.wasm",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/calculatrice-v1-manifest.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/calculatrice.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/calculatrice.test.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/capability-guest/Cargo.lock",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/capability-guest/Cargo.toml",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/capability-guest/src/lib.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/core-reference.wasm",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/events.ndjson",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/make-tool.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/malformed/README.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/malformed/corpus.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/password-scrypt-test.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/prepare-calculatrice.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/prepare-runtime.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/runtime-channels.signed-test.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/workflow-capability-guest/Cargo.lock",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/workflow-capability-guest/Cargo.toml",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/fixtures/workflow-capability-guest/src/lib.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/golden/calculatrice-artifact.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/golden/calculatrice-reference.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/golden/calculatrice.ndjson",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/core_conformance.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/desktop-hot-publish.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/five-tools-vectors.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/five-tools.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/hot-publish.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/playwright.extension.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/playwright.five-tools.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/playwright.hot.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/playwright.staging.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/runtime-update.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/sixth-tool-fixture/Cargo.lock",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/sixth-tool-fixture/Cargo.toml",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/sixth-tool-fixture/assets/icon.svg",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/sixth-tool-fixture/contract.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/sixth-tool-fixture/manifest.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/sixth-tool-fixture/src/lib.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/sixth-tool.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/staging-desktop.ps1",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/integration/staging-publication.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/native/capabilities.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/native/desktop.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/orchestration.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/perf/catalog-load.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/perf/runtime-native.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/perf/runtime-web.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/perf/runtime.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/perf/seed-10k.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/perf/seed.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/perf/sitemap-load.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/api-readiness.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/ci-deploy.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/ci-publish.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/ci-quality.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/desktop-artifact-source.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/desktop-webview2.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/golden.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/local-pipeline.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/production-readiness.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/runtime-publication.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/release/candidate.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/release/failure-injection.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/resilience/config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/resilience/end-to-end.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/resilience/native.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/abi-fuzz/README.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/abi-limits.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/ai-privacy.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/auth-abuse.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/data-privacy.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/headers.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/network-files.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/package.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/revocation.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/telemetry.test.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/threat-matrix.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/workspace-isolation.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/security/workspace-router.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/seo/sitemap.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/browser-runner/index.html",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/browser-runner/test.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/browser-runner/worker.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/core-guest/Cargo.lock",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/core-guest/Cargo.toml",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/core-guest/src/lib.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/dioxus-render/Cargo.lock",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/dioxus-render/Cargo.toml",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/dioxus-render/assets/style.css",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/dioxus-render/check.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/dioxus-render/src/main.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/native-runner/Cargo.lock",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/native-runner/Cargo.toml",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/native-runner/src/main.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/native-runner/tests/compat.rs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/native-runner/wire-cases.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/sandbox-host/archive.test.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/sandbox-host/iframe.html",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/spikes/sandbox-host/index.html",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/tools/phase12-csv-staging.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/tools/phase12-desktop.cjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/tools/phase12-desktop.ps1",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/tools/phase12-staging.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/tools/phase12.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/tools/playwright.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/tools/playwright.csv-staging.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/tools/playwright.staging.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/visual/design-fixtures.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/visual/design-system.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/visual/header.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/visual/home.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/visual/reference-spec.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/visual/regression.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/visual/workspace-fixtures.json",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/visual/workspace.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/web/embed.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/web/harness.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/web/playwright.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/web/shell.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/web/ui-focus.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/web/workflow-permissions.spec.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/website-next.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/website.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/website/README.md",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/website/fixtures.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/website/server.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/workflows.config.ts",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tools/calculateur-hash/Cargo.toml",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculateur-hash/assets/icon.svg",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculateur-hash/contract.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculateur-hash/manifest.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculateur-hash/src/lib.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculateur-hash/tests/hash.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/Cargo.toml",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/assets/icon.svg",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/contract.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/design.md",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/manifest.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/src/lib.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/src/state.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/tests/action_cases.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/tests/declaration.test.mjs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/calculatrice/tests/tool.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/convertisseur-casse/Cargo.toml",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/convertisseur-casse/assets/icon.svg",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/convertisseur-casse/contract.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/convertisseur-casse/manifest.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/convertisseur-casse/src/lib.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/convertisseur-casse/tests/unicode.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/encodeur-base64/Cargo.toml",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/encodeur-base64/assets/icon.svg",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/encodeur-base64/contract.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/encodeur-base64/manifest.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/encodeur-base64/src/lib.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/Cargo.toml",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/assets/icon.svg",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/contract.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/manifest.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/src/lib.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/src/parser.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/src/stats.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/src/ui.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/tests/parser.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/explorateur-csv/tests/ui.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/timestamp-utc/Cargo.toml",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/timestamp-utc/assets/icon.svg",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/timestamp-utc/contract.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/timestamp-utc/manifest.json",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/timestamp-utc/src/lib.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tools/timestamp-utc/tests/dates.rs",
+      "step": "18.3",
+      "role": "Auteurs des outils"
+    },
+    {
+      "file": "tsconfig.base.json",
+      "step": "1.0",
+      "role": "Socle / dépendances et configuration"
+    },
+    {
+      "file": "web-adapter/build.mjs",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/generate-validators.mjs",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/package.json",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/prepare-tests.mjs",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/ai-bridge.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/archive.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/bridge.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/browser-contracts.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/capabilities.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/host.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/iframe.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/interop.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/loader.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/memory.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/permissions.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/revocation.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/runtime-channels.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/storage.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/trust.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/types.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/wasm-check.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/src/worker.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/tests/ai-bridge.spec.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/tests/capabilities.spec.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/tests/helpers.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/tests/loader.spec.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/tests/package-security.spec.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/tests/signature.spec.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/tests/wasm.spec.ts",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "web-adapter/tsconfig.json",
+      "step": "4.0",
+      "role": "Runtime Web / admission"
+    },
+    {
+      "file": "website/astro.config.mjs",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/package.json",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/public/favicon.svg",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/public/fonts/README.md",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/public/fonts/Roboto-LICENSE.txt",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/public/fonts/RobotoVariable.ttf",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/scripts/capture-workspace.mjs",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/scripts/generate-validators.mjs",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/scripts/generate-workflow-validator.mjs",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/scripts/smoke-ssr.mjs",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/assets/reference-annotations.md",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/AIAssistant.tsx",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/AuthPanel.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/Footer.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/Header.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/Search.tsx",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ToolCard.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ToolDetails.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ToolViewer.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ToolWindow.tsx",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/WorkflowCloud.tsx",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/WorkflowEditor.tsx",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/WorkflowRun.tsx",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/Workspace.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/Workspace.tsx",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/WorkspaceActionsPanel.tsx",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ui/Button.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ui/Feedback.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ui/Pagination.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ui/Pill.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ui/SearchDialog.tsx",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ui/SearchField.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/components/ui/ToolGrid.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/env.d.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/layouts/AppLayout.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/layouts/AuthLayout.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/layouts/MainLayout.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/layouts/WorkspaceLayout.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/accessibility.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/account-client.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/ai-csp.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/ai-runtime.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/api-client.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/auth.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/catalog.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/proxy.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/return-to.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/runtime-bridge.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/runtime-session.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/search.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/seo.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/service-binding.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/tools.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/urls.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/workflow-runtime.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/workflow-storage.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/workflow-validator.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/workflows.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/workspace-actions.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/workspace-state.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/workspace-sync.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/lib/workspace.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/middleware.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/404.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/account/connect-desktop.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/account/index.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/account/library.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/account/settings.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/ai/index.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/api/[...path].ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/app/[id].astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/auth/callback.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/auth/login.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/auth/register.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/index.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/robots.txt.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/sitemap-index.xml.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/sitemaps/[page].xml.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/tools/[id].astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/tools/index.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/workflows/index.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/workspace/index.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/previews/components.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/previews/design.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/scripts/account.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/scripts/password-auth.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/scripts/preferences.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/scripts/workspace.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/styles/auth.css",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/styles/desktop.css",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/styles/global.css",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/styles/theme.css",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/styles/tokens.json",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/styles/workflows.css",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/styles/workspace.css",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/styles/workspace.source.css",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/tests/account.test.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/tests/ai-csp.test.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/tests/api-client.test.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/tests/auth-proxy.test.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/tests/catalog-runtime.test.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/tests/orchestration.test.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/tests/seo.test.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/tests/workflows.test.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/tsconfig.json",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/wrangler.jsonc",
+      "step": "11.0",
+      "role": "Site / interface"
+    }
+  ],
+  "human_approval": false
+}

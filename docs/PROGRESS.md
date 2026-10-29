@@ -2257,6 +2257,74 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "authorization": "Propriétaire : Continue avec 21.1",
     "technical_scope": "Windows x64 / Chromium-WebView2 ; documentation et onboarding",
     "remaining_gate": "Recette humaine indépendante sur machine neuve non attestée ; RC/staging et prérequis de production restent distincts."
+  },
+  {
+    "id": "21.2",
+    "status": "pending",
+    "source_commit": "05dece0e9a955fea0af0ab702ae4fbf51ce09f9d",
+    "result_commit": "d7eb6e12b229dec49c00cd4b0654a7e151808e36",
+    "report_path": "docs/reports/STEP-21.2.md",
+    "tests_executed": "Reprise locale réelle : API/site/téléchargement 200, hash identique, RTO 4818 ms ; essai distant arrêté par quota D1 7500, nettoyage confirmé.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/disaster-drill-local.json"
+    ],
+    "frozen": false,
+    "technical_status": "local_verified_cloud_drill_blocked",
+    "authorization": "Propriétaire : Enchaîne jusqu’à 22.1 ; licence propriétaire ; budget 0 € ; contact admin@kortex.site",
+    "technical_scope": "Windows x64 / Chromium-WebView2",
+    "remaining_gate": "Restauration Time Travel distante à exécuter après réinitialisation du quota gratuit."
+  },
+  {
+    "id": "21.3",
+    "status": "pending",
+    "source_commit": "05dece0e9a955fea0af0ab702ae4fbf51ce09f9d",
+    "result_commit": "d7eb6e12b229dec49c00cd4b0654a7e151808e36",
+    "report_path": "docs/reports/STEP-21.3.md",
+    "tests_executed": "Liens internes et propriétaires par étape vérifiés ; tests du contrôleur intégrés à la CI contrats.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/documentation-gate.json"
+    ],
+    "frozen": false,
+    "technical_status": "documentation_verified_not_frozen",
+    "authorization": "Propriétaire : Enchaîne jusqu’à 22.1 ; licence propriétaire ; budget 0 € ; contact admin@kortex.site",
+    "technical_scope": "Windows x64 / Chromium-WebView2",
+    "remaining_gate": "Validation humaine et prérequis de reprise distante/RC encore ouverts."
+  },
+  {
+    "id": "22.0",
+    "status": "pending",
+    "source_commit": "05dece0e9a955fea0af0ab702ae4fbf51ce09f9d",
+    "result_commit": "d7eb6e12b229dec49c00cd4b0654a7e151808e36",
+    "report_path": "docs/reports/STEP-22.0.md",
+    "tests_executed": "Inventaire Cloudflare/GitHub/Google/certificats ; licence propriétaire, plafond 0 €, contact admin@kortex.site enregistrés ; contrôleur production refuse les gates ouverts.",
+    "contract_changes": [],
+    "evidence": [
+      "docs/evidence/production-readiness.json"
+    ],
+    "frozen": false,
+    "technical_status": "prepared_blocked",
+    "authorization": "Propriétaire : Enchaîne jusqu’à 22.1 ; licence propriétaire ; budget 0 € ; contact admin@kortex.site",
+    "technical_scope": "Windows x64 / Chromium-WebView2",
+    "remaining_gate": "Identité juridique, configuration/certificats et gates listés dans la preuve de préparation."
+  },
+  {
+    "id": "22.1",
+    "status": "pending",
+    "source_commit": "05dece0e9a955fea0af0ab702ae4fbf51ce09f9d",
+    "result_commit": "d7eb6e12b229dec49c00cd4b0654a7e151808e36",
+    "report_path": "docs/reports/STEP-22.1.md",
+    "tests_executed": "Ordre de bascule et notes de version préparés ; aucune commande de déploiement production exécutée.",
+    "contract_changes": [],
+    "evidence": [
+      "infra/production-release-plan.json"
+    ],
+    "frozen": false,
+    "technical_status": "not_deployed_prerequisites_blocked",
+    "authorization": "Propriétaire : Enchaîne jusqu’à 22.1 ; licence propriétaire ; budget 0 € ; contact admin@kortex.site",
+    "technical_scope": "Windows x64 / Chromium-WebView2",
+    "remaining_gate": "Préparation production complète, RC et CI cohérentes avant déploiement."
   }
 ]
 ```

@@ -6,7 +6,8 @@
 - [x] Zone `kortex.site` accessible et active ; relevé en lecture seule conservé sans contenu DNS sensible.
 - [x] Messagerie et DNS existants préservés.
 - [x] Ordre de bascule DB → API → paquets → Runtime → site → Windows décrit dans [le plan](production-release-plan.json).
-- [ ] Nom/identité juridique de l'éditeur et contact sécurité confirmés.
+- [x] Contact sécurité confirmé par le propriétaire : admin@kortex.site.
+- [ ] Nom/identité juridique de l’éditeur confirmée.
 - [ ] Revue CGU/confidentialité et obligations des dépendances redistribuées ; aucune approbation juridique automatique.
 - [ ] Ressources production distinctes configurées : compte, DB, bucket, Workers et trois origines HTTPS réelles.
 - [ ] Conditions gratuites et limites de facturation vérifiées pour tous les services ; aucune souscription ni hausse automatique.
