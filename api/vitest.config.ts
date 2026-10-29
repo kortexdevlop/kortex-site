@@ -11,4 +11,4 @@ export default defineConfig(async()=>({plugins:[cloudflareTest({wrangler:{config
  ADMIN_AUTH_POLICY:JSON.stringify(testPolicy),TEST_AUTH_PRIVATE_JWK:testKeys.privateKey.export({format:'jwk'}),
  TEST_ARCHIVE_BASE64:readFileSync(new URL('../tests/fixtures/artifact-signed-test.tool',import.meta.url)).toString('base64'),
  TEST_MANIFEST:fixture('tests/fixtures/calculatrice-v1-manifest.json'),TEST_CONTRACT:fixture('tools/calculatrice/contract.json'),TEST_DESCRIPTOR:fixture('tests/fixtures/artifact-signed-test.json')
-}}})],test:{include:['tests/**/*.test.ts'],testTimeout:120000,hookTimeout:120000}}));
+}}})],test:{fileParallelism:false,include:['tests/**/*.test.ts'],testTimeout:120000,hookTimeout:120000}}));

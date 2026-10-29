@@ -45,18 +45,19 @@ fn interrupted_tampered_oversized_redirect_and_cancelled_downloads_leave_no_acti
         let r = f.release("1.0.0", vec![], false);
         let s = Server::new(r.clone());
         s.mode(mode);
+        let rejected = installer::install(
+            &f.config,
+            &s.api,
+            &r.detail,
+            &[],
+            &AtomicBool::new(false),
+            &monitor(),
+            true,
+        )
+        .unwrap_err();
         assert!(
-            installer::install(
-                &f.config,
-                &s.api,
-                &r.detail,
-                &[],
-                &AtomicBool::new(false),
-                &monitor(),
-                true
-            )
-            .is_err(),
-            "{mode}"
+            !rejected.contains("Hors connexion"),
+            "fixture transport failed before {mode}: {rejected}"
         );
         assert!(library::scan(&f.config).tools.is_empty());
         assert_eq!(

@@ -14,7 +14,12 @@ import {users} from './routes/users';
 import {desktopAuth} from './routes/desktop-auth';
 import {ai} from './routes/ai';
 import {workflows} from './routes/workflows';
+import {telemetry} from './lib/telemetry';
 export async function handle(request:Request,bindings:unknown,viaWeb=false):Promise<Response> {
+ const observed=telemetry(request,bindings);
+ return observed.finish(await dispatch(request,observed.bindings,viaWeb));
+}
+async function dispatch(request:Request,bindings:unknown,viaWeb=false):Promise<Response> {
  const id=requestId(request),head=request.method==='HEAD';
  try {
   const env=validateEnv(bindings);if(!env)return failure('UNAVAILABLE','Service configuration unavailable',503,id,undefined,head);

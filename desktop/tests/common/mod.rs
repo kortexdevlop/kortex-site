@@ -294,6 +294,13 @@ impl Server {
                         let _ = stream.write_all(&bytes);
                     }
                 }
+                // Finish the one-shot HTTP response gracefully. Dropping a
+                // Windows TCP socket while its peer is still closing can turn
+                // a valid response into a connection reset in parallel tests.
+                let _ = stream.flush();
+                let _ = stream.shutdown(std::net::Shutdown::Write);
+                let mut closing = [0u8; 256];
+                let _ = stream.read(&mut closing);
             }
         });
         Self {

@@ -1,0 +1,2 @@
+import {defineConfig} from 'playwright/test';
+export default defineConfig({testDir:'../..',testMatch:['tests/resilience/end-to-end.spec.ts','tests/e2e/workspace-actions.spec.ts'],workers:1,timeout:90000,expect:{timeout:15000},use:{browserName:'chromium',baseURL:process.env.KORTEX_QA_SITE_ORIGIN||'http://127.0.0.1:4322'},reporter:[['list'],['json',{outputFile:process.cwd()+'/target/ci-reports/resilience/playwright.json'}]]});

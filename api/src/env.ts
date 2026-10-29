@@ -1,6 +1,7 @@
 import {z} from 'zod';
 export interface Env {
  DEPLOY_REVISION?:string;
+ TELEMETRY_ENABLED?:string;
  RUNTIME_ROOT?:string;
  RUNTIME_CHANNELS?:string;
  REVOCATION_ROOT?:string;

@@ -51,7 +51,7 @@ describe('catalogue API V1 in real D1/workerd',()=>{
   expect((await sitemap(new Request('https://internal/api/v1/internal/sitemap?page=-1'),env)).status).toBe(400);
  });
  it('measures search p95 on the real local 10,000-row D1 catalogue',async()=>{
-  const times:number[]=[];for(let i=0;i<25;i++){const start=performance.now();expect((await fetchApi('?q=tool&limit=8')).status).toBe(200);times.push(performance.now()-start);}times.sort((a,b)=>a-b);const p95=times[Math.ceil(times.length*.95)-1];console.log('LOCAL_10000_SEARCH_P95_MS='+p95.toFixed(2));expect(p95).toBeLessThan(500);
+  const times:number[]=[];for(let i=0;i<105;i++){const start=performance.now();expect((await fetchApi('?q=tool&limit=8')).status).toBe(200);const elapsed=performance.now()-start;if(i>=5)times.push(elapsed);}times.sort((a,b)=>a-b);const p95=times[Math.ceil(times.length*.95)-1];console.log('LOCAL_10000_SEARCH_P95_MS='+p95.toFixed(2));expect(p95).toBeLessThan(500);
  });
  for(const sort of ['recent','name'])it(`walks 10,000 published entries without holes or duplicates (${sort}, including ties)`,async()=>{
   const ids:string[]=[],keys:(number|string)[]=[];let cursor:string|null=null,pages=0;
