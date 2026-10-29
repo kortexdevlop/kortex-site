@@ -15,3 +15,5 @@ Les exercices réels `rehearse-staging-rollback.mjs api|runtime --operator` pass
 Les versions de Runtime ont une séquence signée croissante ; les clients refusent un document ancien. Le publisher refuse une version sémantique inférieure. Un rollback d'urgence doit être une action opérateur explicite et garder les outils compatibles, jamais une réinstallation automatique plus ancienne chez l'utilisateur.
 
 Le site attend aussi la fin de tout workflow API du même commit, y compris son exercice de rollback. Le header public X-Kortex-Api-Revision identifie la révision déployée sans modifier le DTO health V1. Une API plus ancienne est acceptée seulement après comparaison GitHub prouvant que les fichiers API, DB et contrats pertinents sont inchangés.
+
+Les publications de Runtime Web et Desktop partagent le verrou de concurrence runtime-release-staging : leurs mises à jour de la séquence signée ne peuvent pas s’écraser. La publication d’outil et celle du Desktop attendent également la fin du workflow API correspondant avant d’utiliser le service.

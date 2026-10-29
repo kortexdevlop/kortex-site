@@ -61,6 +61,9 @@ jobs:
     needs: windows
     if: vars.KORTEX_STAGING_DEPLOY_ENABLED == 'true'
     environment: staging
+    concurrency:
+      group: runtime-release-staging
+      cancel-in-progress: false
     runs-on: windows-latest
     timeout-minutes: 15
     permissions:

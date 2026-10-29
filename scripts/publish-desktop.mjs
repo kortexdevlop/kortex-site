@@ -1,3 +1,4 @@
+import {waitForApi} from './api-readiness.mjs';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash,createPrivateKey,sign} from 'node:crypto';
 import {resolve} from 'node:path';
@@ -5,7 +6,7 @@ import {context,protection} from './ci-publish-tool.mjs';
 import {requireQuality} from './ci-quality.mjs';
 import {publishRuntime} from './publish-runtime.mjs';
 import {canonicalRuntime} from '../shared/typescript/src/runtime.ts';
-const env=process.env;context(env,'staging');await requireQuality(env);await protection(env,'staging');
+const env=process.env;const deployment=context(env,'staging');await requireQuality(env);await waitForApi(env,deployment);await protection(env,'staging');
 const folder='target/desktop-package',descriptor=JSON.parse(readFileSync(folder+'/desktop-release.json')),smoke=JSON.parse(readFileSync(folder+'/installer-smoke.json'));
 if(!smoke.passed||!smoke.installed||!smoke.uninstalled||descriptor.channel!=='staging'||descriptor.platform!=='windows-x64'||descriptor.code_signed!==false||!/^[A-Za-z0-9._-]+\.exe$/.test(descriptor.filename)||!/^\d+\.\d+\.\d+$/.test(descriptor.version))throw Error('DESKTOP_ARTIFACT_NOT_VALIDATED');
 const bytes=readFileSync(resolve(folder,descriptor.filename));if(createHash('sha256').update(bytes).digest('hex')!==descriptor.sha256||bytes.length!==descriptor.bytes)throw Error('DESKTOP_ARTIFACT_HASH');
