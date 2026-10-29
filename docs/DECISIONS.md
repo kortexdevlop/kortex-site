@@ -96,3 +96,7 @@ Le propriétaire demande « Enchaîne les 3 prochaines étapes » après 12.2. P
 ## Décisions du propriétaire — 29 octobre 2026
 
 Licence propriétaire choisie explicitement ; plafond mensuel 0 €, aucune montée automatique vers une offre payante. Contact sécurité : admin@kortex.site. La messagerie existante reste conservée. Ces décisions ne constituent pas une attestation de certificat Windows, de configuration Google ou de validation de production.
+
+## Google OAuth reporté — décision du propriétaire
+
+Google OAuth est écarté de la version actuelle ; la connexion/inscription email et mot de passe est conservée. Les clients Google restent absents. Le contrôleur accepte ce report explicite avec le mode email/mot de passe ; les autres gates restent applicables.

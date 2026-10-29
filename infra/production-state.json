@@ -5,7 +5,9 @@
     "license": "proprietary",
     "license_choice_confirmed": true,
     "monthly_budget_eur": 0,
-    "automatic_paid_upgrade": false
+    "automatic_paid_upgrade": false,
+    "google_oauth_deferred": true,
+    "authentication": "email_password"
   },
   "domain": "kortex.site",
   "domain_access_verified": true,

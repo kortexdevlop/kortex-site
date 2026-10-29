@@ -1,45 +1,10 @@
 {
-  "date": "2026-10-29T17:59:50.596Z",
+  "date": "2026-10-29T18:07:50.421Z",
   "documents": 250,
   "internal_links": 119,
   "files_owned": 1423,
   "issues": [],
   "owners": [
-    {
-      "file": "docs/evidence/documentation-gate.json",
-      "step": "20.0",
-      "role": "QA / traçabilité"
-    },
-    {
-      "file": "docs/evidence/preproduction-validation.json",
-      "step": "20.0",
-      "role": "QA / traçabilité"
-    },
-    {
-      "file": "docs/evidence/production-security-gate.json",
-      "step": "20.0",
-      "role": "QA / traçabilité"
-    },
-    {
-      "file": "docs/reports/STEP-21.2.md",
-      "step": "21.2",
-      "role": "Responsable du rapport de cette étape"
-    },
-    {
-      "file": "docs/reports/STEP-21.3.md",
-      "step": "21.3",
-      "role": "Responsable du rapport de cette étape"
-    },
-    {
-      "file": "docs/reports/STEP-22.0.md",
-      "step": "22.0",
-      "role": "Responsable du rapport de cette étape"
-    },
-    {
-      "file": "docs/reports/STEP-22.1.md",
-      "step": "22.1",
-      "role": "Responsable du rapport de cette étape"
-    },
     {
       "file": ".editorconfig",
       "step": "1.0",
@@ -2281,6 +2246,11 @@
       "role": "QA / traçabilité"
     },
     {
+      "file": "docs/evidence/documentation-gate.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
       "file": "docs/evidence/extension-artifact.json",
       "step": "20.0",
       "role": "QA / traçabilité"
@@ -3111,6 +3081,11 @@
       "role": "QA / traçabilité"
     },
     {
+      "file": "docs/evidence/preproduction-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
       "file": "docs/evidence/production-ci.json",
       "step": "20.0",
       "role": "QA / traçabilité"
@@ -3127,6 +3102,11 @@
     },
     {
       "file": "docs/evidence/production-readiness.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/production-security-gate.json",
       "step": "20.0",
       "role": "QA / traçabilité"
     },
@@ -4388,6 +4368,26 @@
     {
       "file": "docs/reports/STEP-21.1.md",
       "step": "21.1",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-21.2.md",
+      "step": "21.2",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-21.3.md",
+      "step": "21.3",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-22.0.md",
+      "step": "22.0",
+      "role": "Responsable du rapport de cette étape"
+    },
+    {
+      "file": "docs/reports/STEP-22.1.md",
+      "step": "22.1",
       "role": "Responsable du rapport de cette étape"
     },
     {

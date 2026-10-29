@@ -12,7 +12,8 @@
 - [ ] Ressources production distinctes configurées : compte, DB, bucket, Workers et trois origines HTTPS réelles.
 - [ ] Conditions gratuites et limites de facturation vérifiées pour tous les services ; aucune souscription ni hausse automatique.
 - [ ] Quotas suffisants pour le trafic retenu ; service dégradé explicite si le palier gratuit est atteint.
-- [ ] Clients Google et vraie connexion validés, secrets serveur protégés ; compte email distinct conservé.
+- [x] Google OAuth reporté par le propriétaire ; email/mot de passe conservé.
+- [ ] Connexion email/mot de passe validée sur la production réelle.
 - [ ] Certificat Windows valide et nouvel installateur signé depuis la révision retenue.
 - [ ] CI complète verte et RC gelée sur le même commit, cinq paquets vérifiés et artefacts traçables.
 - [ ] Drill D1/R2 distant réussi, RPO/RTO observés et copie de retour disponibles.

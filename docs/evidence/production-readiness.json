@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "date": "2026-10-29T17:58:37.947Z",
+  "date": "2026-10-29T18:07:49.943Z",
   "ready": false,
   "blockers": [
     "PRODUCTION_RESOURCES_UNCONFIGURED",
@@ -8,7 +8,6 @@
     "PUBLISHER_IDENTITY",
     "LEGAL_TERMS",
     "DEPENDENCY_LICENSE_REVIEW",
-    "GOOGLE_OAUTH",
     "WINDOWS_CODE_SIGNING",
     "PRODUCTION_SECRETS",
     "PRODUCTION_DNS_TLS",

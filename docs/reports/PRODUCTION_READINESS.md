@@ -15,3 +15,5 @@ Blocages exacts et non secrets : [production-readiness.json](../evidence/product
 Aucun site, API ou installateur n'est annoncé en production sur la base d'un contrôle local. Les réserves du gate 20.5 restent applicables ; les formats de paquets, clés publiques et ABI ne sont pas affaiblis pour les lever.
 
 Vérifications finales locales : lane contrats complète réussie, 11 tests configuration/documentation/readiness, format Rust conforme et audit technique sans finding haut/critique. Voir [preuve](../evidence/preproduction-validation.json) et [audit](../evidence/production-security-gate.json). Le contact sécurité confirmé est admin@kortex.site. Ces résultats ne remplacent pas la CI complète de la révision finale.
+
+Mise à jour propriétaire : Google OAuth reporté ; email/mot de passe conservé. L’absence de clients Google ne bloque plus cette livraison. Aucun autre gate n’est levé par cette décision.
