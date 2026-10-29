@@ -34,6 +34,9 @@ export class VerifiedTool {
  }
 }
 export class WebBridge {
+ private guestMemory=0;
+ /** Passive host diagnostic, not a guest capability or an iframe command. */
+ get memoryBytes(){return this.guestMemory}
  private worker:Worker|undefined;private sequence=0;private stopped=false;private pending=new Map<number,{resolve:(v:any)=>void;reject:(e:Error)=>void;timer:ReturnType<typeof setTimeout>}>();private tail:Promise<unknown>=Promise.resolve();private queued=0;
  onCapabilitySettled:()=>Promise<void>=async()=>{};onFailure:(reason:string)=>void=()=>{};
  private capabilities=new Set<Promise<void>>();private capabilityError:Error|undefined;private capabilityVersion=0;private capabilityReply:Reply|undefined;
@@ -44,7 +47,7 @@ export class WebBridge {
   this.worker=new Worker(new URL('./worker.js',import.meta.url),{type:'module'});
   this.worker.onmessage=({data})=>{if(this.stopped)return;
    if(data?.capability){try{capability(data.capability);if(this.capabilities.size>=QUEUE_LIMIT)throw Error('QUEUE_FULL');const call=data.capability;const job=(async()=>{let outcome:Record<string,unknown>,failure:Error|undefined;try{outcome={ok:true,data:await this.onCapability(call)}}catch(e){failure=e instanceof Error?e:Error('UNAVAILABLE');outcome={ok:false,error:error(failure.message)}}await this.capabilityResult(call.request_id,outcome);if(failure)throw failure})();this.capabilities.add(job);void job.then(()=>this.capabilities.delete(job),e=>{this.capabilityError=e instanceof Error?e:Error('PERMISSION');this.capabilities.delete(job)});}catch{this.stop('INVALID_CAPABILITY')}return;}
-   const item=this.pending.get(data?.id);if(!item){this.stop('CORRELATION_ERROR');return;}clearTimeout(item.timer);this.pending.delete(data.id);if(data.error){item.reject(Error(data.error));this.stop(data.error);}else item.resolve(data.result);
+   const item=this.pending.get(data?.id);if(!item){this.stop('CORRELATION_ERROR');return;}if(Number.isSafeInteger(data?.memory_bytes)&&data.memory_bytes>=0)this.guestMemory=data.memory_bytes;clearTimeout(item.timer);this.pending.delete(data.id);if(data.error){item.reject(Error(data.error));this.stop(data.error);}else item.resolve(data.result);
   };
   this.worker.onerror=()=>this.stop('GUEST_CRASH');this.worker.onmessageerror=()=>this.stop('INVALID_MESSAGE');
  }

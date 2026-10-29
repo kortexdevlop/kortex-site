@@ -188,6 +188,7 @@ impl Machine {
     }
 }
 enum Command {
+    Memory(futures_channel::oneshot::Sender<Result<usize, RuntimeError>>),
     Dispatch(
         Envelope,
         u64,
@@ -199,6 +200,16 @@ pub struct NativeInstance {
     stop: Arc<AtomicBool>,
     engine: Engine,
     inbox: Option<(crate::permissions::CapabilityInbox, u64)>,
+}
+impl NativeInstance {
+    /// Host-side diagnostic only: read the current guest linear-memory size without executing guest code.
+    pub async fn memory_bytes(&self) -> Result<usize, RuntimeError> {
+        let (tx, rx) = futures_channel::oneshot::channel();
+        self.tx
+            .send(Command::Memory(tx))
+            .map_err(|_| RuntimeError::GuestCrash)?;
+        receive(rx).await?
+    }
 }
 impl Drop for NativeInstance {
     fn drop(&mut self) {
@@ -265,6 +276,14 @@ impl NativeGuestEngine {
                 };
                 while !flag.load(Ordering::SeqCst) {
                     match rx.recv_timeout(Duration::from_millis(10)) {
+                        Ok(Command::Memory(reply)) => {
+                            let size = state
+                                .instance
+                                .get_memory(&mut state.store, "memory")
+                                .map(|m| m.data_size(&state.store))
+                                .ok_or(RuntimeError::GuestCrash);
+                            let _ = reply.send(size);
+                        }
                         Ok(Command::Dispatch(r, d, reply)) => {
                             let result = state.dispatch(&r, d);
                             let fatal = result.is_err();

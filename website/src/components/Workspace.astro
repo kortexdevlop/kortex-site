@@ -12,7 +12,7 @@ const nav=[{id:'home',label:'Accueil',count:null},{id:'all',label:'Tous les outi
 ---
 <div class="workspace" data-demo={preview?'true':'false'} data-page-kind={pageKind} data-execution={execution?'true':undefined}>
   <aside class="ws-sidebar" id="workspace-sidebar" aria-label="Navigation de l’espace de travail">
-    <a class="ws-brand" href={preview?'/__dev/design':'/'} aria-label="Kortex.site — accueil"><span class="ws-brand-mark" aria-hidden="true"></span><span><strong>kortex</strong><span class="ws-brand-site">.site</span></span><span class="ws-beta">BETA</span></a>
+    <a class="ws-brand" href={preview?'/__dev/design':'/'}><span class="ws-brand-mark" aria-hidden="true"></span><span><strong>kortex</strong><span class="ws-brand-site">.site</span></span> <span class="ws-beta">BETA</span><span class="sr-only"> — accueil</span></a>
     <button class="ws-new-task" type="button" data-new-task>Nouvelle tâche <kbd aria-hidden="true">⌘N</kbd></button>
     <nav class="ws-nav" aria-label="Espace de travail">{nav.map(item=><button type="button" class:list={['ws-nav-item',!specialPage&&item.id===(pageKind==='home'?'home':'all')&&'is-active']} data-section={item.id} aria-current={!specialPage&&item.id===(pageKind==='home'?'home':'all')?'page':undefined}><span class="ws-nav-icon" aria-hidden="true"></span><span>{item.label}</span>{item.count!==null&&<span class="ws-count" data-count={item.id}>{item.count}{item.id==='all'&&hasMore?'+':''}</span>}</button>)}</nav>
     {!preview&&<a class:list={['ws-nav-item',specialPage==='Assistant'&&'is-active']} aria-current={specialPage==='Assistant'?'page':undefined} href="/ai"><span class="ws-nav-icon" aria-hidden="true"></span><span>Assistant</span></a>}

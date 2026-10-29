@@ -11,7 +11,12 @@ import {revocationText} from '../shared/typescript/src/revocation.ts';
 import {seedSql,statements} from '../tests/perf/seed-10k.mjs';
 import {catalogLoad} from '../tests/perf/catalog-load.mjs';
 import {sitemapLoad} from '../tests/perf/sitemap-load.mjs';
-const root=process.cwd(),account=JSON.parse(readFileSync('infra/deploy/channels.json')).staging.account_id,token=process.env.CLOUDFLARE_API_TOKEN;
+const root=process.cwd(),sharedAccount=JSON.parse(readFileSync('infra/deploy/channels.json')).staging.account_id,account=process.env.KORTEX_QA_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN;
+// A deleted test database does not refund account-wide daily quotas. Never run
+// bulk preparation against the account serving the product.
+if(!/^[a-f0-9]{32}$/.test(account??'')||account===sharedAccount)throw Error('DEDICATED_QA_ACCOUNT_REQUIRED');
+const readBudget=Number(process.env.KORTEX_QA_D1_READ_BUDGET),writeBudget=Number(process.env.KORTEX_QA_D1_WRITE_BUDGET);
+if(!Number.isSafeInteger(readBudget)||readBudget<1||!Number.isSafeInteger(writeBudget)||writeBudget<1)throw Error('EXPLICIT_QA_ROW_BUDGET_REQUIRED');
 if(!token)throw Error('CLOUDFLARE_CREDENTIAL_REQUIRED');
 const cloud=cloudApi(token,account),nonce=randomUUID().slice(0,8),name='kortex-qa-'+nonce,dir=resolve('target/qa-isolated',nonce);mkdirSync(dir,{recursive:true});
 const access=randomBytes(32).toString('hex'),expiry=Date.now()+7200000,keys=new Set(),createdWorkers=new Set(),report={schema_version:1,date:new Date().toISOString(),source_commit:spawnSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).stdout.trim(),platform:process.platform,node:process.version,cpu:cpus()[0]?.model,logical_cpus:cpus().length,memory_bytes:totalmem(),os_release:release(),environment:'private temporary real Cloudflare D1/R2/API/Astro SSR',owner:name,synthetic_metadata_only:true,passed:false,cleanup:false};
@@ -35,7 +40,7 @@ try{
  const common={compatibility_date:'2026-10-26',compatibility_flags:['nodejs_compat'],send_metrics:false,workers_dev:true,preview_urls:false};
  const apiConfig={...common,name:name+'-api',main:apiEntry,vars:{QA_OWNER:name,QA_EXPIRY:String(expiry),KORTEX_ENV:'staging',PUBLIC_WEB_ORIGIN:webOrigin,ADMIN_AUTH_POLICY:JSON.stringify(policy),REVOCATION_ROOT:JSON.stringify(rootPin),REVOCATION_DOCUMENT:JSON.stringify(revocations(1))},d1_databases:[{binding:'DB',database_name:name+'-db',database_id:database.uuid,migrations_dir:resolve('database/migrations')}],r2_buckets:[{binding:'TOOLS_BUCKET',bucket_name:bucket}]};
  const apiConfigPath=resolve(dir,apiConfig.name+'.json');writeFileSync(apiConfigPath,JSON.stringify(apiConfig));cli(['d1','migrations','apply','DB','--remote','--config',apiConfigPath]);await deploy(apiConfig);await secret(apiConfig.name,'CURSOR_SIGNING_KEY',randomBytes(32).toString('hex'));
- const query=async(sql,params=[])=>{let rows;try{rows=await cloud('/d1/database/'+database.uuid+'/query','POST',{sql,params})}catch(e){throw Error('SQL '+sql.slice(0,65)+' : '+JSON.stringify(e.cause??e.message).slice(0,400))}assert(rows.every(r=>r.success));report.d1.query_calls++;for(const r of rows){report.d1.rows_read+=r.meta?.rows_read??0;report.d1.rows_written+=r.meta?.rows_written??0;report.d1.sql_duration_ms+=r.meta?.sql_duration_ms??r.meta?.duration??0}return rows};
+ const query=async(sql,params=[])=>{let rows;try{rows=await cloud('/d1/database/'+database.uuid+'/query','POST',{sql,params})}catch(e){throw Error('SQL '+sql.slice(0,65)+' : '+JSON.stringify(e.cause??e.message).slice(0,400))}assert(rows.every(r=>r.success));report.d1.query_calls++;for(const r of rows){report.d1.rows_read+=r.meta?.rows_read??0;report.d1.rows_written+=r.meta?.rows_written??0;report.d1.sql_duration_ms+=r.meta?.sql_duration_ms??r.meta?.duration??0}if(report.d1.rows_read>readBudget||report.d1.rows_written>writeBudget)throw Error('QA_D1_ROW_BUDGET_EXCEEDED');return rows};
  const apiGet=client(apiOrigin);await ready(apiOrigin,'/api/v1/tools');await readyClient(apiGet,'/api/v1/health');
  console.log('QA: real release interruption/replay/rollback/revocation');
  await query("INSERT INTO signing_keys VALUES('qa-ephemeral',?,1,0,9999999999999,0)",[key.publicKey.export({format:'der',type:'spki'}).subarray(-32).toString('base64')]);

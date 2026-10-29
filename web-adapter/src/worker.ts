@@ -34,6 +34,6 @@ port.onmessage=async({data})=>{
     }catch{return -1;}
    }}});guest=instance.exports as Guest;result={ready:true};
   }else{request(data.request);if(data.request.kind==='capability.result'&&!pending.has(String(data.request.payload.capability_request_id)))throw Error('UNKNOWN_CAPABILITY_RESULT');result=dispatch(data.request);}
-  port.postMessage({id:data.id,result});
+  port.postMessage({id:data.id,result,memory_bytes:guest?.memory.buffer.byteLength??0});
  }catch(e){port.postMessage({id:data?.id,error:e instanceof Error?e.message:'ENGINE_ERROR'});}finally{busy=false;}
 };

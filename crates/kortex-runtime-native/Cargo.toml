@@ -4,6 +4,8 @@ version="1.0.0"
 edition.workspace=true
 rust-version.workspace=true
 publish=false
+[features]
+performance-measurements=[]
 [dependencies]
 kortex-core={path="../kortex-core"}
 kortex-abi={path="../kortex-abi"}
@@ -31,3 +33,7 @@ wat="=1.262.0"
 [[test]]
 name="desktop_parity"
 path="../../tests/desktop/parity.rs"
+[[test]]
+name="runtime_performance"
+path="../../tests/perf/runtime-native.rs"
+required-features=["performance-measurements"]
