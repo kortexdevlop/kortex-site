@@ -20,7 +20,7 @@ async function jwt(claims:Record<string,unknown>={},header:Record<string,unknown
 }
 // Controlled identity provider transport; keys and signatures are real, no validation is bypassed.
 const provider=(async(input:RequestInfo|URL,init?:RequestInit)=>{
- expect(init?.redirect).toBe('error');const url=String(input);
+ expect(init?.redirect).toBe('manual');const url=String(input);
  if(url.endsWith('/.well-known/openid-configuration'))return Response.json(metadata);
  if(url.endsWith('/jwks'))return Response.json({keys:[{...jwk,kid:'local-idp',alg:'RS256',use:'sig'}]});
  if(url.endsWith('/token')){

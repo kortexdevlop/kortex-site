@@ -27,7 +27,7 @@ async function boundedJson(response:Response):Promise<unknown>{
 }
 export async function discoverIdentity(config:IdentityConfig,environment:Environment,transport:typeof fetch=fetch){
  const local=environment==='local';const endpoint=(value:string)=>{const u=secure(value,local);if(!config.endpointOrigins.includes(u.origin))throw Error('IDENTITY_ENDPOINT');return u.href};
- const load=async(url:string)=>boundedJson(await transport(endpoint(url),{redirect:'error',signal:AbortSignal.timeout(10000),headers:{Accept:'application/json'}}));
+ const load=async(url:string)=>boundedJson(await transport(endpoint(url),{redirect:'manual',signal:AbortSignal.timeout(10000),headers:{Accept:'application/json'}}));
  const metadata=discoverySchema.parse(await load(config.issuer.replace(/\/$/,'')+'/.well-known/openid-configuration'));
  if(metadata.issuer!==config.issuer||!metadata.response_types_supported.includes('code')||!metadata.code_challenge_methods_supported.includes('S256')||!metadata.id_token_signing_alg_values_supported.some(a=>['RS256','ES256','EdDSA'].includes(a)))throw Error('IDENTITY_METADATA');
  endpoint(metadata.authorization_endpoint);endpoint(metadata.token_endpoint);endpoint(metadata.jwks_uri);

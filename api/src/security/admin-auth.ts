@@ -12,7 +12,7 @@ export function base64url(text:string):Uint8Array {
 let githubKeys:{expires:number;keys:Record<string,unknown>[]} | undefined;
 async function keys():Promise<Record<string,unknown>[]> {
  if(githubKeys&&githubKeys.expires>Date.now())return githubKeys.keys;
- const response=await fetch('https://token.actions.githubusercontent.com/.well-known/jwks',{redirect:'error',signal:AbortSignal.timeout(5000)});
+ const response=await fetch('https://token.actions.githubusercontent.com/.well-known/jwks',{redirect:'manual',signal:AbortSignal.timeout(5000)});
  if(!response.ok)throw Error('JWKS_UNAVAILABLE');
  const doc=JSON.parse(new TextDecoder().decode(await readBounded(response.body,65536)));
  if(!Array.isArray(doc.keys)||doc.keys.length>20)throw Error('BAD_JWKS');githubKeys={expires:Date.now()+300000,keys:doc.keys};return githubKeys.keys;

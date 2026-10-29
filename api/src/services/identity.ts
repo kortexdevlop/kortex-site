@@ -27,7 +27,7 @@ export async function verifyIdToken(token:string,config:IdentityConfig,discovery
 export async function exchangeCode(env:Env,config:IdentityConfig,discovery:Discovery,code:string,verifier:string,transport:typeof fetch=fetch):Promise<string>{
  if(!code||code.length>4096||!/^[A-Za-z0-9_-]{43}$/.test(verifier))throw Error('IDENTITY_CODE');
  const body=new URLSearchParams({grant_type:'authorization_code',code,code_verifier:verifier,redirect_uri:config.webRedirect,client_id:config.webClientId,client_secret:env.OIDC_WEB_CLIENT_SECRET!});
- const response=await transport(discovery.metadata.token_endpoint,{method:'POST',body,headers:{'Content-Type':'application/x-www-form-urlencoded',Accept:'application/json'},redirect:'error',signal:AbortSignal.timeout(10000)});
+ const response=await transport(discovery.metadata.token_endpoint,{method:'POST',body,headers:{'Content-Type':'application/x-www-form-urlencoded',Accept:'application/json'},redirect:'manual',signal:AbortSignal.timeout(10000)});
  if(!response.ok)throw Error('IDENTITY_EXCHANGE');const result=z.object({id_token:z.string().min(1).max(16384),token_type:z.string().optional()}).parse(JSON.parse(new TextDecoder().decode(await readBounded(response.body,65536))));return result.id_token;
 }
 export async function resolveUser(env:Env,issuer:string,subject:string):Promise<string>{
