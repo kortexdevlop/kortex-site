@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   windows:
-    runs-on: windows-latest
+    runs-on: windows-2022
     timeout-minutes: 90
     outputs:
       source_sha: ${{ steps.source.outputs.sha }}
@@ -85,7 +85,7 @@ jobs:
     concurrency:
       group: runtime-release-staging
       cancel-in-progress: false
-    runs-on: windows-latest
+    runs-on: windows-2022
     timeout-minutes: 15
     permissions:
       contents: write
