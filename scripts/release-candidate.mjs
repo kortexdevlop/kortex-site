@@ -9,7 +9,10 @@ export function evaluateCandidate(input){
  for(const gate of ['staging','runtime_performance','design_a11y','resilience','security'])if(input.gates?.[gate]!==true)blockers.push(gate);
  if(input.scope!=='Windows x64 / Chromium-WebView2')blockers.push('scope');
  if(!Array.isArray(input.tools)||input.tools.length!==5||new Set(input.tools?.map(t=>t.id)).size!==5||input.tools.some(t=>!/^[a-f0-9]{64}$/.test(t.sha256??'')||t.signature_verified!==true))blockers.push('five_signed_tools');
- for(const name of ['api','site','runtime','windows_installer','native_sbom','web_sbom'])if(!/^[a-f0-9]{64}$/.test(input.artifacts?.[name]?.sha256??''))blockers.push('artifact_'+name);
+ for(const name of ['api','site','runtime','windows_installer','native_sbom','web_sbom']){
+  if(!/^[a-f0-9]{64}$/.test(input.artifacts?.[name]?.sha256??''))blockers.push('artifact_'+name);
+  if(input.artifacts?.[name]?.source_commit!==input.commit)blockers.push('artifact_source_'+name);
+ }
  if(input.windows_code_signed!==true)blockers.push('windows_code_signing');
  if(input.human_approved!==true)blockers.push('human_approval');
  return {schema_version:1,date:new Date().toISOString(),commit:input.commit??null,scope:input.scope??null,release_candidate:blockers.length===0,production_ready:false,blockers,evidence:input};
