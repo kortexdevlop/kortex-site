@@ -1,0 +1,98 @@
+name: Publish changed tools
+on:
+  push:
+    branches: [main]
+    paths: ['tools/**']
+  workflow_dispatch:
+    inputs:
+      tool:
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: tools-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  detect:
+    runs-on: windows-latest
+    outputs:
+      tools: ${{ steps.tools.outputs.tools }}
+      has_tools: ${{ steps.tools.outputs.has_tools }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.15.0'
+      - run: npm install --global pnpm@11.25.0
+      - run: pnpm install --frozen-lockfile
+      - id: tools
+        run: node scripts/changed-tools.mjs
+        env:
+          KORTEX_BEFORE: ${{ github.event.before }}
+          KORTEX_TOOL: ${{ inputs.tool }}
+  build:
+    needs: detect
+    if: needs.detect.outputs.has_tools == 'true'
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: ${{ fromJSON(needs.detect.outputs.tools) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.15.0'
+      - run: npm install --global pnpm@11.25.0
+      - run: pnpm install --frozen-lockfile
+      - run: cargo run -p kortex-xtask --locked -- build --tool ${{ matrix.tool }} --json
+      - run: cargo run -p kortex-xtask --locked -- validate --tool ${{ matrix.tool }} --json
+      - run: cargo run -p kortex-xtask --locked -- package --tool ${{ matrix.tool }} --out target/ci-reports/packages --json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: package-${{ matrix.tool }}
+          path: target/ci-reports/packages/
+          retention-days: 7
+  publish:
+    needs: [detect, build]
+    if: vars.KORTEX_STAGING_PUBLISH_ENABLED == 'true' && needs.detect.outputs.has_tools == 'true'
+    runs-on: windows-latest
+    environment: staging
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      max-parallel: 1
+      matrix:
+        tool: ${{ fromJSON(needs.detect.outputs.tools) }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.15.0'
+      - run: npm install --global pnpm@11.25.0
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/ci-publish-tool.mjs ${{ matrix.tool }} staging
+        env:
+          KORTEX_DEPLOY_ENV: staging
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          KORTEX_SIGNING_KEY_ID: ${{ vars.KORTEX_SIGNING_KEY_ID }}
+          KORTEX_SIGNING_KEY_SEED_BASE64: ${{ secrets.KORTEX_SIGNING_KEY_SEED_BASE64 }}
+          KORTEX_ROOT_FILE: infra/trust/release-staging-root.json
+          KORTEX_TRUST_FILE: infra/trust/release-staging-keys.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: signed-${{ matrix.tool }}
+          path: target/ci-publication/
+          retention-days: 7

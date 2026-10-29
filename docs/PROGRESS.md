@@ -1915,6 +1915,121 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "remaining_gate": "Google Web/Desktop réel absent et rétention opérateur non vérifiée ; aucune clôture complète",
     "authorization": "propriétaire : Enchaîne ces 3 étapes",
     "limitations": "Windows/Chromium uniquement. Revue humaine non inventée ; corpus fini, aucun plafond de RAM totale certifié. Google réel et politique de sauvegardes restent ouverts ; avertissements upstream exposés ; phase 18.3 non engagée."
+  },
+  {
+    "id": "18.3",
+    "status": "pending",
+    "source_commit": "a66543f",
+    "result_commit": "pending",
+    "report_path": "docs/reports/STEP-18.3.md",
+    "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
+    "contract_changes": [
+      "Liste de révocation signée v1 (Rust/TypeScript)"
+    ],
+    "evidence": [
+      "docs/DISTRIBUTION_CI.md",
+      "docs/evidence/distribution-revocation-web.json",
+      "docs/evidence/distribution-headers.json",
+      "docs/evidence/distribution-staging-deploy.json",
+      "docs/evidence/distribution-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "closed",
+    "remaining_gate": "Renouvellement opérateur de la liste signée avant 24 h ; aucune approbation humaine inventée.",
+    "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
+    "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
+  },
+  {
+    "id": "18.4",
+    "status": "pending",
+    "source_commit": "a66543f",
+    "result_commit": "pending",
+    "report_path": "docs/reports/STEP-18.4.md",
+    "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
+    "contract_changes": [
+      "Liste de révocation signée v1 (Rust/TypeScript)"
+    ],
+    "evidence": [
+      "docs/DISTRIBUTION_CI.md",
+      "docs/evidence/distribution-revocation-web.json",
+      "docs/evidence/distribution-headers.json",
+      "docs/evidence/distribution-staging-deploy.json",
+      "docs/evidence/distribution-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "remaining_gate": "Revue humaine/licences, Google réel et rétention opérateur ouverts.",
+    "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
+    "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
+  },
+  {
+    "id": "19.0",
+    "status": "pending",
+    "source_commit": "a66543f",
+    "result_commit": "pending",
+    "report_path": "docs/reports/STEP-19.0.md",
+    "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
+    "contract_changes": [
+      "Liste de révocation signée v1 (Rust/TypeScript)"
+    ],
+    "evidence": [
+      "docs/DISTRIBUTION_CI.md",
+      "docs/evidence/distribution-revocation-web.json",
+      "docs/evidence/distribution-headers.json",
+      "docs/evidence/distribution-staging-deploy.json",
+      "docs/evidence/distribution-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "remaining_gate": "Résultat de la première exécution distante à confirmer après envoi de ces changements.",
+    "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
+    "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
+  },
+  {
+    "id": "19.1",
+    "status": "pending",
+    "source_commit": "a66543f",
+    "result_commit": "pending",
+    "report_path": "docs/reports/STEP-19.1.md",
+    "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
+    "contract_changes": [
+      "Liste de révocation signée v1 (Rust/TypeScript)"
+    ],
+    "evidence": [
+      "docs/DISTRIBUTION_CI.md",
+      "docs/evidence/distribution-revocation-web.json",
+      "docs/evidence/distribution-headers.json",
+      "docs/evidence/distribution-staging-deploy.json",
+      "docs/evidence/distribution-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "remaining_gate": "Token Cloudflare CI et clé/certificat de release protégés absents ; publication distante désactivée.",
+    "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
+    "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
+  },
+  {
+    "id": "19.2",
+    "status": "pending",
+    "source_commit": "a66543f",
+    "result_commit": "pending",
+    "report_path": "docs/reports/STEP-19.2.md",
+    "tests_executed": "29/10/2026 Windows/Chromium : 89 API, 25 scénarios Web sécurité dont staging/révocation réussis ; tests natifs signature/cache, installation, bibliothèque, mises à jour et fichier local réussis ; six tests de publication, contrats/secrets et Clippy workspace passent (avertissements exposés).",
+    "contract_changes": [
+      "Liste de révocation signée v1 (Rust/TypeScript)"
+    ],
+    "evidence": [
+      "docs/DISTRIBUTION_CI.md",
+      "docs/evidence/distribution-revocation-web.json",
+      "docs/evidence/distribution-headers.json",
+      "docs/evidence/distribution-staging-deploy.json",
+      "docs/evidence/distribution-validation.json"
+    ],
+    "frozen": false,
+    "technical_status": "partial",
+    "remaining_gate": "Identifiants CI dédiés et exercice réel du rollback CI manquants ; production non configurée.",
+    "authorization": "propriétaire : Enchaîne les 5 prochaines étapes ; création du nouveau dépôt kortexdevlop confirmée",
+    "limitations": "Voir docs/DISTRIBUTION_CI.md ; aucun gate externe réputé levé."
   }
 ]
 ```

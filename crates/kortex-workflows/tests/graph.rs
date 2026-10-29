@@ -194,9 +194,60 @@ fn retries_only_idempotent_actions_and_stops_invalid_output() {
 }
 
 #[test]
-fn real_signed_contracts_lock_cross_tool_types_and_unknown_actions(){
- let root=std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");let mut reg=Registry::default();
- for (i,id)in ["calculatrice","timestamp-utc","convertisseur-casse"].iter().enumerate(){let (archive,descriptor,trust)=if *id=="calculatrice"{(root.join("target/staging-cloud/calculatrice-1.1.0.tool"),root.join("target/staging-cloud/calculatrice-1.1.0-staging-release-95b59d5e.json"),root.join("target/staging-cloud/host-trust.json"))}else{let report:Value=serde_json::from_slice(&std::fs::read(root.join(format!("target/phase12/{id}/release-report.json"))).unwrap()).unwrap();(report["archive"].as_str().unwrap().into(),report["descriptor"].as_str().unwrap().into(),report["host_trust"].as_str().unwrap().into())};let proof=kortex_verify::Descriptor::parse(&std::fs::read(descriptor).unwrap()).unwrap();let trust=serde_json::from_slice(&std::fs::read(trust).unwrap()).unwrap();let tool=kortex_runtime_native::verify_package_with_trust(std::fs::read(archive).unwrap(),&proof,&trust,kortex_runtime_native::permissions::now_ms()).unwrap();reg.register_verified(&tool,i as u64+1).unwrap();}
- let wrong=json!({"workflow_version":"1.0","id":"wrong","name":"Wrong numeric mapping","nodes":[{"id":"calc","action_ref":"calculatrice.multiply","input_bindings":{"/a":{"value":25},"/b":{"value":48}},"requires_confirmation":false},{"id":"date","action_ref":"timestamp-utc.from_unix","input_bindings":{"/value":{"from_node":"calc","source_pointer":"/result"},"/unit":{"value":"seconds"}},"requires_confirmation":false}],"edges":[{"from":"calc","to":"date"}]});assert!(matches!(Compiled::new(&wrong,&reg),Err(Error::TypeMismatch)));
- let valid=json!({"workflow_version":"1.0","id":"valid","name":"Date then number","nodes":[{"id":"date","action_ref":"timestamp-utc.to_unix","input_bindings":{"/iso_utc":{"value":"1970-01-01T00:20:00Z"}},"requires_confirmation":false},{"id":"calc","action_ref":"calculatrice.add","input_bindings":{"/a":{"from_node":"date","source_pointer":"/unix_seconds"},"/b":{"value":10}},"requires_confirmation":false}],"edges":[{"from":"date","to":"calc"}]});assert!(Compiled::new(&valid,&reg).is_ok());let mut unknown=valid;unknown["nodes"][1]["action_ref"]=json!("convertisseur-casse.text_statistics");assert!(matches!(Compiled::new(&unknown,&reg),Err(Error::UnknownAction)));
+fn real_signed_contracts_lock_cross_tool_types_and_unknown_actions() {
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
+    let mut reg = Registry::default();
+    for (i, id) in ["calculatrice", "timestamp-utc", "convertisseur-casse"]
+        .iter()
+        .enumerate()
+    {
+        let (archive, descriptor, trust) = if *id == "calculatrice"
+            && std::env::var("KORTEX_TEST_RELEASES").is_err()
+        {
+            (
+                root.join("target/staging-cloud/calculatrice-1.1.0.tool"),
+                root.join("target/staging-cloud/calculatrice-1.1.0-staging-release-95b59d5e.json"),
+                root.join("target/staging-cloud/host-trust.json"),
+            )
+        } else {
+            let report: Value = serde_json::from_slice(
+                &std::fs::read(
+                    std::path::PathBuf::from(std::env::var("KORTEX_TEST_RELEASES").unwrap_or_else(
+                        |_| root.join("target/phase12").to_string_lossy().into_owned(),
+                    ))
+                    .join(format!("{id}/release-report.json")),
+                )
+                .unwrap(),
+            )
+            .unwrap();
+            (
+                report["archive"].as_str().unwrap().into(),
+                report["descriptor"].as_str().unwrap().into(),
+                report["host_trust"].as_str().unwrap().into(),
+            )
+        };
+        let proof = kortex_verify::Descriptor::parse(&std::fs::read(descriptor).unwrap()).unwrap();
+        let trust = serde_json::from_slice(&std::fs::read(trust).unwrap()).unwrap();
+        let tool = kortex_runtime_native::verify_package_with_trust(
+            std::fs::read(archive).unwrap(),
+            &proof,
+            &trust,
+            kortex_runtime_native::permissions::now_ms(),
+        )
+        .unwrap();
+        reg.register_verified(&tool, i as u64 + 1).unwrap();
+    }
+    let wrong = json!({"workflow_version":"1.0","id":"wrong","name":"Wrong numeric mapping","nodes":[{"id":"calc","action_ref":"calculatrice.multiply","input_bindings":{"/a":{"value":25},"/b":{"value":48}},"requires_confirmation":false},{"id":"date","action_ref":"timestamp-utc.from_unix","input_bindings":{"/value":{"from_node":"calc","source_pointer":"/result"},"/unit":{"value":"seconds"}},"requires_confirmation":false}],"edges":[{"from":"calc","to":"date"}]});
+    assert!(matches!(
+        Compiled::new(&wrong, &reg),
+        Err(Error::TypeMismatch)
+    ));
+    let valid = json!({"workflow_version":"1.0","id":"valid","name":"Date then number","nodes":[{"id":"date","action_ref":"timestamp-utc.to_unix","input_bindings":{"/iso_utc":{"value":"1970-01-01T00:20:00Z"}},"requires_confirmation":false},{"id":"calc","action_ref":"calculatrice.add","input_bindings":{"/a":{"from_node":"date","source_pointer":"/unix_seconds"},"/b":{"value":10}},"requires_confirmation":false}],"edges":[{"from":"date","to":"calc"}]});
+    assert!(Compiled::new(&valid, &reg).is_ok());
+    let mut unknown = valid;
+    unknown["nodes"][1]["action_ref"] = json!("convertisseur-casse.text_statistics");
+    assert!(matches!(
+        Compiled::new(&unknown, &reg),
+        Err(Error::UnknownAction)
+    ));
 }

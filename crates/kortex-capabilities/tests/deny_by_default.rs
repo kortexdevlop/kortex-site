@@ -86,13 +86,58 @@ fn network(value: &str) -> Resource {
     Resource::Network { url: value.into() }
 }
 #[test]
-fn dns_rebinding_after_same_origin_redirect_is_denied_before_second_effect(){
- struct Rebinding{queries:usize,calls:Rc<Cell<usize>>}
- impl CapabilityHost for Rebinding{
-  async fn resolve(&mut self,_:&str)->Result<Vec<IpAddr>,CapabilityError>{self.queries+=1;Ok(vec![if self.queries==1{"93.184.216.34"}else{"127.0.0.1"}.parse().unwrap()])}
-  async fn execute(&mut self,call:&AuthorizedCall<'_>)->Result<CapabilityResponse,CapabilityError>{assert_eq!(call.addresses(), &["93.184.216.34".parse::<IpAddr>().unwrap()]);self.calls.set(self.calls.get()+1);Ok(CapabilityResponse::Redirect("/next".into()))}
- }
- let calls=Rc::new(Cell::new(0));let mut g=Gateway::new(Rebinding{queries:0,calls:calls.clone()});let a=owner("tool-a",1);let resource=network("https://allowed.example/start");g.policy.declare(a.clone(),[Capability::NetworkFetch]);g.policy.grant(&a,Capability::NetworkFetch,&resource,Duration::Session,1000).unwrap();assert!(matches!(block_on(g.execute(&a,request(Capability::NetworkFetch,resource),None,&||0)),Err(CapabilityError::NetworkDenied)));assert_eq!(calls.get(),1);
+fn dns_rebinding_after_same_origin_redirect_is_denied_before_second_effect() {
+    struct Rebinding {
+        queries: usize,
+        calls: Rc<Cell<usize>>,
+    }
+    impl CapabilityHost for Rebinding {
+        async fn resolve(&mut self, _: &str) -> Result<Vec<IpAddr>, CapabilityError> {
+            self.queries += 1;
+            Ok(vec![
+                if self.queries == 1 {
+                    "93.184.216.34"
+                } else {
+                    "127.0.0.1"
+                }
+                .parse()
+                .unwrap(),
+            ])
+        }
+        async fn execute(
+            &mut self,
+            call: &AuthorizedCall<'_>,
+        ) -> Result<CapabilityResponse, CapabilityError> {
+            assert_eq!(
+                call.addresses(),
+                &["93.184.216.34".parse::<IpAddr>().unwrap()]
+            );
+            self.calls.set(self.calls.get() + 1);
+            Ok(CapabilityResponse::Redirect("/next".into()))
+        }
+    }
+    let calls = Rc::new(Cell::new(0));
+    let mut g = Gateway::new(Rebinding {
+        queries: 0,
+        calls: calls.clone(),
+    });
+    let a = owner("tool-a", 1);
+    let resource = network("https://allowed.example/start");
+    g.policy.declare(a.clone(), [Capability::NetworkFetch]);
+    g.policy
+        .grant(
+            &a,
+            Capability::NetworkFetch,
+            &resource,
+            Duration::Session,
+            1000,
+        )
+        .unwrap();
+    assert!(matches!(
+        block_on(g.execute(&a, request(Capability::NetworkFetch, resource), None, &|| 0)),
+        Err(CapabilityError::NetworkDenied)
+    ));
+    assert_eq!(calls.get(), 1);
 }
 #[test]
 fn deny_is_default_and_undeclared_cannot_be_granted() {

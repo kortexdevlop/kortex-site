@@ -424,10 +424,49 @@ fn saved(c: &Config) -> Result<DeviceSession, String> {
     secure_store::load(c)?.ok_or_else(|| "Connectez votre compte d’abord.".into())
 }
 /// Uses the existing scoped vault session; callers never receive the bearer token.
-pub fn workflow_request(c:&Config,method:reqwest::Method,id:Option<&str>,body:Option<Value>,revision:Option<u64>,expected_owner:Option<&str>)->Result<Value,String>{
- let session=saved(c)?;if method!=reqwest::Method::GET&&expected_owner!=Some(session.user_id.as_str()){return Err("Le compte a changé. Rechargez vos parcours.".into())}if !session.scopes.iter().any(|s|s==if method==reqwest::Method::GET{"sync:read"}else{"sync:write"}){return Err("Synchronisation non autorisée pour cet appareil.".into())}
- let path=if let Some(id)=id{if id.is_empty()||id.len()>64||!id.bytes().all(|b|b.is_ascii_alphanumeric()||b==b'_'||b==b'-'){return Err("Identifiant de parcours invalide.".into())}format!("/api/v1/me/workflows/{id}")}else{"/api/v1/me/workflows".into()};
- let tag=revision.map(|r|format!("\"workflows-{r}\""));let mut result=request(c,Some(&session),method,&path,body,tag.as_deref())?;if let Some(o)=result.as_object_mut(){o.insert("client_owner".into(),Value::String(session.user_id.clone()));}Ok(result)
+pub fn workflow_request(
+    c: &Config,
+    method: reqwest::Method,
+    id: Option<&str>,
+    body: Option<Value>,
+    revision: Option<u64>,
+    expected_owner: Option<&str>,
+) -> Result<Value, String> {
+    let session = saved(c)?;
+    if method != reqwest::Method::GET && expected_owner != Some(session.user_id.as_str()) {
+        return Err("Le compte a changé. Rechargez vos parcours.".into());
+    }
+    if !session.scopes.iter().any(|s| {
+        s == if method == reqwest::Method::GET {
+            "sync:read"
+        } else {
+            "sync:write"
+        }
+    }) {
+        return Err("Synchronisation non autorisée pour cet appareil.".into());
+    }
+    let path = if let Some(id) = id {
+        if id.is_empty()
+            || id.len() > 64
+            || !id
+                .bytes()
+                .all(|b| b.is_ascii_alphanumeric() || b == b'_' || b == b'-')
+        {
+            return Err("Identifiant de parcours invalide.".into());
+        }
+        format!("/api/v1/me/workflows/{id}")
+    } else {
+        "/api/v1/me/workflows".into()
+    };
+    let tag = revision.map(|r| format!("\"workflows-{r}\""));
+    let mut result = request(c, Some(&session), method, &path, body, tag.as_deref())?;
+    if let Some(o) = result.as_object_mut() {
+        o.insert(
+            "client_owner".into(),
+            Value::String(session.user_id.clone()),
+        );
+    }
+    Ok(result)
 }
 pub fn synchronize(c: &Config, enable: Option<bool>) -> Result<View, String> {
     let session = saved(c)?;

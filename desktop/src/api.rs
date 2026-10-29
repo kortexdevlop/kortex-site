@@ -250,6 +250,10 @@ impl Api {
         Ok(out)
     }
 
+    pub fn revocations(&self) -> Result<kortex_verify::revocation::Document, Error> {
+        serde_json::from_value(self.get("/api/v1/trust/revocations", &[], true)?)
+            .map_err(|_| Error::Invalid("Liste signée invalide.".into()))
+    }
     pub fn detail_fresh(&self, id: &str) -> Result<ToolDetail, Error> {
         if !slug(id) {
             return Err(Error::Invalid("Identifiant invalide.".into()));

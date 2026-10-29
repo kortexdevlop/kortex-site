@@ -131,9 +131,10 @@ fn invalid_signature_unconfirmed_permissions_and_unwritable_storage_are_refused(
         .is_err()
     );
     assert!(library::scan(&f.config).tools.is_empty());
-    let f = Fixture::new();
+    let mut f = Fixture::new();
     let r = f.release("1.0.0", vec![], false);
     let s = Server::new(r.clone());
+    f.config.data_dir = f.temp.path().join("blocked-storage");
     std::fs::write(&f.config.data_dir, b"not a directory").unwrap();
     assert!(
         installer::install(

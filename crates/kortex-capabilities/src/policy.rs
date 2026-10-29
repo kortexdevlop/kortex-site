@@ -42,7 +42,9 @@ pub struct Policy {
 }
 impl Policy {
     /// Hosts use this to stop a workflow after withdrawal, without confusing a consumed one-shot grant with revocation.
-    pub fn revocation_revision(&self) -> u64 { self.revocation_revision }
+    pub fn revocation_revision(&self) -> u64 {
+        self.revocation_revision
+    }
     pub fn declare(
         &mut self,
         context: Context,

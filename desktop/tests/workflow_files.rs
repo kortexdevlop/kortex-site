@@ -1,3 +1,5 @@
+#[path = "support/revocation.rs"]
+mod revocation_support;
 use kortex_desktop::{config::Config, workflows};
 use kortex_workflows::runner::Cancellation;
 use serde_json::{Value, json};
@@ -6,7 +8,14 @@ use std::sync::{Arc, Mutex};
 fn real_signed_native_file_hash_needs_consent_and_never_changes_saved_definition() {
     let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("..");
     let report: Value = serde_json::from_slice(
-        &std::fs::read(root.join("target/phase12/calculateur-hash/release-report.json")).unwrap(),
+        &std::fs::read(
+            std::path::PathBuf::from(
+                std::env::var("KORTEX_TEST_RELEASES")
+                    .unwrap_or_else(|_| root.join("target/phase12").to_string_lossy().into_owned()),
+            )
+            .join("calculateur-hash/release-report.json"),
+        )
+        .unwrap(),
     )
     .unwrap();
     let temp = tempfile::tempdir().unwrap();
@@ -22,13 +31,14 @@ fn real_signed_native_file_hash_needs_consent_and_never_changes_saved_definition
         installed.join("package.tool.json"),
     )
     .unwrap();
-    let c = Config {
+    let mut c = Config {
         api_origin: "https://kortex-api-staging.userpgl.workers.dev".into(),
         channel: "staging".into(),
         data_dir: temp.path().into(),
         trust_path: report["host_trust"].as_str().unwrap().into(),
         offline: true,
     };
+    revocation_support::seed(&mut c);
     let file = temp.path().join("private.txt");
     std::fs::write(&file, b"abc").unwrap();
     let original = json!({"workflow_version":"1.0","id":"private_hash","name":"Hash local","nodes":[{"id":"hash","action_ref":"calculateur-hash.sha256_bytes","input_bindings":{"/data_base64":{"value":""}},"requires_confirmation":true}],"edges":[]});

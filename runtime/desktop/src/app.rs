@@ -25,15 +25,42 @@ impl Clock for NativeClock {
     }
 }
 type HostRuntime = Runtime<HostedNativeEngine, NativeClock>;
-pub fn open_verified(path: &str, trust_path: &str) -> Result<VerifiedTool, String> { open_verified_with_pin(path,trust_path,None) }
-pub fn open_verified_with_pin(path: &str, trust_path: &str, seal:Option<&str>) -> Result<VerifiedTool, String> {
-    fn bounded(path:&str,max:u64)->Result<Vec<u8>,String>{use std::io::Read;let mut out=Vec::new();std::fs::File::open(path).map_err(|_|"Fichier illisible")?.take(max+1).read_to_end(&mut out).map_err(|_|"Fichier illisible")?;if out.len()as u64>max{return Err("Fichier trop volumineux".into())}Ok(out)}
-    let bytes=bounded(path,25*1024*1024)?;
-    let proof:Value=serde_json::from_slice(&bounded(&format!("{path}.json"),1048576)?).map_err(|_|"Descripteur invalide")?;
+pub fn open_verified(path: &str, trust_path: &str) -> Result<VerifiedTool, String> {
+    open_verified_with_pin(path, trust_path, None)
+}
+pub fn open_verified_with_pin(
+    path: &str,
+    trust_path: &str,
+    seal: Option<&str>,
+) -> Result<VerifiedTool, String> {
+    fn bounded(path: &str, max: u64) -> Result<Vec<u8>, String> {
+        use std::io::Read;
+        let mut out = Vec::new();
+        std::fs::File::open(path)
+            .map_err(|_| "Fichier illisible")?
+            .take(max + 1)
+            .read_to_end(&mut out)
+            .map_err(|_| "Fichier illisible")?;
+        if out.len() as u64 > max {
+            return Err("Fichier trop volumineux".into());
+        }
+        Ok(out)
+    }
+    let bytes = bounded(path, 25 * 1024 * 1024)?;
+    let proof: Value = serde_json::from_slice(&bounded(&format!("{path}.json"), 1048576)?)
+        .map_err(|_| "Descripteur invalide")?;
     use std::io::Read;
-    let mut trust_bytes=Vec::new();std::fs::File::open(trust_path).map_err(|_|"Clés publiques hôte manquantes")?.take(1048577).read_to_end(&mut trust_bytes).map_err(|_|"Clés illisibles")?;
-    if trust_bytes.len()>1048576||seal.is_some_and(|s|kortex_verify::sha256(&trust_bytes)!=s){return Err("Configuration de confiance modifiée".into())}
-    let keys:Value=serde_json::from_slice(&trust_bytes).map_err(|_|"Clés invalides")?;
+    let mut trust_bytes = Vec::new();
+    std::fs::File::open(trust_path)
+        .map_err(|_| "Clés publiques hôte manquantes")?
+        .take(1048577)
+        .read_to_end(&mut trust_bytes)
+        .map_err(|_| "Clés illisibles")?;
+    if trust_bytes.len() > 1048576 || seal.is_some_and(|s| kortex_verify::sha256(&trust_bytes) != s)
+    {
+        return Err("Configuration de confiance modifiée".into());
+    }
+    let keys: Value = serde_json::from_slice(&trust_bytes).map_err(|_| "Clés invalides")?;
     let checked = kortex_verify::Descriptor::parse(
         &serde_json::to_vec(&proof).map_err(|_| "Descripteur invalide")?,
     )
@@ -90,12 +117,17 @@ struct View {
     active: bool,
     result: String,
 }
-#[derive(Clone,Debug)]pub struct SessionLease(pub std::sync::Arc<std::fs::File>);
-impl PartialEq for SessionLease{fn eq(&self,other:&Self)->bool{std::sync::Arc::ptr_eq(&self.0,&other.0)}}
+#[derive(Clone, Debug)]
+pub struct SessionLease(pub std::sync::Arc<std::fs::File>);
+impl PartialEq for SessionLease {
+    fn eq(&self, other: &Self) -> bool {
+        std::sync::Arc::ptr_eq(&self.0, &other.0)
+    }
+}
 struct Model {
-    storage_root:Option<std::path::PathBuf>,
-    trust_seal:Option<String>,
-    session_lease:Option<SessionLease>,
+    storage_root: Option<std::path::PathBuf>,
+    trust_seal: Option<String>,
+    session_lease: Option<SessionLease>,
     runtime: HostRuntime,
     inbox: CapabilityInbox,
     services: Option<NativeServices>,
@@ -106,7 +138,9 @@ struct Model {
 impl Model {
     fn new(inbox: CapabilityInbox) -> Self {
         Self {
-            storage_root:None,trust_seal:None,session_lease:None,
+            storage_root: None,
+            trust_seal: None,
+            session_lease: None,
             runtime: HostRuntime::new(HostedNativeEngine::new(inbox.clone()), NativeClock),
             inbox,
             services: None,
@@ -137,19 +171,29 @@ impl Model {
     }
     async fn open(&mut self, path: String, trust: String) -> Result<Vec<String>, String> {
         self.close().await;
-        let seal=self.trust_seal.clone();
-        let tool =
-            kortex_runtime_native::permissions::blocking(move |_| open_verified_with_pin(&path, &trust,seal.as_deref()))
-                .await
-                .map_err(|_| "Lecture indisponible")??;
+        let seal = self.trust_seal.clone();
+        let tool = kortex_runtime_native::permissions::blocking(move |_| {
+            open_verified_with_pin(&path, &trust, seal.as_deref())
+        })
+        .await
+        .map_err(|_| "Lecture indisponible")??;
         let names = tool
             .contract()
             .actions
             .iter()
             .map(|a| a.id.clone())
             .collect();
-        let network=NativeNetwork::new(self.network.clone()).map_err(|_|"Configuration réseau refusée")?;
-        let host=if let Some(root)=&self.storage_root{NativeHost::new(kortex_runtime_native::storage::NativeStorage::new(root.clone()).map_err(|_|"Stockage local indisponible")?,network)}else{NativeHost::app_data(network).map_err(|_|"Stockage local indisponible")?};
+        let network =
+            NativeNetwork::new(self.network.clone()).map_err(|_| "Configuration réseau refusée")?;
+        let host = if let Some(root) = &self.storage_root {
+            NativeHost::new(
+                kortex_runtime_native::storage::NativeStorage::new(root.clone())
+                    .map_err(|_| "Stockage local indisponible")?,
+                network,
+            )
+        } else {
+            NativeHost::app_data(network).map_err(|_| "Stockage local indisponible")?
+        };
         let mut services = NativeServices::new(host);
         let id = self
             .runtime
@@ -255,12 +299,28 @@ impl Model {
     }
 }
 #[allow(non_snake_case)]
-pub fn App() -> Element { rsx! { ToolSession {} } }
+pub fn App() -> Element {
+    rsx! { ToolSession {} }
+}
 #[component]
-pub fn ToolSession(#[props(default)] archive:Option<String>,#[props(default)] trust_bundle:Option<String>,#[props(default)] product:bool,#[props(default)] data_root:Option<String>,#[props(default)] trust_seal:Option<String>,#[props(default)] session_lease:Option<SessionLease>,#[props(default)] on_started:EventHandler<Result<(),String>>) -> Element {
+pub fn ToolSession(
+    #[props(default)] archive: Option<String>,
+    #[props(default)] trust_bundle: Option<String>,
+    #[props(default)] product: bool,
+    #[props(default)] data_root: Option<String>,
+    #[props(default)] trust_seal: Option<String>,
+    #[props(default)] session_lease: Option<SessionLease>,
+    #[props(default)] on_started: EventHandler<Result<(), String>>,
+) -> Element {
     let inbox = use_hook(CapabilityInbox::default);
     let queue = inbox.clone();
-    let model = use_hook(move || {let mut m=Model::new(inbox);m.storage_root=data_root.map(Into::into);m.trust_seal=trust_seal;m.session_lease=session_lease;Rc::new(RefCell::new(m))});
+    let model = use_hook(move || {
+        let mut m = Model::new(inbox);
+        m.storage_root = data_root.map(Into::into);
+        m.trust_seal = trust_seal;
+        m.session_lease = session_lease;
+        Rc::new(RefCell::new(m))
+    });
     let mut path = use_signal(String::new);
     let mut trust = use_signal(String::new);
     let mut action = use_signal(String::new);
@@ -269,21 +329,51 @@ pub fn ToolSession(#[props(default)] archive:Option<String>,#[props(default)] tr
     let mut busy = use_signal(|| false);
     let mut consent = use_signal(|| false);
     let mut pending = use_signal(|| None::<CapabilityRequest>);
-    let startup = use_hook(move || match (archive,trust_bundle) {(Some(a),Some(t))=>vec![a,t],_=>std::env::args().skip(1).collect::<Vec<_>>()});
-    let closing=model.clone();use_drop(move||{dioxus::dioxus_core::spawn_forever(async move{loop{if let Ok(mut m)=closing.try_borrow_mut(){m.close().await;m.session_lease.take();break}tokio::time::sleep(std::time::Duration::from_millis(10)).await;}});});
-    let startup_once=startup.clone();
-    let opener_once=model.clone();
+    let startup = use_hook(move || match (archive, trust_bundle) {
+        (Some(a), Some(t)) => vec![a, t],
+        _ => std::env::args().skip(1).collect::<Vec<_>>(),
+    });
+    let closing = model.clone();
+    use_drop(move || {
+        dioxus::dioxus_core::spawn_forever(async move {
+            loop {
+                if let Ok(mut m) = closing.try_borrow_mut() {
+                    m.close().await;
+                    m.session_lease.take();
+                    break;
+                }
+                tokio::time::sleep(std::time::Duration::from_millis(10)).await;
+            }
+        });
+    });
+    let startup_once = startup.clone();
+    let opener_once = model.clone();
     // Product launch is already an explicit user action. Capability consent stays separate.
-    use_future(move || {let model=opener_once.clone();let args=startup_once.clone();async move {
-        if !product || args.len()<2 {return}
-        busy.set(true);
-        let mut m=model.borrow_mut();
-        match m.open(args[0].clone(),args[1].clone()).await {
-            Ok(names)=>{action.set(names.first().cloned().unwrap_or_default());view.set(m.view("Prêt".into()));on_started.call(Ok(()));},
-            Err(error)=>{m.close().await;m.session_lease.take();view.set(m.view(error.clone()));on_started.call(Err(error));}
+    use_future(move || {
+        let model = opener_once.clone();
+        let args = startup_once.clone();
+        async move {
+            if !product || args.len() < 2 {
+                return;
+            }
+            busy.set(true);
+            let mut m = model.borrow_mut();
+            match m.open(args[0].clone(), args[1].clone()).await {
+                Ok(names) => {
+                    action.set(names.first().cloned().unwrap_or_default());
+                    view.set(m.view("Prêt".into()));
+                    on_started.call(Ok(()));
+                }
+                Err(error) => {
+                    m.close().await;
+                    m.session_lease.take();
+                    view.set(m.view(error.clone()));
+                    on_started.call(Err(error));
+                }
+            }
+            busy.set(false);
         }
-        busy.set(false);
-    }});
+    });
     let config_model = model.clone();
     use_effect(move || {
         if startup.len() >= 2 {

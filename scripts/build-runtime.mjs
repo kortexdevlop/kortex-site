@@ -1,0 +1,17 @@
+import {spawnSync} from 'node:child_process';
+import {cpSync,readFileSync,writeFileSync,mkdirSync,readdirSync} from 'node:fs';
+import {resolve} from 'node:path';
+function run(bin,args,cwd=process.cwd()){const r=spawnSync(bin,args,{cwd,stdio:'inherit',windowsHide:true});if(r.status!==0)throw Error('Runtime build failed: '+bin)}
+run(process.execPath,['web-adapter/build.mjs']);
+if(!process.argv.includes('--copy-built'))run('dx',['build','--platform','web','--release','--package','kortex-runtime-web','--locked'],resolve('runtime/web'));
+const source='target/dx/kortex-runtime-web/release/web/public',out='target/web-dist';
+cpSync(source,out,{recursive:true});
+const html=readFileSync(source+'/index.html','utf8'),entry=html.match(/src="[^"]*\/(kortex-runtime-web-[a-z0-9]+\.js)"/);const js=entry?[entry[1]]:[];
+if(js.length!==1)throw Error('Ambiguous Dioxus entry point');
+const boot=readFileSync(source+'/assets/'+js[0],'utf8');
+if(!boot.includes('__wbg_init'))throw Error('Dioxus bootstrap missing');
+mkdirSync(out+'/wasm',{recursive:true});
+writeFileSync(out+'/wasm/kortex-runtime-web.js',`import {subscribe,command} from '/adapter/interop.js';\nglobalThis.kortexInterop={subscribe,command};\nawait import('/assets/${js[0]}');\n`);
+writeFileSync(out+'/index.html',readFileSync(source+'/index.html','utf8').replace(/<script type="module"[^>]*src="[^"]*kortex-runtime-web[^"]*"[^>]*><\/script>/,'<script type="module" src="/wasm/kortex-runtime-web.js"></script>'));
+cpSync('web-adapter/dist',out+'/adapter',{recursive:true});
+console.log('Runtime compiled assets and external bootstrap ready.');

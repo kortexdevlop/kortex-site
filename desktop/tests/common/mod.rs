@@ -19,6 +19,21 @@ use std::{
     thread,
     time::Duration,
 };
+pub fn revocation_document(now: u64) -> kortex_verify::revocation::Document {
+    let root = SigningKey::from_bytes(&[43; 32]);
+    let mut d = kortex_verify::revocation::Document {
+        schema_version: 1,
+        version: 1,
+        issued_at: now - 1000,
+        valid_until: now + 86399000,
+        root_key_id: "lifecycle-test-root".into(),
+        revoked_keys: vec![],
+        revoked_artifacts: vec![],
+        signature: String::new(),
+    };
+    d.signature = STANDARD.encode(root.sign(&d.signing_text().unwrap()).to_bytes());
+    d
+}
 #[derive(Clone)]
 pub struct Release {
     pub detail: ToolDetail,
@@ -66,8 +81,13 @@ impl Fixture {
         std::fs::write(&path, serde_json::to_vec(&trust).unwrap()).unwrap();
         let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("..");
         let report: Value = serde_json::from_slice(
-            &std::fs::read(root.join("target/phase12/convertisseur-casse/release-report.json"))
-                .unwrap(),
+            &std::fs::read(
+                std::path::PathBuf::from(std::env::var("KORTEX_TEST_RELEASES").unwrap_or_else(
+                    |_| root.join("target/phase12").to_string_lossy().into_owned(),
+                ))
+                .join("convertisseur-casse/release-report.json"),
+            )
+            .unwrap(),
         )
         .unwrap();
         let base = kortex_pack::archive::read(
@@ -81,6 +101,22 @@ impl Fixture {
             trust_path: path,
             offline: true,
         };
+        std::fs::write(
+            config.trust_path.with_file_name("revocation-root.json"),
+            serde_json::to_vec(&trust.root).unwrap(),
+        )
+        .unwrap();
+        let cache = kortex_desktop::revocation::cache_path(&config, &trust.root);
+        std::fs::create_dir_all(cache.parent().unwrap()).unwrap();
+        std::fs::write(
+            cache,
+            serde_json::to_vec(&kortex_desktop::revocation::Cache {
+                document: revocation_document(now),
+                seen: now,
+            })
+            .unwrap(),
+        )
+        .unwrap();
         Self {
             temp,
             config,
@@ -202,11 +238,13 @@ impl Server {
                     continue;
                 }
                 let head = parts[0] == "HEAD";
-                let path = parts[1];
+                let path = parts[1].split('?').next().unwrap();
                 let state = shared.lock().unwrap();
                 let mode = state.mode.clone();
                 let d = state.current.detail.clone();
-                let mut bytes = if path.starts_with("/api/v1/downloads/") {
+                let mut bytes = if path == "/api/v1/trust/revocations" {
+                    serde_json::to_vec(&revocation_document(d.tool.published_at)).unwrap()
+                } else if path.starts_with("/api/v1/downloads/") {
                     state
                         .archives
                         .get(path.rsplit('/').next().unwrap_or(""))

@@ -1,3 +1,5 @@
+import {Revocations} from './revocation';
+import type {RootKey} from './trust';
 import {ToolLoader,type ArtifactDescriptor} from './loader';
 import {TrustStore} from './trust';
 import {BrowserCapabilities} from './capabilities';
@@ -6,7 +8,7 @@ import type {Manifest} from '@kortex/contracts';
 import type {Request} from './types';
 import {AiReview} from './ai-bridge';
 import {matchesSchema} from './browser-contracts';
-export interface RuntimeWebConfig {api_origin:string;allowed_parent_origin:string;tool_id:string;tool_version:string;network_origins?:readonly string[]}
+export interface RuntimeWebConfig {api_origin:string;allowed_parent_origin:string;tool_id:string;tool_version:string;network_origins?:readonly string[];revocation_root?:RootKey}
 export class BrowserHost {
  private aiReview:AiReview|undefined;private aiTool:VerifiedTool|undefined;
  private workflowPermissions:Set<string>|undefined;
@@ -28,7 +30,7 @@ export class BrowserHost {
 protected current:Record<string,unknown>={status:navigator.onLine?'unavailable':'offline'};
  protected emit(){window.dispatchEvent(new Event('kortex:host'))}
  snapshot(){const current={...structuredClone(this.current),pending:this.capabilities?.permissions.prompts()??[]};return navigator.onLine?current:{...current,status:'offline'}}
- async loadTool(descriptor:ArtifactDescriptor,trust:TrustStore,config:RuntimeWebConfig){this.stop();const generation=this.generation;const controller=new AbortController();this.loading=controller;const loader=new ToolLoader(trust,config.api_origin,status=>{if(generation===this.generation){this.current={status,config};this.emit()}});try{const tool=await loader.loadTool(descriptor,controller.signal);if(generation!==this.generation)throw Error('CANCELLED');await this.startVerifiedTool(tool,config)}catch(e){if(generation===this.generation){this.current={status:'error'};this.emit()}throw e}}
+ async loadTool(descriptor:ArtifactDescriptor,trust:TrustStore,config:RuntimeWebConfig){this.stop();const generation=this.generation;const controller=new AbortController();this.loading=controller;const loader=new ToolLoader(trust,config.api_origin,status=>{if(generation===this.generation){this.current={status,config};this.emit()}},config.revocation_root?new Revocations(config.revocation_root):undefined);try{const tool=await loader.loadTool(descriptor,controller.signal);if(generation!==this.generation)throw Error('CANCELLED');await this.startVerifiedTool(tool,config)}catch(e){if(generation===this.generation){this.current={status:'error'};this.emit()}throw e}}
  async uninstall(descriptor:ArtifactDescriptor,trust:TrustStore,config:RuntimeWebConfig){this.stop();await new ToolLoader(trust,config.api_origin).uninstall(descriptor)}
  async startVerifiedTool(tool:VerifiedTool,config:RuntimeWebConfig){
   for(const origin of [config.api_origin,config.allowed_parent_origin]){const u=new URL(origin);if(u.origin!==origin||!(u.protocol==='https:'||u.protocol==='http:'&&['localhost','127.0.0.1'].includes(u.hostname)))throw Error('INVALID_CONFIG');}

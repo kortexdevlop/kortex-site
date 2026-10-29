@@ -5,6 +5,7 @@ import {failure,json,requestId} from './lib/http';
 import {health} from './routes/health';
 import {tools} from './routes/tools';
 import {downloads} from './routes/downloads';
+import {revocations} from './routes/revocations';
 import {admin} from './routes/admin';
 import {auth} from './routes/auth';
 import {passwordAuth} from './routes/password-auth';
@@ -38,6 +39,7 @@ export async function handle(request:Request,bindings:unknown,viaWeb=false):Prom
   const administration=await admin(request,env,id,origin);if(administration)return administration;
   const catalog=await tools(request,env,id,origin);if(catalog)return catalog;
   const download=await downloads(request,env,id,origin);if(download)return download;
+  const trust=await revocations(request,env,id,origin);if(trust)return trust;
   return failure('NOT_FOUND','Route not found',404,id,origin,head);
  }catch{return failure('UNAVAILABLE','Service unavailable',503,id,undefined,head)}
 }

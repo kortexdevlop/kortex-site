@@ -1,3 +1,5 @@
+#[path = "support/revocation.rs"]
+mod revocation_support;
 use kortex_desktop::{ai_bridge, config::Config};
 use serde_json::{Value, json};
 fn config(dir: &std::path::Path) -> Config {
@@ -14,8 +16,14 @@ fn signed_native_action_uses_universal_runtime_and_keeps_private_marker() {
     let dir = tempfile::tempdir().unwrap();
     let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("..");
     let report: Value = serde_json::from_slice(
-        &std::fs::read(root.join("target/phase12/convertisseur-casse/release-report.json"))
-            .unwrap(),
+        &std::fs::read(
+            std::path::PathBuf::from(
+                std::env::var("KORTEX_TEST_RELEASES")
+                    .unwrap_or_else(|_| root.join("target/phase12").to_string_lossy().into_owned()),
+            )
+            .join("convertisseur-casse/release-report.json"),
+        )
+        .unwrap(),
     )
     .unwrap();
     let mut c = config(dir.path());
@@ -32,6 +40,7 @@ fn signed_native_action_uses_universal_runtime_and_keeps_private_marker() {
         folder.join("package.tool.json"),
     )
     .unwrap();
+    revocation_support::seed(&mut c);
     let marker = dir.path().join("private.txt");
     std::fs::write(&marker, "never upload").unwrap();
     let p = json!({"v":1,"summary":"local","steps":[{"tool_id":"convertisseur-casse","action_id":"upper","input":{"text":"Été ß"},"requires_consent":true}]});
@@ -106,30 +115,44 @@ fn five_signed_tools_execute_locally_without_network_or_file_upload() {
     ] {
         let dir = tempfile::tempdir().unwrap();
         let mut c = config(dir.path());
-        let (archive, descriptor, version) = if tool == "calculatrice" {
+        let (archive, descriptor, version) = if tool == "calculatrice"
+            && std::env::var("KORTEX_TEST_RELEASES").is_err()
+        {
             c.trust_path = root.join("target/staging-cloud/host-trust.json");
             (
                 root.join("target/staging-cloud/calculatrice-1.1.0.tool"),
                 root.join("target/staging-cloud/calculatrice-1.1.0-staging-release-95b59d5e.json"),
-                "1.1.0",
+                "1.1.0".to_string(),
             )
         } else {
             let report: Value = serde_json::from_slice(
-                &std::fs::read(root.join(format!("target/phase12/{tool}/release-report.json")))
-                    .unwrap(),
+                &std::fs::read(
+                    std::path::PathBuf::from(std::env::var("KORTEX_TEST_RELEASES").unwrap_or_else(
+                        |_| root.join("target/phase12").to_string_lossy().into_owned(),
+                    ))
+                    .join(format!("{tool}/release-report.json")),
+                )
+                .unwrap(),
             )
             .unwrap();
             c.trust_path = report["host_trust"].as_str().unwrap().into();
             (
                 std::path::PathBuf::from(report["archive"].as_str().unwrap()),
                 std::path::PathBuf::from(report["descriptor"].as_str().unwrap()),
-                "1.0.0",
+                serde_json::from_slice::<Value>(
+                    &std::fs::read(report["descriptor"].as_str().unwrap()).unwrap(),
+                )
+                .unwrap()["version"]
+                    .as_str()
+                    .unwrap()
+                    .to_string(),
             )
         };
         let folder = dir.path().join(format!("installed/{tool}/{version}"));
         std::fs::create_dir_all(&folder).unwrap();
         std::fs::copy(archive, folder.join("package.tool")).unwrap();
         std::fs::copy(descriptor, folder.join("package.tool.json")).unwrap();
+        revocation_support::seed(&mut c);
         let p = json!({"v":1,"summary":"local validation","steps":[{"tool_id":tool,"action_id":action,"input":input,"requires_consent":true}]});
         let value =
             ai_bridge::execute_reviewed(&c, p, None, kortex_runtime_native::permissions::now_ms())

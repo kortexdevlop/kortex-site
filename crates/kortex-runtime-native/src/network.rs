@@ -21,10 +21,22 @@ impl NativeNetwork {
             }
             allowed.insert(s);
         }
-        Ok(Self { allowed:std::sync::Arc::new(std::sync::Mutex::new(allowed)) })
+        Ok(Self {
+            allowed: std::sync::Arc::new(std::sync::Mutex::new(allowed)),
+        })
     }
     /// Host consent UI only. Gateway policy still checks the exact owner and approved scope.
-    pub fn allow_origin(&self,origin:String)->Result<(),CapabilityError>{let u=Self::url(&origin)?;if u.origin().ascii_serialization()!=origin{return Err(CapabilityError::NetworkDenied)}self.allowed.lock().map_err(|_|CapabilityError::HostFailure)?.insert(origin);Ok(())}
+    pub fn allow_origin(&self, origin: String) -> Result<(), CapabilityError> {
+        let u = Self::url(&origin)?;
+        if u.origin().ascii_serialization() != origin {
+            return Err(CapabilityError::NetworkDenied);
+        }
+        self.allowed
+            .lock()
+            .map_err(|_| CapabilityError::HostFailure)?
+            .insert(origin);
+        Ok(())
+    }
     pub fn url(value: &str) -> Result<url::Url, CapabilityError> {
         let u = url::Url::parse(value).map_err(|_| CapabilityError::NetworkDenied)?;
         if u.scheme() != "https"
@@ -36,8 +48,12 @@ impl NativeNetwork {
             return Err(CapabilityError::NetworkDenied);
         }
         match u.host() {
-            Some(url::Host::Ipv4(ip)) if !kortex_capabilities::public_ip(IpAddr::V4(ip)) => return Err(CapabilityError::NetworkDenied),
-            Some(url::Host::Ipv6(ip)) if !kortex_capabilities::public_ip(IpAddr::V6(ip)) => return Err(CapabilityError::NetworkDenied),
+            Some(url::Host::Ipv4(ip)) if !kortex_capabilities::public_ip(IpAddr::V4(ip)) => {
+                return Err(CapabilityError::NetworkDenied);
+            }
+            Some(url::Host::Ipv6(ip)) if !kortex_capabilities::public_ip(IpAddr::V6(ip)) => {
+                return Err(CapabilityError::NetworkDenied);
+            }
             _ => {}
         }
         Ok(u)
@@ -65,12 +81,25 @@ impl NativeNetwork {
         remaining: Duration,
     ) -> Result<CapabilityResponse, CapabilityError> {
         let u = Self::url(url)?;
-        if !self.allowed.lock().map_err(|_|CapabilityError::HostFailure)?.contains(&u.origin().ascii_serialization()) || addresses.is_empty() || addresses.iter().any(|ip| !kortex_capabilities::public_ip(*ip)) {
+        if !self
+            .allowed
+            .lock()
+            .map_err(|_| CapabilityError::HostFailure)?
+            .contains(&u.origin().ascii_serialization())
+            || addresses.is_empty()
+            || addresses
+                .iter()
+                .any(|ip| !kortex_capabilities::public_ip(*ip))
+        {
             return Err(CapabilityError::NetworkDenied);
         }
         match u.host() {
-            Some(url::Host::Ipv4(ip)) if addresses != [IpAddr::V4(ip)] => return Err(CapabilityError::NetworkDenied),
-            Some(url::Host::Ipv6(ip)) if addresses != [IpAddr::V6(ip)] => return Err(CapabilityError::NetworkDenied),
+            Some(url::Host::Ipv4(ip)) if addresses != [IpAddr::V4(ip)] => {
+                return Err(CapabilityError::NetworkDenied);
+            }
+            Some(url::Host::Ipv6(ip)) if addresses != [IpAddr::V6(ip)] => {
+                return Err(CapabilityError::NetworkDenied);
+            }
             _ => {}
         }
         let sockets = addresses

@@ -1,0 +1,16 @@
+import {ed25519} from '@noble/curves/ed25519.js';
+import {revocationText,isRevoked,type RevocationDocument} from '../../shared/typescript/src/revocation';
+import type {RootKey} from './trust';
+import type {Descriptor} from './bridge';
+export {revocationText,isRevoked};
+function decode(s:string,n:number){try{const bytes=Uint8Array.from(atob(s),c=>c.charCodeAt(0));if(bytes.length!==n||btoa(String.fromCharCode(...bytes))!==s)throw Error();return bytes}catch{throw Error('INVALID_REVOCATIONS')}}
+export function verifyRevocations(value:unknown,root:RootKey):RevocationDocument{const bytes=revocationText(value),d=value as RevocationDocument;if(d.root_key_id!==root.id||!ed25519.verify(decode(d.signature,64),bytes,decode(root.public_key_base64,32),{zip215:false}))throw Error('REVOCATION_SIGNATURE');return structuredClone(d)}
+export class Revocations{
+ private document:RevocationDocument|undefined;private seen=0;private storage:Pick<Storage,'getItem'|'setItem'>;private key:string;
+ constructor(private root:RootKey,storage:Pick<Storage,'getItem'|'setItem'>=localStorage,namespace=location.origin){this.storage=storage;this.key='kortex.revocations.v1:'+namespace+':'+root.id;const raw=storage.getItem(this.key);if(raw){if(raw.length>1048576)throw Error('INVALID_REVOCATIONS');const saved=JSON.parse(raw);this.document=verifyRevocations(saved.document,root);if(!Number.isSafeInteger(saved.seen)||saved.seen<0)throw Error('INVALID_REVOCATIONS');this.seen=saved.seen}}
+ update(value:unknown,now=Date.now()){const next=verifyRevocations(value,this.root),old=this.document;if(now<next.issued_at||now>=next.valid_until||now<this.seen)throw Error('REVOCATION_EXPIRED');if(old){if(next.version<old.version||next.version===old.version&&JSON.stringify(next)!==JSON.stringify(old))throw Error('REVOCATION_ROLLBACK');if(old.revoked_keys.some(k=>!next.revoked_keys.includes(k))||old.revoked_artifacts.some(a=>!next.revoked_artifacts.some(b=>JSON.stringify(a)===JSON.stringify(b))))throw Error('REVOCATION_ROLLBACK')}
+  this.storage.setItem(this.key,JSON.stringify({document:next,seen:now}));this.document=next;this.seen=now;
+ }
+ check(proof:Descriptor,now=Date.now()){const d=this.document;if(!d)throw Error('REVOCATION_UNAVAILABLE');if(isRevoked(d,proof))throw Error('REVOKED');if(now<this.seen||now<d.issued_at||now>=d.valid_until)throw Error('RECONNECT_REQUIRED');this.seen=now;this.storage.setItem(this.key,JSON.stringify({document:d,seen:now}))}
+ async authorize(origin:string,proof:Descriptor,signal?:AbortSignal){if(navigator.onLine){const r=await fetch(origin+'/api/v1/trust/revocations',{cache:'no-store',credentials:'omit',redirect:'error',signal});if(!r.ok||Number(r.headers.get('content-length'))>1048576)throw Error('REVOCATION_UNAVAILABLE');const raw=await r.text();if(raw.length>1048576)throw Error('INVALID_REVOCATIONS');this.update(JSON.parse(raw));const status=await fetch(origin+'/api/v1/downloads/'+proof.tool_id+'/'+encodeURIComponent(proof.version),{method:'HEAD',cache:'no-store',credentials:'omit',redirect:'error',signal});if(status.status===410)throw Error('REVOKED');if(!status.ok||status.headers.get('x-kortex-sha256')!==proof.sha256)throw Error('REVOCATION_UNAVAILABLE')}this.check(proof)}
+}

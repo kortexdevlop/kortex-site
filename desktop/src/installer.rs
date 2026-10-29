@@ -31,6 +31,7 @@ pub fn install(
     if confirmed != detail.manifest.permissions {
         return Err("Confirmez les permissions affichées avant l’installation.".into());
     }
+    crate::revocation::check(c, api, &detail.descriptor)?;
     let fresh = api
         .detail_fresh(&detail.tool.id)
         .map_err(|e| e.to_string())?;

@@ -1,0 +1,17 @@
+{
+  "repository": "kortexdevlop/kortex-site",
+  "repository_id": "1437766566",
+  "branch": "refs/heads/main",
+  "staging": {
+    "account_id": "dc766ad8649f7e2464cc57efe69a718b",
+    "database_id": "a406c1bf-cf12-4d1d-b8ff-6aa0955abb0a",
+    "bucket": "kortex-tools-staging",
+    "api_origin": "https://kortex-api-staging.userpgl.workers.dev",
+    "web_origin": "https://kortex-web-staging.userpgl.workers.dev",
+    "runtime_origin": "https://kortex-run-staging.userpgl.workers.dev",
+    "api_worker": "kortex-api-staging",
+    "web_worker": "kortex-web-staging",
+    "runtime_worker": "kortex-run-staging"
+  },
+  "production": null
+}

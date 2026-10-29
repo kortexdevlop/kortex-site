@@ -32,7 +32,11 @@ fn safe(value: &Value, depth: usize) -> bool {
     }
 }
 pub fn definition(value: &Value) -> Result<String, String> {
-    if value["nodes"].as_array().is_some_and(|v|v.len()>50)||value["edges"].as_array().is_some_and(|v|v.len()>100){return Err("Limite de parcours dépassée.".into())}
+    if value["nodes"].as_array().is_some_and(|v| v.len() > 50)
+        || value["edges"].as_array().is_some_and(|v| v.len() > 100)
+    {
+        return Err("Limite de parcours dépassée.".into());
+    }
     let text = serde_json::to_string(value).map_err(|_| "Parcours invalide")?;
     if text.len() > 262144 {
         return Err("Limite de sauvegarde : 256 Ko.".into());

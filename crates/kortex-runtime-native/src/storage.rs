@@ -140,7 +140,9 @@ impl NativeStorage {
         )))
     }
     /// Trusted host integration: the exact per-profile file; never exposed to a guest.
-    pub fn profile_file(&self, owner:&Owner)->Result<PathBuf,StorageError>{self.path(owner)}
+    pub fn profile_file(&self, owner: &Owner) -> Result<PathBuf, StorageError> {
+        self.path(owner)
+    }
     fn read_record(path: &Path) -> Result<StorageRecord, StorageError> {
         let f = match open(path, false, false) {
             Ok(f) => f,

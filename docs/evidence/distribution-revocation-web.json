@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-29T02:25:58.458Z",
+  "passed": true,
+  "real_signed_wasm": true,
+  "first_result": 1200,
+  "revoked_before_worker": true,
+  "replay_rejected": true,
+  "expired_offline_refused": true,
+  "known_revocation_permanent": true
+}

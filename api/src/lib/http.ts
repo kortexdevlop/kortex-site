@@ -5,6 +5,7 @@ export function requestId(request:Request):string {
 }
 export function json(value:unknown,status:number,id:string,origin?:string,head=false,extra?:HeadersInit):Response {
  const headers=new Headers(extra);
+ headers.set('Strict-Transport-Security','max-age=31536000');headers.set('X-Frame-Options','DENY');
  headers.set('Content-Type','application/json; charset=utf-8');if(!headers.has('Cache-Control'))headers.set('Cache-Control','no-store');
  headers.set('Content-Security-Policy',"default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'");
  headers.set('X-Content-Type-Options','nosniff');headers.set('Referrer-Policy','no-referrer');headers.set('X-Request-ID',id);headers.set('Vary','Origin');

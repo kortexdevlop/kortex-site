@@ -24,6 +24,7 @@ pub fn check(c: &Config, api: &Api) -> Result<Vec<Update>, String> {
             1048576,
         )?)
         .map_err(|_| "Descripteur invalide.")?;
+        crate::revocation::check(c, api, &descriptor)?;
         if !api.availability(&descriptor).map_err(|e| e.to_string())? {
             library::mark_blocked(c, id, &i.version)?;
             return Err(format!("{} : la version installée est révoquée.", i.name));

@@ -51,10 +51,13 @@ pub fn check(bytes: &[u8]) -> Result<()> {
                 }
             }
             Payload::TableSection(r) => {
-                if r.count() > 1 { return Err(bad()); }
+                if r.count() > 1 {
+                    return Err(bad());
+                }
                 for table in r {
                     let t = table.map_err(|_| bad())?.ty;
-                    if t.table64 || t.shared || t.maximum.is_none_or(|n| n > 65536 || t.initial > n) {
+                    if t.table64 || t.shared || t.maximum.is_none_or(|n| n > 65536 || t.initial > n)
+                    {
                         return Err(bad());
                     }
                 }

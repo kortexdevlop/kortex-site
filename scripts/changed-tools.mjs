@@ -1,0 +1,4 @@
+import {execFileSync} from 'node:child_process';import {existsSync,appendFileSync} from 'node:fs';
+const before=process.env.KORTEX_BEFORE,manual=process.env.KORTEX_TOOL;let tools;
+if(manual){if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(manual)||!existsSync('tools/'+manual+'/manifest.json'))throw Error('Invalid tool');tools=[manual]}else{if(before&&!/^[a-f0-9]{40}$/.test(before))throw Error('Invalid before SHA');const args=before&&!/^0+$/.test(before)?['diff','--name-only',before,'HEAD']:['ls-files','tools'];tools=[...new Set(execFileSync('git',args,{encoding:'utf8'}).split(/\r?\n/).map(p=>/^tools\/([a-z0-9-]+)\//.exec(p)?.[1]).filter(t=>t&&existsSync('tools/'+t+'/manifest.json')))].sort()}
+const value=JSON.stringify(tools);if(process.env.GITHUB_OUTPUT)appendFileSync(process.env.GITHUB_OUTPUT,`tools=${value}\nhas_tools=${tools.length>0}\n`);console.log(value);

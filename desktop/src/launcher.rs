@@ -31,6 +31,18 @@ pub fn prepare(c: &Config, api: &Api, id: &str) -> Result<LaunchPlan, String> {
     };
     let lease = library::lease(c, id, true)?;
     drop(lock);
+    let proof = kortex_verify::Descriptor::parse(&paths::read(
+        &installed.archive.with_extension("tool.json"),
+        1048576,
+    )?)
+    .map_err(|_| "Descripteur invalide.")?;
+    if let Err(error) = crate::revocation::check(c, api, &proof) {
+        drop(lease);
+        if error == "REVOKED" {
+            library::mark_blocked(c, id, &installed.version)?;
+        }
+        return Err(error);
+    }
     if !c.offline {
         let d = kortex_verify::Descriptor::parse(&paths::read(
             &installed.archive.with_extension("tool.json"),

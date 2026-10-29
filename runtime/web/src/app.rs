@@ -54,12 +54,25 @@ pub fn App() -> Element {
                             parent_origin: config.allowed_parent_origin.clone(),
                             client_version: "1.0".into(),
                         };
-                        config.validate() && web_sys::window().is_some_and(|window| {
-                            let embedded = window.parent().ok().flatten().is_some_and(|parent| parent != window);
-                            !embedded || window.location().origin().is_ok_and(|origin| embed.validate(&origin))
-                        })
+                        config.validate()
+                            && web_sys::window().is_some_and(|window| {
+                                let embedded = window
+                                    .parent()
+                                    .ok()
+                                    .flatten()
+                                    .is_some_and(|parent| parent != window);
+                                !embedded
+                                    || window
+                                        .location()
+                                        .origin()
+                                        .is_ok_and(|origin| embed.validate(&origin))
+                            })
                     });
-                    snapshot.set(if valid {value} else {json!({"status":"error"})});
+                    snapshot.set(if valid {
+                        value
+                    } else {
+                        json!({"status":"error"})
+                    });
                 }
             });
         use wasm_bindgen::JsCast;

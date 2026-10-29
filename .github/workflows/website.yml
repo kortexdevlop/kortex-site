@@ -1,0 +1,64 @@
+name: Deploy Website
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'runtime/web/**'
+      - 'web-adapter/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options: [staging, production]
+        default: staging
+permissions:
+  contents: read
+concurrency:
+  group: deploy-website-${{ inputs.environment || 'staging' }}
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: vars.KORTEX_STAGING_DEPLOY_ENABLED == 'true'
+    runs-on: windows-latest
+    timeout-minutes: 35
+    environment: ${{ inputs.environment || 'staging' }}
+    env:
+      KORTEX_DEPLOY_ENV: ${{ inputs.environment || 'staging' }}
+      CARGO_INCREMENTAL: '0'
+      CARGO_PROFILE_DEV_DEBUG: '0'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.15.0'
+      - run: npm install --global pnpm@11.25.0
+      - run: pnpm install --frozen-lockfile
+      - name: Install pinned Dioxus CLI
+        shell: pwsh
+        run: |
+          $taskDxZip = Join-Path $env:RUNNER_TEMP 'dx.zip'
+          $taskDxDir = Join-Path $env:RUNNER_TEMP 'dx'
+          Invoke-WebRequest 'https://github.com/DioxusLabs/dioxus/releases/download/v0.7.10/dx-x86_64-pc-windows-msvc.zip' -OutFile $taskDxZip
+          if ((Get-FileHash -LiteralPath $taskDxZip -Algorithm SHA256).Hash.ToLowerInvariant() -ne '45eb4f87b7f86fdba8508ee7e0ef1f9e13cf8f2ffcc6a2d5858d0e8ea7dd1531') { throw 'Dioxus checksum mismatch' }
+          Expand-Archive -LiteralPath $taskDxZip -DestinationPath $taskDxDir
+          $taskDxDir | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - run: node website/node_modules/astro/bin/astro.mjs build --root website
+      - run: node scripts/build-runtime.mjs
+      - run: node scripts/ci-deploy.mjs website ${{ env.KORTEX_DEPLOY_ENV }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - run: node scripts/ci-deploy.mjs runtime ${{ env.KORTEX_DEPLOY_ENV }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: deploy-website
+          path: target/ci-reports/deploy/
+          retention-days: 7

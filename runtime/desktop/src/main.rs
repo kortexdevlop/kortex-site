@@ -1,1 +1,3 @@
-fn main() { dioxus::launch(kortex_runtime_desktop::app::App); }
+fn main() {
+    dioxus::launch(kortex_runtime_desktop::app::App);
+}

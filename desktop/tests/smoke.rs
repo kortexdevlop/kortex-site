@@ -35,8 +35,14 @@ fn installed_signed_package_remains_available_offline_and_tampering_is_refused()
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("..");
     let temp = tempfile::tempdir().unwrap();
     let release: serde_json::Value = serde_json::from_slice(
-        &std::fs::read(root.join("target/phase12/convertisseur-casse/release-report.json"))
-            .unwrap(),
+        &std::fs::read(
+            std::path::PathBuf::from(
+                std::env::var("KORTEX_TEST_RELEASES")
+                    .unwrap_or_else(|_| root.join("target/phase12").to_string_lossy().into_owned()),
+            )
+            .join("convertisseur-casse/release-report.json"),
+        )
+        .unwrap(),
     )
     .unwrap();
     let folder = temp.path().join("installed/convertisseur-casse/1.0.0");

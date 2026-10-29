@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-29T02:25:56.808Z",
+  "passed": true,
+  "surfaces": 3,
+  "hsts": true,
+  "no_arbitrary_inline_scripts": true,
+  "framed_runtime_only_parent": true,
+  "cors_refused": true,
+  "host_only_secure_cookie": true
+}
