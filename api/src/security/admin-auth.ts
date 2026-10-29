@@ -4,7 +4,7 @@ import {AdminError,readBounded} from '../lib/admin-error';
 export type AdminAction='publish'|'revoke'|'rollback';
 const policySchema=z.object({issuer:z.enum(['https://token.actions.githubusercontent.com','urn:kortex:staging-operator']),audience:z.string().min(1).max(256),subject:z.string().min(1).max(512),repository:z.string().min(1).max(256),repository_id:z.string().regex(/^\d+$/),ref:z.string().min(1).max(256),workflow_ref:z.string().min(1).max(512),actions:z.array(z.enum(['publish','revoke','rollback'])).min(1),jwks:z.object({keys:z.array(z.record(z.string(),z.unknown())).max(10)}).optional()}).strict();
 const claimsSchema=z.object({iss:z.string(),aud:z.string(),sub:z.string(),repository:z.string(),repository_id:z.string(),ref:z.string(),workflow_ref:z.string(),iat:z.number().int(),nbf:z.number().int().optional(),exp:z.number().int(),jti:z.string().min(1).max(256)});
-const headerSchema=z.object({alg:z.enum(['RS256','EdDSA']),kid:z.string().min(1).max(128),typ:z.literal('JWT')}).strict();
+const headerSchema=z.object({alg:z.enum(['RS256','EdDSA']),kid:z.string().min(1).max(128),typ:z.literal('JWT'),x5t:z.string().regex(/^[A-Za-z0-9_-]{27}$/).optional()}).strict();
 export function base64url(text:string):Uint8Array {
  if(!/^[A-Za-z0-9_-]+$/.test(text))throw Error('BAD_ENCODING');const b=Uint8Array.from(atob(text.replaceAll('-','+').replaceAll('_','/')),c=>c.charCodeAt(0));
  if(btoa(String.fromCharCode(...b)).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'')!==text)throw Error('BAD_ENCODING');return b;
