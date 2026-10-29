@@ -8,6 +8,9 @@ on:
       - 'web-adapter/**'
   workflow_dispatch:
     inputs:
+      rehearse_rollback:
+        type: boolean
+        default: false
       environment:
         type: choice
         options: [staging, production]
@@ -47,6 +50,8 @@ jobs:
           if ((Get-FileHash -LiteralPath $taskDxZip -Algorithm SHA256).Hash.ToLowerInvariant() -ne '45eb4f87b7f86fdba8508ee7e0ef1f9e13cf8f2ffcc6a2d5858d0e8ea7dd1531') { throw 'Dioxus checksum mismatch' }
           Expand-Archive -LiteralPath $taskDxZip -DestinationPath $taskDxDir
           $taskDxDir | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - run: node website/scripts/generate-validators.mjs
+      - run: node scripts/build-design-tokens.mjs
       - run: node website/node_modules/astro/bin/astro.mjs build --root website
       - run: node scripts/build-runtime.mjs
       - run: node scripts/ci-deploy.mjs website ${{ env.KORTEX_DEPLOY_ENV }}
@@ -63,6 +68,11 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           KORTEX_SIGNING_KEY_ID: ${{ vars.KORTEX_SIGNING_KEY_ID }}
           KORTEX_SIGNING_KEY_SEED_BASE64: ${{ secrets.KORTEX_SIGNING_KEY_SEED_BASE64 }}
+      - if: inputs.rehearse_rollback && env.KORTEX_DEPLOY_ENV == 'staging'
+        run: node scripts/rehearse-staging-rollback.mjs runtime
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:

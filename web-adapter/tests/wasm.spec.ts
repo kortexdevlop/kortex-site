@@ -68,3 +68,9 @@ test('calculatrice réelle : archive signée et goldens SDK inchangés dans le W
   return replies;
  },{f,cases});expect(actual).toEqual(cases.map(c=>c.reply));
 });
+test('fresh compiler output executes the same frozen business goldens across checkout paths',async({page})=>{
+ const f=JSON.parse(readFileSync(resolve(root,'target/calculatrice-current-fixture/fixture.json'),'utf8'));
+ const cases=readFileSync(resolve(root,'tests/golden/calculatrice.ndjson'),'utf8').trim().split('\n').map(line=>JSON.parse(line));
+ await page.goto(server.origin);
+ const actual=await page.evaluate(async({f,cases})=>{const api=await import('/adapter/interop.js' as string);const tool=await new api.ToolLoader(new api.TrustStore(f.keys),location.origin).loadTool({...f.descriptor,url:location.origin+'/fixtures/calculatrice-current.tool'});const bridge=await api.startVerifiedTool(tool),replies=[];try{for(const c of cases)replies.push(await bridge.dispatch(c.request));return replies}finally{bridge.stop()}},{f,cases});expect(actual).toEqual(cases.map(c=>c.reply));
+});

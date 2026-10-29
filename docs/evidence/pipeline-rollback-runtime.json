@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-29T03:09:55.584Z",
+  "staging_only": true,
+  "target": "runtime",
+  "worker": "kortex-run-staging",
+  "previous_version": "fcec8e04-7674-4e21-b89e-b8115b5e761c",
+  "current_version": "057ebd21-448b-447b-bd79-8ee962d7efda",
+  "rollback_exercised": true,
+  "current_restored": true,
+  "public_variables_preserved": true,
+  "database_schema_unchanged": true,
+  "database_restore": false,
+  "passed": true
+}

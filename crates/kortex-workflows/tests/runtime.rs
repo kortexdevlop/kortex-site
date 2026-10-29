@@ -61,18 +61,31 @@ impl Host for Adapter {
 #[test]
 fn real_signed_two_step_workflow_runs_locally_without_cloud_execution() {
     let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../..");
-    let archive = std::fs::read(root.join("target/staging-cloud/calculatrice-1.1.0.tool")).unwrap();
-    let descriptor = kortex_verify::Descriptor::parse(
-        &std::fs::read(
-            root.join("target/staging-cloud/calculatrice-1.1.0-staging-release-95b59d5e.json"),
-        )
-        .unwrap(),
-    )
-    .unwrap();
-    let trust = serde_json::from_slice(
-        &std::fs::read(root.join("target/staging-cloud/host-trust.json")).unwrap(),
-    )
-    .unwrap();
+    let (archive_path, descriptor_path, trust_path) =
+        if let Ok(fixtures) = std::env::var("KORTEX_TEST_RELEASES") {
+            let report: Value = serde_json::from_slice(
+                &std::fs::read(
+                    std::path::Path::new(&fixtures).join("calculatrice/release-report.json"),
+                )
+                .unwrap(),
+            )
+            .unwrap();
+            (
+                std::path::PathBuf::from(report["archive"].as_str().unwrap()),
+                std::path::PathBuf::from(report["descriptor"].as_str().unwrap()),
+                std::path::PathBuf::from(report["host_trust"].as_str().unwrap()),
+            )
+        } else {
+            (
+                root.join("target/staging-cloud/calculatrice-1.1.0.tool"),
+                root.join("target/staging-cloud/calculatrice-1.1.0-staging-release-95b59d5e.json"),
+                root.join("target/staging-cloud/host-trust.json"),
+            )
+        };
+    let archive = std::fs::read(archive_path).unwrap();
+    let descriptor =
+        kortex_verify::Descriptor::parse(&std::fs::read(descriptor_path).unwrap()).unwrap();
+    let trust = serde_json::from_slice(&std::fs::read(trust_path).unwrap()).unwrap();
     let tool = kortex_runtime_native::verify_package_with_trust(
         archive,
         &descriptor,

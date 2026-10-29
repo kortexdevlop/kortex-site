@@ -5,7 +5,7 @@ import {proxy} from '../src/lib/proxy.ts';
 import {canonical} from '../src/lib/urls.ts';
 import {isToolSummary,palette} from '../src/lib/tools.ts';
 import fixtures from '../../tests/visual/design-fixtures.json' with {type:'json'};
-import manifest from '../../tools/calculatrice/manifest.json' with {type:'json'};
+import manifest from '../../tests/fixtures/calculatrice-v1-manifest.json' with {type:'json'};
 import contract from '../../tools/calculatrice/contract.json' with {type:'json'};
 import descriptor from '../../tests/fixtures/artifact-signed-test.json' with {type:'json'};
 test('real schemas validate demo summaries, stable category colors and reject hostile metadata',()=>{

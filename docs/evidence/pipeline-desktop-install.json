@@ -1,0 +1,9 @@
+{
+  "visual_interactions": false,
+  "production_signed": false,
+  "passed": true,
+  "process_start": true,
+  "platform": "windows-x64",
+  "installed": true,
+  "uninstalled": true
+}

@@ -47,3 +47,7 @@ Astro 7.4.2 et Tailwind CSS / @tailwindcss/vite 4.3.3 installés et verrouillés
 ## Bibliothèque et SSR — lot 10.3 / 10.4 / 11.0
 
 @astrojs/cloudflare 14.4.2, @astrojs/preact 6.1.1 et Preact 11.0.1, versions exactes. Preact 11.1.0 publié ce jour a été écarté : l’exception d’âge automatiquement ajoutée par pnpm a été retirée, 11.0.1 antérieur conservé sans nouvelle exception. TypeScript 6.0.3 / @astrojs/check 0.9.12 inchangés ; @types/node 24.10.0 pour les tests Node et la frontière serveur ; déclarations Worker globales non activées dans le tsconfig mixte DOM. Ajv 8.20.0 / ajv-formats 3.0.1 et esbuild 0.28.2 déjà baselinés génèrent des validateurs ESM autonomes compatibles workerd. Wrangler 4.152.0 et date 2026-10-26 restent inchangés. Aucune mise à jour silencieuse des moteurs ni contrat gelé.
+
+## Distribution Windows et canaux — 29 octobre 2026
+
+Dioxus CLI 0.7.10 (archive Windows déjà épinglée SHA-256), NSIS 3.11 réellement exécuté, installateur EXE produit par dx bundle et WebView2 hors ligne silencieux. Le chemin µ exige la reprise MakeNSIS UTF-8 documentée dans DESKTOP_DISTRIBUTION.md. TypeScript 6.0.3 via alias typescript-ast reste limité à l’analyse AST, TypeScript CLI 7.0.2 inchangé. Aucune chaîne de signature Authenticode fournie : staging non signé explicitement, stable bloqué. Linux/macOS/Firefox exclus. Les hypothèses historiques de lock vide/GitHub absent en début de document ne décrivent plus le workspace courant : Cargo.lock et pnpm-lock.yaml sont résolus, le dépôt public kortexdevlop/kortex-site est actif.

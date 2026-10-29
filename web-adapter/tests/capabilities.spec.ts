@@ -73,5 +73,5 @@ test('guest SDK réel : host_enqueue, consentement, IndexedDB et capability.resu
  });
  await expect(page.getByRole('heading',{name:'Autorisation demandée'})).toBeVisible();await expect(page.locator('[data-node=outcome]')).toHaveText('pending');
  await page.getByRole('button',{name:'Autoriser une fois',exact:true}).click();await expect(page.locator('[data-node=outcome]')).toHaveText('resolved:123');
- await page.screenshot({path:resolve(root,`docs/evidence/web-5.2-${test.info().project.name}.png`),fullPage:true});
+ await page.screenshot({path:resolve(root,`docs/evidence/pipeline-permissions.png`),fullPage:true});
 });

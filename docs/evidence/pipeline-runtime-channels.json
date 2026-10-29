@@ -1,0 +1,49 @@
+{
+  "document": {
+    "schema_version": 1,
+    "sequence": 1,
+    "issued_at": 1793242985966,
+    "expires": 1793847786966,
+    "channels": {
+      "stable": null,
+      "staging": {
+        "runtime_version": "1.0.1",
+        "abi_versions": [
+          "1.0"
+        ],
+        "protocol_versions": [
+          1
+        ],
+        "ui_schema_versions": [
+          "1.0"
+        ],
+        "web": {
+          "origin": "https://kortex-run-staging.userpgl.workers.dev",
+          "version_url": "https://kortex-run-staging.userpgl.workers.dev/version.json",
+          "bundle_sha256": "c3bb1d7eb625bb0a52aed7ea988f57d5d81028cd3803f7e7255b5e186fe50021",
+          "script_integrity": "sha256-gRiKJajeORK6HR80etdUoB53nPBwxVj3Vaep05Wbqo0="
+        },
+        "desktop": null
+      }
+    },
+    "signing_key_id": "ci-staging-20261029",
+    "signature": "CTg8WpchMN49/bP/YEApJ6soqCW+38p3/dlBs8ngrni+qilYMj40bd/A4Jf06arJEyHVt+Gqw7o2oxEP4QLiAQ=="
+  },
+  "keys": {
+    "schema_version": 1,
+    "version": 1,
+    "issued_at": 1793241547472,
+    "expires": 1801017607472,
+    "root_key_id": "revocation-root-a946d4fb423b",
+    "keys": [
+      {
+        "id": "ci-staging-20261029",
+        "public_key_base64": "vKgq9u8PDjfFvJr+BWEPFCEHlWkQGcDQnxvy4pXzSbk=",
+        "not_before": 1793241547472,
+        "expires": 1801017607472,
+        "revoked": false
+      }
+    ],
+    "signature": "mIVgbCfXjBWyb3Dr2c6xmsO8eJlhnpLey6wEsvosCBcxNQdD80F7tMOJiWWtQcQfhH6+CSrLWM7EuYDINVR2AQ=="
+  }
+}

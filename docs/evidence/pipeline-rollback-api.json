@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-29T03:09:15.224Z",
+  "staging_only": true,
+  "target": "api",
+  "worker": "kortex-api-staging",
+  "previous_version": "bdf668ca-aa57-4a62-a853-e068231e4d46",
+  "current_version": "edab0213-2899-4872-92d7-426cb477e56d",
+  "rollback_exercised": true,
+  "current_restored": true,
+  "public_variables_preserved": true,
+  "database_schema_unchanged": true,
+  "database_restore": false,
+  "passed": true
+}

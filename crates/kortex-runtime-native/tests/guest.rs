@@ -8,7 +8,11 @@ use sha2::{Digest, Sha256};
 use std::time::{Duration, Instant};
 #[test]
 fn same_guest_checksum_and_native_multiply() {
-    let bytes=std::fs::read(concat!(env!("CARGO_MANIFEST_DIR"),"/../../tests/spikes/core-guest/target/wasm32-unknown-unknown/release/kortex_core_guest_spike.wasm")).unwrap();
+    let bytes = std::fs::read(concat!(
+        env!("CARGO_MANIFEST_DIR"),
+        "/../../tests/fixtures/core-reference.wasm"
+    ))
+    .unwrap();
     assert_eq!(
         format!("{:x}", Sha256::digest(&bytes)),
         "3385c7f64a333da67e884b44f1260582d7ae5b5dd2921d033af7a1dce7548e65"

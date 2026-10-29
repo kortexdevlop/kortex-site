@@ -8,9 +8,11 @@ export async function serve(){
   const base=resolve(root,'target/web-dist');
   let file=resolve(base,'.'+pathname);
   if(pathname==='/')file=resolve(base,'index.html');
-  if(pathname==='/fixtures/calculatrice.tool')file=resolve(root,'target/calculatrice-fixture/calculatrice.tool');
+  if(pathname==='/fixtures/calculatrice-current.tool')file=resolve(root,'target/calculatrice-current-fixture/calculatrice.tool');
+  else if(pathname==='/fixtures/calculatrice.tool')file=resolve(root,'target/calculatrice-fixture/calculatrice.tool');
   else if(pathname==='/fixtures/capability.wasm')file=resolve(root,'target/web-test-guest/wasm32-unknown-unknown/release/kortex_browser_capability_test.wasm');
-  else if(pathname==='/fixtures/guest.wasm')file=resolve(root,'tests/spikes/core-guest/target/wasm32-unknown-unknown/release/kortex_core_guest_spike.wasm');
+  else if(pathname==='/fixtures/guest.wasm')file=resolve(root,'tests/fixtures/core-reference.wasm');
+  else if(pathname==='/fixtures/current-guest.wasm')file=resolve(root,'tests/spikes/core-guest/target/wasm32-unknown-unknown/release/kortex_core_guest_spike.wasm');
   else if(!file.startsWith(base+sep))throw Error('path');
   res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.wasm':'application/wasm','.css':'text/css','.json':'application/json'} as Record<string,string>)[extname(file)]||'application/octet-stream');
   res.end(readFileSync(file));

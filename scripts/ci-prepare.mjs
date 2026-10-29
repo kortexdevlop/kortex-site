@@ -3,6 +3,7 @@ import {spawnSync} from 'node:child_process';import {existsSync,mkdirSync,readFi
 const root=process.cwd(),fixtures=resolve('target/ci-fixtures');mkdirSync(fixtures,{recursive:true});const run=(bin,args,cwd=root,extra={})=>{const r=spawnSync(bin,args,{cwd,stdio:'inherit',windowsHide:true,env:{...process.env,...extra}});if(r.status!==0)throw Error('Fixture preparation failed: '+bin+' '+args[0])};
 run('cargo',['fetch','--locked']);
 run(process.execPath,['api/scripts/generate-validators.mjs']);
+run(process.execPath,['website/scripts/generate-validators.mjs']);
 run('cargo',['build','--manifest-path','tests/spikes/core-guest/Cargo.toml','--target','wasm32-unknown-unknown','--release','--locked'],root,{RUSTFLAGS:'-C link-arg=--max-memory=67108864'});
 run('cargo',['build','--manifest-path','tests/fixtures/workflow-capability-guest/Cargo.toml','--target','wasm32-unknown-unknown','--release','--locked'],root,{RUSTFLAGS:'-C link-arg=--max-memory=67108864',CARGO_TARGET_DIR:resolve('target/workflow-capability-guest')});
 run(process.execPath,['web-adapter/prepare-tests.mjs']);run(process.execPath,['web-adapter/build.mjs']);

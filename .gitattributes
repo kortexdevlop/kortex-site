@@ -50,3 +50,9 @@
 
 /docs/evidence/security-*.json text eol=lf
 /docs/evidence/security-*.log text eol=lf
+
+/tests/fixtures/*.wasm binary
+/tools/*/assets/*.svg text eol=lf
+/docs/evidence/pipeline-*.json text eol=lf
+/docs/evidence/pipeline-*.log text eol=lf
+/docs/evidence/pipeline-*.png binary

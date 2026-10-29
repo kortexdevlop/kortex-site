@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "platform": "windows-x64",
+  "channel": "staging",
+  "version": "1.0.0",
+  "format": "nsis",
+  "filename": "KortexDesktop_1.0.0_x64-setup.exe",
+  "sha256": "4a278bd8bd11ea1b11fba63959015c972b8f61fd59cde877811afe0e4db265fd",
+  "bytes": 201118008,
+  "code_signed": false,
+  "production_ready": false
+}
