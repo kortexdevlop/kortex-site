@@ -14,7 +14,7 @@
   "domain_access_verified": true,
   "billing_free_only_verified": false,
   "security_contact": "admin@kortex.site",
-  "legal_publisher_identified": false,
+  "legal_publisher_identified": true,
   "legal_terms_reviewed": false,
   "dependency_licenses_reviewed": false,
   "google_clients_configured": false,
@@ -24,5 +24,6 @@
   "continuous_alerts_configured": false,
   "final_release_approved": false,
   "production_deployed": false,
-  "note": "État non secret observé/préparé. Les champs non confirmés restent faux ; aucun secret, certificat ou approbation n'est inventé."
+  "note": "État non secret observé/préparé. Les champs non confirmés restent faux ; aucun secret, certificat ou approbation n'est inventé.",
+  "publisher_name": "Tiago Antunes"
 }

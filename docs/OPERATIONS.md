@@ -37,3 +37,7 @@ Cible disponibilité 99,5 % mensuelle ; alerte 5xx >2 % sur cinq minutes avec au
 ## Reprise et production — 29 octobre 2026
 
 Contact sécurité : admin@kortex.site ; aucune astreinte permanente n’est attestée. Voir [récupération](RECOVERY.md), [rotation des clés](KEY_ROTATION.md) et [exercice de reprise](reports/DISASTER_DRILL.md). Le plafond de 0 € interdit toute montée automatique de forfait. La reprise locale est vérifiée ; la restauration Cloudflare est bloquée par le quota D1 gratuit. Les ressources et secrets de production restent non configurés.
+
+## Préservation du quota D1 — 30 octobre 2026
+
+Éditeur confirmé : Tiago Antunes. Les gros jeux synthétiques restent locaux ; le compte partagé est interdit à qa-isolated. Le drill borné vérifie la fraîcheur de sa fixture et compte les migrations via les métadonnées D1. Limites : voir scripts/d1-test-budget.mjs. Le fusible quotidien est local, pas distribué ; ne pas lancer des copies simultanées pour le contourner. Les requêtes Worker induites ne figurent pas dans le compteur SQL administratif : garder un unique outil et quelques smokes, sans charge ou polling continu. Une lecture coûteuse ne peut être annulée après exécution ; les compteurs seuls ne suffisent pas sans limitation du jeu de données.

@@ -19,3 +19,7 @@ Vérifications finales locales : lane contrats complète réussie, 11 tests conf
 Mise à jour propriétaire : Google OAuth reporté ; email/mot de passe conservé. L’absence de clients Google ne bloque plus cette livraison. Aucun autre gate n’est levé par cette décision.
 
 Actualisation du périmètre : Google OAuth et signature Windows Authenticode sont reportés explicitement par le propriétaire. Ils ne bloquent plus la poursuite de la préparation ; leurs états techniques restent non configurés/non validés. Connexion email/mot de passe conservée. Les autres prérequis et signatures des paquets/canaux restent applicables.
+
+## Actualisation — 30 octobre 2026
+
+Éditeur confirmé : Tiago Antunes. Reprise D1/R2 distante démontrée sur une fiche, état incident récupérable et nettoyage attesté. Index 0012 appliqué au petit catalogue staging. Document de révocations renouvelé avec la racine existante et tous les retraits ; trois tests Web staging ciblés réussis. Google et Authenticode restent reportés. La configuration de production, les informations/revues légales complémentaires, facturation gratuite globale, alertes continues et la CI/RC de la révision retenue restent distincts et ouverts.

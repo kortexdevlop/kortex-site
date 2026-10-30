@@ -37,3 +37,5 @@ Vérifier schéma et données récupérés, hashes des paquets, endpoint API cat
 La communication publique relève du propriétaire désigné : publier seulement service affecté, plage horaire, fonctions disponibles, action attendue et heure de prochaine mise à jour réellement tenue. Ne pas publier emails, traces personnelles, secrets ou détails exploitables. Aucun message public ni notification n'est envoyé automatiquement par ce dépôt ; contact sécurité et astreinte restent à désigner.
 
 Clôture : cause, périmètre, preuve de restauration, pertes, retrait des ressources de test, correctif, revue des droits et suivi. Une simulation locale ne suffit pas à lever le gate de restauration distante de V1.
+
+Actualisation : contact sécurité confirmé admin@kortex.site, éditeur Tiago Antunes. L’astreinte permanente reste non configurée. Pour le drill cloud, préparer une fixture fraîche locale dans un nouveau dossier target, puis fournir son release-report.json par KORTEX_DRILL_FIXTURE_REPORT ; une fixture expirée doit être refusée avant création réseau. Le drill n’utilise aucun import synthétique massif.

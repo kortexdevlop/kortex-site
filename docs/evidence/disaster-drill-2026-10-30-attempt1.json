@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-30T08:00:00.333Z",
+  "owner": "kortex-drill-f90e4c9d",
+  "source_commit": "954850fd8451658f0cbe1edc2bc9f52d3efc1272",
+  "passed": false,
+  "core_restore_passed": false,
+  "cleanup": true,
+  "production_touched": false,
+  "serving_database_restored": false,
+  "rows_read": 613,
+  "rows_written": 192,
+  "http_requests": 5,
+  "restore_operations": 0,
+  "limits": {
+    "reads": 2000,
+    "writes": 1000,
+    "queries": 70,
+    "requests": 60,
+    "attemptsPerUtcDay": 3
+  },
+  "daily_attempt": 1,
+  "database_id": "cbd7d927-5af4-4f37-90e4-89b163a852c8",
+  "query_calls": 21,
+  "migrations_metered": true,
+  "error": "CLOUDFLARE_400 [{\"code\":7500,\"message\":\"UNVERIFIED_OR_REVOKED_ARTIFACT: SQLITE_CONSTRAINT (extended: SQLITE_CONSTRAINT_TRIGGER)\"}]",
+  "cleanup_errors": []
+}

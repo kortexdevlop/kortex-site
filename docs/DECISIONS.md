@@ -104,3 +104,7 @@ Google OAuth est écarté de la version actuelle ; la connexion/inscription emai
 ## Reports explicites du propriétaire — Google et signature Windows
 
 Le propriétaire demande de mettre de côté temporairement Google OAuth et les signatures Windows. La connexion email/mot de passe reste le mode retenu. Le contrôle de préparation accepte ces deux reports explicites sans déclarer Google configuré ni un certificat Authenticode valide. Les signatures cryptographiques des paquets, canaux et mises à jour restent exigées : la décision concerne la signature de code Windows.
+
+## Éditeur et sobriété D1 — 30 octobre 2026
+
+Le propriétaire confirme Tiago Antunes comme éditeur. Contact : admin@kortex.site. Ce nom est enregistré sans inventer d’adresse, de statut juridique ni de validation des CGU. L’instruction explicite de préserver le quota D1 s’applique : aucune charge 10k sur le compte produit ; tests de charge en local. Le drill de reprise utilise une seule fiche, des migrations mesurées, 2 000 lectures/1 000 écritures administratives au maximum avant arrêt, 70 appels SQL et trois tentatives réservées au plus par jour UTC sur cette machine. Les requêtes déjà exécutées et les autres consommateurs du compte ne sont pas plafonnés par ce compteur local.

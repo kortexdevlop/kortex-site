@@ -1,17 +1,48 @@
 {
-  "date": "2026-10-29T17:41:32.676Z",
-  "owner": "kortex-drill-0e140c1d",
-  "source_commit": "05dece0e9a955fea0af0ab702ae4fbf51ce09f9d",
-  "passed": false,
-  "core_restore_passed": false,
+  "date": "2026-10-30T08:10:46.218Z",
+  "owner": "kortex-drill-9d52ec95",
+  "source_commit": "954850fd8451658f0cbe1edc2bc9f52d3efc1272",
+  "passed": true,
+  "core_restore_passed": true,
   "cleanup": true,
   "production_touched": false,
   "serving_database_restored": false,
-  "rows_read": 0,
-  "rows_written": 0,
-  "http_requests": 4,
-  "restore_operations": 0,
-  "database_id": "55d6d759-f710-4b4f-8f0d-987e18063203",
-  "error": "DRILL_CLI_FAILED_d1",
+  "rows_read": 653,
+  "rows_written": 215,
+  "http_requests": 14,
+  "restore_operations": 3,
+  "limits": {
+    "reads": 2000,
+    "writes": 1000,
+    "queries": 70,
+    "requests": 60,
+    "attemptsPerUtcDay": 3
+  },
+  "daily_attempt": 3,
+  "database_id": "ccf8c41e-4c00-4907-879f-3560cd00e8cd",
+  "query_calls": 30,
+  "migrations_metered": true,
+  "snapshot_hash": "559eeaac0991168fae086305ed612c9f6ab5976b913994082ccffdec7c5a6fed",
+  "surfaces_before": {
+    "api": 200,
+    "site": 200
+  },
+  "bookmark": "00000000-0000003c-00005114-6fb19a5e8eb2927bba44379e7db666d5",
+  "restore_receipt": {
+    "bookmark": "00000000-0000003c-00005114-6fb19a5e8eb2927bba44379e7db666d5",
+    "previous_bookmark": "00000000-ffffffff-00005114-4858f635ff1267722aeaf29548be8dbc",
+    "message": "Resetting Durable Object to restore database to bookmark: 00000000-0000003c-00005114-6fb19a5e8eb2927bba44379e7db666d5"
+  },
+  "rto_observed_ms": 4499,
+  "rpo_observed_ms": 31347,
+  "known_good_rows_lost": 0,
+  "package_sha256_before": "b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f",
+  "package_sha256_after": "b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f",
+  "undo_demonstrated": true,
+  "surfaces_after": {
+    "api": 200,
+    "site": 200,
+    "download": 200
+  },
   "cleanup_errors": []
 }

@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-30T08:07:49.595Z",
+  "owner": "kortex-drill-2baf396f",
+  "source_commit": "954850fd8451658f0cbe1edc2bc9f52d3efc1272",
+  "passed": false,
+  "core_restore_passed": false,
+  "cleanup": true,
+  "production_touched": false,
+  "serving_database_restored": false,
+  "rows_read": 649,
+  "rows_written": 212,
+  "http_requests": 5,
+  "restore_operations": 0,
+  "limits": {
+    "reads": 2000,
+    "writes": 1000,
+    "queries": 70,
+    "requests": 60,
+    "attemptsPerUtcDay": 3
+  },
+  "daily_attempt": 2,
+  "database_id": "efb2fb9a-c57b-4758-89c7-aaa4104b5a54",
+  "query_calls": 26,
+  "migrations_metered": true,
+  "snapshot_hash": "559eeaac0991168fae086305ed612c9f6ab5976b913994082ccffdec7c5a6fed",
+  "error": "DRILL_CLI_FAILED_deploy",
+  "cleanup_errors": []
+}

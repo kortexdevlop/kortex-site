@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-28T22:25:12.289Z",
+  "date": "2026-10-30T08:15:08.816Z",
   "passed": true,
   "real_signed_wasm_file_hash": true,
   "sha256": "297bf7151f1fb3e5dc43091a537fe8b089e9221f61a9ddbcce89f5b256747769",
@@ -64,13 +64,13 @@
     {
       "method": "GET",
       "origin": "https://kortex-web-staging.userpgl.workers.dev",
-      "path": "/api/v1/me",
+      "path": "/_astro/preact.0LJ3gdp1.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-web-staging.userpgl.workers.dev",
-      "path": "/_astro/preact.0LJ3gdp1.js",
+      "path": "/api/v1/me",
       "body_bytes": 0
     },
     {
@@ -136,115 +136,103 @@
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/wasm/snippets/dioxus-cli-config-74c4aa43f52789a0/inline0.js",
-      "body_bytes": 0
-    },
-    {
-      "method": "GET",
-      "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/wasm/snippets/dioxus-interpreter-js-20451f6aefec841d/inline0.js",
-      "body_bytes": 0
-    },
-    {
-      "method": "GET",
-      "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/wasm/snippets/dioxus-interpreter-js-20451f6aefec841d/src/js/set_attribute.js",
-      "body_bytes": 0
-    },
-    {
-      "method": "GET",
-      "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/wasm/snippets/dioxus-web-eae67878b22d6805/inline0.js",
-      "body_bytes": 0
-    },
-    {
-      "method": "GET",
-      "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/wasm/snippets/dioxus-web-eae67878b22d6805/src/js/eval.js",
-      "body_bytes": 0
-    },
-    {
-      "method": "GET",
-      "origin": "https://kortex-run-staging.userpgl.workers.dev",
       "path": "/adapter/interop.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-PUNANYSJ.js",
+      "path": "/adapter/chunk-AF4HAYUV.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-WVR4HF35.js",
+      "path": "/adapter/chunk-V2M7OIAA.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-SZRBEHOM.js",
+      "path": "/adapter/chunk-EIKFIR3P.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-V2ISKWPR.js",
+      "path": "/adapter/chunk-KR6QL6ZW.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-L7JE3ZRE.js",
+      "path": "/adapter/chunk-74IHRPWY.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-W25TK2MN.js",
+      "path": "/adapter/chunk-GTJOZ7RZ.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-PCZEWLF6.js",
+      "path": "/adapter/chunk-BXEY3G74.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-WKGZKWEA.js",
+      "path": "/adapter/chunk-LWUI5MVU.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-WRBVEB2G.js",
+      "path": "/adapter/chunk-P5NSLPAU.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-AAUS4YIT.js",
+      "path": "/adapter/chunk-5XHSK5WK.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-7JU2JYRI.js",
+      "path": "/adapter/chunk-LNXHFVG6.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-3TFJSKEX.js",
+      "path": "/adapter/chunk-2CZTTQPR.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-77T5D7PB.js",
+      "path": "/adapter/chunk-FSHD4UU6.js",
+      "body_bytes": 0
+    },
+    {
+      "method": "GET",
+      "origin": "https://kortex-run-staging.userpgl.workers.dev",
+      "path": "/adapter/chunk-N57MWJSH.js",
+      "body_bytes": 0
+    },
+    {
+      "method": "GET",
+      "origin": "https://kortex-run-staging.userpgl.workers.dev",
+      "path": "/adapter/chunk-2RP2NOWX.js",
+      "body_bytes": 0
+    },
+    {
+      "method": "GET",
+      "origin": "https://kortex-run-staging.userpgl.workers.dev",
+      "path": "/adapter/chunk-KZ3Q2E4J.js",
       "body_bytes": 0
     },
     {
@@ -262,11 +250,23 @@
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/wasm/kortex-runtime-web_bg.wasm",
+      "path": "/assets/kortex-runtime-web-dxh8bb6390944cad8.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
+      "origin": "https://kortex-run-staging.userpgl.workers.dev",
+      "path": "/assets/kortex-runtime-web_bg-dxh8626b82983312d37.wasm",
+      "body_bytes": 0
+    },
+    {
+      "method": "GET",
+      "origin": "https://kortex-run-staging.userpgl.workers.dev",
+      "path": "/api/v1/trust/revocations",
+      "body_bytes": 0
+    },
+    {
+      "method": "HEAD",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
       "path": "/api/v1/downloads/calculateur-hash/1.0.0",
       "body_bytes": 0
@@ -286,25 +286,31 @@
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
+      "path": "/api/v1/downloads/calculateur-hash/1.0.0",
+      "body_bytes": 0
+    },
+    {
+      "method": "GET",
+      "origin": "https://kortex-run-staging.userpgl.workers.dev",
       "path": "/adapter/worker.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-WRBVEB2G.js",
+      "path": "/adapter/chunk-2CZTTQPR.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-YG54ZLQQ.js",
+      "path": "/adapter/chunk-W23RKDMX.js",
       "body_bytes": 0
     },
     {
       "method": "GET",
       "origin": "https://kortex-run-staging.userpgl.workers.dev",
-      "path": "/adapter/chunk-77T5D7PB.js",
+      "path": "/adapter/chunk-KZ3Q2E4J.js",
       "body_bytes": 0
     },
     {

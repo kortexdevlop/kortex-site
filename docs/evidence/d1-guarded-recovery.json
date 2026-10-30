@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-30T08:15:11.229Z",
+  "drill_passed": true,
+  "direct_sql_measured": {
+    "attempt1": {
+      "reads": 613,
+      "writes": 192
+    },
+    "attempt2": {
+      "reads": 649,
+      "writes": 212
+    },
+    "attempt3": {
+      "reads": 653,
+      "writes": 215
+    }
+  },
+  "direct_drill_total": {
+    "reads": 1915,
+    "writes": 619
+  },
+  "metering_scope": "Direct successful D1 queries including migrations; excludes Worker-induced and failed-query usage, management operations and other consumers.",
+  "staging_tool_count": 13,
+  "staging_migration_0012_applied": true,
+  "bulk_load_performed": false,
+  "temporary_resources_remaining": {
+    "workers": [],
+    "databases": [],
+    "buckets": []
+  },
+  "revocation": {
+    "version": 2,
+    "valid_until": 1793434429729,
+    "root_unchanged": true,
+    "revoked_keys_preserved": 6,
+    "revoked_artifacts_preserved": 12,
+    "secret_bindings_preserved": true
+  },
+  "production_touched": false,
+  "dns_touched": false,
+  "mail_touched": false
+}

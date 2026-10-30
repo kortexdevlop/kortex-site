@@ -1,11 +1,10 @@
 {
   "schema_version": 1,
-  "date": "2026-10-29T18:10:54.734Z",
+  "date": "2026-10-30T08:16:38.493Z",
   "ready": false,
   "blockers": [
     "PRODUCTION_RESOURCES_UNCONFIGURED",
     "FREE_ONLY_BILLING_UNVERIFIED",
-    "PUBLISHER_IDENTITY",
     "LEGAL_TERMS",
     "DEPENDENCY_LICENSE_REVIEW",
     "PRODUCTION_SECRETS",
@@ -13,7 +12,6 @@
     "ALERTING",
     "FINAL_APPROVAL",
     "RC_NOT_FROZEN",
-    "REMOTE_DISASTER_DRILL",
     "CI_SAME_COMMIT"
   ],
   "budget_eur_per_month": 0,
