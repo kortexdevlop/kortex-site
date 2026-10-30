@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-30T08:17:15.898Z",
-  "documents": 250,
-  "internal_links": 123,
-  "files_owned": 1428,
+  "date": "2026-10-30T08:46:02.938Z",
+  "documents": 252,
+  "internal_links": 131,
+  "files_owned": 1448,
   "issues": [],
   "owners": [
     {
@@ -42,6 +42,11 @@
     },
     {
       "file": ".github/workflows/desktop.yml",
+      "step": "18.0",
+      "role": "CI / release"
+    },
+    {
+      "file": ".github/workflows/production-health.yml",
       "step": "18.0",
       "role": "CI / release"
     },
@@ -2411,6 +2416,11 @@
       "role": "QA / traçabilité"
     },
     {
+      "file": "docs/evidence/legal-pages-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
       "file": "docs/evidence/library-chromium-desktop-cards.png",
       "step": "20.0",
       "role": "QA / traçabilité"
@@ -3096,7 +3106,17 @@
       "role": "QA / traçabilité"
     },
     {
+      "file": "docs/evidence/preproduction-next-three.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
       "file": "docs/evidence/preproduction-validation.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/production-billing-check.json",
       "step": "20.0",
       "role": "QA / traçabilité"
     },
@@ -3122,6 +3142,11 @@
     },
     {
       "file": "docs/evidence/production-security-gate.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/production-storage-setup.json",
       "step": "20.0",
       "role": "QA / traçabilité"
     },
@@ -3961,6 +3986,11 @@
       "role": "Documentation / gouvernance"
     },
     {
+      "file": "docs/reports/LEGAL_READINESS.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
       "file": "docs/reports/PHASE4_GATE.md",
       "step": "21.3",
       "role": "Documentation / gouvernance"
@@ -3972,6 +4002,11 @@
     },
     {
       "file": "docs/reports/PHASE8_GATE.md",
+      "step": "21.3",
+      "role": "Documentation / gouvernance"
+    },
+    {
+      "file": "docs/reports/PRODUCTION_CONFIGURATION.md",
       "step": "21.3",
       "role": "Documentation / gouvernance"
     },
@@ -4661,9 +4696,24 @@
       "role": "Exploitation / infrastructure"
     },
     {
+      "file": "infra/production-configuration-plan.json",
+      "step": "22.0",
+      "role": "Exploitation / préparation production"
+    },
+    {
+      "file": "infra/production-monitor.json",
+      "step": "22.0",
+      "role": "Exploitation / préparation production"
+    },
+    {
       "file": "infra/production-release-plan.json",
       "step": "21.2",
       "role": "Exploitation / infrastructure"
+    },
+    {
+      "file": "infra/production-schema.json",
+      "step": "22.0",
+      "role": "Exploitation / préparation production"
     },
     {
       "file": "infra/production-state.json",
@@ -4777,6 +4827,11 @@
     },
     {
       "file": "runtime/web/public/frame.html",
+      "step": "6.0",
+      "role": "Runtime / hôtes"
+    },
+    {
+      "file": "runtime/web/public/health.json",
       "step": "6.0",
       "role": "Runtime / hôtes"
     },
@@ -5011,9 +5066,19 @@
       "role": "CI / outillage"
     },
     {
+      "file": "scripts/production-monitor.mjs",
+      "step": "22.0",
+      "role": "Exploitation / préparation production"
+    },
+    {
       "file": "scripts/production-readiness.mjs",
       "step": "22.0",
       "role": "Exploitation / gate production"
+    },
+    {
+      "file": "scripts/production-setup.mjs",
+      "step": "22.0",
+      "role": "Exploitation / préparation production"
     },
     {
       "file": "scripts/promote-release.mjs",
@@ -5901,7 +5966,17 @@
       "role": "QA / conformité"
     },
     {
+      "file": "tests/publication/production-monitor.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
       "file": "tests/publication/production-readiness.test.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/publication/production-setup.test.mjs",
       "step": "20.0",
       "role": "QA / conformité"
     },
@@ -6796,6 +6871,11 @@
       "role": "Site / interface"
     },
     {
+      "file": "website/src/layouts/LegalLayout.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
       "file": "website/src/layouts/MainLayout.astro",
       "step": "11.0",
       "role": "Site / interface"
@@ -6986,7 +7066,27 @@
       "role": "Site / interface"
     },
     {
+      "file": "website/src/pages/conditions-utilisation.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/confidentialite.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/health.json.ts",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
       "file": "website/src/pages/index.astro",
+      "step": "11.0",
+      "role": "Site / interface"
+    },
+    {
+      "file": "website/src/pages/mentions-legales.astro",
       "step": "11.0",
       "role": "Site / interface"
     },

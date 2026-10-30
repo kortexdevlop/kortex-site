@@ -11,3 +11,5 @@ Les scripts de publication/déploiement actuels gardent leurs refus production. 
 Les notes [v1.0.0](../releases/v1.0.0.md) restent un brouillon. La recette production 22.2 et le gel V1 22.3 ne sont pas engagés.
 
 Actualisation du périmètre : Google OAuth et signature Windows Authenticode sont reportés explicitement par le propriétaire. Ils ne bloquent plus la poursuite de la préparation ; leurs états techniques restent non configurés/non validés. Connexion email/mot de passe conservée. Les autres prérequis et signatures des paquets/canaux restent applicables.
+
+Actualisation du 30/10 : DB/R2 et douze migrations production préparés dans le lot 22.0, indépendants du staging ; configurations de services générées mais non déployées. Cette préparation modifie l’inventaire des ressources, sans créer le tag v1.0.0 ni exécuter la livraison 22.1.

@@ -2297,18 +2297,21 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "id": "22.0",
     "status": "pending",
     "source_commit": "05dece0e9a955fea0af0ab702ae4fbf51ce09f9d",
-    "result_commit": "d7eb6e12b229dec49c00cd4b0654a7e151808e36",
+    "result_commit": "15e6d69e27a60b408961f650a73379da74bfb6fa",
     "report_path": "docs/reports/STEP-22.0.md",
-    "tests_executed": "Inventaire Cloudflare/GitHub/Google/certificats ; licence propriétaire, plafond 0 €, contact admin@kortex.site enregistrés ; contrôleur production refuse les gates ouverts.",
+    "tests_executed": "CI complète e7c03ad réussie (4 lanes) ; nouveaux contrats locaux réussis, 17 tests configuration/readiness/production ; Astro 97 fichiers sans erreur, build et 6 affichages légaux desktop/mobile ; DB/R2 production et 12 migrations vérifiés, 626 lectures/203 écritures + 12 lectures de contrôle.",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/production-readiness.json"
+      "docs/evidence/production-ci.json",
+      "docs/evidence/legal-pages-validation.json",
+      "docs/evidence/production-storage-setup.json",
+      "docs/evidence/preproduction-next-three.json"
     ],
     "frozen": false,
-    "technical_status": "prepared_blocked",
+    "technical_status": "storage_provisioned_legal_pages_prepared",
     "authorization": "Propriétaire : Enchaîne jusqu’à 22.1 ; licence propriétaire ; budget 0 € ; contact admin@kortex.site",
     "technical_scope": "Windows x64 / Chromium-WebView2",
-    "remaining_gate": "Éditeur Tiago Antunes confirmé ; autres informations/revues légales et configuration production listées dans la preuve."
+    "remaining_gate": "Statut commercial et coordonnées transmises à l’hébergeur à confirmer ; revue dépendances, coûts globaux, secrets/confiance de paquets, DNS/TLS, activation alertes et RC encore ouverts."
   },
   {
     "id": "22.1",
@@ -2322,10 +2325,10 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
       "infra/production-release-plan.json"
     ],
     "frozen": false,
-    "technical_status": "not_deployed_prerequisites_blocked",
+    "technical_status": "not_deployed_storage_prepared",
     "authorization": "Propriétaire : Enchaîne jusqu’à 22.1 ; licence propriétaire ; budget 0 € ; contact admin@kortex.site",
     "technical_scope": "Windows x64 / Chromium-WebView2",
-    "remaining_gate": "Préparation production complète, RC et CI cohérentes avant déploiement."
+    "remaining_gate": "DB/R2 et schéma préparés ; aucun Worker de production ni bascule DNS. Pré-requis de publication encore ouverts."
   }
 ]
 ```

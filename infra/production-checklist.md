@@ -10,14 +10,16 @@
 - [x] Nom de l’éditeur confirmé : Tiago Antunes.
 - [ ] Informations légales complémentaires et juridiction à compléter selon le statut de l’éditeur.
 - [ ] Revue CGU/confidentialité et obligations des dépendances redistribuées ; aucune approbation juridique automatique.
-- [ ] Ressources production distinctes configurées : compte, DB, bucket, Workers et trois origines HTTPS réelles.
-- [ ] Conditions gratuites et limites de facturation vérifiées pour tous les services ; aucune souscription ni hausse automatique.
+- [x] Stockages production distincts créés et douze migrations vérifiées, zéro fiche métier.
+- [ ] Workers production, secrets/confiances et trois origines HTTPS opérationnelles.
+- [x] Workers Free confirmé explicitement par le propriétaire ; provisionnement vide sans abonnement.
+- [ ] Limites de facturation globales R2/IA et de trafic public vérifiées ; aucun upgrade automatique.
 - [ ] Quotas suffisants pour le trafic retenu ; service dégradé explicite si le palier gratuit est atteint.
 - [x] Google OAuth reporté par le propriétaire ; email/mot de passe conservé.
 - [ ] Connexion email/mot de passe validée sur la production réelle.
 - [x] Signature Windows Authenticode reportée explicitement par le propriétaire ; état du certificat toujours non validé.
 - [ ] CI complète verte et RC gelée sur le même commit, cinq paquets vérifiés et artefacts traçables.
-- [ ] Drill D1/R2 distant réussi, RPO/RTO observés et copie de retour disponibles.
+- [x] Drill D1/R2 distant réussi sur une fiche : annulation vérifiée, hash identique, RTO 4499 ms, nettoyage confirmé.
 - [ ] Sauvegardes, rétention, collecteur et destinataire/astreinte réellement activés et testés.
 - [ ] Secrets et environnement GitHub production protégés, TLS/CORS/CSP et droits minimaux vérifiés.
 - [ ] Revue finale de la livraison concrète et smoke par bascule.

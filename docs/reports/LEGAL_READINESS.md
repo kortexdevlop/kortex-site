@@ -23,3 +23,5 @@ Les pages sont préparées et testables ; elles ne sont pas présentées comme u
 - [Cloudflare — coordonnées et politique de confidentialité](https://www.cloudflare.com/privacypolicy/) et [implantations](https://www.cloudflare.com/about-overview/) : coordonnées publiées et réseau international.
 
 Les durées et fonctions décrites viennent du code, pas d’une politique générique copiée. La politique du fournisseur ne constitue pas, à elle seule, une preuve du contrat ou de la localisation de ce compte Kortex.
+
+Validation technique finale : Astro check 97 fichiers, zéro erreur/avertissement ; build réussi et six affichages compilés (trois pages × desktop/mobile) sans débordement horizontal. Preuve [legal-pages-validation](../evidence/legal-pages-validation.json). Tous ces contrôles sont locaux, zéro lecture D1.
