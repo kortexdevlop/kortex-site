@@ -23,3 +23,11 @@ Actualisation du périmètre : Google OAuth et signature Windows Authenticode so
 ## Actualisation — 30 octobre 2026
 
 Éditeur confirmé : Tiago Antunes. Reprise D1/R2 distante démontrée sur une fiche, état incident récupérable et nettoyage attesté. Index 0012 appliqué au petit catalogue staging. Document de révocations renouvelé avec la racine existante et tous les retraits ; trois tests Web staging ciblés réussis. Google et Authenticode restent reportés. La configuration de production, les informations/revues légales complémentaires, facturation gratuite globale, alertes continues et la CI/RC de la révision retenue restent distincts et ouverts.
+
+## Trois actions préparatoires — CI, pages légales, configuration
+
+CI 41025444171 sur e7c03ad : quatre lanes réussies, preuve production-ci.json. Pages mentions légales/confidentialité/conditions créées et reliées aux parcours, compilées sans erreur et vérifiées en six affichages desktop/mobile, zéro requête D1. Les nouvelles pages/configurations font l’objet d’une validation distincte. Le statut commercial et les coordonnées complètes communiquées à l’hébergeur restent à confirmer. Voir [revue légale](LEGAL_READINESS.md).
+
+Configuration isolée et schéma épinglé, provisionneur borné/testé et moniteur horaire de trois sondes sans SQL préparés ; aucun achat, DNS/MX ou secret staging copié. Les deux accès API refusent les abonnements et le navigateur exige une connexion. La création effective des stockages et services reste bloquée par cette vérification du budget, sans facturation supposée gratuite. Voir [configuration](PRODUCTION_CONFIGURATION.md) et [preuve facturation](../evidence/production-billing-check.json).
+
+Suite à la confirmation du propriétaire Workers Free, les stockages et le schéma production ont été créés avec succès : voir [reçu](../evidence/production-storage-setup.json). La facturation future de tous les services reste à encadrer avant ouverture publique. Les services, DNS/TLS, secrets, signatures de paquets et alertes ne sont pas déclarés opérationnels par la seule création du stockage.

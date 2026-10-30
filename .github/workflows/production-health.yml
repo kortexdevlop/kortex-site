@@ -1,0 +1,26 @@
+name: Production health
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: production-health
+  cancel-in-progress: false
+jobs:
+  health:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.15.0'
+      - run: node scripts/production-monitor.mjs
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: production-health
+          path: target/ci-reports/production-monitor.json
+          retention-days: 7

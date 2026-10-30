@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-30T08:44:51.898Z",
+  "previous_full_ci": {
+    "run_id": 41025444171,
+    "commit": "e7c03ad4a77b2c149427166c0b55d9b7a0728ab2",
+    "passed": true,
+    "lanes": 4
+  },
+  "current_changes": {
+    "contracts_lane_passed": true,
+    "astro_check_errors": 0,
+    "astro_check_warnings": 0,
+    "astro_build_passed": true,
+    "compiled_legal_pages_views_passed": 6,
+    "legal_qa_d1_queries": 0,
+    "storage": {
+      "reads": 626,
+      "writes": 203,
+      "verification_reads": 12,
+      "tools": 0,
+      "migrations": 12
+    },
+    "production_monitor_enabled": false,
+    "production_workers_deployed": false
+  },
+  "legal_owner_confirmations_pending": [
+    "Noncommercial launch status",
+    "Complete personal details already provided to host"
+  ],
+  "production_deployed": false
+}

@@ -112,3 +112,7 @@ Le propriétaire confirme Tiago Antunes comme éditeur. Contact : admin@kortex.s
 ## Statut de l’éditeur confirmé
 
 Le propriétaire confirme Tiago Antunes, particulier établi en France. Contact : admin@kortex.site. Aucune entreprise, immatriculation ou adresse n’est inventée ; les mentions légales restent à préparer et vérifier avant publication.
+
+## Confirmation du forfait et configuration isolée
+
+Le propriétaire confirme Workers Free. Provisionnement autorisé et effectué uniquement pour le schéma D1 et un bucket R2 privé vide, sans abonnement ni Worker/IA/DNS/MX. L’enveloppe globale de fonctionnement et les conditions R2 au-delà du gratuit restent à vérifier avant ouverture publique. Les stockages production ne sont pas une copie du staging. Pages légales préparées avec identité France/particulier ; qualification commerciale et coordonnées fournies à l’hébergeur encore en attente de réponse.

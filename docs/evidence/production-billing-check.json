@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-30T08:35:19.801Z",
+  "billing_subscription_read": {
+    "oauth_status": 403,
+    "alternate_authorized_access_status": 403
+  },
+  "workers_account_usage_model": "standard",
+  "workers_plan_verified": true,
+  "paid_upgrade_performed": false,
+  "resources_created_this_turn": true,
+  "production_deployed": false,
+  "zero_budget_enforced": true,
+  "requires": "Global ongoing R2/AI/billing limits remain unverified before public operation",
+  "browser_verification": "Cloudflare dashboard requires sign-in; no authenticated browser session available",
+  "verification_source": "Owner confirmed Workers Free",
+  "provisioning_scope": "Empty private R2 bucket + schema-only D1; no new subscription/paid plan, AI deployment, Worker deployment or DNS change"
+}

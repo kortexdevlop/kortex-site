@@ -8,7 +8,9 @@
     "automatic_paid_upgrade": false,
     "google_oauth_deferred": true,
     "authentication": "email_password",
-    "windows_authenticode_deferred": true
+    "windows_authenticode_deferred": true,
+    "workers_plan_confirmed": "free",
+    "workers_plan_confirmation_source": "Réponse explicite du propriétaire : Oui, Workers Free"
   },
   "domain": "kortex.site",
   "domain_access_verified": true,
@@ -27,5 +29,15 @@
   "note": "État non secret observé/préparé. Les champs non confirmés restent faux ; aucun secret, certificat ou approbation n'est inventé.",
   "publisher_name": "Tiago Antunes",
   "publisher_country": "FR",
-  "publisher_status": "individual"
+  "publisher_status": "individual",
+  "legal_pages_prepared": true,
+  "production_configuration_prepared": true,
+  "production_monitor_prepared": true,
+  "publisher_noncommercial": null,
+  "publisher_identity_supplied_to_host": null,
+  "storage_setup_zero_cost_verified": true,
+  "storage_setup_cost_scope": "Empty private R2 bucket, schema-only D1 on confirmed Workers Free; no Worker deployment, object upload, AI binding, paid upgrade or DNS operation. This is not an account-wide future billing guarantee.",
+  "production_storage_provisioned": true,
+  "production_schema_applied": true,
+  "production_services_deployed": false
 }

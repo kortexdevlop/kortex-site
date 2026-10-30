@@ -1,9 +1,8 @@
 {
   "schema_version": 1,
-  "date": "2026-10-30T08:16:38.493Z",
+  "date": "2026-10-30T08:42:53.838Z",
   "ready": false,
   "blockers": [
-    "PRODUCTION_RESOURCES_UNCONFIGURED",
     "FREE_ONLY_BILLING_UNVERIFIED",
     "LEGAL_TERMS",
     "DEPENDENCY_LICENSE_REVIEW",

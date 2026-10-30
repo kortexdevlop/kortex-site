@@ -15,3 +15,7 @@ Usage : obtenir un export NDJSON des seuls événements structurés autorisés, 
 Configuration prête dans api/wrangler.jsonc : logs sans persistence, sans invocation automatique ni traces, requêtes URL masquées. Vérifiée contre le schéma Wrangler épinglé 4.152.0 et par dry-run. Rien n’a été publié sur le Worker produit. Avant activation durable : choisir collecteur, destinataire/astreinte, rétention des agrégats et plafonds financiers. Aucun achat, abonnement, notification ou automation créé par cette étape.
 
 Drill réseau : node scripts/qa-telemetry-cloud.mjs avec credential en environnement, jamais en argument. Crée un Worker authentifié et expirant sans bindings de données ; vérifie propriétaire puis supprime sa seule ressource. Maximum normal : 232 lectures HTTP, zéro lecture D1 et zéro inférence. Échec du nettoyage = gate incomplet.
+
+## Préparation production sans D1
+
+Workflow production-health.yml et production-monitor.json préparés ; trois probes statiques au maximum par exécution, aucune lecture D1, cible horaire. Le moniteur est désactivé tant que production/DNS ne sont pas réellement actifs. Il ne constitue pas un collecteur global d’erreurs ni un SLO end-to-end. Échec du job = signal GitHub selon les préférences existantes du propriétaire ; aucune destination email/webhook créée. Quatre tests setup/moniteur et simulation locale zéro réseau du mode désactivé réussis.

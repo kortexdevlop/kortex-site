@@ -1,0 +1,23 @@
+{
+  "mode": "plan-only",
+  "resources_created": true,
+  "schema_version": 1,
+  "account_id": "dc766ad8649f7e2464cc57efe69a718b",
+  "database_name": "kortex-catalog-production",
+  "bucket": "kortex-tools-production",
+  "api_worker": "kortex-api-production",
+  "web_worker": "kortex-web-production",
+  "runtime_worker": "kortex-run-production",
+  "api_origin": "https://api.kortex.site",
+  "web_origin": "https://kortex.site",
+  "runtime_origin": "https://run.kortex.site",
+  "budget_eur": 0,
+  "ai_enabled": false,
+  "google_enabled": false,
+  "dns_changes": false,
+  "mail_changes": false,
+  "worker_deployments": false,
+  "database_id": "331d46e7-009a-4e38-b5d2-1e262485dc92",
+  "schemas_applied": true,
+  "workers_deployed": false
+}

@@ -31,8 +31,15 @@
       "observability": {
         "enabled": true,
         "redact_query_string": true,
-        "logs": {"enabled": true, "head_sampling_rate": 1, "invocation_logs": false, "persist": false},
-        "traces": {"enabled": false}
+        "logs": {
+          "enabled": true,
+          "head_sampling_rate": 1,
+          "invocation_logs": false,
+          "persist": false
+        },
+        "traces": {
+          "enabled": false
+        }
       },
       "workers_dev": true,
       "preview_urls": false,
@@ -74,10 +81,26 @@
       "preview_urls": false,
       "vars": {
         "KORTEX_ENV": "production",
-        "PUBLIC_WEB_ORIGIN": "https://production.invalid"
+        "PUBLIC_WEB_ORIGIN": "https://kortex.site",
+        "PASSWORD_AUTH_ENABLED": "true",
+        "OIDC_ENABLED": "false",
+        "AI_ENABLED": "false",
+        "TELEMETRY_ENABLED": "false"
       },
-      "d1_databases": [],
-      "r2_buckets": []
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "kortex-catalog-production",
+          "database_id": "331d46e7-009a-4e38-b5d2-1e262485dc92",
+          "migrations_dir": "../database/migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "TOOLS_BUCKET",
+          "bucket_name": "kortex-tools-production"
+        }
+      ]
     }
   },
   "compatibility_flags": [

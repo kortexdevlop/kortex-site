@@ -33,3 +33,7 @@ Checkpoint resolved on 2026-10-27: the owner activated the dedicated kortex prof
 ## Préparation production — 29 octobre 2026
 
 Le canal production reste nul ; les trois Workers observés servent le staging. Le domaine et sa messagerie sont conservés. La présence d’un environnement GitHub production ne prouve pas celle des ressources et secrets Cloudflare. Voir [checklist](production-checklist.md) et [état de préparation](../docs/reports/PRODUCTION_READINESS.md). Budget mensuel maximal : 0 €.
+
+## Stockages production provisionnés — 30 octobre 2026
+
+Suite à confirmation explicite Workers Free : base kortex-catalog-production (331d46e7-009a-4e38-b5d2-1e262485dc92), bucket privé kortex-tools-production et douze migrations vérifiés. Zéro fiche métier ; 626 lectures/203 écritures administratives et 12 lectures de vérification. Canal production et binding API renseignés avec ces vrais identifiants. Aucun Worker production déployé, aucune ouverture publique ni bascule DNS/MX. Secrets et confiance des paquets indépendants restent à configurer. IA désactivée dans la configuration initiale. Le budget global de fonctionnement n’est pas réputé garanti par la seule présence du plan Workers Free.

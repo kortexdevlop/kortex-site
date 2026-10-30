@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-30T08:41:06.632Z",
+  "storage_provisioned": true,
+  "schemas_applied": true,
+  "dns_changed": false,
+  "mail_changed": false,
+  "workers_deployed": false,
+  "deleted_resources": false,
+  "database_id": "331d46e7-009a-4e38-b5d2-1e262485dc92",
+  "bucket": "kortex-tools-production",
+  "configurations_rendered": true,
+  "d1": {
+    "rows_read": 626,
+    "rows_written": 203,
+    "query_calls": 26
+  },
+  "verification": {
+    "migration_count": 12,
+    "tool_count": 0,
+    "reads": 12,
+    "writes": 0,
+    "database_exists": true,
+    "bucket_exists": true,
+    "production_workers_present": []
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "enabled": false,
+  "max_requests_per_run": 3,
+  "targets": [
+    {"service":"kortex-api","url":"https://api.kortex.site/api/v1/health"},
+    {"service":"kortex-web","url":"https://kortex.site/health.json"},
+    {"service":"kortex-runtime","url":"https://run.kortex.site/health.json"}
+  ],
+  "notification": "GitHub Actions failure notification according to the repository owner's existing settings; no email/webhook configured or sent",
+  "activation": "Enable only after actual production DNS, deployment and health checks. The workflow becomes scheduled only after merging to the default branch."
+}

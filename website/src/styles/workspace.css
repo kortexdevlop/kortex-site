@@ -70,3 +70,5 @@
 .workspace[data-text-size=large] :is(p,h3,input,button,a) { font-size:max(16px,1.15em); }.workspace[data-text-size=large] .ws-nav-item { min-height:48px; }.workspace[data-text-size=large] .ws-content { overflow-wrap:anywhere; }
 
 .ws-new-task kbd { color: #929496; }
+
+.ws-legal-links{display:flex;flex-wrap:wrap;gap:6px 12px;padding:8px 12px;font-size:12px;line-height:1.5;color:var(--ws-secondary)}.ws-legal-links a{text-decoration:underline;text-underline-offset:3px}.ws-legal-links a:focus-visible{outline:2px solid var(--focus);outline-offset:3px}

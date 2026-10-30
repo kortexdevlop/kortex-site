@@ -1,0 +1,50 @@
+[
+  {
+    "file": "0001_catalog.sql",
+    "sha256": "23bb989e577d1793cc66a124510d349c74a6fe380f1b2000fd33c7f2b88f13cb"
+  },
+  {
+    "file": "0002_publication.sql",
+    "sha256": "d0e434813d9bf81678cdb496b4fe645ce813a424e72023b833a39bfd00ec83d9"
+  },
+  {
+    "file": "0003_admin_operations.sql",
+    "sha256": "235f76dffce7f4b111389afdfadcc8ad7feca433857efa81fa1700bb60508a30"
+  },
+  {
+    "file": "0004_sitemap.sql",
+    "sha256": "491a3a22c8bdb37ab9dc95ee185a3467769312de9da2ef3c6320811970d35b9f"
+  },
+  {
+    "file": "0005_auth.sql",
+    "sha256": "c2d364e4198d1772f502b668f4e78d1fd5653abdf63988ddf4677f2ea682fccf"
+  },
+  {
+    "file": "0006_auth_flows.sql",
+    "sha256": "5f9f6ed62d98dbeb2b9cdc503316a699355c012f0a16bbd4d8ab738dc33f94cd"
+  },
+  {
+    "file": "0007_password_auth.sql",
+    "sha256": "ee5b6e2a285a3a26df7381c0a3d3816079ee99c41a85d4a18a9ff8ba32a2db1c"
+  },
+  {
+    "file": "0008_sync.sql",
+    "sha256": "c64f1fc2f99a0df0777cb2c4985554d558b1c39175545d52eb66a9a5c7c60218"
+  },
+  {
+    "file": "0009_devices_ai.sql",
+    "sha256": "58cc5effffb611aa30f3fa06dd35f108b362b66766326b9b4c911b0974dddc43"
+  },
+  {
+    "file": "0010_device_ai_consent.sql",
+    "sha256": "8e2aacb3f17b771992f6940e39ea701d4307d53dfc92822905d70057caf094fa"
+  },
+  {
+    "file": "0011_workflows.sql",
+    "sha256": "3d98e570166c83495db5d62bade52a70968257d093207bbc1fab25a0586b53b6"
+  },
+  {
+    "file": "0012_publication_performance.sql",
+    "sha256": "cf636afda8efde2e3ecff4047c47f1e17fc050fc41b46d4416b7f3341006f29d"
+  }
+]

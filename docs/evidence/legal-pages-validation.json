@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-30T08:37:18.724Z",
+  "passed": true,
+  "scope": "Local compiled static pages, desktop/mobile, zero D1 queries",
+  "results": [
+    {
+      "route": "mentions-legales",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "status": 200,
+      "overflow": false,
+      "title": "Mentions légales",
+      "legalLinks": 3
+    },
+    {
+      "route": "confidentialite",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "status": 200,
+      "overflow": false,
+      "title": "Confidentialité",
+      "legalLinks": 3
+    },
+    {
+      "route": "conditions-utilisation",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "status": 200,
+      "overflow": false,
+      "title": "Conditions d’utilisation",
+      "legalLinks": 3
+    },
+    {
+      "route": "mentions-legales",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "overflow": false,
+      "title": "Mentions légales",
+      "legalLinks": 3
+    },
+    {
+      "route": "confidentialite",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "overflow": false,
+      "title": "Confidentialité",
+      "legalLinks": 3
+    },
+    {
+      "route": "conditions-utilisation",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "overflow": false,
+      "title": "Conditions d’utilisation",
+      "legalLinks": 3
+    }
+  ]
+}
