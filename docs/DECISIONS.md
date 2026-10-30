@@ -108,3 +108,7 @@ Le propriétaire demande de mettre de côté temporairement Google OAuth et les 
 ## Éditeur et sobriété D1 — 30 octobre 2026
 
 Le propriétaire confirme Tiago Antunes comme éditeur. Contact : admin@kortex.site. Ce nom est enregistré sans inventer d’adresse, de statut juridique ni de validation des CGU. L’instruction explicite de préserver le quota D1 s’applique : aucune charge 10k sur le compte produit ; tests de charge en local. Le drill de reprise utilise une seule fiche, des migrations mesurées, 2 000 lectures/1 000 écritures administratives au maximum avant arrêt, 70 appels SQL et trois tentatives réservées au plus par jour UTC sur cette machine. Les requêtes déjà exécutées et les autres consommateurs du compte ne sont pas plafonnés par ce compteur local.
+
+## Statut de l’éditeur confirmé
+
+Le propriétaire confirme Tiago Antunes, particulier établi en France. Contact : admin@kortex.site. Aucune entreprise, immatriculation ou adresse n’est inventée ; les mentions légales restent à préparer et vérifier avant publication.

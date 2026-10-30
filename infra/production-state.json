@@ -25,5 +25,7 @@
   "final_release_approved": false,
   "production_deployed": false,
   "note": "État non secret observé/préparé. Les champs non confirmés restent faux ; aucun secret, certificat ou approbation n'est inventé.",
-  "publisher_name": "Tiago Antunes"
+  "publisher_name": "Tiago Antunes",
+  "publisher_country": "FR",
+  "publisher_status": "individual"
 }
