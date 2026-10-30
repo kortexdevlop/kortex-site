@@ -2262,18 +2262,19 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "id": "21.2",
     "status": "pending",
     "source_commit": "05dece0e9a955fea0af0ab702ae4fbf51ce09f9d",
-    "result_commit": "d7eb6e12b229dec49c00cd4b0654a7e151808e36",
+    "result_commit": "040c18c3ca0914e2ab5c9a820641028cc3558341",
     "report_path": "docs/reports/STEP-21.2.md",
-    "tests_executed": "Reprise locale réelle : API/site/téléchargement 200, hash identique, RTO 4818 ms ; essai distant arrêté par quota D1 7500, nettoyage confirmé.",
+    "tests_executed": "Drill D1 Time Travel/R2 distant réussi, trois restaurations avec annulation, API/site/téléchargement 200, hashes identiques, RTO 4499 ms ; nettoyage indépendant confirmé. Trois tests budget et trois tests Web staging ciblés réussis.",
     "contract_changes": [],
     "evidence": [
-      "docs/evidence/disaster-drill-local.json"
+      "docs/evidence/disaster-drill.json",
+      "docs/evidence/d1-guarded-recovery.json"
     ],
     "frozen": false,
-    "technical_status": "local_verified_cloud_drill_blocked",
+    "technical_status": "local_and_cloud_recovery_verified",
     "authorization": "Propriétaire : Enchaîne jusqu’à 22.1 ; licence propriétaire ; budget 0 € ; contact admin@kortex.site",
     "technical_scope": "Windows x64 / Chromium-WebView2",
-    "remaining_gate": "Restauration Time Travel distante à exécuter après réinitialisation du quota gratuit."
+    "remaining_gate": "Recette minimale démontrée ; cadence permanente des sauvegardes, alertes et approbation de gel restent distinctes."
   },
   {
     "id": "21.3",
@@ -2290,7 +2291,7 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "technical_status": "documentation_verified_not_frozen",
     "authorization": "Propriétaire : Enchaîne jusqu’à 22.1 ; licence propriétaire ; budget 0 € ; contact admin@kortex.site",
     "technical_scope": "Windows x64 / Chromium-WebView2",
-    "remaining_gate": "Validation humaine et prérequis de reprise distante/RC encore ouverts."
+    "remaining_gate": "Approbation humaine de gel et RC encore ouvertes ; reprise distante désormais démontrée."
   },
   {
     "id": "22.0",
@@ -2307,7 +2308,7 @@ Lot 12.0–12.2 réalisé sur instruction du propriétaire : convertisseur de ca
     "technical_status": "prepared_blocked",
     "authorization": "Propriétaire : Enchaîne jusqu’à 22.1 ; licence propriétaire ; budget 0 € ; contact admin@kortex.site",
     "technical_scope": "Windows x64 / Chromium-WebView2",
-    "remaining_gate": "Identité juridique, configuration/certificats et gates listés dans la preuve de préparation."
+    "remaining_gate": "Éditeur Tiago Antunes confirmé ; autres informations/revues légales et configuration production listées dans la preuve."
   },
   {
     "id": "22.1",

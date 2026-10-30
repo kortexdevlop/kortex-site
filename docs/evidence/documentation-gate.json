@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-29T18:07:50.421Z",
+  "date": "2026-10-30T08:17:15.898Z",
   "documents": 250,
-  "internal_links": 119,
-  "files_owned": 1423,
+  "internal_links": 123,
+  "files_owned": 1428,
   "issues": [],
   "owners": [
     {
@@ -1811,6 +1811,11 @@
       "role": "QA / traçabilité"
     },
     {
+      "file": "docs/evidence/d1-guarded-recovery.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
       "file": "docs/evidence/data-flows.md",
       "step": "20.0",
       "role": "QA / traçabilité"
@@ -2197,6 +2202,16 @@
     },
     {
       "file": "docs/evidence/device-web_tests.log",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/disaster-drill-2026-10-30-attempt1.json",
+      "step": "20.0",
+      "role": "QA / traçabilité"
+    },
+    {
+      "file": "docs/evidence/disaster-drill-2026-10-30-attempt2.json",
       "step": "20.0",
       "role": "QA / traçabilité"
     },
@@ -4886,6 +4901,11 @@
       "role": "CI / outillage"
     },
     {
+      "file": "scripts/d1-test-budget.mjs",
+      "step": "18.0",
+      "role": "CI / outillage"
+    },
+    {
       "file": "scripts/deploy-ai-assistant-staging.mjs",
       "step": "18.0",
       "role": "CI / outillage"
@@ -5802,6 +5822,11 @@
     },
     {
       "file": "tests/perf/catalog-load.mjs",
+      "step": "20.0",
+      "role": "QA / conformité"
+    },
+    {
+      "file": "tests/perf/d1-budget.test.mjs",
       "step": "20.0",
       "role": "QA / conformité"
     },

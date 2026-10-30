@@ -44,5 +44,8 @@
     "site": 200,
     "download": 200
   },
-  "cleanup_errors": []
+  "cleanup_errors": [],
+  "executed_from_dirty_worktree": true,
+  "implementation_recorded_in_commit": "040c18c3ca0914e2ab5c9a820641028cc3558341",
+  "metering_scope": "Successful direct SQL including migrations; excludes Worker-induced, failed-query and other account usage"
 }
