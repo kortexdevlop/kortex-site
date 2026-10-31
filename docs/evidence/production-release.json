@@ -2,7 +2,7 @@
   "schema_version": 1,
   "phases": {
     "deploy": {
-      "date": "2026-10-31T21:03:08.018Z",
+      "date": "2026-10-31T22:42:31.407Z",
       "origins": [
         "https://api.kortex.site",
         "https://run.kortex.site",
@@ -48,9 +48,9 @@
       "signing_key_id": "production-release-1"
     },
     "channels": {
-      "date": "2026-10-31T18:20:27.824Z",
-      "sequence": 2,
-      "expires": 1795976427461,
+      "date": "2026-10-31T22:41:28.668Z",
+      "sequence": 4,
+      "expires": 1795992088277,
       "runtime_version": "1.0.2",
       "bundle_sha256": "e139eba106eff5624ca66b8f103dc7bf00a6a469b1924a9ccf94c3f232268bee",
       "desktop_in_stable_channel": false
