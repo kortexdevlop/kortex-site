@@ -9,3 +9,6 @@ Voir [rapport détaillé](DEPLOY_V1_0_0.md) et [preuve](../../infra/production-r
 Reste : Préparation production complète, RC et CI cohérentes avant déploiement. Aucun gel ni approbation humaine ne sont inventés. Périmètre Windows x64 / Chromium-WebView2 ; DNS et messagerie conservés.
 
 Actualisation : les stockages production et leur schéma ont été provisionnés dans la préparation 22.0. La publication 22.1 reste non exécutée : aucun Worker production, tag ou bascule DNS. Les configurations et le moniteur préparés ne valent pas activation.
+
+## Exécution (2026-10-31)
+Livraison exécutée avec scripts/production-release.mjs : domaines personnalisés, Workers, cinq outils signés, canal Runtime stable, installateur Windows sur downloads.kortex.site. Preuve : docs/evidence/production-release.json. Voir docs/runbooks/trust-refresh.md pour le renouvellement obligatoire des documents signés.
