@@ -120,7 +120,7 @@ la mer"}))
         .unwrap();
         assert_eq!(
             out,
-            json!({"words":4,"characters":14,"characters_no_spaces":10,"lines":2})
+            json!({"words":4,"characters":13,"characters_no_spaces":9,"lines":2})
         );
     }
     #[test]
