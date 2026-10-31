@@ -1,4 +1,5 @@
 # Police du titre de l’espace de travail
+## Geist (design épuré)Geist et Geist Mono variables, sous-ensemble latin, issues des paquets npm @fontsource-variable/geist et @fontsource-variable/geist-mono. Licence SIL OFL 1.1 jointe dans Geist-LICENSE.txt. Hébergées localement, aucun appel externe.
 
 Roboto variable, fichier original `Roboto[wdth,wght].ttf` du dépôt Google Fonts :
 https://github.com/google/fonts/tree/main/ofl/roboto

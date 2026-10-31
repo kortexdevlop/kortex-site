@@ -12,17 +12,18 @@
   --spacing-16: 64px;
   --spacing-20: 80px;
   --spacing-24: 96px;
-  --radius-small: 8px;
-  --radius-medium: 16px;
-  --radius-large: 24px;
+  --radius-small: 10px;
+  --radius-medium: 20px;
+  --radius-large: 28px;
   --radius-pill: 999px;
-  --shadow-soft: 0 8px 32px color-mix(in srgb, var(--foreground) 7%, transparent);
+  --shadow-soft: 0 0 0 1px color-mix(in srgb, var(--foreground) 7%, transparent), 0 24px 60px -30px color-mix(in srgb, var(--foreground) 35%, transparent);
   --shadow-focus: 0 0 0 4px color-mix(in srgb, var(--focus) 18%, transparent);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body: 1rem;
   --font-small: 0.875rem;
   --font-display: clamp(2.5rem, 5vw, 5rem);
   --font-leading: 1.6;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
   --layout-content: 1440px;
   --layout-control: 44px;
 }
@@ -68,15 +69,15 @@
 }
 :root, :root[data-theme="light"] {
   color-scheme: light;
-  --surface: #faf9f6;
+  --surface: #f3f4f7;
   --raised: #ffffff;
-  --foreground: #20201e;
-  --muted: #62625c;
-  --border: #deded6;
-  --control-border: #787870;
-  --accent: #275c43;
+  --foreground: #0e0f12;
+  --muted: #565a63;
+  --border: #e2e4e9;
+  --control-border: #7a7f89;
+  --accent: #0e0f12;
   --on-accent: #ffffff;
-  --focus: #245bba;
+  --focus: #2f5bd0;
   --card-peach: #f7e4d6;
   --card-lilac: #eae5f7;
   --card-mint: #e1eee4;
@@ -89,14 +90,14 @@
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --surface: #191b1a;
-  --raised: #242724;
-  --foreground: #f1f3ec;
-  --muted: #b9bdb3;
-  --border: #454b44;
-  --control-border: #8f998b;
-  --accent: #c5e6cc;
-  --on-accent: #193322;
+  --surface: #0e0f12;
+  --raised: #1a1c21;
+  --foreground: #f3f4f7;
+  --muted: #b4b8c1;
+  --border: #2c3037;
+  --control-border: #7a7f89;
+  --accent: #f3f4f7;
+  --on-accent: #0e0f12;
   --focus: #a5c7ff;
   --card-peach: #3c3027;
   --card-lilac: #322e40;
@@ -111,14 +112,14 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     color-scheme: dark;
-  --surface: #191b1a;
-  --raised: #242724;
-  --foreground: #f1f3ec;
-  --muted: #b9bdb3;
-  --border: #454b44;
-  --control-border: #8f998b;
-  --accent: #c5e6cc;
-  --on-accent: #193322;
+  --surface: #0e0f12;
+  --raised: #1a1c21;
+  --foreground: #f3f4f7;
+  --muted: #b4b8c1;
+  --border: #2c3037;
+  --control-border: #7a7f89;
+  --accent: #f3f4f7;
+  --on-accent: #0e0f12;
   --focus: #a5c7ff;
   --card-peach: #3c3027;
   --card-lilac: #322e40;

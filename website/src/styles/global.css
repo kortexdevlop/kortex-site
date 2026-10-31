@@ -1,3 +1,5 @@
+@font-face { font-family: 'Geist'; src: url('/fonts/Geist-latin.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Geist Mono'; src: url('/fonts/GeistMono-latin.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
 @import "tailwindcss";
 @import "./theme.css";
 
@@ -98,3 +100,13 @@ h3 { font-size: 1rem; font-weight: 650; margin-bottom: var(--spacing-2); }
 .site-footer p { margin: 0; }.footer-brand { font-weight: 700; color: var(--foreground); font-size: 1.25rem; letter-spacing: -.06em; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }
 }
+
+/* Design épuré : verre, halos et mouvement communs. */
+.glass { background: color-mix(in srgb, var(--raised) 68%, transparent); backdrop-filter: blur(40px) saturate(180%); border: 1px solid color-mix(in srgb, var(--raised) 80%, transparent); border-radius: var(--radius-medium); box-shadow: var(--shadow-soft); }
+.ambient { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.ambient::before, .ambient::after { content: ''; position: absolute; border-radius: 50%; filter: blur(130px); opacity: .5; }
+.ambient::before { top: -240px; left: 18%; width: 720px; height: 520px; background: oklch(.84 .1 250); animation: drift-a 24s ease-in-out infinite; }
+.ambient::after { top: 300px; right: -220px; width: 620px; height: 520px; background: oklch(.86 .09 320); animation: drift-b 28s ease-in-out infinite; }
+@keyframes drift-a { 50% { transform: translate(100px, 50px); } }
+@keyframes drift-b { 50% { transform: translate(-120px, -40px); } }
+@media (prefers-reduced-motion: reduce) { .ambient::before, .ambient::after { animation: none; } }

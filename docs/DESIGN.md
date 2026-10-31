@@ -63,3 +63,8 @@ La route /workspace réutilise l’enveloppe, les couleurs cyan/lilas, la typogr
 Huit fenêtres au plus, déplacement/poignée au pointeur et au clavier, minimisation, agrandissement et focus sans recharger les moteurs. Sous 700 px : une fenêtre visible, dock en onglets navigables avec flèches/Home/End ; aucun déplacement tactile imposé. Titres et contrôles nommés, annonce des états, focus visible. Dernier résultat local attaché à sa fenêtre ; paramètres/parcours dans un panneau repliable.
 
 La disposition seule est persistée ; recharger recrée les sessions et les permissions. Les données des outils et résultats restent éphémères. Le bureau V1 reste une page Web, distincte des services natifs Windows ; voir docs/evidence/workspace-gate.md. Captures inspectées à 1440×1100 et 390×844 ; absence de débordement contrôlée à 320 px. Axe zéro critique, contraste sérieux connu signalé : aucune conformité AA générale déclarée.
+
+
+## Design épuré — référence active du 31/10/2026
+
+Les maquettes « Kortex.site design épuré » du propriétaire remplacent la référence ci-dessus : Geist/Geist Mono, encre #0e0f12, fonds #f3f4f7 et #e9ebef, verre flouté, halos animés, grands arrondis. Les outils des maquettes sont des exemples ; seuls les outils réels sont affichés. Logique, contrats et architecture inchangés.
