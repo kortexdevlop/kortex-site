@@ -1,27 +1,27 @@
 {
-  "run_id": 41025444171,
-  "commit": "e7c03ad4a77b2c149427166c0b55d9b7a0728ab2",
+  "run_id": 41241903656,
+  "commit": "13bf54e3cff80cf2e6274c5f9df5cf62994856d1",
   "status": "completed",
   "conclusion": "success",
   "passed": true,
-  "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/41025444171",
+  "url": "https://github.com/kortexdevlop/kortex-site/actions/runs/41241903656",
   "jobs": [
-    {
-      "name": "quality (web)",
-      "conclusion": "success"
-    },
     {
       "name": "quality (native)",
       "conclusion": "success"
     },
     {
-      "name": "quality (security)",
+      "name": "quality (contracts)",
       "conclusion": "success"
     },
     {
-      "name": "quality (contracts)",
+      "name": "quality (web)",
+      "conclusion": "success"
+    },
+    {
+      "name": "quality (security)",
       "conclusion": "success"
     }
   ],
-  "scope": "Windows x64 / Chromium-WebView2; legal/production setup changes added later require their own validation"
+  "scope": "Windows x64 / Chromium-WebView2"
 }

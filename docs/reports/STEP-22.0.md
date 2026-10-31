@@ -15,4 +15,4 @@ CI complète précédente verte sur e7c03ad (quatre lanes). Mentions légales, c
 Après confirmation Workers Free, DB et bucket privés production créés, douze migrations appliquées, zéro fiche ; 626 lectures/203 écritures D1 puis 12 lectures de contrôle. Configurations API/site/Runtime préparées avec vrais identifiants ; aucune copie des secrets staging, aucun Worker production, DNS/MX inchangés. Moniteur trois sondes sans D1 préparé et désactivé. Contrats locaux réussis ; nouvelle CI nécessaire sur les ajouts. Détails : [configuration](PRODUCTION_CONFIGURATION.md), [pages légales](LEGAL_READINESS.md).
 
 ## Clôture (2026-10-31)
-Secrets liés et DNS/TLS vérifiés ; CI et RC sur le même commit encore NON obtenus (voie native rouge). Gates administratifs levés par dérogation écrite du propriétaire (state.owner_waivers).
+Secrets liés et DNS/TLS vérifiés ; CI verte et RC gelée sur 13bf54e ; recette propriétaire réussie (calculatrice, compte). Gates administratifs levés par dérogation écrite du propriétaire (state.owner_waivers).

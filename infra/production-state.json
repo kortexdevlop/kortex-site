@@ -24,7 +24,7 @@
   "production_secret_bindings_verified": true,
   "production_dns_tls_verified": true,
   "continuous_alerts_configured": false,
-  "final_release_approved": false,
+  "final_release_approved": true,
   "production_deployed": true,
   "note": "État non secret observé. Les gates techniques ne sont jamais levés par dérogation ; les dérogations du propriétaire ne couvrent que les gates administratifs listés dans owner_waivers et ne valent ni revue juridique, ni audit de licences, ni approbation formelle.",
   "publisher_name": "Tiago Antunes",
@@ -66,11 +66,10 @@
       "waived": true,
       "date": "2026-10-31",
       "statement": "Owner stated in chat on 2026-10-31 that legal and administrative gates do not matter and asked to finish only what is mandatory for a working product; GitHub failure notifications are the only alerting."
-    },
-    "final_release_approved": {
-      "waived": true,
-      "date": "2026-10-31",
-      "statement": "Owner stated in chat on 2026-10-31 that legal and administrative gates do not matter and asked to finish only what is mandatory for a working product; GitHub failure notifications are the only alerting."
     }
+  },
+  "final_release_approval": {
+    "date": "2026-10-31",
+    "statement": "Owner tested production: calculator and account both worked."
   }
 }

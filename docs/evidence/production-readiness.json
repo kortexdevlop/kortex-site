@@ -1,19 +1,15 @@
 {
   "schema_version": 1,
-  "date": "2026-10-31T18:40:26.006Z",
-  "ready": false,
-  "blockers": [
-    "RC_NOT_FROZEN",
-    "CI_SAME_COMMIT"
-  ],
+  "date": "2026-10-31T21:25:48.645Z",
+  "ready": true,
+  "blockers": [],
   "budget_eur_per_month": 0,
   "production_deployed": true,
   "waived_gates": [
     "billing_free_only_verified",
     "legal_terms_reviewed",
     "dependency_licenses_reviewed",
-    "continuous_alerts_configured",
-    "final_release_approved"
+    "continuous_alerts_configured"
   ],
   "scope": "Windows x64 / Chromium-WebView2"
 }
