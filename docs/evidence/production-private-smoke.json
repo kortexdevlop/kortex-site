@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-30T09:13:31.529Z",
+  "passed": true,
+  "checks": [
+    {
+      "binding": "API_WORKER",
+      "path": "/api/v1/health",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "binding": "SITE_WORKER",
+      "path": "/api/v1/auth/options",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "binding": "SITE_WORKER",
+      "path": "/health.json",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "binding": "RUN_WORKER",
+      "path": "/health.json",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "scope": "Authenticated service bindings, no public DNS, static health/auth options only",
+  "d1_queries": 0,
+  "proxy_disposed": true
+}

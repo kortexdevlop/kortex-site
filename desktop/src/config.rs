@@ -9,12 +9,23 @@ pub struct Config {
 }
 impl Config {
     pub fn load() -> Result<Self, String> {
-        let api = std::env::var("KORTEX_DESKTOP_API_ORIGIN")
-            .unwrap_or_else(|_| "https://kortex-api-staging.userpgl.workers.dev".into());
+        let api = std::env::var("KORTEX_DESKTOP_API_ORIGIN").unwrap_or_else(|_| {
+            option_env!("KORTEX_DESKTOP_BUILD_API_ORIGIN")
+                .unwrap_or("https://kortex-api-staging.userpgl.workers.dev")
+                .into()
+        });
         let channel = validate_origin(&api)?;
         let data_dir = std::env::var_os("KORTEX_DESKTOP_DATA_DIR")
             .map(PathBuf::from)
-            .or_else(|| dirs::data_local_dir().map(|p| p.join("Kortex")))
+            .or_else(|| {
+                dirs::data_local_dir().map(|p| {
+                    p.join(if channel == "production" {
+                        "KortexProduction"
+                    } else {
+                        "Kortex"
+                    })
+                })
+            })
             .ok_or("Dossier personnel indisponible.")?;
         let trust_path = std::env::var_os("KORTEX_DESKTOP_TRUST")
             .map(PathBuf::from)

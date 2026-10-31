@@ -11,9 +11,11 @@ pub fn root(c: &Config) -> Result<RootKey, String> {
     let path = c.trust_path.with_file_name("revocation-root.json");
     let bytes = if path.exists() {
         paths::read(&path, 4096)?
+    } else if c.channel == "production" {
+        include_bytes!("../../infra/trust/revocation-production-root.json").to_vec()
     } else {
         if c.channel != "staging" {
-            return Err("Racine de révocation production non configurée.".into());
+            return Err("Canal de révocation inconnu.".into());
         }
         include_bytes!("../../infra/trust/revocation-root.json").to_vec()
     };

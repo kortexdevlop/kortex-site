@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-30T08:53:23.574Z",
+  "passed": true,
+  "root_id": "production-root-5a6297f93d29",
+  "release_key_id": "production-release-1",
+  "independent_from_staging": true,
+  "root_private_key_exported": false,
+  "protected_operator_slots": [
+    "revocations-production.dpapi",
+    "release-production.dpapi"
+  ],
+  "revocation_valid_until": 1793436802565,
+  "runtime_published": false
+}

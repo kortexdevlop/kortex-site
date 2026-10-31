@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-30T09:06:21.210Z",
+  "private_preparation": true,
+  "public_release": false,
+  "dns_changed": false,
+  "mail_changed": false,
+  "private_services": [
+    {
+      "kind": "api",
+      "worker": "kortex-api-production",
+      "workers_dev_enabled": false,
+      "preview_enabled": false
+    },
+    {
+      "kind": "runtime",
+      "worker": "kortex-run-production",
+      "workers_dev_enabled": false,
+      "preview_enabled": false
+    },
+    {
+      "kind": "website",
+      "worker": "kortex-web-production",
+      "workers_dev_enabled": false,
+      "preview_enabled": false
+    }
+  ],
+  "secret_names": [
+    "CURSOR_SIGNING_KEY",
+    "SESSION_HMAC_SECRET",
+    "PASSWORD_PEPPER"
+  ],
+  "secret_values_exported": false,
+  "passed": true
+}

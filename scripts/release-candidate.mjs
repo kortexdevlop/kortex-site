@@ -13,9 +13,9 @@ export function evaluateCandidate(input){
   if(!/^[a-f0-9]{64}$/.test(input.artifacts?.[name]?.sha256??''))blockers.push('artifact_'+name);
   if(input.artifacts?.[name]?.source_commit!==input.commit)blockers.push('artifact_source_'+name);
  }
- if(input.windows_code_signed!==true)blockers.push('windows_code_signing');
+ if(input.windows_code_signed!==true&&input.owner_decisions?.windows_authenticode_deferred!==true)blockers.push('windows_code_signing');
  if(input.human_approved!==true)blockers.push('human_approval');
- return {schema_version:1,date:new Date().toISOString(),commit:input.commit??null,scope:input.scope??null,release_candidate:blockers.length===0,production_ready:false,blockers,evidence:input};
+ return {schema_version:1,date:new Date().toISOString(),commit:input.commit??null,scope:input.scope??null,release_candidate:blockers.length===0,production_ready:false,authenticode_deferred:input.windows_code_signed!==true&&input.owner_decisions?.windows_authenticode_deferred===true,blockers,evidence:input};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  const input=JSON.parse(readFileSync(process.argv[2]||'target/ci-reports/candidate-input.json','utf8')),out=process.argv[3]||'target/ci-reports/release-candidate.json';

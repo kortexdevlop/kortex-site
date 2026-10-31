@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-30T09:10:14.545Z",
+  "passed": false,
+  "checks": [
+    {
+      "binding": "API_WORKER",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "binding": "AUTH_WORKER",
+      "status": 404,
+      "passed": false
+    },
+    {
+      "binding": "SITE_WORKER",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "binding": "RUN_WORKER",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "scope": "Authenticated service bindings, no public DNS, static health/auth options only",
+  "d1_queries": 0,
+  "proxy_disposed": true
+}

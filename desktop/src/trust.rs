@@ -12,6 +12,11 @@ pub fn select(c: &Config, d: &Descriptor) -> Result<(HostTrust, Vec<u8>), String
     } else if c.channel == "staging" {
         serde_json::from_str(include_str!("../assets/staging-trust.json"))
             .map_err(|_| "Clés de test indisponibles.")?
+    } else if c.channel == "production" {
+        vec![
+            serde_json::from_str(include_str!("../assets/production-trust.json"))
+                .map_err(|_| "Clés de production indisponibles.")?,
+        ]
     } else {
         return Err("Les clés publiques de ce canal ne sont pas configurées.".into());
     };

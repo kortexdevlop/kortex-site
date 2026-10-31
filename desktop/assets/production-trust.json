@@ -1,0 +1,24 @@
+{
+  "root": {
+    "id": "production-root-5a6297f93d29",
+    "public_key_base64": "J029vPZUbodkvUu9DXIZnmvNal+LXUmGzPR2jLNIba4="
+  },
+  "document": {
+    "schema_version": 1,
+    "version": 1,
+    "issued_at": 1793350402565,
+    "expires": 1801126403565,
+    "root_key_id": "production-root-5a6297f93d29",
+    "keys": [
+      {
+        "id": "production-release-1",
+        "public_key_base64": "TMwKLM/8V9wMYwp8KHdAOYQb+Prjr50GMBEQ7JOabYs=",
+        "not_before": 1793350402565,
+        "expires": 1801126403565,
+        "revoked": false
+      }
+    ],
+    "signature": "Umdp17/C8BaVvwLOEGlEXzNgeyKS11k0gf0F+J2Pwxgowp9sFQqsCvbyTSKARvbTHDJQFI6vwgAVFQSyLy4ZDw=="
+  },
+  "minimum_version": 1
+}

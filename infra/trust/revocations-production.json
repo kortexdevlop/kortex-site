@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "version": 1,
+  "issued_at": 1793350402565,
+  "valid_until": 1793436802565,
+  "root_key_id": "production-root-5a6297f93d29",
+  "revoked_keys": [],
+  "revoked_artifacts": [],
+  "signature": "TYIIKcb92tz/dqNeqeHMtLz+8UB9VIsd015AGnmQuogSu1qk8dLh2omCgHY+Z4WBHDFYBOGZQu99wN8on3JFCA=="
+}

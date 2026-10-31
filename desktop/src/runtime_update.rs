@@ -11,12 +11,12 @@ struct Cache {
     seen: u64,
 }
 pub fn check(c: &Config, api: &Api) -> Result<Option<Desktop>, String> {
-    if c.channel != "staging" {
-        return Err("Le canal stable Kortex n’est pas encore publié.".into());
-    }
-    let root: RootKey =
-        serde_json::from_str(include_str!("../../infra/trust/release-staging-root.json"))
-            .map_err(|_| "Racine Runtime invalide.")?;
+    let root_text = match c.channel.as_str() {
+        "staging" => include_str!("../../infra/trust/release-staging-root.json"),
+        "production" => include_str!("../../infra/trust/release-production-root.json"),
+        _ => return Err("Canal Runtime inconnu.".into()),
+    };
+    let root: RootKey = serde_json::from_str(root_text).map_err(|_| "Racine Runtime invalide.")?;
     let path = c.data_dir.join("runtime-channels").join(format!(
         "{}.json",
         kortex_verify::sha256(c.api_origin.as_bytes())
@@ -67,7 +67,12 @@ pub fn check(c: &Config, api: &Api) -> Result<Option<Desktop>, String> {
         })
         .map_err(|_| "Cache Runtime invalide.")?,
     )?;
-    let Some(d) = envelope.document.channels.staging.and_then(|r| r.desktop) else {
+    let channel = if c.channel == "production" {
+        envelope.document.channels.stable
+    } else {
+        envelope.document.channels.staging
+    };
+    let Some(d) = channel.and_then(|r| r.desktop) else {
         return Ok(None);
     };
     if crate::versions::newer(&d.version, env!("CARGO_PKG_VERSION"))? {
