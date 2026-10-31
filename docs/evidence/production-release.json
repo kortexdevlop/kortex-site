@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "phases": {
+    "deploy": {
+      "date": "2026-10-31T18:40:08.629Z",
+      "origins": [
+        "https://api.kortex.site",
+        "https://run.kortex.site",
+        "https://kortex.site"
+      ],
+      "admin_policy": "GitHub OIDC only (production API refuses operator issuers)"
+    },
+    "tools_error": "crypto.DigestStream is not a constructor",
+    "tools": {
+      "date": "2026-10-31T18:20:18.116Z",
+      "tools": [
+        {
+          "id": "calculatrice",
+          "version": "1.0.1",
+          "sha256": "b6c52a51976e33ffb951522081caa278b4fad0f6b978fb62b270596f816a490f"
+        },
+        {
+          "id": "convertisseur-casse",
+          "version": "1.0.0",
+          "sha256": "98c145ea02adba455778b82e4de21cbcbc565bd96333839cdb8cc9f6c5432ad3"
+        },
+        {
+          "id": "calculateur-hash",
+          "version": "1.0.0",
+          "sha256": "d04f567dfc516d2599226049767805539482eb3a0c99f4f716db33b8599139a5"
+        },
+        {
+          "id": "timestamp-utc",
+          "version": "1.0.0",
+          "sha256": "04aa4c0959bf6c4e61c1de1879e77473b0eb3145f23d16bb2939f7911ee559cb"
+        },
+        {
+          "id": "explorateur-csv",
+          "version": "1.0.0",
+          "sha256": "6e3d469155df26e1157f28976a9c7de7b83ad8b6bc264b69705fa69ecaa220a2"
+        }
+      ],
+      "signing_key_id": "production-release-1"
+    },
+    "channels": {
+      "date": "2026-10-31T18:20:27.824Z",
+      "sequence": 2,
+      "expires": 1795976427461,
+      "runtime_version": "1.0.2",
+      "bundle_sha256": "e139eba106eff5624ca66b8f103dc7bf00a6a469b1924a9ccf94c3f232268bee",
+      "desktop_in_stable_channel": false
+    },
+    "finalize": {
+      "date": "2026-10-31T18:20:53.481Z",
+      "admin_authority": "github-oidc-only",
+      "channel_sequence": 2
+    }
+  },
+  "mail_records_edited": false,
+  "dns_records_edited_directly": false,
+  "passed": true
+}

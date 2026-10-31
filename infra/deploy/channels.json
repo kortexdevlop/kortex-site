@@ -27,9 +27,11 @@
     "budget_eur": 0,
     "ai_enabled": false,
     "google_enabled": false,
-    "dns_changes": false,
+    "dns_changes": true,
     "mail_changes": false,
-    "worker_deployments": false,
-    "database_id": "331d46e7-009a-4e38-b5d2-1e262485dc92"
+    "worker_deployments": true,
+    "database_id": "331d46e7-009a-4e38-b5d2-1e262485dc92",
+    "downloads_bucket": "kortex-downloads-production",
+    "downloads_origin": "https://downloads.kortex.site"
   }
 }

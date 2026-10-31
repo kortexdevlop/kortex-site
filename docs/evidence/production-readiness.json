@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "date": "2026-10-30T08:42:53.838Z",
+  "date": "2026-10-31T18:40:26.006Z",
   "ready": false,
   "blockers": [
-    "FREE_ONLY_BILLING_UNVERIFIED",
-    "LEGAL_TERMS",
-    "DEPENDENCY_LICENSE_REVIEW",
-    "PRODUCTION_SECRETS",
-    "PRODUCTION_DNS_TLS",
-    "ALERTING",
-    "FINAL_APPROVAL",
     "RC_NOT_FROZEN",
     "CI_SAME_COMMIT"
   ],
   "budget_eur_per_month": 0,
-  "production_deployed": false,
+  "production_deployed": true,
+  "waived_gates": [
+    "billing_free_only_verified",
+    "legal_terms_reviewed",
+    "dependency_licenses_reviewed",
+    "continuous_alerts_configured",
+    "final_release_approved"
+  ],
   "scope": "Windows x64 / Chromium-WebView2"
 }

@@ -12,8 +12,11 @@ const {detail,origin}=Astro.props;
 </section>
 <script>
 import {verifyRuntime,requireRuntime} from '../../../shared/typescript/src/runtime';
-import runtimeRoot from '../../../infra/trust/release-staging-root.json';
+import stagingRoot from '../../../infra/trust/release-staging-root.json';
+import productionRoot from '../../../infra/trust/release-production-root.json';
 import {connectRuntime} from '../lib/runtime-bridge';
+// Production builds pin only the independent production root; every other build pins the staging root.
+const runtimeRoot=import.meta.env.PUBLIC_KORTEX_TRUST==='production'?productionRoot:stagingRoot;
 const viewer=document.querySelector<HTMLElement>('[data-runtime-viewer]');
 if(viewer?.dataset.origin){const frame=viewer.querySelector('iframe')!;const status=viewer.querySelector<HTMLElement>('[data-runtime-status]')!;
 const labels:Record<string,string>={connecting:'Connexion à l’espace sécurisé…',loading:'Vérification et chargement de l’outil…',ready:'L’outil est prêt.',error:'Impossible d’ouvrir cet outil. Rechargez la page pour réessayer.'};

@@ -1,5 +1,5 @@
 {
-  "enabled": false,
+  "enabled": true,
   "max_requests_per_run": 3,
   "targets": [
     {"service":"kortex-api","url":"https://api.kortex.site/api/v1/health"},

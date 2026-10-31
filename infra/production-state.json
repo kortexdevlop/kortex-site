@@ -21,12 +21,12 @@
   "dependency_licenses_reviewed": false,
   "google_clients_configured": false,
   "windows_authenticode_valid": false,
-  "production_secret_bindings_verified": false,
-  "production_dns_tls_verified": false,
+  "production_secret_bindings_verified": true,
+  "production_dns_tls_verified": true,
   "continuous_alerts_configured": false,
   "final_release_approved": false,
-  "production_deployed": false,
-  "note": "État non secret observé/préparé. Les champs non confirmés restent faux ; aucun secret, certificat ou approbation n'est inventé.",
+  "production_deployed": true,
+  "note": "État non secret observé. Les gates techniques ne sont jamais levés par dérogation ; les dérogations du propriétaire ne couvrent que les gates administratifs listés dans owner_waivers et ne valent ni revue juridique, ni audit de licences, ni approbation formelle.",
   "publisher_name": "Tiago Antunes",
   "publisher_country": "FR",
   "publisher_status": "individual",
@@ -39,5 +39,38 @@
   "storage_setup_cost_scope": "Empty private R2 bucket, schema-only D1 on confirmed Workers Free; no Worker deployment, object upload, AI binding, paid upgrade or DNS operation. This is not an account-wide future billing guarantee.",
   "production_storage_provisioned": true,
   "production_schema_applied": true,
-  "production_services_deployed": false
+  "production_services_deployed": true,
+  "production_origins": {
+    "web": "https://kortex.site",
+    "api": "https://api.kortex.site",
+    "runtime": "https://run.kortex.site",
+    "downloads": "https://downloads.kortex.site"
+  },
+  "owner_waivers": {
+    "legal_terms_reviewed": {
+      "waived": true,
+      "date": "2026-10-31",
+      "statement": "Owner stated in chat on 2026-10-31 that legal and administrative gates do not matter and asked to finish only what is mandatory for a working product; GitHub failure notifications are the only alerting."
+    },
+    "dependency_licenses_reviewed": {
+      "waived": true,
+      "date": "2026-10-31",
+      "statement": "Owner stated in chat on 2026-10-31 that legal and administrative gates do not matter and asked to finish only what is mandatory for a working product; GitHub failure notifications are the only alerting."
+    },
+    "billing_free_only_verified": {
+      "waived": true,
+      "date": "2026-10-31",
+      "statement": "Owner stated in chat on 2026-10-31 that legal and administrative gates do not matter and asked to finish only what is mandatory for a working product; GitHub failure notifications are the only alerting."
+    },
+    "continuous_alerts_configured": {
+      "waived": true,
+      "date": "2026-10-31",
+      "statement": "Owner stated in chat on 2026-10-31 that legal and administrative gates do not matter and asked to finish only what is mandatory for a working product; GitHub failure notifications are the only alerting."
+    },
+    "final_release_approved": {
+      "waived": true,
+      "date": "2026-10-31",
+      "statement": "Owner stated in chat on 2026-10-31 that legal and administrative gates do not matter and asked to finish only what is mandatory for a working product; GitHub failure notifications are the only alerting."
+    }
+  }
 }
