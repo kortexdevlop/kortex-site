@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29T15:15:06.400Z",
+  "date": "2026-10-31T22:12:14.938Z",
   "source_sha256": "22b72dd91b43675643c8bf996074690916bec86b5ebd55d785aeff2fae603067",
   "human_approved": false,
   "rows": [
@@ -48,9 +48,9 @@
     {
       "name": "header",
       "actual": {
-        "x": 498,
-        "y": 26,
-        "width": 2182,
+        "x": 499,
+        "y": 27,
+        "width": 2180,
         "height": 126
       },
       "expected": {
@@ -60,9 +60,9 @@
         "height": 126
       },
       "deviations": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
+        "x": 1,
+        "y": 1,
+        "width": 2,
         "height": 0
       }
     },
@@ -70,7 +70,7 @@
       "name": "composer",
       "actual": {
         "x": 815,
-        "y": 458,
+        "y": 459,
         "width": 1520,
         "height": 280
       },
@@ -82,7 +82,7 @@
       },
       "deviations": {
         "x": 0,
-        "y": 0,
+        "y": 1,
         "width": 0,
         "height": 0
       }
@@ -90,9 +90,9 @@
     {
       "name": "firstRecent",
       "actual": {
-        "x": 578,
-        "y": 1008,
-        "width": 479,
+        "x": 579,
+        "y": 1009,
+        "width": 478.5,
         "height": 132
       },
       "expected": {
@@ -102,18 +102,18 @@
         "height": 132
       },
       "deviations": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
+        "x": 1,
+        "y": 1,
+        "width": 0.5,
         "height": 0
       }
     },
     {
       "name": "firstTool",
       "actual": {
-        "x": 578,
-        "y": 1320,
-        "width": 479,
+        "x": 579,
+        "y": 1321,
+        "width": 478.5,
         "height": 304
       },
       "expected": {
@@ -123,18 +123,18 @@
         "height": 304
       },
       "deviations": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
+        "x": 1,
+        "y": 1,
+        "width": 0.5,
         "height": 0
       }
     },
     {
       "name": "connection",
       "actual": {
-        "x": 50,
-        "y": 1414,
-        "width": 396,
+        "x": 51,
+        "y": 1413,
+        "width": 394,
         "height": 176
       },
       "expected": {
@@ -144,9 +144,9 @@
         "height": 176
       },
       "deviations": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
+        "x": 1,
+        "y": 1,
+        "width": 2,
         "height": 0
       }
     }

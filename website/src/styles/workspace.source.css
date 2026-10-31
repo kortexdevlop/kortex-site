@@ -89,3 +89,5 @@
 .ai-assistant button { border: 0; border-radius: 12px; padding: 10px 16px; background: linear-gradient(180deg,#2c3037,#0e0f12); color: #fff; font-weight: 500; }
 .ai-assistant button:disabled { opacity: .5; }
 .ai-consent,.ai-result,.ai-step,.ai-local,.ai-runtime { border-radius: 18px; padding: 14px 16px; margin-block: 10px; background: rgba(255,255,255,.72); box-shadow: 0 0 0 1px rgba(14,15,18,.05); }
+.ws-sidebar-bottom nav a { display: inline-block; min-height: 24px; line-height: 24px; }
+.workspace .ai-assistant button,.workspace .ai-assistant .ws-primary-link { background: #0e0f12 !important; color: #fff !important; }

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29T15:15:04.802Z",
+  "date": "2026-10-31T22:12:12.414Z",
   "engine": "axe-core WCAG 2.2 AA tags; Chromium; anonymous public flows; not a full screen-reader certification",
   "rows": [
     {
@@ -10,19 +10,6 @@
       },
       "violations": [],
       "incomplete_rules": [
-        "aria-prohibited-attr",
-        "color-contrast"
-      ]
-    },
-    {
-      "label": "/ bottom",
-      "viewport": {
-        "width": 1632,
-        "height": 1000
-      },
-      "violations": [],
-      "incomplete_rules": [
-        "aria-prohibited-attr",
         "color-contrast"
       ]
     },
@@ -157,22 +144,7 @@
       },
       "violations": [],
       "incomplete_rules": [
-        "aria-prohibited-attr",
-        "color-contrast",
-        "label-content-name-mismatch"
-      ]
-    },
-    {
-      "label": "/ bottom",
-      "viewport": {
-        "width": 1024,
-        "height": 1000
-      },
-      "violations": [],
-      "incomplete_rules": [
-        "aria-prohibited-attr",
-        "color-contrast",
-        "label-content-name-mismatch"
+        "color-contrast"
       ]
     },
     {
@@ -316,22 +288,7 @@
       },
       "violations": [],
       "incomplete_rules": [
-        "aria-prohibited-attr",
-        "color-contrast",
-        "label-content-name-mismatch"
-      ]
-    },
-    {
-      "label": "/ bottom",
-      "viewport": {
-        "width": 768,
-        "height": 1000
-      },
-      "violations": [],
-      "incomplete_rules": [
-        "aria-prohibited-attr",
-        "color-contrast",
-        "label-content-name-mismatch"
+        "color-contrast"
       ]
     },
     {
@@ -475,22 +432,7 @@
       },
       "violations": [],
       "incomplete_rules": [
-        "aria-prohibited-attr",
-        "color-contrast",
-        "label-content-name-mismatch"
-      ]
-    },
-    {
-      "label": "/ bottom",
-      "viewport": {
-        "width": 390,
-        "height": 844
-      },
-      "violations": [],
-      "incomplete_rules": [
-        "aria-prohibited-attr",
-        "color-contrast",
-        "label-content-name-mismatch"
+        "color-contrast"
       ]
     },
     {
@@ -634,6 +576,7 @@
       },
       "violations": [],
       "incomplete_rules": [
+        "color-contrast",
         "label-content-name-mismatch"
       ]
     },
@@ -656,9 +599,7 @@
       },
       "violations": [],
       "incomplete_rules": [
-        "aria-prohibited-attr",
-        "color-contrast",
-        "label-content-name-mismatch"
+        "color-contrast"
       ]
     },
     {

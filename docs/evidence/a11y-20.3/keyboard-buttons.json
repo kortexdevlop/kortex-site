@@ -1,8 +1,8 @@
 [
   {
     "route": "/",
-    "enabled_visible_buttons": 25,
-    "tab_reached": 25
+    "enabled_visible_buttons": 0,
+    "tab_reached": 0
   },
   {
     "route": "/tools",
