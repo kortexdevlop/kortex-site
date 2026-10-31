@@ -28,14 +28,14 @@
   --layout-control: 44px;
 }
 :root[data-workspace] {
-  --ws-outer: #eef0f3;
-  --ws-ink: #111214;
-  --ws-secondary: #696b6e;
-  --ws-muted: #686c70;
-  --ws-placeholder: #6e7378;
-  --ws-line: #e7e9ec;
-  --ws-active: #e7e8ea;
-  --ws-cyan: #d8f4ff;
+  --ws-outer: #e9ebef;
+  --ws-ink: #0e0f12;
+  --ws-secondary: #565a63;
+  --ws-muted: #565a63;
+  --ws-placeholder: #6b6f78;
+  --ws-line: rgba(14,15,18,.07);
+  --ws-active: rgba(14,15,18,.07);
+  --ws-cyan: #cfe0fb;
   --ws-lilac: #f8eefe;
   --ws-image-icon: #d4f0ff;
   --ws-image-ink: #176c8d;
@@ -55,7 +55,7 @@
   --ws-media-dot: #d080b6;
   --ws-security-dot: #9793e6;
   --ws-design-dot: #b0a03c;
-  --ws-sidebar-color: #f8f9fb;
+  --ws-sidebar-color: rgba(255,255,255,.55);
   --ws-frame: calc(26 * var(--ws-unit));
   --ws-gap: calc(28 * var(--ws-unit));
   --ws-sidebar: calc(444 * var(--ws-unit));
