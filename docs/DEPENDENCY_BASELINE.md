@@ -20,7 +20,7 @@
 
 Windows x64 : contrôles ci-dessus. Linux/macOS : non vérifiés. Chrome/Firefox/WebKit : non vérifiés. Aucune compatibilité globale déclarée avant les prototypes correspondants.
 
-Sources : https://blog.rust-lang.org/ ; https://crates.io/crates/dioxus/0.7.10 ; https://crates.io/crates/wasmtime/50.0.0 ; https://docs.astro.build/en/guides/deploy/cloudflare/ ; métadonnées npm relevées avec pnpm view.
+Sources : https://blog.rust-lang.org/ ; https://crates.io/crates/dioxus/0.7.10 ; https://crates.io/crates/wasmtime/50.0.1 ; https://docs.astro.build/en/guides/deploy/cloudflare/ ; métadonnées npm relevées avec pnpm view.
 
 Politique : mises à jour explicites avec résolution et contrôles ; aucun latest en CI. Les versions applicatives relevées restent candidates tant que leur compilation n'est pas prouvée. Cargo.lock est vide car aucune crate active. Ne pas présenter ce lock comme une résolution de Wasmtime/Dioxus.
 

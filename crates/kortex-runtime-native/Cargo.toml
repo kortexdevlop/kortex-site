@@ -10,7 +10,7 @@ performance-measurements=[]
 kortex-core={path="../kortex-core"}
 kortex-abi={path="../kortex-abi"}
 serde_json="=1.0.154"
-wasmtime={version="=50.0.0",default-features=false,features=["runtime","cranelift","std","wat"]}
+wasmtime={version="=50.0.1",default-features=false,features=["runtime","cranelift","std","wat"]}
 zip={version="=9.0.0",default-features=false,features=["deflate"]}
 ed25519-dalek="=2.2.0"
 sha2="=0.10.9"
