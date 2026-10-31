@@ -1,14 +1,25 @@
 ---
 import {env} from 'cloudflare:workers';
-import WorkspaceLayout from '../layouts/WorkspaceLayout.astro';
-import Workspace from '../components/Workspace.astro';
-import {workspaceTools} from '../lib/workspace';
+import '../styles/global.css';
+import '../styles/landing.css';
+import SiteNav from '../components/SiteNav.astro';
+import Footer from '../components/Footer.astro';
 import {canonical} from '../lib/urls';
 import {ApiClient} from '../lib/api-client';
 export const prerender=false;
-let available=false;let tools:ReturnType<typeof workspaceTools>=[];let hasMore=false;
-try {const list=await new ApiClient(env.API_WORKER).listTools(new URLSearchParams({limit:'24',...(Astro.url.searchParams.get('q')?{q:Astro.url.searchParams.get('q')!.slice(0,100)}:{})}));tools=workspaceTools(list.items);hasMore=Boolean(list.next_cursor);available=true;}catch{}
-Astro.response.status=available?200:503;
-Astro.response.headers.set('Cache-Control','private, no-store');
+const q=Astro.url.searchParams.get('q');if(q)return Astro.redirect('/tools?q='+encodeURIComponent(q.slice(0,100)));
+let tools:Array<{id:string;name:string;summary:string}>=[];let available=false;
+try{tools=(await new ApiClient(env.API_WORKER).listTools(new URLSearchParams({limit:'24'}))).items;available=true}catch{}
+Astro.response.status=available?200:503;Astro.response.headers.set('Cache-Control','private, no-store');
+const title='Kortex — Tous vos outils. Un seul espace.',description='Trouvez vos outils et exécutez-les sur votre appareil avec Kortex.';
 ---
-<WorkspaceLayout description="Trouvez vos outils et exécutez-les sur votre appareil avec Kortex." indexable={available} canonicalUrl={available?canonical('/',env.WEB_ORIGIN||Astro.url.origin):undefined}><Workspace tools={tools} unavailable={!available} hasMore={hasMore}/></WorkspaceLayout>
+<!doctype html><html lang="fr" data-theme="light"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content={available?'index, follow':'noindex, nofollow'}/>{available&&<link rel="canonical" href={canonical('/',env.WEB_ORIGIN||Astro.url.origin)}/>}<title>{title}</title><meta name="description" content={description}/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/></head>
+<body class="landing-body"><div class="ambient" aria-hidden="true"></div><a class="skip-link" href="#main">Aller au contenu</a>
+<div class="landing"><div class="landing-dots" aria-hidden="true"></div><SiteNav/>
+<main id="main" tabindex="-1">
+<header class="hero"><h1><span>Tous vos outils.</span><span class="tint">Un seul espace.</span></h1><p>Utilisez vos outils directement dans votre navigateur, enchaînez-les dans des workflows, ou installez-les sur votre ordinateur avec Kortex Store.</p><div class="hero-actions"><a class="btn-dark" href="/workspace">Commencer gratuitement →</a><a class="btn-light" href="/telechargement">Télécharger Kortex Store</a></div><ul class="hero-facts"><li>Gratuit</li><li>Compte facultatif</li><li>Traitement local</li></ul></header>
+<section class="band" id="outils"><small>La bibliothèque</small><h2>{available?`${tools.length} outils pour le quotidien.`:'Vos outils pour le quotidien.'}</h2>{available?<div class="land-grid">{tools.map(t=><a class="land-card glass" href={`/tools/${encodeURIComponent(t.id)}`}><strong>{t.name}</strong><span>{t.summary}</span></a>)}</div>:<p role="status">Le catalogue est momentanément indisponible.</p>}</section>
+<section class="band" id="bureau"><small>Le Bureau</small><h2>Plusieurs outils. Une seule chaîne.</h2><div class="land-grid"><a class="land-card glass" href="/workspace"><strong>Un vrai bureau</strong><span>Ouvrez plusieurs outils dans des fenêtres isolées.</span></a><a class="land-card glass" href="/workflows"><strong>Workflows</strong><span>Enchaînez vos outils, chaque étape reste sous votre contrôle.</span></a><a class="land-card glass" href="/ai"><strong>Assistant</strong><span>Il propose, vous validez avant toute action.</span></a></div></section>
+<section class="band" id="store"><small>Application Windows</small><h2>Kortex Store. Vos outils, hors ligne.</h2><div class="hero-actions"><a class="btn-dark" href="/telechargement">Télécharger pour Windows</a></div></section>
+<section class="cta glass"><h2>Prêt quand vous l’êtes.</h2><div class="hero-actions"><a class="btn-dark" href="/workspace">Ouvrir l’espace de travail</a></div></section>
+</main><Footer/></div></body></html>

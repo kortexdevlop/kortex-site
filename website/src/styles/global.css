@@ -110,3 +110,6 @@ h3 { font-size: 1rem; font-weight: 650; margin-bottom: var(--spacing-2); }
 @keyframes drift-a { 50% { transform: translate(100px, 50px); } }
 @keyframes drift-b { 50% { transform: translate(-120px, -40px); } }
 @media (prefers-reduced-motion: reduce) { .ambient::before, .ambient::after { animation: none; } }
+body { font-family: var(--font-sans); }
+.site-footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); }
+.site-footer a { color: inherit; }

@@ -2,7 +2,7 @@
 import SearchField from './ui/SearchField.astro';
 interface Props { active?: 'tools' | 'apps' | 'download' | 'account'; preview?: boolean; }
 const { active, preview = false } = Astro.props;
-const links = [ ['tools', 'Outils', '/outils'], ['apps', 'Applications', '/applications'], ['download', 'Télécharger', '/telecharger'], ['account', 'Compte', '/account'] ];
+const links = [ ['tools', 'Outils', '/tools'], ['apps', 'Espace', '/workspace'], ['download', 'Télécharger', '/telechargement'], ['account', 'Compte', '/account'] ];
 ---
 <header class="site-header shell">
   <a class="brand" href={preview ? '#main' : '/'} aria-label="Kortex — accueil"><span class="brand-mark" aria-hidden="true">K</span><span>kortex<span class="brand-dot">.</span></span></a>
@@ -11,7 +11,7 @@ const links = [ ['tools', 'Outils', '/outils'], ['apps', 'Applications', '/appli
     <nav aria-label="Navigation principale" data-i18n-label="nav">
       {links.map(([key, label, href]) => <a href={preview ? `#${key}` : href} tabindex="0" data-i18n={key} aria-current={active === key ? 'page' : undefined}>{label}</a>)}
     </nav>
-    <SearchField id="global-search" action={preview ? '/__dev/components' : '/outils'} />
+    <SearchField id="global-search" action={preview ? '/__dev/components' : '/tools'} />
     <div class="preferences" role="group" aria-label="Préférences d’affichage" data-i18n-label="preferences">
       <label class="density"><span class="sr-only" data-i18n="density">Densité</span><select id="density" aria-label="Densité" data-i18n-label="density"><option value="simple" data-i18n="simple">Simple</option><option value="medium" selected data-i18n="medium">Moyenne</option><option value="pro" data-i18n="pro">Compacte</option></select></label>
       <button type="button" class="icon-button" id="theme-toggle" aria-label="Thème sombre" aria-pressed="false" data-i18n-label="dark">◐</button>
