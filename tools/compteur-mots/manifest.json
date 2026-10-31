@@ -1,0 +1,24 @@
+{
+  "format_version": "1.0",
+  "id": "compteur-mots",
+  "version": "1.0.0",
+  "name": "Compteur de mots",
+  "summary": "Comptez les mots, caractères et lignes d'un texte sur votre appareil.",
+  "description": "Comptez les mots, les caractères, les caractères hors espaces et les lignes d'un texte, sans réseau ni permission sensible. Limite de 32 Kio de texte.",
+  "category": "text",
+  "tags": [
+    "mots",
+    "texte",
+    "compteur"
+  ],
+  "seo": {
+    "title": "Compteur de mots — Kortex",
+    "description": "Comptez mots, caractères et lignes localement, sans envoi de données."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

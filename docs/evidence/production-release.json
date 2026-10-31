@@ -12,7 +12,7 @@
     },
     "tools_error": "crypto.DigestStream is not a constructor",
     "tools": {
-      "date": "2026-10-31T18:20:18.116Z",
+      "date": "2026-10-31T21:36:09.609Z",
       "tools": [
         {
           "id": "calculatrice",
@@ -38,6 +38,11 @@
           "id": "explorateur-csv",
           "version": "1.0.0",
           "sha256": "6e3d469155df26e1157f28976a9c7de7b83ad8b6bc264b69705fa69ecaa220a2"
+        },
+        {
+          "id": "compteur-mots",
+          "version": "1.0.0",
+          "sha256": "0af16d2506672375e99add45ac53f2d5c6d1c4b860d2d9ddee3f6af06a1a49f2"
         }
       ],
       "signing_key_id": "production-release-1"

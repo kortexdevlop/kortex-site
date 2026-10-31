@@ -1,0 +1,31 @@
+{
+  "contract_version": "1.0",
+  "tool_id": "compteur-mots",
+  "actions": [
+    {
+      "id": "count",
+      "description": "Compter les mots, caractères et lignes d'un texte",
+      "input_schema": {
+        "type": "object",
+        "properties": {"text": {"type": "string", "maxLength": 32768}},
+        "required": ["text"],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "words": {"type": "integer", "minimum": 0},
+          "characters": {"type": "integer", "minimum": 0},
+          "characters_no_spaces": {"type": "integer", "minimum": 0},
+          "lines": {"type": "integer", "minimum": 0}
+        },
+        "required": ["words", "characters", "characters_no_spaces", "lines"],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 3000
+    }
+  ]
+}

@@ -57,7 +57,7 @@ try{
   receipt.phases.deploy={date:new Date().toISOString(),origins:[p.api_origin,p.runtime_origin,p.web_origin],admin_policy:'GitHub OIDC only (production API refuses operator issuers)'};
  }
  if(phase==='tools'){
-  const seed=releaseSeed(),tools=['calculatrice','convertisseur-casse','calculateur-hash','timestamp-utc','explorateur-csv'],releases=[];
+  const seed=releaseSeed(),tools=process.argv.length>3?process.argv.slice(3):['calculatrice','convertisseur-casse','calculateur-hash','timestamp-utc','explorateur-csv'],releases=[];
   process.env.CI='true';process.env.KORTEX_SIGNING_KEY_ID=trust.keys.keys[0].id;process.env.KORTEX_SIGNING_KEY_SEED_BASE64=seed.toString('base64');
   try{for(const tool of tools)releases.push(prepareRelease({tool,out:resolve(out,'tools',tool),root:resolve(root,'infra/trust/release-production-root.json'),trust:resolve(root,'infra/trust/release-production-keys.json')}))}
   finally{seed.fill(0);delete process.env.KORTEX_SIGNING_KEY_SEED_BASE64;delete process.env.KORTEX_SIGNING_KEY_ID;delete process.env.CI}
@@ -79,7 +79,7 @@ try{
     published.push({id:release.tool_id,version:request.manifest.version,sha256:release.sha256});console.log('published '+release.tool_id)
    }
   }finally{if(platform)await platform.dispose();if(previousToken===undefined)delete process.env.CLOUDFLARE_API_TOKEN;else process.env.CLOUDFLARE_API_TOKEN=previousToken}
-  receipt.phases.tools={date:new Date().toISOString(),tools:published,signing_key_id:trust.keys.keys[0].id};
+  receipt.phases.tools={date:new Date().toISOString(),tools:[...(receipt.phases.tools?.tools??[]).filter(t=>!published.some(n=>n.id===t.id)),...published],signing_key_id:trust.keys.keys[0].id};
  }
  if(phase==='channels'){
   const version=await (await health(p.runtime_origin,'/version.json')).json(),keys=trust.keys,now=Date.now();

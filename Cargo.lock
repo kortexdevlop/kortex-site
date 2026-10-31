@@ -6175,6 +6175,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "tool-compteur-mots"
+version = "1.0.0"
+dependencies = [
+ "kortex-sdk",
+ "serde_json",
+]
+
+[[package]]
 name = "tool-convertisseur-casse"
 version = "1.0.0"
 dependencies = [
