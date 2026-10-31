@@ -10,6 +10,6 @@
 .virtual-workspace input:not([type=checkbox]),.virtual-workspace select,.virtual-workspace textarea{border-color:rgba(14,15,18,.14);border-radius:14px}.virtual-workspace textarea{font-family:var(--font-mono)}.virtual-workspace button{border-color:rgba(14,15,18,.1);border-radius:12px}
 .virtual-workspace .desk-primary{background:linear-gradient(180deg,#2c3037,#0e0f12);color:#fff;border:0}
 .desk-area{border-radius:20px;background:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.8)}
-.desk-window{border-radius:16px;border:1px solid rgba(255,255,255,.85);background:rgba(255,255,255,.9);backdrop-filter:blur(30px) saturate(180%);box-shadow:0 0 0 1px rgba(14,15,18,.07),0 30px 70px -24px rgba(14,15,18,.35)}
+.desk-window{border-radius:16px;border:1px solid rgba(255,255,255,.85);background:#fff;box-shadow:0 0 0 1px rgba(14,15,18,.07),0 30px 70px -24px rgba(14,15,18,.35)}
 .desk-dock{border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(30px) saturate(180%);box-shadow:0 0 0 1px rgba(14,15,18,.05),0 14px 40px -16px rgba(14,15,18,.18)}
 .desk-instance-result{border-top-color:rgba(14,15,18,.07)}

@@ -6,8 +6,8 @@
   },
   {
     "route": "/tools",
-    "enabled_visible_buttons": 19,
-    "tab_reached": 19
+    "enabled_visible_buttons": 18,
+    "tab_reached": 18
   },
   {
     "route": "/account",
@@ -16,17 +16,17 @@
   },
   {
     "route": "/ai",
-    "enabled_visible_buttons": 8,
-    "tab_reached": 8
+    "enabled_visible_buttons": 7,
+    "tab_reached": 7
   },
   {
     "route": "/workflows",
-    "enabled_visible_buttons": 13,
-    "tab_reached": 13
+    "enabled_visible_buttons": 12,
+    "tab_reached": 12
   },
   {
     "route": "/workspace",
-    "enabled_visible_buttons": 9,
-    "tab_reached": 9
+    "enabled_visible_buttons": 8,
+    "tab_reached": 8
   }
 ]

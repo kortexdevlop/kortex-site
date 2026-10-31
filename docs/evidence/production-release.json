@@ -59,7 +59,8 @@
       "date": "2026-10-31T18:20:53.481Z",
       "admin_authority": "github-oidc-only",
       "channel_sequence": 2
-    }
+    },
+    "deploy_error": "Wrangler deploy failed: \u001b[33m▲ \u001b[43;33m[\u001b[43;30mWARNING\u001b[43;33m]\u001b[0m \u001b[1mA fetch request failed, likely due to a connectivity issue.\u001b[0m\n\n  \n  Common causes:\n    - No internet connection or network connectivity problems\n    - Firewall or VPN blocking the request\n    - Network proxy configuration issues\n  \n  Please check your network connection and try again.\n\n\n\u001b[31mX \u001b[41;31m[\u001b[41;97mERROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\µ\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_23-17-43_051.log\"\n"
   },
   "mail_records_edited": false,
   "dns_records_edited_directly": false,

@@ -1,0 +1,25 @@
+// Stroke paths taken from the Kortex Store design, on a 24px grid.
+export const iconPaths={
+ home:'M4 11l8-7 8 7 M6 9.5V20h12V9.5',
+ compass:'M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17z M15.5 8.5l-2 5-5 2 2-5z',
+ star:'M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.8z',
+ library:'M5 4.5h3v15H5z M10.5 4.5h3v15h-3z M16 5l3 .6-2.6 14.2-3-.6z',
+ bolt:'M13 3L5 13.5h6L10 21l8-10.5h-6z',
+ flow:'M6 4v4.5a3.5 3.5 0 0 0 3.5 3.5h5A3.5 3.5 0 0 1 18 15.5V20 M15 17l3 3 3-3',
+ desk:'M4 8h11a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z M8 5h12a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-1',
+ search:'M11 4.5a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13z M20 20l-4.2-4.2',
+ user:'M12 4a4 4 0 1 0 0 8a4 4 0 1 0 0-8z M4.5 20a7.5 7.5 0 0 1 15 0',
+ arrow:'M5 12h14 M13 6l6 6-6 6',
+ image:'M5 4.5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1z M4 16l4.5-4.5 4 4 2.5-2.5 5 5',
+ documents:'M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10.5a.5.5 0 0 1-.5-.5V4a.5.5 0 0 1 .5-.5z M14 3.5v4h4 M9.5 13h5 M9.5 16.5h5',
+ developer:'M8.5 7l-5 5 5 5 M15.5 7l5 5-5 5 M13.5 4.5l-3 15',
+ media:'M4.5 6.5h10a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-10a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z M15.5 10.5l5-3v9l-5-3',
+ security:'M6.5 10.5h11a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3 M12 14.5v2',
+ design:'M12 3.5a8.5 8.5 0 0 0 0 17c1 0 1.5-.7 1.5-1.5 0-1.1-.9-1.4-.9-2.4 0-.8.6-1.5 1.5-1.5h1.9a4.5 4.5 0 0 0 4.5-4.5c0-4-3.8-7.1-8.5-7.1z',
+ calculation:'M6 4.5h12a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1z M8.5 8h7 M8.5 12.5h.01 M12 12.5h.01 M15.5 12.5h.01 M8.5 16h.01 M12 16h.01 M15.5 16h.01',
+ data:'M4 10v4 M8 7v10 M12 4v16 M16 8v8 M20 11v2',
+ text:'M4 6h16 M7 12h10 M10 18h4',
+ other:'M12 3.5l7.5 4.2v8.6L12 20.5l-7.5-4.2V7.7z',
+} as const;
+export type IconName=keyof typeof iconPaths;
+export const icon=(name:string)=>iconPaths[name as IconName]??iconPaths.other;
