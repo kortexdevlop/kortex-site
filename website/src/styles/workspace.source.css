@@ -81,3 +81,11 @@
 .ws-beta,.ws-count,kbd { font-family: var(--font-mono); }
 .ws-dialog { border-radius: 24px; background: rgba(255,255,255,.93); backdrop-filter: blur(50px) saturate(190%); }
 ::-webkit-scrollbar { width: 10px; height: 10px; } ::-webkit-scrollbar-thumb { background: rgba(14,15,18,.12); border-radius: 10px; border: 3px solid transparent; background-clip: content-box; }
+
+.ws-sidebar-bottom nav { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 11px; color: var(--ws-muted); }
+.ai-assistant { font-family: var(--font-sans); }
+.ai-assistant h1 { font-weight: 600; letter-spacing: -.04em; }
+.ai-assistant textarea { width: 100%; border: 0; border-radius: 18px; padding: 14px 16px; background: rgba(255,255,255,.8); box-shadow: 0 0 0 1px rgba(14,15,18,.07); font-family: inherit; box-sizing: border-box; }
+.ai-assistant button { border: 0; border-radius: 12px; padding: 10px 16px; background: linear-gradient(180deg,#2c3037,#0e0f12); color: #fff; font-weight: 500; }
+.ai-assistant button:disabled { opacity: .5; }
+.ai-consent,.ai-result,.ai-step,.ai-local,.ai-runtime { border-radius: 18px; padding: 14px 16px; margin-block: 10px; background: rgba(255,255,255,.72); box-shadow: 0 0 0 1px rgba(14,15,18,.05); }
