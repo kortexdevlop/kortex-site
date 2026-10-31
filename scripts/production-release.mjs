@@ -40,6 +40,7 @@ const githubPolicy=JSON.parse(privateProductionConfigs(p,trust,json('website/dis
 function configs(adminPolicy,runtimeChannels){
  const c=privateProductionConfigs(p,trust,json('website/dist/server/wrangler.json')),route=pattern=>[{pattern,custom_domain:true}];
  c.api.vars={...c.api.vars,ADMIN_AUTH_POLICY:JSON.stringify(adminPolicy),...(runtimeChannels?{RUNTIME_CHANNELS:JSON.stringify(runtimeChannels)}:{})};
+ for(const [name,file] of [['REVOCATION_DOCUMENT','revocations-production-latest.json'],['RUNTIME_CHANNELS','channels-production-latest.json']]){const latest=resolve(root,'target',file);if(existsSync(latest))c.api.vars[name]=JSON.stringify(JSON.parse(readFileSync(latest,'utf8')))}
  c.api.routes=route(host(p.api_origin));c.runtime.routes=route(host(p.runtime_origin));c.website.routes=route(host(p.web_origin));return c;
 }
 function write(kind,config){const file=resolve(out,kind+'.json');writeFileSync(file,JSON.stringify(config,null,2)+'\n');return file}
