@@ -19,12 +19,63 @@ enum Section {
     Ai,
     Workflows,
 }
+const ICON_STORE: &str = "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17z M15.5 8.5l-2 5-5 2 2-5z";
+const ICON_LIBRARY: &str = "M5 4.5h3v15H5z M10.5 4.5h3v15h-3z M16 5l3 .6-2.6 14.2-3-.6z";
+const ICON_UPDATES: &str = "M19.5 12a7.5 7.5 0 1 1-2.2-5.3 M19.5 4.5v4h-4";
+const ICON_ACCOUNT: &str = "M12 4a4 4 0 1 0 0 8a4 4 0 1 0 0-8z M4.5 20a7.5 7.5 0 0 1 15 0";
+const ICON_AI: &str = "M13 3L5 13.5h6L10 21l8-10.5h-6z";
+const ICON_FLOW: &str = "M6 4v4.5a3.5 3.5 0 0 0 3.5 3.5h5A3.5 3.5 0 0 1 18 15.5V20 M15 17l3 3 3-3";
+fn icon(path: &str, size: u32) -> Element {
+    rsx! {
+        svg {
+            width: "{size}",
+            height: "{size}",
+            view_box: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+            stroke_width: "1.7",
+            stroke_linecap: "round",
+            stroke_linejoin: "round",
+            "aria-hidden": "true",
+            path { d: "{path}" }
+        }
+    }
+}
+fn category_icon(value: &str) -> &'static str {
+    match value {
+        "developer" => "M8.5 7l-5 5 5 5 M15.5 7l5 5-5 5 M13.5 4.5l-3 15",
+        "security" => {
+            "M6.5 10.5h11a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3 M12 14.5v2"
+        }
+        "calculation" => {
+            "M6 4.5h12a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1z M8.5 8h7 M8.5 12.5h.01 M12 12.5h.01 M15.5 12.5h.01 M8.5 16h.01 M12 16h.01 M15.5 16h.01"
+        }
+        "data" => "M4 10v4 M8 7v10 M12 4v16 M16 8v8 M20 11v2",
+        "text" => "M4 6h16 M7 12h10 M10 18h4",
+        "image" => {
+            "M5 4.5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1z M4 16l4.5-4.5 4 4 2.5-2.5 5 5"
+        }
+        _ => "M12 3.5l7.5 4.2v8.6L12 20.5l-7.5-4.2V7.7z",
+    }
+}
+fn category_hue(value: &str) -> &'static str {
+    match value {
+        "developer" => "tile tile-developer",
+        "security" => "tile tile-security",
+        "calculation" => "tile tile-calculation",
+        "data" => "tile tile-data",
+        "text" => "tile tile-text",
+        "image" => "tile tile-image",
+        _ => "tile",
+    }
+}
 fn category_label(value: &str) -> String {
     match value {
         "developer" => "Développeur",
         "security" => "Sécurité",
         "calculation" => "Calcul",
         "data" => "Données",
+        "text" => "Texte",
         "image" => "Image",
         "document" | "documents" => "Documents",
         "video-audio" | "media" => "Vidéo et audio",
@@ -200,7 +251,7 @@ pub fn App() -> Element {
         Section::Updates => "Mises à jour",
         Section::Account => "Compte",
         Section::Ai => "Assistant",
-        Section::Workflows => "Parcours",
+        Section::Workflows => "Workflows",
     };
     let search_api = api.clone();
     let sort_api = api.clone();
@@ -243,16 +294,15 @@ pub fn App() -> Element {
     rsx! {
        style{{include_str!("../assets/app.css")}}
        div{class:account_class,
+       header{class:"app-bar",span{class:"logo"}strong{"Kortex Store"}small{if channel=="staging"{"TEST"}else{"{header}"}}span{class:"app-spacer"}span{class:"local-badge","Windows"}}
        aside{class:"sidebar",
-       div{class:"brand",span{class:"logo"}strong{"kortex"}span{class:"muted",".site"}small{if channel=="staging"{"TEST"}else{"DESKTOP"}}}
        nav{aria_label:"Navigation principale",
-       for (s,label) in [(Section::Store,"Store"),(Section::Library,"Bibliothèque"),(Section::Updates,"Mises à jour"),(Section::Account,"Compte"),(Section::Ai,"Assistant"),(Section::Workflows,"Parcours")]{
-       button{class:if *section.read()==s{"nav-item selected"}else{"nav-item"},aria_current:if *section.read()==s{"page"}else{"false"},disabled:*busy.read(),onclick:move |_|{section.set(s);detail.set(None);active.set(None);},"{label}"}
+       for (s,label,path) in [(Section::Store,"Store",ICON_STORE),(Section::Library,"Bibliothèque",ICON_LIBRARY),(Section::Updates,"Mises à jour",ICON_UPDATES),(Section::Account,"Compte",ICON_ACCOUNT),(Section::Ai,"Assistant",ICON_AI),(Section::Workflows,"Workflows",ICON_FLOW)]{
+       button{class:if *section.read()==s{"nav-item selected"}else{"nav-item"},aria_current:if *section.read()==s{"page"}else{"false"},disabled:*busy.read(),onclick:move |_|{section.set(s);detail.set(None);active.set(None);},{icon(path,18)}span{"{label}"}}
        }}
        div{class:"sidebar-bottom",div{class:"connection",span{class:if offline{"dot offline"}else{"dot"}}strong{if offline{"Hors connexion"}else{"Application locale"}}p{"Vos fichiers restent sur cet appareil."}button{disabled:*busy.read()||active.read().is_some(),onclick:move |_|{let next=!*offline_mode.read();offline_mode.set(next);},if offline{"Revenir en ligne"}else{"Utiliser hors connexion"}}}p{class:"muted","Kortex Desktop · 1.0"}}
        }
        main{class:"main-panel",
-       header{span{class:"muted","Espace de travail"}span{"/"}strong{"{header}"}span{class:"local-badge","Windows"}}
        div{class:"content",
        if offline{p{class:"banner",role:"status","Hors connexion · vos outils installés restent disponibles."}}
        if !notice.read().is_empty(){p{class:"message",role:"status","{notice}"}}
@@ -265,7 +315,8 @@ pub fn App() -> Element {
        }else{
        match *section.read(){
        Section::Store=>rsx!{
-       h1{"Les bons outils, au même endroit."}p{class:"subtitle","Explorez le catalogue Kortex et trouvez ce qu’il vous faut."}
+       section{class:"store-hero",div{span{class:"hero-tag","Kortex Store"}h1{"Les bons outils, au même endroit."}p{class:"subtitle","Explorez le catalogue Kortex et trouvez ce qu’il vous faut."}}
+       div{class:"hero-tools",for tool in rows.clone().into_iter().take(4){{let api=api.clone();let id=tool.id.clone();rsx!{button{class:"hero-tool",disabled:*busy.read(),aria_label:"Fiche de {tool.name}",onclick:move |_|{if let Ok(api)=api.clone(){details(api,id.clone(),detail,busy,status)}},span{class:category_hue(&tool.category),{icon(category_icon(&tool.category),18)}}span{"{tool.name}"}}}}}}}
        form{class:"search",onsubmit:move|e|{e.prevent_default();if let Ok(api)=search_api.clone(){load(api,store,busy,status,epoch,Query{q:query.read().clone(),category:category.read().clone(),sort:sort.read().clone()},None,true)}},
        input{r#type:"search",aria_label:"Rechercher un outil",placeholder:"Rechercher un outil…",value:"{query}",maxlength:200,oninput:move|e|query.set(e.value())}
        button{r#type:"submit",disabled:*busy.read(),"Rechercher"}
@@ -284,7 +335,7 @@ pub fn App() -> Element {
        for tool in rows{
        {let api=api.clone();let id=tool.id.clone();rsx!{
        button{class:"tool-card",disabled:*busy.read(),onclick:move |_|{if let Ok(api)=api.clone(){details(api,id.clone(),detail,busy,status)}},
-       span{class:"glyph","{tool.name.chars().take(2).collect::<String>().to_uppercase()}"}small{class:"category","{category_label(&tool.category)}"}h2{"{tool.name}"}p{"{tool.summary}"}span{class:"version","Version {tool.version}"}
+       span{class:"card-top",span{class:category_hue(&tool.category),{icon(category_icon(&tool.category),24)}}span{class:"card-name",h2{"{tool.name}"}small{class:"category","{category_label(&tool.category)} · v{tool.version}"}}}p{"{tool.summary}"}span{class:"version","Voir la fiche"}
        }}}
        }}
        if let Some(cursor)=next{
@@ -296,7 +347,7 @@ pub fn App() -> Element {
        if library.read().rejected>0{p{role:"status",class:"banner","Certains fichiers locaux n’ont pas pu être vérifiés et restent désactivés."}}
        if installed.is_empty()&&library.read().unavailable.is_empty(){div{class:"empty",h2{"Votre bibliothèque est vide"}p{"Explorez le Store pour découvrir les outils disponibles."}}}
        div{class:"tool-grid",for tool in installed.clone(){
-       {let item=tool.clone();let cfg=config.clone();let api=api.clone();let remove=tool.clone();let rollback=tool.clone();rsx!{article{class:"tool-card",span{class:"glyph","{tool.name.chars().take(2).collect::<String>().to_uppercase()}"}h2{"{tool.name}"}p{"Version {tool.version}"}details{summary{"Versions conservées"}p{{tool.versions.join(", ")}}}
+       {let item=tool.clone();let cfg=config.clone();let api=api.clone();let remove=tool.clone();let rollback=tool.clone();rsx!{article{class:"tool-card",span{class:"tile",{icon(category_icon(""),24)}}h2{"{tool.name}"}p{"Version {tool.version}"}details{summary{"Versions conservées"}p{{tool.versions.join(", ")}}}
        button{disabled:*busy.read(),onclick:move |_|{if let(Ok(c),Ok(a))=(cfg.clone(),api.clone()){manager::open(c,a,item.id.clone(),active,busy,notice,library)}},"Ouvrir"}
        button{disabled:*busy.read(),onclick:move |_|confirmation.set(Some(Choice::new(Operation::Uninstall{id:remove.id.clone(),name:remove.name.clone()}))),"Désinstaller"}
        if tool.previous.is_some(){button{disabled:*busy.read(),onclick:move |_|confirmation.set(Some(Choice::new(Operation::Rollback(rollback.clone())))),"Version précédente"}}}}}
@@ -317,7 +368,7 @@ pub fn App() -> Element {
        section{role:"dialog",aria_label:"Fiche de l’outil",class:"detail",h2{"{d.tool.name}"}p{"{d.manifest.description}"}p{class:"muted","Version {d.tool.version}"}h3{"Permissions"}
        if d.manifest.permissions.is_empty(){p{"Aucune permission sensible."}}else{ul{for permission in d.manifest.permissions.clone(){li{"{permission}"}}}}
        h3{"Ce que cet outil peut faire"}ul{for action in d.contract.actions.clone(){li{"{action.description}"}}}
-       {let candidate=d.clone();let already=installed.iter().any(|i|i.id==d.tool.id);rsx!{button{disabled:*busy.read()||already,onclick:move |_|{detail.set(None);confirmation.set(Some(Choice::new(Operation::Install(candidate.clone()))));},if already{"Déjà installé"}else{"Installer"}}}}
+       {let candidate=d.clone();let already=installed.iter().any(|i|i.id==d.tool.id);rsx!{button{class:"primary",disabled:*busy.read()||already,onclick:move |_|{detail.set(None);confirmation.set(Some(Choice::new(Operation::Install(candidate.clone()))));},if already{"Déjà installé"}else{"Installer"}}}}
        button{onclick:move |_|detail.set(None),"Fermer la fiche"}
        }
        }

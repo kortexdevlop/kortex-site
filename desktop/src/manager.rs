@@ -215,6 +215,6 @@ pub fn Confirm(
     let updating = matches!(choice.0.as_ref(), Operation::Update(_));
     rsx! {section{class:"detail",role:"dialog",aria_label:"Confirmation",h2{"{title}"}h3{"{name}"}p{"{description}"}
     if uninstall{label{input{r#type:"checkbox",checked:*purge.read(),onchange:move|e|purge.set(e.checked())}"Effacer aussi les données de cet outil pour ce profil"}}else if !permissions.is_empty(){h3{if updating{"Permissions supplémentaires"}else{"Permissions de l’outil"}}ul{for p in permissions{li{"{permission(&p)}"}}}p{"L’installation n’accorde aucun accès automatiquement : chaque demande sensible sera confirmée pendant l’utilisation."}}else{p{if updating{"Aucune permission supplémentaire."}else{"Aucune permission sensible."}}}
-    button{onclick:move |_|on_cancel.call(()),"Annuler"}button{onclick:move |_|on_confirm.call(*purge.read()),"{title}"}
+    button{onclick:move |_|on_cancel.call(()),"Annuler"}button{class:"primary",onclick:move |_|on_confirm.call(*purge.read()),"{title}"}
     }}
 }

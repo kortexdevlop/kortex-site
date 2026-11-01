@@ -5,3 +5,4 @@
 
 .kortex-card{border-color:rgba(14,15,18,.08);border-radius:18px}.kortex-tool button,.kortex-tool input,.kortex-tool textarea,.kortex-tool select{border-radius:12px}.kortex-tool button{background:linear-gradient(180deg,#2c3037,#0e0f12);color:#fff;border:0;padding-inline:1rem;font-weight:500}.kortex-tool :focus-visible{outline-color:#2f5bd0}.kortex-alert,.kortex-error{border-inline-start:0;border-radius:12px;background:#f1f2f4}.kortex-error,.kortex-alert.error{background:#fdecea;color:#8a1c14}
 .kortex-tool{padding:0}.kortex-tool h1,.kortex-tool h2,.kortex-tool h3{margin:.25rem 0;font-weight:600;letter-spacing:-.02em}.kortex-tool h1{font-size:1.35rem}.kortex-tool h2{font-size:1.1rem}.kortex-tool h3{font-size:1rem}.kortex-field label,.kortex-tool label{font-size:.8rem;color:var(--kt-muted)}.kortex-tool input,.kortex-tool textarea,.kortex-tool select{border-color:rgba(14,15,18,.14);background:rgba(255,255,255,.85)}
+.kortex-grid>button,.kortex-grid button{width:100%}
