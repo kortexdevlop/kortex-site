@@ -8,6 +8,10 @@ export function renderTokens(t) {
   if(t.workspace) css += `:root[data-workspace] {\n${declarations(t.workspace.colors,'ws-')}\n${Object.entries(t.workspace.geometry).map(([name,value])=>`  --ws-${name}: calc(${value} * var(--ws-unit));`).join('\n')}\n}\n`;
   for (const [name, colors] of Object.entries(t.themes)) css += `${name === 'light' ? ':root, ' : ''}:root[data-theme="${name}"] {\n  color-scheme: ${name};\n${declarations(colors)}\n}\n`;
   css += `@media (prefers-color-scheme: dark) {\n  :root:not([data-theme]) {\n    color-scheme: dark;\n${declarations(t.themes.dark)}\n  }\n}\n`;
+  if(t.workspace?.darkColors){
+    const dark=declarations(t.workspace.darkColors,'ws-');
+    css += `:root[data-workspace][data-theme="dark"] {\n${dark}\n}\n@media (prefers-color-scheme: dark) {\n  :root[data-workspace]:not([data-theme]) {\n${dark}\n  }\n}\n`;
+  }
   for (const [name, values] of Object.entries(t.densities)) css += `${name === 'medium' ? ':root, ' : ''}:root[data-density="${name}"] {\n${declarations(values)}\n}\n`;
   for (const [name, size] of Object.entries(t.typography)) css += `${name === 'standard' ? ':root, ' : ''}:root[data-type="${name}"] { font-size: ${size}; }\n`;
   for (const [name, width] of Object.entries(t.breakpoint)) css += `@custom-media --${name} (width < ${width});\n`;

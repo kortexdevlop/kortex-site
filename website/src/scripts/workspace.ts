@@ -66,6 +66,6 @@ const initialView=new URLSearchParams(location.search).get('view');if(!demo&&roo
 if(!demo)void connectWorkspace().then(context=>{
  const subtitle=root.querySelector<HTMLElement>('.ws-account strong + span');if(subtitle)subtitle.textContent=context.enabled?'Synchronisation activée':'Compte connecté';if(!context.enabled)return;storageKey=null;
  const apply=()=>{for(const card of cards){card.dataset.favorite=String(context.items.some(item=>item.tool_id===card.dataset.id));card.querySelector('.ws-favorite')!.setAttribute('aria-pressed',card.dataset.favorite)}render(false)};apply();
- document.documentElement.dataset.theme=context.preferences.theme;document.documentElement.dataset.density=context.preferences.density;
+ document.documentElement.dataset.theme??=context.preferences.theme;document.documentElement.dataset.density=context.preferences.density;
  remoteFavorite=async(id,enabled)=>{const buttons=[...root.querySelectorAll<HTMLButtonElement>('.ws-favorite')];buttons.forEach(b=>b.disabled=true);try{await context.toggle(id,enabled);apply();status.hidden=false;status.textContent='Favoris synchronisés.'}catch{apply();status.hidden=false;status.textContent='Ce favori n’a pas été enregistré. Réessayez une fois connecté.'}finally{buttons.forEach(b=>b.disabled=false)}};
 }).catch(()=>{});

@@ -110,6 +110,10 @@ h3 { font-size: 1rem; font-weight: 650; margin-bottom: var(--spacing-2); }
 @keyframes drift-a { 50% { transform: translate(100px, 50px); } }
 @keyframes drift-b { 50% { transform: translate(-120px, -40px); } }
 @media (prefers-reduced-motion: reduce) { .ambient::before, .ambient::after { animation: none; } }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 36px; height: 36px; padding: 0; border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--muted); cursor: pointer; transition: background .15s, color .15s; }
+.theme-toggle:hover { background: color-mix(in srgb, var(--foreground) 6%, transparent); color: var(--foreground); }
+.theme-toggle .icon-sun, .theme-toggle[aria-pressed="true"] .icon-moon { display: none; }
+.theme-toggle[aria-pressed="true"] .icon-sun { display: block; }
 body { font-family: var(--font-sans); }
 .site-footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); }
 .site-footer a { color: inherit; }

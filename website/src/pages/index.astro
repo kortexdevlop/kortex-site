@@ -13,7 +13,7 @@ try{tools=(await new ApiClient(env.API_WORKER).listTools(new URLSearchParams({li
 Astro.response.status=available?200:503;Astro.response.headers.set('Cache-Control','private, no-store');
 const title='Kortex — Tous vos outils. Un seul espace.',description='Trouvez vos outils et exécutez-les sur votre appareil avec Kortex.';
 ---
-<!doctype html><html lang="fr" data-theme="light"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content={available?'index, follow':'noindex, nofollow'}/>{available&&<link rel="canonical" href={canonical('/',env.WEB_ORIGIN||Astro.url.origin)}/>}<title>{title}</title><meta name="description" content={description}/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/></head>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content={available?'index, follow':'noindex, nofollow'}/>{available&&<link rel="canonical" href={canonical('/',env.WEB_ORIGIN||Astro.url.origin)}/>}<title>{title}</title><meta name="description" content={description}/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><script is:inline src="/theme.js"></script></head>
 <body class="landing-body"><div class="ambient" aria-hidden="true"></div><a class="skip-link" href="#main">Aller au contenu</a>
 <div class="landing"><div class="landing-dots" aria-hidden="true"></div><SiteNav/>
 <main id="main" tabindex="-1">
