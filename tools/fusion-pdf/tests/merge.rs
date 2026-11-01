@@ -12,13 +12,18 @@ fn classic(texts: &[&str]) -> Vec<u8> {
         "<< /Type /Catalog /Pages 2 0 R >>".into(),
         format!(
             "<< /Type /Pages /Kids [{}] /Count {n} /MediaBox [0 0 200 100] /Resources << /Font << /F1 3 0 R >> >> >>",
-            (0..n).map(|i| format!("{} 0 R", 4 + 2 * i)).collect::<Vec<_>>().join(" ")
+            (0..n)
+                .map(|i| format!("{} 0 R", 4 + 2 * i))
+                .collect::<Vec<_>>()
+                .join(" ")
         ),
         "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>".into(),
     ];
     for (i, text) in texts.iter().enumerate() {
         let content = 5 + 2 * i;
-        objects.push(format!("<< /Type /Page /Parent 2 0 R /Contents {content} 0 R >>"));
+        objects.push(format!(
+            "<< /Type /Page /Parent 2 0 R /Contents {content} 0 R >>"
+        ));
         let stream = format!("BT /F1 12 Tf 10 50 Td ({text}) Tj ET");
         objects.push(format!(
             "<< /Length {} >>\nstream\n{stream}\nendstream",
@@ -30,7 +35,9 @@ fn classic(texts: &[&str]) -> Vec<u8> {
         out.extend_from_slice(format!("{} 0 obj\n{body}\nendobj\n", i + 1).as_bytes());
     }
     let xref = out.len();
-    out.extend_from_slice(format!("xref\n0 {}\n0000000000 65535 f \n", objects.len() + 1).as_bytes());
+    out.extend_from_slice(
+        format!("xref\n0 {}\n0000000000 65535 f \n", objects.len() + 1).as_bytes(),
+    );
     for o in offsets {
         out.extend_from_slice(format!("{o:010} 00000 n \n").as_bytes());
     }
@@ -49,7 +56,10 @@ fn classic(texts: &[&str]) -> Vec<u8> {
 fn modern(text: &str) -> Vec<u8> {
     let members = [
         (1u32, "<< /Type /Catalog /Pages 2 0 R >>"),
-        (2, "<< /Type /Pages /Kids [3 0 R] /Count 1 /MediaBox [0 0 300 300] >>"),
+        (
+            2,
+            "<< /Type /Pages /Kids [3 0 R] /Count 1 /MediaBox [0 0 300 300] >>",
+        ),
         (3, "<< /Type /Page /Parent 2 0 R /Contents 5 0 R >>"),
     ];
     let mut header = String::new();
@@ -75,8 +85,11 @@ fn modern(text: &str) -> Vec<u8> {
     let content_at = out.len();
     let stream = format!("BT 10 10 Td ({text}) Tj ET");
     out.extend_from_slice(
-        format!("5 0 obj\n<< /Length {} >>\nstream\n{stream}\nendstream\nendobj\n", stream.len())
-            .as_bytes(),
+        format!(
+            "5 0 obj\n<< /Length {} >>\nstream\n{stream}\nendstream\nendobj\n",
+            stream.len()
+        )
+        .as_bytes(),
     );
     let xref_at = out.len();
     // Rows: type(1) field2(2) field3(1). Object 0 free, 1-3 in stream 4, 4 and 5 and 6 plain.
@@ -127,12 +140,24 @@ fn patch(pdf: &[u8], from: &str, to: &str) -> Vec<u8> {
 /// Content-stream text of every page, following /Kids order.
 fn page_texts(pdf: &[u8]) -> Vec<String> {
     let text = String::from_utf8_lossy(pdf).to_string();
-    let kids = text.split("/Kids [").nth(1).unwrap().split(']').next().unwrap();
+    let kids = text
+        .split("/Kids [")
+        .nth(1)
+        .unwrap()
+        .split(']')
+        .next()
+        .unwrap();
     kids.split(" R")
         .filter_map(|r| r.trim().split(' ').next().filter(|n| !n.is_empty()))
         .map(|page| {
             let body = text.split(&format!("\n{page} 0 obj\n")).nth(1).unwrap();
-            let content = body.split("/Contents ").nth(1).unwrap().split(' ').next().unwrap();
+            let content = body
+                .split("/Contents ")
+                .nth(1)
+                .unwrap()
+                .split(' ')
+                .next()
+                .unwrap();
             let stream = text.split(&format!("\n{content} 0 obj\n")).nth(1).unwrap();
             let data = stream.split("stream\n").nth(1).unwrap();
             data.split("\nendstream").next().unwrap().to_string()
@@ -186,7 +211,12 @@ fn reads_object_streams_and_xref_streams() {
 #[test]
 fn rejects_unreadable_input() {
     let good = classic(&["x"]);
-    for bad in [&b""[..], b"not a pdf", b"%PDF-1.4\nstartxref\n0\n%%EOF", &good[..good.len() / 2]] {
+    for bad in [
+        &b""[..],
+        b"not a pdf",
+        b"%PDF-1.4\nstartxref\n0\n%%EOF",
+        &good[..good.len() / 2],
+    ] {
         assert_eq!(pdf::merge(bad, &good, 1 << 20).unwrap_err(), "INVALID_PDF");
         assert_eq!(pdf::merge(&good, bad, 1 << 20).unwrap_err(), "INVALID_PDF");
     }
@@ -200,8 +230,14 @@ fn rejects_encrypted_documents() {
         "/Root 1 0 R >>",
         "/Root 1 0 R /Encrypt << /Filter /Standard >> >>",
     );
-    assert_eq!(pdf::merge(&locked, &plain, 1 << 20).unwrap_err(), "ENCRYPTED");
-    assert_eq!(pdf::merge(&plain, &locked, 1 << 20).unwrap_err(), "ENCRYPTED");
+    assert_eq!(
+        pdf::merge(&locked, &plain, 1 << 20).unwrap_err(),
+        "ENCRYPTED"
+    );
+    assert_eq!(
+        pdf::merge(&plain, &locked, 1 << 20).unwrap_err(),
+        "ENCRYPTED"
+    );
 }
 
 #[test]
@@ -236,14 +272,19 @@ fn action_round_trips_through_base64() {
     }))
     .unwrap();
     assert_eq!(out["pages"], 3);
-    let merged = STANDARD.decode(out["pdf_base64"].as_str().unwrap()).unwrap();
+    let merged = STANDARD
+        .decode(out["pdf_base64"].as_str().unwrap())
+        .unwrap();
     assert_eq!(pdf::page_count(&merged), Ok(3));
 }
 
 #[test]
 fn action_validates_input() {
     let ok = STANDARD.encode(classic(&["x"]));
-    assert_eq!(merge_pdfs(&json!({"first_base64":ok})).unwrap_err(), "INVALID_INPUT");
+    assert_eq!(
+        merge_pdfs(&json!({"first_base64":ok})).unwrap_err(),
+        "INVALID_INPUT"
+    );
     assert_eq!(
         merge_pdfs(&json!({"first_base64":ok,"second_base64":"%%%"})).unwrap_err(),
         "INVALID_BASE64"

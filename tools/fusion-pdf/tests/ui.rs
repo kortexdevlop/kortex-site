@@ -71,7 +71,10 @@ fn one_page(text: &str, padding: usize) -> Vec<u8> {
         "<< /Type /Catalog /Pages 2 0 R >>".to_string(),
         "<< /Type /Pages /Kids [3 0 R] /Count 1 /MediaBox [0 0 100 100] >>".to_string(),
         "<< /Type /Page /Parent 2 0 R /Contents 4 0 R >>".to_string(),
-        format!("<< /Length {} >>\nstream\n{stream}\nendstream", stream.len()),
+        format!(
+            "<< /Length {} >>\nstream\n{stream}\nendstream",
+            stream.len()
+        ),
     ];
     let mut out = b"%PDF-1.4\n".to_vec();
     let mut offsets = Vec::new();
@@ -128,7 +131,10 @@ fn picks_two_files_merges_swaps_and_saves() {
     assert_eq!(find(&tree, "merge").unwrap()["props"]["disabled"], true);
     load(&mut tool, "pick_second", "b.pdf", &second);
     let tree = render(&mut tool);
-    let rows = find(&tree, "files").unwrap()["props"]["rows"].as_array().unwrap().clone();
+    let rows = find(&tree, "files").unwrap()["props"]["rows"]
+        .as_array()
+        .unwrap()
+        .clone();
     assert_eq!(rows[0]["name"], "a.pdf");
     assert_eq!(rows[1]["name"], "b.pdf");
     assert_eq!(rows[0]["pages"], 1);
@@ -142,16 +148,25 @@ fn picks_two_files_merges_swaps_and_saves() {
 
     click(&mut tool, "swap");
     let tree = render(&mut tool);
-    let rows = find(&tree, "files").unwrap()["props"]["rows"].as_array().unwrap().clone();
+    let rows = find(&tree, "files").unwrap()["props"]["rows"]
+        .as_array()
+        .unwrap()
+        .clone();
     assert_eq!(rows[0]["name"], "b.pdf");
-    assert_eq!(find(&tree, "save").unwrap()["props"]["disabled"], true, "swap invalidates the result");
+    assert_eq!(
+        find(&tree, "save").unwrap()["props"]["disabled"],
+        true,
+        "swap invalidates the result"
+    );
 
     click(&mut tool, "merge");
     click(&mut tool, "save");
     let save = next();
     assert_eq!(save["capability"], "file.save");
     assert_eq!(save["payload"]["name"], "fusion.pdf");
-    let saved = STANDARD.decode(save["payload"]["data_base64"].as_str().unwrap()).unwrap();
+    let saved = STANDARD
+        .decode(save["payload"]["data_base64"].as_str().unwrap())
+        .unwrap();
     assert_eq!(pdf::page_count(&saved), Ok(2));
     let text = String::from_utf8_lossy(&saved);
     assert!(
@@ -173,10 +188,18 @@ fn refuses_bad_files_and_keeps_the_other_slot() {
     let _g = SERIAL.lock().unwrap_or_else(|e| e.into_inner());
     let mut tool = fresh();
     load(&mut tool, "pick_first", "a.pdf", &one_page("first", 0));
-    load(&mut tool, "pick_second", "bad.pdf", b"this is plainly not a PDF document");
+    load(
+        &mut tool,
+        "pick_second",
+        "bad.pdf",
+        b"this is plainly not a PDF document",
+    );
     let tree = render(&mut tool);
     assert!(status(&tree).contains("INVALID_PDF"));
-    let rows = find(&tree, "files").unwrap()["props"]["rows"].as_array().unwrap().clone();
+    let rows = find(&tree, "files").unwrap()["props"]["rows"]
+        .as_array()
+        .unwrap()
+        .clone();
     assert_eq!(rows[0]["name"], "a.pdf");
     assert_eq!(rows[1]["name"], "Aucun fichier");
     assert_eq!(find(&tree, "merge").unwrap()["props"]["disabled"], true);
@@ -189,7 +212,10 @@ fn refuses_bad_files_and_keeps_the_other_slot() {
         json!({"handle":"b".repeat(64),"name":"big.pdf","size":FILE_LIMIT + 1}),
     );
     assert!(status(&render(&mut tool)).contains("TOO_LARGE"));
-    assert!(CALLS.lock().unwrap().is_empty(), "no read after a refused pick");
+    assert!(
+        CALLS.lock().unwrap().is_empty(),
+        "no read after a refused pick"
+    );
 }
 
 #[test]
@@ -200,15 +226,28 @@ fn cancelling_a_pick_keeps_loaded_files_and_ignores_late_results() {
     click(&mut tool, "pick_second");
     let pick = next();
     click(&mut tool, "cancel");
-    result(&mut tool, &pick, json!({"handle":"c".repeat(64),"name":"late.pdf","size":10}));
-    assert!(CALLS.lock().unwrap().is_empty(), "stale pick must not start a read");
+    result(
+        &mut tool,
+        &pick,
+        json!({"handle":"c".repeat(64),"name":"late.pdf","size":10}),
+    );
+    assert!(
+        CALLS.lock().unwrap().is_empty(),
+        "stale pick must not start a read"
+    );
     let tree = render(&mut tool);
-    let rows = find(&tree, "files").unwrap()["props"]["rows"].as_array().unwrap().clone();
+    let rows = find(&tree, "files").unwrap()["props"]["rows"]
+        .as_array()
+        .unwrap()
+        .clone();
     assert_eq!(rows[0]["name"], "a.pdf");
     assert_eq!(rows[1]["name"], "Aucun fichier");
 
     click(&mut tool, "reset");
-    let rows = find(&render(&mut tool), "files").unwrap()["props"]["rows"].as_array().unwrap().clone();
+    let rows = find(&render(&mut tool), "files").unwrap()["props"]["rows"]
+        .as_array()
+        .unwrap()
+        .clone();
     assert_eq!(rows[0]["name"], "Aucun fichier");
 }
 
@@ -226,7 +265,11 @@ fn merge_and_save_need_their_prerequisites() {
     click(&mut tool, "save");
     assert!(CALLS.lock().unwrap().is_empty());
     assert_eq!(
-        call(&mut tool, "ui.event", json!({"node_key":"nope","event_type":"click","value":null}))["ok"],
+        call(
+            &mut tool,
+            "ui.event",
+            json!({"node_key":"nope","event_type":"click","value":null})
+        )["ok"],
         false
     );
 }
@@ -245,6 +288,10 @@ fn headless_action_matches_the_ui_merge() {
     );
     assert_eq!(reply["ok"], true);
     assert_eq!(reply["data"]["pages"], 2);
-    let reply = call(&mut tool, "action.invoke", json!({"action_id":"nope","input":{}}));
+    let reply = call(
+        &mut tool,
+        "action.invoke",
+        json!({"action_id":"nope","input":{}}),
+    );
     assert_eq!(reply["ok"], false);
 }

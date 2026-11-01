@@ -1,8 +1,8 @@
 //! Minimal PDF reader/merger: no I/O, no system access, bounded memory.
 //! Reads classic xref tables, xref streams and object streams, then writes the
 //! pages of two documents into one new, unencrypted file.
-use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use miniz_oxide::inflate::decompress_to_vec_zlib_with_limit;
+use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
 pub const INFLATE_LIMIT: usize = 8 * 1024 * 1024;
 const MAX_OBJECTS: u32 = 100_000;
@@ -63,7 +63,11 @@ impl<'a> Lexer<'a> {
             if is_ws(c) {
                 self.pos += 1;
             } else if c == b'%' {
-                while self.data.get(self.pos).is_some_and(|c| !matches!(c, 10 | 13)) {
+                while self
+                    .data
+                    .get(self.pos)
+                    .is_some_and(|c| !matches!(c, 10 | 13))
+                {
                     self.pos += 1;
                 }
             } else {
@@ -296,8 +300,8 @@ fn decode(dict: &Dict, raw: &[u8]) -> Res<Vec<u8>> {
     match filters.as_slice() {
         [] => Ok(raw.to_vec()),
         [b"FlateDecode"] | [b"Fl"] => {
-            let data = decompress_to_vec_zlib_with_limit(raw, INFLATE_LIMIT)
-                .map_err(|_| "INVALID_PDF")?;
+            let data =
+                decompress_to_vec_zlib_with_limit(raw, INFLATE_LIMIT).map_err(|_| "INVALID_PDF")?;
             let params = match dict.get(b"DecodeParms".as_slice()) {
                 Some(Obj::Dict(d)) => Some(d),
                 Some(Obj::Array(a)) => match a.as_slice() {
@@ -431,14 +435,24 @@ impl<'a> Doc<'a> {
         let widths: Vec<usize> = match dict.get(b"W".as_slice()) {
             Some(Obj::Array(a)) if a.len() == 3 => a
                 .iter()
-                .map(|n| n.int().and_then(|n| usize::try_from(n).ok()).filter(|n| *n <= 8))
+                .map(|n| {
+                    n.int()
+                        .and_then(|n| usize::try_from(n).ok())
+                        .filter(|n| *n <= 8)
+                })
                 .collect::<Option<_>>()
                 .ok_or("INVALID_PDF")?,
             _ => return Err("INVALID_PDF"),
         };
-        let size = dict.get(b"Size".as_slice()).and_then(Obj::int).ok_or("INVALID_PDF")?;
+        let size = dict
+            .get(b"Size".as_slice())
+            .and_then(Obj::int)
+            .ok_or("INVALID_PDF")?;
         let index: Vec<i64> = match dict.get(b"Index".as_slice()) {
-            Some(Obj::Array(a)) => a.iter().map(|n| n.int().ok_or("INVALID_PDF")).collect::<Res<_>>()?,
+            Some(Obj::Array(a)) => a
+                .iter()
+                .map(|n| n.int().ok_or("INVALID_PDF"))
+                .collect::<Res<_>>()?,
             _ => vec![0, size],
         };
         let step: usize = widths.iter().sum();
@@ -460,7 +474,11 @@ impl<'a> Doc<'a> {
                 if at + step > bytes.len() {
                     return Err("INVALID_PDF");
                 }
-                let kind = if widths[0] == 0 { 1 } else { field(&bytes, at, widths[0]) };
+                let kind = if widths[0] == 0 {
+                    1
+                } else {
+                    field(&bytes, at, widths[0])
+                };
                 let second = field(&bytes, at + widths[0], widths[1]);
                 let id = start.checked_add(i).ok_or("INVALID_PDF")?;
                 let loc = match kind {
@@ -511,18 +529,16 @@ impl<'a> Doc<'a> {
             Some(other) => other.int(),
             None => None,
         };
-        let valid = declared
-            .and_then(|n| usize::try_from(n).ok())
-            .filter(|n| {
-                start.checked_add(*n).is_some_and(|end| {
-                    let mut probe = Lexer {
-                        data: self.data,
-                        pos: end,
-                    };
-                    probe.skip_ws();
-                    self.data.get(probe.pos..probe.pos + 9) == Some(b"endstream")
-                })
-            });
+        let valid = declared.and_then(|n| usize::try_from(n).ok()).filter(|n| {
+            start.checked_add(*n).is_some_and(|end| {
+                let mut probe = Lexer {
+                    data: self.data,
+                    pos: end,
+                };
+                probe.skip_ws();
+                self.data.get(probe.pos..probe.pos + 9) == Some(b"endstream")
+            })
+        });
         let len = match valid {
             Some(n) => n,
             None => {
@@ -540,7 +556,8 @@ impl<'a> Doc<'a> {
     }
 
     fn exists(&self, id: u32) -> bool {
-        self.overrides.contains_key(&id) || matches!(self.xref.get(&id), Some(Loc::Offset(_) | Loc::InStream(_)))
+        self.overrides.contains_key(&id)
+            || matches!(self.xref.get(&id), Some(Loc::Offset(_) | Loc::InStream(_)))
     }
 
     fn get(&mut self, id: u32) -> Res<Obj> {
@@ -568,8 +585,14 @@ impl<'a> Doc<'a> {
             return Err("INVALID_PDF");
         };
         let bytes = decode(&dict, &raw)?;
-        let count = dict.get(b"N".as_slice()).and_then(Obj::int).ok_or("INVALID_PDF")?;
-        let first = dict.get(b"First".as_slice()).and_then(Obj::int).ok_or("INVALID_PDF")?;
+        let count = dict
+            .get(b"N".as_slice())
+            .and_then(Obj::int)
+            .ok_or("INVALID_PDF")?;
+        let first = dict
+            .get(b"First".as_slice())
+            .and_then(Obj::int)
+            .ok_or("INVALID_PDF")?;
         let (count, first) = (
             usize::try_from(count).map_err(|_| "INVALID_PDF")?,
             usize::try_from(first).map_err(|_| "INVALID_PDF")?,
@@ -577,12 +600,20 @@ impl<'a> Doc<'a> {
         if count > MAX_OBJECTS as usize || first > bytes.len() {
             return Err("INVALID_PDF");
         }
-        let mut header = Lexer { data: &bytes, pos: 0 };
+        let mut header = Lexer {
+            data: &bytes,
+            pos: 0,
+        };
         let mut members = BTreeMap::new();
         for _ in 0..count {
             let id = header.uint()?;
-            let at = first.checked_add(header.uint()? as usize).ok_or("INVALID_PDF")?;
-            let mut body = Lexer { data: &bytes, pos: at };
+            let at = first
+                .checked_add(header.uint()? as usize)
+                .ok_or("INVALID_PDF")?;
+            let mut body = Lexer {
+                data: &bytes,
+                pos: at,
+            };
             members.insert(id, body.object(0)?);
         }
         Ok(members)
@@ -595,7 +626,11 @@ impl<'a> Doc<'a> {
             return Err("INVALID_PDF");
         };
         let catalog = self.get(root)?;
-        let Some(Obj::Ref(top)) = catalog.dict().and_then(|d| d.get(b"Pages".as_slice())).cloned() else {
+        let Some(Obj::Ref(top)) = catalog
+            .dict()
+            .and_then(|d| d.get(b"Pages".as_slice()))
+            .cloned()
+        else {
             return Err("INVALID_PDF");
         };
         let mut leaves = Vec::new();
@@ -658,7 +693,13 @@ impl<'a> Doc<'a> {
     }
 }
 
-fn remap(obj: Obj, doc: &Doc, map: &mut BTreeMap<u32, u32>, next: &mut u32, todo: &mut Vec<u32>) -> Obj {
+fn remap(
+    obj: Obj,
+    doc: &Doc,
+    map: &mut BTreeMap<u32, u32>,
+    next: &mut u32,
+    todo: &mut Vec<u32>,
+) -> Obj {
     match obj {
         Obj::Ref(id) => {
             if !doc.exists(id) {
@@ -672,7 +713,12 @@ fn remap(obj: Obj, doc: &Doc, map: &mut BTreeMap<u32, u32>, next: &mut u32, todo
             });
             Obj::Ref(new)
         }
-        Obj::Array(items) => Obj::Array(items.into_iter().map(|o| remap(o, doc, map, next, todo)).collect()),
+        Obj::Array(items) => Obj::Array(
+            items
+                .into_iter()
+                .map(|o| remap(o, doc, map, next, todo))
+                .collect(),
+        ),
         Obj::Dict(d) => Obj::Dict(
             d.into_iter()
                 .map(|(k, v)| (k, remap(v, doc, map, next, todo)))
