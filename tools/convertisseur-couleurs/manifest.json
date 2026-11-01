@@ -1,0 +1,23 @@
+{
+  "format_version": "1.0",
+  "id": "convertisseur-couleurs",
+  "version": "1.0.0",
+  "name": "Convertisseur de couleurs",
+  "summary": "Convertissez une couleur entre HEX, RGB et HSL.",
+  "description": "Convertissez une couleur entre HEX, RGB et HSL. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+  "category": "developer",
+  "tags": [
+    "couleur",
+    "css"
+  ],
+  "seo": {
+    "title": "Convertisseur de couleurs — Kortex",
+    "description": "Convertissez une couleur entre HEX, RGB et HSL, localement et sans envoi."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}
