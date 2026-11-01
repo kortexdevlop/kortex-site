@@ -36,7 +36,7 @@
 .ai-tool input:checked { background: oklch(.55 .15 155); }
 .ai-tool input:checked::after { transform: translateX(14px); }
 .ai-note { margin-top: auto; padding: 12px 14px; border-radius: 16px; background: rgb(var(--glass-rgb) / .8); box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / .05); font-size: 11.5px; line-height: 1.55; color: var(--muted); }
-.ai-main { flex: 1; min-width: 0; display: flex; flex-direction: column; background: rgb(var(--ink-rgb) / .025); }
+.ai-main { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; background: rgb(var(--ink-rgb) / .025); }
 .ai-scroll { flex: 1; min-height: 0; overflow: auto; }
 .ai-empty { min-height: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 32px 24px; text-align: center; }
 .ai-empty .ai-mark { width: 64px; height: 64px; border-radius: 20px; box-shadow: inset 0 1px 0 rgb(var(--on-color-rgb) / .45), 0 18px 36px -12px oklch(.55 .18 290 / .6); }
@@ -105,10 +105,24 @@
 }
 @media (width < 700px) {
   .ai-assistant { height: 100dvh; margin: 0; border: 0; border-radius: 0; }
-  .ai-subbar .ai-new { padding: 0 12px; }
-  .ai-title, .ai-quota span { display: none; }
-  .ai-quota { min-width: 56px; }
-  .ai-composer { padding: 8px 12px 10px; }
+  .ai-title, .ai-left, .ai-foot, .ai-subbar .ai-spacer { display: none; }
+  .ai-quota { flex: 1; min-width: 0; }
+  .ai-quota span { overflow: hidden; text-overflow: ellipsis; }
+  .ai-subbar { justify-content: flex-end; }
+  .ai-subbar .ai-new { width: 44px; padding: 0; gap: 0; justify-content: center; font-size: 0; }
+  .ai-empty { justify-content: flex-start; gap: 8px; padding: 18px 12px; }
+  .ai-empty .ai-mark { width: 48px; height: 48px; border-radius: 15px; }
+  .ai-empty h2 { margin: 0; font-size: 22px; text-wrap: balance; }
+  .ai-empty p { font-size: 13px; }
+  .ai-ideas { grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
+  .ai-ideas button { flex-direction: row; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 15px; text-align: left; }
+  .ai-consent { align-items: flex-start; justify-content: flex-start; font-size: 11px; line-height: 1.35; }
+  .ai-user { max-width: 92%; }
+  .ai-reply { gap: 8px; }
+  .ai-reply > .ai-mark { width: 26px; height: 26px; }
+  .ai-decide button, .ai-save { flex: 1; height: 44px; }
+  .ai-files button { width: 36px; height: 36px; }
+  .ai-composer { padding: 6px 12px max(10px, env(safe-area-inset-bottom)); }
   .ai-subbar button { min-height: 44px; }
   .ai-thread { padding: 16px 12px 8px; }
   .ai-runtime { margin: 0 12px 12px; }
