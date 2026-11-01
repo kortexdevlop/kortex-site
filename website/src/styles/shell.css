@@ -206,3 +206,37 @@
   .td-hero { padding: 20px; }
   .td-open { width: 100%; }
 }
+
+/* Workspace frame: two glass panels; the desk fills the main one. */
+.workspace[data-frame=desk] { grid-template: 56px minmax(0,1fr) / 244px minmax(0,1fr); gap: 0 12px; height: calc(100dvh - 24px); margin: 12px; overflow: visible; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.workspace[data-frame=desk] .ws-sidebar { grid-row: 1 / -1; grid-column: 1; padding: 16px 12px 12px; gap: 14px; border: 1px solid rgba(255,255,255,.9); border-radius: 24px; background: linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.55)); box-shadow: 0 0 0 1px rgba(14,15,18,.06), 0 30px 70px -40px rgba(14,15,18,.35); }
+.workspace[data-frame=desk] .ws-topbar { grid-column: 2; grid-row: 1; height: 56px; padding: 0 20px; border: 1px solid rgba(255,255,255,.9); border-bottom-color: rgba(14,15,18,.06); border-radius: 24px 24px 0 0; background: rgba(255,255,255,.62); box-shadow: 0 0 0 1px rgba(14,15,18,.06); }
+.workspace[data-frame=desk] .ws-main-panel { grid-column: 2; grid-row: 2; overflow: hidden; border: 1px solid rgba(255,255,255,.9); border-top: 0; border-radius: 0 0 24px 24px; background: rgba(255,255,255,.5); box-shadow: 0 0 0 1px rgba(14,15,18,.06); }
+.workspace[data-frame=desk] .ws-scroll { overflow: hidden; }
+.workspace[data-frame=desk] .ws-content { display: block; max-width: none; height: 100%; padding: 0; }
+.workspace[data-frame=desk] .ws-library, .workspace[data-frame=desk] .ws-recent { display: none; }
+.workspace[data-frame=desk] .ws-global-search { max-width: none; height: 40px; border-radius: 13px; }
+.workspace[data-frame=desk] .ws-nav-item { height: 40px; }
+.ws-side-brand { display: flex; align-items: center; gap: 10px; padding: 2px 8px; color: #0e0f12; text-decoration: none; }
+.ws-side-brand:hover { text-decoration: none; }
+.ws-side-brand strong { display: block; font-size: 15px; font-weight: 600; letter-spacing: -.02em; }
+.ws-side-brand em { font-style: normal; font-weight: 400; color: #565a63; }
+.ws-side-brand small { display: block; font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: #565a63; }
+.ws-trail { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #565a63; }
+.ws-trail strong { font-weight: 500; color: #0e0f12; }
+.ws-topbar-actions[hidden] { display: none; }
+.ws-promo { padding: 14px; border-radius: 20px; background: radial-gradient(ellipse at 90% 0,oklch(.45 .13 255),transparent 60%),linear-gradient(150deg,#262a31,#0e0f12); color: #fff; font-size: 12px; }
+.ws-promo p { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; font-size: 14px; font-weight: 600; }
+.ws-promo-mark { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 9px; background: rgba(255,255,255,.12); }
+.ws-promo > span { display: block; line-height: 1.5; color: rgba(255,255,255,.75); }
+.ws-promo a { display: flex; align-items: center; justify-content: center; height: 36px; margin-top: 10px; border-radius: 11px; background: #fff; color: #0e0f12; font-size: 13px; font-weight: 500; text-decoration: none; }
+@media (width < 1100px) {
+  .workspace[data-frame=desk] { grid-template-columns: minmax(0,1fr); }
+  .workspace[data-frame=desk] .ws-topbar, .workspace[data-frame=desk] .ws-main-panel { grid-column: 1; }
+  .workspace[data-frame=desk] .ws-sidebar { grid-row: auto; grid-column: auto; background: rgba(255,255,255,.96); }
+}
+@media (width < 700px) {
+  .workspace[data-frame=desk] { height: 100dvh; margin: 0; }
+  .workspace[data-frame=desk] .ws-topbar { border-radius: 0; border-width: 0 0 1px; padding: 0 10px; }
+  .workspace[data-frame=desk] .ws-main-panel { border: 0; border-radius: 0; }
+}

@@ -26,7 +26,7 @@
   },
   {
     "route": "/workspace",
-    "enabled_visible_buttons": 8,
-    "tab_reached": 8
+    "enabled_visible_buttons": 13,
+    "tab_reached": 13
   }
 ]

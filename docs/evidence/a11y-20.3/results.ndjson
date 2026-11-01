@@ -50,8 +50,8 @@
 {"label":"Search dialog","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["label-content-name-mismatch"]}
 {"label":"1632px at 200% equivalent layout viewport","viewport":{"width":816,"height":500},"violations":[],"incomplete_rules":["color-contrast"]}
 {"label":"Not-found error feedback","viewport":{"width":816,"height":500},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
-{"label":"Real tool calculatrice","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":[]}
-{"label":"Real tool convertisseur-casse","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":[]}
-{"label":"Real tool calculateur-hash","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":[]}
-{"label":"Real tool timestamp-utc","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":[]}
-{"label":"Real tool explorateur-csv","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":[]}
+{"label":"Real tool calculatrice","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":["color-contrast"]}
+{"label":"Real tool convertisseur-casse","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":["color-contrast"]}
+{"label":"Real tool calculateur-hash","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":["color-contrast"]}
+{"label":"Real tool timestamp-utc","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":["color-contrast"]}
+{"label":"Real tool explorateur-csv","viewport":{"width":1280,"height":720},"violations":[],"incomplete_rules":["color-contrast"]}

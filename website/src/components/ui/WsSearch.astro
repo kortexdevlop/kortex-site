@@ -1,0 +1,6 @@
+---
+import Icon from './Icon.astro';
+interface Props {preview?:boolean;placeholder?:string;}
+const {preview=false,placeholder='Rechercher des outils'}=Astro.props;
+---
+<form class="ws-global-search" role="search" aria-label="Rechercher partout" action={preview?'/__dev/design':'/tools'}><Icon name="search" size={15}/><label class="sr-only" for="ws-global-query">Rechercher partout</label><input value={Astro.url.searchParams.get('q')||''} id="ws-global-query" name="q" type="search" placeholder={placeholder} maxlength="200"/><kbd aria-hidden="true">⌘K</kbd></form>

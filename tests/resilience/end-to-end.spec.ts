@@ -1,5 +1,5 @@
 import {test,expect} from 'playwright/test';
-import {desktop,open,action} from '../e2e/workspace-helpers';
+import {desktop,open,action,panel} from '../e2e/workspace-helpers';
 import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
 const vectors=JSON.parse(readFileSync('tests/integration/five-tools-vectors.json','utf8'));
 const ids=['calculatrice','convertisseur-casse','calculateur-hash','timestamp-utc','explorateur-csv'];
@@ -12,7 +12,7 @@ test('five real signed tools keep their actions offline and persist no inputs or
 test('catalogue API failure is visible and loaded guest recovers without data loss',async({page})=>{
  await desktop(page);const w=await open(page,'calculatrice');await action(page,w.instance,'multiply',{a:25,b:48});await expect(page.locator('.desk-actions pre')).toContainText('1200');
  await page.route('**/api/v1/tools?*',route=>route.fulfill({status:503,json:{error:{code:'UNAVAILABLE',message:'QA isolated outage'}}}));
- await page.getByRole('button',{name:'Rechercher',exact:true}).click();await expect(page.locator('.desk-notice').first()).toContainText('Catalogue indisponible');await expect(w.window).toHaveAttribute('data-runtime-state','ready');await action(page,w.instance,'add',{a:2,b:3});await expect(page.locator('.desk-actions pre')).toContainText('5');
+ await page.getByRole('button',{name:'Démarrer'}).click();await page.getByRole('button',{name:'Rechercher',exact:true}).click();await expect(page.locator('.desk-notice').first()).toContainText('Catalogue indisponible');await expect(w.window).toHaveAttribute('data-runtime-state','ready');await action(page,w.instance,'add',{a:2,b:3});await expect(page.locator('.desk-actions pre')).toContainText('5');
  await page.unroute('**/api/v1/tools?*');await page.getByRole('button',{name:'Rechercher',exact:true}).click();await expect(page.getByRole('button',{name:'Rechercher',exact:true})).toBeEnabled();await expect(page.locator('.desk-window')).toHaveCount(1);
 });
 test('an unavailable download fails visibly, then a fresh real launch succeeds',async({page})=>{
