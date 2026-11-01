@@ -1,0 +1,27 @@
+{
+  "format_version": "1.0",
+  "id": "fusion-pdf",
+  "version": "1.0.0",
+  "name": "Fusion PDF",
+  "summary": "Fusionnez deux fichiers PDF en un seul document.",
+  "description": "Choisissez deux PDF locaux, vérifiez leur ordre, puis enregistrez un seul PDF contenant les pages du premier suivies de celles du second. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+  "category": "documents",
+  "tags": [
+    "pdf",
+    "fusion"
+  ],
+  "seo": {
+    "title": "Fusionner deux PDF — Kortex",
+    "description": "Fusionnez deux fichiers PDF en un seul document, localement et sans envoi."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [
+    "file.pick",
+    "file.read",
+    "file.save"
+  ],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

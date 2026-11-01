@@ -6222,6 +6222,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "tool-fusion-pdf"
+version = "1.0.0"
+dependencies = [
+ "base64 0.22.1",
+ "kortex-sdk",
+ "kortex-ui",
+ "miniz_oxide 0.9.1",
+ "serde_json",
+]
+
+[[package]]
 name = "tool-timestamp-utc"
 version = "1.0.0"
 dependencies = [

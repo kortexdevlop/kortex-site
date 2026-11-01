@@ -1,0 +1,51 @@
+{
+  "contract_version": "1.0",
+  "tool_id": "fusion-pdf",
+  "actions": [
+    {
+      "id": "merge_pdfs",
+      "description": "Fusionner deux PDF non chiffrés, le premier suivi du second",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "first_base64": {
+            "type": "string",
+            "maxLength": 460000
+          },
+          "second_base64": {
+            "type": "string",
+            "maxLength": 460000
+          }
+        },
+        "required": [
+          "first_base64",
+          "second_base64"
+        ],
+        "additionalProperties": false
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "pdf_base64": {
+            "type": "string",
+            "maxLength": 933336
+          },
+          "pages": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 2000
+          }
+        },
+        "required": [
+          "pdf_base64",
+          "pages"
+        ],
+        "additionalProperties": false
+      },
+      "permissions": [],
+      "side_effect": "none",
+      "idempotent": true,
+      "timeout_ms": 5000
+    }
+  ]
+}
