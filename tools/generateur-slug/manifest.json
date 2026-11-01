@@ -1,0 +1,23 @@
+{
+  "format_version": "1.0",
+  "id": "generateur-slug",
+  "version": "1.0.0",
+  "name": "Générateur de slug",
+  "summary": "Transformez un titre en slug d’URL ou en snake_case, sans accents.",
+  "description": "Transformez un titre en slug d’URL ou en snake_case, sans accents. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+  "category": "developer",
+  "tags": [
+    "texte",
+    "url"
+  ],
+  "seo": {
+    "title": "Générateur de slug — Kortex",
+    "description": "Transformez un titre en slug d’URL ou en snake_case, localement et sans envoi."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}
