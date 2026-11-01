@@ -75,7 +75,7 @@ try{
     const put=await platform.env.TOOLS_BUCKET.put(request.r2_key,bytes,{onlyIf:{etagDoesNotMatch:'*'},httpMetadata:{contentType:'application/vnd.kortex.tool+zip'}});
     if(!put){const existing=await platform.env.TOOLS_BUCKET.get(request.r2_key);assert.equal(hash(Buffer.from(await existing.arrayBuffer())),request.descriptor.sha256)}
     const exists=await fetch(p.api_origin+'/api/v1/tools/'+release.tool_id);
-    if(exists.status===404)await publishService(platform.env,request,{subject:'production-operator-direct',jti:randomUUID()});
+    if(exists.status===404||(exists.ok&&(await exists.json()).tool.version!==request.manifest.version))await publishService(platform.env,request,{subject:'production-operator-direct',jti:randomUUID()});
     const detail=await fetch(p.api_origin+'/api/v1/tools/'+release.tool_id);assert.equal(detail.status,200);assert.equal((await detail.json()).descriptor.sha256,release.sha256);
     const download=await fetch(p.api_origin+'/api/v1/downloads/'+release.tool_id+'/'+request.manifest.version);assert.equal(download.status,200);assert.equal(hash(Buffer.from(await download.arrayBuffer())),release.sha256);
     published.push({id:release.tool_id,version:request.manifest.version,sha256:release.sha256});console.log('published '+release.tool_id)

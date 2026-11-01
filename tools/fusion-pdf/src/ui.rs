@@ -13,6 +13,56 @@ fn clip(text: &str, max: usize) -> String {
 fn kilobytes(bytes: usize) -> String {
     format!("{} Ko", bytes.div_ceil(1000))
 }
+fn button(key: &str, text: &str, disabled: bool) -> Value {
+    node(
+        "button",
+        key,
+        json!({"text":text,"disabled":disabled}),
+        vec![],
+    )
+}
+fn slot_card(
+    tool: &PdfTool,
+    index: usize,
+    title: &str,
+    pick: &str,
+    target: &str,
+    disabled: bool,
+) -> Value {
+    let name = |text: &str| {
+        node(
+            "text",
+            &format!("name_{index}"),
+            json!({"text":text}),
+            vec![],
+        )
+    };
+    let children = match &tool.slots[index] {
+        Some(slot) => {
+            let details = format!("{} page(s) · {}", slot.pages, kilobytes(slot.data.len()));
+            vec![
+                name(&clip(&slot.name, 100)),
+                node(
+                    "text",
+                    &format!("details_{index}"),
+                    json!({"text":details}),
+                    vec![],
+                ),
+                button(pick, &format!("Remplacer {target}"), disabled),
+            ]
+        }
+        None => vec![
+            name("Aucun fichier"),
+            button(pick, &format!("Choisir {target}"), disabled),
+        ],
+    };
+    node(
+        "card",
+        &format!("slot_{index}"),
+        json!({"title":title}),
+        children,
+    )
+}
 impl PdfTool {
     pub(crate) fn render(&self) -> Value {
         let busy = self.host.pending_count() > 0;
@@ -29,24 +79,23 @@ impl PdfTool {
                 "Opération annulée. Les fichiers déjà chargés sont conservés.".into()
             }
             ("error", _) => format!("{} ({})", explain(&self.error), self.error),
+            _ if ready => "Les deux PDF sont prêts à être fusionnés.".into(),
             _ => "Choisissez deux PDF non protégés de 700 Ko maximum chacun.".into(),
         };
-        let rows: Vec<Value> = self
-            .slots
-            .iter()
-            .enumerate()
-            .map(|(i, slot)| match slot {
-                Some(s) => json!({"rank":(i+1).to_string(),"name":clip(&s.name,100),"pages":s.pages,"size":kilobytes(s.data.len())}),
-                None => json!({"rank":(i+1).to_string(),"name":"Aucun fichier","pages":"","size":""}),
-            })
-            .collect();
-        let progress = if self.phase == "merged" {
-            100.0
-        } else if self.size == 0 {
-            0.0
-        } else {
-            self.offset as f64 / self.size as f64 * 100.0
-        };
+        let mut actions = Vec::new();
+        if loading {
+            actions.push(button("cancel", "Annuler", false));
+        } else if self.merged.is_some() {
+            actions.push(button("save", "Enregistrer le PDF fusionné", busy));
+        } else if ready {
+            actions.push(button("merge", "Fusionner", busy));
+        }
+        if ready && !loading {
+            actions.push(button("swap", "Inverser l’ordre", busy));
+        }
+        if self.slots.iter().any(Option::is_some) {
+            actions.push(button("reset", "Recommencer", busy && !loading));
+        }
         let mut children = vec![
             node(
                 "heading",
@@ -61,80 +110,46 @@ impl PdfTool {
                 vec![],
             ),
             node(
-                "row",
-                "pickers",
-                json!({"gap":8}),
-                vec![
-                    node(
-                        "button",
-                        "pick_first",
-                        json!({"text":"Choisir le premier PDF","disabled":busy||loading}),
-                        vec![],
-                    ),
-                    node(
-                        "button",
-                        "pick_second",
-                        json!({"text":"Choisir le second PDF","disabled":busy||loading}),
-                        vec![],
-                    ),
-                    node(
-                        "button",
-                        "cancel",
-                        json!({"text":"Annuler","disabled":!loading}),
-                        vec![],
-                    ),
-                ],
-            ),
-            node(
-                "table",
+                "grid",
                 "files",
-                json!({"columns":[{"key":"rank","label":"Ordre"},{"key":"name","label":"Fichier"},{"key":"pages","label":"Pages"},{"key":"size","label":"Taille"}],"rows":rows}),
-                vec![],
-            ),
-            node(
-                "progress",
-                "progress",
-                json!({"label":"Progression","value":progress}),
-                vec![],
-            ),
-            node(
-                "alert",
-                "status",
-                json!({"text":message,"severity":if self.phase=="error"{"error"}else{"info"}}),
-                vec![],
-            ),
-            node(
-                "row",
-                "actions",
-                json!({"gap":8}),
+                json!({"columns":2}),
                 vec![
-                    node(
-                        "button",
-                        "swap",
-                        json!({"text":"Inverser l’ordre","disabled":busy||loading||!ready}),
-                        vec![],
+                    slot_card(
+                        self,
+                        0,
+                        "Premier PDF",
+                        "pick_first",
+                        "le premier PDF",
+                        busy || loading,
                     ),
-                    node(
-                        "button",
-                        "merge",
-                        json!({"text":"Fusionner","disabled":busy||loading||!ready}),
-                        vec![],
-                    ),
-                    node(
-                        "button",
-                        "save",
-                        json!({"text":"Enregistrer le PDF fusionné","disabled":busy||self.merged.is_none()}),
-                        vec![],
-                    ),
-                    node(
-                        "button",
-                        "reset",
-                        json!({"text":"Recommencer","disabled":busy&&!loading}),
-                        vec![],
+                    slot_card(
+                        self,
+                        1,
+                        "Second PDF",
+                        "pick_second",
+                        "le second PDF",
+                        busy || loading,
                     ),
                 ],
             ),
         ];
+        if self.phase == "reading" {
+            children.push(node(
+                "progress",
+                "progress",
+                json!({"label":"Progression","value":self.offset as f64 / self.size as f64 * 100.0}),
+                vec![],
+            ));
+        }
+        children.push(node(
+            "alert",
+            "status",
+            json!({"text":message,"severity":if self.phase=="error"{"error"}else{"info"}}),
+            vec![],
+        ));
+        if !actions.is_empty() {
+            children.push(node("row", "actions", json!({"gap":8}), actions));
+        }
         if !self.notice.is_empty() {
             children.push(node(
                 "alert",

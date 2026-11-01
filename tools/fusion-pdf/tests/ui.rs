@@ -58,6 +58,9 @@ fn find<'a>(tree: &'a Value, key: &str) -> Option<&'a Value> {
         .iter()
         .find_map(|c| find(c, key))
 }
+fn text<'a>(tree: &'a Value, key: &str) -> &'a str {
+    find(tree, key).unwrap()["props"]["text"].as_str().unwrap()
+}
 fn status(tree: &Value) -> String {
     find(tree, "status").unwrap()["props"]["text"]
         .as_str()
@@ -124,22 +127,18 @@ fn picks_two_files_merges_swaps_and_saves() {
     let first = one_page("first", CHUNK + 1000);
     let second = one_page("second", 0);
     let tree = render(&mut tool);
-    assert_eq!(find(&tree, "merge").unwrap()["props"]["disabled"], true);
+    assert!(find(&tree, "actions").is_none(), "nothing to do yet");
 
     load(&mut tool, "pick_first", "a.pdf", &first);
     let tree = render(&mut tool);
-    assert_eq!(find(&tree, "merge").unwrap()["props"]["disabled"], true);
+    assert!(find(&tree, "merge").is_none());
     load(&mut tool, "pick_second", "b.pdf", &second);
     let tree = render(&mut tool);
-    let rows = find(&tree, "files").unwrap()["props"]["rows"]
-        .as_array()
-        .unwrap()
-        .clone();
-    assert_eq!(rows[0]["name"], "a.pdf");
-    assert_eq!(rows[1]["name"], "b.pdf");
-    assert_eq!(rows[0]["pages"], 1);
+    assert_eq!(text(&tree, "name_0"), "a.pdf");
+    assert_eq!(text(&tree, "name_1"), "b.pdf");
+    assert!(text(&tree, "details_0").starts_with("1 page"));
     assert_eq!(find(&tree, "merge").unwrap()["props"]["disabled"], false);
-    assert_eq!(find(&tree, "save").unwrap()["props"]["disabled"], true);
+    assert!(find(&tree, "save").is_none());
 
     click(&mut tool, "merge");
     let tree = render(&mut tool);
@@ -148,16 +147,8 @@ fn picks_two_files_merges_swaps_and_saves() {
 
     click(&mut tool, "swap");
     let tree = render(&mut tool);
-    let rows = find(&tree, "files").unwrap()["props"]["rows"]
-        .as_array()
-        .unwrap()
-        .clone();
-    assert_eq!(rows[0]["name"], "b.pdf");
-    assert_eq!(
-        find(&tree, "save").unwrap()["props"]["disabled"],
-        true,
-        "swap invalidates the result"
-    );
+    assert_eq!(text(&tree, "name_0"), "b.pdf");
+    assert!(find(&tree, "save").is_none(), "swap invalidates the result");
 
     click(&mut tool, "merge");
     click(&mut tool, "save");
@@ -196,13 +187,9 @@ fn refuses_bad_files_and_keeps_the_other_slot() {
     );
     let tree = render(&mut tool);
     assert!(status(&tree).contains("INVALID_PDF"));
-    let rows = find(&tree, "files").unwrap()["props"]["rows"]
-        .as_array()
-        .unwrap()
-        .clone();
-    assert_eq!(rows[0]["name"], "a.pdf");
-    assert_eq!(rows[1]["name"], "Aucun fichier");
-    assert_eq!(find(&tree, "merge").unwrap()["props"]["disabled"], true);
+    assert_eq!(text(&tree, "name_0"), "a.pdf");
+    assert_eq!(text(&tree, "name_1"), "Aucun fichier");
+    assert!(find(&tree, "merge").is_none());
 
     click(&mut tool, "pick_second");
     let pick = next();
@@ -236,19 +223,11 @@ fn cancelling_a_pick_keeps_loaded_files_and_ignores_late_results() {
         "stale pick must not start a read"
     );
     let tree = render(&mut tool);
-    let rows = find(&tree, "files").unwrap()["props"]["rows"]
-        .as_array()
-        .unwrap()
-        .clone();
-    assert_eq!(rows[0]["name"], "a.pdf");
-    assert_eq!(rows[1]["name"], "Aucun fichier");
+    assert_eq!(text(&tree, "name_0"), "a.pdf");
+    assert_eq!(text(&tree, "name_1"), "Aucun fichier");
 
     click(&mut tool, "reset");
-    let rows = find(&render(&mut tool), "files").unwrap()["props"]["rows"]
-        .as_array()
-        .unwrap()
-        .clone();
-    assert_eq!(rows[0]["name"], "Aucun fichier");
+    assert_eq!(text(&render(&mut tool), "name_0"), "Aucun fichier");
 }
 
 #[test]

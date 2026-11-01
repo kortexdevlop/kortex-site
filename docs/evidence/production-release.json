@@ -2,7 +2,7 @@
   "schema_version": 1,
   "phases": {
     "deploy": {
-      "date": "2026-11-01T12:59:21.653Z",
+      "date": "2026-11-01T19:56:41.646Z",
       "origins": [
         "https://api.kortex.site",
         "https://run.kortex.site",
@@ -10,9 +10,9 @@
       ],
       "admin_policy": "GitHub OIDC only (production API refuses operator issuers)"
     },
-    "tools_error": "crypto.DigestStream is not a constructor",
+    "tools_error": "IMMUTABLE_VERSION_CONFLICT",
     "tools": {
-      "date": "2026-11-01T18:32:54.705Z",
+      "date": "2026-11-01T19:16:18.936Z",
       "tools": [
         {
           "id": "calculatrice",
@@ -45,11 +45,6 @@
           "sha256": "0af16d2506672375e99add45ac53f2d5c6d1c4b860d2d9ddee3f6af06a1a49f2"
         },
         {
-          "id": "fusion-pdf",
-          "version": "1.0.0",
-          "sha256": "7d697a60a0ca7e6b6d8349d2b9cf78d3faccac92a64d7f10e38401861e5c6c9f"
-        },
-        {
           "id": "compresseur-images",
           "version": "1.0.0",
           "sha256": "b068bbf3c3f3ce8ff379ce02373d898af101f7111748cb839cbd3687cfa8879f"
@@ -78,22 +73,27 @@
           "id": "comparateur-texte",
           "version": "1.0.0",
           "sha256": "d91e311bff53d3a9c841a19ac15e5df132b91ac7f651cd4c0e601d8e33919a86"
+        },
+        {
+          "id": "fusion-pdf",
+          "version": "1.0.1",
+          "sha256": "892193a55f4e7e4d74b3b6eda4d8cac596c9b24de1cbf4801ddb089b6f1e8e30"
         }
       ],
       "signing_key_id": "production-release-2"
     },
     "channels": {
-      "date": "2026-11-01T12:08:02.087Z",
-      "sequence": 7,
-      "expires": 1796040481680,
+      "date": "2026-11-01T19:20:53.708Z",
+      "sequence": 12,
+      "expires": 1796066451992,
       "runtime_version": "1.0.2",
-      "bundle_sha256": "4208ab5dfe500fb992cf39cf42c9d0074f0d7f94295ffe7e90a9df5c07cf6753",
+      "bundle_sha256": "eec5384a2de06bcb8014ff54c88e80c7f93926c8dd02f91c0fc10367abb7dca9",
       "desktop_in_stable_channel": false
     },
     "finalize": {
-      "date": "2026-10-31T18:20:53.481Z",
+      "date": "2026-11-01T19:21:22.862Z",
       "admin_authority": "github-oidc-only",
-      "channel_sequence": 2
+      "channel_sequence": 12
     },
     "deploy_error": "Wrangler deploy failed: \u001b[33m▲ \u001b[43;33m[\u001b[43;30mWARNING\u001b[43;33m]\u001b[0m \u001b[1mA fetch request failed, likely due to a connectivity issue.\u001b[0m\n\n  \n  Common causes:\n    - No internet connection or network connectivity problems\n    - Firewall or VPN blocking the request\n    - Network proxy configuration issues\n  \n  Please check your network connection and try again.\n\n\n\u001b[31mX \u001b[41;31m[\u001b[41;97mERROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\µ\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_23-17-43_051.log\"\n"
   },
