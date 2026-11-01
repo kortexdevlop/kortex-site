@@ -1,0 +1,23 @@
+{
+  "format_version": "1.0",
+  "id": "encodeur-url",
+  "version": "1.0.0",
+  "name": "Encodeur URL",
+  "summary": "Encodez ou décodez un texte en pourcentage pour une URL.",
+  "description": "Encodez ou décodez un texte en pourcentage pour une URL, sans l’envoyer. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+  "category": "developer",
+  "tags": [
+    "url",
+    "texte"
+  ],
+  "seo": {
+    "title": "Encodeur URL — Kortex",
+    "description": "Encodez ou décodez un texte en pourcentage pour une URL, localement et sans envoi."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}
