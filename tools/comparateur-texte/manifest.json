@@ -1,0 +1,23 @@
+{
+  "format_version": "1.0",
+  "id": "comparateur-texte",
+  "version": "1.0.0",
+  "name": "Comparateur de texte",
+  "summary": "Comparez deux textes ligne par ligne, sans les envoyer.",
+  "description": "Comparez deux textes ligne par ligne et repérez les lignes ajoutées ou supprimées. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+  "category": "developer",
+  "tags": [
+    "texte",
+    "diff"
+  ],
+  "seo": {
+    "title": "Comparateur de texte — Kortex",
+    "description": "Comparez deux textes ligne par ligne, localement et sans envoi."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}
