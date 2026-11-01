@@ -30,7 +30,8 @@ const trust={root:json('infra/trust/release-production-root.json'),keys:json('in
 const receiptPath=resolve(root,'docs/evidence/production-release.json'),receipt=existsSync(receiptPath)?JSON.parse(readFileSync(receiptPath,'utf8')):{schema_version:1,phases:{},mail_records_edited:false,dns_records_edited_directly:false};
 const save=()=>writeFileSync(receiptPath,JSON.stringify(receipt,null,2)+'\n');
 const dpapi=(value,method)=>{const r=spawnSync('powershell.exe',['-NoProfile','-NonInteractive','-Command',`Add-Type -AssemblyName System.Security; [Convert]::ToBase64String([Security.Cryptography.ProtectedData]::${method}([Convert]::FromBase64String([Console]::In.ReadToEnd().Trim()),$null,[Security.Cryptography.DataProtectionScope]::CurrentUser))`],{input:value,encoding:'utf8',windowsHide:true});if(r.status!==0)throw Error('DPAPI_UNAVAILABLE');return r.stdout.trim()};
-const releaseSeed=()=>Buffer.from(dpapi(readFileSync(resolve(homedir(),'.kortex-offline','release-production.dpapi'),'utf8'),'Unprotect'),'base64');
+const activeKey=trust.keys.keys.filter(k=>!k.revoked).at(-1),releaseSlot=activeKey.id==='production-release-1'?'release-production':'release-production-'+activeKey.id.split('-').pop();
+const releaseSeed=()=>Buffer.from(dpapi(readFileSync(resolve(homedir(),'.kortex-offline',releaseSlot+'.dpapi'),'utf8'),'Unprotect'),'base64');
 function wrangler(args,extra={}){const r=spawnSync(process.execPath,[resolve(root,'node_modules/wrangler/bin/wrangler.js'),...args,...(args[0]==='whoami'?[]:['--profile','kortex'])],{cwd:root,encoding:'utf8',windowsHide:true,timeout:300000,maxBuffer:16*1024*1024,env:{...process.env,CLOUDFLARE_ACCOUNT_ID:p.account_id,CI:'true',WRANGLER_SEND_METRICS:'false',...extra}});if(r.status!==0)throw Error('Wrangler '+args[0]+' failed: '+(r.stderr||r.stdout).slice(-900));return r.stdout}
 const identity=JSON.parse(wrangler(['whoami','--json']));assert.ok(identity.accounts.some(a=>a.id===p.account_id),'ACCOUNT_MISMATCH');
 const token=JSON.parse(wrangler(['auth','token','--json'])).token;
@@ -59,14 +60,14 @@ try{
  }
  if(phase==='tools'){
   const seed=releaseSeed(),tools=process.argv.length>3?process.argv.slice(3):['calculatrice','convertisseur-casse','calculateur-hash','timestamp-utc','explorateur-csv'],releases=[];
-  process.env.CI='true';process.env.KORTEX_SIGNING_KEY_ID=trust.keys.keys[0].id;process.env.KORTEX_SIGNING_KEY_SEED_BASE64=seed.toString('base64');
+  process.env.CI='true';process.env.KORTEX_SIGNING_KEY_ID=activeKey.id;process.env.KORTEX_SIGNING_KEY_SEED_BASE64=seed.toString('base64');
   try{for(const tool of tools)releases.push(prepareRelease({tool,out:resolve(out,'tools',tool),root:resolve(root,'infra/trust/release-production-root.json'),trust:resolve(root,'infra/trust/release-production-keys.json')}))}
   finally{seed.fill(0);delete process.env.KORTEX_SIGNING_KEY_SEED_BASE64;delete process.env.KORTEX_SIGNING_KEY_ID;delete process.env.CI}
   const previousToken=process.env.CLOUDFLARE_API_TOKEN;process.env.CLOUDFLARE_API_TOKEN=token;process.env.CLOUDFLARE_ACCOUNT_ID=p.account_id;
   const proxyConfig=configs(githubPolicy).api;proxyConfig.d1_databases=proxyConfig.d1_databases.map(d=>({...d,remote:true}));proxyConfig.r2_buckets=proxyConfig.r2_buckets.map(b=>({...b,remote:true}));const configFile=write('api-proxy',proxyConfig);let platform;const published=[];const {buildSync}=createRequire(resolve(root,'website/package.json'))('esbuild'),bundle=resolve(out,'publication-service.mjs');buildSync({entryPoints:[resolve(root,'api/src/services/publication.ts')],bundle:true,format:'esm',platform:'neutral',outfile:bundle,logLevel:'error'});if(!globalThis.crypto.DigestStream)Object.defineProperty(globalThis.crypto,'DigestStream',{configurable:true,value:class{constructor(algorithm){const chunks=[];this.writable=new WritableStream({write(chunk){chunks.push(Buffer.from(chunk))}});this.digest=new Promise((done,fail)=>{this.writable.closed?.then?.(()=>{}).catch?.(()=>{});this._done=()=>crypto.subtle.digest(algorithm,Buffer.concat(chunks)).then(done,fail)})}getWriter(){const writer=this.writable.getWriter(),close=writer.close.bind(writer);writer.close=async()=>{await close();this._done()};return writer}}});const {publish:publishService}=await import(pathToFileURL(bundle).href);
   try{
    platform=await getPlatformProxy({configPath:configFile,remoteBindings:true,persist:false,envFiles:[]});
-   const key=trust.keys.keys[0];
+   const key=activeKey;
    await platform.env.DB.prepare('INSERT INTO signing_keys(id,public_key_base64,trust_version,not_before,expires) SELECT ?,?,1,?,? WHERE NOT EXISTS(SELECT 1 FROM signing_keys WHERE id=?)').bind(key.id,key.public_key_base64,key.not_before,key.expires,key.id).run();
    assert.equal(await platform.env.DB.prepare('SELECT public_key_base64 FROM signing_keys WHERE id=?').bind(key.id).first('public_key_base64'),key.public_key_base64);
    for(const release of releases){
@@ -80,13 +81,13 @@ try{
     published.push({id:release.tool_id,version:request.manifest.version,sha256:release.sha256});console.log('published '+release.tool_id)
    }
   }finally{if(platform)await platform.dispose();if(previousToken===undefined)delete process.env.CLOUDFLARE_API_TOKEN;else process.env.CLOUDFLARE_API_TOKEN=previousToken}
-  receipt.phases.tools={date:new Date().toISOString(),tools:[...(receipt.phases.tools?.tools??[]).filter(t=>!published.some(n=>n.id===t.id)),...published],signing_key_id:trust.keys.keys[0].id};
+  receipt.phases.tools={date:new Date().toISOString(),tools:[...(receipt.phases.tools?.tools??[]).filter(t=>!published.some(n=>n.id===t.id)),...published],signing_key_id:activeKey.id};
  }
  if(phase==='channels'){
   const version=await (await health(p.runtime_origin,'/version.json')).json(),keys=trust.keys,now=Date.now();
   assert.ok(/^[a-f0-9]{64}$/.test(version.bundle_sha256)&&version.script_integrity);
   const liveChannels=await(await health(p.api_origin,'/api/v1/runtime/channels')).json();
-  const document={schema_version:1,sequence:Math.max(liveChannels.document.sequence,trust.runtime.document.sequence)+1,issued_at:now-1000,expires:Math.min(now+29*86400000,keys.expires),channels:{stable:{runtime_version:version.runtime_version,abi_versions:version.abi_versions,protocol_versions:version.protocol_versions,ui_schema_versions:version.ui_schema_versions,web:{origin:p.runtime_origin,version_url:p.runtime_origin+'/version.json',bundle_sha256:version.bundle_sha256,script_integrity:version.script_integrity},desktop:null},staging:null},signing_key_id:keys.keys[0].id,signature:''};
+  const document={schema_version:1,sequence:Math.max(liveChannels.document.sequence,trust.runtime.document.sequence)+1,issued_at:now-1000,expires:Math.min(now+29*86400000,keys.expires),channels:{stable:{runtime_version:version.runtime_version,abi_versions:version.abi_versions,protocol_versions:version.protocol_versions,ui_schema_versions:version.ui_schema_versions,web:{origin:p.runtime_origin,version_url:p.runtime_origin+'/version.json',bundle_sha256:version.bundle_sha256,script_integrity:version.script_integrity},desktop:null},staging:null},signing_key_id:activeKey.id,signature:''};
   const seed=releaseSeed();try{const key=createPrivateKey({key:Buffer.concat([Buffer.from('302e020100300506032b657004220420','hex'),seed]),format:'der',type:'pkcs8'});document.signature=sign(null,runtimeSigningText(document),key).toString('base64')}finally{seed.fill(0)}
   const envelope={document,keys};await verifyRuntime(envelope,trust.root);writeFileSync(resolve(out,'channels.json'),JSON.stringify(envelope,null,2)+'\n');
   writeFileSync(resolve(root,'target/channels-production-latest.json'),JSON.stringify(envelope));receipt.phases.channels={date:new Date().toISOString(),sequence:document.sequence,expires:document.expires,runtime_version:version.runtime_version,bundle_sha256:version.bundle_sha256,desktop_in_stable_channel:false};

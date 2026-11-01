@@ -33,7 +33,8 @@ const replace={},now=Date.now();
 const rootPin=json(profile.revocationRoot),oldRevocations=JSON.parse(binding('REVOCATION_DOCUMENT').text),signRevocation=(document,key)=>({...document,signature:sign(null,revocationText(document),key).toString('base64')});
 const revocationKey=()=>{const key=privateKey(profile.revocationSlot);if(rawKey(key)!==rootPin.public_key_base64)throw Error('REVOCATION_ROOT_MISMATCH');return key};
 const channelsBinding=binding('RUNTIME_CHANNELS'),releaseRoot=json(profile.releaseRoot),keys=json(profile.releaseKeys),DAY=86400000;
-const signChannels=(base,sequence,issued,key)=>{const document={...base,sequence,issued_at:issued,expires:Math.min(issued+29*DAY,keys.expires),signature:''};document.signature=sign(null,runtimeSigningText(document),key).toString('base64');return{document,keys}};
+const activeKey=keys.keys.filter(k=>!k.revoked).at(-1),releaseSlot=env==='production'&&activeKey.id!=='production-release-1'?'release-production-'+activeKey.id.split('-').pop():profile.releaseSlot;
+const signChannels=(base,sequence,issued,key)=>{const document={...base,sequence,issued_at:issued,expires:Math.min(issued+29*DAY,keys.expires),signing_key_id:activeKey.id,signature:''};document.signature=sign(null,runtimeSigningText(document),key).toString('base64');return{document,keys}};
 if(profile.bucket){
  const scheduleFile=resolve(root,'target/trust-schedule-'+env+'.json');let saved=null;try{saved=json(scheduleFile)}catch{}
  if(keys.expires-now<45*DAY)log('WARNING release key certificate expires '+new Date(keys.expires).toISOString()+': renew it before the schedule runs out');
@@ -43,7 +44,7 @@ if(profile.bucket){
   const SLOT=REVOCATION_TTL/2,slot=Math.floor(now/SLOT),generation=Math.max(saved?.generation??0,oldRevocations.version>=1e6?oldRevocations.version%1000:0)+1;if(generation>=1000)throw Error('SCHEDULE_GENERATION_EXHAUSTED');
   const key=revocationKey(),revocations=Array.from({length:180},(_,i)=>signRevocation({...oldRevocations,version:(slot+i)*1000+generation,issued_at:(slot+i)*SLOT,valid_until:(slot+i)*SLOT+REVOCATION_TTL,root_key_id:rootPin.id,signature:''},key));
   for(const document of [revocations[0],revocations.at(-1)])if(!verify(null,revocationText(document),createPublicKey({key:Buffer.concat([Buffer.from('302a300506032b6570032100','hex'),Buffer.from(rootPin.public_key_base64,'base64')]),format:'der',type:'spki'}),Buffer.from(document.signature,'base64')))throw Error('REVOCATION_SELF_CHECK_FAILED');
-  const envelope=JSON.parse(channelsBinding.text),served=await(await fetch(profile.origin+'/api/v1/runtime/channels',{cache:'no-store',signal:AbortSignal.timeout(15000)})).json().catch(()=>null),sequence=Math.max(envelope.document.sequence,served?.document?.sequence??0),release=privateKey(profile.releaseSlot),channels=[];
+  const envelope=JSON.parse(channelsBinding.text),served=await(await fetch(profile.origin+'/api/v1/runtime/channels',{cache:'no-store',signal:AbortSignal.timeout(15000)})).json().catch(()=>null),sequence=Math.max(envelope.document.sequence,served?.document?.sequence??0),release=privateKey(releaseSlot),channels=[];
   for(let i=0;i<7&&now-1000+i*14*DAY<keys.expires-DAY;i++)channels.push(signChannels(envelope.document,sequence+1+i,now-1000+i*14*DAY,release));
   await verifyRuntime(channels[0],releaseRoot);
   const horizon=Math.min(revocations.at(-1).valid_until,channels.at(-1).document.expires),file=resolve(root,'target/trust-schedule-upload.json');writeFileSync(file,JSON.stringify({revocations,channels}));
@@ -62,7 +63,7 @@ if(profile.bucket){
   const envelope=JSON.parse(channelsBinding.text);
   if(force||envelope.document.expires-now<7*DAY){
    if(Math.min(now+29*DAY,keys.expires)<=now)throw Error('RELEASE_KEYS_EXPIRED_ROTATE_FIRST');
-   const next=signChannels(envelope.document,envelope.document.sequence+1,now-1000,privateKey(profile.releaseSlot));await verifyRuntime(next,releaseRoot);replace.RUNTIME_CHANNELS=JSON.stringify(next);log('runtime channels sequence '+next.document.sequence+' valid until '+new Date(next.document.expires).toISOString());
+   const next=signChannels(envelope.document,envelope.document.sequence+1,now-1000,privateKey(releaseSlot));await verifyRuntime(next,releaseRoot);replace.RUNTIME_CHANNELS=JSON.stringify(next);log('runtime channels sequence '+next.document.sequence+' valid until '+new Date(next.document.expires).toISOString());
   }else log('runtime channels still valid until '+new Date(envelope.document.expires).toISOString());
  }
 }

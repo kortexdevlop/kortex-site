@@ -8,7 +8,7 @@ La liste de révocation signée est valable 24 h (contrat) et le canal Runtime 3
 
 - **Après une révocation :** lancer `node scripts/refresh-trust.mjs --env production --force`. Tant que ce n'est pas fait, l'API refuse les documents qui ne contiennent pas la révocation et répond 503 dès l'expiration du document courant : c'est volontaire.
 - **Après une publication du Runtime :** `scripts/production-release.mjs deploy` reconstruit la série automatiquement.
-- **Limite :** le certificat de la clé de publication expire le 28 janvier 2027. Il doit être renouvelé avant cette date, car la série de canaux s'arrête là et les signatures d'outils en dépendent.
+- **Limite :** le certificat des clés expire le 31 octobre 2028. Avant cette date, lancer `node scripts/renew-production-keys.mjs`, ajouter la ligne SQL affichée à la table `signing_keys`, déployer, puis publier un nouvel installateur : les applications déjà installées gardent leur certificat intégré.
 
 ## Staging
 
