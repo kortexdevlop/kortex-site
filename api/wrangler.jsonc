@@ -84,7 +84,11 @@
         "PUBLIC_WEB_ORIGIN": "https://kortex.site",
         "PASSWORD_AUTH_ENABLED": "true",
         "OIDC_ENABLED": "false",
-        "AI_ENABLED": "false",
+        "AI_ENABLED": "true",
+        "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "AI_USER_DAILY_REQUESTS": "50",
+        "AI_GLOBAL_DAILY_REQUESTS": "100",
+        "AI_DAILY_RESERVED_TOKENS": "1689600",
         "TELEMETRY_ENABLED": "false"
       },
       "d1_databases": [
@@ -100,7 +104,10 @@
           "binding": "TOOLS_BUCKET",
           "bucket_name": "kortex-tools-production"
         }
-      ]
+      ],
+      "ai": {
+        "binding": "AI"
+      }
     }
   },
   "compatibility_flags": [

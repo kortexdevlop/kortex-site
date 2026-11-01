@@ -129,9 +129,18 @@ fn request(
                 );
             }
             503 => {
-                return Err(
-                    "L’IA est momentanément indisponible. Aucun outil n’a été exécuté.".into(),
-                );
+                let disabled = response
+                    .take(4096)
+                    .bytes()
+                    .flatten()
+                    .collect::<Vec<u8>>()
+                    .windows(8)
+                    .any(|w| w == b"disabled");
+                return Err(if disabled {
+                    "L’assistant IA n’est pas activé sur ce service. Aucun outil n’a été exécuté.".into()
+                } else {
+                    "L’IA est momentanément indisponible. Aucun outil n’a été exécuté.".into()
+                });
             }
             _ => {}
         }

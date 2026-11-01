@@ -12,7 +12,7 @@
     },
     "tools_error": "crypto.DigestStream is not a constructor",
     "tools": {
-      "date": "2026-10-31T21:36:09.609Z",
+      "date": "2026-11-01T18:32:54.705Z",
       "tools": [
         {
           "id": "calculatrice",
@@ -43,9 +43,44 @@
           "id": "compteur-mots",
           "version": "1.0.0",
           "sha256": "0af16d2506672375e99add45ac53f2d5c6d1c4b860d2d9ddee3f6af06a1a49f2"
+        },
+        {
+          "id": "fusion-pdf",
+          "version": "1.0.0",
+          "sha256": "7d697a60a0ca7e6b6d8349d2b9cf78d3faccac92a64d7f10e38401861e5c6c9f"
+        },
+        {
+          "id": "compresseur-images",
+          "version": "1.0.0",
+          "sha256": "b068bbf3c3f3ce8ff379ce02373d898af101f7111748cb839cbd3687cfa8879f"
+        },
+        {
+          "id": "formateur-json",
+          "version": "1.0.0",
+          "sha256": "aedfb95b46395065c1c65315b8a0e9c3959c4a3273ee9fe0885abe04470ad78a"
+        },
+        {
+          "id": "convertisseur-couleurs",
+          "version": "1.0.0",
+          "sha256": "116f28a907b17e04046aaf5dd836a64d1e63d55172d55912eae0b0467afa2dba"
+        },
+        {
+          "id": "generateur-slug",
+          "version": "1.0.0",
+          "sha256": "9f27242b1d13c8b22e859a72cff60c5872b270ce492f3a26d7b6d2101f20fa1d"
+        },
+        {
+          "id": "encodeur-url",
+          "version": "1.0.0",
+          "sha256": "fe548c7a72db701b170a8f2053de485881d9f7521c76fb5e0d7962e7c98e6c61"
+        },
+        {
+          "id": "comparateur-texte",
+          "version": "1.0.0",
+          "sha256": "d91e311bff53d3a9c841a19ac15e5df132b91ac7f651cd4c0e601d8e33919a86"
         }
       ],
-      "signing_key_id": "production-release-1"
+      "signing_key_id": "production-release-2"
     },
     "channels": {
       "date": "2026-11-01T12:08:02.087Z",

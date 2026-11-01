@@ -1,13 +1,24 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+import {desktopRelease,installCommand,installCommandCmd} from '../lib/desktop-release';
 export const prerender=true;
-const installer='https://downloads.kortex.site/KortexDesktop_1.0.0_x64-setup.exe',sha256='f81a183e72dc60d23334bc27fb7d352bbc5afba51d0e18caf5a8707e782bfccb';
+const {filename,url:installer,sha256,version}=desktopRelease;
 ---
 <LegalLayout title="Application Windows">
-  <h2>Kortex pour Windows</h2><p>Version 1.0.0 pour Windows 10 et 11 (x64). Le programme d’installation inclut le composant Microsoft WebView2 et fonctionne sans compte ; vos outils installés restent utilisables hors connexion.</p>
-  <p><a href={installer} download>Télécharger KortexDesktop_1.0.0_x64-setup.exe</a> (environ 215 Mio)</p>
-  <h2>Vérifier le fichier</h2><p>Empreinte SHA-256 attendue : <code>{sha256}</code></p><p>Dans PowerShell : <code>Get-FileHash .\KortexDesktop_1.0.0_x64-setup.exe -Algorithm SHA256</code></p>
-  <h2>Avertissement Windows</h2><p>Cette version n’est pas encore signée par un certificat de signature de code. Windows SmartScreen peut afficher « Windows a protégé votre ordinateur » : comparez l’empreinte ci-dessus, puis choisissez « Informations complémentaires » et « Exécuter quand même » uniquement si elle correspond.</p>
+  <h2>Kortex pour Windows</h2><p>Version {version} pour Windows 10 et 11 (x64). Le programme d’installation inclut le composant Microsoft WebView2 et fonctionne sans compte ; vos outils installés restent utilisables hors connexion.</p>
+  <h2>Installer avec une commande</h2><p>Ouvrez PowerShell (touche Windows, puis tapez « PowerShell »), collez cette commande et appuyez sur Entrée :</p>
+  <div class="install-command"><code>{installCommand}</code><button type="button" data-copy={installCommand}>Copier</button></div>
+  <p>Dans l’invite de commandes (cmd) : <code>{installCommandCmd}</code></p>
+  <p>La commande télécharge l’installateur (environ 215 Mio), vérifie son empreinte SHA-256, installe Kortex pour votre session sans droits administrateur, puis l’ouvre. Vous pouvez <a href="/install.ps1">lire le script</a> avant de l’exécuter.</p>
+  <h2>Ou télécharger l’installateur</h2><p><a href={installer} download>Télécharger {filename}</a> (environ 215 Mio)</p>
+  <h2>Vérifier le fichier</h2><p>Empreinte SHA-256 attendue : <code>{sha256}</code></p><p>Dans PowerShell : <code>Get-FileHash .\{filename} -Algorithm SHA256</code></p>
+  <h2>Avertissement Windows</h2><p>Cette version n’est pas encore signée par un certificat de signature de code. Si vous téléchargez l’installateur, Windows SmartScreen peut afficher « Windows a protégé votre ordinateur » : comparez l’empreinte ci-dessus, puis choisissez « Informations complémentaires » et « Exécuter quand même » uniquement si elle correspond. La commande vérifie cette empreinte automatiquement.</p>
   <p><a href="https://downloads.kortex.site/third-party-notices.txt">Notices des composants tiers</a></p>
   <p>Les outils téléchargés depuis le catalogue sont, eux, vérifiés par signature avant toute exécution.</p>
 </LegalLayout>
+<style>
+.install-command{display:flex;align-items:center;gap:12px;margin:12px 0;padding:10px 12px;border-radius:10px;background:var(--sunken)}.install-command code{flex:1;min-width:0;padding:0;background:none}.install-command button{flex:none;padding:6px 12px;border:1px solid var(--muted);border-radius:8px;background:none;color:inherit;font:inherit;font-size:14px;cursor:pointer}
+</style>
+<script>
+document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(button.dataset.copy||'');button.textContent='Copié'}catch{button.textContent='Sélectionnez le texte'}setTimeout(()=>{button.textContent='Copier'},2000)}));
+</script>

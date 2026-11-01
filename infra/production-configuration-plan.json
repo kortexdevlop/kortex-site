@@ -12,7 +12,7 @@
   "web_origin": "https://kortex.site",
   "runtime_origin": "https://run.kortex.site",
   "budget_eur": 0,
-  "ai_enabled": false,
+  "ai_enabled": true,
   "google_enabled": false,
   "dns_changes": false,
   "mail_changes": false,
