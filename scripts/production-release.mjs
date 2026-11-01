@@ -54,6 +54,7 @@ try{
   for(const kind of ['api','runtime','website']){wrangler(['deploy','--config',write(kind,c[kind])]);console.log('deployed '+kind)}
   for(const origin of [p.api_origin,p.runtime_origin,p.web_origin]){const r=await health(origin,'/health.json',r=>r.status===200||r.status===404,60);console.log(origin,r.status)}
   await health(p.api_origin,'/api/v1/health');
+  if(existsSync(resolve(root,'target/channels-production-latest.json'))){const r=spawnSync(process.execPath,['scripts/refresh-trust.mjs','--env','production','--force'],{cwd:root,encoding:'utf8',windowsHide:true,timeout:240000});if(r.status!==0)throw Error('TRUST_SCHEDULE_REFRESH_FAILED '+(r.stderr||r.stdout).slice(-300))}
   receipt.phases.deploy={date:new Date().toISOString(),origins:[p.api_origin,p.runtime_origin,p.web_origin],admin_policy:'GitHub OIDC only (production API refuses operator issuers)'};
  }
  if(phase==='tools'){
@@ -84,7 +85,8 @@ try{
  if(phase==='channels'){
   const version=await (await health(p.runtime_origin,'/version.json')).json(),keys=trust.keys,now=Date.now();
   assert.ok(/^[a-f0-9]{64}$/.test(version.bundle_sha256)&&version.script_integrity);
-  const document={schema_version:1,sequence:(existsSync(resolve(root,"target/channels-production-latest.json"))?JSON.parse(readFileSync(resolve(root,"target/channels-production-latest.json"),"utf8")).document.sequence:trust.runtime.document.sequence)+1,issued_at:now-1000,expires:Math.min(now+29*86400000,keys.expires),channels:{stable:{runtime_version:version.runtime_version,abi_versions:version.abi_versions,protocol_versions:version.protocol_versions,ui_schema_versions:version.ui_schema_versions,web:{origin:p.runtime_origin,version_url:p.runtime_origin+'/version.json',bundle_sha256:version.bundle_sha256,script_integrity:version.script_integrity},desktop:null},staging:null},signing_key_id:keys.keys[0].id,signature:''};
+  const liveChannels=await(await health(p.api_origin,'/api/v1/runtime/channels')).json();
+  const document={schema_version:1,sequence:Math.max(liveChannels.document.sequence,trust.runtime.document.sequence)+1,issued_at:now-1000,expires:Math.min(now+29*86400000,keys.expires),channels:{stable:{runtime_version:version.runtime_version,abi_versions:version.abi_versions,protocol_versions:version.protocol_versions,ui_schema_versions:version.ui_schema_versions,web:{origin:p.runtime_origin,version_url:p.runtime_origin+'/version.json',bundle_sha256:version.bundle_sha256,script_integrity:version.script_integrity},desktop:null},staging:null},signing_key_id:keys.keys[0].id,signature:''};
   const seed=releaseSeed();try{const key=createPrivateKey({key:Buffer.concat([Buffer.from('302e020100300506032b657004220420','hex'),seed]),format:'der',type:'pkcs8'});document.signature=sign(null,runtimeSigningText(document),key).toString('base64')}finally{seed.fill(0)}
   const envelope={document,keys};await verifyRuntime(envelope,trust.root);writeFileSync(resolve(out,'channels.json'),JSON.stringify(envelope,null,2)+'\n');
   writeFileSync(resolve(root,'target/channels-production-latest.json'),JSON.stringify(envelope));receipt.phases.channels={date:new Date().toISOString(),sequence:document.sequence,expires:document.expires,runtime_version:version.runtime_version,bundle_sha256:version.bundle_sha256,desktop_in_stable_channel:false};

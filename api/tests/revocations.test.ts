@@ -4,6 +4,7 @@ import {seedArtifact} from './helpers';
 import {revocations} from '../src/routes/revocations';
 import {revocationText,type RevocationDocument} from '../../shared/typescript/src/revocation';
 import type {Env} from '../src/env';
+import {TRUST_SCHEDULE_KEY,clearTrustSchedule} from '../src/services/trust-schedule';
 describe('offline-root signed revocation endpoint',()=>{
  it('checks real signatures, TTL and D1 coverage before serving a snapshot',async()=>{
   const artifact=await seedArtifact('revocation-coverage',new Uint8Array([1,2,3]));
@@ -20,5 +21,21 @@ describe('offline-root signed revocation endpoint',()=>{
   expect((await call())!.status).toBe(503);
   d.revoked_artifacts=[{tool_id:'revocation-coverage',version:'1.0.0',sha256:artifact.sha256}];await sign();expect((await call())!.status).toBe(200);
   d.issued_at=now-86400001;d.valid_until=now-1;await sign();expect((await call())!.status).toBe(503);
+ });
+ it('serves the pre-signed document valid now without any online key, and still fails closed',async()=>{
+  const key=await crypto.subtle.generateKey('Ed25519',true,['sign','verify']) as CryptoKeyPair;
+  const b64=(b:ArrayBuffer)=>btoa(String.fromCharCode(...new Uint8Array(b)));
+  const root={id:'test-schedule-root',public_key_base64:b64(await crypto.subtle.exportKey('raw',key.publicKey) as ArrayBuffer)};
+  const revoked=(await env.DB.prepare("SELECT a.tool_id,a.version,a.sha256 FROM artifacts a WHERE EXISTS(SELECT 1 FROM revocations r WHERE r.tool_id=a.tool_id AND r.version=a.version) OR EXISTS(SELECT 1 FROM tool_versions v WHERE v.tool_id=a.tool_id AND v.version=a.version AND v.status='revoked')").all<{tool_id:string;version:string;sha256:string}>()).results;
+  const signed=async(version:number,offset:number)=>{const now=Date.now(),d:RevocationDocument={schema_version:1,version,issued_at:now+offset,valid_until:now+offset+86400000,root_key_id:root.id,revoked_keys:[],revoked_artifacts:revoked,signature:''};d.signature=b64(await crypto.subtle.sign('Ed25519',key.privateKey,revocationText(d)));return d};
+  const expired=await signed(1,-172800000),past=await signed(2,-50000000),current=await signed(3,-1000),future=await signed(4,3600000);
+  const scoped={...env,REVOCATION_ROOT:JSON.stringify(root),REVOCATION_DOCUMENT:JSON.stringify(expired)} as Env;
+  const read=async()=>{clearTrustSchedule();return (await revocations(new Request('https://api.test/api/v1/trust/revocations'),scoped,'schedule-test'))!};
+  expect((await read()).status).toBe(503);
+  await env.TOOLS_BUCKET.put(TRUST_SCHEDULE_KEY,JSON.stringify({revocations:[past,current,future],channels:[]}));
+  const served=await read();expect(served.status).toBe(200);expect((await served.json() as RevocationDocument).version).toBe(3);
+  const forged={...current,version:9};await env.TOOLS_BUCKET.put(TRUST_SCHEDULE_KEY,JSON.stringify({revocations:[current,forged],channels:[]}));
+  expect((await read()).status).toBe(503);
+  await env.TOOLS_BUCKET.delete(TRUST_SCHEDULE_KEY);clearTrustSchedule();
  });
 });
