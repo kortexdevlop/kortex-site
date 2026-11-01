@@ -1,9 +1,17 @@
 ---
 import '../styles/global.css';
+import '../styles/landing.css';
 import '../styles/auth.css';
-interface Props {title:string;}
+interface Props {title:string;account?:'profile'|'library'|'settings';}
+const {title,account}=Astro.props;
 Astro.response.headers.set('Cache-Control','private, no-store');
 Astro.response.headers.set('Referrer-Policy','no-referrer');
 Astro.response.headers.set('X-Robots-Tag','noindex, nofollow');
+const email=Astro.locals.account?.email;
+const tabs=[['profile','Profil','/account'],['library','Bibliothèque','/account/library'],['settings','Synchronisation','/account/settings'],['devices','Appareils','/account/settings#devices'],['data','Données','/account/settings#data']];
 ---
-<!doctype html><html lang="fr"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex, nofollow"/><title>{Astro.props.title} — Kortex</title><link rel="icon" href="/favicon.svg"/></head><body class="auth-body"><div class="ambient" aria-hidden="true"></div><a class="auth-brand" href="/" aria-label="Kortex.site — accueil"><span aria-hidden="true"></span><strong>kortex<span>.site</span></strong></a><main id="main" class="auth-main"><slot/></main><a class="auth-guest" href="/workspace">Continuer sans compte →</a><nav aria-label="Informations légales" class="auth-guest"><a href="/mentions-legales">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/conditions-utilisation">Conditions d’utilisation</a></nav></body></html>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex, nofollow"/><title>{title} — Kortex</title><link rel="icon" href="/favicon.svg"/></head><body class="auth-body"><div class="ambient" aria-hidden="true"></div>
+<nav class="site-nav" aria-label="Navigation principale"><span class="auth-brandline"><a class="site-brand" href="/" aria-label="Kortex.site — accueil"><span class="site-mark" aria-hidden="true"><i></i></span><span>kortex<em>.site</em></span></a><span class="auth-tag">Compte</span></span><div class="site-links"><a href="/workspace">Espace de travail</a><a href="/tools">Kortex Store</a></div></nav>
+{account?<div class="account-layout"><aside class="account-rail" aria-label="Mon compte"><div class="account-who"><span class="account-avatar" aria-hidden="true">{(email?.[0]??'K').toLocaleUpperCase('fr')}</span><span><strong>Mon compte</strong>{email&&<span>{email}</span>}</span></div><nav class="account-tabs" aria-label="Sections du compte">{tabs.map(([id,label,href])=><a href={href} aria-current={id===account?'page':undefined}>{label}</a>)}</nav></aside><main id="main" class="account-page"><slot/></main></div>:<main id="main" class="auth-main"><slot/></main>}
+<nav aria-label="Informations légales" class="auth-foot"><a href="/workspace">Continuer sans compte →</a><a href="/mentions-legales">Mentions légales</a><a href="/confidentialite">Confidentialité</a><a href="/conditions-utilisation">Conditions d’utilisation</a></nav>
+</body></html>
