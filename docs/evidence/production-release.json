@@ -2,7 +2,7 @@
   "schema_version": 1,
   "phases": {
     "deploy": {
-      "date": "2026-11-01T19:56:41.646Z",
+      "date": "2026-11-01T21:13:06.657Z",
       "origins": [
         "https://api.kortex.site",
         "https://run.kortex.site",
@@ -12,7 +12,7 @@
     },
     "tools_error": "IMMUTABLE_VERSION_CONFLICT",
     "tools": {
-      "date": "2026-11-01T19:16:18.936Z",
+      "date": "2026-11-01T21:14:32.178Z",
       "tools": [
         {
           "id": "calculatrice",
@@ -78,22 +78,27 @@
           "id": "fusion-pdf",
           "version": "1.0.1",
           "sha256": "892193a55f4e7e4d74b3b6eda4d8cac596c9b24de1cbf4801ddb089b6f1e8e30"
+        },
+        {
+          "id": "encodeur-base64",
+          "version": "1.0.0",
+          "sha256": "1ca12ec6e040e45d59d82cb55eb422e404015da48c2cc6eae732fd7b7d2d5e15"
         }
       ],
       "signing_key_id": "production-release-2"
     },
     "channels": {
-      "date": "2026-11-01T19:20:53.708Z",
-      "sequence": 12,
-      "expires": 1796066451992,
+      "date": "2026-11-01T21:13:15.838Z",
+      "sequence": 15,
+      "expires": 1796073195098,
       "runtime_version": "1.0.2",
-      "bundle_sha256": "eec5384a2de06bcb8014ff54c88e80c7f93926c8dd02f91c0fc10367abb7dca9",
+      "bundle_sha256": "273019794a8633187b7f6446f685af9f21cc18cce9549d837c0739497720eab3",
       "desktop_in_stable_channel": false
     },
     "finalize": {
-      "date": "2026-11-01T19:21:22.862Z",
+      "date": "2026-11-01T21:13:42.920Z",
       "admin_authority": "github-oidc-only",
-      "channel_sequence": 12
+      "channel_sequence": 15
     },
     "deploy_error": "Wrangler deploy failed: \u001b[33m▲ \u001b[43;33m[\u001b[43;30mWARNING\u001b[43;33m]\u001b[0m \u001b[1mA fetch request failed, likely due to a connectivity issue.\u001b[0m\n\n  \n  Common causes:\n    - No internet connection or network connectivity problems\n    - Firewall or VPN blocking the request\n    - Network proxy configuration issues\n  \n  Please check your network connection and try again.\n\n\n\u001b[31mX \u001b[41;31m[\u001b[41;97mERROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\µ\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_23-17-43_051.log\"\n"
   },
