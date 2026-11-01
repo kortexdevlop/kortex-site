@@ -62,3 +62,40 @@ progress{width:100%;max-width:420px;accent-color:#2f5bd0}
 .content .search button{background:linear-gradient(180deg,#2c3037,#0e0f12);box-shadow:inset 0 1px 0 rgba(255,255,255,.16);color:#fff}
 .banner:empty,.message:empty{display:none}
 .content>label,.content>form>label{display:block;margin-top:12px}.content>label>input:not([type=checkbox]),.content>label>textarea,.content>textarea,.content>input[type=file]{display:block;width:100%;margin-top:6px}.content>h1+p.message,.content>.message+h1{margin-top:8px}.content>input[type=checkbox]{display:inline-block;width:auto}.content textarea{display:block;width:100%;min-height:96px;font-family:Consolas,monospace}.content>button{margin:12px 6px 0 0}.content input[type=checkbox]{margin-right:8px;accent-color:#0e0f12}
+
+.tile-documents{--h:30}
+/* Follows the system theme like the website, unless the account chose one. */
+@media(prefers-color-scheme:dark){:root:has(.desktop-workspace:not(.account-light)),body:has(.desktop-workspace:not(.account-light)){background:#0b0c0f}.desktop-workspace:not(.account-light){--ink:#f3f4f7;--muted:#b4b8c1;--line:rgba(255,255,255,.08);--panel:rgba(255,255,255,.06);--solid:#23262c;--edge:rgba(255,255,255,.14);background:#16181c;border-color:#2c3037;color:var(--ink)}.desktop-workspace:not(.account-light) .sidebar{background:rgba(0,0,0,.2)}.desktop-workspace:not(.account-light) .tool-card{background:rgba(255,255,255,.05)}}
+/* Kortex IA: same conversation layout as the website assistant. */
+.content:has(.ai-view){max-width:none;padding:0;height:100%;overflow:hidden}
+.ai-view{display:flex;flex-direction:column;height:100%;min-height:0}
+.ai-subbar{flex:none;display:flex;align-items:center;gap:8px;min-height:52px;padding:0 14px;border-bottom:1px solid var(--line)}
+.ai-subbar p{flex:1;min-width:0;margin:0;overflow:hidden;font-size:13px;font-weight:500;white-space:nowrap;text-overflow:ellipsis}
+.ai-quota{display:flex;flex-direction:column;gap:3px;min-width:190px;font-size:11px;color:var(--muted);white-space:nowrap}.ai-quota meter{width:100%;height:5px}
+.ai-subbar button,.ai-decide button,.ai-save{height:34px;padding:0 13px;border:0;border-radius:11px;background:var(--solid);color:var(--ink);box-shadow:0 0 0 1px var(--edge);font:inherit;font-size:12px;font-weight:500;cursor:pointer}
+.ai-scroll{flex:1;min-height:0;overflow:auto}
+.ai-empty{min-height:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px 24px;text-align:center}
+.ai-empty h2{margin:6px 0 0;font-size:26px;font-weight:600;letter-spacing:-.04em}.ai-empty p{max-width:440px;margin:0;font-size:14px;line-height:1.55;color:var(--muted)}
+.ai-mark{display:flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;border-radius:10px;color:#fff;background:linear-gradient(150deg,oklch(.74 .14 270),oklch(.55 .18 305))}.ai-empty .ai-mark{width:64px;height:64px;border-radius:20px}
+.ai-ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;width:100%;max-width:720px;margin-top:18px}
+.ai-ideas button{padding:16px;border:0;border-radius:20px;background:var(--panel);color:var(--ink);box-shadow:0 0 0 1px var(--line);font:inherit;font-size:13px;text-align:left;cursor:pointer}.ai-ideas button:hover{background:var(--solid)}
+.ai-thread{display:flex;flex-direction:column;gap:22px;max-width:780px;margin:0 auto;padding:24px 24px 12px}
+.ai-user{align-self:flex-end;max-width:80%;padding:12px 16px;border-radius:20px 20px 6px 20px;background:linear-gradient(180deg,#2c3037,#0e0f12);color:#fff;font-size:14px;line-height:1.5;white-space:pre-wrap}.ai-user small{display:block;margin-top:4px;font-size:11px;opacity:.8}
+.ai-reply{display:flex;gap:12px;align-items:flex-start}.ai-reply-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+.ai-text{margin:0;font-size:14px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.ai-chain{display:flex;flex-direction:column;gap:8px}.ai-chain h2{margin:6px 0 0;font-size:13px;font-weight:600}
+.ai-step{padding:14px;border-radius:18px;background:var(--solid);box-shadow:0 0 0 1px var(--line)}.ai-step h3{margin:0 0 8px;font-size:13px;font-weight:600}.ai-step p{margin:8px 0;font-size:12px;color:var(--muted)}
+.ai-view pre{margin:0;padding:10px 12px;border-radius:12px;background:var(--line);font:12px/1.5 'Geist Mono',Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.ai-result{margin-top:10px;font-size:12px}.ai-result strong{display:block;margin-bottom:6px;font-weight:600}
+.ai-decide{display:flex;gap:8px}.ai-decide .ai-go{background:linear-gradient(180deg,#2c3037,#0e0f12);color:#fff;box-shadow:none}.ai-save{margin-top:8px}
+.ai-typing{margin:0 0 0 42px;font-size:13px;color:var(--muted)}
+.ai-composer{flex:none;display:flex;flex-direction:column;gap:8px;max-width:780px;width:100%;margin:0 auto;padding:8px 24px 12px;box-sizing:border-box}
+.ai-notice{min-height:18px;margin:0;text-align:center;font-size:12px;color:var(--muted)}
+.ai-files{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}.ai-files li{display:flex;align-items:center;gap:6px;padding:4px 6px 4px 12px;border-radius:999px;background:var(--solid);box-shadow:0 0 0 1px var(--line);font-size:12px}.ai-files button{width:24px;height:24px;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer}
+.ai-input{display:flex;align-items:flex-end;gap:8px;padding:8px;border-radius:26px;background:var(--solid);box-shadow:0 0 0 1px var(--edge),0 20px 40px -24px rgba(14,15,18,.3)}
+.ai-view .ai-input textarea{flex:1;box-shadow:none;border-radius:0;min-width:0;min-height:40px;max-height:160px;padding:10px 0;border:0;outline:0;resize:none;background:transparent;color:var(--ink);font:inherit;font-size:14.5px}
+.ai-view .ai-input button{display:flex;box-shadow:none;align-items:center;justify-content:center;flex:none;width:42px;height:42px;border:0;border-radius:15px;background:linear-gradient(180deg,#2c3037,#0e0f12);color:#fff;font-size:18px;cursor:pointer}.ai-input button:disabled{opacity:.5;cursor:default}.ai-view .ai-input .ai-attach{background:transparent;color:var(--muted)}
+.ai-consent{display:flex;align-items:center;justify-content:center;gap:8px;min-height:24px;font-size:12px;color:var(--muted);cursor:pointer}.ai-consent input{width:16px;height:16px;margin:0}
+.hero-open{height:40px;margin-top:6px;padding:0 18px;border:0;border-radius:13px;background:rgba(255,255,255,.14);color:#fff;font-weight:500}
+.tools-head{display:flex;align-items:baseline;gap:12px;margin:18px 0 10px}.tools-head h2{margin:0;font-size:18px;letter-spacing:-.03em}.tools-head small{font-family:Consolas,monospace;font-size:12px;color:var(--muted)}
+.filters-reset{height:36px;padding:0 12px;border:0;background:transparent;color:var(--muted)}

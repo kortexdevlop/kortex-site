@@ -19,6 +19,7 @@ enum Section {
     Ai,
     Workflows,
 }
+const VERSION: &str = env!("CARGO_PKG_VERSION");
 const ICON_STORE: &str = "M12 3.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 1 0 0-17z M15.5 8.5l-2 5-5 2 2-5z";
 const ICON_LIBRARY: &str = "M5 4.5h3v15H5z M10.5 4.5h3v15h-3z M16 5l3 .6-2.6 14.2-3-.6z";
 const ICON_UPDATES: &str = "M19.5 12a7.5 7.5 0 1 1-2.2-5.3 M19.5 4.5v4h-4";
@@ -52,7 +53,10 @@ fn category_icon(value: &str) -> &'static str {
         }
         "data" => "M4 10v4 M8 7v10 M12 4v16 M16 8v8 M20 11v2",
         "text" => "M4 6h16 M7 12h10 M10 18h4",
-        "image" => {
+        "document" | "documents" => {
+            "M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10.500a.5.5 0 0 1-.5-.5V4a.5.5 0 0 1 .5-.5z M14 3.5V8h4 M9 12.500h6 M9 16h6"
+        }
+        "image" | "images" => {
             "M5 4.5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1z M4 16l4.5-4.5 4 4 2.5-2.5 5 5"
         }
         _ => "M12 3.5l7.5 4.2v8.6L12 20.5l-7.5-4.2V7.7z",
@@ -65,7 +69,8 @@ fn category_hue(value: &str) -> &'static str {
         "calculation" => "tile tile-calculation",
         "data" => "tile tile-data",
         "text" => "tile tile-text",
-        "image" => "tile tile-image",
+        "image" | "images" => "tile tile-image",
+        "document" | "documents" => "tile tile-documents",
         _ => "tile",
     }
 }
@@ -76,7 +81,7 @@ fn category_label(value: &str) -> String {
         "calculation" => "Calcul",
         "data" => "Données",
         "text" => "Texte",
-        "image" => "Image",
+        "image" | "images" => "Images",
         "document" | "documents" => "Documents",
         "video-audio" | "media" => "Vidéo et audio",
         "design" => "Design",
@@ -250,11 +255,12 @@ pub fn App() -> Element {
         Section::Library => "Bibliothèque",
         Section::Updates => "Mises à jour",
         Section::Account => "Compte",
-        Section::Ai => "Assistant",
+        Section::Ai => "Kortex IA",
         Section::Workflows => "Workflows",
     };
     let search_api = api.clone();
     let sort_api = api.clone();
+    let reset_api = api.clone();
     let category_api = api.clone();
     let installed = library.read().tools.clone();
     let categories: Vec<String> = store.read().known_categories.iter().cloned().collect();
@@ -269,16 +275,17 @@ pub fn App() -> Element {
         .page
         .as_ref()
         .and_then(|p| p.next_cursor.clone());
+    let known_tools: Vec<String> = rows.iter().map(|t| t.id.clone()).collect();
     let account_tools: Vec<(String, String)> = rows
         .iter()
         .map(|t| (t.id.clone(), t.name.clone()))
         .collect();
     let account_class = format!(
         "desktop-workspace {} {} {}",
-        if account_preferences.read()["theme"] == "dark" {
-            "account-dark"
-        } else {
-            ""
+        match account_preferences.read()["theme"].as_str() {
+            Some("dark") => "account-dark",
+            Some("light") => "account-light",
+            _ => "",
         },
         if account_preferences.read()["density"] == "pro" {
             "account-compact"
@@ -297,10 +304,10 @@ pub fn App() -> Element {
        header{class:"app-bar",span{class:"logo"}strong{"Kortex Store"}small{if channel=="staging"{"TEST"}else{"{header}"}}span{class:"app-spacer"}span{class:"local-badge","Windows"}}
        aside{class:"sidebar",
        nav{aria_label:"Navigation principale",
-       for (s,label,path) in [(Section::Store,"Store",ICON_STORE),(Section::Library,"Bibliothèque",ICON_LIBRARY),(Section::Updates,"Mises à jour",ICON_UPDATES),(Section::Account,"Compte",ICON_ACCOUNT),(Section::Ai,"Assistant",ICON_AI),(Section::Workflows,"Workflows",ICON_FLOW)]{
+       for (s,label,path) in [(Section::Store,"Store",ICON_STORE),(Section::Library,"Bibliothèque",ICON_LIBRARY),(Section::Updates,"Mises à jour",ICON_UPDATES),(Section::Account,"Compte",ICON_ACCOUNT),(Section::Ai,"Kortex IA",ICON_AI),(Section::Workflows,"Workflows",ICON_FLOW)]{
        button{class:if *section.read()==s{"nav-item selected"}else{"nav-item"},aria_current:if *section.read()==s{"page"}else{"false"},disabled:*busy.read(),onclick:move |_|{section.set(s);detail.set(None);active.set(None);},{icon(path,18)}span{"{label}"}}
        }}
-       div{class:"sidebar-bottom",div{class:"connection",span{class:if offline{"dot offline"}else{"dot"}}strong{if offline{"Hors connexion"}else{"Application locale"}}p{"Vos fichiers restent sur cet appareil."}button{disabled:*busy.read()||active.read().is_some(),onclick:move |_|{let next=!*offline_mode.read();offline_mode.set(next);},if offline{"Revenir en ligne"}else{"Utiliser hors connexion"}}}p{class:"muted","Kortex Desktop · 1.0"}}
+       div{class:"sidebar-bottom",div{class:"connection",span{class:if offline{"dot offline"}else{"dot"}}strong{if offline{"Hors connexion"}else{"Application locale"}}p{"Vos fichiers restent sur cet appareil."}button{disabled:*busy.read()||active.read().is_some(),onclick:move |_|{let next=!*offline_mode.read();offline_mode.set(next);},if offline{"Revenir en ligne"}else{"Utiliser hors connexion"}}}p{class:"muted","Kortex Desktop · {VERSION}"}}
        }
        main{class:"main-panel",
        div{class:"content",
@@ -315,8 +322,11 @@ pub fn App() -> Element {
        }else{
        match *section.read(){
        Section::Store=>rsx!{
-       section{class:"store-hero",div{span{class:"hero-tag","Kortex Store"}h1{"Les bons outils, au même endroit."}p{class:"subtitle","Explorez le catalogue Kortex et trouvez ce qu’il vous faut."}}
-       div{class:"hero-tools",for tool in rows.clone().into_iter().take(4){{let api=api.clone();let id=tool.id.clone();rsx!{button{class:"hero-tool",disabled:*busy.read(),aria_label:"Fiche de {tool.name}",onclick:move |_|{if let Ok(api)=api.clone(){details(api,id.clone(),detail,busy,status)}},span{class:category_hue(&tool.category),{icon(category_icon(&tool.category),18)}}span{"{tool.name}"}}}}}}}
+       section{class:"store-hero",div{
+       if let Some(tool)=rows.first().cloned(){{let api=api.clone();let id=tool.id.clone();rsx!{span{class:"hero-tag","À la une"}h1{"{tool.name}"}p{class:"subtitle","{tool.summary}"}button{class:"hero-open",disabled:*busy.read(),onclick:move |_|{if let Ok(api)=api.clone(){details(api,id.clone(),detail,busy,status)}},"Voir la fiche →"}}}}
+       else{span{class:"hero-tag","Kortex Store"}h1{"Les bons outils, au même endroit."}p{class:"subtitle","Explorez le catalogue Kortex et trouvez ce qu’il vous faut."}}
+       }
+       div{class:"hero-tools",for tool in rows.clone().into_iter().skip(1).take(4){{let api=api.clone();let id=tool.id.clone();rsx!{button{class:"hero-tool",disabled:*busy.read(),aria_label:"Fiche de {tool.name}",onclick:move |_|{if let Ok(api)=api.clone(){details(api,id.clone(),detail,busy,status)}},span{class:category_hue(&tool.category),{icon(category_icon(&tool.category),18)}}span{"{tool.name}"}}}}}}}
        form{class:"search",onsubmit:move|e|{e.prevent_default();if let Ok(api)=search_api.clone(){load(api,store,busy,status,epoch,Query{q:query.read().clone(),category:category.read().clone(),sort:sort.read().clone()},None,true)}},
        input{r#type:"search",aria_label:"Rechercher un outil",placeholder:"Rechercher un outil…",value:"{query}",maxlength:200,oninput:move|e|query.set(e.value())}
        button{r#type:"submit",disabled:*busy.read(),"Rechercher"}
@@ -327,10 +337,12 @@ pub fn App() -> Element {
        for value in categories{option{value:value.clone(),"{category_label(&value)}"}}
        }
        label{r#for:"sort","Trier"}select{id:"sort",value:"{sort}",disabled:*busy.read(),onchange:move|e|{sort.set(e.value());if let Ok(api)=sort_api.clone(){load(api,store,busy,status,epoch,Query{q:query.read().clone(),category:category.read().clone(),sort:e.value()},None,true)}},option{value:"recent","Plus récents"}option{value:"name","Nom"}}
+       {let api=reset_api.clone();rsx!{button{class:"filters-reset",disabled:*busy.read(),onclick:move |_|{query.set(String::new());category.set(String::new());sort.set("recent".into());if let Ok(api)=api.clone(){load(api,store,busy,status,epoch,Query{q:String::new(),category:String::new(),sort:"recent".into()},None,true)}},"Réinitialiser"}}}
        }
        if *busy.read(){p{role:"status","Chargement…"}}
        if !status.read().is_empty(){p{role:"status",class:"message","{status}"}}
        if !*busy.read()&&rows.is_empty()&&status.read().is_empty(){p{class:"empty","Aucun outil ne correspond à votre recherche."}}
+       if !rows.is_empty(){div{class:"tools-head",h2{"Tous les outils"}small{"{rows.len()} outils"}}}
        div{class:"tool-grid",
        for tool in rows{
        {let api=api.clone();let id=tool.id.clone();rsx!{
@@ -360,7 +372,7 @@ pub fn App() -> Element {
        {let cfg=config.clone();let api=api.clone();rsx!{button{disabled:*busy.read(),onclick:move |_|{if let(Ok(c),Ok(a))=(cfg.clone(),api.clone()){manager::check(c,a,busy,available,checked,notice)}},"Rechercher les mises à jour"}}}
        for update in available.read().clone(){{let candidate=update.clone();rsx!{article{class:"tool-card",h2{"{update.detail.tool.name}"}p{"{update.installed.version} → {update.detail.tool.version}"}p{"{update.detail.manifest.description}"}button{disabled:*busy.read(),onclick:move |_|confirmation.set(Some(Choice::new(Operation::Update(candidate.clone())))),"Mettre à jour"}}}}}
        },
-       Section::Ai=>rsx!{if let Ok(c)=&config{crate::ai_view::AiView{config:c.clone()}}},
+       Section::Ai=>rsx!{if let Ok(c)=&config{crate::ai_view::AiView{config:c.clone(),catalogue:known_tools.clone()}}},
        Section::Workflows=>rsx!{if let Ok(c)=&config{crate::workflow_view::WorkflowView{config:c.clone()}}},
        Section::Account=>rsx!{if let Ok(c)=&config{crate::account_ui::AccountPanel{config:c.clone(),tools:account_tools,on_preferences:move|value|account_preferences.set(value)}}}
        }

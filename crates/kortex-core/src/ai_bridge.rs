@@ -16,10 +16,17 @@ pub struct ReviewedPlan {
     expires: u64,
 }
 pub fn bounded_plan(value: &Value) -> bool {
+    within(value, 32768)
+}
+/// An approved step can carry the user's own file inline; it never comes from the cloud.
+pub fn bounded_local_plan(value: &Value) -> bool {
+    within(value, 2_400_000)
+}
+fn within(value: &Value, limit: usize) -> bool {
     let Ok(bytes) = serde_json::to_vec(value) else {
         return false;
     };
-    if bytes.len() > 32768 {
+    if bytes.len() > limit {
         return false;
     }
     let Ok(schema) =
@@ -29,14 +36,19 @@ pub fn bounded_plan(value: &Value) -> bool {
     };
     jsonschema::validator_for(&schema).is_ok_and(|v| v.is_valid(value))
 }
+/// Binary outputs stay out of the displayed result but must reach the next step of an approved chain.
+pub fn carried(value: &Value) -> serde_json::Map<String, Value> {
+    value
+        .as_object()
+        .map(|map| {
+            map.iter()
+                .filter(|(k, v)| k.ends_with("_base64") && v.is_string())
+                .map(|(k, v)| (k.clone(), v.clone()))
+                .collect()
+        })
+        .unwrap_or_default()
+}
 pub fn local_result(mut value: Value) -> Result<Value, RuntimeError> {
-    if serde_json::to_vec(&value)
-        .map_err(|_| RuntimeError::InvalidReply)?
-        .len()
-        > 32768
-    {
-        return Err(RuntimeError::InvalidReply);
-    }
     fn scrub(v: &mut Value, depth: usize) {
         if depth > 16 {
             *v = Value::Null;
@@ -45,16 +57,8 @@ pub fn local_result(mut value: Value) -> Result<Value, RuntimeError> {
         match v {
             Value::Object(map) => {
                 for (k, v) in map {
-                    if [
-                        "handle",
-                        "file_handle",
-                        "path",
-                        "file_path",
-                        "data_base64",
-                        "bytes",
-                        "content_base64",
-                    ]
-                    .contains(&k.as_str())
+                    if ["handle", "file_handle", "path", "file_path", "bytes"].contains(&k.as_str())
+                        || k.ends_with("_base64")
                     {
                         *v = Value::String("[masqué]".into())
                     } else {
@@ -76,11 +80,18 @@ pub fn local_result(mut value: Value) -> Result<Value, RuntimeError> {
         }
     }
     scrub(&mut value, 0);
+    if serde_json::to_vec(&value)
+        .map_err(|_| RuntimeError::InvalidReply)?
+        .len()
+        > 32768
+    {
+        return Err(RuntimeError::InvalidReply);
+    }
     Ok(value)
 }
 impl<E: GuestEngine, C: Clock> Runtime<E, C> {
     pub fn review_ai_plan(&self, value: &Value) -> Result<ReviewedPlan, RuntimeError> {
-        if !bounded_plan(value) {
+        if !bounded_local_plan(value) {
             return Err(RuntimeError::InvalidInput);
         }
         let mut steps = Vec::new();
@@ -135,6 +146,15 @@ impl<E: GuestEngine, C: Clock> Runtime<E, C> {
         index: usize,
         approved: bool,
     ) -> Result<Value, RuntimeError> {
+        local_result(self.execute_ai_step_raw(review, index, approved).await?)
+    }
+    /// For the host only: the unmasked output, so a chain can feed its next step.
+    pub async fn execute_ai_step_raw(
+        &mut self,
+        review: &mut ReviewedPlan,
+        index: usize,
+        approved: bool,
+    ) -> Result<Value, RuntimeError> {
         if self.clock.now_ms() >= review.expires {
             return Err(RuntimeError::Timeout);
         }
@@ -166,6 +186,6 @@ impl<E: GuestEngine, C: Clock> Runtime<E, C> {
                 reply.error.ok_or(RuntimeError::InvalidReply)?,
             ));
         }
-        local_result(Value::Object(reply.data.ok_or(RuntimeError::InvalidReply)?))
+        Ok(Value::Object(reply.data.ok_or(RuntimeError::InvalidReply)?))
     }
 }

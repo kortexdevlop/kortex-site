@@ -50,10 +50,9 @@
         "ADMIN_AUTH_POLICY": "{\"issuer\":\"urn:kortex:staging-operator\",\"audience\":\"https://kortex-api-staging.userpgl.workers.dev\",\"subject\":\"kortex-staging-operator\",\"repository\":\"local/kortex-staging\",\"repository_id\":\"0\",\"ref\":\"refs/heads/staging\",\"workflow_ref\":\"local/kortex-staging/staging-publication@refs/heads/staging\",\"actions\":[\"publish\",\"revoke\",\"rollback\"],\"jwks\":{\"keys\":[{\"crv\":\"Ed25519\",\"x\":\"-WC4ev1HQVWK_zOUuxSEyxo48UKKaWwwWD1-v1YV1wA\",\"kty\":\"OKP\",\"kid\":\"staging-operator-df76f6b8\",\"alg\":\"EdDSA\",\"use\":\"sig\"}]}}",
         "PASSWORD_AUTH_ENABLED": "true",
         "AI_ENABLED": "true",
-        "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-        "AI_USER_DAILY_REQUESTS": "50",
-        "AI_GLOBAL_DAILY_REQUESTS": "100",
-        "AI_DAILY_RESERVED_TOKENS": "1689600"
+        "AI_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",
+        "AI_USER_WINDOW_NEURONS": "200",
+        "AI_GLOBAL_DAILY_NEURONS": "9000"
       },
       "d1_databases": [
         {
@@ -85,10 +84,9 @@
         "PASSWORD_AUTH_ENABLED": "true",
         "OIDC_ENABLED": "false",
         "AI_ENABLED": "true",
-        "AI_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
-        "AI_USER_DAILY_REQUESTS": "50",
-        "AI_GLOBAL_DAILY_REQUESTS": "100",
-        "AI_DAILY_RESERVED_TOKENS": "1689600",
+        "AI_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",
+        "AI_USER_WINDOW_NEURONS": "200",
+        "AI_GLOBAL_DAILY_NEURONS": "9000",
         "TELEMETRY_ENABLED": "false"
       },
       "d1_databases": [

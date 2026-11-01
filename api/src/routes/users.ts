@@ -3,6 +3,7 @@ import type {Env} from '../env';
 import {json,failure} from '../lib/http';
 import {AdminError,readBounded} from '../lib/admin-error';
 import {userScope} from '../security/user-scope';
+import {accountBucket} from '../security/ai-rate-limit';
 import {opaqueHash,cookie,setCookie,SESSION_COOKIE,FLOW_COOKIE} from '../security/sessions';
 import {etag,revision,readLibrary,readPreferences,mutateLibrary,mutatePreferences,librarySchema,settingsSchema,SyncError,ensureSync} from '../services/sync';
 const route=/^\/api\/v1\/me\/(library|preferences|export|data|devices)$/;
@@ -47,7 +48,7 @@ export async function users(request:Request,env:Env,id:string,viaWeb:boolean):Pr
   const credentials=await env.DB.prepare('SELECT email_key FROM password_credentials WHERE user_id=?').bind(owner.user_id).first<{email_key:string}>();
   const deleted=await env.DB.prepare('DELETE FROM users WHERE id=? AND EXISTS(SELECT 1 FROM user_sync WHERE user_id=? AND library_revision=? AND preferences_revision=? AND workflows_revision=?) RETURNING id').bind(owner.user_id,owner.user_id,Number(expected[1]),Number(expected[2]),Number(expected[3])).first<{id:string}>();if(!deleted)throw new SyncError(409,'CONFLICT','Account changed; refresh before retrying');
   // Purge only this account's short-lived password counters; shared anti-abuse counters remain.
-  await env.DB.prepare('DELETE FROM ai_quota WHERE bucket=?').bind(await opaqueHash(env,'kortex-ai-quota-v1',owner.user_id+':'+Math.floor(Date.now()/86400000))).run();
+  await env.DB.prepare('DELETE FROM ai_neurons WHERE bucket=?').bind(await accountBucket(env,owner.user_id)).run();
   if(credentials){for(const [kind,window]of [['login',900000],['register',3600000]] as const){const bucket=await opaqueHash(env,'kortex-password-rate-v1',kind+':'+credentials.email_key+':'+Math.floor(Date.now()/window));await env.DB.prepare('DELETE FROM password_auth_limits WHERE bucket=?').bind(bucket).run()}}
   const browser=cookie(request,'__Host-kortex_password');if(browser)await env.DB.prepare('DELETE FROM password_auth_forms WHERE token_hash=?').bind(await opaqueHash(env,'kortex-password-form-v1',browser)).run();
   const flow=cookie(request,FLOW_COOKIE);if(flow)await env.DB.prepare('DELETE FROM oidc_flows WHERE browser_hash=?').bind(await opaqueHash(env,'kortex-browser-v1',flow)).run();

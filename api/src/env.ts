@@ -26,9 +26,8 @@ export interface Env {
  AI?:{run(model:string,input:Record<string,unknown>):Promise<unknown>};
  AI_ENABLED?:string;
  AI_MODEL?:string;
- AI_USER_DAILY_REQUESTS?:string;
- AI_GLOBAL_DAILY_REQUESTS?:string;
- AI_DAILY_RESERVED_TOKENS?:string;
+ AI_USER_WINDOW_NEURONS?:string;
+ AI_GLOBAL_DAILY_NEURONS?:string;
 }
 const config=z.object({KORTEX_ENV:z.enum(['local','staging','production']),PUBLIC_WEB_ORIGIN:z.url()}).superRefine((value,ctx)=>{
  const url=new URL(value.PUBLIC_WEB_ORIGIN);
@@ -46,6 +45,6 @@ export function validateEnv(value:unknown):Env|null {
  const v=value as Record<string,unknown>;
  if(!config.safeParse(v).success||!methods(v.DB,['prepare','batch'])||!methods(v.TOOLS_BUCKET,['head','get','put']))return null;
  const identity:Partial<Env>={};for(const name of ['DEPLOY_REVISION','RUNTIME_ROOT','RUNTIME_CHANNELS','REVOCATION_ROOT','REVOCATION_DOCUMENT','OIDC_ENABLED','OIDC_ISSUER','OIDC_WEB_CLIENT_ID','OIDC_DESKTOP_CLIENT_ID','OIDC_WEB_REDIRECT_URI','OIDC_DESKTOP_REDIRECT_URI','OIDC_ENDPOINT_ORIGINS','OIDC_WEB_CLIENT_SECRET','SESSION_HMAC_SECRET','PASSWORD_AUTH_ENABLED','PASSWORD_PEPPER'] as const)if(typeof v[name]==='string')identity[name]=v[name];
- for(const name of ['AI_ENABLED','AI_MODEL','AI_USER_DAILY_REQUESTS','AI_GLOBAL_DAILY_REQUESTS','AI_DAILY_RESERVED_TOKENS'] as const)if(typeof v[name]==='string')identity[name]=v[name];if(methods(v.AI,['run']))identity.AI=v.AI as Env['AI'];
+ for(const name of ['AI_ENABLED','AI_MODEL','AI_USER_WINDOW_NEURONS','AI_GLOBAL_DAILY_NEURONS'] as const)if(typeof v[name]==='string')identity[name]=v[name];if(methods(v.AI,['run']))identity.AI=v.AI as Env['AI'];
  return {...identity,KORTEX_ENV:v.KORTEX_ENV as Env['KORTEX_ENV'],PUBLIC_WEB_ORIGIN:v.PUBLIC_WEB_ORIGIN as string,DB:v.DB as D1Database,TOOLS_BUCKET:v.TOOLS_BUCKET as R2Bucket,CURSOR_SIGNING_KEY:typeof v.CURSOR_SIGNING_KEY==='string'?v.CURSOR_SIGNING_KEY:undefined,ADMIN_AUTH_POLICY:typeof v.ADMIN_AUTH_POLICY==='string'?v.ADMIN_AUTH_POLICY:undefined};
 }

@@ -46,5 +46,9 @@
   {
     "file": "0012_publication_performance.sql",
     "sha256": "cf636afda8efde2e3ecff4047c47f1e17fc050fc41b46d4416b7f3341006f29d"
+  },
+  {
+    "file": "0013_ai_neurons.sql",
+    "sha256": "3b5be361cec43e80a651d18d9d896b7347a54f9c71d3d1d545d02f6edd64639d"
   }
 ]

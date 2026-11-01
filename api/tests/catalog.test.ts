@@ -4,7 +4,7 @@ import {beforeAll,describe,it,expect} from 'vitest';
 import {handle} from '../src/index';
 import {cursorKey,signCursor} from '../src/lib/cursor';
 import {query,publishedActions} from '../src/services/catalog';
-import {makeProposal} from '../src/services/ai';
+import {chatMessages,chatRequest,converse} from '../src/services/ai';
 import {MODEL} from '../src/services/ai-config';
 import {sitemap} from '../src/routes/sitemap';
 declare global {namespace Cloudflare {interface Env {TEST_MIGRATIONS:D1Migration[];TEST_MANIFEST:Record<string,unknown>;TEST_CONTRACT:{actions:Record<string,unknown>[]};TEST_DESCRIPTOR:Record<string,unknown>}}}
@@ -38,11 +38,11 @@ beforeAll(async()=>{
 describe('catalogue API V1 in real D1/workerd',()=>{
  it('AI exposes only published verified actions and independently rejects bad provider output',async()=>{
   const candidates=await publishedActions(env.DB,[testId,'tool-10001','tool-10002']);expect(candidates.length).toBe(4);expect(candidates.every(c=>c.tool_id===testId)).toBe(true);
-  const input={message:'Contact a@example.test : addition 2 et 3',available_tool_ids:[testId],consent_context:{ai_allowed:true as const,contains_private_data:false as const}};
-  let supplied:Record<string,unknown>|undefined;let response:unknown={v:1,steps:[{tool_id:testId,action_id:'add',input:{a:2,b:3},requires_consent:true}],summary:'Propose only'};
+  const input=chatRequest.parse({messages:[{role:'user',content:'Contact a@example.test : addition 2 et 3'}],available_tool_ids:[testId],consent_context:{ai_allowed:true,contains_private_data:false}});
+  let supplied:Record<string,unknown>|undefined;let response=JSON.stringify({reply:'Proposition',steps:[{tool:testId,action:'add',input:{a:2,b:3}}]});
   const settings={...env,AI_ENABLED:'true',AI_MODEL:MODEL,AI:{run:async(_model:string,value:Record<string,unknown>)=>{supplied=value;return {response}}}};
-  expect((await makeProposal(settings,input)).steps).toHaveLength(1);expect(JSON.stringify(supplied)).not.toContain('a@example.test');expect(JSON.stringify(supplied)).toContain('[EMAIL]');expect(JSON.stringify(supplied)).toContain('oneOf');expect(supplied?.max_tokens).toBe(512);
-  for(const invalid of ['not JSON',{v:1,steps:[{tool_id:testId,action_id:'shell',input:{},requires_consent:true}],summary:'Bad'},{v:1,steps:[{tool_id:testId,action_id:'add',input:{a:'two',b:3},requires_consent:true}],summary:'Bad'}]){response=invalid;await expect(makeProposal(settings,input)).rejects.toThrow()}
+  const prepared=await chatMessages(settings,input);expect((await converse(settings,prepared,0)).steps).toHaveLength(1);expect(JSON.stringify(supplied)).not.toContain('a@example.test');expect(JSON.stringify(supplied)).toContain('[EMAIL]');expect(supplied?.max_tokens).toBe(500);
+  for(const invalid of [{tool:testId,action:'shell',input:{}},{tool:testId,action:'add',input:{a:'two',b:3}}]){response=JSON.stringify({reply:'Proposition',steps:[invalid]});expect((await converse(settings,prepared,0)).steps).toEqual([])}response='not JSON';expect(await converse(settings,prepared,0)).toMatchObject({reply:'not JSON',steps:[]});
  });
  it('sitemap binding walks 10,000 IDs with no gaps, duplicates or unpublished rows; public route stays closed',async()=>{
   const ids:string[]=[];for(let page=0;page<20;page++){const r=await sitemap(new Request('https://internal/api/v1/internal/sitemap?page='+page),env);expect(r.status).toBe(200);const value=await r.json() as {pages:number;items:{id:string}[]};expect(value.pages).toBe(20);expect(value.items.length).toBe(500);ids.push(...value.items.map(t=>t.id));}

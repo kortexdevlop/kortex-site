@@ -26,7 +26,7 @@ it('an expired session cannot read or mutate account state, and no header re-ena
  const r=await handle(new Request(web+'/api/v1/me/preferences',{headers:{Cookie:'__Host-kortex_session='+expired,Origin:web,'X-Kortex-Account':user}}),settings,true);expect(r.status).toBe(401);expect((await env.DB.prepare('SELECT count(*) n FROM users WHERE id=?').bind(user).first())?.n).toBe(1);
 });
 it('AI provider outage or invalid output fails closed while manual tools remain available',async()=>{
- const settings={...env,PASSWORD_AUTH_ENABLED:'true',SESSION_HMAC_SECRET:secret,AI_ENABLED:'true',AI_MODEL:MODEL,AI_USER_DAILY_REQUESTS:'50',AI_GLOBAL_DAILY_REQUESTS:'100'};
+ const settings={...env,PASSWORD_AUTH_ENABLED:'true',SESSION_HMAC_SECRET:secret,AI_ENABLED:'true',AI_MODEL:MODEL,AI_USER_WINDOW_NEURONS:'200',AI_GLOBAL_DAILY_NEURONS:'9000'};
  const body={message:'Propose a calculation',available_tool_ids:[tool],consent_context:{ai_allowed:true,contains_private_data:false}};
  for(const run of [async()=>{throw Error('PRIVATE provider prompt')},async()=>({response:{v:1,steps:[{tool_id:tool,action_id:'execute-shell',input:{},requires_consent:false}],summary:'unsafe'}})]){
   const r=await handle(new Request(web+'/api/v1/ai/plan',{method:'POST',headers:{Cookie:'__Host-kortex_session='+token,Origin:web,'Content-Type':'application/json','X-CSRF-Token':await csrfToken(settings,token)},body:JSON.stringify(body)}),{...settings,AI:{run}},true);expect(r.status).toBe(503);expect(await r.text()).not.toContain('PRIVATE');expect((await handle(request('tools/'+tool),env)).status).toBe(200);

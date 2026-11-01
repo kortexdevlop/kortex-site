@@ -106,7 +106,7 @@ fn request(
         .send()
         .map_err(|_| "Compte momentanément injoignable.")?;
     let status = response.status();
-    if path == "/api/v1/ai/plan" {
+    if path.starts_with("/api/v1/ai/") {
         match status.as_u16() {
             429 => {
                 return Err(
@@ -115,7 +115,16 @@ fn request(
                         .get("X-Kortex-Limit-Source")
                         .is_some_and(|v| v == "application")
                     {
-                        "Limite quotidienne de Kortex atteinte. Le quota Cloudflare peut encore être disponible.".into()
+                        if response
+                            .headers()
+                            .get("X-Kortex-Limit-Scope")
+                            .is_some_and(|v| v == "service")
+                        {
+                            "Le budget IA quotidien de Kortex est épuisé pour tout le service."
+                                .into()
+                        } else {
+                            "Vos crédits IA sont épuisés. Ils reviennent au prochain créneau de trois heures.".into()
+                        }
                     } else {
                         "Le service IA limite temporairement les demandes. Réessayez plus tard."
                             .into()
@@ -137,7 +146,8 @@ fn request(
                     .windows(8)
                     .any(|w| w == b"disabled");
                 return Err(if disabled {
-                    "L’assistant IA n’est pas activé sur ce service. Aucun outil n’a été exécuté.".into()
+                    "L’assistant IA n’est pas activé sur ce service. Aucun outil n’a été exécuté."
+                        .into()
                 } else {
                     "L’IA est momentanément indisponible. Aucun outil n’a été exécuté.".into()
                 });
@@ -618,23 +628,38 @@ pub fn preference(c: &Config, key: &str, value: &str) -> Result<View, String> {
     )?;
     synchronize(c, None)
 }
-pub fn ai_proposal(c: &Config, message: &str) -> Result<Value, String> {
+pub fn ai_chat(
+    c: &Config,
+    messages: Vec<Value>,
+    catalogue: &[String],
+    attachments: Vec<&'static str>,
+) -> Result<Value, String> {
     let session = saved(c)?;
-    let ids = crate::ai_bridge::installed_ids(c);
+    let ids = crate::ai_bridge::known_ids(c, catalogue);
     if ids.is_empty() {
-        return Err("Installez d’abord un outil depuis le Store.".into());
-    }
-    if message.is_empty() || message.chars().count() > 1000 {
-        return Err("Demande trop longue ou vide.".into());
+        return Err(
+            "Le catalogue n’est pas encore chargé. Ouvrez le Store, puis réessayez.".into(),
+        );
     }
     request(
         c,
         Some(&session),
         reqwest::Method::POST,
-        "/api/v1/ai/plan",
+        "/api/v1/ai/chat",
         Some(
-            json!({"message":message,"available_tool_ids":ids,"consent_context":{"ai_allowed":true,"contains_private_data":false}}),
+            json!({"messages":messages,"available_tool_ids":ids,"attachments":attachments,"consent_context":{"ai_allowed":true,"contains_private_data":false}}),
         ),
+        None,
+    )
+}
+pub fn ai_quota(c: &Config) -> Result<Value, String> {
+    let session = saved(c)?;
+    request(
+        c,
+        Some(&session),
+        reqwest::Method::GET,
+        "/api/v1/ai/quota",
+        None,
         None,
     )
 }

@@ -1,4 +1,13 @@
-# Politique IA V1 — 28 octobre 2026
+# Politique IA V1 — 28 octobre 2026, révisée le 1er novembre 2026
+
+> **Révision du 1er novembre 2026 : conversation et crédits.** La section ci-dessous fait foi ; les sections suivantes restent en vigueur sauf là où elle les remplace.
+>
+> - `POST /api/v1/ai/chat` tient une conversation : le client renvoie jusqu’à 12 messages, le service en garde 8. Rien n’est conservé côté Kortex. `/api/v1/ai/plan` reste servi pour Desktop 1.0.x, avec le même modèle, sans les étapes liées.
+> - Modèle : `@cf/qwen/qwen3-30b-a3b-fp8`, réflexion désactivée (`/no_think`), tarif 4 625 / 30 475 neurones par million de tokens. Essai réel du 1er novembre 2026 : 8,8 neurones par message et moins d’une seconde. La réponse est analysée par Kortex : le mode JSON de Workers AI n’existe que sur des modèles plus coûteux.
+> - Crédits : 200 neurones par compte, remis à zéro toutes les trois heures UTC (`AI_USER_WINDOW_NEURONS`), soit une vingtaine de messages. Plafond du service : 9 000 neurones par jour UTC (`AI_GLOBAL_DAILY_NEURONS`), sous les 10 000 gratuits de Cloudflare. Le pire cas est réservé avant l’appel puis ajusté à l’usage réel ; une erreur du fournisseur ne rembourse pas. Ce compteur reste applicatif : il ne voit pas les autres usages du compte Cloudflare.
+> - Chaînes : jusqu’à 5 actions. Le modèle écrit `$file1` ou `$step1.champ` ; le service les convertit en liaisons (`bind`) après contrôle du catalogue et des types, et refuse toute la chaîne si une étape est invalide. Les liaisons sont résolues sur l’appareil, juste avant l’exécution.
+> - Accord : un seul clic couvre toutes les actions affichées d’une proposition. Elle expire après cinq minutes et la chaîne s’arrête à la première erreur.
+> - Fichiers : seuls leur nombre et leur type (image, pdf, texte, autre) sont envoyés, jamais leur nom ni leur contenu. Limite de 700 Ko par fichier, deux fichiers au plus. Les sorties binaires restent masquées à l’affichage, passent à l’étape suivante en mémoire et se téléchargent. Aucun résultat n’est envoyé à l’IA.
 
 Le service cloud propose des actions ; il ne charge et n’exécute aucun module WASM. Les outils invités restent utilisables sans compte et sans IA. Les étapes 15.2–15.4 ajoutent le médiateur local et l’interface Web/Desktop décrits ci-dessous.
 

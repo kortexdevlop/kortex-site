@@ -3212,7 +3212,7 @@ dependencies = [
 
 [[package]]
 name = "kortex-desktop"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "base64 0.22.1",
  "dioxus",
@@ -3231,6 +3231,7 @@ dependencies = [
  "kortex-verify",
  "kortex-workflows",
  "reqwest",
+ "rfd",
  "semver",
  "serde",
  "serde_json",
@@ -6260,7 +6261,7 @@ dependencies = [
 
 [[package]]
 name = "tool-fusion-pdf"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "base64 0.22.1",
  "kortex-sdk",

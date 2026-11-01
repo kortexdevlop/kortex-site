@@ -144,3 +144,16 @@ fn output_redacts_handles_paths_and_rejects_oversize() {
     assert!(!value.to_string().contains("private"));
     assert!(ai_bridge::local_result(json!({"text":"a".repeat(32768)})).is_err());
 }
+#[test]
+fn binary_outputs_are_masked_for_display_but_carried_for_the_chain() {
+    let output = json!({"data_base64":"a".repeat(40000),"compressed_size":5});
+    let shown = ai_bridge::local_result(output.clone()).unwrap();
+    assert_eq!(shown["data_base64"], "[masqué]");
+    assert_eq!(shown["compressed_size"], 5);
+    assert_eq!(ai_bridge::carried(&output).len(), 1);
+    assert!(ai_bridge::carried(&json!({"text":"x"})).is_empty());
+    let plan = |size: usize| json!({"v":1,"summary":"Local","steps":[{"tool_id":"calculateur-hash","action_id":"sha256_bytes","input":{"data_base64":"a".repeat(size)},"requires_consent":true}]});
+    assert!(!ai_bridge::bounded_plan(&plan(40000)));
+    assert!(ai_bridge::bounded_local_plan(&plan(40000)));
+    assert!(!ai_bridge::bounded_local_plan(&plan(2_500_000)));
+}

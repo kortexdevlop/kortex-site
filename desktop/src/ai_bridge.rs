@@ -14,7 +14,7 @@ impl kortex_core::dispatcher::Clock for Clock {
 }
 /// The UI must display and approve this immutable single step first. No capability grants are created here.
 pub fn execute(c: &Config, plan: Value) -> Result<Value, String> {
-    if !kortex_core::ai_bridge::bounded_plan(&plan)
+    if !kortex_core::ai_bridge::bounded_local_plan(&plan)
         || plan["steps"].as_array().is_none_or(|s| s.len() != 1)
     {
         return Err("Proposition invalide.".into());
@@ -54,15 +54,48 @@ pub fn execute(c: &Config, plan: Value) -> Result<Value, String> {
         .build()
         .map_err(|_| "Moteur indisponible.")?;
     runtime.block_on(async{let mut host=kortex_core::Runtime::new(engine,Clock);let id=host.load(tool).await.map_err(|_|"Paquet refusé.")?;
- let result=async{host.initialize(id).await.map_err(|_|"Initialisation refusée.")?;if inbox.pop().is_some(){return Err("L’outil demande une permission au démarrage. Ouvrez-le depuis la bibliothèque.".into())}let mut review=host.review_ai_plan(&plan).map_err(|_|"Proposition refusée par le moteur local.")?;let result=host.execute_ai_step(&mut review,0,true).await.map_err(|_|"L’action locale a échoué.")?;if inbox.pop().is_some(){return Err("Accès sensible refusé : utilisez l’interface de l’outil.".into())}Ok(result)}.await;let stopped=host.shutdown(id).await;if stopped.is_err(){return Err("Arrêt du moteur incomplet.".into())}result})
+ let result=async{host.initialize(id).await.map_err(|_|"Initialisation refusée.")?;if inbox.pop().is_some(){return Err("L’outil demande une permission au démarrage. Ouvrez-le depuis la bibliothèque.".into())}let mut review=host.review_ai_plan(&plan).map_err(|_|"Proposition refusée par le moteur local.")?;let result=host.execute_ai_step_raw(&mut review,0,true).await.map_err(|_|"L’action locale a échoué.")?;if inbox.pop().is_some(){return Err("Accès sensible refusé : utilisez l’interface de l’outil.".into())}Ok(result)}.await;let stopped=host.shutdown(id).await;if stopped.is_err(){return Err("Arrêt du moteur incomplet.".into())}result})
 }
-pub fn installed_ids(c: &Config) -> Vec<String> {
-    library::scan(c)
-        .tools
-        .into_iter()
-        .map(|i| i.id)
-        .take(10)
-        .collect()
+/// Everything the assistant may talk about: installed tools first, then the rest of the catalogue.
+pub fn known_ids(c: &Config, catalogue: &[String]) -> Vec<String> {
+    let mut ids: Vec<String> = library::scan(c).tools.into_iter().map(|i| i.id).collect();
+    for id in catalogue {
+        if !ids.contains(id) {
+            ids.push(id.clone())
+        }
+    }
+    ids.truncate(32);
+    ids
+}
+/// Fills a compiled step from local data only, right before it runs. Nothing here reaches the cloud.
+pub fn resolve_step(step: &Value, files: &[Vec<u8>], outputs: &[Value]) -> Result<Value, String> {
+    use base64::Engine;
+    let mut input = step["input"].clone();
+    let map = input.as_object_mut().ok_or("Proposition invalide.")?;
+    for (key, binding) in step["bind"].as_object().into_iter().flatten() {
+        let value = if let Some(index) = binding["file"].as_u64() {
+            let file = files
+                .get(index as usize)
+                .ok_or("Fichier joint introuvable.")?;
+            if key == "data_text" {
+                Value::String(String::from_utf8_lossy(file).into_owned())
+            } else {
+                Value::String(base64::engine::general_purpose::STANDARD.encode(file))
+            }
+        } else {
+            let index = binding["step"].as_u64().ok_or("Proposition invalide.")?;
+            let field = binding["output"].as_str().ok_or("Proposition invalide.")?;
+            outputs
+                .get(index as usize)
+                .and_then(|o| o.get(field))
+                .cloned()
+                .ok_or("Résultat de l’étape précédente introuvable.")?
+        };
+        map.insert(key.clone(), value);
+    }
+    Ok(
+        serde_json::json!({"tool_id":step["tool_id"],"action_id":step["action_id"],"input":input,"requires_consent":true}),
+    )
 }
 pub fn execute_reviewed(
     c: &Config,

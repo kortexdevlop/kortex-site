@@ -167,3 +167,21 @@ fn five_signed_tools_execute_locally_without_network_or_file_upload() {
     )
     .unwrap();
 }
+#[test]
+fn chain_steps_are_filled_from_local_data_only() {
+    use base64::Engine;
+    let hash = serde_json::json!({"tool_id":"calculateur-hash","action_id":"sha256_bytes","input":{},"bind":{"data_base64":{"file":0}},"requires_consent":true});
+    let resolved = kortex_desktop::ai_bridge::resolve_step(&hash, &[b"abc".to_vec()], &[]).unwrap();
+    assert_eq!(
+        resolved["input"]["data_base64"],
+        base64::engine::general_purpose::STANDARD.encode(b"abc")
+    );
+    assert!(resolved.get("bind").is_none());
+    let next = serde_json::json!({"tool_id":"calculatrice","action_id":"add","input":{"b":10},"bind":{"a":{"step":0,"output":"result"}},"requires_consent":true});
+    let filled =
+        kortex_desktop::ai_bridge::resolve_step(&next, &[], &[serde_json::json!({"result":1200})])
+            .unwrap();
+    assert_eq!(filled["input"], serde_json::json!({"a":1200,"b":10}));
+    assert!(kortex_desktop::ai_bridge::resolve_step(&next, &[], &[]).is_err());
+    assert!(kortex_desktop::ai_bridge::resolve_step(&hash, &[], &[]).is_err());
+}
