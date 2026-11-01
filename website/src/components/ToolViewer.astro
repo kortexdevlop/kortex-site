@@ -1,15 +1,14 @@
 ---
 import type {ToolDetail} from '../lib/tools';
+import Icon from './ui/Icon.astro';
 interface Props {detail:ToolDetail;origin:string|null;}
 const {detail,origin}=Astro.props;
 ---
-<section class="ws-viewer" data-runtime-viewer data-origin={origin} data-id={detail.tool.id} data-version={detail.tool.version} data-min-runtime={detail.manifest.min_runtime} data-abi={detail.manifest.abi_version}>
-  <h1>{detail.tool.name}</h1><p>Version {detail.tool.version} · Exécution sur votre appareil</p>
-  <details><summary>Permissions demandées</summary>{detail.manifest.permissions.length?<ul>{detail.manifest.permissions.map(permission=><li>{permission}</li>)}</ul>:<p>Aucune permission sensible demandée.</p>}<p>Les autorisations sont gérées dans l’outil.</p></details>
-  <p role="status" data-runtime-status>{origin?'Connexion à l’espace sécurisé…':'L’espace d’exécution n’est pas configuré. Réessayez après son activation.'}</p>
-  {origin&&<iframe data-src={origin+'/frame.html?tool='+encodeURIComponent(detail.tool.id)+'&version='+encodeURIComponent(detail.tool.version)} sandbox="allow-scripts allow-same-origin allow-downloads" referrerpolicy="no-referrer" title={`Outil : ${detail.tool.name}`} allow="camera 'none'; microphone 'none'; geolocation 'none'"/>}
-  <p><a href={`/tools/${encodeURIComponent(detail.tool.id)}`}>← Fiche de l’outil</a> · <a href="/tools">Tous les outils</a></p>
-</section>
+<main class="ws-viewer tool-frame" id="workspace-main" data-runtime-viewer data-origin={origin} data-id={detail.tool.id} data-version={detail.tool.version} data-min-runtime={detail.manifest.min_runtime} data-abi={detail.manifest.abi_version}>
+  <header class="tool-frame-bar"><span class:list={['ws-tile tool-frame-tile',`ws-hue-${detail.tool.category}`]}><Icon name={detail.tool.category} size={16} stroke={2}/></span><h1>{detail.tool.name}</h1><span class="tool-frame-version">v{detail.tool.version}</span><span class="tool-frame-spacer"></span><p class="tool-frame-pill" role="status" data-runtime-status>{origin?'Connexion à l’espace sécurisé…':'L’espace d’exécution n’est pas configuré. Réessayez après son activation.'}</p><a class="tool-frame-close" href="/tools" aria-label="Tous les outils"><Icon name="close" size={15} stroke={1.8}/></a></header>
+  <div class="tool-frame-tools"><span class="tool-frame-local">Exécution sur votre appareil</span><details><summary>Permissions demandées</summary><div>{detail.manifest.permissions.length?<ul>{detail.manifest.permissions.map(permission=><li>{permission}</li>)}</ul>:<p>Aucune permission sensible demandée.</p>}<p>Les autorisations sont gérées dans l’outil.</p></div></details><span class="tool-frame-spacer"></span><a href={`/tools/${encodeURIComponent(detail.tool.id)}`}>Fiche de l’outil</a></div>
+  <div class="tool-frame-body">{origin&&<iframe data-src={origin+'/frame.html?tool='+encodeURIComponent(detail.tool.id)+'&version='+encodeURIComponent(detail.tool.version)} sandbox="allow-scripts allow-same-origin allow-downloads" referrerpolicy="no-referrer" title={`Outil : ${detail.tool.name}`} allow="camera 'none'; microphone 'none'; geolocation 'none'"/>}</div>
+</main>
 <script>
 import {verifyRuntime,requireRuntime} from '../../../shared/typescript/src/runtime';
 import stagingRoot from '../../../infra/trust/release-staging-root.json';

@@ -1,6 +1,6 @@
 ---
 import {env} from 'cloudflare:workers';
-import AppLayout from '../../layouts/AppLayout.astro';
+import WorkspaceLayout from '../../layouts/WorkspaceLayout.astro';
 import ToolViewer from '../../components/ToolViewer.astro';
 import {ApiClient,ApiUnavailable} from '../../lib/api-client';
 import {runtimeOrigin} from '../../lib/runtime-bridge';
@@ -14,4 +14,4 @@ Astro.response.headers.set('Content-Security-Policy',`default-src 'self'; script
 Astro.response.headers.set('Referrer-Policy','no-referrer');Astro.response.headers.set('X-Content-Type-Options','nosniff');
 Astro.response.headers.set('Permissions-Policy','camera=(), microphone=(), geolocation=()');
 ---
-<AppLayout title={(detail?.tool.name||'Outil indisponible')+' — Kortex'}>{detail?<ToolViewer detail={detail} origin={origin}/>:<section class="ws-detail"><h1>{status===404?'Outil introuvable':'Service indisponible'}</h1><a href="/tools">Retour au catalogue</a></section>}</AppLayout>
+<WorkspaceLayout title={(detail?.tool.name||'Outil indisponible')+' — Kortex'}>{detail?<ToolViewer detail={detail} origin={origin}/>:<main class="tool-frame tool-frame-empty" id="workspace-main"><h1>{status===404?'Outil introuvable':'Service indisponible'}</h1><a href="/tools">Retour au catalogue</a></main>}</WorkspaceLayout>
