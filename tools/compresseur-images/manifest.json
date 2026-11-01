@@ -1,0 +1,30 @@
+{
+  "format_version": "1.0",
+  "id": "compresseur-images",
+  "version": "1.0.0",
+  "name": "Compresseur d’images",
+  "summary": "Réduisez le poids de vos images sans les envoyer.",
+  "description": "Compressez des images JPEG, PNG et WebP localement. Les images avec transparence conservent leur transparence. Choisissez la qualité JPEG ; si le résultat n’est pas plus léger, le fichier original est conservé. Aucun accès réseau.",
+  "category": "images",
+  "tags": [
+    "image",
+    "compression",
+    "jpeg",
+    "png",
+    "webp"
+  ],
+  "seo": {
+    "title": "Compresser une image — Kortex",
+    "description": "Réduisez le poids d’images JPEG, PNG et WebP en local, sans envoi."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [
+    "file.pick",
+    "file.read",
+    "file.save"
+  ],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

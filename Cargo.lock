@@ -6175,6 +6175,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "tool-compresseur-images"
+version = "1.0.0"
+dependencies = [
+ "base64 0.22.1",
+ "image",
+ "kortex-sdk",
+ "kortex-ui",
+ "serde_json",
+]
+
+[[package]]
 name = "tool-compteur-mots"
 version = "1.0.0"
 dependencies = [

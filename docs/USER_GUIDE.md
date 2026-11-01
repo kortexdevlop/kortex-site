@@ -26,6 +26,8 @@ Les fichiers choisis ne sont pas automatiquement envoyés à un serveur ou à l�
 
 Pour un export, autoriser l’enregistrement proposé et choisir sa destination. Une autorisation d’ouvrir un fichier ne vaut pas autorisation de sauvegarder un autre fichier. Le détail des limites et de la suppression est dans [PRIVACY](PRIVACY.md).
 
+Le **Compresseur d’images** accepte JPEG, PNG et WebP jusqu’à 700 Ko et 4 mégapixels. La compression des images opaques utilise JPEG avec une qualité réglable ; la transparence est préservée. Si la conversion n’allège pas le fichier, l’original est gardé. La lecture et l’enregistrement demandent leur autorisation habituelle.
+
 ## Compte, synchronisation et Windows
 
 Les outils peuvent être utilisés sans compte. Pour créer un compte : **Mon espace**, puis **Créer un compte**, ou `/auth/register`. La connexion email/mot de passe est disponible ; une phrase de 15 à 128 caractères convient si elle respecte les contrôles affichés. L’adresse reste non vérifiée et la récupération du mot de passe par email n’est pas encore disponible, faute de service d’envoi.
