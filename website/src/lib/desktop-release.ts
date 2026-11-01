@@ -1,4 +1,4 @@
-export const desktopRelease={version:'1.0.1',filename:'KortexDesktop_1.0.1_x64-setup.exe',url:'https://downloads.kortex.site/KortexDesktop_1.0.1_x64-setup.exe',sha256:'472efadebd7db801dca3f94db609944394313fc9182f3582cbaae91b257f3280'};
+export const desktopRelease={version:'1.0.2',filename:'KortexDesktop_1.0.2_x64-setup.exe',url:'https://downloads.kortex.site/KortexDesktop_1.0.2_x64-setup.exe',sha256:'7a76f8b7a7e00146a8acc9ec8b71d80ca976d7a93db7ac67773ddf64cf169cb4'};
 export const installCommand='irm https://kortex.site/install.ps1 | iex';
 export const installCommandCmd='powershell -c "irm https://kortex.site/install.ps1 | iex"';
 // Runs inside a script block: iex would otherwise leak preferences into the caller's session.
@@ -12,7 +12,7 @@ export const installScript=({version,filename,url,sha256}=desktopRelease)=>`# Ko
   New-Item -ItemType Directory -Path $work | Out-Null
   try {
     $installer = Join-Path $work '${filename}'
-    Write-Host 'Téléchargement de Kortex Desktop ${version} (environ 215 Mio)...'
+    Write-Host 'Téléchargement de Kortex Desktop ${version} (environ 225 Mio)...'
     Invoke-WebRequest -UseBasicParsing -Uri '${url}' -OutFile $installer
     if ((Get-FileHash $installer -Algorithm SHA256).Hash -ne '${sha256}') { throw 'Empreinte SHA-256 incorrecte : installation annulée.' }
     Write-Host 'Empreinte vérifiée. Installation...'

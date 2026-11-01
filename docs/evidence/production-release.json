@@ -2,7 +2,7 @@
   "schema_version": 1,
   "phases": {
     "deploy": {
-      "date": "2026-11-01T21:13:06.657Z",
+      "date": "2026-11-01T21:38:14.147Z",
       "origins": [
         "https://api.kortex.site",
         "https://run.kortex.site",
@@ -100,7 +100,8 @@
       "admin_authority": "github-oidc-only",
       "channel_sequence": 15
     },
-    "deploy_error": "Wrangler deploy failed: \u001b[33m▲ \u001b[43;33m[\u001b[43;30mWARNING\u001b[43;33m]\u001b[0m \u001b[1mA fetch request failed, likely due to a connectivity issue.\u001b[0m\n\n  \n  Common causes:\n    - No internet connection or network connectivity problems\n    - Firewall or VPN blocking the request\n    - Network proxy configuration issues\n  \n  Please check your network connection and try again.\n\n\n\u001b[31mX \u001b[41;31m[\u001b[41;97mERROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\µ\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_23-17-43_051.log\"\n"
+    "deploy_error": "Wrangler deploy failed: \u001b[33m▲ \u001b[43;33m[\u001b[43;30mWARNING\u001b[43;33m]\u001b[0m \u001b[1mA fetch request failed, likely due to a connectivity issue.\u001b[0m\n\n  \n  Common causes:\n    - No internet connection or network connectivity problems\n    - Firewall or VPN blocking the request\n    - Network proxy configuration issues\n  \n  Please check your network connection and try again.\n\n\n\u001b[31mX \u001b[41;31m[\u001b[41;97mERROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\µ\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_23-17-43_051.log\"\n",
+    "finalize_error": "Expected values to be strictly equal:\n\n17 !== 15\n"
   },
   "mail_records_edited": false,
   "dns_records_edited_directly": false,
