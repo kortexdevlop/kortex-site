@@ -140,6 +140,44 @@
 .ws-library .ws-section-heading h2 #ws-visible-count { font-size: 12px; font-weight: 400; letter-spacing: 0; color: var(--muted); }
 .ws-categories[hidden] { display: none; }
 
+/* Search palette */
+.ws-search-dialog { width: min(640px,calc(100vw - 32px)); max-width: none; max-height: min(560px,calc(100dvh - 32px)); margin: 12vh auto auto; padding: 0; overflow: hidden; border: 0; border-radius: 22px; background: var(--raised); box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / .08), 0 40px 100px -30px rgb(var(--shadow-rgb) / .5); color: var(--foreground); font-size: 14px; line-height: 1.45; }
+.ws-search-dialog[open] { display: flex; flex-direction: column; }
+.ws-search-dialog::backdrop { background: rgb(var(--shadow-rgb) / .33); backdrop-filter: blur(6px); }
+.ws-search-bar { flex: none; display: flex; align-items: center; gap: 12px; padding: 8px 8px 8px 18px; border-bottom: 1px solid rgb(var(--ink-rgb) / .08); color: var(--muted); }
+.ws-search-bar:focus-within { border-bottom-color: var(--focus); }
+.ws-search-bar svg { flex: none; }
+.ws-search-bar input { flex: 1; min-width: 0; height: 44px; padding: 0; border: 0; background: none; font-size: 17px; color: var(--foreground); }
+.ws-search-dialog .ws-search-bar input:focus-visible { outline: 0; }
+.ws-search-bar input::placeholder { color: var(--placeholder); opacity: 1; }
+.ws-search-bar input::-webkit-search-cancel-button { appearance: none; }
+.ws-search-bar .ws-search-close { flex: none; width: 44px; height: 44px; border: 0; border-radius: 12px; background: none; font-size: 22px; line-height: 1; color: var(--muted); }
+.ws-search-bar .ws-search-close:hover { background: rgb(var(--ink-rgb) / .05); color: var(--foreground); }
+.ws-search-status, .ws-search-hint { flex: none; margin: 0; padding: 18px; font-size: 13px; color: var(--muted); }
+.ws-search-status:empty { padding: 0; }
+.ws-search-dialog nav { flex: 1; min-height: 0; overflow: auto; }
+.ws-search-results { display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 0 8px; list-style: none; }
+.ws-search-results:not(:empty) { padding-block: 8px; }
+.ws-search-results a { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 10px; border-radius: 13px; color: var(--foreground); text-decoration: none; }
+.ws-search-results a:hover, .ws-search-results a:focus-visible { background: rgb(var(--ink-rgb) / .05); text-decoration: none; }
+.ws-search-results .ws-tile { width: 36px; height: 36px; border-radius: 11px; }
+.ws-search-text { min-width: 0; }
+.ws-search-text strong, .ws-search-text small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ws-search-text strong { font-size: 14px; font-weight: 500; }
+.ws-search-text small { font-size: 12px; color: var(--muted); }
+.ws-search-foot { flex: none; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 8px; border-top: 1px solid rgb(var(--ink-rgb) / .08); }
+.ws-search-foot fieldset { display: flex; align-items: center; gap: 2px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.ws-search-foot :is(select,button) { height: 36px; padding: 0 10px; border: 0; border-radius: 10px; background: transparent; font: inherit; font-size: 12px; color: var(--muted); cursor: pointer; }
+.ws-search-foot :is(select,button):hover { background: rgb(var(--ink-rgb) / .05); color: var(--foreground); }
+.ws-search-foot button[aria-pressed=true] { background: rgb(var(--ink-rgb) / .08); color: var(--foreground); }
+.ws-search-foot .ws-search-all { padding: 0 14px; background: var(--accent-fill); font-weight: 500; color: var(--on-accent); white-space: nowrap; }
+.ws-search-foot .ws-search-all:hover { background: var(--accent-fill); color: var(--on-accent); }
+@media (width < 700px) {
+  .ws-search-dialog { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); margin-top: 8px; }
+  .ws-search-foot :is(select,button) { min-height: 44px; }
+  .ws-search-foot .ws-search-all { flex: 1; }
+}
+
 /* Tool sheet */
 .ws-detail { display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: 1000px; margin: 0 auto; padding: 0; line-height: 1.45; }
 .ws-back { align-self: flex-start; display: flex; align-items: center; height: 32px; padding: 0 12px 0 8px; border-radius: 10px; font-size: 13px; color: var(--muted); text-decoration: none; }
