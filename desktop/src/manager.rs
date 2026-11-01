@@ -5,6 +5,7 @@ use crate::{
     launcher::{self, LaunchPlan},
     library::{self, Installed, Library},
     models::ToolDetail,
+    tool_window,
     updates::{self, Update},
 };
 use dioxus::prelude::*;
@@ -113,9 +114,21 @@ pub fn open(
     busy.set(true);
     notice.set(String::new());
     let local = c.clone();
+    let session = c.clone();
     spawn(async move {
-        match tokio::task::spawn_blocking(move || launcher::prepare(&c, &api, &id)).await {
-            Ok(Ok(plan)) => active.set(Some(plan)),
+        match tokio::task::spawn_blocking(move || {
+            if tool_window::focus_open(&c, &id) {
+                return Ok(None);
+            }
+            launcher::prepare_session(&c, &api, &id).map(Some)
+        })
+        .await
+        {
+            Ok(Ok(Some(plan))) => {
+                tool_window::announce(&session, &plan.installed.id);
+                active.set(Some(plan))
+            }
+            Ok(Ok(None)) => {}
             Ok(Err(e)) => notice.set(e),
             Err(_) => notice.set("Ouverture impossible.".into()),
         }

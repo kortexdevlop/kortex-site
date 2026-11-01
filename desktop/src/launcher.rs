@@ -9,6 +9,14 @@ use std::sync::Arc;
 pub struct LaunchPlan {
     pub installed: Installed,
     pub lease: kortex_runtime_desktop::app::SessionLease,
+    pub session: Option<Arc<std::fs::File>>,
+}
+pub fn prepare_session(c: &Config, api: &Api, id: &str) -> Result<LaunchPlan, String> {
+    let session = library::session(c, id)
+        .map_err(|_| "Cet outil est déjà ouvert dans une autre fenêtre.".to_string())?;
+    let mut plan = prepare(c, api, id)?;
+    plan.session = Some(Arc::new(session));
+    Ok(plan)
 }
 pub fn prepare(c: &Config, api: &Api, id: &str) -> Result<LaunchPlan, String> {
     let lock = library::state_lock(c)?;
@@ -66,6 +74,7 @@ pub fn prepare(c: &Config, api: &Api, id: &str) -> Result<LaunchPlan, String> {
     Ok(LaunchPlan {
         installed,
         lease: kortex_runtime_desktop::app::SessionLease(Arc::new(lease)),
+        session: None,
     })
 }
 struct Clock;

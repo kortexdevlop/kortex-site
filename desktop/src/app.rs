@@ -7,7 +7,7 @@ use crate::{
     manager::{self, Choice, Operation},
     models::ToolDetail,
     store::Store,
-    updates,
+    tool_window, updates,
 };
 use dioxus::prelude::*;
 #[derive(Clone, Copy, PartialEq)]
@@ -347,8 +347,10 @@ pub fn App() -> Element {
        if library.read().rejected>0{p{role:"status",class:"banner","Certains fichiers locaux n’ont pas pu être vérifiés et restent désactivés."}}
        if installed.is_empty()&&library.read().unavailable.is_empty(){div{class:"empty",h2{"Votre bibliothèque est vide"}p{"Explorez le Store pour découvrir les outils disponibles."}}}
        div{class:"tool-grid",for tool in installed.clone(){
-       {let item=tool.clone();let cfg=config.clone();let api=api.clone();let remove=tool.clone();let rollback=tool.clone();rsx!{article{class:"tool-card",span{class:"tile",{icon(category_icon(""),24)}}h2{"{tool.name}"}p{"Version {tool.version}"}details{summary{"Versions conservées"}p{{tool.versions.join(", ")}}}
+       {let item=tool.clone();let cfg=config.clone();let api=api.clone();let remove=tool.clone();let rollback=tool.clone();let separate=tool.id.clone();let linked=tool.clone();rsx!{article{class:"tool-card",span{class:"tile",{icon(category_icon(""),24)}}h2{"{tool.name}"}p{"Version {tool.version}"}details{summary{"Versions conservées"}p{{tool.versions.join(", ")}}}
        button{disabled:*busy.read(),onclick:move |_|{if let(Ok(c),Ok(a))=(cfg.clone(),api.clone()){manager::open(c,a,item.id.clone(),active,busy,notice,library)}},"Ouvrir"}
+       button{disabled:*busy.read(),onclick:move |_|tool_window::open_separately(&separate,notice),"Ouvrir dans une fenêtre"}
+       button{disabled:*busy.read(),onclick:move |_|tool_window::add_shortcut(linked.id.clone(),linked.name.clone(),notice),"Raccourci sur le bureau"}
        button{disabled:*busy.read(),onclick:move |_|confirmation.set(Some(Choice::new(Operation::Uninstall{id:remove.id.clone(),name:remove.name.clone()}))),"Désinstaller"}
        if tool.previous.is_some(){button{disabled:*busy.read(),onclick:move |_|confirmation.set(Some(Choice::new(Operation::Rollback(rollback.clone())))),"Version précédente"}}}}}
        }}

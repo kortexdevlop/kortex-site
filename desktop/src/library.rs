@@ -182,6 +182,14 @@ pub fn lease(c: &Config, id: &str, shared: bool) -> Result<std::fs::File, String
     }
     paths::lock(&c.data_dir.join("leases"), &format!("{id}.lock"), shared)
 }
+/// Held by the one interactive session of a tool, across windows and processes.
+/// Workflows and the assistant stay on the shared lease and are never blocked by it.
+pub fn session(c: &Config, id: &str) -> Result<std::fs::File, String> {
+    if !crate::api::slug(id) {
+        return Err("Identifiant invalide.".into());
+    }
+    paths::lock(&c.data_dir.join("sessions"), &format!("{id}.lock"), false)
+}
 fn legacy(c: &Config) -> Library {
     let mut r = Library::default();
     let root = c.data_dir.join("installed");

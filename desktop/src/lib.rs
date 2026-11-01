@@ -14,6 +14,7 @@ pub mod paths;
 pub mod revocation;
 pub mod secure_store;
 pub mod store;
+pub mod tool_window;
 pub mod trust;
 pub mod updates;
 pub mod versions;
