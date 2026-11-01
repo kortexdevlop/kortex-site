@@ -38,7 +38,7 @@ node scripts/release-tool.mjs --tool encodeur-base64 --dry-run --out target/onbo
 
 La signature Ed25519 de l’archive, la signature des documents de confiance et la signature Authenticode de l’installateur Windows ont des rôles distincts. Le développeur n’a besoin d’aucune clé de production pour tester. La racine privée reste hors CI ; la clé déléguée est fournie au job de signature protégé, pas à Cargo ni à une PR.
 
-Après revue et validation, le workflow `.github/workflows/tools.yml` teste/construit/valide/emballe les outils modifiés sur `main`, puis publie si l’environnement protégé et `KORTEX_STAGING_PUBLISH_ENABLED` l’autorisent. Le job impose une CI réussie sur le même commit, vérifie les archives et la provenance, puis publie via R2 et l’API/D1. Son déclenchement manuel accepte aussi le champ `tool`.
+Un outil se met en ligne depuis le poste Windows de l’opérateur, avec `pnpm tool:publish <id> [<id>…]`. Voir [TOOL_PUBLISHING](TOOL_PUBLISHING.md). Pousser sur `main` ne publie rien. Le workflow `.github/workflows/tools.yml` reste uniquement manuel : il cible staging, pour les retraits, rollbacks et essais.
 
 Ne pas republier une version existante avec d’autres octets. Pour une correction, augmenter la version ; pour une coupure de publication, reprendre le même artefact et la même requête idempotente. Pour retirer ou revenir en arrière, utiliser un plan de maintenance relu : [DEPLOYMENT](DEPLOYMENT.md) et [plans](../infra/releases/README.md). Un retour du pointeur de catalogue n’annule pas une révocation connue des clients.
 

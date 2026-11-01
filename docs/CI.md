@@ -10,7 +10,7 @@ Les actions sont référencées par commit. Le cache Cargo ne contient que les s
 
 Les publications et déploiements exigent une validation réussie du **même SHA** sur main, puis l'environnement staging protégé. L'API vérifie aussi l'identité OIDC GitHub exacte du workflow tools.yml. Les secrets de staging comprennent le token Cloudflare et la clé de release déléguée ; la racine privée reste sous DPAPI chez l'opérateur. Production exige une approbation du propriétaire et reste bloquée dans les scripts tant que les gates de lancement ne sont pas levés.
 
-`tools.yml` détecte les seuls dossiers outils modifiés ; build, tests, validation et packaging sont ciblés. La publication R2 est immuable, la requête idempotente, les reprises bornées et la provenance signée. Ajouter un dossier sous tools et mettre le lock à jour ne demande aucun branchement spécifique dans les hôtes.
+`tools.yml` ne se lance plus au push : il est manuel et vise staging. Les outils sont mis en ligne avec `pnpm tool:publish`, voir [TOOL_PUBLISHING](TOOL_PUBLISHING.md). Avec le champ `tool`, il cible cet outil ; build, tests, validation et packaging sont ciblés. La publication R2 est immuable, la requête idempotente, les reprises bornées et la provenance signée. Ajouter un dossier sous tools et mettre le lock à jour ne demande aucun branchement spécifique dans les hôtes.
 
 `api.yml` et `website.yml` sont indépendants. L'option manuelle `rehearse_rollback` exerce un retour arrière staging puis restaure la version courante et ses paramètres ; aucune base de données n'est restaurée par ce test. Voir `infra/deploy-order.md`.
 

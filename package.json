@@ -6,7 +6,8 @@
     "typecheck": "pnpm -r run typecheck",
     "test": "pnpm -r run test",
     "build": "pnpm -r run build",
-    "verify": "node scripts/ci-verify.mjs"
+    "verify": "node scripts/ci-verify.mjs",
+    "tool:publish": "node scripts/production-release.mjs tools"
   },
   "packageManager": "pnpm@11.25.0",
   "engines": {

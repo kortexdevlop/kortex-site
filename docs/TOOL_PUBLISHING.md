@@ -1,3 +1,18 @@
+# Mettre un outil en ligne
+
+C’est la seule route vers kortex.site. Depuis le poste Windows de l’opérateur, à la racine du dépôt :
+
+```powershell
+cargo test -p tool-<id> --locked
+pnpm tool:publish <id> [<id>…]
+```
+
+La commande lance `scripts/production-release.mjs tools`. Elle signe chaque paquet avec la clé de production du coffre DPAPI, l’envoie dans le R2/D1 de production avec le compte Cloudflare du propriétaire, puis vérifie la fiche et le téléchargement par SHA-256. Elle met à jour `docs/evidence/production-release.json`, à commiter. Toujours nommer les outils : sans argument, le script reprend la liste historique de cinq outils.
+
+Une version publiée n’est jamais écrasée : un changement de contenu exige une nouvelle version dans `manifest.json`. Un outil déjà en ligne en même version n’est pas republié ; la commande échoue si son paquet diffère. Le retrait suit [revoke-tool](runbooks/revoke-tool.md).
+
+Pousser sur `main` sauvegarde le code et lance `Validate`, sans rien publier. `tools.yml` n’a plus de déclenchement automatique : il reste manuel et vise staging, pour les retraits, rollbacks et essais.
+
 # Préparer une publication
 
 Depuis la racine du dépôt, avec les versions Rust/Node verrouillées et les dépendances déjà en cache :

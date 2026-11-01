@@ -32,7 +32,7 @@ Les préparations locales de [DEVELOPER_SETUP](DEVELOPER_SETUP.md) n’envoient 
 |---|---|
 | `validate.yml` | `node scripts/ci-verify.mjs` réparti sur contrats, natif, Web et sécurité |
 | `api.yml` | `node scripts/ci-deploy.mjs api staging` : bookmark D1, migrations, Worker, smoke |
-| `tools.yml` | Détecte/teste/construit/valide/emballe les outils, puis `ci-publish-tool.mjs` publie si l’environnement et `KORTEX_STAGING_PUBLISH_ENABLED` l’autorisent |
+| `tools.yml` | Manuel uniquement, sur staging : teste/construit/valide/emballe, puis `ci-publish-tool.mjs` publie si l’environnement et `KORTEX_STAGING_PUBLISH_ENABLED` l’autorisent ; retraits et rollbacks. La production passe par `pnpm tool:publish`, voir [TOOL_PUBLISHING](TOOL_PUBLISHING.md) |
 | `website.yml` | Build Astro et Runtime ; `ci-deploy.mjs website staging`, puis `ci-deploy.mjs runtime staging`, puis `publish-runtime.mjs` |
 | `desktop.yml` | Construit/teste l’EXE, puis publication staging si `KORTEX_STAGING_DEPLOY_ENABLED` l’autorise |
 

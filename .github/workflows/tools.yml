@@ -1,8 +1,5 @@
 name: Publish changed tools
 on:
-  push:
-    branches: [main]
-    paths: ['tools/**']
   workflow_dispatch:
     inputs:
       tool:
