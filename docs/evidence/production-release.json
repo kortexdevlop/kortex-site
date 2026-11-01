@@ -2,7 +2,7 @@
   "schema_version": 1,
   "phases": {
     "deploy": {
-      "date": "2026-11-01T11:14:44.184Z",
+      "date": "2026-11-01T11:25:40.809Z",
       "origins": [
         "https://api.kortex.site",
         "https://run.kortex.site",

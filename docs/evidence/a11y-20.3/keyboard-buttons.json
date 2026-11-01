@@ -16,8 +16,8 @@
   },
   {
     "route": "/ai",
-    "enabled_visible_buttons": 7,
-    "tab_reached": 7
+    "enabled_visible_buttons": 6,
+    "tab_reached": 6
   },
   {
     "route": "/workflows",

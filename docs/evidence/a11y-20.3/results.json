@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-01T11:10:38.643Z",
+  "date": "2026-11-01T11:23:02.356Z",
   "engine": "axe-core WCAG 2.2 AA tags; Chromium; anonymous public flows; not a full screen-reader certification",
   "rows": [
     {
@@ -80,17 +80,6 @@
       ]
     },
     {
-      "label": "/ai bottom",
-      "viewport": {
-        "width": 1632,
-        "height": 1000
-      },
-      "violations": [],
-      "incomplete_rules": [
-        "color-contrast"
-      ]
-    },
-    {
       "label": "/workflows top",
       "viewport": {
         "width": 1632,
@@ -214,20 +203,7 @@
       },
       "violations": [],
       "incomplete_rules": [
-        "color-contrast",
-        "label-content-name-mismatch"
-      ]
-    },
-    {
-      "label": "/ai bottom",
-      "viewport": {
-        "width": 1024,
-        "height": 1000
-      },
-      "violations": [],
-      "incomplete_rules": [
-        "color-contrast",
-        "label-content-name-mismatch"
+        "color-contrast"
       ]
     },
     {
@@ -358,20 +334,7 @@
       },
       "violations": [],
       "incomplete_rules": [
-        "color-contrast",
-        "label-content-name-mismatch"
-      ]
-    },
-    {
-      "label": "/ai bottom",
-      "viewport": {
-        "width": 768,
-        "height": 1000
-      },
-      "violations": [],
-      "incomplete_rules": [
-        "color-contrast",
-        "label-content-name-mismatch"
+        "color-contrast"
       ]
     },
     {
@@ -502,20 +465,7 @@
       },
       "violations": [],
       "incomplete_rules": [
-        "color-contrast",
-        "label-content-name-mismatch"
-      ]
-    },
-    {
-      "label": "/ai bottom",
-      "viewport": {
-        "width": 390,
-        "height": 844
-      },
-      "violations": [],
-      "incomplete_rules": [
-        "color-contrast",
-        "label-content-name-mismatch"
+        "color-contrast"
       ]
     },
     {

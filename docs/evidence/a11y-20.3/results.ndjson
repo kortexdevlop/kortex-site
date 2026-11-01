@@ -5,7 +5,6 @@
 {"label":"/tools/calculatrice bottom","viewport":{"width":1632,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
 {"label":"/account top","viewport":{"width":1632,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
 {"label":"/ai top","viewport":{"width":1632,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
-{"label":"/ai bottom","viewport":{"width":1632,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
 {"label":"/workflows top","viewport":{"width":1632,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
 {"label":"/workflows bottom","viewport":{"width":1632,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
 {"label":"/workspace top","viewport":{"width":1632,"height":1000},"violations":[],"incomplete_rules":["aria-prohibited-attr","color-contrast"]}
@@ -16,8 +15,7 @@
 {"label":"/tools/calculatrice top","viewport":{"width":1024,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/tools/calculatrice bottom","viewport":{"width":1024,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/account top","viewport":{"width":1024,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
-{"label":"/ai top","viewport":{"width":1024,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
-{"label":"/ai bottom","viewport":{"width":1024,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
+{"label":"/ai top","viewport":{"width":1024,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
 {"label":"/workflows top","viewport":{"width":1024,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/workflows bottom","viewport":{"width":1024,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/workspace top","viewport":{"width":1024,"height":1000},"violations":[],"incomplete_rules":["aria-prohibited-attr","color-contrast","label-content-name-mismatch"]}
@@ -28,8 +26,7 @@
 {"label":"/tools/calculatrice top","viewport":{"width":768,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/tools/calculatrice bottom","viewport":{"width":768,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/account top","viewport":{"width":768,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
-{"label":"/ai top","viewport":{"width":768,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
-{"label":"/ai bottom","viewport":{"width":768,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
+{"label":"/ai top","viewport":{"width":768,"height":1000},"violations":[],"incomplete_rules":["color-contrast"]}
 {"label":"/workflows top","viewport":{"width":768,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/workflows bottom","viewport":{"width":768,"height":1000},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/workspace top","viewport":{"width":768,"height":1000},"violations":[],"incomplete_rules":["aria-prohibited-attr","color-contrast","label-content-name-mismatch"]}
@@ -40,8 +37,7 @@
 {"label":"/tools/calculatrice top","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/tools/calculatrice bottom","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/account top","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["color-contrast"]}
-{"label":"/ai top","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
-{"label":"/ai bottom","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
+{"label":"/ai top","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["color-contrast"]}
 {"label":"/workflows top","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/workflows bottom","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["color-contrast","label-content-name-mismatch"]}
 {"label":"/workspace top","viewport":{"width":390,"height":844},"violations":[],"incomplete_rules":["aria-prohibited-attr","color-contrast","label-content-name-mismatch"]}
