@@ -1,0 +1,23 @@
+{
+  "format_version": "1.0",
+  "id": "formateur-json",
+  "version": "1.0.0",
+  "name": "Formateur JSON",
+  "summary": "Validez, indentez ou compactez du JSON, sans envoyer votre texte.",
+  "description": "Validez, indentez ou compactez du JSON, sans envoyer votre texte. Traitement dans le Runtime Kortex sur votre appareil. Aucun accès réseau.",
+  "category": "developer",
+  "tags": [
+    "json",
+    "texte"
+  ],
+  "seo": {
+    "title": "Formateur JSON — Kortex",
+    "description": "Validez, indentez ou compactez du JSON, localement et sans envoi."
+  },
+  "icon_path": "assets/icon.svg",
+  "abi_version": "1.0",
+  "ui_schema_version": "1.0",
+  "permissions": [],
+  "entrypoint": "module.wasm",
+  "min_runtime": "1.0.0"
+}

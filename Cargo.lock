@@ -6175,6 +6175,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "tool-comparateur-texte"
+version = "1.0.0"
+dependencies = [
+ "kortex-sdk",
+ "kortex-ui",
+ "serde_json",
+]
+
+[[package]]
 name = "tool-compresseur-images"
 version = "1.0.0"
 dependencies = [
@@ -6203,11 +6212,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "tool-convertisseur-couleurs"
+version = "1.0.0"
+dependencies = [
+ "kortex-sdk",
+ "kortex-ui",
+ "serde_json",
+]
+
+[[package]]
 name = "tool-encodeur-base64"
 version = "1.0.0"
 dependencies = [
  "base64 0.22.1",
  "kortex-sdk",
+ "serde_json",
+]
+
+[[package]]
+name = "tool-encodeur-url"
+version = "1.0.0"
+dependencies = [
+ "kortex-sdk",
+ "kortex-ui",
  "serde_json",
 ]
 
@@ -6222,6 +6249,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "tool-formateur-json"
+version = "1.0.0"
+dependencies = [
+ "kortex-sdk",
+ "kortex-ui",
+ "serde_json",
+]
+
+[[package]]
 name = "tool-fusion-pdf"
 version = "1.0.0"
 dependencies = [
@@ -6229,6 +6265,15 @@ dependencies = [
  "kortex-sdk",
  "kortex-ui",
  "miniz_oxide 0.9.1",
+ "serde_json",
+]
+
+[[package]]
+name = "tool-generateur-slug"
+version = "1.0.0"
+dependencies = [
+ "kortex-sdk",
+ "kortex-ui",
  "serde_json",
 ]
 
