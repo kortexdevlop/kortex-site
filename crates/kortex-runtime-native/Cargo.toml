@@ -17,7 +17,7 @@ sha2="=0.10.9"
 kortex-capabilities={path="../kortex-capabilities"}
 kortex-sdk={path="../kortex-sdk"}
 serde={version="=1.0.229",features=["derive"]}
-base64="=0.22.1"
+base64="=0.23.1"
 dirs="=6.0.0"
 fs2="=0.4.3"
 rfd="=0.17.2"
