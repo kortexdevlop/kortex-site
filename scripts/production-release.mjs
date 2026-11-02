@@ -18,11 +18,13 @@ import {createRequire} from 'node:module';
 import {getPlatformProxy} from 'wrangler';
 import {prepareRelease} from './release-tool.mjs';
 import {privateProductionConfigs} from './production-private-services.mjs';
+import {openSeed,askPassphrase} from './portable-key.mjs';
 import {runtimeSigningText,verifyRuntime} from '../shared/typescript/src/runtime.ts';
 
 const root=resolve(import.meta.dirname,'..'),json=p=>JSON.parse(readFileSync(resolve(root,p),'utf8')),hash=b=>createHash('sha256').update(b).digest('hex');
 const phase=process.argv[2];if(!['deploy','tools','channels','finalize'].includes(phase))throw Error('PHASE_REQUIRED');
-if(process.platform!=='win32'||process.env.CI==='true')throw Error('WINDOWS_OPERATOR_REQUIRED');
+// `tools` also runs on Mac/Linux with the sealed key from scripts/export-release-key.mjs; the other phases stay Windows-only.
+if(process.env.CI==='true'||(process.platform!=='win32'&&phase!=='tools'))throw Error('WINDOWS_OPERATOR_REQUIRED');
 const state=json('infra/production-state.json');
 if(state.owner_decisions?.workers_plan_confirmed!=='free'||state.owner_decisions?.monthly_budget_eur!==0||state.production_storage_provisioned!==true)throw Error('FREE_PRODUCTION_STORAGE_REQUIRED');
 const p=json('infra/deploy/channels.json').production,out=resolve(root,'target/production-release');mkdirSync(out,{recursive:true});
@@ -31,15 +33,19 @@ const receiptPath=resolve(root,'docs/evidence/production-release.json'),receipt=
 const save=()=>writeFileSync(receiptPath,JSON.stringify(receipt,null,2)+'\n');
 const dpapi=(value,method)=>{const r=spawnSync('powershell.exe',['-NoProfile','-NonInteractive','-Command',`Add-Type -AssemblyName System.Security; [Convert]::ToBase64String([Security.Cryptography.ProtectedData]::${method}([Convert]::FromBase64String([Console]::In.ReadToEnd().Trim()),$null,[Security.Cryptography.DataProtectionScope]::CurrentUser))`],{input:value,encoding:'utf8',windowsHide:true});if(r.status!==0)throw Error('DPAPI_UNAVAILABLE');return r.stdout.trim()};
 const activeKey=trust.keys.keys.filter(k=>!k.revoked).at(-1),releaseSlot=activeKey.id==='production-release-1'?'release-production':'release-production-'+activeKey.id.split('-').pop();
-const releaseSeed=()=>Buffer.from(dpapi(readFileSync(resolve(homedir(),'.kortex-offline',releaseSlot+'.dpapi'),'utf8'),'Unprotect'),'base64');
+const releaseSeed=async()=>{const base=resolve(homedir(),'.kortex-offline',releaseSlot);
+ if(process.platform==='win32'&&existsSync(base+'.dpapi'))return Buffer.from(dpapi(readFileSync(base+'.dpapi','utf8'),'Unprotect'),'base64');
+ if(!existsSync(base+'.sealed'))throw Error('SEALED_KEY_MISSING '+base+'.sealed (voir docs/TOOL_PUBLISHING.md, publier depuis un Mac)');
+ return openSeed(readFileSync(base+'.sealed','utf8'),await askPassphrase('Passphrase de la clé '+activeKey.id+' : '))};
+const siteConfig=()=>{const f=resolve(root,'website/dist/server/wrangler.json');return existsSync(f)||phase!=='tools'?json('website/dist/server/wrangler.json'):{}};
 function wrangler(args,extra={}){const r=spawnSync(process.execPath,[resolve(root,'node_modules/wrangler/bin/wrangler.js'),...args,...(args[0]==='whoami'?[]:['--profile','kortex'])],{cwd:root,encoding:'utf8',windowsHide:true,timeout:300000,maxBuffer:16*1024*1024,env:{...process.env,CLOUDFLARE_ACCOUNT_ID:p.account_id,CI:'true',WRANGLER_SEND_METRICS:'false',...extra}});if(r.status!==0)throw Error('Wrangler '+args[0]+' failed: '+(r.stderr||r.stdout).slice(-900));return r.stdout}
 const identity=JSON.parse(wrangler(['whoami','--json']));assert.ok(identity.accounts.some(a=>a.id===p.account_id),'ACCOUNT_MISMATCH');
 const token=JSON.parse(wrangler(['auth','token','--json'])).token;
 async function cf(method,path,body){const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+p.account_id+path,{method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(30000)});const v=await r.json();if(!r.ok||!v.success)throw Error('Cloudflare '+method+' '+path+' '+r.status+' '+JSON.stringify(v.errors));return v.result}
 const host=url=>new URL(url).hostname;
-const githubPolicy=JSON.parse(privateProductionConfigs(p,trust,json('website/dist/server/wrangler.json')).api.vars.ADMIN_AUTH_POLICY);
+const githubPolicy=JSON.parse(privateProductionConfigs(p,trust,siteConfig()).api.vars.ADMIN_AUTH_POLICY);
 function configs(adminPolicy,runtimeChannels){
- const c=privateProductionConfigs(p,trust,json('website/dist/server/wrangler.json')),route=pattern=>[{pattern,custom_domain:true}];
+ const c=privateProductionConfigs(p,trust,siteConfig()),route=pattern=>[{pattern,custom_domain:true}];
  c.api.vars={...c.api.vars,ADMIN_AUTH_POLICY:JSON.stringify(adminPolicy),...(runtimeChannels?{RUNTIME_CHANNELS:JSON.stringify(runtimeChannels)}:{})};
  for(const [name,file] of [['REVOCATION_DOCUMENT','revocations-production-latest.json'],['RUNTIME_CHANNELS','channels-production-latest.json']]){const latest=resolve(root,'target',file);if(existsSync(latest))c.api.vars[name]=JSON.stringify(JSON.parse(readFileSync(latest,'utf8')))}
  c.api.routes=route(host(p.api_origin));c.runtime.routes=route(host(p.runtime_origin));c.website.routes=route(host(p.web_origin));return c;
@@ -59,7 +65,7 @@ try{
   receipt.phases.deploy={date:new Date().toISOString(),origins:[p.api_origin,p.runtime_origin,p.web_origin],admin_policy:'GitHub OIDC only (production API refuses operator issuers)'};
  }
  if(phase==='tools'){
-  const seed=releaseSeed(),tools=process.argv.length>3?process.argv.slice(3):['calculatrice','convertisseur-casse','calculateur-hash','timestamp-utc','explorateur-csv'],releases=[];
+  const seed=await releaseSeed(),tools=process.argv.length>3?process.argv.slice(3):['calculatrice','convertisseur-casse','calculateur-hash','timestamp-utc','explorateur-csv'],releases=[];
   process.env.CI='true';process.env.KORTEX_SIGNING_KEY_ID=activeKey.id;process.env.KORTEX_SIGNING_KEY_SEED_BASE64=seed.toString('base64');
   try{for(const tool of tools)releases.push(prepareRelease({tool,out:resolve(out,'tools',tool),root:resolve(root,'infra/trust/release-production-root.json'),trust:resolve(root,'infra/trust/release-production-keys.json')}))}
   finally{seed.fill(0);delete process.env.KORTEX_SIGNING_KEY_SEED_BASE64;delete process.env.KORTEX_SIGNING_KEY_ID;delete process.env.CI}
@@ -88,7 +94,7 @@ try{
   assert.ok(/^[a-f0-9]{64}$/.test(version.bundle_sha256)&&version.script_integrity);
   const liveChannels=await(await health(p.api_origin,'/api/v1/runtime/channels')).json();
   const document={schema_version:1,sequence:Math.max(liveChannels.document.sequence,trust.runtime.document.sequence)+1,issued_at:now-1000,expires:Math.min(now+29*86400000,keys.expires),channels:{stable:{runtime_version:version.runtime_version,abi_versions:version.abi_versions,protocol_versions:version.protocol_versions,ui_schema_versions:version.ui_schema_versions,web:{origin:p.runtime_origin,version_url:p.runtime_origin+'/version.json',bundle_sha256:version.bundle_sha256,script_integrity:version.script_integrity},desktop:null},staging:null},signing_key_id:activeKey.id,signature:''};
-  const seed=releaseSeed();try{const key=createPrivateKey({key:Buffer.concat([Buffer.from('302e020100300506032b657004220420','hex'),seed]),format:'der',type:'pkcs8'});document.signature=sign(null,runtimeSigningText(document),key).toString('base64')}finally{seed.fill(0)}
+  const seed=await releaseSeed();try{const key=createPrivateKey({key:Buffer.concat([Buffer.from('302e020100300506032b657004220420','hex'),seed]),format:'der',type:'pkcs8'});document.signature=sign(null,runtimeSigningText(document),key).toString('base64')}finally{seed.fill(0)}
   const envelope={document,keys};await verifyRuntime(envelope,trust.root);writeFileSync(resolve(out,'channels.json'),JSON.stringify(envelope,null,2)+'\n');
   writeFileSync(resolve(root,'target/channels-production-latest.json'),JSON.stringify(envelope));receipt.phases.channels={date:new Date().toISOString(),sequence:document.sequence,expires:document.expires,runtime_version:version.runtime_version,bundle_sha256:version.bundle_sha256,desktop_in_stable_channel:false};
  }
