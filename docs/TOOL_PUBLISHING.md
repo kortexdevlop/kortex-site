@@ -1,6 +1,6 @@
 # Mettre un outil en ligne
 
-C’est la seule route vers kortex.site. Depuis le poste Windows de l’opérateur, à la racine du dépôt :
+C’est la seule route vers kortex.site. Depuis le poste Windows de l’opérateur (ou un Mac préparé, voir plus bas), à la racine du dépôt :
 
 ```powershell
 cargo test -p tool-<id> --locked
@@ -10,6 +10,44 @@ pnpm tool:publish <id> [<id>…]
 La commande lance `scripts/production-release.mjs tools`. Elle signe chaque paquet avec la clé de production du coffre DPAPI, l’envoie dans le R2/D1 de production avec le compte Cloudflare du propriétaire, puis vérifie la fiche et le téléchargement par SHA-256. Elle met à jour `docs/evidence/production-release.json`, à commiter. Toujours nommer les outils : sans argument, le script reprend la liste historique de cinq outils.
 
 Une version publiée n’est jamais écrasée : un changement de contenu exige une nouvelle version dans `manifest.json`. Un outil déjà en ligne en même version n’est pas republié ; la commande échoue si son paquet diffère. Le retrait suit [revoke-tool](runbooks/revoke-tool.md).
+
+## Publier depuis un Mac (ou Linux)
+
+Seule la phase `tools` marche hors Windows. Les phases `deploy`, `channels` et `finalize` restent sur le poste Windows.
+
+Une seule fois, sur le PC Windows :
+
+```powershell
+node scripts/export-release-key.mjs
+```
+
+Le script demande une passphrase (12 caractères minimum). Il écrit `~/.kortex-offline/release-production-<n>.sealed` : la graine de la clé active, chiffrée en scrypt + AES-256-GCM. Copie ce fichier dans `~/.kortex-offline/` sur le Mac (clé USB ou gestionnaire de mots de passe). Ne le commite jamais. Garde la passphrase séparément du fichier.
+
+Une seule fois, sur le Mac :
+
+```bash
+xcode-select --install
+curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain none && . "$HOME/.cargo/env"
+rustup toolchain install 1.99.1 --profile minimal --target wasm32-unknown-unknown
+brew install node@24 && brew link --force node@24 && npm install --global pnpm@11.25.0
+git clone https://github.com/kortexdevlop/kortex-site.git kortex && cd kortex && pnpm install --frozen-lockfile
+mkdir -p ~/.kortex-offline && chmod 700 ~/.kortex-offline
+pnpm exec wrangler auth create kortex
+```
+
+Sans Homebrew, installer Node 24 depuis nodejs.org. `wrangler auth create kortex` ouvre le navigateur : se connecter au compte Cloudflare propriétaire.
+
+Ensuite, à chaque outil :
+
+```bash
+git pull
+cargo test -p tool-<id> --locked
+pnpm tool:publish <id>
+```
+
+La commande demande la passphrase, sans l'afficher. `KORTEX_RELEASE_PASSPHRASE` la fournit sans prompt. Le site n'a pas besoin d'être construit pour cette phase. Commiter ensuite `docs/evidence/production-release.json`.
+
+Si la clé de production tourne (nouvelle entrée dans `infra/trust/release-production-keys.json`), refaire l'export depuis Windows. Si le fichier `.sealed` ou la passphrase fuit, révoquer la clé selon [SIGNING](SIGNING.md).
 
 Pousser sur `main` sauvegarde le code et lance `Validate`, sans rien publier. `tools.yml` n’a plus de déclenchement automatique : il reste manuel et vise staging, pour les retraits, rollbacks et essais.
 
