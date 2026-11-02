@@ -2,7 +2,7 @@
   "schema_version": 1,
   "phases": {
     "deploy": {
-      "date": "2026-11-01T22:14:08.638Z",
+      "date": "2026-11-02T09:35:09.874Z",
       "origins": [
         "https://api.kortex.site",
         "https://run.kortex.site",
@@ -88,17 +88,17 @@
       "signing_key_id": "production-release-2"
     },
     "channels": {
-      "date": "2026-11-01T21:13:15.838Z",
-      "sequence": 15,
-      "expires": 1796073195098,
+      "date": "2026-11-02T09:35:22.126Z",
+      "sequence": 21,
+      "expires": 1796117721196,
       "runtime_version": "1.0.2",
-      "bundle_sha256": "273019794a8633187b7f6446f685af9f21cc18cce9549d837c0739497720eab3",
+      "bundle_sha256": "19d1d0db10f500c47af431c1e57dc69673dddb20fdc25feba40fe79c661a2765",
       "desktop_in_stable_channel": false
     },
     "finalize": {
-      "date": "2026-11-01T21:13:42.920Z",
+      "date": "2026-11-02T09:35:49.990Z",
       "admin_authority": "github-oidc-only",
-      "channel_sequence": 15
+      "channel_sequence": 21
     },
     "deploy_error": "Wrangler deploy failed: \u001b[33m▲ \u001b[43;33m[\u001b[43;30mWARNING\u001b[43;33m]\u001b[0m \u001b[1mA fetch request failed, likely due to a connectivity issue.\u001b[0m\n\n  \n  Common causes:\n    - No internet connection or network connectivity problems\n    - Firewall or VPN blocking the request\n    - Network proxy configuration issues\n  \n  Please check your network connection and try again.\n\n\n\u001b[31mX \u001b[41;31m[\u001b[41;97mERROR\u001b[41;31m]\u001b[0m \u001b[1mfetch failed\u001b[0m\n\n\n🪵  Logs were written to \"C:\\Users\\µ\\AppData\\Roaming\\xdg.config\\.wrangler\\logs\\wrangler-2026-10-31_23-17-43_051.log\"\n",
     "finalize_error": "Expected values to be strictly equal:\n\n17 !== 15\n"
