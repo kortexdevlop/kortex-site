@@ -11,7 +11,7 @@ kortex-ui={path="../../crates/kortex-ui"}
 kortex-core={path="../../crates/kortex-core"}
 kortex-runtime-native={path="../../crates/kortex-runtime-native"}
 serde_json="=1.0.154"
-base64="=0.22.1"
+base64="=0.23.1"
 kortex-capabilities={path="../../crates/kortex-capabilities"}
 kortex-sdk={path="../../crates/kortex-sdk"}
 tokio={version="=1.54.1",features=["time"]}
