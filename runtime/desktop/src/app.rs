@@ -450,7 +450,7 @@ pub fn ToolSession(
     if let Some(value)=view.read().ui.clone(){kortex_ui::UiBoundary {value,on_event:move|event:kortex_ui::events::UiEvent|{let model=event_model.clone();spawn(async move{if *busy.peek(){return}busy.set(true);let mut m=model.borrow_mut();let result=if let Some(id)=m.id{match m.runtime.dispatch_event(id,event.payload()).await{Ok(reply) if reply.ok=>m.refresh().await.map(|_|"Prêt".into()),Ok(reply)=>Err(reply.error.map(|e|e.code).unwrap_or("INVALID_REPLY".into())),Err(e)=>Err(format!("{e:?}"))}}else{Err("Outil fermé".into())};m.recover_if_fatal().await;view.set(m.view(result.unwrap_or_else(|e|e)));busy.set(false);});}}}
     if !product && view.read().active {label {r#for:"action","Action"}input {id:"action",value:"{action}",oninput:move|e|action.set(e.value())}label {r#for:"input","Paramètres JSON"}textarea {id:"input",value:"{input}",oninput:move|e|input.set(e.value())}
     button {disabled:*busy.read(),onclick:move |_|{let model=runner.clone();let name=action.read().clone();let value=input.read().clone();spawn(async move{busy.set(true);let mut m=model.borrow_mut();let result=m.action(&name,&value).await;m.recover_if_fatal().await;view.set(m.view(result.unwrap_or_else(|e|e)));busy.set(false);});},"Exécuter l’action"}}
-    output {aria_label:"Résultat",role:"status","{view.read().result}"}
+    output {aria_label:"Résultat",role:"status","data-result":if view.read().result=="Prêt" {"ready"} else {""},"{view.read().result}"}
     }
     }
 }

@@ -186,6 +186,7 @@ pub fn App() -> Element {
     let mut category = use_signal(String::new);
     let mut sort = use_signal(|| "recent".to_string());
     let mut detail = use_signal(|| None::<ToolDetail>);
+    let mut tool_started = use_signal(|| false);
     let mut active = use_signal(|| None::<LaunchPlan>);
     let mut library = use_signal(Library::default);
     let mut confirmation = use_signal(|| None::<Choice>);
@@ -310,6 +311,7 @@ pub fn App() -> Element {
        div{class:"sidebar-bottom",div{class:"connection",span{class:if offline{"dot offline"}else{"dot"}}strong{if offline{"Hors connexion"}else{"Application locale"}}p{"Vos fichiers restent sur cet appareil."}button{disabled:*busy.read()||active.read().is_some(),onclick:move |_|{let next=!*offline_mode.read();offline_mode.set(next);},if offline{"Revenir en ligne"}else{"Utiliser hors connexion"}}}p{class:"muted","Kortex Desktop · {VERSION}"}}
        }
        main{class:"main-panel",
+       if let Some(plan)=active.read().as_ref(){{tool_window::loader(plan.installed.name.clone(),"Vérification et démarrage de l’outil…",*tool_started.read())}}
        div{class:"content",
        if offline{p{class:"banner",role:"status","Hors connexion · vos outils installés restent disponibles."}}
        if !notice.read().is_empty(){p{class:"message",role:"status","{notice}"}}
@@ -317,7 +319,7 @@ pub fn App() -> Element {
        if let Some(plan)=active.read().clone(){
        {let tool=plan.installed.clone();let cfg=config.clone().ok();let id=tool.id.clone();let version=tool.version.clone();rsx!{
        div{class:"section-title",p{class:"muted","{tool.name} · {tool.version}"}button{onclick:move |_|active.set(None),"Retour à la bibliothèque"}}
-       kortex_runtime_desktop::app::ToolSession{archive:Some(tool.archive.to_string_lossy().into_owned()),trust_bundle:Some(tool.trust.to_string_lossy().into_owned()),product:true,trust_seal:Some(tool.trust_seal.clone()),session_lease:Some(plan.lease.clone()),data_root:cfg.as_ref().map(|c|c.data_dir.join("tools").to_string_lossy().into_owned()),on_started:move|result|{if let Some(c)=cfg.clone(){manager::started(c,id.clone(),version.clone(),result,active,library,notice)}}}
+       kortex_runtime_desktop::app::ToolSession{archive:Some(tool.archive.to_string_lossy().into_owned()),trust_bundle:Some(tool.trust.to_string_lossy().into_owned()),product:true,trust_seal:Some(tool.trust_seal.clone()),session_lease:Some(plan.lease.clone()),data_root:cfg.as_ref().map(|c|c.data_dir.join("tools").to_string_lossy().into_owned()),on_started:move|result|{tool_started.set(true);if let Some(c)=cfg.clone(){manager::started(c,id.clone(),version.clone(),result,active,library,notice)}}}
        }}
        }else{
        match *section.read(){
@@ -360,7 +362,7 @@ pub fn App() -> Element {
        if installed.is_empty()&&library.read().unavailable.is_empty(){div{class:"empty",h2{"Votre bibliothèque est vide"}p{"Explorez le Store pour découvrir les outils disponibles."}}}
        div{class:"tool-grid",for tool in installed.clone(){
        {let item=tool.clone();let cfg=config.clone();let api=api.clone();let remove=tool.clone();let rollback=tool.clone();let separate=tool.id.clone();let linked=tool.clone();rsx!{article{class:"tool-card",span{class:"tile",{icon(category_icon(""),24)}}h2{"{tool.name}"}p{"Version {tool.version}"}details{summary{"Versions conservées"}p{{tool.versions.join(", ")}}}
-       button{disabled:*busy.read(),onclick:move |_|{if let(Ok(c),Ok(a))=(cfg.clone(),api.clone()){manager::open(c,a,item.id.clone(),active,busy,notice,library)}},"Ouvrir"}
+       button{disabled:*busy.read(),onclick:move |_|{if let(Ok(c),Ok(a))=(cfg.clone(),api.clone()){tool_started.set(false);manager::open(c,a,item.id.clone(),active,busy,notice,library)}},"Ouvrir"}
        button{disabled:*busy.read(),onclick:move |_|tool_window::open_separately(&separate,notice),"Ouvrir dans une fenêtre"}
        button{disabled:*busy.read(),onclick:move |_|tool_window::add_shortcut(linked.id.clone(),linked.name.clone(),notice),"Raccourci sur le bureau"}
        button{disabled:*busy.read(),onclick:move |_|confirmation.set(Some(Choice::new(Operation::Uninstall{id:remove.id.clone(),name:remove.name.clone()}))),"Désinstaller"}

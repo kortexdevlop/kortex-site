@@ -188,6 +188,16 @@ fn launch(
         }
     });
 }
+/// Covers the panel with the Kortex mark and the current step until the tool has started, then fades out.
+pub(crate) fn loader(title: String, step: &str, done: bool) -> Element {
+    rsx! {
+        div{class:if done{"k-loader is-done"}else{"k-loader"},aria_hidden:"true",
+        div{class:"k-loader-logo",span{class:"k-loader-halo"}span{class:"k-loader-ring"}span{class:"k-loader-mark"}}
+        p{class:"k-loader-text",strong{"{title}"}span{"{step}"}}
+        span{class:"k-loader-bar"}
+        }
+    }
+}
 #[component]
 pub fn ToolWindow() -> Element {
     let id = use_hook(|| requested_now().unwrap_or_default());
@@ -201,19 +211,32 @@ pub fn ToolWindow() -> Element {
         let (config, id) = (config.clone(), id.clone());
         use_hook(move || launch(config, id, false, active, notice, can_go_offline));
     }
+    let mut started = use_signal(|| false);
     let again = (config.clone(), id.clone());
     let without_network = (config.clone(), id.clone());
+    let opening = active.read().is_some() || notice.read().is_empty();
+    let title = active
+        .read()
+        .as_ref()
+        .map_or_else(|| "Kortex".to_string(), |p| p.installed.name.clone());
+    let step = if active.read().is_some() {
+        "Vérification et démarrage de l’outil…"
+    } else {
+        "Ouverture de l’outil…"
+    };
     rsx! {
        style{{include_str!("../assets/app.css")}}
-       div{class:"desktop-workspace tool-window",main{class:"main-panel",div{class:"content",
+       div{class:"desktop-workspace tool-window",main{class:"main-panel",
+       if opening{{loader(title,step,*started.read())}}
+       div{class:"content",
        if !notice.read().is_empty(){p{class:"message",role:"status","{notice}"}}
        if let Some(plan)=active.read().clone(){
        {let tool=plan.installed.clone();let cfg=config.clone().ok();let id=tool.id.clone();let version=tool.version.clone();rsx!{
-       kortex_runtime_desktop::app::ToolSession{archive:Some(tool.archive.to_string_lossy().into_owned()),trust_bundle:Some(tool.trust.to_string_lossy().into_owned()),product:true,trust_seal:Some(tool.trust_seal.clone()),session_lease:Some(plan.lease.clone()),data_root:cfg.as_ref().map(|c|c.data_dir.join("tools").to_string_lossy().into_owned()),on_started:move|result|{if let Some(c)=cfg.clone(){manager::started(c,id.clone(),version.clone(),result,active,library,notice)}}}
+       kortex_runtime_desktop::app::ToolSession{archive:Some(tool.archive.to_string_lossy().into_owned()),trust_bundle:Some(tool.trust.to_string_lossy().into_owned()),product:true,trust_seal:Some(tool.trust_seal.clone()),session_lease:Some(plan.lease.clone()),data_root:cfg.as_ref().map(|c|c.data_dir.join("tools").to_string_lossy().into_owned()),on_started:move|result|{started.set(true);if let Some(c)=cfg.clone(){manager::started(c,id.clone(),version.clone(),result,active,library,notice)}}}
        }}
-       }else if notice.read().is_empty(){p{role:"status","Ouverture de l’outil…"}}else{
-       button{onclick:move |_|launch(again.0.clone(),again.1.clone(),*offline.read(),active,notice,can_go_offline),"Réessayer"}
-       if *can_go_offline.read(){button{onclick:move |_|{offline.set(true);launch(without_network.0.clone(),without_network.1.clone(),true,active,notice,can_go_offline)},"Ouvrir hors connexion"}}
+       }else if notice.read().is_empty(){p{class:"sr-only",role:"status","Ouverture de l’outil…"}}else{
+       button{onclick:move |_|{started.set(false);launch(again.0.clone(),again.1.clone(),*offline.read(),active,notice,can_go_offline)},"Réessayer"}
+       if *can_go_offline.read(){button{onclick:move |_|{offline.set(true);started.set(false);launch(without_network.0.clone(),without_network.1.clone(),true,active,notice,can_go_offline)},"Ouvrir hors connexion"}}
        button{onclick:move |_|{if let Ok(exe)=std::env::current_exe(){let _=std::process::Command::new(exe).spawn();}},"Ouvrir Kortex Store"}
        }
        }}}

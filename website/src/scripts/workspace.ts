@@ -5,6 +5,8 @@ const demo=root.dataset.demo==='true';
 const publicSearch=(q:string,category='')=>{const params=new URLSearchParams();if(q.trim())params.set('q',q.trim().slice(0,100));if(category)params.set('category',category);location.assign('/tools'+(params.size?'?'+params:''));};
 root.querySelectorAll<HTMLElement>('a,button').forEach(el=>el.tabIndex=0);
 const cards=[...root.querySelectorAll<HTMLElement>('.ws-tool-card')];
+// Cards enter one after another and a soft light follows the pointer across them.
+cards.forEach((card,i)=>{card.style.setProperty('--i',String(i));card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',e.clientX-r.left+'px');card.style.setProperty('--my',e.clientY-r.top+'px');});});
 const main=root.querySelector<HTMLElement>('.ws-main-panel')!;
 const scroller=root.querySelector<HTMLElement>('.ws-scroll')!;
 const task=root.querySelector<HTMLTextAreaElement>('#ws-task')!;

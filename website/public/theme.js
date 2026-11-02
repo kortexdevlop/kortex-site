@@ -6,6 +6,8 @@
   const read = () => { try { return JSON.parse(localStorage.getItem(key) || '{}'); } catch { return {}; } };
   const saved = read().theme;
   if (saved === 'light' || saved === 'dark') root.dataset.theme = saved;
+  // Scroll reveals hide content only when motion is allowed, before the first paint.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('motion');
   const dark = () => root.dataset.theme ? root.dataset.theme === 'dark' : system.matches;
   const sync = () => document.querySelectorAll('[data-theme-toggle]').forEach(button => button.setAttribute('aria-pressed', String(dark())));
   document.addEventListener('DOMContentLoaded', sync);

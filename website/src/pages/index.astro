@@ -4,22 +4,164 @@ import '../styles/global.css';
 import '../styles/landing.css';
 import SiteNav from '../components/SiteNav.astro';
 import Footer from '../components/Footer.astro';
+import Icon from '../components/ui/Icon.astro';
 import {canonical} from '../lib/urls';
 import {ApiClient} from '../lib/api-client';
+import type {ToolSummary} from '../lib/tools';
 export const prerender=false;
 const q=Astro.url.searchParams.get('q');if(q)return Astro.redirect('/tools?q='+encodeURIComponent(q.slice(0,100)));
-let tools:Array<{id:string;name:string;summary:string}>=[];let available=false;
+let tools:ToolSummary[]=[];let available=false;
 try{tools=(await new ApiClient(env.API_WORKER).listTools(new URLSearchParams({limit:'24'}))).items;available=true}catch{}
 Astro.response.status=available?200:503;Astro.response.headers.set('Cache-Control','private, no-store');
 const title='Kortex — Tous vos outils. Un seul espace.',description='Trouvez vos outils et exécutez-les sur votre appareil avec Kortex.';
+// Decorative scenes reuse the real catalogue only; when it is unavailable they show empty shapes.
+const hues:Record<string,number>={image:255,documents:35,developer:165,media:350,security:295,design:65,calculation:220,data:190,text:130};
+const hue=(t:ToolSummary)=>hues[t.category]??240;
+const glyph=(t:ToolSummary)=>t.category in hues?t.category:'other';
+const fill=(min:number)=>tools.length?Array.from({length:Math.max(min,tools.length)},(_,i)=>tools[i%tools.length]):[];
+const ribbon=fill(10);
+const orbit=fill(8).slice(0,Math.max(8,Math.min(tools.length,12)));
+const screen=tools.slice(0,6);
+const words=(text:string,start:number)=>text.split(' ').map((w,i)=>({w,d:start+i*0.08}));
 ---
 <!doctype html><html lang="fr"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content={available?'index, follow':'noindex, nofollow'}/>{available&&<link rel="canonical" href={canonical('/',env.WEB_ORIGIN||Astro.url.origin)}/>}<title>{title}</title><meta name="description" content={description}/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><script is:inline src="/theme.js"></script></head>
 <body class="landing-body"><div class="ambient" aria-hidden="true"></div><a class="skip-link" href="#main">Aller au contenu</a>
-<div class="landing"><div class="landing-dots" aria-hidden="true"></div><SiteNav/>
-<main id="main" tabindex="-1">
-<header class="hero"><h1><span>Tous vos outils.</span><span class="tint">Un seul espace.</span></h1><p>Utilisez vos outils directement dans votre navigateur, enchaînez-les dans des workflows, ou installez-les sur votre ordinateur avec Kortex Store.</p><div class="hero-actions"><a class="btn-dark" href="/workspace">Commencer gratuitement →</a><a class="btn-light" href="/telechargement">Télécharger Kortex Store</a></div><ul class="hero-facts"><li>Gratuit</li><li>Compte facultatif</li><li>Traitement local</li></ul></header>
-<section class="band" id="outils"><small>La bibliothèque</small><h2>{available?`${tools.length} outils pour le quotidien.`:'Vos outils pour le quotidien.'}</h2>{available?<div class="land-grid">{tools.map(t=><a class="land-card glass" href={`/tools/${encodeURIComponent(t.id)}`}><strong>{t.name}</strong><span>{t.summary}</span></a>)}</div>:<p role="status">Le catalogue est momentanément indisponible.</p>}</section>
-<section class="band" id="bureau"><small>Le Bureau</small><h2>Plusieurs outils. Une seule chaîne.</h2><div class="land-grid"><a class="land-card glass" href="/workspace"><strong>Un vrai bureau</strong><span>Ouvrez plusieurs outils dans des fenêtres isolées.</span></a><a class="land-card glass" href="/workflows"><strong>Workflows</strong><span>Enchaînez vos outils, chaque étape reste sous votre contrôle.</span></a><a class="land-card glass" href="/ai"><strong>Assistant</strong><span>Il propose, vous validez avant toute action.</span></a></div></section>
-<section class="band" id="store"><small>Application Windows</small><h2>Kortex Store. Vos outils, hors ligne.</h2><div class="hero-actions"><a class="btn-dark" href="/telechargement">Télécharger pour Windows</a></div></section>
-<section class="cta glass"><h2>Prêt quand vous l’êtes.</h2><div class="hero-actions"><a class="btn-dark" href="/workspace">Ouvrir l’espace de travail</a></div></section>
-</main><Footer/></div></body></html>
+<SiteNav/>
+<main id="main" tabindex="-1" class="lx">
+
+<section class="lx-hero" data-scene="hero" aria-labelledby="lx-title">
+  <div class="lx-hero-pin">
+    <div class="lx-grid-floor" aria-hidden="true"></div>
+    <div class="lx-hero-copy">
+      <a class="lx-kicker" href="/telechargement"><span class="lx-kicker-dot" aria-hidden="true"></span>Kortex Store pour Windows est disponible<Icon name="arrow" size={13} stroke={2}/></a>
+      <h1 id="lx-title"><span class="lx-line">{words('Tous vos outils.',0.1).map(({w,d})=><span class="lx-word" style={`--d:${d}s`}>{w} </span>)}</span><span class="lx-line lx-tint">{words('Un seul espace.',0.34).map(({w,d})=><span class="lx-word" style={`--d:${d}s`}>{w} </span>)}</span></h1>
+      <p class="lx-lead">Utilisez vos outils directement dans votre navigateur, enchaînez-les dans des workflows, ou installez-les sur votre ordinateur avec Kortex Store.</p>
+      <div class="lx-actions"><a class="btn-dark" href="/workspace">Commencer gratuitement <Icon name="arrow" size={15} stroke={2}/></a><a class="btn-light" href="/tools">Explorer les outils</a></div>
+      <ul class="lx-facts"><li>Gratuit</li><li>Compte facultatif</li><li>Traitement local</li></ul>
+    </div>
+    <div class="lx-stage" aria-hidden="true">
+      <div class="lx-glow"></div>
+      <div class="lx-device" inert>
+        <div class="lx-device-bar"><span class="lx-mark"></span><strong>Kortex Store</strong><span class="lx-device-search"><Icon name="search" size={13}/>Rechercher des outils</span><span class="lx-device-pill">Mon compte</span></div>
+        <div class="lx-device-body">
+          <div class="lx-device-rail">{[['home','Accueil'],['compass','Tous les outils'],['star','Favoris'],['library','Installés'],['bolt','Assistant'],['flow','Workflows'],['desk','Bureau']].map(([icon,label],i)=><span class:list={['lx-rail-item',i===0&&'is-on']}><Icon name={icon} size={14}/>{label}</span>)}</div>
+          <div class="lx-device-main">
+            <p class="lx-device-title">Que voulez-vous faire aujourd’hui ?</p>
+            <div class="lx-device-composer"><span>Ex. compresser 40 photos pour le web…</span><i></i></div>
+            <div class="lx-device-cards">{screen.length?screen.map(t=><span class="lx-mini-card"><span class="lx-tile" style={`--h:${hue(t)}`}><Icon name={glyph(t)} size={15}/></span><b>{t.name}</b><small>{t.summary}</small></span>):Array.from({length:6},()=><span class="lx-mini-card is-empty"><span class="lx-tile"></span><b></b><small></small></span>)}</div>
+          </div>
+        </div>
+      </div>
+      {screen.slice(0,3).map((t,i)=><span class:list={['lx-float',`lx-float-${i+1}`]}><span class="lx-tile" style={`--h:${hue(t)}`}><Icon name={glyph(t)} size={16}/></span>{t.name}</span>)}
+    </div>
+  </div>
+</section>
+
+{ribbon.length>0&&<section class="lx-ribbon" aria-label="Quelques outils du catalogue">
+  {[ribbon,[...ribbon].reverse()].map((row,r)=><div class:list={['lx-ribbon-row',r&&'is-reverse']} aria-hidden={r?'true':undefined}><div class="lx-ribbon-track">{[...row,...row].map((t,i)=><a class="lx-chip" href={`/tools/${encodeURIComponent(t.id)}`} tabindex={r||i>=row.length?-1:undefined} aria-hidden={i>=row.length?'true':undefined}><span class="lx-tile" style={`--h:${hue(t)}`}><Icon name={glyph(t)} size={14}/></span>{t.name}</a>)}</div></div>)}
+</section>}
+
+<section class="lx-story" data-scene="story" data-step="0" aria-labelledby="lx-story-title">
+  <div class="lx-story-pin">
+    <div class="lx-story-copy">
+      <small class="lx-eyebrow" data-reveal>Comment ça marche</small>
+      <h2 id="lx-story-title" data-reveal>Trois gestes.<br/><span class="lx-tint">Aucun détour.</span></h2>
+      <ol class="lx-steps">
+        <li data-step-item="0"><span class="lx-step-num">01</span><div><strong>Trouvez le bon outil</strong><p>Décrivez votre besoin ou cherchez dans le catalogue : Kortex vous propose l’outil adapté.</p></div><i class="lx-step-bar"></i></li>
+        <li data-step-item="1"><span class="lx-step-num">02</span><div><strong>Lancez-le sur votre appareil</strong><p>Chaque outil est vérifié avant de s’ouvrir, dans un espace isolé. Vos fichiers restent chez vous.</p></div><i class="lx-step-bar"></i></li>
+        <li data-step-item="2"><span class="lx-step-num">03</span><div><strong>Enchaînez vos tâches</strong><p>Combinez plusieurs outils dans un workflow et gardez la main sur chaque étape.</p></div><i class="lx-step-bar"></i></li>
+      </ol>
+    </div>
+    <div class="lx-prism-stage" aria-hidden="true">
+      <div class="lx-prism">
+        <div class="lx-face lx-face-0">
+          <span class="lx-face-label">Recherche</span>
+          <span class="lx-face-search"><Icon name="search" size={15}/>compresser une image</span>
+          {(tools.length?tools.slice(0,3):[]).map((t,i)=><span class:list={['lx-face-row',i===0&&'is-hit']}><span class="lx-tile" style={`--h:${hue(t)}`}><Icon name={glyph(t)} size={14}/></span><b>{t.name}</b><small>{t.summary}</small></span>)}
+          {!tools.length&&[0,1,2].map(()=><span class="lx-face-row is-empty"><span class="lx-tile"></span><b></b></span>)}
+        </div>
+        <div class="lx-face lx-face-1">
+          <span class="lx-face-label">Exécution locale</span>
+          <div class="lx-shield"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6 52 14v16c0 13-8.5 22-20 28C20.5 52 12 43 12 30V14z"/><path class="lx-check" d="m22 32 7 7 14-15"/></svg><span class="lx-scan"></span></div>
+          <ul class="lx-checks"><li>Paquet signé vérifié</li><li>Espace isolé</li><li>Permissions sur demande</li></ul>
+        </div>
+        <div class="lx-face lx-face-2">
+          <span class="lx-face-label">Workflow</span>
+          <svg class="lx-flow" viewBox="0 0 320 170" fill="none"><path class="lx-flow-line" d="M60 45 C 140 45, 120 125, 200 125 S 270 60, 268 60"/><g class="lx-flow-nodes"><rect x="18" y="24" width="84" height="42" rx="14"/><rect x="158" y="104" width="84" height="42" rx="14"/><rect x="226" y="39" width="84" height="42" rx="14"/></g><g class="lx-flow-text"><text x="60" y="50">Étape 1</text><text x="200" y="130">Étape 2</text><text x="268" y="65">Résultat</text></g></svg>
+        </div>
+        <div class="lx-face lx-face-3"></div>
+      </div>
+      <div class="lx-prism-shadow"></div>
+    </div>
+  </div>
+</section>
+
+<section class="lx-library" id="outils" aria-labelledby="lx-library-title">
+  <div class="lx-library-head">
+    <div>
+      <small class="lx-eyebrow" data-reveal>La bibliothèque</small>
+      <h2 id="lx-library-title" data-reveal>{available?<><span class="lx-count" data-count={tools.length}>{tools.length}</span> outils pour le quotidien.</>:'Vos outils pour le quotidien.'}</h2>
+      <p class="lx-lead" data-reveal>Images, documents, données, sécurité : des outils simples, prêts à l’emploi, qui s’exécutent sur votre appareil.</p>
+      <a class="btn-light" href="/tools" data-reveal>Voir tout le catalogue <Icon name="arrow" size={14} stroke={2}/></a>
+    </div>
+    <div class="lx-orbit" aria-hidden="true">
+      <div class="lx-orbit-ring" style={`--n:${orbit.length}`}>{orbit.map((t,i)=><span class="lx-orbit-item" style={`--i:${i}`}><span class="lx-tile" style={`--h:${hue(t)}`}><Icon name={glyph(t)} size={16}/></span>{t.name}</span>)}</div>
+      <div class="lx-token">{Array.from({length:9},(_,i)=><span class="lx-token-layer" style={`--z:${i}`}></span>)}<span class="lx-token-face"></span></div>
+    </div>
+  </div>
+  {available?<div class="lx-cards">{tools.map((t,i)=><a class="lx-card" href={`/tools/${encodeURIComponent(t.id)}`} data-reveal data-tilt style={`--i:${i%8}`}><span class="lx-tile" style={`--h:${hue(t)}`}><Icon name={glyph(t)} size={18}/></span><strong>{t.name}</strong><span>{t.summary}</span><Icon name="arrow" size={14} stroke={2}/></a>)}</div>:<p class="lx-unavailable" role="status">Le catalogue est momentanément indisponible.</p>}
+</section>
+
+<section class="lx-bento" id="bureau" aria-labelledby="lx-bento-title">
+  <small class="lx-eyebrow" data-reveal>Le Bureau</small>
+  <h2 id="lx-bento-title" data-reveal>Plusieurs outils.<br/><span class="lx-tint">Une seule chaîne.</span></h2>
+  <div class="lx-bento-grid">
+    <a class="lx-tile-card lx-span-4" href="/workspace" data-reveal data-tilt>
+      <div class="lx-desk" aria-hidden="true"><span class="lx-win lx-win-a"><i></i><b></b><b></b><b></b></span><span class="lx-win lx-win-b"><i></i><b></b><b></b></span><span class="lx-win lx-win-c"><i></i><b></b></span><span class="lx-dock"><u></u><u></u><u></u><u></u></span></div>
+      <strong>Un vrai bureau</strong><span>Ouvrez plusieurs outils dans des fenêtres isolées.</span>
+    </a>
+    <a class="lx-tile-card lx-span-2" href="/workflows" data-reveal data-tilt>
+      <div class="lx-mini-flow" aria-hidden="true"><svg viewBox="0 0 200 110" fill="none"><path class="lx-flow-line" d="M30 30 C 90 30, 70 82, 130 82 S 172 40, 172 40"/><circle cx="30" cy="30" r="12"/><circle cx="130" cy="82" r="12"/><circle cx="172" cy="40" r="12"/></svg></div>
+      <strong>Workflows</strong><span>Enchaînez vos outils, chaque étape reste sous votre contrôle.</span>
+    </a>
+    <a class="lx-tile-card lx-span-2" href="/ai" data-reveal data-tilt>
+      <div class="lx-chat" aria-hidden="true"><span class="lx-bubble is-me">Compresse ces photos</span><span class="lx-bubble">Je vous propose un outil adapté. On y va ?</span><span class="lx-typing"><i></i><i></i><i></i></span></div>
+      <strong>Assistant</strong><span>Il propose, vous validez avant toute action.</span>
+    </a>
+    <a class="lx-tile-card lx-span-4 lx-dark" href="/tools" data-reveal data-tilt>
+      <div class="lx-vault" aria-hidden="true"><span class="lx-vault-ring"></span><span class="lx-vault-ring is-2"></span><span class="lx-vault-core"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 10.5h11a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span></div>
+      <strong>Sur votre appareil</strong><span>Chaque outil est vérifié par signature avant de s’exécuter. Les accès sensibles vous sont toujours demandés.</span>
+    </a>
+  </div>
+</section>
+
+<section class="lx-store" id="store" data-scene="store" aria-labelledby="lx-store-title">
+  <div class="lx-store-inner">
+    <div class="lx-store-copy">
+      <small class="lx-eyebrow" data-reveal>Application Windows</small>
+      <h2 id="lx-store-title" data-reveal>Kortex Store.<br/><span class="lx-soft">Vos outils, hors ligne.</span></h2>
+      <p data-reveal>Installez vos outils sur votre ordinateur : ils restent disponibles sans connexion et s’ouvrent dans leur propre fenêtre.</p>
+      <div class="lx-actions" data-reveal><a class="btn-light" href="/telechargement">Télécharger pour Windows <Icon name="arrow" size={15} stroke={2}/></a></div>
+    </div>
+    <div class="lx-store-stage" aria-hidden="true">
+      <div class="lx-app">
+        <div class="lx-app-bar"><span class="lx-mark"></span><strong>Kortex Store</strong><span class="lx-app-badge">Windows</span></div>
+        <div class="lx-app-body">
+          <div class="lx-app-rail">{[['compass','Store'],['library','Bibliothèque'],['up','Mises à jour'],['user','Compte'],['bolt','Kortex IA'],['flow','Workflows']].map(([icon,label],i)=><span class:list={['lx-rail-item',i===0&&'is-on']}><Icon name={icon} size={13}/>{label}</span>)}</div>
+          <div class="lx-app-main"><span class="lx-app-hero"></span><span class="lx-app-grid">{Array.from({length:6},(_,i)=><span><span class="lx-tile" style={`--h:${screen[i]?hue(screen[i]):200+i*25}`}></span></span>)}</span></div>
+        </div>
+      </div>
+      {screen.slice(0,3).map((t,i)=><span class:list={['lx-depth',`lx-depth-${i+1}`]}><span class="lx-tile" style={`--h:${hue(t)}`}><Icon name={glyph(t)} size={20}/></span></span>)}
+    </div>
+  </div>
+</section>
+
+<section class="lx-final" aria-labelledby="lx-final-title">
+  <div class="lx-aurora" aria-hidden="true"></div>
+  <h2 id="lx-final-title" data-reveal>Prêt quand<br/>vous l’êtes.</h2>
+  <div class="lx-actions" data-reveal><a class="btn-dark" href="/workspace">Ouvrir l’espace de travail <Icon name="arrow" size={15} stroke={2}/></a><a class="btn-light" href="/telechargement">Télécharger Kortex Store</a></div>
+</section>
+</main>
+<Footer/>
+<script>import '../scripts/landing';</script>
+</body></html>

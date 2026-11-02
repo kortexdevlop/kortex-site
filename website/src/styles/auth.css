@@ -1,6 +1,5 @@
 /* Sign-in window and account pages. */
-.auth-body { box-sizing: border-box; display: flex; flex-direction: column; min-height: 100dvh; margin: 0; padding: 20px 24px; background: var(--surface); color: var(--foreground); font: 14px/1.5 var(--font-sans); -webkit-font-smoothing: antialiased; }
-.auth-body .site-nav { width: 100%; max-width: 1052px; margin: 0 auto; box-sizing: border-box; }
+.auth-body { box-sizing: border-box; display: flex; flex-direction: column; min-height: 100dvh; margin: 0; padding: 84px 24px 20px; background: var(--surface); color: var(--foreground); font: 14px/1.5 var(--font-sans); -webkit-font-smoothing: antialiased; }
 .auth-tag { height: 24px; margin-left: 2px; padding: 0 10px; display: inline-flex; align-items: center; border-radius: 999px; background: rgb(var(--ink-rgb) / .06); font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .auth-main { flex: 1; display: grid; place-items: center; width: 100%; padding: 32px 0; }
 .auth-card { box-sizing: border-box; width: min(100%,420px); max-height: none; padding: 32px 28px 24px; border: 1px solid rgb(var(--glass-rgb) / .85); border-radius: 28px; background: rgb(var(--glass-rgb) / .93); box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / .07), 0 60px 120px -30px rgb(var(--shadow-rgb) / .4), inset 0 1px 0 var(--edge-highlight); text-align: center; }
