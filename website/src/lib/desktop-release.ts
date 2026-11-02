@@ -1,4 +1,4 @@
-export const desktopRelease={version:'1.0.2',filename:'KortexDesktop_1.0.2_x64-setup.exe',url:'https://downloads.kortex.site/KortexDesktop_1.0.2_x64-setup.exe',sha256:'7a76f8b7a7e00146a8acc9ec8b71d80ca976d7a93db7ac67773ddf64cf169cb4'};
+export const desktopRelease={version:'1.0.3',filename:'KortexDesktop_1.0.3_x64-setup.exe',url:'https://downloads.kortex.site/KortexDesktop_1.0.3_x64-setup.exe',sha256:'e38310aa2b6bac8b23b98a52bb7022aa2abe8821847bfec1e504e60b72437d5b'};
 export const installCommand='irm https://kortex.site/install.ps1 | iex';
 export const installCommandCmd='powershell -c "irm https://kortex.site/install.ps1 | iex"';
 // Runs inside a script block: iex would otherwise leak preferences into the caller's session.
